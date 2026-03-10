@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutomationBoost – Automatisez vos posts réseaux sociaux avec l'IA</title>
+  <meta name="description" content="Publiez sur tous vos réseaux sociaux automatiquement grâce à l'IA. Gagnez 10h/semaine, multipliez votre engagement par 3. Essai gratuit 14 jours." />
+  <meta name="keywords" content="automatisation réseaux sociaux, posts automatiques, IA social media, planification posts, instagram automation, linkedin automation" />
+  <meta property="og:title" content="AutomationBoost – Publiez partout automatiquement" />
+  <meta property="og:description" content="L'IA qui génère, planifie et publie vos posts sur Instagram, LinkedIn, Facebook et plus — en quelques secondes." />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://automationboost.tonypayet.com/" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <!-- Favicons inline SVG -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">⚡</div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <a href="#pricing" class="nav-cta">Commencer →</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
+
+      <!-- Texte gauche -->
+      <div>
+        <div class="hero-badge">Propulsé par l'IA ⚡</div>
+        <h1 class="hero-title">
+          <span class="line-1">Publiez Partout.</span>
+          <span class="line-2" id="hero-tagline" data-text="En Automatique.">En Automatique.</span>
+        </h1>
+        <p class="hero-subtitle">
+          Générez, planifiez et publiez des posts percutants sur <strong>Instagram, LinkedIn, Facebook, TikTok</strong> et plus — le tout en quelques secondes grâce à l'IA.
+        </p>
+        <div class="hero-cta-group">
+          <a href="#pricing" class="btn-primary">
+            🚀 Essayer Gratuitement 14 Jours
+          </a>
+          <a href="#demo" class="btn-secondary">
+            ▶ Voir la démo
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number" data-count="10" data-suffix="h/sem">0h</span>
+            <span class="stat-label">économisées</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="3" data-suffix="x">0x</span>
+            <span class="stat-label">plus d'engagement</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="2400" data-suffix="+">0+</span>
+            <span class="stat-label">créateurs actifs</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard mockup droit -->
+      <div class="hero-visual fade-in fade-in-delay-2">
+        <div class="dashboard-mockup">
+          <div class="mockup-bar">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <div class="mockup-content">
+            <div class="mockup-header">
+              <span class="mockup-title">Tableau de Bord IA</span>
+              <span class="status-dot">Actif</span>
+            </div>
+            <div class="mockup-platforms">
+              <div class="platform-chip"><span class="icon">📷</span>Instagram</div>
+              <div class="platform-chip"><span class="icon">💼</span>LinkedIn</div>
+              <div class="platform-chip"><span class="icon">👥</span>Facebook</div>
+              <div class="platform-chip"><span class="icon">🎵</span>TikTok</div>
+            </div>
+            <div class="mockup-post-preview">
+              <div class="post-meta">✨ Post généré par IA — Prêt à publier</div>
+              <div class="post-text">
+                🚀 3 stratégies pour <span class="tag">#automatiser</span> votre croissance en 2026…
+                <br>🔥 Gagnez du temps. Multipliez votre portée.
+              </div>
+            </div>
+            <div class="mockup-metrics">
+              <div class="metric-box">
+                <div class="metric-value">847</div>
+                <div class="metric-label">Portée</div>
+              </div>
+              <div class="metric-box">
+                <div class="metric-value">94</div>
+                <div class="metric-label">Likes</div>
+              </div>
+              <div class="metric-box">
+                <div class="metric-value">12</div>
+                <div class="metric-label">Partages</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live feed -->
+        <div id="live-feed" style="margin-top:12px;"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOCIAL PROOF BANDEAU ============ -->
+<div style="background:#0a0a0a;border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a;padding:24px 0;position:relative;z-index:1;">
+  <div class="container">
+    <div style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;">
+      <span style="color:#71717a;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.1em;">Utilisé par des créateurs et agences sur</span>
+      <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap;">
+        <span style="color:#a1a1aa;font-size:1rem;">📷 Instagram</span>
+        <span style="color:#a1a1aa;font-size:1rem;">💼 LinkedIn</span>
+        <span style="color:#a1a1aa;font-size:1rem;">👥 Facebook</span>
+        <span style="color:#a1a1aa;font-size:1rem;">🎵 TikTok</span>
+        <span style="color:#a1a1aa;font-size:1rem;">🐦 X/Twitter</span>
+        <span style="color:#a1a1aa;font-size:1rem;">📌 Pinterest</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PROBLÈME ============ -->
+<section id="problem">
+  <div class="container">
+    <div class="text-center fade-in">
+      <span class="section-label">Le problème</span>
+      <h2 class="section-title">Vous perdez des heures chaque semaine<br><span class="gold">à faire ce que l'IA peut faire en secondes</span></h2>
+      <p class="section-desc">Créer du contenu, planifier, poster manuellement sur chaque plateforme… C'est épuisant. Et ça vous empêche de vous concentrer sur ce qui compte vraiment.</p>
+    </div>
+
+    <div class="problem-grid">
+      <div class="problem-card fade-in fade-in-delay-1">
+        <div class="problem-icon">⏰</div>
+        <h3>Trop chronophage</h3>
+        <p>Rédiger, adapter le format, poster manuellement sur 5 plateformes différentes vous prend 2-3h par jour. Du temps perdu sur des tâches répétitives.</p>
+      </div>
+      <div class="problem-card fade-in fade-in-delay-2">
+        <div class="problem-icon">😰</div>
+        <h3>La page blanche permanente</h3>
+        <p>Trouver des idées fraîches chaque jour est un enfer. Vous tournez en rond, recyclez les mêmes sujets, votre engagement baisse.</p>
+      </div>
+      <div class="problem-card fade-in fade-in-delay-3">
+        <div class="problem-icon">📉</div>
+        <h3>Incohérence de publication</h3>
+        <p>Vous publiez quand vous avez le temps — pas selon les meilleurs créneaux. L'algorithme pénalise l'irrégularité et votre portée s'effondre.</p>
+      </div>
+      <div class="problem-card fade-in fade-in-delay-4">
+        <div class="problem-icon">🎭</div>
+        <h3>Adapter le ton pour chaque réseau</h3>
+        <p>Ce qui fonctionne sur LinkedIn ne marche pas sur Instagram. Reformater manuellement chaque post pour chaque plateforme est un calvaire.</p>
+      </div>
+    </div>
+
+    <div class="solution-arrow">↓</div>
+
+    <div class="text-center fade-in">
+      <h2>La solution : <span class="gold">AutomationBoost</span></h2>
+      <p style="max-width:560px;margin:16px auto 0;font-size:1.1rem;">Une IA qui génère vos posts, les adapte à chaque plateforme et les publie automatiquement aux meilleurs horaires.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section id="features">
+  <div class="container">
+    <div class="text-center fade-in">
+      <span class="section-label">Fonctionnalités</span>
+      <h2 class="section-title">Tout ce dont vous avez besoin,<br><span class="gold">rien de superflu</span></h2>
+      <p class="section-desc">Des outils pensés pour les créateurs de contenu, freelances, PME et agences qui veulent scaler leur présence sans exploser leur budget.</p>
+    </div>
+
+    <div class="features-grid">
+
+      <div class="feature-card fade-in">
+        <div class="feature-icon">🤖</div>
+        <h3>Génération IA de Posts</h3>
+        <p>Décrivez votre sujet en une phrase. L'IA génère un post optimisé pour chaque réseau en quelques secondes — ton, hashtags, emojis, CTA inclus.</p>
+      </div>
+
+      <div class="feature-card fade-in fade-in-delay-1">
+        <div class="feature-icon">📅</div>
+        <h3>Planification Intelligente</h3>
+        <p>Notre algorithme analyse les données de vos abonnés pour déterminer les créneaux à plus fort engagement. Publiez au bon moment, automatiquement.</p>
+      </div>
+
+      <div class="feature-card fade-in fade-in-delay-2">
+        <div class="feature-icon">🔁</div>
+        <h3>Publication Multi-Plateformes</h3>
+        <p>Un seul post, adapté automatiquement et publié sur Instagram, LinkedIn, Facebook, TikTok, X et Pinterest. Votre contenu partout, sans effort.</p>
+      </div>
+
+      <div class="feature-card fade-in fade-in-delay-1">
+        <div class="feature-icon">🎨</div>
+        <h3>Adaptation par Plateforme</h3>
+        <p>L'IA reformate chaque contenu selon les codes de chaque réseau : longueur, ton, hashtags, mentions, format image. Rien n'est générique.</p>
+      </div>
+
+      <div class="feature-card fade-in fade-in-delay-2">
+        <div class="feature-icon">📊</div>
+        <h3>Analytics Unifiés</h3>
+        <p>Toutes vos métriques en un seul tableau de bord : portée, engagement, followers, meilleures performances. Prenez les bonnes décisions data.</p>
+      </div>
+
+      <div class="feature-card fade-in fade-in-delay-3">
+        <div class="feature-icon">🔗</div>
+        <h3>Intégrations & Webhooks</h3>
+        <p>Connectez AutomationBoost à vos outils : Notion, Airtable, Make, n8n, Zapier. Déclenchez des publications depuis n'importe quel workflow.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section id="how-it-works">
+  <div class="container">
+    <div class="text-center fade-in">
+      <span class="section-label">Comment ça marche</span>
+      <h2 class="section-title">De zéro à publié<br><span class="gold">en moins de 2 minutes</span></h2>
+    </div>
+
+    <div class="steps-container fade-in">
+      <div class="steps-line"></div>
+
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>Connectez vos réseaux</h3>
+          <p>Liez vos comptes Instagram, LinkedIn, Facebook, TikTok et plus en un clic. Autorisation OAuth sécurisée — aucun mot de passe stocké.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>Définissez votre voix & vos thèmes</h3>
+          <p>Renseignez votre secteur, vos valeurs, votre ton (pro, fun, inspirant…). L'IA apprend votre style pour créer des posts authentiques à votre marque.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>Générez votre contenu</h3>
+          <p>Entrez un sujet, une idée ou un lien. L'IA crée instantanément des posts adaptés à chaque plateforme avec les bons hashtags et le bon format.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h3>Planifiez ou publiez maintenant</h3>
+          <p>Validez et choisissez : publication immédiate, ou ajout au calendrier intelligent qui sélectionne automatiquement les meilleurs créneaux.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-number">5</div>
+        <div class="step-content">
+          <h3>Suivez vos performances</h3>
+          <p>Analysez l'impact de chaque post depuis votre tableau de bord unifié. Identifiez ce qui fonctionne et laissez l'IA s'améliorer en continu.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEMO VISUELLE ============ -->
+<section id="demo">
+  <div class="container">
+    <div class="demo-grid">
+
+      <div class="demo-text fade-in">
+        <span class="section-label">Démo en direct</span>
+        <h2>Votre file de publication,<br><span class="gold">toujours pleine</span></h2>
+        <p>AutomationBoost génère et planifie votre contenu à l'avance. Votre calendrier éditorial est toujours rempli — même quand vous dormez.</p>
+        <ul class="demo-list">
+          <li><span class="check">✦</span> Posts IA générés en 8 secondes chrono</li>
+          <li><span class="check">✦</span> Adaptation automatique à chaque format de réseau</li>
+          <li><span class="check">✦</span> Aperçu visuel avant publication</li>
+          <li><span class="check">✦</span> Modification manuelle toujours possible</li>
+          <li><span class="check">✦</span> Historique complet de toutes vos publications</li>
+          <li><span class="check">✦</span> Re-publication des best performers en 1 clic</li>
+        </ul>
+        <a href="#pricing" class="btn-primary">Commencer maintenant →</a>
+      </div>
+
+      <div class="demo-screen fade-in fade-in-delay-2">
+        <div class="screen-header">
+          <span>📋</span> File de publication
+        </div>
+        <div class="screen-body">
+
+          <div class="queue-item">
+            <div class="qi-platform">📷</div>
+            <div class="qi-content">
+              <div class="qi-title">Les 5 erreurs à éviter sur Instagram</div>
+              <div class="qi-time">Publié aujourd'hui à 09:00</div>
+            </div>
+            <span class="qi-status status-done">✓ Publié</span>
+          </div>
+
+          <div class="queue-item">
+            <div class="qi-platform">💼</div>
+            <div class="qi-content">
+              <div class="qi-title">Comment l'IA transforme le marketing</div>
+              <div class="qi-time">Planifié demain à 08:30</div>
+            </div>
+            <span class="qi-status status-sched">⏰ Planifié</span>
+          </div>
+
+          <div class="queue-item">
+            <div class="qi-platform">👥</div>
+            <div class="qi-content">
+              <div class="qi-title">3 astuces pour booster votre portée</div>
+              <div class="qi-time">Planifié dans 2 jours</div>
+            </div>
+            <span class="qi-status status-sched">⏰ Planifié</span>
+          </div>
+
+          <div class="queue-item">
+            <div class="qi-platform">🎵</div>
+            <div class="qi-content">
+              <div class="qi-title">Tendances réseaux sociaux 2026</div>
+              <div class="qi-time">Brouillon — en attente</div>
+            </div>
+            <span class="qi-status status-draft">✏ Brouillon</span>
+          </div>
+
+          <div class="queue-item">
+            <div class="qi-platform">🐦</div>
+            <div class="qi-content">
+              <div class="qi-title">Thread : automatiser sans perdre l'humain</div>
+              <div class="qi-time">Planifié dans 3 jours</div>
+            </div>
+            <span class="qi-status status-sched">⏰ Planifié</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section id="testimonials">
+  <div class="container">
+    <div class="text-center fade-in">
+      <span class="section-label">Témoignages</span>
+      <h2 class="section-title">Ils ont transformé leur<br><span class="gold">présence en ligne</span></h2>
+      <p class="section-desc">Plus de 2 400 créateurs, freelances et agences utilisent AutomationBoost chaque jour. Voici leurs retours.</p>
+    </div>
+
+    <div class="testi-grid">
+
+      <div class="testi-card fade-in">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"En 3 semaines, j'ai multiplié par 4 ma fréquence de publication sans y passer plus de temps. Mon engagement sur LinkedIn a explosé — +180% en un mois. Je ne reviendrais jamais en arrière."</p>
+        <div class="testi-author">
+          <div class="author-avatar">SC</div>
+          <div>
+            <div class="author-name">Sophie Cartier</div>
+            <div class="author-role">Consultante Marketing Digital, Paris</div>
+          </div>
+        </div>
+        <span class="testi-result">+180% d'engagement LinkedIn</span>
+      </div>
+
+      <div class="testi-card fade-in fade-in-delay-1">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"J'avais du mal à être constant sur les réseaux à cause de mon emploi du temps chargé. AutomationBoost planifie 2 semaines de contenu en 30 minutes. Game changer absolu pour mon agence."</p>
+        <div class="testi-author">
+          <div class="author-avatar">MV</div>
+          <div>
+            <div class="author-name">Marc Vidal</div>
+            <div class="author-role">Fondateur Agence Nova Digital</div>
+          </div>
+        </div>
+        <span class="testi-result">2 semaines de contenu en 30 min</span>
+      </div>
+
+      <div class="testi-card fade-in fade-in-delay-2">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Le rapport qualité/prix est imbattable. Pour le prix d'un café par jour, j'ai gagné un assistant IA qui publie pour moi sur 5 réseaux. Mon business a grandi de 60% ce trimestre."</p>
+        <div class="testi-author">
+          <div class="author-avatar">AL</div>
+          <div>
+            <div class="author-name">Aurélie Lemoine</div>
+            <div class="author-role">E-commerçante, Bordeaux</div>
+          </div>
+        </div>
+        <span class="testi-result">+60% de croissance business</span>
+      </div>
+
+      <div class="testi-card fade-in">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"La fonctionnalité d'adaptation par plateforme est bluffante. Le même post devient naturellement différent sur Insta et LinkedIn. Mes followers ne savent pas que c'est automatique."</p>
+        <div class="testi-author">
+          <div class="author-avatar">TN</div>
+          <div>
+            <div class="author-name">Thomas Nguyen</div>
+            <div class="author-role">Créateur de Contenu, 50k followers</div>
+          </div>
+        </div>
+        <span class="testi-result">50k followers — 100% authentique</span>
+      </div>
+
+      <div class="testi-card fade-in fade-in-delay-1">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"J'ai testé 4 outils avant AutomationBoost. Aucun ne gérait aussi bien la nuance entre plateformes. Et le support est ultra-réactif — vraie équipe, vraies réponses."</p>
+        <div class="testi-author">
+          <div class="author-avatar">CR</div>
+          <div>
+            <div class="author-name">Camille Rousseau</div>
+            <div class="author-role">Freelance Community Manager</div>
+          </div>
+        </div>
+        <span class="testi-result">Gère 12 clients avec 1 seul outil</span>
+      </div>
+
+      <div class="testi-card fade-in fade-in-delay-2">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Je suis coach et mon audience a besoin de régularité. Avant, je ratais des semaines entières. Depuis AutomationBoost, je n'ai pas manqué un seul jour de publication en 4 mois."</p>
+        <div class="testi-author">
+          <div class="author-avatar">JB</div>
+          <div>
+            <div class="author-name">Julie Bernard</div>
+            <div class="author-role">Coach Bien-être & Développement Personnel</div>
+          </div>
+        </div>
+        <span class="testi-result">0 jour manqué en 4 mois</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ URGENCY ============ -->
+<section id="urgency">
+  <div class="container">
+    <div class="urgency-box fade-in">
+      <div class="urgency-label">
+        🔥 Offre de Lancement Limitée
+      </div>
+      <h2>Profitez du tarif fondateur<br><span class="gold">avant la hausse de prix</span></h2>
+      <p>Cette offre de lancement est disponible pour les 73 premiers inscrits seulement. Après ça, les prix augmentent définitivement.</p>
+
+      <div class="countdown">
+        <div class="cd-item">
+          <span class="cd-number" id="cd-d">03</span>
+          <span class="cd-label">Jours</span>
+        </div>
+        <div class="cd-item">
+          <span class="cd-number" id="cd-h">00</span>
+          <span class="cd-label">Heures</span>
+        </div>
+        <div class="cd-item">
+          <span class="cd-number" id="cd-m">00</span>
+          <span class="cd-label">Minutes</span>
+        </div>
+        <div class="cd-item">
+          <span class="cd-number" id="cd-s">00</span>
+          <span class="cd-label">Secondes</span>
+        </div>
+      </div>
+
+      <div class="spots-bar">
+        <div class="spots-text">
+          <span>Places fondateur disponibles</span>
+          <span>⚠ 20 places restantes</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width:0%" data-target="73"></div>
+        </div>
+      </div>
+
+      <a href="#pricing" class="btn-primary" style="font-size:1.1rem;padding:17px 42px;">
+        ⚡ Réserver Ma Place Maintenant
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section id="pricing">
+  <div class="container">
+    <div class="text-center fade-in">
+      <span class="section-label">Tarifs</span>
+      <h2 class="section-title">Simple, transparent,<br><span class="gold">sans surprise</span></h2>
+      <p class="section-desc">Tous les plans incluent 14 jours d'essai gratuit. Aucune carte bancaire requise.</p>
+    </div>
+
+    <div class="pricing-grid fade-in">
+
+      <!-- Starter -->
+      <div class="pricing-card">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price">
+          <span class="price-currency">€</span>
+          <span class="price-amount">19</span>
+        </div>
+        <div class="price-period">par mois</div>
+        <ul class="plan-features">
+          <li><span class="check">✦</span> 3 réseaux sociaux connectés</li>
+          <li><span class="check">✦</span> 60 posts IA / mois</li>
+          <li><span class="check">✦</span> Planification jusqu'à 30 jours</li>
+          <li><span class="check">✦</span> Analytics de base</li>
+          <li><span class="check">✦</span> Support par email</li>
+          <li><span class="x">✗</span> Intégrations avancées</li>
+          <li><span class="x">✗</span> Comptes clients multiples</li>
+        </ul>
+        <a href="#" class="btn-secondary" style="width:100%;justify-content:center;">Commencer gratuitement</a>
+      </div>
+
+      <!-- Pro (featured) -->
+      <div class="pricing-card featured">
+        <div class="badge-popular">⭐ Le Plus Populaire</div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-price">
+          <span class="price-currency">€</span>
+          <span class="price-amount">49</span>
+        </div>
+        <div class="price-period">par mois — <s style="color:#52525b">79€</s> <span class="gold">-38%</span></div>
+        <ul class="plan-features">
+          <li><span class="check">✦</span> <strong>Tous les réseaux illimités</strong></li>
+          <li><span class="check">✦</span> <strong>Posts IA illimités</strong></li>
+          <li><span class="check">✦</span> Planification sur 90 jours</li>
+          <li><span class="check">✦</span> Analytics avancés</li>
+          <li><span class="check">✦</span> Adaptation ton & style</li>
+          <li><span class="check">✦</span> Intégrations Make / Zapier / n8n</li>
+          <li><span class="check">✦</span> Support prioritaire 7j/7</li>
+        </ul>
+        <a href="#" class="btn-primary" style="width:100%;justify-content:center;">Essai gratuit 14 jours →</a>
+      </div>
+
+      <!-- Agence -->
+      <div class="pricing-card">
+        <div class="plan-name">Agence</div>
+        <div class="plan-price">
+          <span class="price-currency">€</span>
+          <span class="price-amount">99</span>
+        </div>
+        <div class="price-period">par mois</div>
+        <ul class="plan-features">
+          <li><span class="check">✦</span> Tout du plan Pro</li>
+          <li><span class="check">✦</span> <strong>10 comptes clients</strong></li>
+          <li><span class="check">✦</span> White label disponible</li>
+          <li><span class="check">✦</span> Dashboard multi-clients</li>
+          <li><span class="check">✦</span> API complète</li>
+          <li><span class="check">✦</span> Onboarding dédié</li>
+          <li><span class="check">✦</span> Account manager dédié</li>
+        </ul>
+        <a href="#" class="btn-secondary" style="width:100%;justify-content:center;">Contacter l'équipe</a>
+      </div>
+
+    </div>
+
+    <div class="text-center fade-in" style="margin-top:40px;">
+      <p style="font-size:0.95rem;color:#52525b;">
+        💳 Paiement sécurisé · Annulation à tout moment · Remboursement 30 jours si insatisfait
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="container">
+    <div class="text-center fade-in">
+      <span class="section-label">Questions Fréquentes</span>
+      <h2 class="section-title">Tout ce que vous<br><span class="gold">voulez savoir</span></h2>
+    </div>
+
+    <div class="faq-list fade-in">
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Est-ce que je peux tester avant de payer ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Oui, absolument. Tous nos plans incluent 14 jours d'essai gratuit complet — aucune carte bancaire requise. Vous accédez à 100% des fonctionnalités pendant cette période. Si vous aimez, vous continuez. Sinon, votre compte est simplement désactivé, sans aucun frais.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Les posts générés par IA semblent-ils authentiques ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Oui. AutomationBoost apprend votre style, votre ton et vos valeurs dès la configuration initiale. Nos modèles IA sont entraînés spécifiquement pour créer du contenu qui ressemble à vous — pas à un robot. Nos utilisateurs rapportent régulièrement que leur audience ne remarque aucune différence.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Quels réseaux sociaux sont supportés ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Instagram (posts, Reels, Stories), LinkedIn (posts, articles), Facebook (pages, groupes), TikTok, X/Twitter, Pinterest et YouTube Shorts. Nous ajoutons régulièrement de nouvelles plateformes selon les demandes des utilisateurs.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Mon compte peut-il être suspendu pour automatisation ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Non. AutomationBoost utilise uniquement les APIs officielles de chaque plateforme. Nous respectons scrupuleusement les limites de publication recommandées et les conditions d'utilisation de chaque réseau. Des milliers d'utilisateurs publient quotidiennement sans jamais rencontrer de problème.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Puis-je modifier un post généré avant publication ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Absolument. L'IA génère des suggestions, vous gardez le contrôle total. Vous pouvez modifier, reformuler ou rejeter n'importe quel post avant qu'il soit planifié ou publié. Vous pouvez aussi choisir de publier uniquement les posts que vous avez approuvés manuellement.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Y a-t-il des intégrations avec mes outils existants ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Oui. AutomationBoost s'intègre nativement avec Make (ex-Integromat), Zapier, n8n, Notion, Airtable et Slack. Nous proposons également une API REST complète (plan Agence) pour des intégrations sur mesure.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Comment fonctionne la politique de remboursement ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Nous offrons une garantie satisfait ou remboursé de 30 jours sur tous les plans. Si AutomationBoost ne correspond pas à vos attentes dans les 30 premiers jours suivant votre premier paiement, contactez notre support et nous vous remboursons intégralement — sans question.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section id="final-cta">
+  <div class="container">
+    <div class="cta-box fade-in">
+      <div class="hero-badge" style="margin:0 auto 24px;">🚀 Prêt à automatiser ?</div>
+      <h2>Arrêtez de poster manuellement.<br><span class="gold">Laissez l'IA travailler pour vous.</span></h2>
+      <p>Rejoignez 2 400+ créateurs et agences qui ont récupéré leurs heures et multiplié leur impact sur les réseaux sociaux.</p>
+      <a href="#pricing" class="btn-primary" style="font-size:1.1rem;padding:17px 42px;">
+        ⚡ Démarrer Gratuitement 14 Jours
+      </a>
+      <div class="cta-guarantee">
+        <span class="shield">🛡</span>
+        Garantie 30 jours — Aucune carte requise — Annulation instantanée
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+        <a href="#" class="logo" style="display:inline-flex;">
+          <div class="logo-icon">⚡</div>
+          <span class="logo-text" style="margin-left:10px;">Automation<span>Boost</span></span>
+        </a>
+        <p>L'IA qui publie à votre place. Générez, planifiez et diffusez votre contenu sur tous les réseaux sociaux — automatiquement.</p>
+      </div>
+
+      <div>
+        <div class="footer-heading">Produit</div>
+        <ul class="footer-links">
+          <li><a href="#features">Fonctionnalités</a></li>
+          <li><a href="#how-it-works">Comment ça marche</a></li>
+          <li><a href="#pricing">Tarifs</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-heading">Légal</div>
+        <ul class="footer-links">
+          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">Politique de confidentialité</a></li>
+          <li><a href="#">CGU</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 AutomationBoost — Tous droits réservés</span>
+      <span>Fait avec ⚡ par <a href="https://tonypayet.com" style="color:var(--gold);text-decoration:none;">Tony Payet</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
