@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ressources IA Gratuites – AutomationBoost</title>
+  <meta name="description" content="16 ressources gratuites sur Claude Code, agents IA et automatisation. Articles et vidéos sélectionnés pour booster votre productivité avec l'IA." />
+  <link rel="canonical" href="https://automationboost.tonypayet.com/ressources" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    /* ---- PAGE RESSOURCES ---- */
+    .res-hero {
+      padding: 140px 0 60px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .res-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold-glow);
+      border: 1px solid rgba(234,179,8,0.3);
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 99px;
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .res-hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 16px;
+    }
+    .res-hero h1 span { color: var(--gold); }
+    .res-hero p {
+      font-size: 1.15rem;
+      color: var(--text-light);
+      max-width: 580px;
+      margin: 0 auto 40px;
+    }
+    .res-stats {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .res-stat {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .res-stat span { color: var(--gold); font-weight: 700; }
+
+    /* ---- FILTRES ---- */
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+      position: relative;
+      z-index: 1;
+    }
+    .filter-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 8px 20px;
+      border-radius: 99px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.03em;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--gold-glow);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* ---- GRILLE ---- */
+    .resources-section {
+      padding: 0 0 100px;
+      position: relative;
+      z-index: 1;
+    }
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    /* ---- CARD ---- */
+    .res-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .res-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--gold-glow) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.25s;
+      border-radius: inherit;
+    }
+    .res-card:hover {
+      border-color: rgba(234,179,8,0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(234,179,8,0.12);
+    }
+    .res-card:hover::before { opacity: 1; }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+    .badge-article {
+      background: rgba(99,102,241,0.15);
+      color: #818cf8;
+      border: 1px solid rgba(99,102,241,0.25);
+    }
+    .badge-video {
+      background: rgba(234,179,8,0.12);
+      color: var(--gold);
+      border: 1px solid rgba(234,179,8,0.25);
+    }
+    .card-duration {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .card-number {
+      font-size: 11px;
+      color: var(--border);
+      font-family: 'Orbitron', monospace;
+      font-weight: 700;
+      opacity: 0.5;
+    }
+
+    .card-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.4;
+      letter-spacing: -0.01em;
+      position: relative;
+      z-index: 1;
+    }
+    .res-card:hover .card-title { color: var(--gold); }
+
+    .card-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-cta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.03em;
+      margin-top: 4px;
+      position: relative;
+      z-index: 1;
+      transition: gap 0.2s;
+    }
+    .res-card:hover .card-cta { gap: 10px; }
+
+    /* ---- CTA BAS DE PAGE ---- */
+    .res-cta-section {
+      text-align: center;
+      padding: 60px 0 100px;
+      position: relative;
+      z-index: 1;
+    }
+    .res-cta-section h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: 16px;
+    }
+    .res-cta-section p {
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (max-width: 640px) {
+      .resources-grid { grid-template-columns: 1fr; }
+      .res-stats { gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo">
+      <div class="logo-icon">⚡</div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;">Ressources</a>
+      <a href="/#pricing" class="nav-cta">Commencer →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<div class="res-hero">
+  <div class="container">
+    <div class="res-hero-badge">⚡ Sélection gratuite</div>
+    <h1>Ressources <span>IA</span> Gratuites</h1>
+    <p>Articles et vidéos sélectionnés sur Claude Code, agents IA et automatisation. Du concret, du pratique, du gratuit.</p>
+    <div class="res-stats">
+      <div class="res-stat"><span>16</span> ressources</div>
+      <div class="res-stat"><span>3</span> vidéos</div>
+      <div class="res-stat"><span>13</span> articles</div>
+      <div class="res-stat"><span>100%</span> gratuit</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FILTRES ============ -->
+<div class="filters">
+  <button class="filter-btn active" data-filter="all">Tout voir</button>
+  <button class="filter-btn" data-filter="article">Articles</button>
+  <button class="filter-btn" data-filter="video">Vidéos</button>
+</div>
+
+<!-- ============ GRILLE ============ -->
+<section class="resources-section">
+  <div class="container">
+    <div class="resources-grid">
+
+      <!-- 1 -->
+      <a href="https://agentic-academy.fr/discover/watch/b677abd4-c062-4ac5-b473-dc003f20bfd2"
+         target="_blank" rel="noopener" class="res-card" data-type="video">
+        <div class="card-top">
+          <span class="card-badge badge-video">▶ Vidéo</span>
+          <span class="card-duration">1m 47s</span>
+          <span class="card-number">#01</span>
+        </div>
+        <div class="card-title">Skill Claude – Design Web</div>
+        <div class="card-desc">Maîtrisez le skill Design Web de Claude Code pour générer des interfaces professionnelles en quelques prompts. Zéro CSS manuel, résultat pro garanti.</div>
+        <div class="card-cta">Voir la ressource →</div>
+      </a>
+
+      <!-- 2 -->
+      <a href="https://agentic-academy.fr/discover/watch/9852a5c7-7f61-4e60-9b0e-907af8c8164a"
+         target="_blank" rel="noopener" class="res-card" data-type="article">
+        <div class="card-top">
+          <span class="card-badge badge-article">◈ Article</span>
+          <span class="card-number">#02</span>
+        </div>
+        <div class="card-title">Le CLAUDE.md de Boris Cherny</div>
+        <div class="card-desc">Le fichier de configuration officiel du créateur de Claude Code. Copiez ses règles de travail directement dans vos projets pour multiplier votre productivité.</div>
+        <div class="card-cta">Voir la ressource →</div>
+      </a>
+
+      <!-- 3 -->
+      <a href="https://agentic-academy.fr/discover/watch/1a68fb77-c191-48a7-b44d-32201b276f59"
+         target="_blank" rel="noopener" class="res-card" data-type="article">
+        <div class="card-top">
+          <span class="card-badge badge-article">◈ Article</span>
+          <span class="card-number">#03</span>
+        </div>
+        <div class="card-title">3 Astuces pour Réduire la Facture Claude</div>
+        <div class="card-desc">Divisez votre consommation de tokens par 5 avec trois ajustements simples. RTK, choix de modèle et CLAUDE.md optimisé — jusqu'à 80% d'économies sans perte de qualité.</div>
+        <div class="card-cta">Voir la ressource →</div>
+      </a>
+
+      <!-- 4 -->
+      <a href="https://agentic-academy.fr/discover/watch/1e1b9de8-58e7-4c6e-8621-ac7659eb3598"
+         target="_blank" rel="noopener" class="res-card" data-type="video">
+        <div class="card-top">
+          <span class="card-badge badge-video">▶ Vidéo</span>
+          <span class="card-duration">1m 38s</span>
+          <span class="card-number">#04</span>
+        </div>
+        <div class="card-title">127 Sous-Agents Spécialisés</div>
+        <div class="card-desc">Une bibliothèque de 127 agents IA prêts à l'emploi dans Claude Code. Du debug au déploiement, il existe un agent pour chaque étape de votre workflow.</div>
+        <div class="card-cta">Voir la ressource →</div>
+      </a>
+
+      <!-- 5 -->
+      <a href="https://agentic-academy.fr/discover/watch/bb479a61-a7ea-46bc-8659-1ec408ddf3e9"
+         target="_blank" rel="noopener" class="res-card" data-type="article">
+        <div class="card-top">
+          <span class="card-badge badge-article">◈ Article</span>
+          <span class="card-number">#05</span>
+        </div>
+        <div class="card-title">Les 5 Couches Mémoire de Claude Code</div>
+        <div class="card-desc">Donnez une mémoire persistante à Claude Code avec 5 fichiers. Ce système lui permet de retenir le contexte entre chaque session et de progresser sur vos projets longs.</div>
+        <div class="card-cta">Voir la ressource →</div>
+      </a>
+
+      <!-- 6 -->
+      <a href="https://agentic-academy.fr/discover/watch/17dfc56d-beb6-4a11-a60a-0d48049406d9"
+         target="_blank" rel="noopener" class="res-card" data-type="article">
+        <div class="card-top">
+          <span class="card-badge badge-article">◈ Article</span>
+          <span class="card-number">#06</span>
+        </div>
+        <div class="card-title">Guide DeerFlow – Multi-Agents ByteDance</div>
+        <div class="card-desc">DeerFlow est le framework multi-agents open source de ByteDance. Installez-le en 10 minutes et automatisez recherche, rapports, slides et génération de code en parallèle.</div>
+        <div class="card-cta">Voir la ressource →</div>
+      </a>
+
+      <!-- 7 -->
+      <a href="https://agentic-academy.fr/discover/watch/578a098b-aa7c-4202-9bd6-ccb4bae341b2"
+         target="_blank" rel="noopener" class="res-card" data-type="article">
+        <div class="card-top">
+          <span class="card-badge badge-article">◈ Article</span>
+          <span class="card-number">#07</span>
+        </div>
+        <div class="card-title">Claude Code + Playwright = Navigateur IA</div>
+        <div class="card-desc">Connectez Playwright à Claude Code pour qu'il navigue sur le web à votre place. Extraction de données, remplissage de formulaires, captures d'écran — sans toucher au contexte.</div>
+        <div class="card-cta">Voir la ressource →</div>
+      </a>
+
+      <!-- 8 -->
+      <a href="https://agentic-academy.fr/discover/watch/6aba0044-708b-4851-9837-8b586610ff22"
+         target="_blank" rel="noopener" class="res-card" data-type="article">
+        <div class="card-top">
+          <span class="card-badge badge-article">◈ Article</span>
+          <span class="card-number">#08</span>
+        </div>
+        <div class="card-title">PDF → Markdown Avant d'Envoyer à Claude</div>
+        <div class="card-desc">Les PDFs consomment 3x plus de tokens qu'un Markdown équivalent. Cette conversion simple réduit vos coûts et améliore la compréhension du modèle sur vos documents.</div>
+        <div class="card-cta">Voir la ressource →</div>
+      </a>
+
+      <!-- 9 -->
+      <a href="https://agentic-academy.fr/discover/watch/4aead526-0376-4dc3-9303-90af6a8145bb"
+         target="_blank" rel="noopener" class="res-card" data-type="article">
+        <div class="card-top">
+          <span class="card-badge badge-article">◈ Article</span>
+          <span class="card-number">#09</span>
+        </div>
+        <div class="card-title">Claude Computer Use + Dispatch</div>
+        <div class="card-desc">Pilotez votre Mac à distance avec Claude comme copilote. Dispatch + Computer Use transforme votre ordinateur en machine télécommandable depuis n'importe quel appareil.</div>
+        <div class="card-cta">Voir la ressource →</div>
+      </a>
+
+      <!-- 10 -->
+      <a href="https://agentic-academy.fr/discover/watch/8962b93c-db03-4fec-8d7e-fd8aab97be7a"
+         target="_blank" rel="noopener" class="res-card" data-type="article">
+        <div class="card-top">
+          <span class="card-badge badge-article">◈ Article</span>
+          <span class="card-number">#10</span>
+        </div>
+        <div class="card-title">Les 6 Plugins Essentiels de Claude Code</div>
+        <div class="card-desc">Les 6 extensions indispensables pour décupler les capacités de Claude Code. Tous les liens directs pour les installer en moins de 5 minutes et transformer votre workflow.</div>
+        <div class="card-cta">Voir la ressource →</div>
+      </a>
+
+      <!-- 11 -->
+      <a href="https://agentic-academy.fr/discover/watch/d6a76753-470f-4440-b54f-bb9bd20381a7"
+         target="_blank" rel="noopener" class="res-card" data-type="video">
+        <div class="card-top">
+          <span class="card-badge badge-video">▶ Vidéo</span>
+          <span class="card-duration">2m 05s</span>
+          <span class="card-number">#11</span>
+        </div>
+        <div class="card-title">Cloner N'importe Quel Site avec Claude</div>
+        <div class="card-desc">Claude Code + une extension Chrome = n'importe quel site cloné en moins de 10 minutes. Technique pixel-perfect idéale pour maquettes, prototypes et inspirations rapides.</div>
+        <div class="card-cta">Voir la ressource →</div>
+      </a>
+
+      <!-- 12 -->
+      <a href="https://agentic-academy.fr/discover/watch/5b69f28a-4255-451b-a23b-c18c2102fb45"
+         target="_blank" rel="noopener" class="res-card" data-type="article">
+        <div class="card-top">
+          <span class="card-badge badge-article">◈ Article</span>
+          <span class="card-number">#12</span>
+        </div>
+        <div class="card-title">Redesigner une Pièce en 30 Secondes</div>
+        <div class="card-desc">Visualisez vos projets de décoration en temps réel. Claude Code + Nano Banana génère des redesigns photoréalistes de vos espaces sans logiciel spécialisé.</div>
+        <div class="card-cta">Voir la ressource →</div>
+      </a>
+
+      <!-- 13 -->
+      <a href="https://agentic-academy.fr/discover/watch/5104daf0-57a0-4185-ae3b-2f40401b4905"
+         target="_blank" rel="noopener" class="res-card" data-type="article">
+        <div class="card-top">
+          <span class="card-badge badge-article">◈ Article</span>
+          <span class="card-number">#13</span>
+        </div>
+        <div class="card-title">L'Instruction Anti-Flatterie</div>
+        <div class="card-desc">Un prompt système qui rend Claude direct et honnête. Fini les réponses complaisantes — collez cette instruction dans vos préférences et obtenez enfin des retours réellement utiles.</div>
+        <div class="card-cta">Voir la ressource →</div>
+      </a>
+
+      <!-- 14 -->
+      <a href="https://agentic-academy.fr/discover/watch/3ebf6540-2e48-4c9c-a7ab-b16119b67731"
+         target="_blank" rel="noopener" class="res-card" data-type="article">
+        <div class="card-top">
+          <span class="card-badge badge-article">◈ Article</span>
+          <span class="card-number">#14</span>
+        </div>
+        <div class="card-title">Vidéos Pro avec Claude Code + Remotion</div>
+        <div class="card-desc">Automatisez votre production vidéo avec Claude et Remotion. Démos produit, publicités, reels — tout généré par code sans logiciel de montage ni compétences en vidéo.</div>
+        <div class="card-cta">Voir la ressource →</div>
+      </a>
+
+      <!-- 15 -->
+      <a href="https://agentic-academy.fr/discover/watch/f1c18325-936a-4df2-aa8f-3c98e06ade6b"
+         target="_blank" rel="noopener" class="res-card" data-type="article">
+        <div class="card-top">
+          <span class="card-badge badge-article">◈ Article</span>
+          <span class="card-number">#15</span>
+        </div>
+        <div class="card-title">RuFlo Stack – Claude Code en Armée d'Agents</div>
+        <div class="card-desc">RuFlo transforme Claude Code en orchestrateur d'agents. Coordonnez 100+ sous-agents spécialisés pour des tâches complexes qui dépassent les capacités d'un seul modèle.</div>
+        <div class="card-cta">Voir la ressource →</div>
+      </a>
+
+      <!-- 16 -->
+      <a href="https://agentic-academy.fr/discover/watch/e4581d1f-6247-42ce-80f2-1242447e4159"
+         target="_blank" rel="noopener" class="res-card" data-type="article">
+        <div class="card-top">
+          <span class="card-badge badge-article">◈ Article</span>
+          <span class="card-number">#16</span>
+        </div>
+        <div class="card-title">+1 000 Skills en Une Seule Commande</div>
+        <div class="card-desc">Débloquez plus de 1000 compétences dans Claude Code avec une commande unique. Le système détecte automatiquement quel skill activer selon votre demande — zéro configuration.</div>
+        <div class="card-cta">Voir la ressource →</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="res-cta-section">
+  <div class="container">
+    <h2>Prêt à <span class="gold">automatiser</span> ?</h2>
+    <p>Ces ressources sont un aperçu. Automatisez vos réseaux sociaux et gagnez 10h par semaine avec AutomationBoost.</p>
+    <a href="/#pricing" class="btn-primary">🚀 Essayer Gratuitement 14 Jours</a>
+  </div>
+</section>
+
+<script>
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Filtres
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.res-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        if (filter === 'all' || card.dataset.type === filter) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>
