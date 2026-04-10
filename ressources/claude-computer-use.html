@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guide Claude Computer Use + Dispatch – AutomationBoost</title>
+  <meta name="description" content="Pilotez votre Mac à distance avec Claude Computer Use et Dispatch depuis n'importe quel appareil." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page{padding:120px 0 80px}.breadcrumb{font-size:13px;color:var(--text-muted);margin-bottom:32px}.breadcrumb a{color:var(--gold);text-decoration:none}.breadcrumb span{margin:0 8px}.page-badge-art{display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.25);color:#818cf8;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}.page-badge-vid{display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,.12);border:1px solid rgba(234,179,8,.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}.page-title{font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2}.page-title span{color:var(--gold)}.page-meta{display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px}.divider{width:60px;height:2px;background:var(--gold);margin:40px 0}.content-block{max-width:720px}.content-block h2{font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px}.content-block p{color:var(--text-light);line-height:1.8;margin-bottom:16px}.content-block ul{color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px}.content-block ul li{margin-bottom:6px}.tip-box{background:var(--bg-card);border:1px solid rgba(234,179,8,.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0}.tip-box .tip-label{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}.tip-box p{color:var(--text-light);margin:0;font-size:15px}.code-block{background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto;white-space:pre}.source-cta{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#000;font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;padding:14px 28px;border-radius:var(--radius);text-decoration:none;margin-top:40px;transition:all .2s}.source-cta:hover{background:var(--gold-dark);transform:translateY(-2px)}.nav-back{display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s}.nav-back:hover{color:var(--gold)}
+</style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+  </div>
+</nav>
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb"><a href="../ressources.html">Ressources</a><span>/</span>Claude Computer Use + Dispatch</div>
+    <div class="page-badge-art">◈ Article</div>
+    <h1 class="page-title">Contrôler son Mac avec <span>Claude</span> depuis son téléphone</h1>
+    <div class="page-meta"><span>Claude</span><span>·</span><span>Computer Use</span><span>·</span><span>Niveau avancé</span></div>
+    <div class="content-block">
+      <p><strong style="color:var(--text)">Computer Use</strong> est la fonctionnalité d'Anthropic qui permet à Claude de voir ton écran et de contrôler ta souris et ton clavier. Couplé à <strong style="color:var(--text)">Dispatch</strong>, tu peux piloter ton Mac depuis ton téléphone comme si tu étais devant lui.</p>
+      <div style="width:60px;height:2px;background:var(--gold);margin:40px 0"></div>
+      <h2>Ce que ça permet de faire</h2>
+      <ul>
+        <li>Déclencher des tâches longues sur ton Mac depuis ton mobile pendant tes déplacements</li>
+        <li>Automatiser des applications qui n'ont pas d'API (logiciels legacy, outils desktop)</li>
+        <li>Faire exécuter des workflows complexes à Claude pendant que tu fais autre chose</li>
+        <li>Déléguer la navigation dans des interfaces graphiques complexes</li>
+      </ul>
+      <h2>Setup en 2 minutes</h2>
+      <div class="code-block"># 1. Installer Claude pour Mac
+# Télécharger depuis claude.ai/download
+
+# 2. Activer Computer Use dans les paramètres
+# Préférences > Fonctionnalités avancées > Computer Use
+
+# 3. Installer Dispatch
+npm install -g @dispatch-ai/cli
+
+# 4. Configurer la connexion
+dispatch init --claude</div>
+      <div class="tip-box"><div class="tip-label">💡 Sécurité</div><p>Computer Use a accès complet à ton écran et tes entrées. Active-le uniquement pour les tâches spécifiques que tu lui demandes, et surveille ce qu'il fait la première fois pour chaque nouveau type de tâche.</p></div>
+      <h2>Exemples de tâches déléguées</h2>
+      <div class="code-block"># Depuis ton téléphone via Dispatch :
+"Ouvre Figma, exporte toutes les frames de la page 'Mobile'
+en PNG 2x et mets-les dans le dossier Desktop/exports"</div>
+      <div class="code-block">"Lance la compilation du projet, surveille les erreurs
+et envoie-moi un résumé par message quand c'est terminé"</div>
+      <h2>Limitations actuelles</h2>
+      <ul>
+        <li>Latence de quelques secondes entre chaque action (pas du temps réel)</li>
+        <li>Claude peut se tromper sur des éléments UI très petits ou non standard</li>
+        <li>Nécessite que ton Mac soit allumé et connecté</li>
+      </ul>
+      <div class="tip-box"><div class="tip-label">⚡ Conseil pro</div><p>Pour les tâches répétitives, crée un script Dispatch que tu peux lancer en un mot depuis ton téléphone. Tu gagnes du temps et Claude fait moins d'erreurs sur des séquences qu'il a déjà exécutées.</p></div>
+      <a href="https://agentic-academy.fr/discover/watch/4aead526-0376-4dc3-9303-90af6a8145bb" target="_blank" rel="noopener" class="source-cta">◈ Lire l'article original</a>
+    </div>
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+<script>const navbar=document.getElementById('navbar');window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>20));</script>
+</body>
+</html>

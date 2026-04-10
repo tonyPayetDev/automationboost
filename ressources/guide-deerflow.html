@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guide DeerFlow – L'IA Multi-Agents de ByteDance – AutomationBoost</title>
+  <meta name="description" content="Installez et utilisez DeerFlow, le framework open source multi-agents de ByteDance, pour automatiser recherche et rapports." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page{padding:120px 0 80px}.breadcrumb{font-size:13px;color:var(--text-muted);margin-bottom:32px}.breadcrumb a{color:var(--gold);text-decoration:none}.breadcrumb span{margin:0 8px}.page-badge-art{display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.25);color:#818cf8;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}.page-badge-vid{display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,.12);border:1px solid rgba(234,179,8,.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}.page-title{font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2}.page-title span{color:var(--gold)}.page-meta{display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px}.divider{width:60px;height:2px;background:var(--gold);margin:40px 0}.content-block{max-width:720px}.content-block h2{font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px}.content-block p{color:var(--text-light);line-height:1.8;margin-bottom:16px}.content-block ul{color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px}.content-block ul li{margin-bottom:6px}.tip-box{background:var(--bg-card);border:1px solid rgba(234,179,8,.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0}.tip-box .tip-label{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}.tip-box p{color:var(--text-light);margin:0;font-size:15px}.code-block{background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto;white-space:pre}.source-cta{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#000;font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;padding:14px 28px;border-radius:var(--radius);text-decoration:none;margin-top:40px;transition:all .2s}.source-cta:hover{background:var(--gold-dark);transform:translateY(-2px)}.nav-back{display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s}.nav-back:hover{color:var(--gold)}
+</style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+  </div>
+</nav>
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb"><a href="../ressources.html">Ressources</a><span>/</span>Guide DeerFlow</div>
+    <div class="page-badge-art">◈ Article</div>
+    <h1 class="page-title">DeerFlow — automatiser avec des <span>agents en parallèle</span></h1>
+    <div class="page-meta"><span>Agents IA</span><span>·</span><span>Open Source</span><span>·</span><span>Niveau intermédiaire</span></div>
+    <div class="content-block">
+      <p><strong style="color:var(--text)">DeerFlow</strong> est le framework multi-agents open source développé par ByteDance. Contrairement aux outils qui utilisent un seul modèle séquentiellement, DeerFlow orchestre plusieurs agents spécialisés en parallèle : un cherche des informations, un autre les analyse, un troisième rédige le rapport — tout simultanément.</p>
+      <div style="width:60px;height:2px;background:var(--gold);margin:40px 0"></div>
+      <h2>Ce que DeerFlow peut faire</h2>
+      <ul>
+        <li>Recherche web approfondie avec synthèse automatique</li>
+        <li>Génération de rapports structurés de 10-50 pages</li>
+        <li>Création de présentations slides depuis un sujet</li>
+        <li>Analyse de marchés et veille concurrentielle automatisée</li>
+        <li>Génération et exécution de code avec feedback en boucle</li>
+      </ul>
+      <h2>Installation en 10 minutes</h2>
+      <div class="code-block"># Cloner le repo
+git clone https://github.com/bytedance/deer-flow
+cd deer-flow
+
+# Installer les dépendances
+pip install -r requirements.txt
+
+# Configurer ta clé API
+cp .env.example .env
+# Éditer .env avec ta clé Anthropic ou OpenAI
+
+# Lancer DeerFlow
+python main.py</div>
+      <div class="tip-box"><div class="tip-label">💡 Compatible avec Claude</div><p>DeerFlow fonctionne nativement avec l'API Anthropic. Configure simplement ta clé dans le .env et les agents utiliseront Claude pour toutes les tâches de raisonnement.</p></div>
+      <h2>Exemple d'utilisation</h2>
+      <div class="code-block"># Demander un rapport de marché complet
+python main.py --task "Analyse le marché de l'automatisation IA en France en 2025 :
+acteurs principaux, taille du marché, tendances, opportunités.
+Produis un rapport de 20 pages avec sources."</div>
+      <p>DeerFlow va lancer automatiquement plusieurs agents : un pour la recherche web, un pour l'analyse des données trouvées, un pour la rédaction. Le rapport final est compilé en quelques minutes.</p>
+      <h2>Cas d'usage concrets</h2>
+      <ul>
+        <li><strong style="color:var(--text)">Freelances</strong> : génèrer des études de marché pour tes clients en quelques minutes</li>
+        <li><strong style="color:var(--text)">Content creators</strong> : automatiser la recherche documentaire avant d'écrire</li>
+        <li><strong style="color:var(--text)">Startups</strong> : veille concurrentielle automatique hebdomadaire</li>
+      </ul>
+      <div class="tip-box"><div class="tip-label">⚡ Conseil pro</div><p>DeerFlow est open source — tu peux créer tes propres agents spécialisés et les intégrer dans le pipeline. C'est là que l'outil devient vraiment puissant pour des cas d'usage métier spécifiques.</p></div>
+      <a href="https://agentic-academy.fr/discover/watch/17dfc56d-beb6-4a11-a60a-0d48049406d9" target="_blank" rel="noopener" class="source-cta">◈ Lire l'article original</a>
+    </div>
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+<script>const navbar=document.getElementById('navbar');window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>20));</script>
+</body>
+</html>

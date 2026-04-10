@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redesigner une Pièce en 30 Secondes avec Claude – AutomationBoost</title>
+  <meta name="description" content="Claude Code + Nano Banana pour générer des visualisations photoréalistes de redesign d'intérieur en quelques secondes." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page{padding:120px 0 80px}.breadcrumb{font-size:13px;color:var(--text-muted);margin-bottom:32px}.breadcrumb a{color:var(--gold);text-decoration:none}.breadcrumb span{margin:0 8px}.page-badge-art{display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.25);color:#818cf8;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}.page-badge-vid{display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,.12);border:1px solid rgba(234,179,8,.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}.page-title{font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2}.page-title span{color:var(--gold)}.page-meta{display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px}.divider{width:60px;height:2px;background:var(--gold);margin:40px 0}.content-block{max-width:720px}.content-block h2{font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px}.content-block p{color:var(--text-light);line-height:1.8;margin-bottom:16px}.content-block ul{color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px}.content-block ul li{margin-bottom:6px}.tip-box{background:var(--bg-card);border:1px solid rgba(234,179,8,.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0}.tip-box .tip-label{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}.tip-box p{color:var(--text-light);margin:0;font-size:15px}.code-block{background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto;white-space:pre}.source-cta{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#000;font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;padding:14px 28px;border-radius:var(--radius);text-decoration:none;margin-top:40px;transition:all .2s}.source-cta:hover{background:var(--gold-dark);transform:translateY(-2px)}.nav-back{display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s}.nav-back:hover{color:var(--gold)}
+</style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+  </div>
+</nav>
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb"><a href="../ressources.html">Ressources</a><span>/</span>Redesigner une Pièce</div>
+    <div class="page-badge-art">◈ Article</div>
+    <h1 class="page-title">Transformer une pièce en <span>30 secondes</span> avec Claude</h1>
+    <div class="page-meta"><span>Claude Code</span><span>·</span><span>Design & Créativité</span><span>·</span><span>Niveau débutant</span></div>
+    <div class="content-block">
+      <p>Visualiser un projet de décoration avant de l'entreprendre était réservé aux architectes d'intérieur avec des outils professionnels. Claude Code + <strong style="color:var(--text)">Nano Banana</strong> rend ça accessible en 30 secondes, depuis une simple photo de ta pièce.</p>
+      <div style="width:60px;height:2px;background:var(--gold);margin:40px 0"></div>
+      <h2>Comment ça fonctionne</h2>
+      <p>Nano Banana est un outil de génération d'images spécialisé dans le design d'intérieur. Connecté à Claude Code via MCP, il permet à Claude de générer des visualisations photoréalistes directement depuis tes descriptions ou des photos existantes.</p>
+      <ul>
+        <li>Prendre une photo de ta pièce actuelle</li>
+        <li>Décrire à Claude le style que tu veux (scandinave, industriel, minimaliste...)</li>
+        <li>Claude génère plusieurs variantes photoréalistes en quelques secondes</li>
+        <li>Itérer en affinant la description jusqu'au résultat souhaité</li>
+      </ul>
+      <h2>Installation du setup</h2>
+      <div class="code-block"># Ajouter le MCP Nano Banana
+claude mcp add nano-banana
+
+# Ou configurer manuellement dans .claude/settings.json
+{
+  "mcpServers": {
+    "nano-banana": {
+      "command": "npx",
+      "args": ["nano-banana-mcp"]
+    }
+  }
+}</div>
+      <div class="tip-box"><div class="tip-label">💡 Prompts efficaces pour la déco</div><p>Sois précis sur le style, les matériaux et la lumière. "Salon style japandi avec bois clair, plantes vertes, canapé gris anthracite, lumière naturelle dorée" donne de bien meilleurs résultats que "salon moderne".</p></div>
+      <h2>Exemples de transformations</h2>
+      <div class="code-block">"Transforme cette chambre en style bohème :
+murs blancs cassés, rideaux lin naturel, tapis berbère,
+plantes suspendues, éclairage chaud ambiant"</div>
+      <div class="code-block">"Redesigne ce salon en loft industriel new-yorkais :
+béton brut, métal noir, brique apparente, mobilier vintage,
+spots directionnels"</div>
+      <h2>Applications pratiques</h2>
+      <ul>
+        <li>Visualiser un projet avant d'acheter des meubles</li>
+        <li>Présenter des options à un client pour un projet de rénovation</li>
+        <li>Tester différents styles sans engagement</li>
+        <li>Créer du contenu visuel pour un compte déco Instagram</li>
+      </ul>
+      <div class="tip-box"><div class="tip-label">⚡ Conseil pro</div><p>Génère 4-5 variantes en changeant un seul élément à la fois (couleur des murs, type de mobilier, éclairage). C'est plus efficace que de tout changer d'un coup pour trouver ce qui fonctionne.</p></div>
+      <a href="https://agentic-academy.fr/discover/watch/5b69f28a-4255-451b-a23b-c18c2102fb45" target="_blank" rel="noopener" class="source-cta">◈ Lire l'article original</a>
+    </div>
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+<script>const navbar=document.getElementById('navbar');window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>20));</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Convertir vos PDF en Markdown Avant de les Envoyer à Claude – AutomationBoost</title>
+  <meta name="description" content="Économisez des tokens et améliorez la compréhension de Claude en convertissant vos PDF en Markdown avant de les envoyer." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page{padding:120px 0 80px}.breadcrumb{font-size:13px;color:var(--text-muted);margin-bottom:32px}.breadcrumb a{color:var(--gold);text-decoration:none}.breadcrumb span{margin:0 8px}.page-badge-art{display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.25);color:#818cf8;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}.page-badge-vid{display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,.12);border:1px solid rgba(234,179,8,.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}.page-title{font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2}.page-title span{color:var(--gold)}.page-meta{display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px}.divider{width:60px;height:2px;background:var(--gold);margin:40px 0}.content-block{max-width:720px}.content-block h2{font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px}.content-block p{color:var(--text-light);line-height:1.8;margin-bottom:16px}.content-block ul{color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px}.content-block ul li{margin-bottom:6px}.tip-box{background:var(--bg-card);border:1px solid rgba(234,179,8,.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0}.tip-box .tip-label{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}.tip-box p{color:var(--text-light);margin:0;font-size:15px}.code-block{background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto;white-space:pre}.source-cta{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#000;font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;padding:14px 28px;border-radius:var(--radius);text-decoration:none;margin-top:40px;transition:all .2s}.source-cta:hover{background:var(--gold-dark);transform:translateY(-2px)}.nav-back{display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s}.nav-back:hover{color:var(--gold)}
+</style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+  </div>
+</nav>
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb"><a href="../ressources.html">Ressources</a><span>/</span>PDF → Markdown</div>
+    <div class="page-badge-art">◈ Article</div>
+    <h1 class="page-title">PDF → <span>Markdown</span> : économisez 3x de tokens</h1>
+    <div class="page-meta"><span>Claude</span><span>·</span><span>Optimisation</span><span>·</span><span>Niveau débutant</span></div>
+    <div class="content-block">
+      <p>Envoyer un PDF directement à Claude est intuitif mais inefficace. Claude doit interpréter la mise en page, les colonnes, les en-têtes, les pieds de page — du bruit qui consomme des tokens sans apporter de valeur. En convertissant d'abord en Markdown, tu envoies uniquement le contenu utile.</p>
+      <div style="width:60px;height:2px;background:var(--gold);margin:40px 0"></div>
+      <h2>Pourquoi les PDF coûtent cher en tokens</h2>
+      <p>Un PDF de 10 pages envoyé directement peut consommer 8 000 à 15 000 tokens selon sa mise en page. Le même contenu en Markdown propre tourne autour de 2 000 à 4 000 tokens. Sur des documents techniques longs, la différence est énorme.</p>
+      <p>De plus, le Markdown est le format natif de Claude. Il le comprend mieux, extrait l'information plus précisément et génère des réponses plus pertinentes.</p>
+      <h2>Outils pour convertir</h2>
+      <ul>
+        <li><strong style="color:var(--text)">marker</strong> (Python) — le plus précis pour les PDFs complexes avec tableaux</li>
+        <li><strong style="color:var(--text)">pymupdf4llm</strong> — rapide, optimisé spécifiquement pour les LLMs</li>
+        <li><strong style="color:var(--text)">pdf2md</strong> — simple et efficace pour les PDFs textuels</li>
+        <li><strong style="color:var(--text)">pandoc</strong> — couteau suisse, converti depuis/vers beaucoup de formats</li>
+      </ul>
+      <h2>Installation et usage rapide</h2>
+      <div class="code-block"># Installer pymupdf4llm (recommandé pour Claude)
+pip install pymupdf4llm
+
+# Convertir un PDF
+python -c "import pymupdf4llm; print(pymupdf4llm.to_markdown('document.pdf'))" > document.md
+
+# Envoyer le Markdown à Claude
+claude "Résume ce document" --file document.md</div>
+      <div class="tip-box"><div class="tip-label">💡 Pour les PDFs avec images</div><p>Si ton PDF contient des graphiques ou schémas importants, utilise marker qui préserve les images et les convertit en références Markdown. Les autres outils ignorent les images.</p></div>
+      <h2>Aller plus loin : automatiser le pipeline</h2>
+      <div class="code-block"># Script bash pour convertir tous les PDFs d'un dossier
+for pdf in *.pdf; do
+    python -c "import pymupdf4llm;     content = pymupdf4llm.to_markdown('$pdf');     open('${pdf%.pdf}.md', 'w').write(content)"
+    echo "✓ Converti: $pdf"
+done</div>
+      <div class="tip-box"><div class="tip-label">⚡ Conseil pro</div><p>Ajoute une étape de nettoyage après la conversion : supprime les numéros de page, les en-têtes répétitifs et les références bibliographiques si elles ne t'intéressent pas. Ça réduit encore 20-30% du contenu.</p></div>
+      <a href="https://agentic-academy.fr/discover/watch/6aba0044-708b-4851-9837-8b586610ff22" target="_blank" rel="noopener" class="source-cta">◈ Lire l'article original</a>
+    </div>
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+<script>const navbar=document.getElementById('navbar');window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>20));</script>
+</body>
+</html>

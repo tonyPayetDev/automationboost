@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L'Instruction Anti-Flatterie pour Claude – AutomationBoost</title>
+  <meta name="description" content="Un prompt système pour rendre Claude honnête, direct et utile — sans les réponses complaisantes par défaut." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page{padding:120px 0 80px}.breadcrumb{font-size:13px;color:var(--text-muted);margin-bottom:32px}.breadcrumb a{color:var(--gold);text-decoration:none}.breadcrumb span{margin:0 8px}.page-badge-art{display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.25);color:#818cf8;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}.page-badge-vid{display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,.12);border:1px solid rgba(234,179,8,.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}.page-title{font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2}.page-title span{color:var(--gold)}.page-meta{display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px}.divider{width:60px;height:2px;background:var(--gold);margin:40px 0}.content-block{max-width:720px}.content-block h2{font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px}.content-block p{color:var(--text-light);line-height:1.8;margin-bottom:16px}.content-block ul{color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px}.content-block ul li{margin-bottom:6px}.tip-box{background:var(--bg-card);border:1px solid rgba(234,179,8,.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0}.tip-box .tip-label{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}.tip-box p{color:var(--text-light);margin:0;font-size:15px}.code-block{background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto;white-space:pre}.source-cta{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#000;font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;padding:14px 28px;border-radius:var(--radius);text-decoration:none;margin-top:40px;transition:all .2s}.source-cta:hover{background:var(--gold-dark);transform:translateY(-2px)}.nav-back{display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s}.nav-back:hover{color:var(--gold)}
+</style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+  </div>
+</nav>
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb"><a href="../ressources.html">Ressources</a><span>/</span>L'Instruction Anti-Flatterie</div>
+    <div class="page-badge-art">◈ Article</div>
+    <h1 class="page-title">Rendre Claude <span>honnête</span> et direct</h1>
+    <div class="page-meta"><span>Claude</span><span>·</span><span>Prompting</span><span>·</span><span>Niveau débutant</span></div>
+    <div class="content-block">
+      <p>Par défaut, Claude a tendance à être poli, encourageant et à souligner les aspects positifs de ce que tu lui montres. C'est agréable socialement, mais contre-productif quand tu as besoin de retours francs sur ton code, ton business plan ou ton contenu. L'instruction anti-flatterie corrige ça.</p>
+      <div style="width:60px;height:2px;background:var(--gold);margin:40px 0"></div>
+      <h2>Le problème de la flatterie par défaut</h2>
+      <p>Quand tu demandes à Claude "qu'est-ce que tu penses de mon idée ?", sa réponse par défaut commence souvent par "C'est une excellente idée !" avant de nuancer. Cette validation réflexe te fait rater les vrais problèmes que Claude a identifiés mais hésite à mettre en avant.</p>
+      <p>Le même phénomène avec le code : "Ce code a l'air bien structuré, cependant..." — tu veux d'abord savoir ce qui ne va pas, pas une validation.</p>
+      <h2>L'instruction à coller dans tes préférences</h2>
+      <div class="code-block">Ne commence jamais tes réponses par une validation ou un compliment.
+Va directement au sujet sans "C'est une excellente idée", "Bien sûr !" ou
+équivalents. Si je montre du code ou une idée, dis-moi d'abord ce qui
+ne fonctionne pas ou pourrait être amélioré, puis ce qui est bien.
+Sois direct et honnête même si c'est inconfortable.
+Si quelque chose est fondamentalement mauvais, dis-le clairement.
+Je préfère une critique utile à une validation creuse.</div>
+      <h2>Où la coller</h2>
+      <ul>
+        <li><strong style="color:var(--text)">Claude.ai</strong> : Paramètres > Préférences personnalisées > Instructions système</li>
+        <li><strong style="color:var(--text)">Claude Code</strong> : Dans ton <code style="color:var(--gold)">~/.claude/CLAUDE.md</code> global</li>
+        <li><strong style="color:var(--text)">API</strong> : Dans le champ <code style="color:var(--gold)">system</code> de tes appels</li>
+      </ul>
+      <div class="tip-box"><div class="tip-label">💡 Résultat concret</div><p>Avec cette instruction, quand tu montres un business plan à Claude, il commence par "Le modèle de revenus présente trois problèmes structurels..." — exactement ce dont tu as besoin pour améliorer.</p></div>
+      <h2>Variantes selon le contexte</h2>
+      <div class="code-block"># Version pour la revue de code
+"Quand tu analyses du code, commence par les bugs critiques,
+puis les problèmes de performance, puis le style. Ne mentionne
+les points positifs qu'en dernier si le temps le permet."</div>
+      <div class="code-block"># Version pour le contenu
+"Évalue mon contenu comme un éditeur exigeant. Ce qui est
+banal, redondant ou faible doit être dit clairement en premier."</div>
+      <div class="tip-box"><div class="tip-label">⚡ Conseil pro</div><p>Cette instruction ne rend pas Claude agressif ou décourageant — elle le rend simplement honnête. Il reste bienveillant, mais prioritise l'utilité sur le confort social.</p></div>
+      <a href="https://agentic-academy.fr/discover/watch/5104daf0-57a0-4185-ae3b-2f40401b4905" target="_blank" rel="noopener" class="source-cta">◈ Lire l'article original</a>
+    </div>
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+<script>const navbar=document.getElementById('navbar');window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>20));</script>
+</body>
+</html>

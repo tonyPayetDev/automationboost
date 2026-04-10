@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cloner N'importe Quel Site avec Claude Code – AutomationBoost</title>
+  <meta name="description" content="Technique complète pour cloner n'importe quel site en moins de 10 minutes avec Claude Code et une extension Chrome." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page{padding:120px 0 80px}.breadcrumb{font-size:13px;color:var(--text-muted);margin-bottom:32px}.breadcrumb a{color:var(--gold);text-decoration:none}.breadcrumb span{margin:0 8px}.page-badge-art{display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.25);color:#818cf8;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}.page-badge-vid{display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,.12);border:1px solid rgba(234,179,8,.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}.page-title{font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2}.page-title span{color:var(--gold)}.page-meta{display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px}.divider{width:60px;height:2px;background:var(--gold);margin:40px 0}.content-block{max-width:720px}.content-block h2{font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px}.content-block p{color:var(--text-light);line-height:1.8;margin-bottom:16px}.content-block ul{color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px}.content-block ul li{margin-bottom:6px}.tip-box{background:var(--bg-card);border:1px solid rgba(234,179,8,.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0}.tip-box .tip-label{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}.tip-box p{color:var(--text-light);margin:0;font-size:15px}.code-block{background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto;white-space:pre}.source-cta{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#000;font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;padding:14px 28px;border-radius:var(--radius);text-decoration:none;margin-top:40px;transition:all .2s}.source-cta:hover{background:var(--gold-dark);transform:translateY(-2px)}.nav-back{display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s}.nav-back:hover{color:var(--gold)}
+</style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+  </div>
+</nav>
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb"><a href="../ressources.html">Ressources</a><span>/</span>Cloner un Site avec Claude</div>
+    <div class="page-badge-vid">▶ Vidéo · 2m 05s</div>
+    <h1 class="page-title">Cloner n'importe quel site en <span>10 minutes</span></h1>
+    <div class="page-meta"><span>Claude Code</span><span>·</span><span>Web Cloning</span><span>·</span><span>Niveau débutant</span></div>
+    <div class="content-block">
+      <p>Recréer un site existant pixel-perfect prenait des heures. Avec Claude Code et l'extension Chrome dédiée, tu le fais en 5 à 10 minutes. Claude voit le site, analyse sa structure visuelle et son code, puis le recrée dans ton stack tech de choix.</p>
+      <div style="width:60px;height:2px;background:var(--gold);margin:40px 0"></div>
+      <h2>Ce dont tu as besoin</h2>
+      <ul>
+        <li><strong style="color:var(--text)">Claude Code</strong> — l'outil CLI d'Anthropic</li>
+        <li><strong style="color:var(--text)">Extension Chrome Claude</strong> — pour que Claude voit ton navigateur</li>
+        <li><strong style="color:var(--text)">Le skill ai-website-cloner-template</strong> — les instructions spécialisées pour le cloning</li>
+      </ul>
+      <h2>Setup en 3 étapes</h2>
+      <div class="code-block"># Étape 1 : Installer le skill de cloning
+# Dans Claude Code, colle le lien du skill et demande-lui de l'installer
+
+# Étape 2 : Installer l'extension Chrome Claude
+# Télécharger depuis le Chrome Web Store : "Claude for Chrome"
+# Se connecter avec ton compte Anthropic
+
+# Étape 3 : Lancer Claude avec accès au navigateur
+claude --chrome</div>
+      <h2>Cloner un site</h2>
+      <div class="code-block"># Une fois Claude lancé avec --chrome :
+/clone-website https://example.com
+
+# Claude va :
+# 1. Ouvrir le site dans Chrome
+# 2. Analyser le design, la structure, les composants
+# 3. Générer le code HTML/CSS/JS équivalent
+# 4. Adapter selon ton stack si tu précises (React, Vue, etc.)</div>
+      <div class="tip-box"><div class="tip-label">💡 Cas d'usage principaux</div><p>Ce n'est pas fait pour copier des sites illégalement. C'est utile pour recréer ton propre design dans un nouveau stack, s'inspirer d'une mise en page pour un projet client, ou créer des maquettes rapides à partir de références visuelles.</p></div>
+      <h2>Personnalisation après cloning</h2>
+      <p>Une fois le clone généré, Claude peut modifier n'importe quel aspect :</p>
+      <div class="code-block">"Remplace la palette de couleurs par du noir/or cyberpunk"
+"Adapte ce composant hero pour qu'il soit responsive mobile"
+"Ajoute une section pricing avec 3 colonnes sous la hero section"</div>
+      <div class="tip-box"><div class="tip-label">⚡ Conseil pro</div><p>Clone d'abord en HTML/CSS vanilla, puis demande à Claude de migrer vers ton framework. C'est plus fiable que de demander directement du React depuis un site complexe.</p></div>
+      <a href="https://agentic-academy.fr/discover/watch/d6a76753-470f-4440-b54f-bb9bd20381a7" target="_blank" rel="noopener" class="source-cta">▶ Voir la vidéo originale (2m 05s)</a>
+    </div>
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+<script>const navbar=document.getElementById('navbar');window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>20));</script>
+</body>
+</html>

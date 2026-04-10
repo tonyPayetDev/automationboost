@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le CLAUDE.md de Boris Cherny – AutomationBoost</title>
+  <meta name="description" content="Découvrez le fichier CLAUDE.md du créateur de Claude Code et comment l'utiliser pour structurer vos projets IA." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page{padding:120px 0 80px}.breadcrumb{font-size:13px;color:var(--text-muted);margin-bottom:32px}.breadcrumb a{color:var(--gold);text-decoration:none}.breadcrumb span{margin:0 8px}.page-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.25);color:#818cf8;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}.page-title{font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2}.page-title span{color:var(--gold)}.page-meta{display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px}.divider{width:60px;height:2px;background:var(--gold);margin:40px 0}.content-block{max-width:720px}.content-block h2{font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px}.content-block p{color:var(--text-light);line-height:1.8;margin-bottom:16px}.content-block ul{color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px}.content-block ul li{margin-bottom:6px}.tip-box{background:var(--bg-card);border:1px solid rgba(234,179,8,.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0}.tip-box .tip-label{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}.tip-box p{color:var(--text-light);margin:0;font-size:15px}.code-block{background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto;white-space:pre}.source-cta{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#000;font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;padding:14px 28px;border-radius:var(--radius);text-decoration:none;margin-top:40px;transition:all .2s}.source-cta:hover{background:var(--gold-dark);transform:translateY(-2px)}.nav-back{display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s}.nav-back:hover{color:var(--gold)}
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb"><a href="../ressources.html">Ressources</a><span>/</span>Le CLAUDE.md de Boris Cherny</div>
+
+    <div class="page-badge">◈ Article</div>
+    <h1 class="page-title">Le <span>CLAUDE.md</span> du créateur de Claude Code</h1>
+    <div class="page-meta">
+      <span>Claude Code</span><span>·</span><span>Workflow</span><span>·</span><span>Niveau intermédiaire</span>
+    </div>
+
+    <div class="content-block">
+      <p>Le fichier <strong style="color:var(--text)">CLAUDE.md</strong> est la mémoire permanente de Claude Code dans ton projet. C'est lui qui indique à l'IA comment travailler avec ton codebase, quelles conventions respecter, quels outils utiliser. Boris Cherny, le créateur de Claude Code chez Anthropic, a partagé le sien — et c'est une mine d'informations.</p>
+
+      <div class="divider"></div>
+
+      <h2>C'est quoi un CLAUDE.md ?</h2>
+      <p>Quand tu lances Claude Code dans un dossier, il lit automatiquement le <code style="color:var(--gold)">CLAUDE.md</code> à la racine du projet. Ce fichier contient tes instructions persistantes : stack tech, patterns de code préférés, commandes importantes, règles de nommage, contexte métier.</p>
+      <p>Sans lui, Claude repart de zéro à chaque session. Avec lui, il connaît ton projet comme un dev senior qui travaille dessus depuis des mois.</p>
+
+      <h2>Ce que contient celui de Boris Cherny</h2>
+      <ul>
+        <li>Les commandes de build, test et lint à toujours utiliser avant de committer</li>
+        <li>Les conventions de style de code (TypeScript strict, gestion des imports)</li>
+        <li>Les patterns à éviter et ceux à privilégier dans ce codebase</li>
+        <li>Les instructions sur comment poser des questions et clarifier avant d'agir</li>
+        <li>La règle de ne jamais modifier des fichiers hors du scope demandé</li>
+      </ul>
+
+      <div class="tip-box">
+        <div class="tip-label">💡 Pourquoi c'est précieux</div>
+        <p>Voir le CLAUDE.md de celui qui a conçu l'outil te donne les bonnes pratiques directement depuis la source. Tu comprends comment l'outil est pensé pour être utilisé.</p>
+      </div>
+
+      <h2>Structure recommandée pour ton propre CLAUDE.md</h2>
+      <div class="code-block"># CLAUDE.md
+
+## Stack technique
+- Framework : Next.js 14 App Router
+- Style : Tailwind CSS
+- BDD : PostgreSQL via Prisma
+
+## Commandes importantes
+- `npm run dev` — lancer en local
+- `npm run test` — tests unitaires
+- `npm run build` — vérifier avant deploy
+
+## Conventions
+- Composants en PascalCase
+- Hooks préfixés par `use`
+- Pas de `any` TypeScript
+
+## Règles
+- Toujours lire le fichier avant de le modifier
+- Demander confirmation avant de supprimer du code</div>
+
+      <h2>Où placer le fichier</h2>
+      <ul>
+        <li><code style="color:var(--gold)">CLAUDE.md</code> à la racine = instructions globales du projet</li>
+        <li><code style="color:var(--gold)">src/CLAUDE.md</code> = instructions spécifiques au code source</li>
+        <li><code style="color:var(--gold)">~/.claude/CLAUDE.md</code> = règles globales pour tous tes projets</li>
+      </ul>
+
+      <div class="tip-box">
+        <div class="tip-label">⚡ Conseil pro</div>
+        <p>Commence par un CLAUDE.md minimal, puis enrichis-le au fil des sessions. Chaque fois que Claude fait une erreur de convention, ajoute une règle pour que ça n'arrive plus jamais.</p>
+      </div>
+
+      <a href="https://agentic-academy.fr/discover/watch/9852a5c7-7f61-4e60-9b0e-907af8c8164a" target="_blank" rel="noopener" class="source-cta">◈ Lire l'article original</a>
+    </div>
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+<script>const navbar=document.getElementById('navbar');window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>20));</script>
+</body>
+</html>

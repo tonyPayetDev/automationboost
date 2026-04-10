@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Les 5 Couches Mémoire de Claude Code – AutomationBoost</title>
+  <meta name="description" content="Donnez une mémoire persistante à Claude Code avec ce système de 5 fichiers pour des sessions continues et efficaces." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page{padding:120px 0 80px}.breadcrumb{font-size:13px;color:var(--text-muted);margin-bottom:32px}.breadcrumb a{color:var(--gold);text-decoration:none}.breadcrumb span{margin:0 8px}.page-badge-art{display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.25);color:#818cf8;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}.page-badge-vid{display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,.12);border:1px solid rgba(234,179,8,.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}.page-title{font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2}.page-title span{color:var(--gold)}.page-meta{display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px}.divider{width:60px;height:2px;background:var(--gold);margin:40px 0}.content-block{max-width:720px}.content-block h2{font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px}.content-block p{color:var(--text-light);line-height:1.8;margin-bottom:16px}.content-block ul{color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px}.content-block ul li{margin-bottom:6px}.tip-box{background:var(--bg-card);border:1px solid rgba(234,179,8,.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0}.tip-box .tip-label{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}.tip-box p{color:var(--text-light);margin:0;font-size:15px}.code-block{background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto;white-space:pre}.source-cta{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#000;font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;padding:14px 28px;border-radius:var(--radius);text-decoration:none;margin-top:40px;transition:all .2s}.source-cta:hover{background:var(--gold-dark);transform:translateY(-2px)}.nav-back{display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s}.nav-back:hover{color:var(--gold)}
+</style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+  </div>
+</nav>
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb"><a href="../ressources.html">Ressources</a><span>/</span>Les 5 Couches Mémoire</div>
+    <div class="page-badge-art">◈ Article</div>
+    <h1 class="page-title">Donner une <span>mémoire persistante</span> à Claude Code</h1>
+    <div class="page-meta"><span>Claude Code</span><span>·</span><span>Mémoire & Contexte</span><span>·</span><span>Niveau avancé</span></div>
+    <div class="content-block">
+      <p>Claude Code n'a pas de mémoire native entre les sessions. Chaque nouvelle conversation repart de zéro. Le système des 5 couches mémoire de Thariq (@trq212) résout ce problème avec une architecture simple : 5 fichiers Markdown qui reconstituent le contexte automatiquement à chaque session.</p>
+      <div style="width:60px;height:2px;background:var(--gold);margin:40px 0"></div>
+      <h2>Pourquoi la mémoire est cruciale</h2>
+      <p>Sans mémoire structurée, tu passes les 5-10 premières minutes de chaque session à réexpliquer le contexte : qui tu es, ce que tu construis, quelles décisions ont déjà été prises. Sur un projet long, c'est une perte massive de temps et de tokens.</p>
+      <h2>Les 5 couches du système</h2>
+      <ul>
+        <li><strong style="color:var(--text)">Couche 1 — user.md</strong> : qui tu es, tes préférences, ton style de travail</li>
+        <li><strong style="color:var(--text)">Couche 2 — project.md</strong> : contexte du projet, stack, objectifs, contraintes</li>
+        <li><strong style="color:var(--text)">Couche 3 — decisions.md</strong> : toutes les décisions techniques prises et pourquoi</li>
+        <li><strong style="color:var(--text)">Couche 4 — progress.md</strong> : état d'avancement, tâches en cours, prochaines étapes</li>
+        <li><strong style="color:var(--text)">Couche 5 — feedback.md</strong> : ce qui a bien fonctionné, les erreurs à éviter</li>
+      </ul>
+      <div class="tip-box"><div class="tip-label">💡 Setup automatique</div><p>Le système de Thariq inclut un script d'initialisation qui crée les 5 fichiers et les remplit avec tes informations en une seule commande. Claude les lit automatiquement au démarrage de chaque session via le CLAUDE.md.</p></div>
+      <h2>Comment l'intégrer dans ton CLAUDE.md</h2>
+      <div class="code-block"># Dans ton CLAUDE.md
+## Mémoire du projet
+Lis ces fichiers au début de chaque session :
+- .claude/memory/user.md
+- .claude/memory/project.md
+- .claude/memory/decisions.md
+- .claude/memory/progress.md
+- .claude/memory/feedback.md
+
+Après chaque session, mets à jour progress.md avec ce qui a été fait.</div>
+      <h2>Résultats concrets</h2>
+      <ul>
+        <li>Zéro réexplication de contexte en début de session</li>
+        <li>Claude connaît les décisions passées et ne les remet pas en question inutilement</li>
+        <li>Continuité parfaite sur des projets de plusieurs semaines</li>
+        <li>Économie de 20-30% de tokens par session</li>
+      </ul>
+      <div class="tip-box"><div class="tip-label">⚡ Conseil pro</div><p>Demande à Claude de mettre à jour progress.md en fin de session. En une phrase : "Résume ce qu'on a fait aujourd'hui et mets à jour progress.md". Tu auras toujours un journal de bord à jour.</p></div>
+      <a href="https://agentic-academy.fr/discover/watch/bb479a61-a7ea-46bc-8659-1ec408ddf3e9" target="_blank" rel="noopener" class="source-cta">◈ Lire l'article original</a>
+    </div>
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+<script>const navbar=document.getElementById('navbar');window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>20));</script>
+</body>
+</html>
