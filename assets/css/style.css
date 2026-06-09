@@ -1276,32 +1276,86 @@ footer {
   gap: 12px;
 }
 
+/* --- HERO GRID --- */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
 /* --- RESPONSIVE --- */
+
+/* Tablette */
+@media (max-width: 960px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    text-align: center;
+  }
+
+  .hero-badge { margin: 0 auto 24px; }
+  .hero-subtitle { margin-left: auto; margin-right: auto; }
+  .hero-cta-group { justify-content: center; }
+  .hero-stats { justify-content: center; }
+  .hero-visual { max-width: 520px; margin: 0 auto; }
+
+  .demo-grid { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 768px) {
   section { padding: 60px 0; }
 
-  .hero-stats { gap: 24px; }
+  #hero { min-height: auto; padding-top: 100px; padding-bottom: 60px; }
+
+  .hero-visual { display: none; }
+
+  .hero-stats { gap: 20px; flex-wrap: wrap; justify-content: center; }
+  .stat-number { font-size: 1.6rem; }
+
+  .logo-text { font-size: 0.95rem; }
+
+  .problem-grid { grid-template-columns: 1fr; }
+  .features-grid { grid-template-columns: 1fr; }
+  .testi-grid { grid-template-columns: 1fr; }
 
   .demo-grid { grid-template-columns: 1fr; }
 
   .footer-inner { grid-template-columns: 1fr; gap: 28px; }
 
-  .countdown { gap: 12px; }
-  .cd-number { width: 56px; height: 56px; font-size: 1.8rem; }
+  .countdown { gap: 10px; }
+  .cd-number { width: 54px; height: 54px; font-size: 1.6rem; }
+  .cd-label { font-size: 0.65rem; }
 
   .urgency-box { padding: 32px 20px; }
 
+  .pricing-grid { grid-template-columns: 1fr; max-width: 420px; }
   .pricing-card.featured { transform: scale(1); }
   .pricing-card.featured:hover { transform: translateY(-4px); }
 
   .steps-line { display: none; }
-  .step-item { flex-direction: column; }
+  .step-item { flex-direction: column; gap: 12px; }
   .step-number { width: 44px; height: 44px; font-size: 0.9rem; }
+
+  .footer-bottom { flex-direction: column; text-align: center; gap: 8px; }
 }
 
 @media (max-width: 640px) {
-  .hero-cta-group { flex-direction: column; }
+  .container { padding: 0 16px; }
+
+  .hero-cta-group { flex-direction: column; align-items: stretch; }
   .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+
+  .hero-stats { gap: 16px; }
+
+  .nav-inner { padding: 0 16px; }
+  .nav-cta { padding: 8px 14px; font-size: 0.85rem; }
+
+  .urgency-box { padding: 28px 16px; }
+  .countdown { gap: 8px; }
+  .cd-number { width: 48px; height: 48px; font-size: 1.4rem; }
+
+  h2 { font-size: clamp(1.4rem, 6vw, 2rem); }
 }
 
 /* --- ANIMATIONS --- */
