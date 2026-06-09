@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cuisiner avec ce qu'il y a dans le frigo. – AutomationBoost</title>
+  <meta name="description" content="On gaspille 30 kg de nourriture par personne et par an. L" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Cuisiner avec ce qu'il y a dans le frigo.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#22d3ee;">Au quotidien</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Cuisiner avec ce qu'il y a dans le frigo.</h1>
+    <p class="lede">30 kg de nourriture gaspillée par personne et par an en France, dont une grande part dans nos frigos. L'IA en 2026 transforme tes restes en repas en 30 secondes — à condition de l'utiliser correctement. Méthode complète et 5 cas typiques.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tu rentres fatigué, tu ouvres le frigo, tu vois trois choses qui ne vont pas ensemble et des légumes qui flétrissent. Tu commandes une pizza, et le lendemain tu jettes les légumes. C'est ce scénario que l'IA fait disparaître en 2026 — ou qu'elle alimente, selon l'usage.</p>
+
+    <p>Le gaspillage alimentaire est massif : chaque Français jette environ 30 kg de nourriture par an. Voici comment utiliser l'IA pour cuisiner à partir de ce que tu as déjà, sans courses ni gâchis.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi la photo <em>change tout</em>.</h2>
+
+  <div class="container reading">
+    <p>Lister tes ingrédients à la main fonctionne, mais leur montrer une <strong>photo de ton frigo ouvert</strong> donne un résultat bien supérieur : tu n'oublies rien (à la main, tu zappes la moitié), l'IA repère les quantités et l'état des aliments, et elle priorise ce qui doit être mangé en premier.</p>
+
+    <p>C'est le réflexe de base de tout ce qui suit. Voici comment t'en servir, étape par étape.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Le <em>prompt-master</em> à recopier.</h2>
+
+  <div class="container reading">
+    <p>Voici la structure-type qui marche pour 90 % des cas d'usage. Tu prends une photo claire de ton frigo ouvert (idéalement avec les tiroirs sortis pour voir le contenu) et tu donnes ce prompt avec la photo.</p>
+  </div>
+
+  <div class="use-card">
+    <div class="use-num">— PROMPT UNIVERSEL</div>
+    <div class="use-name">À recopier <em>tel quel</em>, à adapter sur 5 lignes</div>
+    <div class="use-desc">Le prompt qui combine identification visuelle + cadrage des contraintes + règle de priorité. À utiliser à chaque fois que tu ouvres ton frigo en mode « qu'est-ce que je fais ? ».</div>
+    <div class="use-prompt"><span class="use-prompt-label">— Prompt à utiliser</span>Voici une photo de mon frigo. Je veux cuisiner maintenant.
+
+[joins la photo du frigo, idéalement avec les tiroirs sortis]
+
+<strong>Mes contraintes :</strong>
+— Temps disponible : <span class="placeholder">[15 min / 30 min / 1h]</span>
+— Nombre de personnes : <span class="placeholder">[1, 2, 4...]</span>
+— Niveau cuisine : <span class="placeholder">[débutant / intermédiaire / à l'aise]</span>
+— Équipement disponible : <span class="placeholder">[plaque / four / cocotte minute / micro-ondes / rien de plus]</span>
+— Restrictions : <span class="placeholder">[allergies / régime / refus du jour : « pas de pâtes »]</span>
+
+<strong>Méthode en 4 étapes :</strong>
+
+1. <strong>Identifie tous les ingrédients visibles</strong> dans la photo, y compris les fonds de pots et condiments. Dis-moi ce que tu vois exactement.
+
+2. <strong>Repère ce qui doit être consommé en priorité</strong> (signes visuels de péremption imminente : ramollissement, jaunissement, flétrissement). Si tu n'es pas sûr, dis-le honnêtement plutôt que d'inventer.
+
+3. <strong>Propose-moi 3 idées de plat</strong> qui utilisent en priorité les ingrédients périssables, dans l'ordre :
+   — Option A : la plus rapide
+   — Option B : la plus rassasiante
+   — Option C : la plus inventive (si j'ai un peu plus de temps)
+   Pour chaque option : nom du plat, temps réel, niveau de difficulté, ingrédients utilisés depuis ma photo + ingrédients de base supposés présents (sel, huile, etc.)
+
+4. <strong>Quand je choisis une option</strong>, donne-moi la recette complète : étapes claires et chronologiques, quantités précises, durées de cuisson, points de vigilance (ce qui peut rater).
+
+<strong>Règles strictes :</strong>
+— <strong>N'invente aucun ingrédient que tu ne vois pas.</strong> Si une recette nécessite quelque chose qui n'est pas dans la photo, signale-le séparément (« il te faudra ajouter X »).
+— <strong>Si un produit visible est de fraîcheur douteuse</strong>, ne fais pas semblant que ce n'est pas grave — propose des plats où la cuisson neutralise le risque (cuisson longue) ou indique de le jeter.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">L'astuce du mentor</div>
+    <p>Le geste qui transforme cette méthode en habitude durable : <strong>prends la photo au moment où tu as faim, pas avant</strong>. La majorité des utilisateurs essaient ça « à froid » le dimanche matin, n'ont pas faim, ne suivent pas la recette, abandonnent. Inverse la séquence : tu sens la faim arriver vers 19h, tu ouvres le frigo, tu prends la photo, tu lances le prompt, tu commences la cuisson dans les 90 secondes. Cette urgence biologique est ce qui crée l'adoption durable. Sans elle, c'est un truc de plus que tu n'utilises jamais. Avec elle, c'est un réflexe quotidien en 2-3 semaines.</p>
+  </div>
+
+  <!-- ============== 3. LES 5 CAS ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Les <em>5 cas d'usage</em> les plus rentables.</h2>
+
+  <div class="container reading">
+    <p>La méthode générale fonctionne sur tous les cas. Mais 5 situations reviennent particulièrement souvent et méritent un ajustement spécifique du prompt. Pour chacune : le contexte, le prompt adapté, et le piège à éviter.</p>
+  </div>
+
+  <div class="use-card">
+    <div class="use-num">— CAS 1 / 5 · LE PLUS QUOTIDIEN</div>
+    <div class="use-name">Le <em>repas express</em> du soir (15 min max)</div>
+    <div class="use-desc">Le scénario le plus fréquent. Tu rentres tard, tu n'as pas envie de cuisiner, tu as des restes. <strong>Spécificité :</strong> la contrainte temps prime sur tout — l'IA doit prioriser des assemblages plutôt que des plats avec cuissons longues.</div>
+    <div class="use-prompt"><span class="use-prompt-label">— Ajustement</span>Ajoute au prompt-master :
+
+« Je veux du <strong>très rapide (15 minutes max</strong>, montre en main, depuis l'ouverture du frigo). Privilégie les options à <strong>une seule cuisson</strong> ou pas de cuisson du tout. Pas de recette qui prend plus de 5 ingrédients à mobiliser. Si tu vois des restes déjà cuits (riz, pâtes, viande froide), priorise-les. »
+
+<strong>Piège classique :</strong> l'IA va te proposer un truc qui prend 30 minutes en disant « 15 minutes » parce qu'elle ne compte pas la prep. Si la recette te paraît longue, demande explicitement le minutage par étape.</div>
+  </div>
+
+  <div class="use-card">
+    <div class="use-num">— CAS 2 / 5 · LE PLUS ÉCO</div>
+    <div class="use-name">Le <em>vide-frigo</em> du dimanche soir</div>
+    <div class="use-desc">Tu fais les courses lundi matin, donc dimanche soir tu veux cuisiner tout ce qui reste pour ne pas que ça parte à la poubelle pendant que tu rentreras de courses lundi avec du frais. <strong>Spécificité :</strong> tu utilises tout ce qui est entamé, y compris les fonds de pots et les restes de plusieurs catégories.</div>
+    <div class="use-prompt"><span class="use-prompt-label">— Ajustement</span>Ajoute au prompt-master :
+
+« Je fais un <strong>vide-frigo</strong> avant de partir faire les courses demain. Je veux <strong>maximiser l'utilisation de tout ce que tu vois</strong>, en priorité ce qui est entamé ou en fin de vie. Propose-moi un <strong>plat unique</strong> ou <strong>2 plats complémentaires</strong> qui utilisent au moins 80 % des ingrédients périssables visibles. Les ingrédients secs (pâtes, riz) sont là pour porter — je peux en réutiliser, mais l'enjeu est les frais. »
+
+<strong>Piège classique :</strong> l'IA peut te proposer un mélange douteux pour utiliser tout. Lis bien la recette — si elle combine 5 saveurs incompatibles, fais-en plutôt 2 plats séparés.</div>
+  </div>
+
+  <div class="use-card">
+    <div class="use-num">— CAS 3 / 5 · LE PLUS UTILE</div>
+    <div class="use-name">Le repas <em>équilibré</em> sans courses</div>
+    <div class="use-desc">Tu veux quelque chose de bon nutritionnellement (pas juste des pâtes au beurre) avec ce que tu as. <strong>Spécificité :</strong> tu intègres une contrainte de macro-nutriments (protéines + légumes + glucides) à la méthode standard.</div>
+    <div class="use-prompt"><span class="use-prompt-label">— Ajustement</span>Ajoute au prompt-master :
+
+« Je veux un repas <strong>équilibré</strong> : avec une source de protéines, une portion de légumes (au moins 200g par personne), et une source de glucides complexes (pâtes, riz, pommes de terre, pain, légumineuses). Si une de ces 3 catégories manque dans ce que tu vois, signale-le-moi explicitement plutôt que de me proposer un plat déséquilibré.
+
+<strong>Pas de plat à base de produits ultra-transformés</strong> (pizzas surgelées, plats préparés industriels). Privilégie les ingrédients bruts visibles. »
+
+<strong>Piège classique :</strong> l'IA peut être trop optimiste sur la portion de légumes. Si la recette propose « 1 courgette pour 2 personnes », c'est insuffisant — demande des portions vraiment équilibrées.</div>
+  </div>
+
+  <div class="use-card">
+    <div class="use-num">— CAS 4 / 5 · LE PLUS SENSIBLE</div>
+    <div class="use-name">Cuisiner pour des <em>invités improvisés</em></div>
+    <div class="use-desc">Quelqu'un sonne, vient dîner. Tu n'as pas prévu. Tu dois faire quelque chose qui sort un peu de l'ordinaire avec ce que tu as. <strong>Spécificité :</strong> contrainte d'esthétique et de présentation, en plus du goût.</div>
+    <div class="use-prompt"><span class="use-prompt-label">— Ajustement</span>Ajoute au prompt-master :
+
+« J'ai des invités qui arrivent dans <span class="placeholder">[délai]</span>. Je veux quelque chose qui ait l'air <strong>fait exprès</strong>, pas l'air d'un dépannage. Critères : (1) jolie présentation possible, (2) un peu plus élaboré que mon repas habituel, (3) sécurisé côté goût (rien de très expérimental).
+
+Demande-moi <strong>les éléments de contexte importants</strong> avant de proposer : nombre d'invités, restrictions alimentaires probables, ambiance (apéro improvisé / dîner posé). Ne propose des recettes qu'après. »
+
+<strong>Piège classique :</strong> l'IA peut te proposer quelque chose de techniquement réalisable mais dont l'aspect est moche (ratatouille de légumes hétéroclites). Demande explicitement « comment je présente ça pour que ça ait l'air voulu ? ». Souvent la différence visuelle se joue sur 2 minutes de plating.</div>
+  </div>
+
+  <div class="use-card">
+    <div class="use-num">— CAS 5 / 5 · LE PLUS LONG TERME</div>
+    <div class="use-name">Le <em>menu de la semaine</em> à partir d'un seul shopping</div>
+    <div class="use-desc">Tu veux planifier 5 ou 7 dîners d'avance avec une seule grosse session de courses, en utilisant ce qui est déjà dans le frigo comme base. <strong>Spécificité :</strong> logique de séquence (l'ordre des plats compte, on garde le poisson pour le début, on cuit la viande au milieu, etc.).</div>
+    <div class="use-prompt"><span class="use-prompt-label">— Ajustement</span>Ajoute au prompt-master :
+
+« Je veux <strong>planifier 5 dîners pour cette semaine</strong>. Voici ce qui est déjà dans le frigo (photo) que je veux utiliser en priorité avant qu'ils périment. Voici ce que j'ai dans les placards : <span class="placeholder">[liste rapide]</span>.
+
+Propose-moi :
+1. <strong>5 dîners pour la semaine</strong> dans l'ordre de cuisson optimal (les ingrédients les plus périssables en premier)
+2. <strong>La liste de courses complémentaire</strong> minimale pour réaliser les 5 menus, avec quantités précises
+3. <strong>Les éventuels recyclages d'un repas à l'autre</strong> (j'achète un poulet entier dimanche, j'en fais un rôti mardi, je récupère les os pour un bouillon jeudi)
+4. <strong>Le budget approximatif</strong> de la liste de courses complémentaire
+
+Privilégie la <strong>simplicité d'exécution</strong> sur la sophistication — ces 5 menus doivent rester réalisables même un jour fatigué. »
+
+<strong>Piège classique :</strong> l'IA peut te proposer un planning ambitieux infaisable au quotidien. Demande des dîners de moins de 30 minutes en moyenne — sinon tu commandes le mardi soir.</div>
+  </div>
+
+  <!-- ============== 4. PIÈGES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Les <em>5 pièges</em> à connaître.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : faire <em>confiance à l'IA</em> sur la sécurité alimentaire</div>
+    <div class="pitfall-text">Le piège le plus dangereux. Tu lui donnes la photo d'un poulet de la veille, tu demandes « est-ce que je peux le manger ? ». L'IA va te donner une réponse plausible, parfois rassurante, parfois alarmiste — mais elle <strong>ne peut pas évaluer la sécurité d'un aliment depuis une photo</strong>. Les bactéries comme la salmonelle ou la listeria n'ont pas d'indice visuel. <strong>Règle absolue :</strong> sur tout doute de sécurité alimentaire (viande/poisson au-delà de la DLC, conserves bombées, odeur suspecte, restes datant de plus de 3 jours), <em>ne demande pas l'avis de l'IA, jette</em>. Le coût d'une intoxication dépasse infiniment celui d'un kilo de poulet jeté. Voir <a href="7-cas-jamais-confiance.html">les 7 cas où ne jamais faire confiance à l'IA seule</a>.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : laisser l'IA <em>inventer</em> des ingrédients invisibles</div>
+    <div class="pitfall-text">Sur une photo de frigo, l'IA peut « voir » des ingrédients qui n'y sont pas (hallucination visuelle), surtout sur les produits dans des contenants opaques ou les fonds de tiroir. Tu lances la recette, tu réalises au milieu qu'il te manque un truc essentiel. <strong>Discipline :</strong> à l'étape 1 du prompt, exige que l'IA <em>liste explicitement tous les ingrédients qu'elle identifie</em> avant de proposer. Si elle dit « tu as du parmesan », vérifie visuellement avant de cuisiner. Sans cette vérification, tu te retrouves au milieu de la recette à devoir improviser ou commander.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>sous-estimer</em> le temps réel de cuisine</div>
+    <div class="pitfall-text">L'IA estime les temps de cuisson, pas les temps de prep. Une recette annoncée « 20 minutes » prend en réalité 35 minutes pour un débutant qui doit éplucher, mesurer, lire les étapes. Si tu prends ces estimations pour argent comptant, tu commences à 19h45 en pensant manger à 20h05, tu manges à 20h35 affamé et frustré. <strong>Discipline :</strong> ajoute mentalement <strong>+30 % au temps annoncé</strong> par l'IA si tu es débutant, +15 % si tu es à l'aise. Et si une recette propose plus de 6 ingrédients à manipuler, c'est de toute façon plus de 20 minutes en réalité.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>trop demander</em> en termes diététiques précis</div>
+    <div class="pitfall-text">L'IA donne facilement des estimations caloriques et nutritionnelles « 450 kcal, 25g de protéines », mais ces chiffres sont <strong>très approximatifs</strong> sans peser précisément les ingrédients. Pour de la cuisine quotidienne, c'est suffisant. Pour un suivi diététique sérieux (régime médical, sport de haut niveau, troubles alimentaires), c'est <em>insuffisant et potentiellement trompeur</em>. <strong>Si tu as un objectif diététique précis</strong>, utilise une app dédiée (MyFitnessPal, Yazio) avec scan code-barres pour les valeurs exactes, et garde l'IA pour les idées de recettes en respect de tes contraintes. Voir aussi <a href="user-wellbeing">les précautions sur les régimes</a> — si tu as un trouble alimentaire identifié, l'IA n'est pas le bon outil.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : oublier que <em>le contexte gustatif est culturel</em></div>
+    <div class="pitfall-text">L'IA est entraînée majoritairement sur des contenus anglophones. Ses propositions par défaut peuvent dériver vers des cuisines américanisées, mexicaines ou italo-américaines qui ne correspondent pas à ton palais français. <strong>Ajustement simple :</strong> dans tes prompts, précise « cuisine plutôt française / méditerranéenne / asiatique selon mon goût ». Et si une recette te paraît étrange (« courgettes avec du sirop d'érable et du peanut butter »), c'est probablement le biais culturel qui parle — refuse et redemande quelque chose de plus aligné avec ce que tu manges habituellement.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>Cuisiner avec ce qu'il y a dans le frigo est l'un des cas d'usage IA quotidiens les plus sous-estimés et les plus rentables. Sous-estimés parce que peu de contenus francophones traitent le sujet au-delà du « tape ta liste, ChatGPT te donne une recette ». Rentables parce que l'effet est <strong>quotidien, mesurable et triple</strong> : tu réduis ton gaspillage (240 € / personne / an), tu réduis ta charge mentale (« qu'est-ce qu'on mange ce soir ? » est l'une des questions les plus épuisantes des couples et parents), tu manges mieux que ce que tu aurais commandé. Pour 30 secondes de prompt par soir, le retour sur investissement est l'un des plus élevés de tous les usages IA décrits sur ce site. <strong>Et c'est l'un des cas où l'IA est presque <em>plus utile</em> qu'un humain</strong> — un cuisinier que tu appellerais le soir n'aurait pas la patience de regarder ton frigo en photo et de te proposer 3 options en 30 secondes.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Pour aller plus loin : <a href="hallucinations-ia.html">les hallucinations IA</a> (l'IA peut « voir » des ingrédients qui ne sont pas là), <a href="7-cas-jamais-confiance.html">les 7 cas où ne jamais faire confiance à l'IA seule</a> (la sécurité alimentaire en fait partie), <a href="modifier-image-existante.html">le traitement d'images par IA</a> (la photo-frigo est une application directe), <a href="comparer-deux-produits.html">comparer 2 produits</a> (utile pour choisir un appareil cuisine type robot multifonction). Pour les parents : <a href="aider-enfants-devoirs.html">l'IA pour les devoirs des enfants</a> peut s'étendre à la cuisine — apprendre à cuisiner avec l'IA est un vrai bon usage pédagogique pour les ados.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur cuisiner avec le frigo et l'IA.</h3>
+    <ol class="recap-points">
+      <li>30 kg gaspillés par Français par an (ADEME), dont 7 kg encore emballés. Coût ~240 € par personne. Cause principale : pas de plan d'utilisation. Le frigo en est l'épicentre. L'IA en 2026 lit la photo d'un frigo en 5 secondes et identifie les ingrédients — capacité qui change la cuisine quotidienne.</li>
+      <li>La photo bat la liste textuelle : exhaustivité (15-25 ingrédients identifiés vs 5-7 listés à la main), indices visuels de péremption imminente, contexte d'équipement réel. C'est le plus grand levier qualitatif des usages cuisine IA et le plus mal connu.</li>
+      <li>Prompt-master en 4 étapes : identifier tous les ingrédients visibles (sans inventer) → repérer ce qui doit être consommé en priorité (signes visuels) → proposer 3 options classées (rapide / rassasiante / inventive) avec ingrédients utilisés explicites → recette complète quand tu choisis. Astuce : prendre la photo au moment où tu as faim, pas à froid.</li>
+      <li>5 cas d'usage à connaître : repas express 15 min (priorité au temps), vide-frigo dimanche (priorité aux périssables), repas équilibré sans courses (contraintes nutritionnelles explicites), invités improvisés (présentation + sécurité gustative), menu de la semaine + liste courses complémentaire. Chaque cas a un ajustement spécifique du prompt-master.</li>
+      <li>5 pièges : confiance à l'IA sur la sécurité alimentaire (jamais — jeter en cas de doute), inventions d'ingrédients invisibles (vérifier l'inventaire visuellement), sous-estimer le temps réel (+30 % débutant, +15 % à l'aise), demander des données diététiques précises sans peser (utiliser app dédiée à la place), oublier le biais culturel anglophone de l'IA (préciser « cuisine française / méditerranéenne »).</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="comparer-deux-produits.html">
+        <div class="next-link-label">— Article complémentaire</div>
+        <div class="next-link-title">Comparer deux produits avant un achat important</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-3-vie-quotidienne.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Vie quotidienne · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

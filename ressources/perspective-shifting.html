@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le Perspective Shifting : changer d'angle sans recommencer. – AutomationBoost</title>
+  <meta name="description" content="« Reprends en défendant l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Le Perspective Shifting : changer d'angle sans recommencer.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#34d399;">Mieux prompter</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Le Perspective Shifting : changer d'angle sans recommencer.</h1>
+    <p class="lede">« Maintenant analyse comme un sceptique. » « Reprends, cette fois en défendant l'opposé. » Multiplier les angles d'analyse en une seule conversation, sans repartir de zéro.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Une seule analyse de l'IA ne suffit jamais à valider une décision importante. Par défaut, elle prend la posture d'un consultant pondéré qui voit du bon et du moins bon, et déroule — une vue moyenne, lisse.</p>
+
+    <p>Le perspective-shifting consiste à lui faire changer d'angle volontairement, pour révéler ce que la posture moyenne masque. Voici comment.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi une seule analyse <em>ne suffit pas</em>.</h2>
+
+  <div class="container reading">
+    <p>La posture moyenne de l'IA (« voilà les pour, voilà les contre, voici ma reco ») est utile pour beaucoup de questions, mais elle a deux défauts sur les décisions importantes : elle lisse les vrais points de tension, et elle te conforte plus qu'elle ne te challenge.</p>
+
+    <p>D'où l'intérêt de la forcer à adopter des angles tranchés. Voici la méthode.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 6</span>La technique : <em>basculer</em> dans la même conversation.</h2>
+
+  <div class="container reading">
+    <p>La force du Perspective Shifting, c'est de rester dans la même conversation. Tu n'ouvres pas trois nouvelles fenêtres avec trois prompts différents. Tu poses ta question initiale, tu obtiens une première réponse, et tu pivotes par une simple instruction.</p>
+  </div>
+
+  <h3 class="reading">Le format de pivot universel</h3>
+
+  <div class="container reading">
+    <p>La structure-type d'un pivot tient en une ligne :</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">— Format générique du pivot</div>
+    <p><em>« Maintenant reprends la même analyse, mais cette fois en adoptant la perspective d'un [X]. Garde le contexte précédent, change uniquement l'angle. »</em></p>
+  </div>
+
+  <div class="container reading">
+    <p>Trois éléments-clés dans cette formulation. <strong>« Reprends la même analyse »</strong> indique que tu ne reposes pas la question depuis zéro. <strong>« La perspective d'un [X] »</strong> nomme explicitement le nouvel angle. <strong>« Garde le contexte précédent »</strong> empêche l'IA de tout réécrire en boucle.</p>
+
+    <p>Cette formulation marche sur tous les modèles 2026 (Claude Opus 4.7, ChatGPT, Gemini 3.1 Pro). Tu peux l'utiliser autant de fois que tu veux dans la même conversation pour empiler les perspectives.</p>
+  </div>
+
+  <!-- ============== 3. 5 PERSPECTIVES ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 6</span>Les <em>5 perspectives</em> à connaître.</h2>
+
+  <div class="container reading">
+    <p>Voici les 5 perspectives qui couvrent 90 % des cas où tu as besoin de challenger une analyse. Chaque perspective active un mode d'analyse différent. Apprends-les comme tu as appris les mots-clés : avec le temps, tu sauras laquelle déployer instinctivement.</p>
+  </div>
+
+  <div class="perspective-card">
+    <div class="perspective-num">— PERSPECTIVE 1</div>
+    <div class="perspective-name">Le <em>sceptique</em></div>
+    <div class="perspective-desc">Force l'IA à attaquer ce qu'elle vient de dire. Elle va identifier les angles morts, les hypothèses non vérifiées, les chiffres approximatifs, les raisonnements bancals. C'est la perspective la plus rentable si tu n'en utilises qu'une seule.</div>
+    <div class="perspective-prompt">
+      <span class="perspective-prompt-label">— Pivot</span>
+      Maintenant reprends la même analyse comme un sceptique exigeant. Identifie les hypothèses fragiles, les chiffres douteux, les raisonnements optimistes. Sois honnête, même si ça contredit ta première réponse.
+    </div>
+    <div class="perspective-when"><strong>Quand l'utiliser</strong>Toute décision où tu sens que l'IA a été trop accommodante. Pour valider une stratégie, un argumentaire, un plan d'action.</div>
+  </div>
+
+  <div class="perspective-card">
+    <div class="perspective-num">— PERSPECTIVE 2</div>
+    <div class="perspective-name">L'<em>avocat du diable</em></div>
+    <div class="perspective-desc">Différent du sceptique. Le sceptique critique avec mesure. L'avocat du diable défend explicitement la position contraire. Il prend le camp opposé et l'argumente avec force, même s'il ne le pense pas. Cette polarisation pousse l'analyse à ses limites.</div>
+    <div class="perspective-prompt">
+      <span class="perspective-prompt-label">— Pivot</span>
+      Maintenant reprends, mais cette fois défends l'option opposée. Argumente comme si tu étais convaincu que c'est la bonne. Donne tes 3 meilleurs arguments, sans nuancer.
+    </div>
+    <div class="perspective-when"><strong>Quand l'utiliser</strong>Quand tu hésites entre deux options. La forme « défends l'opposé » te donne le meilleur argumentaire que tu n'aurais pas spontanément trouvé.</div>
+  </div>
+
+  <div class="perspective-card">
+    <div class="perspective-num">— PERSPECTIVE 3</div>
+    <div class="perspective-name">Le <em>néophyte</em></div>
+    <div class="perspective-desc">Force l'IA à expliquer en partant de zéro, comme à quelqu'un qui découvre le sujet. Cette perspective révèle les présupposés cachés et les éléments que tu pensais évidents mais qui ne le sont pas. Particulièrement utile quand tu prépares une présentation à une audience non-experte.</div>
+    <div class="perspective-prompt">
+      <span class="perspective-prompt-label">— Pivot</span>
+      Maintenant reprends comme si tu expliquais à un débutant complet, sans aucun acquis sur le sujet. Définis chaque terme technique. Justifie chaque saut logique.
+    </div>
+    <div class="perspective-when"><strong>Quand l'utiliser</strong>Préparation de communication grand public, vérification de la solidité d'une explication, transmission interne à un nouveau collaborateur.</div>
+  </div>
+
+  <div class="perspective-card">
+    <div class="perspective-num">— PERSPECTIVE 4</div>
+    <div class="perspective-name">Le <em>futur-toi</em></div>
+    <div class="perspective-desc">La perspective la plus puissante pour les décisions importantes. Tu demandes à l'IA de se projeter dans le futur, après que la décision ait produit ses effets, et de regarder en arrière. Le mécanisme cognitif derrière s'appelle <em>« prospective hindsight »</em> et il est documenté pour réduire les biais de planification.</div>
+    <div class="perspective-prompt">
+      <span class="perspective-prompt-label">— Pivot</span>
+      Maintenant projette-toi 5 ans plus tard, après que cette décision ait produit ses effets. Imagine deux scénarios : celui où ça a marché, celui où ça a échoué. Pour chacun, identifie ce qui aura été le facteur déclencheur.
+    </div>
+    <div class="perspective-when"><strong>Quand l'utiliser</strong>Décisions stratégiques à long terme. Embauche, investissement, lancement de produit, choix de carrière.</div>
+  </div>
+
+  <div class="perspective-card">
+    <div class="perspective-num">— PERSPECTIVE 5</div>
+    <div class="perspective-name">L'<em>expert opposé</em></div>
+    <div class="perspective-desc">Tu nommes un expert d'une discipline différente de celle que l'IA a adoptée par défaut. Si elle a analysé en consultante stratégie, demande l'analyse d'un économiste comportemental. Si elle a analysé en marketeur, demande l'analyse d'un psychologue clinicien. Cette friction inter-disciplinaire fait souvent émerger des éléments invisibles dans une seule discipline.</div>
+    <div class="perspective-prompt">
+      <span class="perspective-prompt-label">— Pivot</span>
+      Maintenant reprends la même question, mais comme un [psychologue / sociologue / économiste comportemental / juriste / anthropologue]. Quelles sont les questions qu'il poserait que la perspective précédente ignorait ?
+    </div>
+    <div class="perspective-when"><strong>Quand l'utiliser</strong>Sujets à dimensions multiples (ressources humaines, marketing, design, politique). Là où une seule discipline laisse des angles morts évidents.</div>
+  </div>
+
+  <!-- ============== 4. CAS D'USAGE COMPLET ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 6</span>Cas d'usage : valider une décision en <em>4 angles</em>.</h2>
+
+  <div class="container reading">
+    <p>Voici un cas réel d'utilisation. Tu hésites à embaucher un commercial senior à 65 K € pour ta startup B2B. Tu veux valider la décision en plusieurs angles avant de signer.</p>
+  </div>
+
+  <div class="demo-flow">
+    <div class="demo-step user">
+      <div class="demo-step-label">— Toi · Question initiale</div>
+      <div class="demo-step-text">Tu es un consultant en stratégie. J'hésite à embaucher un commercial senior à 65 K € de salaire fixe pour ma startup B2B (15 personnes, 2 M€ de revenu annuel). Le candidat a 12 ans d'expérience dans mon secteur. Notre cycle de vente est long (6 mois). Donne-moi ton analyse.</div>
+    </div>
+
+    <div class="demo-step ai">
+      <div class="demo-step-label">— IA · Réponse 1 (analyse pondérée)</div>
+      <div class="demo-step-text">[L'IA livre une analyse équilibrée : avantages d'un senior expérimenté, risques liés au coût, recommandation conditionnelle.]</div>
+    </div>
+
+    <div class="demo-step user">
+      <div class="demo-step-label">— Toi · Pivot 1 (sceptique)</div>
+      <div class="demo-step-text">Maintenant reprends en sceptique exigeant. Quels sont les pièges classiques que je suis en train de rater ?</div>
+    </div>
+
+    <div class="demo-step ai">
+      <div class="demo-step-label">— IA · Réponse 2 (sceptique)</div>
+      <div class="demo-step-text">[L'IA identifie les angles morts : risque que le commercial vende l'ancienne offre de son secteur, mismatch culturel startup vs grand compte, attente d'autonomie incompatible avec une équipe de 15, etc.]</div>
+    </div>
+
+    <div class="demo-step user">
+      <div class="demo-step-label">— Toi · Pivot 2 (avocat du diable)</div>
+      <div class="demo-step-text">Maintenant défends l'option opposée : ne pas embaucher et investir les 65 K € en marketing. Donne tes 3 meilleurs arguments.</div>
+    </div>
+
+    <div class="demo-step ai">
+      <div class="demo-step-label">— IA · Réponse 3 (alternative)</div>
+      <div class="demo-step-text">[L'IA argumente : ROI marketing mesurable contre ROI commercial difficile à isoler, optionalité plus grande, capacité à scaler sans dépendance à une personne, etc.]</div>
+    </div>
+
+    <div class="demo-step user">
+      <div class="demo-step-label">— Toi · Pivot 3 (futur-toi)</div>
+      <div class="demo-step-text">Projette-toi dans 18 mois. Imagine deux scénarios : embauche réussie / embauche ratée. Pour chacun, quel a été le facteur déclencheur ?</div>
+    </div>
+
+    <div class="demo-step ai">
+      <div class="demo-step-label">— IA · Réponse 4 (projection)</div>
+      <div class="demo-step-text">[L'IA construit deux scénarios concrets avec leurs déclencheurs respectifs — accueil, capacité à former, fit culturel, ramp-up time…]</div>
+    </div>
+
+    <div class="demo-step user">
+      <div class="demo-step-label">— Toi · Synthèse</div>
+      <div class="demo-step-text">Maintenant synthétise les 4 analyses précédentes : décision recommandée + les 3 conditions qui la rendraient solide.</div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>En 8 messages, tu as obtenu l'équivalent de 4 consultations expertes. Le coût total : 10 minutes de ton temps et un peu de quota d'IA. Le bénéfice : une décision validée sous 4 angles différents, avec des conditions de succès explicitées.</p>
+
+    <p>C'est exactement ce que la <a href="ask-me-questions-first.html">technique du diagnostic « Ask Me Questions First »</a> et le <a href="framework-crispe.html">framework CRISPE</a> ne peuvent pas te donner — l'analyse multi-angles dans la durée d'une conversation.</p>
+  </div>
+
+  <!-- ============== 5. QUAND ET QUAND PAS ============== -->
+  <h2 class="reading"><span class="h2-num">— 5 / 6</span>Quand l'utiliser, quand <em>l'éviter</em>.</h2>
+
+  <h3 class="reading">Les 3 cas où Perspective Shifting est puissant</h3>
+
+  <div class="container reading">
+    <p><strong>Décisions à enjeu.</strong> Embauche, investissement, partenariat, lancement, choix stratégique. Tout ce qui engage durablement et coûte cher de se tromper. Pour ces sujets, prendre 10 minutes pour 4 perspectives est un investissement très rentable.</p>
+
+    <p><strong>Validation d'idée avant exécution.</strong> Avant de te lancer dans un projet de plusieurs semaines, fais passer ton idée par 3 perspectives critiques. Tu vas découvrir des angles morts qui auraient été coûteux à corriger après coup.</p>
+
+    <p><strong>Préparation à un débat ou une négociation.</strong> Pour anticiper les arguments de l'autre camp et préparer tes contre-arguments. La perspective <em>« avocat du diable »</em> est particulièrement utile pour cet usage.</p>
+  </div>
+
+  <h3 class="reading">Les 2 cas où Perspective Shifting est inutile</h3>
+
+  <div class="container reading">
+    <p><strong>Tâches d'exécution simples.</strong> Pour rédiger un mail, faire un résumé, traduire un texte, tu n'as pas besoin de 4 perspectives. Une analyse suffit. Le Perspective Shifting est conçu pour la décision, pas pour la production.</p>
+
+    <p><strong>Sujets que tu maîtrises déjà à 100 %.</strong> Si tu as déjà fait 50 fois cette décision dans ta carrière et que tu connais tous les pièges, demander à l'IA 4 perspectives ne va rien t'apporter de nouveau. Garde la technique pour les sujets où tu as encore quelque chose à apprendre.</p>
+  </div>
+
+  <!-- ============== 6. PIÈGES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 6 / 6</span>Les 2 <em>pièges</em> à éviter.</h2>
+
+  <h3 class="reading">Piège 1 : enchaîner sans synthétiser</h3>
+
+  <div class="container reading">
+    <p>Le piège classique du débutant : empiler les perspectives, lire chaque réponse, et terminer la conversation sans synthèse. Tu te retrouves avec 4 analyses contradictoires et tu ne sais plus quoi en faire. Pire, tu peux finir par te ranger derrière la dernière analyse parce que c'est la plus fraîche dans ton esprit.</p>
+
+    <p>La règle : <strong>termine toujours par un message de synthèse</strong>. <em>« Maintenant, en intégrant les 4 perspectives précédentes, donne-moi ta recommandation finale et les 3 conditions qui la rendraient solide. »</em>. Cette synthèse force l'IA à arbitrer, et te donne un livrable utilisable. Sans elle, le Perspective Shifting reste une gymnastique intellectuelle sans sortie.</p>
+  </div>
+
+  <h3 class="reading">Piège 2 : empiler trop de perspectives</h3>
+
+  <div class="container reading">
+    <p>Au-delà de 4 ou 5 perspectives, tu entres dans la dilution. Chaque nouvelle analyse répète des éléments déjà vus, et tu perds la capacité à arbitrer entre des points de vue distincts. La règle pratique : <strong>3 à 4 perspectives maximum</strong>, soigneusement choisies pour leur complémentarité, pas leur quantité.</p>
+
+    <p>Si tu sens que 4 perspectives ne suffisent pas, c'est probablement que ta question initiale était mal cadrée. Reformule plutôt que d'empiler.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ce que tu vas voir dans le prochain article</div>
+    <p>Le Perspective Shifting te donne <em>plusieurs angles</em>. La prochaine technique va plus loin : elle te fait passer de l'autre côté du miroir. Au lieu d'écrire le prompt, tu vas demander à l'IA d'écrire le prompt elle-même. C'est le <strong>méta-prompting</strong>. Une technique qui paraît absurde, qui marche, et qui transforme ta façon de formuler les demandes complexes.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur le Perspective Shifting.</h3>
+    <ol class="recap-points">
+      <li>L'IA, par défaut, est trop pondérée pour valider une décision importante. Tu as besoin de perspectives polarisées.</li>
+      <li>La technique : « Maintenant reprends la même analyse comme un [X], en gardant le contexte précédent ». Tu pivotes dans la même conversation.</li>
+      <li>5 perspectives à connaître : sceptique, avocat du diable, néophyte, futur-toi, expert opposé. Chacune révèle des angles différents.</li>
+      <li>Le futur-toi (« projette-toi 5 ans plus tard ») est la perspective la plus puissante pour les décisions à enjeu long terme.</li>
+      <li>Termine toujours par une synthèse explicite. Sans elle, tu accumules des analyses sans en tirer une décision.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a href="#" class="next-link">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">Le méta-prompting : demander à l'IA d'écrire ton prompt</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-2-techniques-avancees.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Techniques avancées · Niveau II</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

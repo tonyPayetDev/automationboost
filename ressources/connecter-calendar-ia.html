@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connecter ton IA au Calendar et tes communications. – AutomationBoost</title>
+  <meta name="description" content="Calendar, Slack, Teams, Discord : ce qui change vraiment quand l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Connecter ton IA au Calendar et tes communications.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#eab308;">Automatiser & agents</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Connecter ton IA au Calendar et tes communications.</h1>
+    <p class="lede">Calendar + Slack + Teams + Discord. Ce qui change vraiment quand l'IA voit ton agenda et tes conversations. Slack devient un client MCP en avril 2026, Calendar passe en multi-comptes intelligents, et les automatisations multi-MCP deviennent le vrai pouvoir.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Connecter ton agenda et tes outils de communication à l'IA change ton rapport au temps et à ton équipe. Quand l'IA voit ton calendrier et tes conversations, elle débloque des usages qui n'existaient pas il y a 18 mois.</p>
+
+    <p>Voici les automatisations concrets que permet cette connexion — briefing avant réunion, planification en langage naturel, suivi des décisions — et comment les mettre en place.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi agenda <em>+ communications</em>.</h2>
+
+  <div class="container reading">
+    <p>Gmail seul te fait gagner du temps sur les mails ; l'agenda seul te donne ton planning en langage naturel. Mais c'est en croisant les deux que ça bascule : la plupart de tes décisions se prennent à l'intersection d'un mail et d'un créneau — le briefing avant un appel, le calage d'un rendez-vous, le suivi d'une décision.</p>
+
+    <p>Voici les transformations concrètes que cette combinaison rend possibles.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Connecter <em>Google Calendar</em>.</h2>
+
+  <div class="container reading">
+    <p>Google Calendar est le connecteur le plus mature de la famille en 2026. Plusieurs serveurs MCP existent — voici les options qui comptent en pratique.</p>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Option A — <em>Google Calendar MCP officiel managé</em></div>
+    <div class="tool-text"><strong>Annoncé à Google Cloud Next '26.</strong> Faisant partie de l'ensemble des 50+ Google-managed MCP servers (Gmail, Calendar, Drive, Docs, Sheets, Slides, Forms, Chat, Tasks, Contacts). Configuration similaire à Gmail : custom connector dans Claude.ai/Desktop avec OAuth Google Cloud Console. Endpoint managé par Google, pas de hosting de ton côté.<br><br>
+<strong>Avantage :</strong> stabilité, sécurité Google Cloud (IAM, Audit Logs, Model Armor pour défense contre prompt injection), maintenance zéro. Adapté pour les déploiements pro où la conformité compte.<br><br>
+<strong>Limite :</strong> moins de granularité que les serveurs communautaires sur les opérations avancées (multi-comptes, recurring events complexes). Pour l'usage standard — voir/créer/modifier des events — c'est largement suffisant.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Option B — <em>@cocal/google-calendar-mcp</em> · communauté</div>
+    <div class="tool-text"><strong>Le serveur communautaire de référence en 2026.</strong> Self-hosted via npx, configuré avec OAuth Google Cloud Console, ajouté au config de Claude Desktop ou Cursor. Capacités étendues que le serveur officiel n'a pas (encore) : <strong>multi-comptes natifs</strong> (perso + pro queryable simultanément), <strong>conflict detection cross-calendars</strong>, <strong>recurring events avancés</strong>, <strong>free/busy queries</strong>, <strong>smart scheduling</strong> avec compréhension naturelle des dates.<br><br>
+<strong>Tools exposés :</strong> list-calendars, list-events, search-events, get-event, create-event, update-event, delete-event, get-freebusy, respond-to-event, manage-accounts. Tu peux filtrer ceux que tu actives via la variable <em>ENABLED_TOOLS</em> — discipline saine pour limiter le contexte token et restreindre aux opérations dont tu as vraiment besoin.<br><br>
+<strong>Limite :</strong> demande Node.js et un peu de bricolage initial (15-30 min). Maintenance reste à la charge du mainteneur communautaire.</div>
+  </div>
+
+  <h3>Cas d'usage Calendar qui marchent vraiment</h3>
+
+  <div class="container reading">
+    <p><strong>(1) Vue rapide de la semaine.</strong> <em>« Donne-moi un récap de ma semaine prochaine en 5 lignes : combien de réunions, quel temps de focus disponible, événements importants. »</em> Tu obtiens en 10 secondes un panorama qui demanderait 3-4 min à éplucher dans l'UI Google Calendar.</p>
+
+    <p><strong>(2) Détection automatique de conflits.</strong> <em>« Vérifie si j'ai des conflits ou des chevauchements cette semaine entre mon Calendar perso et pro. »</em> Avec multi-comptes, l'IA fait le cross-check qui aurait pris 5 min de comparaison manuelle entre 2 onglets.</p>
+
+    <p><strong>(3) Création d'event en langage naturel.</strong> <em>« Crée une réunion de 45 min avec [contact X] mardi à 14h, agenda : revue projet Y, ajoute mon brief de la semaine dernière en pièce jointe. »</em> Une seule commande, l'IA crée l'event, ajoute les bons participants depuis tes contacts, formule l'agenda, attache le doc. Gain net 2-3 min par création d'event substantiel.</p>
+
+    <p><strong>(4) Briefing pré-meeting (le killer feature multi-MCP).</strong> Avec Gmail + Calendar + idéalement Drive/Notion : <em>« J'ai un call avec X dans 30 min. Brief-moi en 5 points : sujet de l'event, derniers échanges mail avec X, doc projet liée, points en suspens. »</em> Ce qui demandait 5-10 min de préparation devient 30 secondes — et plus exhaustif.</p>
+
+    <p><strong>(5) Planification proactive.</strong> <em>« Dimanche soir, regarde mon Calendar de la semaine et liste les 3 sessions de focus que je devrais protéger. »</em> Tu mets en place une routine hebdomadaire de planification que ton IA fait à ta place.</p>
+  </div>
+
+  <!-- ============== 3. COMMUNICATIONS ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Les outils de <em>communication</em>.</h2>
+
+  <div class="container reading">
+    <p>Slack, Microsoft Teams, Discord. Les 3 plateformes ont une maturité MCP très différente en 2026. Ne te fais pas d'illusion : ce qui marche sur Slack ne marche pas pareillement sur Teams ou Discord.</p>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name"><em>Slack</em> · le plus avancé en 2026</div>
+    <div class="tool-text"><strong>Slack a fait sa révolution MCP en 2026.</strong> Octobre 2025 : Slack lance son MCP server (les apps externes peuvent lire et agir dans Slack). <strong>Mars 2026 : Slack devient lui-même un MCP <em>client</em></strong> — Slackbot (le nouveau, propulsé par Claude 4.6) peut tirer des données depuis n'importe quel serveur MCP externe (Linear, DocuSign, Google Slides, CRM, etc.) <em>depuis l'intérieur d'un thread Slack</em>.<br><br>
+<strong>Concrètement :</strong> tu écris dans Slack <em>« Mike, peux-tu créer le contrat pour Acme Corp et m'envoyer le lien ? »</em> et Slackbot interroge ton CRM, génère le contrat via DocuSign MCP, retourne le lien dans le thread. Sans Mike, sans changer d'app. Slack n'est plus une messagerie — c'est devenu une interface conversationnelle qui orchestre ton stack entier.<br><br>
+<strong>Pour toi en pratique :</strong> 47 tools Slack disponibles via le MCP server officiel (search, post, manage automatisations). Avec OAuth, ton assistant IA externe (Claude Desktop, ChatGPT) peut lire les channels, chercher des messages, poster, gérer les threads. Limite à connaître : le bot doit être invité dans les channels privés pour y accéder. Rate limits standard Slack s'appliquent.<br><br>
+<strong>Cas d'usage typiques :</strong> résumé d'un channel actif (<em>« qu'est-ce qui s'est dit dans #product cette semaine ? »</em>), recherche cross-channels (<em>« retrouve la décision sur le pricing »</em>), notifications conditionnelles (<em>« tag-moi si quelqu'un mentionne mon projet »</em>).</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name"><em>Microsoft Teams</em> · via Copilot</div>
+    <div class="tool-text"><strong>Approche différente, intégration native.</strong> Microsoft a misé sur Copilot pour la couche IA dans Teams plutôt que sur des serveurs MCP externes. Microsoft Copilot Studio supporte MCP depuis juillet 2025 — tu peux construire des agents Copilot qui utilisent des serveurs MCP comme sources de connaissance et tools. Mais l'expérience grand public côté utilisateur Teams reste majoritairement dans Copilot, pas dans des MCP externes.<br><br>
+<strong>Cas d'usage couverts par Copilot :</strong> résumés de meetings (transcriptions automatiques + résumés), drafting de messages dans Teams, recherche dans les conversations passées, intégration avec Outlook/Word/Excel/OneNote. Microsoft 365 forme un écosystème unifié — l'IA a une excellente compréhension des relations organisationnelles et de l'historique meeting.<br><br>
+<strong>Limite à connaître :</strong> dès que tu sors du monde Microsoft (Gmail, Notion, Linear, Slack), la couverture MCP Copilot baisse rapidement. C'est <strong>excellent dans son écosystème, contraint au-delà</strong>. Si ton entreprise est 100 % Microsoft 365, Copilot est probablement la voie la plus efficace. Si tu as un stack mixte, Copilot couvrira moins de surface.<br><br>
+<strong>Connexion externe :</strong> il existe des serveurs MCP communautaires Teams (capacités limitées : envoyer messages, lire channels), mais l'expérience reste moins fluide que sur Slack en 2026.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name"><em>Discord</em> · principalement communautaire</div>
+    <div class="tool-text"><strong>Pas de support officiel MCP en 2026.</strong> Discord n'a pas annoncé de MCP server officiel ni d'intégration agentique majeure. Ce qui existe relève de la communauté : serveurs MCP communautaires (capacités limitées : lire messages, poster), bots IA traditionnels (qui ne sont pas des connecteurs MCP au sens de cet article).<br><br>
+<strong>Pour toi en pratique :</strong> si Discord est ta principale plateforme de communication (créateurs, communautés, équipes gaming/tech), tu peux installer un serveur MCP communautaire pour avoir des capacités basiques. Mais ne t'attends pas au niveau d'intégration de Slack ou même Teams.<br><br>
+<strong>Workaround pratique :</strong> beaucoup d'utilisateurs Discord-centric en 2026 utilisent un automatisation mixte — Discord pour la communication brute, et des outils tiers (Notion, Linear, Slack) pour ce qui doit être <em>« vu par l'IA »</em>. C'est un choix de séparation des couches qui fonctionne, en attendant que l'écosystème Discord-MCP mûrisse.</div>
+  </div>
+
+  <h3>Choix par contexte</h3>
+
+  <div class="container reading">
+    <p><strong>Tu vis dans Slack pro :</strong> investis dans la stack MCP-Slack 2026. C'est le plus mature, et la révolution Slack-as-MCP-client te donne accès à une orchestration cross-tools sans pareille.</p>
+
+    <p><strong>Tu vis dans Microsoft 365 :</strong> Copilot pour Teams couvre l'essentiel sans configuration. Pour aller au-delà de l'écosystème Microsoft, ajoute Claude/ChatGPT en parallèle avec leurs propres connecteurs.</p>
+
+    <p><strong>Tu vis dans Discord :</strong> attends que l'écosystème mûrisse, ou monte une stack mixte. Pas le terrain idéal pour MCP en 2026.</p>
+
+    <p><strong>Tu mélanges :</strong> Slack + Calendar + Gmail comme stack principale, avec un assistant IA central (Claude Desktop ou ChatGPT) qui parle MCP à tout. C'est la config 2026 qui maximise le retour.</p>
+  </div>
+
+  <!-- ============== 4. WORKFLOWS MULTI-MCP ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Les <em>automatisations multi-MCP</em>.</h2>
+
+  <div class="container reading">
+    <p>Le vrai pouvoir 2026 ne vient pas d'un connecteur isolé — il vient de la <strong>combinaison</strong>. Voici 4 automatisations multi-MCP qui changent réellement la productivité quand tu as Calendar + Gmail + Slack connectés simultanément.</p>
+  </div>
+
+  <div class="codeblock">
+<div class="codeblock-label">— Automatisation 1 · Briefing matin complet</div>
+<div class="codeblock-content"><span class="comment">// Prompt à lancer chaque matin (5 min de gain par jour)</span>
+
+Bonjour. <em>Brief moi pour la journée :</em>
+
+1. Mes événements Calendar du jour avec horaires
+2. Pour chaque réunion, derniers échanges Gmail avec
+   les participants (5 lignes max par réunion)
+3. Messages Slack non lus dans #équipe et #urgences
+4. Mes 3 priorités identifiées
+5. Format : tableau en haut, détails en dessous
+
+<span class="comment">// Résultat : panorama complet de ta journée en 1 min</span>
+<span class="comment">// Sans MCP : 15-20 min de check manuel cross-apps</span></div>
+  </div>
+
+  <div class="codeblock">
+<div class="codeblock-label">— Automatisation 2 · Coordination de réunion</div>
+<div class="codeblock-content"><span class="comment">// Quand tu dois caler un meeting avec quelqu'un</span>
+
+<em>Cale 45 min avec [contact X] cette semaine :</em>
+
+- Vérifie nos disponibilités Calendar (free/busy)
+- Évite mes lundis matin et vendredis après 16h
+- Propose 3 créneaux possibles
+- Si on a déjà un thread Slack ou Gmail récent
+  avec X, mentionne le sujet en cours
+- Génère l'invite avec agenda et envoie
+
+<span class="comment">// 30 secondes au lieu de 4 mails échangés</span></div>
+  </div>
+
+  <div class="codeblock">
+<div class="codeblock-label">— Automatisation 3 · Pre-meeting briefer (le tueur)</div>
+<div class="codeblock-content"><span class="comment">// 15 min avant chaque réunion importante</span>
+
+<em>Brief-moi sur le call avec [client X] dans 15 min :</em>
+
+1. Lis l'invitation Calendar (objet, agenda, participants)
+2. Cherche dans Gmail les 5 derniers échanges avec X
+3. Cherche dans Slack #commercial mentions de X
+   ces 30 derniers jours
+4. Si projet associé dans Notion/Drive, résume statut
+5. Liste 3 questions clés à poser
+6. Liste 2 risques de la conversation à anticiper
+
+<span class="comment">// Tu arrives au call avec contexte complet</span>
+<span class="comment">// Au lieu de 5-10 min de prep frantique</span></div>
+  </div>
+
+  <div class="codeblock">
+<div class="codeblock-label">— Automatisation 4 · Synthèse fin de semaine</div>
+<div class="codeblock-content"><span class="comment">// Vendredi 17h, prépare ta semaine prochaine</span>
+
+<em>Synthèse semaine et préparation :</em>
+
+1. Mes accomplissements (Calendar : meetings tenus,
+   Slack : décisions prises, Gmail : threads conclus)
+2. Ce qui reste en suspens (mails sans réponse,
+   threads Slack ouverts, events annulés non re-calés)
+3. Mon Calendar semaine prochaine : 3 priorités
+4. Bloque-moi 2 sessions focus dans les créneaux libres
+
+<span class="comment">// Hygiène de fin de semaine en 5 min</span>
+<span class="comment">// Te fait gagner 30 min de planification dimanche soir</span></div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Le multiplicateur multi-MCP</div>
+    <p>Connecter Gmail seul te fait gagner du temps. Connecter Gmail + Calendar te fait gagner <em>plus</em> que la somme des deux. Ajoute Slack, et tu débloques des automatisations qui n'existaient pas — pas <em>« plus rapides »</em>, qui n'existaient <strong>pas</strong>. Le briefing pré-meeting multi-source, la coordination cross-canal, la synthèse hebdo cross-app : ces usages sont rendus possibles par la <em>combinaison</em>, pas par les connecteurs individuels. C'est l'effet multiplicatif de MCP, et c'est ce qui justifie l'investissement dans plusieurs connecteurs en parallèle plutôt qu'un seul.</p>
+  </div>
+
+  <!-- ============== PIÈGES ============== -->
+  <h2 class="reading"><span class="h2-num">— Bonus</span>5 <em>pièges</em> classiques.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>tout autoriser sans réfléchir</em></div>
+    <div class="pitfall-text">Tu installes Calendar + Slack + Teams + Gmail le même jour, tu autorises toutes les permissions par défaut. Surface d'attaque maximale, contexte token saturé, risque d'<a href="connecter-gmail-ia.html">indirect prompt injection</a> multiplié par 4. <strong>Correction :</strong> connecte un service à la fois, espacé de 1-2 semaines pour valider l'usage et calibrer les permissions. Active uniquement les <em>tools</em> que tu utilises (sur les serveurs MCP communautaires, la variable ENABLED_TOOLS te le permet). Tu peux toujours élargir plus tard.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : <em>connecteur sur des espaces sensibles</em></div>
+    <div class="pitfall-text">Tu connectes Slack à ton IA personnelle (Claude perso). Sans le réaliser, ton IA accède aux channels RH, juridique, négociations confidentielles auxquels tu es invité. Quand tu lui demandes un résumé général, elle peut citer des éléments confidentiels — qui passent ensuite dans les logs/historiques de l'IA. Risque RGPD ou contractuel selon les contextes. <strong>Correction :</strong> sur Slack, vérifie l'<em>access périmètre</em> du connecteur (channels publics seulement, ou tous incluant les privés ?). Sur Calendar, exclus les comptes pro de l'IA personnelle si possible. Pour les usages pro avec données sensibles : passe par un Claude Team/Enterprise avec contrôles admin et audit logs, pas par ton compte perso.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>multi-comptes mal séparés</em></div>
+    <div class="pitfall-text">Tu connectes ton Calendar perso et pro sur le même assistant pour faire des cross-checks. Au mois 2, tu lui demandes <em>« crée un event mardi 15h pour réunion projet »</em> — il crée sur ton Calendar perso au lieu du pro, ou pire, mélange les invitations. Confusion, ratés, parfois embarras. <strong>Correction :</strong> les serveurs MCP qui gèrent multi-comptes (@cocal/google-calendar-mcp avec son <em>manage-accounts</em>) demandent à l'IA de préciser quel compte utiliser pour les writes. Force cette discipline dans tes prompts : <em>« crée un event sur mon Calendar pro mardi 15h »</em>, jamais juste <em>« crée un event »</em>. Pour les serveurs simples qui ne gèrent qu'un compte : utilise 2 connecteurs distincts avec des noms clairs (<em>calendar_perso</em> et <em>calendar_pro</em>).</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>sous-estimer la sensibilité des messages Slack</em></div>
+    <div class="pitfall-text">Slack est culturellement informel — on y dit des choses qu'on n'écrirait pas dans un mail. Quand tu donnes accès à ton IA, tu lui donnes accès à ces conversations. Risques associés : <em>(1)</em> mentions de salaires, performance, conflits qui passent dans les logs de l'IA, <em>(2)</em> incitations à <em>« faire un résumé Slack »</em> qui révèle plus qu'attendu à un tiers (cas d'usage : tu partages le résumé dans Teams, oups), <em>(3)</em> indirect prompt injection via des messages malveillants postés dans des channels publics ou DMs. <strong>Correction :</strong> traite Slack comme une source <em>aussi</em> sensible que Gmail (les disciplines de l'<a href="connecter-gmail-ia.html">article 2.2</a> s'appliquent). Réfléchis à 2 fois avant de demander à l'IA des résumés de channels qu'elle pourrait re-poster ou logger.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : <em>attendre la même qualité partout</em></div>
+    <div class="pitfall-text">Tu as installé Slack + Calendar + Teams + Discord. Slack marche superbe, Calendar impeccable, Teams correct mais friction, Discord à peine fonctionnel. Tu te plains que <em>« MCP n'est pas mature »</em> alors que c'est juste l'écart de support entre plateformes. <strong>Correction :</strong> la maturité MCP en 2026 n'est <em>pas</em> uniforme. Slack en tête (révolution mars 2026), Calendar/Gmail très bien (Google managed servers), Teams correct dans Microsoft 365, Discord en retrait. Calibre tes attentes par plateforme. Et accepte que tu n'auras pas une expérience 100 % unifiée — tu auras une expérience excellente sur 2-3 outils, et plus basique sur les autres. C'est la réalité 2026, qui évoluera mais lentement.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>L'erreur classique : vouloir tout connecter d'un coup pour <em>« tester »</em>. Tu te retrouves avec une stack overconfiguré, du contexte token saturé, des permissions trop larges, et une expérience décevante sur certains outils. <strong>Approche disciplinée :</strong> commence par Gmail (article 2.2). Une fois maîtrisé (2-3 semaines d'usage régulier), ajoute Calendar. Une fois la combinaison Gmail+Calendar internalisée, ajoute Slack ou Teams selon ton contexte pro. <em>3 connecteurs bien intégrés battent 8 connecteurs mal exploités</em>. Et garde toujours en tête : l'effet multiplicatif multi-MCP est <em>réel</em>, mais il s'opère seulement quand chaque connecteur individuel est déjà bien rodé. Pour la suite logique : <a href="niveau-4-connecter-outils.html">l'article 2.4 sur Drive et Notion</a> qui complète ce tryptique communications avec la couche documentaire.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Tu maîtrises maintenant Calendar et communications. Pour aller plus loin : <a href="connecter-gmail-ia.html">article 2.2 sur Gmail</a> qui complète parfaitement (mail + agenda + comm = tryptique productivité 2026). <a href="comprendre-mcp.html">Article fondation 2.1 sur MCP</a> pour les bases. Article 2.4 sur Drive et Notion (à venir) qui ajoutera la couche documentaire — les 4 connecteurs combinés (mail + agenda + comm + docs) couvrent 80 % des usages pros. Pour les automatisations <em>récurrentes</em> sur Calendar/Slack (au-delà des prompts conversationnels) : <a href="niveau-4-batir-automatisations.html">la rubrique R4 sur les automatisations durables</a>. Pour l'usage Slack-as-MCP-client agent (étape suivante en termes d'autonomie) : <a href="niveau-4-deleguer-agents.html">la rubrique R3 sur les agents IA</a>.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur Calendar + communications.</h3>
+    <ol class="recap-points">
+      <li>Connecter agenda + communications change qualitativement ton rapport au temps et à ton équipe : pre-meeting briefer multi-source, scheduling intelligent cross-comptes, triage cross-canal. La combinaison débloque des automatisations qui n'existaient pas — pas <em>« plus rapides »</em>, qui n'existaient <strong>pas</strong>. C'est l'effet multiplicatif multi-MCP.</li>
+      <li>Calendar : 2 voies en 2026. Google Calendar MCP officiel managé (annoncé Cloud Next '26, stable et sécurisé) ou @cocal/google-calendar-mcp communautaire (multi-comptes natifs, conflict detection, free/busy queries, smart scheduling). Cas d'usage qui marchent : récap semaine, détection conflits, création naturelle d'events, briefing pré-meeting, planification proactive.</li>
+      <li>Slack : le plus avancé en 2026. Octobre 2025 = Slack lance son MCP server. Mars 2026 = Slack devient lui-même un client MCP avec Slackbot agentic propulsé par Claude 4.6. <em>« Slack n'est plus une messagerie, c'est un agentic OS »</em> (VentureBeat). 47 tools, 2 600+ apps Marketplace orchestrables depuis un thread Slack. Microsoft Teams : MCP via Copilot Studio depuis juillet 2025, excellent dans Microsoft 365, contraint au-delà. Discord : essentiellement communautaire en 2026, peu officiel.</li>
+      <li>4 automatisations multi-MCP qui changent vraiment : briefing matin complet (Calendar + Gmail + Slack en 1 prompt), coordination réunion (free/busy + agenda contextualisé), pre-meeting briefer multi-source, synthèse fin de semaine. Tous demandent les 3 connecteurs activés ensemble — l'effet est non-additif, c'est ce qui justifie l'investissement multiple.</li>
+      <li>5 pièges à éviter : tout autoriser d'un coup (connecter un service à la fois espacé), connecteur sur espaces sensibles (passer par Team/Enterprise pour les données pros sensibles), multi-comptes mal séparés (forcer la précision dans les prompts), sous-estimer la sensibilité Slack (informalité = données sensibles, traiter comme Gmail), attendre la même qualité partout (Slack &gt; Calendar/Gmail &gt; Teams &gt; Discord en maturité MCP 2026). Discipline finale : 3 connecteurs bien intégrés battent 8 connecteurs mal exploités.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="niveau-4-connecter-outils.html">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">2.4 · Connecter Drive et Notion (à venir)</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-4-connecter-outils.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Connecter tes outils · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

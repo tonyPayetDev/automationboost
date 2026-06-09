@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maîtriser les Projets : workspaces dédiés sans coder. – AutomationBoost</title>
+  <meta name="description" content="Configurer un espace dédié par projet récurrent (un par client, un par activité) : le réglage qui structure ton travail avec l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Maîtriser les Projets : workspaces dédiés sans coder.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#eab308;">Automatiser & agents</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Maîtriser les Projets : workspaces dédiés sans coder.</h1>
+    <p class="lede">Configurer un espace par projet récurrent — un par client, un par activité. Le réglage qui fait passer ton IA de chatbot à collègue qui te connaît.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Une conversation IA, c'est un échange. Un Projet, c'est un environnement de travail. Tu utilises ton IA depuis des mois, mais à chaque conversation tu redonnes le même contexte : le client, le projet en cours, la doc, le style attendu.</p>
+
+    <p>Un Projet règle ça : il garde en mémoire ton contexte et tes documents pour toutes les conversations qui s'y rattachent. Voici comment t'en servir pour arrêter de te répéter.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 6</span>Ce qu'un Projet <em>change vraiment</em>.</h2>
+
+  <div class="container reading">
+    <p>Pour situer le Projet, compare-le aux deux briques précédentes. Les Custom Instructions sont <strong>globales</strong> (vraies pour toutes tes conversations) ; la mémoire retient des bribes éparses. Le Projet, lui, crée un <strong>espace dédié</strong> à un contexte précis : ses instructions et ses documents ne s'appliquent qu'à lui.</p>
+
+    <p>C'est ce qui en fait un vrai poste de travail. Voici comment le configurer.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 6</span>Les <em>3 implémentations</em> en avril 2026.</h2>
+
+  <div class="container reading">
+    <p>Les trois principales plateformes ont chacune leur version. Les fonctionnalités sont proches, mais les forces et limites diffèrent. Voici le panorama actuel.</p>
+  </div>
+
+  <div class="platform-card">
+    <div class="platform-tag">— PLATEFORME 1</div>
+    <div class="platform-name"><em>Claude</em> Projects</div>
+    <div class="platform-publisher">Anthropic · La référence en avril 2026</div>
+    <div class="platform-features">
+      <span class="label">— Capacités</span>
+      • Custom instructions par projet (illimité)
+      • Connaissances base : fichiers uploadés permanents
+      • Mémoire de projet (historique des conversations)
+      • Free : 5 projets max · Pro+ : illimité
+    </div>
+    <div class="platform-strengths"><strong>— Points forts</strong>L'implémentation la plus complète. Custom instructions détaillées par projet, fichiers de référence persistants accessibles à toutes les conversations du projet, contexte large (jusqu'à 1,2 M tokens sur Opus 4.7). Mode RAG automatique sur les plans payants pour gérer les base de connaissancess volumineuses. Privé par défaut (pas de marketplace public).</div>
+    <div class="platform-limits"><strong>— Limites réelles</strong>Pas de génération d'images, pas d'exécution de code natif (contrairement aux Custom GPTs). 30 MB max par fichier dans la base de connaissances. Pas de marketplace public — ne peut pas être partagé hors équipe.</div>
+  </div>
+
+  <div class="platform-card">
+    <div class="platform-tag">— PLATEFORME 2</div>
+    <div class="platform-name"><em>ChatGPT</em> Projects</div>
+    <div class="platform-publisher">OpenAI · Disponible sur tous les plans depuis fin 2024</div>
+    <div class="platform-features">
+      <span class="label">— Capacités</span>
+      • Custom instructions par projet
+      • Files uploadés persistants accessibles aux chats du projet
+      • Mémoire intégrée par projet
+      • Code Interpreter et Data Analysis disponibles dans les chats
+    </div>
+    <div class="platform-strengths"><strong>— Points forts</strong>Intégration native du Code Interpreter et de l'analyse de données dans les conversations du projet — utile pour les automatisations mêlant texte et données chiffrées. Compatible avec la Memory globale de ChatGPT (les souvenirs s'appliquent aussi dans les projets). Approche pragmatique pour qui mélange tâches diverses.</div>
+    <div class="platform-limits"><strong>— Limites réelles</strong>Implémentation moins complète que Claude pour la base de connaissances (la persistance des fichiers est moins fiable selon plusieurs comparatifs). Les retrievals sur gros volumes documentaires sont moins précis. Pour la création publique distribuable, OpenAI propose plutôt les Custom GPTs (sujet du Niveau IV).</div>
+  </div>
+
+  <div class="platform-card">
+    <div class="platform-tag">— PLATEFORME 3</div>
+    <div class="platform-name"><em>Gemini</em> Gems</div>
+    <div class="platform-publisher">Google · Approche différente : assistants pré-configurés</div>
+    <div class="platform-features">
+      <span class="label">— Capacités</span>
+      • Custom instructions par Gem (= persona dédié)
+      • Intégration native avec Google Workspace (Docs, Drive, Gmail)
+      • Disponible sur Free + AI Plus + Pro
+      • Connectivité avec Gemini Notebooks (NotebookLM) pour la recherche documentaire
+    </div>
+    <div class="platform-strengths"><strong>— Points forts</strong>Intégration Workspace imbattable pour qui vit dans Google Docs/Drive/Gmail. Les Gems peuvent puiser directement dans tes fichiers Google sans upload supplémentaire. Connexion à NotebookLM pour les usages recherche/documentation. Disponible aussi sur le plan gratuit (avec limitations).</div>
+    <div class="platform-limits"><strong>— Limites réelles</strong>Approche plus orientée « persona / assistant dédié » que « workspace de projet ». Moins de gestion de la base de connaissances structurée que Claude. Pour les projets très documentaires, l'option NotebookLM est meilleure que les Gems.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma recommandation 2026</div>
+    <p>Pour la majorité des usages professionnels, <strong>Claude Projects est la référence en avril 2026</strong>. C'est l'implémentation la plus complète, la plus fiable sur la base de connaissances, et la plus rigoureuse sur le respect des instructions du projet. Si tu vis dans Google Workspace, Gemini Gems devient pertinent pour son intégration native. ChatGPT Projects est le bon choix si tu mélanges souvent texte et données chiffrées avec Code Interpreter.</p>
+  </div>
+
+  <!-- ============== 3. CE QUI RENTRE ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 6</span>Ce qui <em>rentre</em> dans un Projet.</h2>
+
+  <div class="container reading">
+    <p>Un Projet bien construit a typiquement trois composantes. Tu ne mets pas tout au hasard — tu choisis quoi mettre où en fonction de la fréquence d'usage et de la stabilité de l'information.</p>
+  </div>
+
+  <h3 class="reading">Composante 1 : les instructions du Projet</h3>
+
+  <div class="container reading">
+    <p>C'est l'équivalent des <a href="custom-instructions.html">Custom Instructions</a>, mais limité au contexte du Projet. Tu y mets <strong>ce qui est spécifique à ce contexte</strong> : qui est ce client, quels sont ses enjeux, quel ton utiliser, quelles contraintes respecter, quelles erreurs éviter.</p>
+
+    <p>Comme pour les Custom Instructions globales, reste sous 500 mots et 5-8 règles principales. Si tu te retrouves à écrire une page entière, c'est que tu mélanges instructions stables (à mettre dans le Projet) et indications ponctuelles (à mettre dans le prompt direct).</p>
+  </div>
+
+  <h3 class="reading">Composante 2 : la base de connaissances (fichiers de référence)</h3>
+
+  <div class="container reading">
+    <p>Les <a href="fichiers-reference.html">fichiers que tu uploads</a> dans le Projet restent accessibles à toutes les conversations qui s'y déroulent. C'est ce qui distingue un Projet d'une simple conversation : tu n'as plus à re-uploader systématiquement les mêmes documents.</p>
+
+    <p>Dans la base de connaissances type d'un Projet client, tu retrouves : la documentation produit ou service, la charte de communication, les exemples de livrables précédents, les contraintes légales ou réglementaires, les briefs initiaux. Tout ce qui constitue le « socle » du projet et que l'IA doit pouvoir consulter à tout moment.</p>
+  </div>
+
+  <h3 class="reading">Composante 3 : l'historique des conversations</h3>
+
+  <div class="container reading">
+    <p>Toutes les conversations dans un Projet restent regroupées et accessibles. Tu peux y revenir, les chercher, t'appuyer sur des analyses précédentes pour faire évoluer le travail. C'est l'équivalent d'un dossier de classement dynamique.</p>
+
+    <p>Sur Claude, tu peux explicitement demander à l'IA de <em>« reprendre le raisonnement de la conversation du 12 mars »</em> ou de <em>« compiler les insights des 5 dernières analyses du Projet »</em>. Cette continuité documentaire est l'un des bénéfices majeurs des Projets pour les usages au long cours.</p>
+  </div>
+
+  <!-- ============== 4. CAS D'USAGE ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 6</span>Les <em>5 cas d'usage</em> à recopier.</h2>
+
+  <div class="usecase">
+    <div class="usecase-num">— CAS 1</div>
+    <div class="usecase-title">Un Projet par client important</div>
+    <div class="usecase-text"><strong>Pour qui :</strong> consultants, freelances, agences. <strong>Ce qu'il contient :</strong> brief client, contraintes de communication, ton préféré du client, exemples de livrables validés, contraintes sectorielles. <strong>Bénéfice :</strong> chaque conversation démarre avec le contexte du client. Plus besoin de redire <em>« ce client préfère un ton institutionnel et travaille dans le luxe »</em> à chaque fois.</div>
+  </div>
+
+  <div class="usecase">
+    <div class="usecase-num">— CAS 2</div>
+    <div class="usecase-title">Un Projet par activité récurrente</div>
+    <div class="usecase-text"><strong>Pour qui :</strong> tous les profils qui ont des activités cycliques. <strong>Ce qu'il contient :</strong> méthodologie de l'activité, templates de livrables, indicateurs à suivre, exemples de bonnes itérations passées. <strong>Exemples :</strong> « Newsletter mensuelle », « Reporting trimestriel », « Audit SEO », « Préparation de réunion stratégique ». <strong>Bénéfice :</strong> tu ne réinventes plus la méthodologie à chaque cycle.</div>
+  </div>
+
+  <div class="usecase">
+    <div class="usecase-num">— CAS 3</div>
+    <div class="usecase-title">Un Projet pour ton expertise principale</div>
+    <div class="usecase-text"><strong>Pour qui :</strong> spécialistes d'un domaine technique. <strong>Ce qu'il contient :</strong> documentation de référence du domaine, vocabulaire spécifique, frameworks que tu utilises, sources que tu valides, sources à éviter. <strong>Bénéfice :</strong> l'IA cesse de te donner des explications de niveau débutant et calibre directement à ton niveau d'expertise.</div>
+  </div>
+
+  <div class="usecase">
+    <div class="usecase-num">— CAS 4</div>
+    <div class="usecase-title">Un Projet pour ton style de communication</div>
+    <div class="usecase-text"><strong>Pour qui :</strong> créateurs de contenu, communicants, écrivants. <strong>Ce qu'il contient :</strong> 10-15 exemples de tes meilleurs textes (newsletters, articles, posts), description de ton style avec ses caractéristiques, liste de tes tics rédactionnels à respecter, formules à éviter. <strong>Bénéfice :</strong> l'IA arrive à imiter ton style avec une précision impossible à atteindre via des prompts ponctuels.</div>
+  </div>
+
+  <div class="usecase">
+    <div class="usecase-num">— CAS 5</div>
+    <div class="usecase-title">Un Projet pour un sujet d'apprentissage</div>
+    <div class="usecase-text"><strong>Pour qui :</strong> tous ceux qui se forment sur un nouveau domaine. <strong>Ce qu'il contient :</strong> tes cours, livres ou articles de référence sur le sujet, ton niveau actuel, les questions sur lesquelles tu butes, les notions déjà comprises. <strong>Bénéfice :</strong> tu obtiens un tuteur qui sait exactement où tu en es et qui ne te re-explique pas ce que tu as déjà assimilé.</div>
+  </div>
+
+  <!-- ============== 5. RECETTE ============== -->
+  <h2 class="reading"><span class="h2-num">— 5 / 6</span>La <em>recette</em> pour construire un Projet en 30 minutes.</h2>
+
+  <div class="recipe">
+    <div class="recipe-tag">— Méthode 5 étapes</div>
+    <div class="recipe-title">Construire ton premier Projet</div>
+
+    <div class="recipe-step">
+      <div class="recipe-step-num">— Étape 1 · 5 minutes</div>
+      <div class="recipe-step-title">Identifier le sujet à transformer en Projet</div>
+      <div class="recipe-step-text">Cherche dans tes 30 dernières conversations le sujet sur lequel tu redonnes le plus souvent le même contexte. C'est ton premier Projet. Si tu hésites, prends ton client ou ton activité principale — pas un sujet ponctuel.</div>
+    </div>
+
+    <div class="recipe-step">
+      <div class="recipe-step-num">— Étape 2 · 10 minutes</div>
+      <div class="recipe-step-title">Rédiger les instructions du Projet</div>
+      <div class="recipe-step-text">Sur le modèle des <a href="custom-instructions.html" style='color: var(--accent-warm);'>Custom Instructions</a>, mais centré sur ce contexte précis : profil du sujet (client / activité), contraintes spécifiques, ton attendu, formats préférés, à éviter. Reste sous 500 mots. 5-8 règles maximum.</div>
+    </div>
+
+    <div class="recipe-step">
+      <div class="recipe-step-num">— Étape 3 · 10 minutes</div>
+      <div class="recipe-step-title">Charger les fichiers de référence</div>
+      <div class="recipe-step-text">Sélectionne 3-7 fichiers vraiment utiles : brief, exemples de livrables validés, charte, documentation. Pas plus. <strong>Mieux vaut 5 fichiers pertinents que 20 fichiers qui diluent le contexte</strong>. Renomme-les explicitement avant l'upload.</div>
+    </div>
+
+    <div class="recipe-step">
+      <div class="recipe-step-num">— Étape 4 · 3 minutes</div>
+      <div class="recipe-step-title">Tester avec un prompt réel</div>
+      <div class="recipe-step-text">Lance la première conversation dans le Projet avec une demande typique. Vérifie que l'IA mobilise bien le contexte du Projet — qu'elle utilise le vocabulaire du client, qu'elle respecte les contraintes, qu'elle cite les fichiers de référence. Si elle dérive, retravaille les instructions.</div>
+    </div>
+
+    <div class="recipe-step">
+      <div class="recipe-step-num">— Étape 5 · ongoing</div>
+      <div class="recipe-step-title">Itérer pendant 2 semaines puis figer</div>
+      <div class="recipe-step-text">Les 2 premières semaines, ajuste les instructions au fur et à mesure que tu identifies des dérives ou des manques. Au bout de 2 semaines, le Projet doit être stable. Tu n'y touches plus que sur changement de contexte (nouveau brief, évolution du périmètre).</div>
+    </div>
+  </div>
+
+  <!-- ============== 6. PIÈGES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 6 / 6</span>Les <em>4 pièges</em> classiques.</h2>
+
+  <h3 class="reading">Piège 1 : créer trop de Projets d'un coup</h3>
+
+  <div class="container reading">
+    <p>L'enthousiasme du débutant : créer 15 Projets en une journée pour tout anticiper. Résultat : la majorité des Projets restent vides ou sous-utilisés, et tu perds du temps à les configurer pour rien.</p>
+
+    <p>La règle : <strong>commence par UN Projet</strong> sur ton sujet le plus récurrent. Utilise-le pendant 2 semaines, observe ce qui marche. Crée le deuxième seulement quand le premier est fluide. Tu en auras typiquement 3-7 au bout de 2 mois — c'est le bon ordre de grandeur. Au-delà de 10 Projets actifs, tu dépasses ta capacité à les maintenir vraiment.</p>
+  </div>
+
+  <h3 class="reading">Piège 2 : le Projet fourre-tout</h3>
+
+  <div class="container reading">
+    <p>L'erreur opposée : un seul gros Projet « Travail » où tu mets tout ton contexte professionnel pêle-mêle. Les instructions deviennent floues à force de couvrir tous les cas, l'IA ne sait pas si elle est en mode client A ou client B, la qualité dégrade.</p>
+
+    <p>Un Projet doit avoir <strong>un sujet précis et délimité</strong>. Si tu ne sais pas le résumer en une phrase claire (<em>« mes interactions avec le client X »</em>, <em>« ma newsletter mensuelle »</em>), c'est que ton Projet est trop large — découpe-le.</p>
+  </div>
+
+  <h3 class="reading">Piège 3 : oublier de mettre à jour</h3>
+
+  <div class="container reading">
+    <p>Tu crées un Projet en avril 2026 avec un brief client. En septembre, le brief a évolué, tu as livré 5 itérations, le périmètre s'est élargi. Ton Projet contient toujours le brief initial. <strong>L'IA continue de se référer à des informations périmées</strong> et te produit des livrables qui ne collent plus à la réalité.</p>
+
+    <p>Mets-toi un rappel <strong>tous les 2 mois pour auditer tes Projets actifs</strong>. Mets à jour les fichiers obsolètes, ajuste les instructions selon les évolutions. 10 minutes par Projet, gros impact sur la pertinence des réponses.</p>
+  </div>
+
+  <h3 class="reading">Piège 4 : confondre Projet et Custom GPT</h3>
+
+  <div class="container reading">
+    <p>Les Projets sont des <strong>workspaces privés</strong> pour ton usage personnel ou ton équipe. Les Custom GPTs (ChatGPT) et leurs équivalents sont des <strong>assistants distribuables</strong>, conçus pour être partagés et potentiellement publiés sur un marketplace public. Ce sont deux outils différents pour deux usages différents.</p>
+
+    <p>Si tu travailles sur tes propres sujets : Projets. Si tu construis un assistant à offrir à d'autres personnes (collaborateurs, clients, audience) : Custom GPT — sujet traité dans le Niveau IV de ce parcours, qui couvre la création d'assistants distribuables.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ce que tu vas voir dans le prochain article</div>
+    <p>Tu sais maintenant choisir ton modèle, écrire tes Custom Instructions, gérer la Memory, charger les bons fichiers, activer le Reasoning au bon moment, et organiser tes Projets. Le dernier article de cette rubrique R3 boucle la configuration : <strong>construire ta bibliothèque de prompts réutilisables</strong>. Les 10 templates à avoir sous la main, comment les organiser, comment les améliorer dans le temps.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur les Projets.</h3>
+    <ol class="recap-points">
+      <li>Trois niveaux de configuration s'empilent : Custom Instructions (partout) + Projet (pour ce contexte) + prompt (pour ce moment). Les Projets occupent le niveau intermédiaire.</li>
+      <li>Trois implémentations en 2026 : Claude Projects (la plus complète), ChatGPT Projects (forte sur Code Interpreter), Gemini Gems (intégration Google Workspace).</li>
+      <li>5 cas d'usage type : un Projet par client, par activité récurrente, pour ton expertise, pour ton style de communication, pour un sujet d'apprentissage.</li>
+      <li>Recette en 30 minutes : identifier le sujet, rédiger 500 mots d'instructions, charger 3-7 fichiers, tester, itérer 2 semaines puis figer.</li>
+      <li>4 pièges : trop de Projets d'un coup (commence par 1), le Projet fourre-tout (sois délimité), oublier de mettre à jour (audit tous les 2 mois), confondre avec les Custom GPTs (qui sont distribuables, traités au Niveau IV).</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a href="#" class="next-link">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">Construire ta bibliothèque de prompts réutilisables</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-2-bien-configurer.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Bien configurer ton IA · Niveau II</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

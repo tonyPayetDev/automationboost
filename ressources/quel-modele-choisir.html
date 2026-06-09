@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quel modèle choisir pour quelle tâche. – AutomationBoost</title>
+  <meta name="description" content="Modèles puissants ou rapides : la grille de décision 2026 pour choisir le bon modèle d" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Quel modèle choisir pour quelle tâche.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#818cf8;">Comprendre l'IA</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Quel modèle choisir pour quelle tâche.</h1>
+    <p class="lede">Claude Opus 4.7, GPT-5.5, Gemini 3.1 Pro et leurs versions rapides. La grille de décision 2026 pour choisir le bon modèle selon ton type de tâche, sans payer plus cher pour rien.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Il n'y a plus de meilleur modèle universel en 2026 : il y a un meilleur modèle <strong>par type de tâche</strong>. Si tu utilises un seul modèle pour tout, c'est exactement la limite à dépasser.</p>
+
+    <p>Voici comment choisir le bon modèle selon ce que tu as à faire — raisonnement, rédaction, code, contexte long.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi le choix du modèle <em>compte vraiment</em>.</h2>
+
+  <div class="container reading">
+    <p>Les modèles se sont spécialisés : l'un excelle au raisonnement, l'autre au code, un troisième au contexte très long. Utiliser le même pour tout, c'est accepter d'être moyen partout. Choisir selon la tâche, c'est gagner en qualité sans effort supplémentaire.</p>
+
+    <p>Voici la grille de choix, tâche par tâche.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 6</span>Les <em>3 produit phares</em> d'avril 2026.</h2>
+
+  <div class="model-card">
+    <div class="model-card-tag">— PRODUIT PHARE 1</div>
+    <div class="model-card-name"><em>Claude Opus 4.7</em></div>
+    <div class="model-card-publisher">Anthropic · Sorti le 16 avril 2026</div>
+    <div class="model-stats">
+      <div class="model-stat">
+        <div class="model-stat-label">Prix API</div>
+        <div class="model-stat-value">$5 / $25</div>
+      </div>
+      <div class="model-stat">
+        <div class="model-stat-label">Contexte</div>
+        <div class="model-stat-value">1,2 M tokens</div>
+      </div>
+      <div class="model-stat">
+        <div class="model-stat-label">Plan grand public</div>
+        <div class="model-stat-value">Pro $20/m</div>
+      </div>
+    </div>
+    <div class="model-strengths"><strong>— Meilleur pour</strong>Code complexe (64,3 % SWE-bench Pro, le plus haut score), orchestration d'outils (MCP-Atlas 79,1 %), rédaction longue avec ton cohérent (préféré à 47 % en évaluations humaines), analyses nuancées et conseil stratégique, écriture qui doit te ressembler.</div>
+    <div class="model-weakness"><strong>— Moins bon pour</strong>Automatisations agentiques en terminal pur, recherches web rapides en autonomie, tâches multimodales vidéo/audio. Plus lent que GPT-5.5 sur les tâches courtes.</div>
+  </div>
+
+  <div class="model-card">
+    <div class="model-card-tag">— PRODUIT PHARE 2</div>
+    <div class="model-card-name"><em>GPT-5.5</em></div>
+    <div class="model-card-publisher">OpenAI · Sorti le 23 avril 2026</div>
+    <div class="model-stats">
+      <div class="model-stat">
+        <div class="model-stat-label">Prix API</div>
+        <div class="model-stat-value">$5 / $30</div>
+      </div>
+      <div class="model-stat">
+        <div class="model-stat-label">Contexte</div>
+        <div class="model-stat-value">256 K tokens</div>
+      </div>
+      <div class="model-stat">
+        <div class="model-stat-label">Plan grand public</div>
+        <div class="model-stat-value">Plus $20/m</div>
+      </div>
+    </div>
+    <div class="model-strengths"><strong>— Meilleur pour</strong>Automatisations agentiques en autonomie (82,7 % sur Terminal-Bench 2.0), recherche web (90,1 % sur BrowseComp, le plus haut), automatisation multi-étapes en arrière-plan, tâches qui demandent de la persistance d'instructions sur des conversations longues.</div>
+    <div class="model-weakness"><strong>— Moins bon pour</strong>Code complexe (en retrait sur Opus 4.7), rédaction très longue avec cohérence de ton, design taste front-end. Le plus cher des trois en sortie ($30/M tokens).</div>
+  </div>
+
+  <div class="model-card">
+    <div class="model-card-tag">— PRODUIT PHARE 3</div>
+    <div class="model-card-name"><em>Gemini 3.1 Pro</em></div>
+    <div class="model-card-publisher">Google DeepMind · Disponible depuis fin 2025</div>
+    <div class="model-stats">
+      <div class="model-stat">
+        <div class="model-stat-label">Prix API</div>
+        <div class="model-stat-value">$2 / $12</div>
+      </div>
+      <div class="model-stat">
+        <div class="model-stat-label">Contexte</div>
+        <div class="model-stat-value">2 M+ tokens</div>
+      </div>
+      <div class="model-stat">
+        <div class="model-stat-label">Plan grand public</div>
+        <div class="model-stat-value">AI Plus €19,99/m</div>
+      </div>
+    </div>
+    <div class="model-strengths"><strong>— Meilleur pour</strong>Raisonnement scientifique (94,3 % sur GPQA Diamond, leader), rapport qualité-prix sur tâches volumineuses (60 % moins cher que les concurrents), analyse de très longs documents (2M+ tokens, soit ~3 000 pages), tâches multimodales avec vidéo et audio (le seul à exceller ici).</div>
+    <div class="model-weakness"><strong>— Moins bon pour</strong>Code (54,2 % SWE-bench Pro, en retrait), automatisations agentiques (68 % Terminal-Bench), génère plus de tokens que les concurrents pour la même tâche (peut éroder l'avantage prix).</div>
+  </div>
+
+  <!-- ============== 3. GRILLE DE DÉCISION ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 6</span>La <em>grille de décision</em> par type de tâche.</h2>
+
+  <div class="container reading">
+    <p>Voici la grille pratique à mémoriser. Pour chaque type de tâche fréquente, le meilleur choix en avril 2026.</p>
+  </div>
+
+  <div class="decision-table">
+    <div class="decision-row header">
+      <div>Type de tâche</div>
+      <div>Opus 4.7</div>
+      <div>GPT-5.5</div>
+      <div>Gemini 3.1 Pro</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-task">Coder / debugger une appli</div>
+      <div class="decision-cell best" data-label="Opus 4.7">Meilleur</div>
+      <div class="decision-cell good" data-label="GPT-5.5">Bon</div>
+      <div class="decision-cell weak" data-label="Gemini 3.1 Pro">Moyen</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-task">Rédiger un texte long et cohérent</div>
+      <div class="decision-cell best" data-label="Opus 4.7">Meilleur</div>
+      <div class="decision-cell good" data-label="GPT-5.5">Bon</div>
+      <div class="decision-cell good" data-label="Gemini 3.1 Pro">Bon</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-task">Analyse stratégique nuancée</div>
+      <div class="decision-cell best" data-label="Opus 4.7">Meilleur</div>
+      <div class="decision-cell good" data-label="GPT-5.5">Bon</div>
+      <div class="decision-cell good" data-label="Gemini 3.1 Pro">Bon</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-task">Recherche web autonome</div>
+      <div class="decision-cell good" data-label="Opus 4.7">Bon</div>
+      <div class="decision-cell best" data-label="GPT-5.5">Meilleur</div>
+      <div class="decision-cell good" data-label="Gemini 3.1 Pro">Bon</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-task">Automatisation agentique en terminal</div>
+      <div class="decision-cell good" data-label="Opus 4.7">Bon</div>
+      <div class="decision-cell best" data-label="GPT-5.5">Meilleur</div>
+      <div class="decision-cell weak" data-label="Gemini 3.1 Pro">Moyen</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-task">Raisonnement scientifique</div>
+      <div class="decision-cell good" data-label="Opus 4.7">Bon</div>
+      <div class="decision-cell good" data-label="GPT-5.5">Bon</div>
+      <div class="decision-cell best" data-label="Gemini 3.1 Pro">Meilleur</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-task">Analyse de très long document</div>
+      <div class="decision-cell good" data-label="Opus 4.7">Bon</div>
+      <div class="decision-cell weak" data-label="GPT-5.5">Limité</div>
+      <div class="decision-cell best" data-label="Gemini 3.1 Pro">Meilleur</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-task">Vidéo / audio multimodal</div>
+      <div class="decision-cell weak" data-label="Opus 4.7">Limité</div>
+      <div class="decision-cell good" data-label="GPT-5.5">Bon</div>
+      <div class="decision-cell best" data-label="Gemini 3.1 Pro">Meilleur</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-task">Volume élevé à coût maîtrisé</div>
+      <div class="decision-cell weak" data-label="Opus 4.7">Cher</div>
+      <div class="decision-cell weak" data-label="GPT-5.5">Cher</div>
+      <div class="decision-cell best" data-label="Gemini 3.1 Pro">Meilleur</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Lecture rapide</div>
+    <p>Si tu n'as qu'un seul modèle à choisir : <strong>Opus 4.7 pour la rédaction et le code</strong>, <strong>GPT-5.5 si tu fais beaucoup de recherche web et d'agents</strong>, <strong>Gemini 3.1 Pro si tu privilégies le rapport qualité-prix ou si tu travailles sur de très longs documents</strong>.</p>
+  </div>
+
+  <!-- ============== 4. MODÈLES LÉGERS ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 6</span>Les modèles <em>« rapides »</em> : ne pas tirer au canon sur des moineaux.</h2>
+
+  <div class="container reading">
+    <p>À côté des trois produit phares, chaque éditeur propose des modèles plus légers, plus rapides, et beaucoup moins chers. Pour les tâches simples ou répétitives, ils sont souvent le bon choix. Voici les principaux à connaître.</p>
+  </div>
+
+  <div class="light-models">
+    <div class="light-card">
+      <div class="light-card-name">Claude Sonnet 4.6</div>
+      <div class="light-card-price">$3 / $15 par M tokens — soit 60 % moins cher qu'Opus</div>
+      <div class="light-card-when"><strong>Quand l'utiliser :</strong> 90 % des tâches Claude. La qualité est à 95-98 % d'Opus pour la majorité des usages quotidiens. Sur les conversations longues répétitives, Sonnet est presque toujours le bon choix. Garde Opus pour les vrais enjeux.</div>
+    </div>
+
+    <div class="light-card">
+      <div class="light-card-name">Claude Haiku 4.5</div>
+      <div class="light-card-price">$0,80 / $4 par M tokens — 6 fois moins cher qu'Opus</div>
+      <div class="light-card-when"><strong>Quand l'utiliser :</strong> tâches massives à coût optimisé. Classification d'emails, étiquetage de tickets, transformations de données simples. Pour ton usage quotidien sur Claude.ai, Haiku est rarement le meilleur choix — Sonnet est presque aussi rapide et beaucoup plus capable.</div>
+    </div>
+
+    <div class="light-card">
+      <div class="light-card-name">GPT-5.5 Mini / Nano</div>
+      <div class="light-card-price">~$0,40 / $1,60 par M tokens (Mini)</div>
+      <div class="light-card-when"><strong>Quand l'utiliser :</strong> sub-agents pour tâches volumineuses, classifications, réponses simples en arrière-plan. Le rapport qualité-prix est excellent sur les tâches qui ne nécessitent pas le raisonnement profond de GPT-5.5.</div>
+    </div>
+
+    <div class="light-card">
+      <div class="light-card-name">Gemini 3 Flash</div>
+      <div class="light-card-price">$0,50 / $3 par M tokens — le moins cher du top 3</div>
+      <div class="light-card-when"><strong>Quand l'utiliser :</strong> volumes très élevés, prototypage, applications grand public où la latence compte. Très rapide. Pour la plupart des usages individuels, Gemini Flash est suffisant et permet d'économiser drastiquement.</div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>La règle pratique : <strong>commence avec le produit phare, descends en gamme une fois que tu sais ce dont tu as besoin</strong>. Si tu fais 50 fois la même tâche et qu'elle marche bien sur Sonnet ou Flash, garde le modèle léger. Si la qualité dégrade, remonte en gamme. Cette discipline divise typiquement les coûts par 3 sur les usages professionnels.</p>
+  </div>
+
+  <!-- ============== 5. CAS D'USAGE ============== -->
+  <h2 class="reading"><span class="h2-num">— 5 / 6</span>5 cas d'usage <em>résolus</em>.</h2>
+
+  <div class="usecase">
+    <div class="usecase-num">— CAS 1</div>
+    <div class="usecase-title">Tu rédiges un article de blog de 2 000 mots</div>
+    <div class="usecase-recommendation"><span class="label">— Recommandation</span>Claude Opus 4.7 ou Claude Sonnet 4.6</div>
+    <div class="usecase-why"><strong>Pourquoi :</strong> Claude maintient un ton cohérent sur les longs textes (préféré à 47 % en évaluation humaine). Pour un article unique à enjeu, prends Opus. Pour 10 articles à enchaîner, Sonnet suffit largement et coûte 5 fois moins.</div>
+  </div>
+
+  <div class="usecase">
+    <div class="usecase-num">— CAS 2</div>
+    <div class="usecase-title">Tu débugues une application Python</div>
+    <div class="usecase-recommendation"><span class="label">— Recommandation</span>Claude Opus 4.7</div>
+    <div class="usecase-why"><strong>Pourquoi :</strong> Opus 4.7 mène sur SWE-bench Pro (64,3 %), 5,7 points devant GPT-5.5. Sur les vrais bugs GitHub, l'écart se ressent : Opus produit des correctifs qui marchent là où GPT-5.5 produit des correctifs plausibles mais incorrects.</div>
+  </div>
+
+  <div class="usecase">
+    <div class="usecase-num">— CAS 3</div>
+    <div class="usecase-title">Tu veux résumer un rapport de 200 pages</div>
+    <div class="usecase-recommendation"><span class="label">— Recommandation</span>Gemini 3.1 Pro</div>
+    <div class="usecase-why"><strong>Pourquoi :</strong> 2 millions de tokens de contexte (les autres sont à 256 K-1,2 M). Pour un document très long, Gemini est le seul à pouvoir le digérer d'un coup sans le découper. Bonus : 60 % moins cher que les concurrents en sortie.</div>
+  </div>
+
+  <div class="usecase">
+    <div class="usecase-num">— CAS 4</div>
+    <div class="usecase-title">Tu construis un agent qui fait 50 tâches en autonomie</div>
+    <div class="usecase-recommendation"><span class="label">— Recommandation</span>GPT-5.5</div>
+    <div class="usecase-why"><strong>Pourquoi :</strong> 82,7 % sur Terminal-Bench 2.0 contre 69 % pour Opus. GPT-5.5 a été conçu pour les automatisations agentiques persistants. Il maintient mieux les instructions sur des chaînes d'actions longues, et il fait moins d'appels d'outils superflus.</div>
+  </div>
+
+  <div class="usecase">
+    <div class="usecase-num">— CAS 5</div>
+    <div class="usecase-title">Tu tries 500 emails par jour en catégories</div>
+    <div class="usecase-recommendation"><span class="label">— Recommandation</span>Gemini 3 Flash ou Claude Haiku 4.5</div>
+    <div class="usecase-why"><strong>Pourquoi :</strong> tâche de classification simple, volume élevé, pas besoin de raisonnement profond. Tirer au produit phare sur ce type de tâche est un gaspillage. Flash ou Haiku divisent ton coût par 10 sans dégrader la qualité.</div>
+  </div>
+
+  <!-- ============== 6. RÈGLES PRATIQUES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 6 / 6</span>Mes règles <em>pratiques de mentor</em>.</h2>
+
+  <h3 class="reading">Règle 1 : avoir au moins 2 abonnements</h3>
+
+  <div class="container reading">
+    <p>Pour les usages sérieux, tu auras besoin d'au moins deux des trois produit phares. Le combo le plus efficace en 2026 : <strong>Claude Pro ($20/m) + ChatGPT Plus ($20/m)</strong>, ce qui te donne accès à Opus 4.7 et GPT-5.5. Tu réserves Gemini Pro à Google Workspace si tu y es déjà, ou tu prends AI Plus (€19,99/m) si tu fais beaucoup de longs documents.</p>
+
+    <p>Le coût total de 40 $/mois pour deux abonnements est largement amorti en gain de qualité et de temps si tu utilises l'IA professionnellement. Pour 30-40 % de tes prompts, le bon modèle change la qualité du livrable.</p>
+  </div>
+
+  <h3 class="reading">Règle 2 : le réflexe « petit modèle d'abord » sur l'API</h3>
+
+  <div class="container reading">
+    <p>Si tu utilises l'API (intégration dans tes outils, automatisations), prends le réflexe inverse : commence par <strong>Sonnet 4.6, Gemini Flash ou GPT-5.5 Mini</strong> par défaut. Tu vérifies que la qualité est bonne. Si oui, tu gardes. Si non, tu montes en gamme. Cette discipline t'évite de payer 5x trop cher pour des tâches qui n'en ont pas besoin.</p>
+
+    <p>Sur les volumes API, l'écart de coût entre Sonnet et Opus, ou entre Gemini Flash et 3.1 Pro, peut représenter des centaines d'euros par mois sur un usage régulier.</p>
+  </div>
+
+  <h3 class="reading">Règle 3 : changer de modèle quand tu cales, pas quand c'est lent</h3>
+
+  <div class="container reading">
+    <p>Si l'IA tourne et que tu attends quelques secondes, c'est normal — le bon modèle pour la tâche est probablement déjà choisi. Si l'IA produit du <em>« presque ça »</em> que tu n'arrives pas à corriger en 2-3 itérations (voir <a href="art-iterer.html">l'art d'itérer</a>), c'est le signe qu'un autre modèle ferait mieux. Bascule alors avant de continuer à itérer en vain.</p>
+
+    <p>Le test pratique : <em>« si je donnais cette même demande à Opus 4.7 / GPT-5.5 / Gemini 3.1 Pro, est-ce que je m'attendrais à un meilleur résultat selon ses points forts ? »</em>. Si oui, change de modèle.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ce qui change tous les 6 mois</div>
+    <p>Ces données sont vérifiées en avril 2026. Le paysage change vite — les benchmarks d'octobre 2026 seront probablement différents. Garde le réflexe : <strong>vérifie les comparatifs récents avant les décisions importantes</strong>. Les écarts qui valent 5,7 points aujourd'hui peuvent s'inverser au prochain release.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ce que tu vas voir dans le prochain article</div>
+    <p>Le choix du modèle est la première brique de la configuration. La deuxième brique : les <strong>Custom Instructions</strong>, les règles permanentes que tu définis une fois pour qu'elles s'appliquent à toutes tes conversations futures. Le réglage qui économise 80 % de la friction quotidienne, traité dans le prochain article.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur le choix du modèle.</h3>
+    <ol class="recap-points">
+      <li>En 2026, il n'y a plus de meilleur modèle universel. Les 3 produit phares (Opus 4.7, GPT-5.5, Gemini 3.1 Pro) ont divergé dans leurs spécialisations.</li>
+      <li>Opus 4.7 mène sur le code, la rédaction longue et les analyses nuancées. GPT-5.5 mène sur les automatisations agentiques. Gemini 3.1 Pro mène sur le raisonnement scientifique, le rapport qualité-prix et les longs documents (2M+ tokens).</li>
+      <li>Pour 90 % de tes tâches Claude, Sonnet 4.6 est suffisant à 60 % du prix d'Opus. Pour les volumes élevés, Gemini Flash divise le coût par 5.</li>
+      <li>Avoir 2 abonnements ($40/m) est largement amorti par la qualité gagnée. Combo recommandé : Claude Pro + ChatGPT Plus.</li>
+      <li>Sur l'API, commence par les petits modèles. Tu montes en gamme seulement si la qualité ne suffit pas. Cette discipline divise les coûts par 3-5 sur les usages réguliers.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a href="#" class="next-link">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">Configurer les Custom Instructions : tes règles permanentes</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-2-bien-configurer.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Bien configurer ton IA · Niveau II</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

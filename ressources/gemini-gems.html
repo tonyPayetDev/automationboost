@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gemini Gems : ton assistant Gemini personnalisé. – AutomationBoost</title>
+  <meta name="description" content="gemini gems, assistant gemini personnalisé, créer un gem, gems google, gemini gems vs custom gpt, gemini 2026" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Gemini Gems : ton assistant Gemini personnalisé.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#eab308;">Automatiser & agents</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Gemini</span>
+    </div>
+    <h1 class="page-title">Gemini Gems : ton assistant Gemini personnalisé.</h1>
+    <p class="lede">Configurer un assistant Gemini une fois — rôle, ton, documents — et le réutiliser sans jamais réexpliquer le contexte. Ce qu'est un Gem, quand il vaut le coup, comment en créer un efficace, et sa place face aux Custom GPT et Claude Projects.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Si tu retapes le même préambule à Gemini plus de deux fois par semaine, tu as besoin d'un Gem : un assistant que tu configures une seule fois — rôle, ton, règles, documents — et que tu réutilises ensuite sans rien répéter.</p>
+
+    <p>Voici comment créer et exploiter tes Gems.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 5</span>Un Gem, c'est un <em>Gemini spécialisé</em> que tu gardes.</h2>
+
+  <div class="container reading">
+    <p>Dans une conversation Gemini classique, tu repars de zéro à chaque fois : tu dois redonner ton contexte, rappeler le ton voulu, recoller tes consignes. Un Gem stocke tout ça en permanence. Dès le premier message, tes préférences, ton style et tes règles sont appliqués — à chaque fois.</p>
+
+    <p>L'analogie la plus juste : c'est comme former un assistant humain. Le premier jour, tu expliques « je veux mes documents en puces, jamais de réunion avant 10 h, et toujours ce guide de style pour les mails clients ». Tu le fais une fois. Six mois plus tard, il n'a plus besoin de rappel — il le fait correctement, tout seul.</p>
+
+    <p>Gemini fournit cinq Gems prédéfinis pour démarrer : Brainstormer, Career Guide, Coding Partner, Learning Coach et Writing Editor. Si l'un est proche de ton besoin sans être parfait, tu peux en faire une copie et l'adapter, plutôt que de partir d'une page blanche.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Gem vs Custom Instructions</div>
+    <p>Ne confonds pas les deux. Les <em>Custom Instructions</em> de Gemini s'appliquent partout, à toutes tes conversations. Un <em>Gem</em> ne s'active que quand tu l'ouvres : c'est un spécialiste que tu convoques pour une tâche précise, pas un réglage global. Tu peux avoir un Gem « relecteur », un Gem « analyste de données », un Gem « tuteur d'anglais », et passer de l'un à l'autre.</p>
+  </div>
+
+  <!-- ============== 2 ============== -->
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 5</span>Quand un Gem <em>vaut vraiment le coup</em>.</h2>
+
+  <div class="container reading">
+    <p>Un Gem n'est pas utile pour une question ponctuelle. Il devient rentable dès qu'une tâche est <strong>répétitive et bien définie</strong>.</p>
+
+    <p>Les bons cas : relecture de tes écrits selon ton style, reformatage de contenu récurrent, analyse de données dans un cadre fixe, réponses qui doivent suivre un guide de marque, ou tout « préambule » que tu retapes sans cesse. Si tu fais la même demande chaque semaine, c'est un candidat.</p>
+
+    <p>Les mauvais cas : les tâches vagues ou qui demandent un jugement nuancé différent à chaque fois. Là, un Gem n'apporte rien — il excelle sur le répétable à consignes claires, pas sur l'improvisation.</p>
+  </div>
+
+  <!-- ============== 3 ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 5</span>Créer un Gem qui marche, <em>en 4 étapes</em>.</h2>
+
+  <div class="container reading">
+    <p>Les Gems personnalisés se créent depuis <strong>gemini.google.com sur ordinateur</strong> (sur mobile, tu peux utiliser tes Gems mais pas en créer). Tu les retrouves ensuite dans le « Gems Manager ». La création est simple, mais la qualité dépend entièrement de tes instructions.</p>
+  </div>
+
+  <h3 class="reading">1. Donne-lui une identité claire</h3>
+  <div class="container reading">
+    <p>Dis-lui qui il est : « Tu es un relecteur exigeant spécialisé dans les emails professionnels en français. » Plus le rôle est précis, plus le comportement est cohérent.</p>
+  </div>
+
+  <h3 class="reading">2. Définis le comportement et le ton</h3>
+  <div class="container reading">
+    <p>Précise comment il doit répondre : format (puces, tableau, texte), ton (direct, formel, pédagogue), et ce qu'il ne doit jamais faire. C'est l'équivalent des consignes que tu donnerais à un collaborateur.</p>
+  </div>
+
+  <h3 class="reading">3. Ajoute tes documents de référence</h3>
+  <div class="container reading">
+    <p>C'est la force des Gems : tu peux leur joindre des fichiers (guide de style, documentation, données). Et puisque Gemini est lié à Google Drive, un Gem peut se connecter directement à un Doc ou un Sheet — quand tu mets le document à jour, le Gem voit la mise à jour instantanément. Ton assistant ne te donne jamais la réponse du mois dernier.</p>
+  </div>
+
+  <h3 class="reading">4. Teste et affine</h3>
+  <div class="container reading">
+    <p>Lance quelques demandes réelles, repère ce qui cloche, et ajuste les instructions. Astuce : tu peux même demander à Gemini de t'aider à écrire les instructions du Gem — « Je veux un Gem qui fait X, pose-moi 5 questions pour clarifier ce dont il a besoin », puis utilise ses réponses.</p>
+  </div>
+
+  <!-- ============== 4 ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 5</span>Gems, Custom GPT, Claude Projects : <em>le même concept, trois maisons</em>.</h2>
+
+  <div class="container reading">
+    <p>Cette idée — un assistant personnalisé qu'on configure une fois et qu'on réutilise — existe sur les trois grandes plateformes. C'est utile de savoir où se situe chacune.</p>
+
+    <p><strong>Les Custom GPT</strong> (OpenAI) sont les pionniers du genre, avec un large écosystème partageable. <strong>Les Claude Projects</strong> (Anthropic) jouent la même partition, en donnant à Claude une mémoire de ton contexte à travers les conversations. <strong>Les Gems</strong> (Google) ont deux atouts propres : leur intégration native dans Gmail, Docs, Sheets et Drive (pas de changement d'outil), et leur lien vivant avec tes fichiers Drive.</p>
+
+    <p>Le comparatif détaillé des trois formats — lequel choisir selon ton usage — est traité dans l'article <a href="custom-gpts-projects-gems.html">Custom GPTs, Claude Projects, Gemini Gems : quel format choisir en 2026</a>. La règle courte : si tu vis déjà dans l'écosystème Google, les Gems sont l'option la plus fluide.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Un point sur la disponibilité</div>
+    <p>L'accès aux Gems a évolué au fil des mois (création, plans gratuits ou payants selon les régions et les versions). Avant de t'organiser autour, vérifie ce qui est inclus dans ton plan Gemini actuel sur gemini.google.com — c'est la source qui fait foi.</p>
+  </div>
+
+  <!-- ============== 5 ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 5 / 5</span>Avant de <em>partager</em> un Gem.</h2>
+
+  <div class="container reading">
+    <p>Comme les Custom GPT, les Gems peuvent se partager — pratique pour diffuser un assistant dans une équipe. Deux réflexes avant de le faire.</p>
+
+    <p><strong>Vérifie les documents joints.</strong> Si ton Gem est connecté à un Drive ou contient des fichiers, partager le Gem peut exposer ces données. Assure-toi que rien de confidentiel ne fuite via les références.</p>
+
+    <p><strong>Garde la vérification humaine.</strong> Un Gem reste une IA : il peut se tromper ou halluciner comme n'importe quel modèle. Pour les décisions importantes, on relit toujours sa sortie avant de s'y fier. C'est valable pour tout assistant, quel que soit l'outil.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur les Gemini Gems.</h3>
+    <ol class="recap-points">
+      <li>Un Gem est un Gemini spécialisé que tu configures une fois (rôle, ton, documents) et réutilises sans réexpliquer le contexte.</li>
+      <li>À la différence des Custom Instructions (globales), un Gem ne s'active que quand tu l'ouvres : c'est un spécialiste convoqué à la demande.</li>
+      <li>Rentable pour les tâches répétitives à consignes claires ; inutile pour le ponctuel ou le jugement nuancé.</li>
+      <li>Création sur gemini.google.com (desktop), instructions précises, fichiers de référence, et lien vivant avec Google Drive. On teste et on affine.</li>
+      <li>Même concept que les Custom GPT et Claude Projects ; l'atout des Gems est l'intégration Gmail/Docs/Drive. Vérifie ton plan et relis toujours les sorties.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+
+
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="custom-gpts-projects-gems.html">
+        <div class="next-link-label">— Article connexe</div>
+        <div class="next-link-title">Custom GPTs, Claude Projects, Gemini Gems : quel format choisir</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-4.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Automatiser · Niveau IV</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

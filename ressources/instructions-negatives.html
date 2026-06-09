@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Les instructions négatives : ce que l'IA ne doit PAS faire. – AutomationBoost</title>
+  <meta name="description" content="« Ne fais pas X, évite Y » : dire à l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Les instructions négatives : ce que l'IA ne doit PAS faire.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#34d399;">Mieux prompter</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Les instructions négatives : ce que l'IA ne doit PAS faire.</h1>
+    <p class="lede">« Ne fais pas X. Évite Y. Surtout pas Z. » Beaucoup plus efficace qu'on ne le pense. Quand les utiliser, et le piège à éviter quand on en abuse.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Beaucoup croient qu'on n'instruit l'IA qu'avec des verbes positifs. Erreur. Le mot « évite » ouvre toute une famille d'instructions négatives — « ne fais pas », « sans », « pas de » — souvent plus efficaces qu'une consigne positive.</p>
+
+    <p>Voici comment t'en servir pour cadrer précisément ce que l'IA ne doit <em>pas</em> faire.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi les instructions négatives <em>marchent</em>.</h2>
+
+  <div class="container reading">
+    <p>Une instruction positive (« sois clair », « écris court ») est interprétée selon la moyenne de l'IA : « court » peut valoir 200 mots comme 50. L'instruction négative, elle, exclut explicitement ce que tu ne veux pas — elle laisse beaucoup moins de place à l'interprétation.</p>
+
+    <p>Voici comment les formuler et quand les utiliser.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 6</span>4 démonstrations <em>avant / après</em>.</h2>
+
+  <div class="container reading">
+    <p>Quatre cas concrets où l'instruction négative bat l'instruction positive de manière visible. Tu peux tester chaque cas toi-même.</p>
+  </div>
+
+  <!-- DEMO 1 -->
+  <div class="demo-case">
+    <div class="demo-case-num">— EXEMPLE 1 · MAIL PROFESSIONNEL</div>
+    <div class="demo-case-title">Éliminer les formules de politesse vides</div>
+  </div>
+
+  <div class="ba-pair">
+    <div class="ba-side before">
+      <div class="ba-label">Instruction positive</div>
+      <div class="ba-prompt">Rédige un mail concis et direct pour annoncer un report de réunion.</div>
+      <div class="ba-result">L'IA produit : « Bonjour, j'espère que ce mail vous trouve en pleine forme. Je tenais à vous informer que [...] Bien cordialement. ». Concis ? Pas vraiment.</div>
+    </div>
+    <div class="ba-side after">
+      <div class="ba-label">Instruction négative</div>
+      <div class="ba-prompt">Rédige un mail pour annoncer un report de réunion. Pas de formule de politesse en début ni en fin de mail. Pas de phrase qui commence par « Je tenais à ».</div>
+      <div class="ba-result">L'IA produit : « La réunion de jeudi est reportée au mardi suivant, même heure. Le sujet reste identique. À mardi. ». Authentiquement direct.</div>
+    </div>
+  </div>
+
+  <!-- DEMO 2 -->
+  <div class="demo-case">
+    <div class="demo-case-num">— EXEMPLE 2 · CONTENU LINKEDIN</div>
+    <div class="demo-case-title">Éviter le ton « LinkedIn typique »</div>
+  </div>
+
+  <div class="ba-pair">
+    <div class="ba-side before">
+      <div class="ba-label">Instruction positive</div>
+      <div class="ba-prompt">Rédige un post LinkedIn authentique et personnel sur ma promotion.</div>
+      <div class="ba-result">L'IA produit du « LinkedIn typique » : « Aujourd'hui, je suis humblement fier de vous annoncer... », emojis, hashtags, tournures grandiloquentes.</div>
+    </div>
+    <div class="ba-side after">
+      <div class="ba-label">Instruction négative</div>
+      <div class="ba-prompt">Rédige un post LinkedIn sur ma promotion. Pas d'emoji. Pas de hashtag. Pas de « humblement fier » ni « ravi d'annoncer ». Pas de listes à puces.</div>
+      <div class="ba-result">L'IA produit un texte court qui sonne humain : « J'ai été nommé directeur des opérations la semaine dernière. Je remercie l'équipe qui a fait le boulot avec moi sur les 18 derniers mois. Beaucoup de travail à venir. »</div>
+    </div>
+  </div>
+
+  <!-- DEMO 3 -->
+  <div class="demo-case">
+    <div class="demo-case-num">— EXEMPLE 3 · ANALYSE STRATÉGIQUE</div>
+    <div class="demo-case-title">Forcer la prise de position</div>
+  </div>
+
+  <div class="ba-pair">
+    <div class="ba-side before">
+      <div class="ba-label">Instruction positive</div>
+      <div class="ba-prompt">Analyse cette stratégie et donne ton avis tranché.</div>
+      <div class="ba-result">L'IA livre un « il y a des avantages et des inconvénients » classique. Elle équilibre, ne tranche pas, fait du « cela dépend ».</div>
+    </div>
+    <div class="ba-side after">
+      <div class="ba-label">Instruction négative</div>
+      <div class="ba-prompt">Analyse cette stratégie. N'utilise pas la formule « cela dépend ». Pas de phrase qui équilibre les deux côtés. Choisis un camp et défends-le.</div>
+      <div class="ba-result">L'IA produit une vraie prise de position avec arguments. La contrainte négative l'oblige à sortir de son réflexe de prudence.</div>
+    </div>
+  </div>
+
+  <!-- DEMO 4 -->
+  <div class="demo-case">
+    <div class="demo-case-num">— EXEMPLE 4 · PRÉSENTATION ORALE</div>
+    <div class="demo-case-title">Écrire pour l'oral, pas pour l'écrit</div>
+  </div>
+
+  <div class="ba-pair">
+    <div class="ba-side before">
+      <div class="ba-label">Instruction positive</div>
+      <div class="ba-prompt">Rédige le script de mon intervention orale, sur un ton naturel.</div>
+      <div class="ba-result">L'IA produit un texte qui ressemble à un article : phrases longues, subordonnées, vocabulaire écrit. Imprononçable à voix haute.</div>
+    </div>
+    <div class="ba-side after">
+      <div class="ba-label">Instruction négative</div>
+      <div class="ba-prompt">Rédige le script de mon intervention orale. Pas de phrase de plus de 15 mots. Pas de subordonnée. Aucun mot que je n'utiliserais pas dans une conversation au café.</div>
+      <div class="ba-result">L'IA produit un texte vraiment oral : phrases courtes, vocabulaire courant, rythme parlé. Prononçable directement.</div>
+    </div>
+  </div>
+
+  <!-- ============== 3. LISTE DES CONTRAINTES ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 6</span>Les contraintes négatives <em>les plus utiles</em>.</h2>
+
+  <div class="container reading">
+    <p>Voici les contraintes négatives les plus rentables à connaître par cœur. Chacune élimine un tic typique des IA conversationnelles que tu reconnaîtras immédiatement. À utiliser au cas par cas selon le tic que tu veux supprimer.</p>
+  </div>
+
+  <div class="banned-list">
+    <div class="banned-title">— Les contraintes négatives à mémoriser —</div>
+
+    <div class="banned-item">
+      <div class="banned-cross">×</div>
+      <div class="banned-content">
+        <span class="banned-phrase">« Pas de formule de politesse / pas de phrase d'introduction »</span>
+        Élimine les « Bonjour », « j'espère que vous allez bien », « Je tenais à vous écrire pour... ». Particulièrement utile pour les mails internes.
+      </div>
+    </div>
+
+    <div class="banned-item">
+      <div class="banned-cross">×</div>
+      <div class="banned-content">
+        <span class="banned-phrase">« Pas de récap final / pas de conclusion »</span>
+        Empêche l'IA de terminer par « En résumé... », « Pour conclure... », « N'hésitez pas à... ». Tu obtiens un texte qui s'arrête quand le contenu s'arrête.
+      </div>
+    </div>
+
+    <div class="banned-item">
+      <div class="banned-cross">×</div>
+      <div class="banned-content">
+        <span class="banned-phrase">« Sans superlatif / sans adjectif fort »</span>
+        Bannit les « excellent », « exceptionnel », « extraordinaire », « ravi », « passionné ». Force un ton plus mesuré et professionnel.
+      </div>
+    </div>
+
+    <div class="banned-item">
+      <div class="banned-cross">×</div>
+      <div class="banned-content">
+        <span class="banned-phrase">« Pas de "il est important de" / pas de "en effet" »</span>
+        Élimine les phrases creuses qui annoncent une idée au lieu de la donner. Le contenu reste, le bavardage disparaît.
+      </div>
+    </div>
+
+    <div class="banned-item">
+      <div class="banned-cross">×</div>
+      <div class="banned-content">
+        <span class="banned-phrase">« Sans emoji et sans hashtag »</span>
+        Indispensable pour le contenu LinkedIn, les mails sérieux, ou tout sortie destinée à un usage professionnel formel.
+      </div>
+    </div>
+
+    <div class="banned-item">
+      <div class="banned-cross">×</div>
+      <div class="banned-content">
+        <span class="banned-phrase">« Pas de phrase qui équilibre les deux côtés »</span>
+        Force l'IA à prendre position. Bannit les « cela dépend », « il y a du pour et du contre », « selon le contexte ».
+      </div>
+    </div>
+
+    <div class="banned-item">
+      <div class="banned-cross">×</div>
+      <div class="banned-content">
+        <span class="banned-phrase">« N'utilise jamais le mot [X] »</span>
+        Pour bannir un terme spécifique : « impactant », « solution », « accompagnement », tout buzzword qui te sort par les yeux.
+      </div>
+    </div>
+
+    <div class="banned-item">
+      <div class="banned-cross">×</div>
+      <div class="banned-content">
+        <span class="banned-phrase">« Pas de listes à puces / pas de bullet points »</span>
+        Force l'écriture en prose continue. Particulièrement utile pour les contenus narratifs, les tribunes, les analyses littéraires.
+      </div>
+    </div>
+  </div>
+
+  <!-- ============== 4. CAS D'USAGE ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 6</span>Les <em>4 cas</em> où l'instruction négative est supérieure.</h2>
+
+  <div class="container reading">
+    <p>L'instruction négative n'est pas toujours le bon outil. Elle est puissante dans des situations précises. Voici les 4 cas où elle est nettement supérieure aux instructions positives.</p>
+  </div>
+
+  <div class="usecase-grid">
+    <div class="usecase-card">
+      <span class="usecase-num">— CAS 1</span>
+      <div class="usecase-name">Éliminer un tic rédactionnel récurrent</div>
+      <div class="usecase-desc">L'IA répète la même formule maladroite à chaque génération (« Je tenais à », « En effet », emojis). L'instruction négative est la seule technique fiable pour la déloger. Une instruction positive ne suffira jamais.</div>
+    </div>
+    <div class="usecase-card">
+      <span class="usecase-num">— CAS 2</span>
+      <div class="usecase-name">Imposer un ton anti-corporate</div>
+      <div class="usecase-desc">Pour produire du contenu qui ne ressemble pas à du marketing typique. Bannis les buzzwords, les superlatifs, les structures rhétoriques attendues. Force l'IA hors de son confort statistique.</div>
+    </div>
+    <div class="usecase-card">
+      <span class="usecase-num">— CAS 3</span>
+      <div class="usecase-name">Forcer une prise de position</div>
+      <div class="usecase-desc">L'IA est entraînée à équilibrer pour éviter de froisser. Bannis les formules d'équilibrage et tu obtiens des analyses tranchées. Particulièrement utile pour les tribunes, les éditoriaux, les recommandations stratégiques.</div>
+    </div>
+    <div class="usecase-card">
+      <span class="usecase-num">— CAS 4</span>
+      <div class="usecase-name">Adapter à un format restreint</div>
+      <div class="usecase-desc">Tweet (280 caractères), titre de post (60 caractères), slogan (5 mots). Les contraintes négatives (« pas de virgule », « pas de point-virgule », « pas de mot de plus de 6 lettres ») forcent un format compact que les instructions positives n'obtiennent jamais.</div>
+    </div>
+  </div>
+
+  <!-- ============== 5. LE PIÈGE ============== -->
+  <h2 class="reading"><span class="h2-num">— 5 / 6</span>Le <em>piège</em> de l'abus.</h2>
+
+  <div class="container reading">
+    <p>Maintenant que tu vois la puissance des instructions négatives, tu vas être tenté d'en mettre partout. Erreur classique. Voici pourquoi accumuler les interdictions est contre-productif.</p>
+  </div>
+
+  <h3 class="reading">Le syndrome du prompt-tunnel</h3>
+
+  <div class="container reading">
+    <p>Imagine un prompt qui contient 15 instructions négatives : <em>« pas de formule de politesse, pas de récap, pas de superlatif, pas d'emoji, pas de "je tenais à", pas de phrase de plus de 12 mots, pas de subordonnée, pas de virgule en début de phrase, pas de "donc"... »</em>. À ce stade, l'IA passe plus de temps à vérifier les interdictions qu'à produire du contenu de qualité. Le résultat devient artificiel, hésitant, parfois grammaticalement bancal — parce que tu as confisqué les outils naturels de l'écriture.</p>
+
+    <p>La règle pratique : <strong>maximum 4-5 instructions négatives par prompt</strong>. Au-delà, tu paies en qualité ce que tu gagnes en contrôle. Si tu as besoin de plus de contraintes, c'est probablement que tu cherches un format très spécifique — utilise plutôt <a href="few-shot-prompting.html">Few-Shot Prompting</a> avec un exemple parfait, plus efficace.</p>
+  </div>
+
+  <p class="pull-quote">Cinq interdictions précises valent mieux que vingt interdictions générales.</p>
+
+  <h3 class="reading">L'autre piège : interdire le naturel</h3>
+
+  <div class="container reading">
+    <p>Certaines interdictions tuent le naturel sans gain réel. Par exemple, bannir <em>« le verbe être »</em> ou <em>« les adverbes »</em> pour forcer un style original — c'est le genre de contrainte qui produit du texte tordu, qui sent l'effort, et qui ne ressemble à rien d'humain. Les instructions négatives doivent éliminer des <strong>tics</strong>, pas des outils naturels du langage.</p>
+
+    <p>Le test : avant d'ajouter une instruction négative, demande-toi <em>« est-ce qu'un humain talentueux qui écrirait ce texte respecterait spontanément cette contrainte ? »</em>. Si oui, garde-la. Si non, c'est probablement une contrainte artificielle qui va dégrader le résultat plutôt que l'améliorer.</p>
+  </div>
+
+  <!-- ============== 6. INSTRUCTIONS POSITIVES + NÉGATIVES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 6 / 6</span>La <em>combinaison</em> qui marche le mieux.</h2>
+
+  <div class="container reading">
+    <p>Le bon prompt n'est jamais 100 % positif ou 100 % négatif. Il combine les deux types selon la nature de la contrainte.</p>
+  </div>
+
+  <h3 class="reading">Pour ce que tu veux : instructions positives</h3>
+
+  <div class="container reading">
+    <p>Pour décrire la <strong>cible</strong> du livrable — son objectif, sa structure, son audience, son ton général — utilise les instructions positives. Elles donnent une direction. <em>« Tu es un consultant en stratégie. Rédige une synthèse en 3 sections. Audience : comité de direction. Ton : professionnel et factuel. »</em>.</p>
+  </div>
+
+  <h3 class="reading">Pour ce que tu ne veux pas : instructions négatives</h3>
+
+  <div class="container reading">
+    <p>Pour bannir les <strong>tics, mots-pièges, formules attendues</strong> que l'IA va naturellement produire si tu ne dis rien — utilise les instructions négatives. Elles posent les murs. <em>« Pas de phrase d'introduction. Pas de récap final. Pas de "il est important de noter". Pas de superlatif. »</em>.</p>
+  </div>
+
+  <h3 class="reading">Le ratio optimal</h3>
+
+  <div class="container reading">
+    <p>Sur un prompt complet, tu peux viser : <strong>70 % de description positive (le quoi) et 30 % de bornes négatives (les murs)</strong>. Ce ratio donne un livrable qui va dans la bonne direction (positif) sans tomber dans les pièges typiques de l'IA (négatif). C'est le compromis qui marche pour la majorité des cas.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Mon réflexe de mentor</div>
+    <p>Pour tout prompt important destiné à produire un livrable écrit, ajoute systématiquement <strong>3 instructions négatives</strong> en fin de prompt. Pas plus. Le trio universel : <em>« Pas de phrase d'introduction. Pas de récap final. Pas de superlatif. »</em>. À ces trois-là, ajoute selon le contexte une ou deux contraintes spécifiques (pas d'emoji pour LinkedIn, pas de subordonnée pour l'oral, etc.).</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ce que tu vas voir dans le prochain article</div>
+    <p>Tu maîtrises maintenant deux techniques opposées et complémentaires : faire <em>parler</em> l'IA avant qu'elle réponde (« Ask Me Questions First »), et <em>verrouiller</em> ce qu'elle ne doit pas produire (instructions négatives). Le prochain article te donne le <strong>Perspective Shifting</strong> — comment changer d'angle d'analyse sans repartir de zéro. La technique du brainstorm en plusieurs vues.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur les instructions négatives.</h3>
+    <ol class="recap-points">
+      <li>L'instruction positive vise une cible. L'instruction négative pose un mur. Les deux sont nécessaires, mais elles n'ont pas le même effet.</li>
+      <li>Les instructions négatives sont la seule technique fiable pour éliminer les tics rédactionnels de l'IA (« je tenais à », « en effet », formules de politesse).</li>
+      <li>Maximum 4-5 instructions négatives par prompt. Au-delà, tu paies en qualité ce que tu gagnes en contrôle.</li>
+      <li>4 cas typiques : éliminer un tic, imposer un ton anti-corporate, forcer une prise de position, adapter à un format restreint.</li>
+      <li>Le ratio optimal : 70 % de description positive + 30 % de bornes négatives. Le trio universel : « pas de phrase d'intro, pas de récap, pas de superlatif ».</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a href="#" class="next-link">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">Le Perspective Shifting : changer d'angle sans recommencer</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-2-techniques-avancees.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Techniques avancées · Niveau II</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

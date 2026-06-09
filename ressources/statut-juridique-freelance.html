@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Choisir ton statut juridique. – AutomationBoost</title>
+  <meta name="description" content="Micro-entreprise, EI, EURL ou SASU : la grille de décision 2026 pour choisir ton statut. Plafonds, charges et cas concrets, sans jargon." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Choisir ton statut juridique.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#f43f5e;">Lancer un business</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Choisir ton statut juridique.</h1>
+    <p class="lede">La grille de décision honnête entre micro-entreprise, EI au réel, EURL et SASU en 2026. Plafonds, charges, fiscalité, quand passer de l'un à l'autre. Avec disclaimer expert-comptable explicite : cet article éclaire, il ne conseille pas.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tu as décidé de passer freelance. Première étape concrète : choisir ton statut juridique. Précision utile d'emblée — le « statut freelance » n'existe pas légalement en France. Pour facturer, tu dois choisir un cadre : micro-entreprise, entreprise individuelle, EURL, SASU ou portage salarial.</p>
+
+    <p>Le mauvais choix peut te coûter plusieurs milliers d'euros par an pendant des années, en cotisations et fiscalité mal optimisées. Et le bon dépend de variables précises : chiffre d'affaires prévisionnel, frais réels, projets de développement. Voici comment trancher selon ta situation.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Les <em>4 statuts</em> détaillés.</h2>
+
+  <div class="container reading">
+    <p>Caractéristiques 2026 vérifiées. Ne lis pas en diagonale — chaque détail (cotisations minimales, traitement dividendes, franchise TVA) peut faire 5-10 K€/an de différence sur ta trésorerie.</p>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Statut 1 — <em>Micro-entreprise</em></div>
+    <div class="tool-text"><strong>Nature juridique :</strong> régime fiscal et social simplifié appliqué à une entreprise individuelle (EI). Tu es juridiquement une EI avec option micro. Pas un statut juridique à part entière.<br><br>
+<strong>Plafonds CA 2026 :</strong> 77 700 € prestations services BIC/BNC, 188 700 € commerce. Tolérance 1 année à 83 600 € / 203 100 €. 2 années consécutives au-dessus = bascule automatique régime réel.<br><br>
+<strong>Charges sociales :</strong> 22 % CA encaissé pour services BNC/BIC, 12,8 % pour vente. Calculées sur CA brut, pas sur bénéfice. Pas de cotisation si zéro CA.<br><br>
+<strong>Fiscalité :</strong> abattement forfaitaire 34 % BNC / 50 % BIC services / 71 % vente. Option versement libératoire (sous condition revenu fiscal référence N-2 &lt; ~29 315 €) : 1 % / 1,7 % / 2,2 % CA. Sinon, IR au barème progressif.<br><br>
+<strong>TVA :</strong> franchise jusqu'à 37 500 € services. Au-delà, assujettissement obligatoire.<br><br>
+<strong>Pour qui :</strong> 80 % des freelances qui démarrent. Profil : peu de frais réels, CA prévisionnel &lt; 50 K€, pas de projet société à court terme.<br><br>
+<strong>Frais création :</strong> 0 € (déclaration en ligne 20 minutes). <strong>Compta :</strong> livre des recettes simple.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Statut 2 — <em>EI au régime réel</em></div>
+    <div class="tool-text"><strong>Nature juridique :</strong> entreprise individuelle sortie de l'option micro. Pas de personne morale séparée. Patrimoine personnel et professionnel automatiquement séparés depuis loi 14 février 2022.<br><br>
+<strong>Plafonds CA :</strong> aucun. Tu peux facturer 500 K€/an.<br><br>
+<strong>Charges sociales :</strong> ~45 % du bénéfice (CA — frais réels). Régime TNS (Travailleur Non Salarié), affilié SSI (Sécurité Sociale Indépendants). Cotisations minimales &gt; 1 500 €/an même sans bénéfice.<br><br>
+<strong>Fiscalité :</strong> IR au barème progressif. Tu déduis tes frais professionnels réels (matériel, coworking, déplacements, sous-traitance, formation, abonnements pro). <em>Avantage clé vs micro :</em> dès que tes frais réels dépassent 34 % du CA (abattement forfaitaire micro), l'EI au réel devient plus rentable.<br><br>
+<strong>Pour qui :</strong> profils qui ont dépassé le plafond micro <em>ou</em> qui ont des frais professionnels significatifs (&gt; 34 % CA) tout en restant sous 60-70 K€ de bénéfice. Karim de l'exemple Socic 2026 : facture 800 €/jour mais sous-traite, achète des licences, se déplace — l'EI au réel reflète mieux sa marge.<br><br>
+<strong>Frais création :</strong> 21,74 € activité commerciale, gratuit profession libérale. <strong>Compta :</strong> bilan + compte de résultat annuels (expert-comptable recommandé).</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Statut 3 — <em>EURL (Entreprise Unipersonnelle à Responsabilité Limitée)</em></div>
+    <div class="tool-text"><strong>Nature juridique :</strong> société unipersonnelle. Personne morale séparée. Capital social minimum 1 € (mais 1 000-5 000 € recommandés pour optimiser cotisations dividendes).<br><br>
+<strong>Régime social du gérant :</strong> TNS, affilié SSI. <strong>Cotisations sociales :</strong> ~45 % de la rémunération nette. Cotisations minimales &gt; 1 500 €/an même sans rémunération (point critique souvent ignoré).<br><br>
+<strong>Fiscalité (le levier stratégique) :</strong> par défaut IR. Option IS recommandée. À l'IS : 15 % bénéfices &lt; 42 500 €, 25 % au-delà. Tu te verses : (a) une rémunération soumise à cotisations TNS 45 %, et/ou (b) des dividendes. <strong>Piège EURL :</strong> dividendes au-delà de 10 % du capital social (+ primes émission + CCA moyen) sont assujettis aux cotisations TNS, PAS à la flat tax pure. C'est ce qui rend l'EURL moins attractive que la SASU pour les hauts revenus.<br><br>
+<strong>Pour qui :</strong> CA 60-100 K€ avec optimisation rémunération + dividendes via capital social adapté. Profils qui veulent charges sociales réduites sur la rémunération, gestion encadrée par le Code commerce, pas de chômage souhaité.<br><br>
+<strong>Frais création :</strong> ~200-250 € (33,83 € + 19,33 € bénéficiaires + annonce légale 150-200 €). <strong>Compta :</strong> bilan + compte résultat annuel + assemblées générales (expert-comptable obligatoire de fait, ~80-150 €/mois).</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Statut 4 — <em>SASU (Société par Actions Simplifiée Unipersonnelle)</em></div>
+    <div class="tool-text"><strong>Nature juridique :</strong> société unipersonnelle. Personne morale séparée. Capital social minimum 1 €. Statuts très flexibles (peu encadrés par la loi vs EURL).<br><br>
+<strong>Régime social du président :</strong> assimilé salarié, affilié régime général (mais <em>pas de chômage</em>). <strong>Cotisations sociales :</strong> ~75-80 % du salaire net. Élevées — protection sociale équivalente salarié sauf chômage.<br><br>
+<strong>Fiscalité :</strong> IS par défaut (15 % &lt; 42 500 €, 25 % au-delà). Option IR possible 5 ans max. Tu te verses : (a) un salaire soumis à cotisations 75-80 %, et/ou (b) des dividendes. <strong>Avantage SASU :</strong> les dividendes sont 100 % flat tax 31,4 % — AUCUNE cotisation sociale. C'est <em>le</em> levier des hauts revenus.<br><br>
+<strong>Pour qui :</strong> CA &gt; 100 K€ qui veut maximiser le net via dividendes. Aussi : freelance avec ARE en cours qui veut <em>maintenir l'ARE</em> en début d'activité — SASU + 0 rémunération = 0 cotisations = ARE intégrale (vs EURL qui paie cotisations minimales 1 500 €/an même sans rémunération). Profils qui prévoient embauche, levée de fonds ou intégration d'associés (transformation SASU → SAS triviale).<br><br>
+<strong>Frais création :</strong> ~200-250 €. <strong>Compta :</strong> bilan + compte résultat + bulletins de paie (gestion sociale à externaliser, expert-comptable + paie ~150-250 €/mois).</div>
+  </div>
+
+  <p class="pull-quote">Aucun statut n'est universellement <em>« le meilleur »</em>. Le choix se fait à l'intersection de quatre variables : ton CA prévisionnel, tes frais réels, ta situation ARE, ton projet à 3 ans. Toute simulation qui ignore ne serait-ce qu'une de ces variables est partielle.</p>
+
+  <!-- ============== 2. GRILLE DE DÉCISION CHIFFRÉE PAR CA ============== -->
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>La grille de décision <em>chiffrée par CA</em>.</h2>
+
+  <div class="container reading">
+    <p>Synthèse Atelier Capital 2026 par simulation comparative. Recommandations par tranche de CA, en supposant un prestataire BNC célibataire sans enfant avec ~5 000 €/an de frais réels. À adapter à ta situation, mais l'ordre de grandeur reste valable.</p>
+  </div>
+
+  <div class="codeblock">
+    <div class="codeblock-label">— Grille de décision par CA · 2026 (sources : Atelier Capital · L'Expert-Comptable)</div>
+    <div class="codeblock-content"><em>TRANCHE 1 — CA &lt; 30 K€/an</em>
+   <em>Choix recommandé : MICRO-ENTREPRISE</em>
+   - Charges 22 % CA = ~6 600 € sur 30 K€
+   - Versement libératoire 2,2 % = 660 € impôt
+   - Net dans la poche : ~22 700 €
+   - <em>Phase de démarrage / activité d'appoint / tests</em>
+
+<em>TRANCHE 2 — CA 30-50 K€/an</em>
+   <em>Choix recommandé : MICRO-ENTREPRISE</em>
+   - Charges 22 % CA = ~10 000 € sur 45 K€
+   - Net dans la poche : ~33-34 K€
+   - <em>Sweet spot micro-entreprise. Ne change pas tant que
+     tu n'as pas franchi le palier suivant.</em>
+
+<em>TRANCHE 3 — CA 50-77 K€/an (limite micro services)</em>
+   <em>Choix : MICRO si frais &lt; 17 K€, sinon EI RÉEL</em>
+   - Si frais réels &lt; 34 % du CA (abattement forfaitaire),
+     micro reste avantageuse
+   - Si frais réels &gt; 34 % CA, EI au réel devient meilleure
+   - <em>Calcule tes frais réels honnêtement avant de trancher.</em>
+
+<em>TRANCHE 4 — CA 77-100 K€/an</em>
+   <em>Bascule obligatoire (plafond micro dépassé)</em>
+   <em>Choix recommandé : EURL à l'IS</em>
+   - Capital social 5-10 K€ + CCA pour limiter cotisations
+     sur dividendes (seuil 10 % capital)
+   - Optimisation rémunération (charges TNS 45 %) + dividendes
+     (flat tax 31,4 % pour part &lt; 10 % capital)
+   - Net dans la poche : ~55-65 K€ sur 90 K€ CA
+   - <em>Sweet spot EURL pour cette tranche</em>
+
+<em>TRANCHE 5 — CA &gt; 100 K€/an</em>
+   <em>Choix recommandé : SASU à l'IS</em>
+   - Salaire modéré pour validation 4 trimestres retraite
+     (~12-15 K€/an = SMIC environ)
+   - Dividendes en majorité (flat tax 31,4 %, AUCUNE cotisation
+     sociale au-delà des prélèvements sociaux)
+   - Net dans la poche : ~90-110 K€ sur 150 K€ CA
+   - <em>L'écart vs EURL se creuse avec le CA</em>
+
+<em>CAS PARTICULIER — TU AS DROIT À L'ARE</em>
+   <em>Choix recommandé : SASU + 0 rémunération initiale</em>
+   - 0 cotisation sociale = ARE intégrale maintenue 24 mois
+   - Tu te verses uniquement des dividendes en année 2-3
+     une fois l'activité stabilisée
+   - <em>Stratégie validée Legalstart 2026 pour consultants
+     avec 12 mois d'ARE en début d'activité</em>
+
+<span class="comment"># L'EURL est désavantagée pour ce cas car cotisations
+# minimales TNS &gt; 1 500 €/an même sans rémunération —
+# tu paies des cotisations alors que tu pourrais les
+# éviter en SASU.</span></div>
+  </div>
+
+  <!-- ============== 3. LES 4 CRITÈRES CLÉS AU-DELÀ DU CA ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Les 4 <em>critères clés</em> au-delà du CA.</h2>
+
+  <div class="container reading">
+    <p>Le CA seul ne suffit pas à trancher. Voici les 4 autres variables qui peuvent inverser la recommandation.</p>
+  </div>
+
+  <h3>Critère 1 — Tes frais professionnels réels</h3>
+
+  <div class="container reading">
+    <p>En micro, tu ne déduis pas tes frais — l'administration applique un abattement forfaitaire (34 % BNC, 50 % BIC services, 71 % vente). Si tu as <em>peu</em> de frais (consultant pur, copywriter, coach), l'abattement forfaitaire t'avantage. Si tu as <em>beaucoup</em> de frais (matériel coûteux, sous-traitance, déplacements, licences logicielles, coworking premium, formation continue), tu es perdant en micro.</p>
+
+    <p><strong>Test simple :</strong> liste tes frais professionnels prévisionnels annuels. Divise par ton CA prévisionnel. Si ratio &lt; 25 %, micro avantage. Si 25-34 %, neutre. Si &gt; 34 %, EI au réel ou EURL deviennent plus rentables.</p>
+  </div>
+
+  <h3>Critère 2 — Tu touches l'ARE (chômage) en début d'activité</h3>
+
+  <div class="container reading">
+    <p>Tu as démissionné via rupture conventionnelle (cf <a href="freelance-ou-salariat.html">article 2.1</a>) avec 12-24 mois de droits ARE. Stratégie clé : choisir un statut qui <em>maintient</em> l'ARE pendant que tu démarres.</p>
+
+    <p><strong>SASU + 0 rémunération = ARE intégrale.</strong> Tu te verses uniquement des dividendes plus tard. France Travail considère que tu n'as pas de revenu d'activité (légal et documenté). Tu peux ainsi étaler 24 mois d'ARE sur 24-36 mois d'activité freelance, en démarrant ton activité avec un filet de 1 200-2 500 €/mois garanti.</p>
+
+    <p><strong>EURL = piège dans ce cas.</strong> Cotisations minimales TNS &gt; 1 500 €/an même sans rémunération — tu paies des cotisations alors que tu pourrais les éviter, et France Travail te déduit ces cotisations de ton ARE. Si ARE en cours, choisir EURL plutôt que SASU = perte 2-5 K€/an pendant 24 mois.</p>
+  </div>
+
+  <h3>Critère 3 — Ton projet à 3 ans (associés, embauche, levée)</h3>
+
+  <div class="container reading">
+    <p>Si tu prévois rester solo indéfiniment, micro/EI/EURL sont équivalents structurellement. Si tu prévois <em>évoluer</em> — embaucher un assistant, intégrer un associé, lever des fonds, vendre la boîte — la SASU est nettement supérieure.</p>
+
+    <p><strong>Pourquoi :</strong> SASU se transforme trivialement en SAS (entrée associés sans changement de structure). EURL se transforme en SARL (similaire mais cadre plus rigide). Micro et EI ne se transforment pas — il faut créer la société et faire passer le fonds de commerce. Coût et délai : 2-4 K€ et 2-3 mois.</p>
+
+    <p><strong>Conséquence pratique :</strong> si projet d'évolution clair, démarre directement en SASU même si CA initial &lt; 50 K€. Le surcoût d'admin (~150 €/mois expert-comptable + paie) est compensé par l'évitement du coût de transformation ultérieure.</p>
+  </div>
+
+  <h3>Critère 4 — Ta situation familiale et fiscale globale</h3>
+
+  <div class="container reading">
+    <p>Variable souvent ignorée mais déterminante. Si tu vis avec un·e conjoint·e à fort salaire, ton foyer fiscal est déjà imposé à un TMI (Tranche Marginale d'Imposition) élevé (30 %, 41 %, 45 %). Toute rémunération supplémentaire que tu te verses est taxée à ce TMI.</p>
+
+    <p><strong>Stratégie :</strong> dans ce cas, privilégie SASU avec dividendes (flat tax 31,4 % qui peut être inférieure à ton TMI) plutôt que EURL avec rémunération (taxée au TMI 41 % par exemple). Inversement, si tu es seul·e avec TMI 11 %, l'EURL avec rémunération peut être plus optimale (impôt à 11 % + cotisations 45 % vs IS 15 % + flat tax 31,4 %).</p>
+
+    <p><strong>Cette analyse globale ne se fait pas seul·e.</strong> Un expert-comptable spécialisé indépendants peut modéliser tes 3-5 scénarios et te donner le chiffre exact net dans la poche pour chacun. Ce service vaut largement ses 80-150 €/mois.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor sur les statuts</div>
+    <p>L'erreur n°1 que je vois en mentorat : des freelances qui choisissent leur statut en lisant 2-3 articles et en demandant à ChatGPT (cf <a href="piege-idees-ia.html">article 1.7 sur les pièges de l'IA</a> — qui s'applique exactement ici). Résultat : ils choisissent un statut sub-optimal et perdent 5-15 K€/an pendant 3-5 ans. Mon process strict : <strong>(1)</strong> simulation initiale toi-même via les 5 tranches CA + 4 critères de cet article. <strong>(2)</strong> RDV 1h avec un expert-comptable spécialisé indépendants (~150-250 € l'audit ponctuel) AVANT de créer ta structure. <strong>(3)</strong> Modélisation par l'expert sur 3 scénarios chiffrés avec ta vraie situation. <strong>(4)</strong> Décision et création. <strong>(5)</strong> Réévaluation annuelle (l'optimal change si CA évolue, situation familiale change, ARE expire). <strong>Le coût de l'expert-comptable initial est dérisoire</strong> (150-250 €) face au gain potentiel d'optimisation (5-15 K€/an pendant 3-5 ans = 15-75 K€ cumulés). Refuser ce conseil pour économiser 200 € = la décision financière la plus coûteuse de ton parcours freelance.</p>
+  </div>
+
+  <!-- ============== 4. LA SÉQUENCE DE BASCULE RECOMMANDÉE ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>La séquence de <em>bascule recommandée</em>.</h2>
+
+  <div class="container reading">
+    <p>La majorité des freelances n'ont pas <em>un</em> statut à vie. Ils ont une <em>séquence</em> qui s'adapte à leur croissance. Voici la séquence type 2026 pour 80 % des cas.</p>
+  </div>
+
+  <div class="codeblock">
+    <div class="codeblock-label">— Séquence de bascule type · 2026</div>
+    <div class="codeblock-content"><em>ANNÉE 1 — DÉMARRAGE</em>
+   <em>Statut : MICRO-ENTREPRISE</em>
+   - Création gratuite en 20 min en ligne (urssaf.fr)
+   - <em>Réforme ACRE : créer AVANT le 1<sup>er</sup> juillet 2026</em>
+     pour bénéficier du 50 % au lieu du 75 % du taux normal
+   - Charges 22 % CA, simple, lisible
+   - Tu valides ton acquisition, tu construis tes premières
+     références, tu apprends à vendre
+   - <em>Cible : 25-50 K€ CA an 1</em>
+
+<em>ANNÉE 2 — CONSOLIDATION</em>
+   <em>Statut : MICRO ou EI au réel</em>
+   - Si tu approches 70 K€ CA : prépare la bascule
+   - Si tes frais réels &gt; 34 % CA : bascule EI au réel
+     (déduction frais réels)
+   - Sinon, garde micro tant que sous plafond
+   - <em>Cible : 50-77 K€ CA an 2</em>
+
+<em>ANNÉE 3 — STRUCTURATION</em>
+   <em>Statut : EURL ou SASU à l'IS</em>
+   - CA dépasse durablement 77 K€ : sortir de la micro
+   - Décision EURL vs SASU selon les 4 critères
+     (CA, frais, ARE, projet, foyer fiscal)
+   - Si CA 77-100 K€ : EURL zone idéale
+   - Si CA &gt; 100 K€ : SASU pour optimisation dividendes
+   - <em>Cible : 80-150 K€ CA an 3</em>
+
+<em>ANNÉE 4+ — OPTIMISATION</em>
+   <em>Statut : SASU avec dividendes ou maintien EURL</em>
+   - Réévaluation annuelle avec expert-comptable
+   - Optimisation rémunération / dividendes
+   - Réflexion holding (LLC en haut pour optimiser cession,
+     dividendes intra-groupe — sujet avancé hors article)
+   - <em>Cible : 100-300 K€ CA stable, freelance senior</em>
+
+<em>ALTERNATIVE LIGHTWEIGHT — PORTAGE SALARIAL</em>
+   - Si tu détestes l'admin et la complexité juridique
+   - 5-10 % CA frais gestion (~5-9 K€/an sur 90 K€ CA)
+   - <em>Avantages</em> : ARE garantie en sortie de mission,
+     régime général, pas de plafond, pas de bilan
+   - <em>Inconvénients</em> : ~10 % CA en moins, dépendance à
+     la société de portage, TJM minimum 250-300 € pour
+     viabilité économique
+   - <em>Pour qui</em> : profils qui valorisent simplicité &gt;
+     optimisation fiscale</div>
+  </div>
+
+  <!-- ============== PIÈGES ============== -->
+  <h2 class="reading"><span class="h2-num">— Bonus</span>5 <em>pièges</em> classiques.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>créer une SASU dès le démarrage « pour faire pro »</em></div>
+    <div class="pitfall-text">Tu te dis <em>« la SASU c'est plus crédible auprès des grands comptes »</em>. Tu crées dès jour 1 sans avoir validé ton acquisition. Tu paies 200-250 € de frais création + ~150-250 €/mois en expert-comptable et paie = 1 800-3 000 €/an de coût fixe. À 25 K€ CA an 1, tu détruis 8-12 % de tes revenus en frais structurels que tu n'avais pas besoin d'avoir. <strong>Correction :</strong> démarre en micro (gratuit, simple). Bascule en SASU seulement quand tu approches 80-100 K€ CA stable. Les grands comptes n'exigent pas SASU pour 80 % des missions — la crédibilité vient de ton positionnement, ta proposition de valeur, tes références (cf article 2.3 suivant) — pas de ton statut juridique.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : <em>rester en micro malgré 60+ % de frais réels</em></div>
+    <div class="pitfall-text">Tu loues un coworking premium (5 K€/an), tu sous-traites une partie de tes missions (20 K€/an), tu as des licences pro (3 K€/an), tu te déplaces (4 K€/an). Total : 32 K€ de frais sur 60 K€ CA = 53 % du CA. Tu restes en micro <em>« par habitude »</em>. Tu paies 22 % de cotisations sur ton CA brut (60 K€) au lieu de 45 % de cotisations sur ton bénéfice réel (28 K€). Calcul : 13 200 € en micro vs 12 600 € en EI au réel + impôt aligné. Tu perds 2-5 K€/an + tu n'as aucune optimisation possible. <strong>Correction :</strong> calcule honnêtement tes frais réels chaque trimestre. Si ratio &gt; 34 % du CA, bascule en EI au réel ou société. Le confort de la micro coûte cher au-delà d'un certain seuil de frais.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>ignorer la franchise TVA et facturer HT par défaut</em></div>
+    <div class="pitfall-text">Tu démarres en micro. Tu factures sans TVA pendant 18 mois (franchise &lt; 37 500 € services). Tu approches 37 500 € CA. Tu continues à facturer sans TVA <em>« parce que tu n'as pas changé »</em>. Tu dépasses le seuil. Tes clients qui sont assujettis TVA réclament leurs factures avec TVA rétroactivement — tu dois leur émettre des avoirs et leur refacturer avec TVA. <em>Mais</em> tu n'as pas pré-collecté la TVA sur les paiements déjà reçus = tu la sors de ta poche. Perte 2-7 K€ ponctuelle + relations clients tendues. <strong>Correction :</strong> dès que tu approches 35 K€ CA, opte volontairement pour l'assujettissement TVA. Ou prévois ta facturation TTC à partir de 30 K€ même si tu es encore en franchise. La transition est plus douce et tu évites les rétroactions. Cf URSSAF tva 2026 pour les seuils exacts.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>oublier les cotisations minimales TNS en EURL/EI</em></div>
+    <div class="pitfall-text">Tu crées une EURL en pensant <em>« si zéro CA, zéro cotisation »</em>. Faux. Régime TNS impose des cotisations minimales &gt; 1 500 €/an même sans rémunération (≈ 130 €/mois). Tu démarres lentement, tu fais 5 K€ CA an 1, tu reçois un appel SSI à 1 800 € de cotisations. Tu ne l'avais pas anticipé. Trésorerie tendu. <strong>Correction :</strong> en EURL/EI au réel, provisione 1 500-2 000 €/an dès la création même sans CA. Si tu démarres lentement et que ton ARE est en jeu, préfère SASU + 0 rémunération (0 cotisation, 0 appel) au lieu d'EURL. Cette différence est documentée par tous les comparatifs sérieux 2026 (Atelier Capital, L'Expert-Comptable, Legalstart).</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : <em>se passer d'un expert-comptable dès qu'on sort de la micro</em></div>
+    <div class="pitfall-text">Tu bascules en EI au réel ou en société pour économiser 80-150 €/mois d'expert-comptable. Tu fais ta compta toi-même via Indy/Tiime. La première année se passe bien. La 2e année tu rates une optimisation IS, tu mal-déclares un dividende, tu oublies une provision. URSSAF/Fisc te corrigent avec pénalités. Coût total : 3-8 K€ + stress + temps perdu sur un sujet qui n'est pas ton métier. <strong>Correction :</strong> dès que tu sors de la micro, prends un expert-comptable spécialisé indépendants (recherche Compta-en-Ligne, L'Expert-Comptable.com, Dougs, ou cabinet local). 80-150 €/mois en moyenne. Ce coût est largement compensé par les optimisations qu'il identifie + la sérénité face aux contrôles. Les outils Indy/Tiime sont excellents pour le quotidien micro mais insuffisants pour les arbitrages de société.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Tu as la grille de décision statut juridique. Pour aller plus loin : <a href="freelance-ou-salariat.html">article 2.1 sur freelance vs salariat</a> (la décision philosophique avant la décision technique). Pour les outils admin freelance 2026 : Indy, Tiime, Shine pour la facturation et compta micro ; Qonto pour banque pro société ; Dougs ou L'Expert-Comptable.com pour expert-comptable en ligne. Pour la suite logique : article 2.3 sur ton offre commerciale, article 2.4 sur tes tarifs (du jour-homme à la valeur), article 2.5 sur tes premiers clients. Pour les outils IA freelance : <a href="guide-claude-debutant-2026.html">Claude</a> (rédaction propositions commerciales propres), <a href="guide-chatgpt-debutant-2026.html">ChatGPT</a> (admin et automatisations), <a href="outils-ia.html">le panorama Niveau V des 81 outils</a>. Pour le panorama complet : <a href="niveau-6-freelance-conseil.html">la rubrique R2 du Niveau VI</a>.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur le choix du statut juridique.</h3>
+    <ol class="recap-points">
+      <li>4 statuts à comparer en 2026 : <strong>(1) micro-entreprise</strong> — régime simplifié EI, plafond 77 700 € services / 188 700 € commerce, charges 22 % CA brut, abattement forfaitaire 34 % BNC, franchise TVA 37 500 €, frais création 0 €. <strong>(2) EI au réel</strong> — pas de plafond, charges TNS ~45 % bénéfice, déduction frais réels, cotisations minimales &gt; 1 500 €/an. <strong>(3) EURL à l'IS</strong> — société, gérant TNS, IS 15 % &lt; 42 500 € puis 25 %, dividendes au-delà 10 % capital → cotisations TNS (piège). <strong>(4) SASU à l'IS</strong> — société, président assimilé salarié, charges ~75-80 % salaire, dividendes 100 % flat tax 31,4 % (avantage clé hauts revenus). <strong>Aucun universellement meilleur.</strong></li>
+      <li>Grille de décision chiffrée par CA (Atelier Capital 2026) : <strong>&lt; 30 K€ :</strong> micro (démarrage). <strong>30-50 K€ :</strong> micro (zone idéale). <strong>50-77 K€ :</strong> micro si frais &lt; 34 % CA, sinon EI au réel. <strong>77-100 K€ :</strong> EURL à l'IS zone idéale avec capital + CCA. <strong>&gt; 100 K€ :</strong> SASU à l'IS pour optimisation dividendes. <strong>Cas particulier ARE :</strong> SASU + 0 rémunération = ARE intégrale maintenue 24 mois — EURL piège car cotisations minimales &gt; 1 500 €/an même sans rémunération.</li>
+      <li>4 critères clés au-delà du CA qui peuvent inverser la recommandation : <strong>(1) frais professionnels réels</strong> — &gt; 34 % CA = bascule réel/société, <strong>(2) ARE en cours</strong> — SASU + 0 rémunération maintient ARE, EURL ne le permet pas, <strong>(3) projet à 3 ans</strong> — embauche/associés/levée → SASU directement, transformation triviale en SAS, <strong>(4) situation familiale et fiscale</strong> — TMI élevé du foyer favorise SASU + dividendes, TMI bas favorise EURL + rémunération. <strong>Une analyse globale ne se fait pas seul·e — expert-comptable spécialisé 80-150 €/mois.</strong></li>
+      <li>Séquence de bascule type 2026 : <strong>An 1</strong> micro (démarrage 25-50 K€), <strong>An 2</strong> micro ou EI au réel (consolidation 50-77 K€), <strong>An 3</strong> EURL ou SASU (structuration 80-150 K€), <strong>An 4+</strong> SASU optimisation dividendes (100-300 K€). <strong>Réforme critique :</strong> ACRE passe de 50 % à 75 % du taux normal au 1<sup>er</sup> juillet 2026 — créer micro AVANT cette date conserve avantage actuel. <strong>Alternative lightweight :</strong> portage salarial (5-10 % CA frais gestion, ARE garantie, simplicité — TJM minimum 250-300 €).</li>
+      <li>5 pièges à éviter : <strong>(1)</strong> créer SASU dès jour 1 <em>« pour faire pro »</em> — 1 800-3 000 €/an de coût fixe inutile, <strong>(2)</strong> rester en micro malgré 60 % frais réels — perte 2-5 K€/an, <strong>(3)</strong> ignorer franchise TVA et facturer HT par défaut au-delà 37 500 € — perte rétroactive 2-7 K€, <strong>(4)</strong> oublier cotisations minimales TNS EURL/EI &gt; 1 500 €/an même sans CA — trésorerie tendu, <strong>(5)</strong> se passer d'expert-comptable dès la sortie de micro — 3-8 K€ de pénalités/an évitables. <strong>Le coût d'un expert-comptable initial (150-250 € audit ponctuel) est dérisoire</strong> face au gain d'optimisation (5-15 K€/an pendant 3-5 ans).</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="niveau-6-freelance-conseil.html">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">2.3 · Définir ton offre commerciale qui se vend</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-6-freelance-conseil.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Freelance et conseil · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

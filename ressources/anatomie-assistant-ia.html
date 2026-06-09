@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L'anatomie d'un assistant IA qui marche. – AutomationBoost</title>
+  <meta name="description" content="Les 5 couches (rôle, process, format, contraintes, cas limites) qui séparent un assistant IA qui tient dans le temps d" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>L'anatomie d'un assistant IA qui marche.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#eab308;">Automatiser & agents</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">L'anatomie d'un assistant IA qui marche.</h1>
+    <p class="lede">Les 5 couches structurantes (Rôle, Process, Format, Contraintes, Edge cases) qui séparent un assistant qui tient 6 mois d'un assistant qui finit oublié en 3 semaines. Avec template universel commenté, applicable Custom GPT, Claude Project, Gemini Gem.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">La plupart des assistants publiés sont médiocres. Ce n'est pas l'outil — il est puissant — c'est la structure. Un assistant qui marche est construit ; un assistant qui rate est improvisé.</p>
+
+    <p>Si ton assistant dérape parfois, oublie une règle ou invente, c'est presque toujours un problème d'architecture. Voici l'anatomie commune des assistants fiables, pour comprendre et corriger le tien.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi 80 % des assistants <em>ratent</em>.</h2>
+
+  <div class="container reading">
+    <p>Les assistants abandonnés en quelques semaines partagent un défaut : des instructions improvisées au fil de l'eau, sans architecture pensée en amont. On répond au hasard aux questions du Builder, qui rédige des instructions bancales — et les ratés s'accumulent.</p>
+
+    <p>Voici les composants d'un assistant bien construit, dans l'ordre.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Les <em>5 couches</em>, dans l'ordre.</h2>
+
+  <div class="container reading">
+    <p>Voici les 5 couches structurantes. <strong>L'ordre est crucial.</strong> Le modèle pondère plus fort les premières instructions ; en cas de conflit, c'est ce qui est en haut qui gagne. Donc on commence par le Rôle (la fondation) et on termine par les Edge cases (la couche défensive).</p>
+  </div>
+
+  <div class="layer-card">
+    <div class="layer-num">— Couche 1 / 5 · Fondation</div>
+    <div class="layer-title">Le <em>Rôle</em> — qui est l'assistant ?</div>
+    <div class="layer-text">Réponds en 2 phrases : <strong>(1) qui est l'assistant</strong> (rôle métier précis, pas <em>« helpful assistant »</em>), <strong>(2) qui il aide</strong> (audience cible, pas <em>« n'importe qui »</em>). <em>Bon :</em> <em>« Tu es un correcteur de propositions commerciales pour des freelances IT francophones qui rédigent des devis B2B. »</em> <em>Mauvais :</em> <em>« Tu es un assistant qui aide à écrire. »</em><br><br>
+Pourquoi c'est la fondation : le rôle précis active des connaissances et un registre de réponse spécifique dans le modèle. Plus le rôle est nommé précisément, plus la qualité de réponse monte automatiquement, sans même ajouter de règles. C'est le levier le plus économique. Inutile de dire <em>« tu es expert »</em>, <em>« tu es professionnel »</em> — ces qualificatifs valent peu. Ce qui compte : un nom métier reconnaissable et une audience cible définie.</div>
+  </div>
+
+  <div class="layer-card">
+    <div class="layer-num">— Couche 2 / 5 · Mécanique</div>
+    <div class="layer-title">Le <em>Process</em> — comment il pense ?</div>
+    <div class="layer-text">Décris la séquence d'actions à suivre quand l'utilisateur fait une demande standard. <strong>Format step-by-step explicite.</strong> <em>« Quand l'utilisateur soumet une proposition à corriger : (1) lis-la entièrement avant tout commentaire, (2) identifie les 3 plus gros problèmes (clarté, prix, structure), (3) propose des reformulations concrètes, (4) termine par : "Veux-tu que je travaille un point en particulier ?" »</em><br><br>
+Pourquoi c'est crucial : sans process explicite, le modèle improvise un ordre de traitement qui varie d'une fois à l'autre — d'où l'incohérence d'un assistant à l'autre. Avec un process explicite, tu garanties la même séquence à chaque conversation. Règle : utilise des numéros (1, 2, 3) plutôt que des bullets — la séquence est plus claire pour le modèle et il respecte mieux l'ordre. Et utilise <em>« quand X arrive → fais Y »</em> pour les branches conditionnelles.</div>
+  </div>
+
+  <div class="layer-card">
+    <div class="layer-num">— Couche 3 / 5 · Sortie</div>
+    <div class="layer-title">Le <em>Format</em> — comment il rend ?</div>
+    <div class="layer-text">Spécifie le format de sortie attendu. Sans ça, le modèle utilise un format par défaut (souvent du markdown verbeux), inadapté à ton usage. <em>« Réponds en 3 sections séparées par des intertitres : ## Diagnostic / ## Reformulation proposée / ## Justification. Garde la Reformulation prête à copier-coller, sans préambule. »</em><br><br>
+Si ton assistant alimente un système en aval (Zap, automation, copier-coller dans un autre outil), <strong>spécifie un format strict</strong> — JSON, table markdown, liste numérotée, etc. Et précise la longueur attendue (<em>« max 200 mots »</em>, <em>« 3 puces »</em>). C'est la couche que la majorité des constructeurs oublient — résultat, l'assistant donne des réponses correctes mais inutilisables sans retraitement manuel à chaque fois. Format spécifié = gain de temps réel.</div>
+  </div>
+
+  <div class="layer-card">
+    <div class="layer-num">— Couche 4 / 5 · Garde-fous</div>
+    <div class="layer-title">Les <em>Contraintes</em> — ce qu'il ne fait jamais</div>
+    <div class="layer-text">Liste 3 à 5 contraintes strictes. <strong>Privilégie les contraintes positives</strong> (<em>« Garde toujours les phrases sous 25 mots »</em>) plutôt que les interdictions (<em>« N'écris pas de longues phrases »</em>) — les modèles 2026 suivent mieux les instructions positives concrètes. Quand une interdiction est nécessaire (sécurité, donnée sensible), formule-la clairement et brièvement.<br><br>
+Exemples typiques de contraintes utiles : <em>« Ne jamais inventer un chiffre — si la donnée n'est pas disponible, dis "[à vérifier]". »</em> <em>« Ne jamais signer un email à la place de l'utilisateur — laisse la signature vide. »</em> <em>« Toujours répondre en français. »</em> <em>« Ne jamais faire de promesses commerciales (délais, prix) sans validation explicite de l'utilisateur. »</em> Limite-toi à 3-5 contraintes vraiment importantes. Au-delà, le modèle commence à oublier les règles du milieu et tu perds en cohérence.</div>
+  </div>
+
+  <div class="layer-card">
+    <div class="layer-num">— Couche 5 / 5 · Défense</div>
+    <div class="layer-title">Les <em>Edge cases</em> — hors-sujet et incertitude</div>
+    <div class="layer-text">Deux scénarios à cadrer explicitement : <strong>(1) la demande hors périmètre</strong> et <strong>(2) la donnée manquante / l'incertitude</strong>.<br><br>
+<em>Hors périmètre :</em> que doit faire l'assistant si quelqu'un lui demande quelque chose en dehors de son rôle ? Sans cadrage, il répond quand même (en mode ChatGPT générique), ce qui pollue ses réponses futures et donne l'impression d'un assistant <em>« qui sait tout »</em> alors qu'il est calibré sur un cas précis. <em>« Si la demande sort du périmètre [propositions commerciales B2B], réponds : "Je suis spécialisé sur la correction de propositions. Pour [autre besoin], utilise plutôt ChatGPT ou Claude directement." Ne tente pas une réponse générique. »</em><br><br>
+<em>Incertitude :</em> que doit faire l'assistant s'il manque une info essentielle pour bien répondre ? Sans cadrage, il <strong>devine avec confiance</strong> — le défaut le plus coûteux d'un assistant mal cadré. <em>« Si tu n'as pas une donnée nécessaire (contexte client, budget, deadline), pose la question avant de répondre. Ne devine pas. Si tu n'es pas sûr d'une recommandation, dis-le explicitement. »</em></div>
+  </div>
+
+  <!-- ============== 3. TEMPLATE UNIVERSEL ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Le <em>template universel</em> commenté.</h2>
+
+  <div class="container reading">
+    <p>Voici le template qui assemble les 5 couches dans le bon ordre. Applicable Custom GPT, Claude Project (champ <em>« Custom Instructions »</em>), Gemini Gem (champ <em>« Instructions »</em>). Les sections en <em>orange</em> sont à adapter à ton cas. Les commentaires en gris (commentaires <em>// gris</em>) ne sont pas dans le prompt — c'est juste pour t'expliquer.</p>
+  </div>
+
+  <div class="codeblock">
+<div class="codeblock-label">— Template universel · 5 couches</div>
+<div class="codeblock-content"><span class="comment">// COUCHE 1 — Le rôle d'abord. C'est la fondation.</span>
+## Rôle
+Tu es <em>[rôle métier précis : Correcteur de propositions commerciales pour freelances IT B2B francophones]</em>.
+Tu aides <em>[audience cible : des freelances tech qui rédigent leurs devis seuls et veulent les fiabiliser avant envoi]</em>.
+
+<span class="comment">// COUCHE 2 — Le process step-by-step. Numéros, pas bullets.</span>
+## Process
+Quand l'utilisateur soumet une proposition à corriger :
+1. Lis-la entièrement avant tout commentaire.
+2. Identifie les 3 plus gros problèmes (clarté du livrable, justification du prix, calendrier réaliste).
+3. Propose des reformulations concrètes pour chaque problème, prêtes à copier-coller.
+4. Termine par : <em>« Veux-tu que je travaille un point en particulier ? »</em>
+
+<span class="comment">// COUCHE 3 — Le format de sortie. Précis, sinon le modèle improvise.</span>
+## Format de sortie
+- Réponds en 3 sections séparées par des intertitres :
+  ## Diagnostic (3 puces max)
+  ## Reformulation proposée (texte prêt à copier-coller, sans préambule)
+  ## Justification (1-2 phrases par modification)
+- Garde la Reformulation sous 300 mots.
+- Pas de markdown excessif — phrases en prose dans Reformulation.
+
+<span class="comment">// COUCHE 4 — Les contraintes strictes. 3-5 max.</span>
+## Contraintes
+- Ne jamais inventer un chiffre (prix, deadline) — si non fourni, écris <em>« [à confirmer par toi] »</em>.
+- Ne jamais ajouter de promesses commerciales que l'utilisateur n'a pas écrites.
+- Toujours en français.
+- Garder le ton de l'utilisateur (si direct → reste direct, si formel → reste formel).
+
+<span class="comment">// COUCHE 5 — Les edge cases. Hors-sujet et incertitude.</span>
+## Hors périmètre
+Si la demande sort de la correction de propositions commerciales B2B
+(ex : traduction, recherche d'info, rédaction de contrat juridique) :
+réponds <em>« Je suis spécialisé sur la correction de propositions B2B. Pour [autre besoin],
+utilise ChatGPT ou Claude directement. »</em>
+Ne tente pas une réponse générique.
+
+## Gestion de l'incertitude
+Si une donnée essentielle manque (contexte client, budget, livrable précis),
+pose la question avant de répondre. Ne devine pas.
+Si tu n'es pas sûr d'une recommandation, dis-le explicitement
+plutôt que de paraître certain.</div>
+  </div>
+
+  <div class="container reading">
+    <p>Ce template fait environ 250 mots une fois adapté. <strong>C'est le bon ordre de grandeur.</strong> En dessous de 150 mots, tu n'as pas assez de précision et tu rates des règles. Au-dessus de 500 mots, tu rentres dans la zone de <em>« lost in the middle »</em> où le modèle commence à oublier les règles du milieu. La sweet spot 2026 est 200-400 mots structurés en 5 sections claires.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Quand utiliser des balises XML ?</div>
+    <p>Si tu travailles avec Claude (Claude Projects, API), tu peux remplacer les <code>## Section</code> markdown par des balises XML : <code>&lt;role&gt;</code>, <code>&lt;process&gt;</code>, <code>&lt;format&gt;</code>, <code>&lt;constraints&gt;</code>, <code>&lt;edge_cases&gt;</code>. Claude est entraîné spécifiquement pour bien parser ces balises. Pour Custom GPTs (OpenAI) et Gemini Gems, le markdown <code>##</code> fonctionne mieux. Cette différence est documentée dans les guides Anthropic et OpenAI 2026 — pas un détail esthétique, ça change réellement la qualité de suivi des instructions.</p>
+  </div>
+
+  <!-- ============== 4. TESTER ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Les <em>5 tests</em> qui valident l'anatomie.</h2>
+
+  <div class="container reading">
+    <p>Une fois ton assistant construit avec les 5 couches, valide chaque couche avec un test ciblé. Chaque test isole une couche — si un test échoue, tu sais quelle couche corriger. Beaucoup plus efficient que des tests vagues qui ne te disent pas quoi changer.</p>
+  </div>
+
+  <div class="layer-card">
+    <div class="layer-num">— Test couche 1 — Rôle</div>
+    <div class="layer-title"><em>Pose une question identité</em> — la réponse révèle ton rôle</div>
+    <div class="layer-text">Demande : <em>« Qui es-tu et qui aides-tu ? »</em> L'assistant doit reformuler ton Rôle clairement, sans hésitation. S'il répond <em>« Je suis un assistant IA qui peut t'aider sur plein de sujets »</em>, ta couche Rôle est trop générique — précise plus.</div>
+  </div>
+
+  <div class="layer-card">
+    <div class="layer-num">— Test couche 2 — Process</div>
+    <div class="layer-title">Le <em>cas nominal</em> — la séquence doit se voir</div>
+    <div class="layer-text">Donne-lui un cas standard. Tu dois reconnaître ta séquence définie. Étape 1 (lecture), étape 2 (identification), étape 3 (reformulation), étape 4 (relance). Si l'ordre est incohérent ou s'il saute une étape, ta couche Process n'est pas assez explicite.</div>
+  </div>
+
+  <div class="layer-card">
+    <div class="layer-num">— Test couche 3 — Format</div>
+    <div class="layer-title">Le <em>format strict</em> — il doit le respecter</div>
+    <div class="layer-text">Vérifie la sortie : as-tu les 3 sections (Diagnostic / Reformulation / Justification) ? La Reformulation est-elle prête à copier-coller, sans préambule ? Si non, ta couche Format est trop floue — soit elle manque, soit elle est noyée dans d'autres règles.</div>
+  </div>
+
+  <div class="layer-card">
+    <div class="layer-num">— Test couche 4 — Contraintes</div>
+    <div class="layer-title">Le <em>cas piégé</em> — il doit refuser d'inventer</div>
+    <div class="layer-text">Donne-lui une proposition incomplète où une donnée manque (le prix n'est pas écrit, par exemple). Il doit écrire <em>« [à confirmer par toi] »</em>, pas inventer un prix. S'il invente, ta contrainte n'est pas assez ferme — passe-la en formulation positive (<em>« Toujours écrire [à confirmer] quand un chiffre manque »</em>) plutôt que négative.</div>
+  </div>
+
+  <div class="layer-card">
+    <div class="layer-num">— Test couche 5 — Edge cases</div>
+    <div class="layer-title">Le <em>hors-sujet</em> — il doit rediriger</div>
+    <div class="layer-text">Demande-lui quelque chose hors de son périmètre : <em>« Comment je migre mon site WordPress vers Webflow ? »</em> à un correcteur de propositions. Il doit appliquer ta clause Hors périmètre — répondre poliment qu'il est spécialisé et rediriger vers ChatGPT générique. S'il répond quand même au sujet, ta couche Edge cases est trop faible — formule-la explicitement (<em>« Ne tente pas une réponse générique »</em>).</div>
+  </div>
+
+  <div class="container reading">
+    <p>Si les 5 tests passent, ton assistant a une <strong>anatomie saine</strong>. Il va tenir dans le temps. Si un test échoue, tu sais exactement quelle couche corriger — pas besoin de réécrire tout. C'est l'avantage de la structure : <strong>le débogage devient ciblé</strong>.</p>
+  </div>
+
+  <!-- ============== PIÈGES ============== -->
+  <h2 class="reading"><span class="h2-num">— Bonus</span>Les <em>5 erreurs structurelles</em> qui ratent l'anatomie.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Erreur 1 : <em>commencer par les contraintes au lieu du rôle</em></div>
+    <div class="pitfall-text">Tu commences ton prompt par <em>« Tu ne fais jamais X. Tu n'écris jamais Y. Tu refuses Z. »</em> Le modèle entre en mode défensif sans avoir compris qui il est. Résultat : assistant frileux qui sur-applique les interdictions et rate des cas valides. <strong>Correction :</strong> commence toujours par le Rôle. Les contraintes viennent en couche 4, après que l'assistant sait qui il est et comment il pense.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Erreur 2 : <em>process en bullets désordonnés au lieu de numérotation</em></div>
+    <div class="pitfall-text">Tu listes le process avec des bullets <em>(- fais ça, - puis ça, - aussi ça)</em>. Le modèle perd l'ordre. Tu lui demandes l'étape 2 mais il commence par l'étape 4 parce qu'elle lui paraît plus pertinente. <strong>Correction :</strong> numérotation explicite (1, 2, 3) pour les séquences. Bullets uniquement pour les listes non-ordonnées (contraintes, format de sortie). Petite règle qui change beaucoup en pratique.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Erreur 3 : <em>oublier la couche Format de sortie</em></div>
+    <div class="pitfall-text">C'est la couche la plus souvent oubliée par les débutants. Tu as un Rôle clair, un Process net, des Contraintes solides — mais l'assistant rend ses réponses dans un format markdown verbeux que tu dois reformater à chaque fois (suppression des intertitres, des emojis, des phrases d'intro). Tu perds 30 secondes par usage. Sur 100 usages, c'est 50 minutes perdues. <strong>Correction :</strong> spécifie systématiquement le format de sortie. <em>« Réponds en X sections, intertitres en ## H2, sortie principale prête à copier-coller sans préambule, max N mots. »</em></div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Erreur 4 : <em>contraintes en négatif partout</em></div>
+    <div class="pitfall-text">Tu listes les contraintes en mode interdiction : <em>« Ne fais pas X. Ne dis pas Y. Ne génère pas Z. »</em> Les modèles 2026 (GPT-5.4/5.5, Claude 4.6/4.7, Gemini) sont entraînés à mieux suivre les instructions positives. Une longue liste d'interdictions peut paradoxalement amener le modèle à mentionner ce qu'il ne devrait pas — par effet d'amorçage. <strong>Correction :</strong> reformule chaque interdiction en positif quand c'est possible. <em>« N'invente pas de chiffre »</em> → <em>« Si un chiffre manque, écris [à confirmer]. »</em> Plus efficace, plus concret, plus suivi.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Erreur 5 : <em>oublier la couche Edge cases jusqu'à ce qu'un cas dérape en prod</em></div>
+    <div class="pitfall-text">Tu construis ton assistant, tu testes les cas nominaux, ça marche, tu déploies. Une semaine plus tard : un utilisateur lui demande quelque chose hors-sujet, l'assistant répond comme un ChatGPT générique (sans contexte de ton rôle). Un autre cas : il manque une donnée, l'assistant invente une valeur plausible mais fausse, qui se retrouve dans un email envoyé. <strong>Correction :</strong> ne déploie jamais sans cadrer explicitement les Edge cases dès la couche 5 du template. Les cas atypiques sont rares mais coûteux quand ils arrivent. La couche 5 est ta protection.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>L'écart de qualité entre deux assistants construits par deux personnes différentes sur la même plateforme avec le même cas d'usage vient à <strong>80 % de la structure des Instructions</strong>, et à 20 % seulement des knowledge files et des capabilities. Cet écart se voit immédiatement à l'usage : un assistant <em>« qui marche vraiment »</em> est cohérent, prévisible, refuse proprement le hors-sujet, ne devine pas dans le doute. Un assistant <em>« construit en improvisant »</em> dérape de manière imprévue 1 fois sur 5 et finit oublié. <strong>La discipline anatomique des 5 couches est ce qui distingue les deux.</strong> Ce n'est pas du sur-engineering — c'est le minimum pour qu'un assistant tienne dans la durée. Si tu n'as appliqué qu'une seule chose de cet article, applique l'ordre : Rôle, Process, Format, Contraintes, Edge cases. Tu vas voir la différence dès le prochain assistant que tu construis.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Tu maîtrises maintenant l'anatomie d'un assistant qui marche. Pour aller plus loin : les couches Knowledge et Capabilities sont approfondies dans l'article 1.4 (Knowledge Files) et 1.5 (Actions et APIs). Pour tester et maintenir un assistant dans la durée : article 1.6 (tester, débugger, maintenir). Pour partager proprement avec une équipe : article 1.7 (partager et sécuriser). Pour le choix de plateforme : <a href="custom-gpts-projects-gems.html">article 1.1 (comparatif Custom GPTs / Projects / Gems)</a>. Pour ton premier assistant pas-à-pas : <a href="construire-premier-custom-gpt.html">article 1.2 (premier Custom GPT en 30 min)</a>. Pour les bases du prompt direct (sans assistant construit) : retour aux articles du <a href="#niveau-2.html">Niveau II sur l'anatomie d'un prompt</a>.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur l'anatomie d'un assistant.</h3>
+    <ol class="recap-points">
+      <li>80 % des assistants ratent par défaut structurel, pas par manque d'outil. Instructions improvisées au fil de l'eau, empilement réactif de règles, plus d'architecture après 800 mots — abandon en 6 semaines. La structure prévient ça dès le départ.</li>
+      <li>5 couches obligatoires dans cet ordre : (1) Rôle (qui est l'assistant + qui il aide, précis pas générique), (2) Process (séquence numérotée step-by-step de ce qu'il fait), (3) Format de sortie (la couche la plus souvent oubliée), (4) Contraintes (3-5 max, en positif quand possible), (5) Edge cases (hors-sujet + gestion incertitude). L'ordre compte — le modèle pondère plus fort le début.</li>
+      <li>Sweet spot 2026 : 200-400 mots structurés en 5 sections claires. Sous 150 mots = trop flou. Au-dessus de 500 mots = effet « lost in the middle » où le modèle oublie les règles du milieu. Pour Claude, balises XML &lt;role&gt;&lt;process&gt; etc. ; pour Custom GPTs et Gemini, markdown ##.</li>
+      <li>5 tests ciblés validés couche par couche : (1) qui es-tu ? révèle Rôle, (2) cas nominal révèle Process, (3) sortie révèle Format, (4) cas piégé révèle Contraintes, (5) hors-sujet révèle Edge cases. Si un test échoue, tu sais quelle couche corriger — débuggage ciblé, pas réécriture totale.</li>
+      <li>5 erreurs structurelles à éviter : commencer par les contraintes au lieu du rôle, process en bullets au lieu de numérotation, oublier la couche Format, contraintes en négatif partout, oublier les Edge cases jusqu'à ce qu'un cas dérape en prod. La discipline anatomique = 80 % de l'écart de qualité entre deux assistants. Pas du sur-engineering — le minimum pour qu'un assistant tienne dans la durée.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="niveau-4-construire-assistants.html">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">1.4 · Les Knowledge Files (à venir)</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-4-construire-assistants.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Construire tes assistants · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

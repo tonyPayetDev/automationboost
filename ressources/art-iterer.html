@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L'art d'itérer : ne jamais accepter la première réponse. – AutomationBoost</title>
+  <meta name="description" content="La première réponse de l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>L'art d'itérer : ne jamais accepter la première réponse.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#34d399;">Mieux prompter</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">L'art d'itérer : ne jamais accepter la première réponse.</h1>
+    <p class="lede">La première réponse de l'IA est un brouillon, pas un livrable. Comment ajuster sans perdre de temps : 7 formulations qui transforment une réponse moyenne en bonne réponse.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Les utilisateurs efficaces ne posent pas de meilleurs prompts : ils itèrent mieux. Même avec un bon prompt, l'IA livre souvent une première réponse à côté.</p>
+
+    <p>Savoir rebondir sur une réponse imparfaite vaut mieux que chercher le prompt parfait du premier coup. Voici l'art d'itérer.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi la première réponse <em>est rarement la bonne</em>.</h2>
+
+  <div class="container reading">
+    <p>L'IA ne peut pas deviner du premier coup tout ce que tu as en tête : sa première réponse est une proposition de départ, pas un aboutissement. Vouloir le prompt parfait d'emblée est une impasse — c'est dans l'aller-retour que la réponse se précise.</p>
+
+    <p>Voici comment mener cet aller-retour efficacement.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 6</span>Le réflexe à <em>briser</em>.</h2>
+
+  <div class="container reading">
+    <p>Quand la première réponse n'est pas bonne, tu as deux options. La majorité des débutants choisissent la mauvaise.</p>
+  </div>
+
+  <h3 class="reading">La mauvaise option : tout recommencer</h3>
+
+  <div class="container reading">
+    <p>Tu effaces la conversation, tu retravailles ton prompt initial, tu envoies une nouvelle version. C'est tentant parce que tu as l'impression de <em>« faire propre »</em>. C'est en réalité une perte de temps.</p>
+
+    <p>Pourquoi ? Parce que la première réponse contenait <strong>de l'information</strong>. Elle te disait ce que l'IA a compris de ton prompt initial. En recommençant à zéro, tu jettes cette information et tu reviens à une page blanche. Tu vas refaire des erreurs proches, parce que tu n'as pas appris pourquoi la première version n'a pas marché.</p>
+  </div>
+
+  <h3 class="reading">La bonne option : itérer dans la conversation</h3>
+
+  <div class="container reading">
+    <p>Tu restes dans la conversation. Tu identifies précisément <em>ce qui ne va pas</em>. Tu demandes une correction ciblée. L'IA garde tout le contexte précédent en mémoire (elle n'oublie pas la conversation), elle modifie seulement ce que tu pointes, et tu obtiens en 30 secondes ce qui t'aurait pris 5 minutes en recommençant.</p>
+
+    <p>Le test mental : <em>« Est-ce que je peux décrire en une phrase ce qui ne va pas ? »</em>. Si oui, itère. Si tu ne sais même pas dire ce qui ne va pas, alors recommencer le prompt peut être justifié — mais c'est rare.</p>
+  </div>
+
+  <!-- ============== 3. 4 TYPES D'ITÉRATION ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 6</span>Les <em>4 types</em> d'itération.</h2>
+
+  <div class="container reading">
+    <p>Toute itération utile rentre dans l'une de ces 4 catégories. Identifier le bon type avant de formuler ta demande te fait gagner un cycle d'aller-retour.</p>
+  </div>
+
+  <div class="iter-type">
+    <div class="iter-type-num">— TYPE 1</div>
+    <div class="iter-type-name">Calibrer (longueur, format, ton)</div>
+    <div class="iter-type-desc">La réponse traite le bon sujet, mais la forme ne va pas. Trop longue, trop courte, trop formelle, mauvais format de sortie. C'est l'itération la plus rapide et la plus fréquente.</div>
+    <div class="iter-type-when"><strong>Quand l'utiliser</strong>Le contenu est juste, mais tu n'as pas envie de le copier-coller tel quel. <em>« C'est trop long, raccourcis de moitié. »</em>, <em>« Plus direct, sans formules de politesse. »</em>, <em>« Mets ça en tableau plutôt qu'en prose. »</em></div>
+  </div>
+
+  <div class="iter-type">
+    <div class="iter-type-num">— TYPE 2</div>
+    <div class="iter-type-name">Approfondir (creuser un point)</div>
+    <div class="iter-type-desc">La réponse globale est correcte, mais une partie reste superficielle. Tu veux plus de détails sur un aspect précis sans relancer le sujet entier.</div>
+    <div class="iter-type-when"><strong>Quand l'utiliser</strong>Tu vois qu'un point mérite d'être creusé mais ne l'a pas été. <em>« Développe le point 2 avec un exemple concret. »</em>, <em>« Pourquoi cette solution plutôt qu'une autre ? Détaille. »</em></div>
+  </div>
+
+  <div class="iter-type">
+    <div class="iter-type-num">— TYPE 3</div>
+    <div class="iter-type-name">Recadrer (changer d'angle)</div>
+    <div class="iter-type-desc">La réponse n'est pas mauvaise, mais elle prend un angle qui ne te convient pas. Tu veux le même sujet vu sous un autre angle, sans tout reprendre depuis le début.</div>
+    <div class="iter-type-when"><strong>Quand l'utiliser</strong>L'IA a mal interprété ton intention, ou son angle est trop générique. <em>« Reprends mais du point de vue du destinataire, pas du mien. »</em>, <em>« Reformule comme si tu étais sceptique de cette approche. »</em></div>
+  </div>
+
+  <div class="iter-type">
+    <div class="iter-type-num">— TYPE 4</div>
+    <div class="iter-type-name">Corriger (factuel, logique, style)</div>
+    <div class="iter-type-desc">Quelque chose est faux ou maladroit. Une donnée chiffrée incorrecte, une formulation lourde, une logique bancale. Tu pointes la zone et tu demandes une correction ciblée.</div>
+    <div class="iter-type-when"><strong>Quand l'utiliser</strong>Tu vois précisément l'erreur. <em>« La date que tu cites est fausse, vérifie. »</em>, <em>« Tu utilises 3 fois le mot "ravi", remplace. »</em>, <em>« L'argument 2 contredit l'argument 1, ajuste. »</em></div>
+  </div>
+
+  <!-- ============== 4. 7 FORMULATIONS ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 6</span>7 formulations qui <em>changent tout</em>.</h2>
+
+  <div class="container reading">
+    <p>Voici les sept formulations à connaître par cœur. Chacune correspond à un cas typique. Mémorise-les — au début tu y penses, après deux semaines tu les utilises sans réfléchir.</p>
+  </div>
+
+  <div class="formula-block">
+    <div class="formula-card">
+      <div class="formula-num">1</div>
+      <div class="formula-content">
+        <div class="formula-phrase">Garde le fond, mais réécris en X mots maximum.</div>
+        <div class="formula-when"><strong>Cas type :</strong> la réponse est trop longue mais le contenu est bon. La formule force l'IA à compresser sans changer le sens.</div>
+      </div>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-num">2</div>
+      <div class="formula-content">
+        <div class="formula-phrase">Reprends, mais cette fois avec un ton [direct / chaleureux / sceptique / ferme].</div>
+        <div class="formula-when"><strong>Cas type :</strong> le ton ne te convient pas. Au lieu de tout réécrire, tu pointes uniquement la dimension à modifier.</div>
+      </div>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-num">3</div>
+      <div class="formula-content">
+        <div class="formula-phrase">Approfondis le point [X] uniquement, le reste est ok.</div>
+        <div class="formula-when"><strong>Cas type :</strong> 80 % de la réponse est bonne, 20 % est superficielle. Tu cibles précisément la zone à creuser sans re-générer tout.</div>
+      </div>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-num">4</div>
+      <div class="formula-content">
+        <div class="formula-phrase">Reformule sans utiliser [mot / formule / structure].</div>
+        <div class="formula-when"><strong>Cas type :</strong> l'IA a un tic rédactionnel ("il est important de", "en effet", emojis...). La contrainte négative est très efficace pour les supprimer.</div>
+      </div>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-num">5</div>
+      <div class="formula-content">
+        <div class="formula-phrase">Donne 3 versions différentes : une plus [X], une plus [Y], une plus [Z].</div>
+        <div class="formula-when"><strong>Cas type :</strong> tu hésites entre plusieurs angles. L'IA te livre les variantes en parallèle, tu choisis la meilleure base et tu itères dessus.</div>
+      </div>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-num">6</div>
+      <div class="formula-content">
+        <div class="formula-phrase">Critique ta propre réponse comme si tu étais [profil exigeant]. Que reprocherait-il ?</div>
+        <div class="formula-when"><strong>Cas type :</strong> tu n'arrives pas à identifier ce qui cloche. L'IA est étonnamment bonne pour critiquer ses propres sorties si tu lui donnes un angle critique précis.</div>
+      </div>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-num">7</div>
+      <div class="formula-content">
+        <div class="formula-phrase">Recommence depuis zéro avec cette nouvelle contrainte : [contrainte précise].</div>
+        <div class="formula-when"><strong>Cas type :</strong> ta première réponse t'a fait réaliser ce qui te manque vraiment. Tu fais repartir l'IA en intégrant cette nouvelle compréhension, sans avoir à tout réécrire.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ces formulations marchent parce qu'elles sont précises</div>
+    <p>Aucune ne dit <em>« c'est pas bien, refais »</em>. Toutes <strong>pointent exactement ce qui doit changer</strong>. C'est le principe de l'itération efficace : ne jamais demander à l'IA de deviner ce qui ne va pas. Toujours nommer le défaut et la direction de correction.</p>
+  </div>
+
+  <!-- ============== 5. SEUIL ============== -->
+  <h2 class="reading"><span class="h2-num">— 5 / 6</span>Quand <em>abandonner</em> et tout reprendre.</h2>
+
+  <div class="container reading">
+    <p>L'itération a une limite. Au bout d'un moment, si la réponse n'est toujours pas satisfaisante, ça veut dire que ton prompt initial était fondamentalement mal posé. À ce stade, recommencer est plus rapide que continuer à itérer.</p>
+  </div>
+
+  <h3 class="reading">Le seuil des 3 itérations</h3>
+
+  <div class="container reading">
+    <p>La règle pratique : <strong>après 3 itérations qui n'ont pas convergé vers ta cible, arrête</strong>. Ouvre une nouvelle conversation. Reformule ton prompt initial en intégrant ce que tu as appris des 3 itérations. C'est presque toujours plus efficace que d'enchaîner une 4ème itération.</p>
+
+    <p>Pourquoi ce seuil ? Parce qu'au-delà de 3 itérations, la conversation accumule des contradictions. Tu as dit <em>« plus court »</em>, puis <em>« plus de détails sur le point 2 »</em>, puis <em>« mais reste sous 200 mots »</em>. L'IA essaie de respecter toutes les contraintes simultanément, ce qui devient ingérable. Mieux vaut repartir avec un prompt qui contient directement la bonne synthèse de tes besoins.</p>
+  </div>
+
+  <h3 class="reading">Le signe qui doit te faire abandonner avant 3 itérations</h3>
+
+  <div class="container reading">
+    <p>Si la première réponse t'amène à te dire <em>« en fait, ce n'est pas du tout ce que je voulais »</em> (pas <em>« c'est presque ça »</em>, mais <em>« je me suis trompé de sujet »</em>), arrête immédiatement. C'est le signe que ton prompt initial visait à côté. Aucune itération ne va corriger ça — il faut reformuler le prompt.</p>
+  </div>
+
+  <!-- ============== 6. EXEMPLE COMPLET ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 6 / 6</span>Exemple complet : <em>du brouillon au livrable</em>.</h2>
+
+  <div class="container reading">
+    <p>Voici un cas réel d'itération en 3 étapes. Tu vas voir que chaque étape ne prend que quelques secondes, et que l'écart entre le résultat final et la première réponse est énorme.</p>
+  </div>
+
+  <div class="demo-flow">
+    <div class="demo-step prompt">
+      <div class="demo-step-label">— Prompt initial (PTCF appliqué)</div>
+      <div class="demo-step-text">Tu es un coach en management avec 15 ans d'expérience. Ta tâche : rédige-moi un message Slack pour féliciter un membre de mon équipe (Sarah) qui vient de terminer un gros projet. Contexte : équipe de 8 personnes, on est en chat public, je veux que ce soit visible mais pas embarrassant pour elle. Format : 3-4 phrases, ton chaleureux mais pro.</div>
+    </div>
+
+    <div class="demo-step response">
+      <div class="demo-step-label">— Réponse 1 (générique)</div>
+      <div class="demo-step-text">Bravo Sarah pour ton excellent travail sur ce projet ! Ta rigueur et ton implication ont vraiment fait la différence, et je voulais le souligner publiquement. C'est un bel accomplissement et l'équipe est fière de t'avoir parmi nous. Encore félicitations ! 🎉</div>
+    </div>
+
+    <div class="demo-step iteration">
+      <div class="demo-step-label">— Itération 1 (calibrer le ton)</div>
+      <div class="demo-step-text">Reformule sans utiliser les mots "rigueur", "implication" et "accomplissement" — ce sont des clichés. Sans emoji. Et garde un ton plus naturel, comme si je parlais à voix haute.</div>
+    </div>
+
+    <div class="demo-step response">
+      <div class="demo-step-label">— Réponse 2</div>
+      <div class="demo-step-text">Bravo Sarah, tu as géré ce projet avec une vraie maîtrise. Le résultat parle de lui-même. Merci pour ce que tu as apporté à l'équipe sur les 3 derniers mois. Bien joué.</div>
+    </div>
+
+    <div class="demo-step iteration">
+      <div class="demo-step-label">— Itération 2 (cibler un détail)</div>
+      <div class="demo-step-text">Mieux. Mais "le résultat parle de lui-même" est encore un cliché. Remplace par quelque chose de plus spécifique au projet (j'ai dit que c'était un gros projet — donne un signe que tu sais ce qui était difficile dedans).</div>
+    </div>
+
+    <div class="demo-step response">
+      <div class="demo-step-label">— Réponse 3 (livrable)</div>
+      <div class="demo-step-text">Bravo Sarah, tu as géré ce projet avec une vraie maîtrise — surtout la partie négociation avec le client, qui n'était pas simple. Merci pour ce que tu as apporté à l'équipe sur les 3 derniers mois. Bien joué.</div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>Trois étapes. Moins de deux minutes au total. Le résultat final est <strong>indistinguable de quelque chose que tu aurais écrit toi-même</strong> — alors que la première version sentait l'IA générique à 100 mètres.</p>
+
+    <p>Note l'asymétrie : si tu avais accepté la première réponse, tu aurais soit envoyé un message qui sonne faux, soit passé 5 minutes à le réécrire à la main. Avec deux itérations ciblées de 15 secondes chacune, tu obtiens un message authentique sans effort.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ce que tu vas voir dans le prochain article</div>
+    <p>Cet article t'a donné les outils pour <em>corriger</em> une réponse. Le prochain — l'<strong>article-pilier</strong> de la rubrique — te donne les <strong>12 mots-clés</strong> à mettre directement dans ton prompt initial pour ne pas avoir à itérer aussi souvent. Le vocabulaire de précision que les utilisateurs efficaces utilisent sans y penser.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur l'art d'itérer.</h3>
+    <ol class="recap-points">
+      <li>La première réponse est presque toujours un brouillon. C'est mathématique, pas un défaut de l'IA.</li>
+      <li>Itère dans la conversation au lieu de recommencer un nouveau prompt. L'IA garde tout le contexte précédent.</li>
+      <li>Identifie le type d'itération avant de formuler : calibrer, approfondir, recadrer, corriger. Un type = une formule.</li>
+      <li>Pointe précisément ce qui doit changer. Ne dis jamais « refais ». Dis « change X pour Y ».</li>
+      <li>Au-delà de 3 itérations sans convergence, abandonne et reformule un nouveau prompt. C'est plus rapide que continuer.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a href="#" class="next-link">
+        <div class="next-link-label">— Article-pilier suivant</div>
+        <div class="next-link-title">★ Les 12 mots-clés qui changent la qualité d'une réponse</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-2-bases-prompt.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Les bases du prompt · Niveau II</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

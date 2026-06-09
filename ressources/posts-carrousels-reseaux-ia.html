@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Posts et carrousels réseaux : écrire avec l'IA, sans sonner faux. – AutomationBoost</title>
+  <meta name="description" content="posts réseaux sociaux ia, carrousel linkedin ia, post instagram ia, créer contenu social ia, rédaction réseaux sociaux ia 2026" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Posts et carrousels réseaux : écrire avec l'IA, sans sonner ...
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#e879f9;">Créer du contenu</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Posts et carrousels réseaux : écrire avec l'IA, sans sonner faux.</h1>
+    <p class="lede">Produire régulièrement pour LinkedIn ou Instagram sans y passer des heures, ni publier du contenu qui sent l'IA à plein nez. Trouver des angles, écrire un post qui accroche, structurer un carrousel, et surtout garder ta voix.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tout le monde repère un post écrit par l'IA : mêmes tournures, mêmes emojis, même ton lisse. Le défi n'est pas de produire vite — c'est de produire vite <strong>sans</strong> sonner comme tout le monde.</p>
+
+    <p>Bien utilisée, l'IA est un formidable accélérateur de contenu social. Voici comment, en gardant ta voix.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 5</span>Trouver des <em>angles</em>, pas des sujets génériques.</h2>
+
+  <div class="container reading">
+    <p>Le premier piège : demander « donne-moi 10 idées de posts sur [thème] ». Tu obtiens des banalités que tout le monde a déjà publiées. La valeur n'est pas dans le sujet, mais dans l'<strong>angle</strong>.</p>
+
+    <p>Nourris l'IA de ta matière première : ton expérience, tes observations, tes opinions. C'est ce qu'elle ne peut pas inventer, et c'est ce qui rend un post unique.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Le prompt à copier</div>
+    <p>« Je travaille dans [domaine] et je veux poster sur [thème]. Voici mon point de vue ou mon expérience concrète : [raconte en 3-4 phrases ce que tu as vécu, observé, ou penses vraiment]. Propose-moi 5 angles de posts différents qui partent de CE vécu — pas des généralités. Pour chacun, donne l'idée maîtresse en une phrase. »</p>
+  </div>
+
+  <div class="container reading">
+    <p>Tu passes d'un contenu interchangeable à un contenu qui ne pouvait venir que de toi. C'est exactement ce qui fait s'arrêter le lecteur.</p>
+  </div>
+
+  <!-- ============== 2 ============== -->
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 5</span>Écrire un post qui <em>accroche</em>.</h2>
+
+  <div class="container reading">
+    <p>Sur les réseaux, les premières lignes décident de tout : si l'accroche ne capte pas, personne ne lit la suite. C'est tout le sujet des <a href="hooks-attention.html">hooks qui retiennent l'attention</a>, et l'IA est très bonne pour en générer des variantes.</p>
+
+    <p>Demande-lui plusieurs accroches pour un même post, puis choisis. Et précise le format réseau : un post LinkedIn (aéré, paragraphes courts) ne s'écrit pas comme une légende Instagram.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Le prompt à copier</div>
+    <p>« Écris un post [LinkedIn / Instagram] à partir de cet angle : [ton idée]. Commence par une accroche forte sur la première ligne. Texte aéré, phrases courtes, ton [le tien : direct, personnel…]. Propose-moi 3 accroches différentes au début, puis le corps du post. Termine par une question ou une invitation à réagir. Pas d'emojis sauf si je le demande. »</p>
+  </div>
+
+  <!-- ============== 3 ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 5</span>Structurer un <em>carrousel</em>.</h2>
+
+  <div class="container reading">
+    <p>Le carrousel (ces séries de slides qu'on fait défiler) est un format très performant, parce qu'il fait participer le lecteur slide après slide. Mais il demande une structure précise — et c'est là que l'IA aide vraiment.</p>
+
+    <p>La logique d'un bon carrousel : une <strong>slide d'accroche</strong> qui donne envie de swiper, des <strong>slides de contenu</strong> avec une idée par slide (pas plus), et une <strong>slide finale</strong> avec un appel à l'action.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Le prompt à copier</div>
+    <p>« Transforme cette idée en carrousel de 7 slides pour [LinkedIn / Instagram] : [ton angle]. Slide 1 : une accroche qui donne envie de faire défiler. Slides 2 à 6 : une idée claire par slide, formulée court (titre + une ou deux phrases). Slide 7 : conclusion + appel à l'action. Donne-moi le texte de chaque slide séparément. »</p>
+  </div>
+
+  <div class="container reading">
+    <p>Tu récupères le texte slide par slide, prêt à mettre en forme dans ton outil de design. Pour la cohérence visuelle de tes slides, applique ce que tu as vu dans <a href="logo-identite-visuelle-ia.html">créer une identité visuelle</a> : mêmes couleurs, même typo à chaque fois.</p>
+  </div>
+
+  <!-- ============== 4 ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 5</span>Garder <em>ta voix</em> (la règle non négociable).</h2>
+
+  <div class="container reading">
+    <p>Voici ce qui sépare un compte qu'on suit d'un compte qu'on scrolle sans s'arrêter : la voix. Un contenu IA brut sonne faux parce qu'il n'a la voix de personne.</p>
+
+    <p>Deux réflexes pour l'éviter. D'abord, <strong>fais analyser tes propres textes</strong> par l'IA pour qu'elle apprenne ton style, puis demande-lui de l'imiter — c'est la méthode de <a href="cloner-style-ecriture.html">cloner ton style d'écriture</a>. Ensuite, <strong>réécris toujours la sortie</strong> : change un mot sur cinq, ajoute une expression à toi, coupe ce qui sonne robotique. L'IA fait 80 % du chemin, ta réécriture fait les 20 % qui te rendent reconnaissable.</p>
+
+    <p>Pour repérer ce qui « sent l'IA » et le corriger, l'article <a href="ia-ecrire-comme-humain.html">faire écrire l'IA comme un humain</a> liste les marqueurs à traquer.</p>
+  </div>
+
+  <!-- ============== 5 ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 5 / 5</span>Tenir le <em>rythme</em> sans t'épuiser.</h2>
+
+  <div class="container reading">
+    <p>La régularité compte plus que la perfection sur les réseaux. L'IA t'aide à tenir la distance — à condition de ne pas tomber dans la production en masse insipide.</p>
+
+    <p>La bonne approche : pars d'<strong>une idée forte</strong> (un vécu, une observation) et décline-la. Un même angle peut devenir un post court, un carrousel, et une variante pour une autre plateforme. C'est exactement la logique de <a href="transformer-video-10-contenus.html">transformer une vidéo en 10 contenus</a>, appliquée à l'écrit.</p>
+
+    <p>Et pour ne jamais partir de zéro, garde une réserve d'angles validés (étape 1) dans laquelle piocher. La constance vient de là, pas de l'inspiration du moment.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points pour tes réseaux avec l'IA.</h3>
+    <ol class="recap-points">
+      <li>Pars de TON vécu pour trouver des angles uniques, pas de « 10 idées sur X » qui donnent du générique.</li>
+      <li>Soigne l'accroche (les premières lignes décident de tout) : demande plusieurs variantes et adapte au format réseau.</li>
+      <li>Carrousel : slide d'accroche, une idée par slide, slide finale avec appel à l'action.</li>
+      <li>Garde ta voix : fais apprendre ton style à l'IA, et réécris toujours la sortie. 80 % l'IA, 20 % toi.</li>
+      <li>Tiens le rythme en déclinant une idée forte en plusieurs formats. Constance &gt; perfection.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+
+
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="hooks-attention.html">
+        <div class="next-link-label">— Article connexe</div>
+        <div class="next-link-title">Les hooks qui retiennent l'attention</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-3-creer-contenu.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Créer du contenu · Niveau III</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Copilot et Workspace AI. – AutomationBoost</title>
+  <meta name="description" content="L" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Copilot et Workspace AI.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#f97316;">Gagner du temps au travail</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Gemini</span>
+    </div>
+    <h1 class="page-title">Copilot et Workspace AI.</h1>
+    <p class="lede">Avant de chercher des connecteurs MCP externes, l'IA est déjà dans tes apps. Microsoft 365 Copilot vs Google Workspace Gemini en 2026 — capacités, prix, écosystèmes. Quand le natif suffit, quand il ne suffit pas, et l'erreur la plus chère de 2026 (la prochaine restructuration Microsoft de juillet).</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tu te documentes sur les connecteurs MCP, sur Notion, Drive, Slack… et tu loupes l'évidence : l'IA est <strong>déjà</strong> dans Word, Excel, Docs, Sheets, Outlook, Gmail. Avant de chercher des couches externes, regarde ce qui est déjà là.</p>
+
+    <p>Microsoft 365 Copilot et Google Workspace Gemini sont intégrés directement dans tes applications bureautiques — l'IA vit dans Word et dans Docs, pas autour. Pour la majorité des usages pro, c'est la solution la plus simple. Voici comment en tirer parti.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi commencer par <em>le natif</em>.</h2>
+
+  <div class="container reading">
+    <p>Avant de tout faire passer par des connecteurs externes, sache que les solutions natives ont souvent l'avantage quand elles existent : friction zéro (tu cliques le bouton dans Excel, pas de bascule d'app), permissions de ton entreprise respectées d'office, et intégration directe dans tes documents.</p>
+
+    <p>Pour la majorité des usages bureautiques, c'est la voie la plus simple. Voici comment en tirer parti, dans Microsoft 365 comme dans Google Workspace.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Microsoft 365 <em>Copilot</em>.</h2>
+
+  <div class="container reading">
+    <p>Copilot est l'offre IA de Microsoft, intégrée nativement dans Word, Excel, PowerPoint, Outlook, Teams, OneNote. Powered par GPT-5.1 (modèle OpenAI le plus récent partagé entre ChatGPT et Copilot Microsoft). Voici la réalité 2026.</p>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Capacités <em>par app</em></div>
+    <div class="tool-text"><strong>Word.</strong> Génère un document depuis un brief, réécrit dans un autre ton, résume des longs reports, transforme un Word en PowerPoint complet (avec speaker notes générés). Probablement l'app où Copilot est le plus utile.<br><br>
+<strong>Excel.</strong> Suggère des formules complexes en langage naturel, analyse des datasets, génère des pivot tables et graphiques, identifie des tendances. Travaille <em>dans</em> le fichier (vs Gemini qui crée souvent une nouvelle feuille — différence documentée).<br><br>
+<strong>PowerPoint.</strong> Construit des slide decks depuis un Word ou un brief. Réorganise tes slides en narration cohérente. Génère du visuel via DALL·E 3.<br><br>
+<strong>Outlook.</strong> Brouillonne et résume les emails, flag les messages importants, programme des meetings. Cas d'usage le plus apprécié des executives selon les études 2026.<br><br>
+<strong>Teams.</strong> Résumé de meetings (même ceux que tu as ratés), action items tracking, real-time conversation analysis. Sans doute le killer feature côté pro.<br><br>
+<strong>Copilot Cowork</strong> (lancé Wave 3 mars 2026) : automatisations multi-step longs gérés par Copilot dans les apps M365. Plus puissant que les premières versions.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name"><em>Microsoft Graph grounding</em> · le différenciateur</div>
+    <div class="tool-text"><strong>Le vrai avantage de Copilot.</strong> Microsoft Graph est l'index unifié de toutes tes données M365 (mails Outlook, fichiers OneDrive/SharePoint, meetings Teams, contacts, calendriers, organisation). Copilot interroge ce graph en respectant tes permissions natives.<br><br>
+<strong>Concrètement :</strong> tu peux demander dans Business Chat <em>« Quelles décisions ont été prises hier dans le meeting leadership sur le lancement produit ? »</em> ou <em>« Résume toutes les communications de Sarah sur le budget Q2. »</em> Copilot tire de Teams + emails + SharePoint + OneDrive simultanément. Cross-app intelligence native que <em>aucun connecteur MCP externe ne réplique aussi bien</em>.<br><br>
+<strong>Conséquence :</strong> pour un executive qui passe 60-70 % de sa journée dans M365, Copilot a un avantage structurel. C'est pour ça que les études 2026 montrent un ROI fort sur cette population — même au prix de l'add-on.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Pricing 2026 et <em>la restructuration de juillet</em></div>
+    <div class="tool-text"><strong>État au 1er semestre 2026 :</strong> Copilot Pro pour individuels = 20 $/mois. Copilot for Microsoft 365 (Enterprise) = 30 $/user/mois en addition de M365 Business Standard ou Premium (nécessite donc un plan minimum éligible). Tarif promo UK 13.80 £/mois jusqu'en mars 2026, puis tarif plein.<br><br>
+<strong>Restructuration majeure juillet 2026 :</strong> Microsoft confirme dans son annonce de décembre 2025 que les prix M365 augmentent au 1er juillet 2026, et que <em>l'add-on Copilot standalone à 30 $ disparaît</em>. Remplacement par de nouveaux bundles Copilot intégrés dans des tiers de licences plus chers. <strong>Si tu prévois d'investir dans Copilot, fais-le avant juillet 2026 pour bloquer l'ancien tarif.</strong><br><br>
+<strong>Ce qui reste « gratuit » dans M365 Business Standard :</strong> Copilot Chat (la version basique, accessible dans Word, Excel, PowerPoint, OneNote sans add-on). Beaucoup de PME ignorent cette inclusion et payent un ChatGPT Plus séparé. Vérifie ton plan avant de débourser.</div>
+  </div>
+
+  <h3>Ce que Copilot ne fait pas bien</h3>
+
+  <div class="container reading">
+    <p><strong>Hors écosystème Microsoft.</strong> Si tu utilises Notion, Linear, Slack, Figma — Copilot reste contraint dans son lane. L'architecture <em>« Microsoft 365 d'abord »</em> est sa force <em>et</em> sa limite. Pour ces outils tiers, tu dois passer par MCP externe (couvert dans <a href="connecter-drive-notion.html">article 2.4</a> et <a href="connecter-calendar-ia.html">2.3</a>).</p>
+
+    <p><strong>Modèles imposés.</strong> Tu utilises GPT-5.1, point. Pas le choix de modèle (vs Notion AI qui propose Claude Opus 4.1, GPT-5, o3 selon le besoin). Pour des tâches où Claude est meilleur (synthèses longues, raisonnement nuancé), Copilot est sub-optimal — sauf à compléter avec un Claude externe en parallèle.</p>
+
+    <p><strong>Adoption inégale en équipe.</strong> Le coût add-on de 30 $/user/mois fait que beaucoup d'organisations achètent Copilot pour 3-5 personnes (les leaders) et laissent le reste sans. Tu te retrouves avec une équipe à 2 vitesses. Étude 2026 : c'est le facteur n°1 d'échec d'adoption Copilot — pas la qualité, l'accessibilité.</p>
+  </div>
+
+  <!-- ============== 3. WORKSPACE GEMINI ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Google Workspace <em>Gemini</em>.</h2>
+
+  <div class="container reading">
+    <p>Gemini dans Workspace est l'offre IA de Google, intégrée nativement dans Gmail, Docs, Sheets, Slides, Meet, Drive. Powered par Gemini 3 Pro (modèle Google le plus récent en avril 2026). La grande différence avec Copilot : <strong>inclus dans les plans Workspace Business depuis 2026</strong>, pas un add-on payant.</p>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Capacités <em>par app</em></div>
+    <div class="tool-text"><strong>Gmail.</strong> Drafting d'emails, rewriting pour clarté, résumé de longs threads, side panel Gemini contextuel pour analyser le mail courant. Aussi performant qu'Outlook Copilot pour le quotidien.<br><br>
+<strong>Docs.</strong> Help me write (génération depuis un brief), résumés, smart compose, side panel pour questions sur le document. Avantage 2026 : <strong>fenêtre de contexte de 1 million de tokens</strong> sur Gemini 3 Pro — tu peux donner à Gemini un document de 200 pages et lui demander de l'analyser intégralement. Copilot M365 a une fenêtre nettement plus petite (256K environ).<br><br>
+<strong>Sheets.</strong> Help me organize, suggestions de formules, génération de templates. Réputé moins fort que Copilot Excel sur les analyses complexes (Microsoft revendique cette supériorité dans ses comparaisons 2026, et plusieurs études indépendantes la confirment partiellement).<br><br>
+<strong>Slides.</strong> Image generation principalement. Plus limité que PowerPoint Copilot pour la génération de decks complets — un point faible reconnu de Gemini in Workspace.<br><br>
+<strong>Meet.</strong> Caption translations multilingues (40+ langues, le plus performant du marché grâce à Google Translate), studio lighting/sound, AI-generated summaries. Killer feature de Gemini.<br><br>
+<strong>Drive.</strong> Recherche sémantique cross-fichiers, résumé de documents stockés, accès via le side panel dans toutes les apps Workspace.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name"><em>Side panel</em> et <em>Workspace Studio</em></div>
+    <div class="tool-text"><strong>Le side panel Gemini</strong> est l'équivalent fonctionnel du Microsoft Graph grounding. Présent dans toutes les apps Workspace, il garde le contexte de l'app courante et peut tirer d'autres apps. Tu es dans Docs, le side panel peut interroger ton Drive, Calendar, Gmail. Cross-app intelligence sans configuration.<br><br>
+<strong>Workspace Studio</strong> (lancé 2026) : automatisations no-code dans Workspace. Définis un automatisation récurrent (<em>« chaque lundi matin, résume mes meetings de la semaine et envoie au team »</em>), Gemini l'exécute. Équivalent de Copilot Cowork côté Microsoft.<br><br>
+<strong>Multi-modèle :</strong> Gemini 3 Pro pour la majorité, modèles plus rapides (Flash, Nano) pour des tâches simples qui ne demandent pas le big model. Optimisation cost/quality que Microsoft a moins poussée.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Pricing 2026 et <em>l'évolution récente</em></div>
+    <div class="tool-text"><strong>État au 1er semestre 2026 :</strong> Workspace Business Standard = 14 $/user/mois (UK : 11.80 £). Gemini est <strong>inclus</strong> dans tous les plans Business — pas d'add-on. C'est le changement majeur de 2026 : Google a passé l'inclusion par défaut, Microsoft est resté sur le modèle add-on payant.<br><br>
+<strong>AI Expanded Access</strong> (lancé 1er mars 2026) : add-on Google pour les usages avancés (Veo 3.1 video generation, Gemini 3 Pro deep reasoning à plus haut volume). Les fonctions standard du side panel restent incluses sans add-on. Tarif Expanded Access : varie selon le plan, vérifier les conditions courantes.<br><br>
+<strong>Pour individuels :</strong> Gemini Advanced à 19.99 $/mois (équivalent Copilot Pro). Inclut 2TB Drive, accès Gemini 3 Pro hors Workspace. Bon deal pour usage perso.<br><br>
+<strong>Calcul réel :</strong> équipe de 10 sur Workspace Business + Gemini inclus = 140 $/mois. Équipe de 10 sur M365 Business Standard + Copilot = ~330 $/mois. <strong>Différence de 190 $/mois soit ~2300 $/an</strong> en faveur de Workspace, qui s'élargit après la restructuration Microsoft de juillet 2026.</div>
+  </div>
+
+  <h3>Ce que Gemini ne fait pas bien</h3>
+
+  <div class="container reading">
+    <p><strong>Hors écosystème Google.</strong> Comme Copilot, Gemini est moins puissant en dehors de son lane. Si tu utilises principalement Word, Excel, Outlook (Microsoft), Gemini n'est pas la bonne réponse — Copilot l'est.</p>
+
+    <p><strong>Slides est faible.</strong> Pour la génération de presentations complètes, PowerPoint Copilot reste meilleur (selon les comparaisons head-to-head 2026, et l'expérience commune des utilisateurs).</p>
+
+    <p><strong>Excel-équivalent (Sheets) moins puissant.</strong> Pour les analyses financières/quantitatives complexes, Excel + Copilot reste la référence. Sheets + Gemini fait le travail courant mais peine sur les cas avancés.</p>
+
+    <p><strong>Meeting intelligence Teams &gt; Meet.</strong> Sur les meetings, Copilot Teams a l'avantage. Gemini Meet fait le résumé mais pas avec la profondeur de Copilot Teams (action items + tracking + threading).</p>
+  </div>
+
+  <!-- ============== 4. COMMENT CHOISIR ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Comment <em>choisir</em>.</h2>
+
+  <div class="container reading">
+    <p>La règle de décision est plus simple qu'il n'y paraît. <strong>Choisis l'IA native qui correspond à l'écosystème où tu vis déjà.</strong> Pas l'inverse — ne change pas d'écosystème pour l'IA, c'est rarement rentable (50K-200K $ de switching cost pour une mid-size org, selon les estimations 2026).</p>
+  </div>
+
+  <h3>Arbre de décision rapide</h3>
+
+  <div class="container reading">
+    <p><strong>Tu es sur Microsoft 365 (Word, Excel, Outlook, Teams) :</strong> achète Copilot avant juillet 2026 pour bloquer l'ancien tarif. Pour les Enterprise avec des executives qui vivent en meeting, c'est l'investissement le plus rentable. Pour le reste de l'équipe, considère Copilot Chat (déjà inclus dans M365 Business Standard).</p>
+
+    <p><strong>Tu es sur Google Workspace (Gmail, Docs, Sheets, Meet) :</strong> tu as déjà Gemini en 2026, profite-en. Forme ton équipe à utiliser le side panel quotidiennement. Pour les usages avancés (vidéo Veo 3.1, deep reasoning volumineux), évalue l'add-on AI Expanded Access.</p>
+
+    <p><strong>Tu es solo / petite équipe (1-5) sans suite bureautique pro :</strong> Workspace Business Standard à 14 $/user (avec Gemini inclus) bat Microsoft 365 + Copilot pour 95 % des cas. Pour qui démarre fresh en 2026, le calcul économique pousse vers Google.</p>
+
+    <p><strong>Tu vis principalement hors suite bureautique (créateur, indé qui travaille dans Notion + outils tiers) :</strong> ni Copilot ni Gemini ne te servent vraiment. Reste sur Claude Pro / ChatGPT Plus avec connecteurs MCP (cf <a href="connecter-drive-notion.html">articles 2.4</a> et précédents). Le natif Workspace n'est pas pertinent pour ton usage.</p>
+  </div>
+
+  <h3>Quand le natif ne suffit pas</h3>
+
+  <div class="container reading">
+    <p>Pas tout est résolu par Copilot ou Gemini. Voici les cas où tu dois <strong>compléter avec des connecteurs MCP externes</strong> (sujet des autres articles de cette rubrique) :</p>
+
+    <p><strong>(1) Outils hors écosystème.</strong> Notion, Linear, Figma, Slack, ton CRM. Le natif ne couvre pas. Tu connectes ces outils à Claude ou ChatGPT via MCP comme connecteur secondaire.</p>
+
+    <p><strong>(2) Modèles spécifiques.</strong> Tu veux utiliser Claude Opus 4.7 sur une tâche précise (raisonnement nuancé, longue synthèse). Copilot ne l'expose pas. Tu passes par Claude direct avec connecteurs MCP vers tes données.</p>
+
+    <p><strong>(3) Automatisations multi-outils complexes.</strong> Tu veux orchestrer Gmail + Notion + Linear dans une seule conversation. Le natif (Copilot ou Gemini) couvre une partie mais pas l'autre. Claude Desktop ou ChatGPT avec multi-MCP est plus puissant pour ce cas.</p>
+
+    <p><strong>(4) Coût-volume.</strong> Tu fais des centaines de requêtes IA par jour sur des tâches automatisables. Le natif facture un forfait, mais l'usage agentique (cf <a href="niveau-4-deleguer-agents.html">rubrique R3</a>) demande des intégrations plus fines via API ou MCP qui peuvent coûter moins en gros volume.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">L'approche pragmatique 2026</div>
+    <p>Les utilisateurs avancés en 2026 <strong>combinent les deux couches</strong>. <em>Couche 1 native</em> (Copilot ou Gemini selon écosystème) pour les tâches dans les apps bureautiques. <em>Couche 2 MCP externe</em> (Claude Desktop ou ChatGPT) pour les outils tiers, les modèles spécifiques, les automatisations multi-MCP. C'est complémentaire, pas concurrent. Microsoft pousse cette intégration via Agent 365 et Copilot Studio (qui supportent MCP). Google pareil avec ses Google-managed MCP servers. <strong>L'avenir 2026-2027 est hybride, pas exclusif</strong>.</p>
+  </div>
+
+  <!-- ============== PIÈGES ============== -->
+  <h2 class="reading"><span class="h2-num">— Bonus</span>5 <em>pièges</em> classiques.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>chercher des connecteurs MCP avant d'utiliser le natif</em></div>
+    <div class="pitfall-text">Tu découvres MCP, tu décides de tout brancher dans Claude Desktop : Drive, Gmail, Calendar, OneDrive. 3 heures de configuration, des permissions à comprendre, des serveurs à choisir. Pendant que tu configurais, Copilot dans Word aurait fait la moitié du travail en 30 secondes, gratuitement (déjà inclus dans ton M365). <strong>Correction :</strong> commence par tester ce que ton écosystème natif fait déjà. Pour 60-70 % des cas pros, le natif suffit. Tu basculeras sur MCP pour les 30-40 % restants — pas pour l'ensemble.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : <em>ignorer la restructuration Microsoft de juillet 2026</em></div>
+    <div class="pitfall-text">Tu prévois d'investir dans Copilot en septembre 2026 pour ton équipe. Tu découvres que l'add-on à 30 $/user/mois n'existe plus — il faut basculer sur des bundles Copilot intégrés à des licences M365 plus chères. Ton budget initial explose. <strong>Correction :</strong> si tu envisages Copilot, achète <strong>avant juillet 2026</strong> pour bloquer l'ancien tarif sur les contrats annuels existants. Microsoft confirme dans ses annonces de décembre 2025 que la restructuration est ferme. Ne te fais pas surprendre.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>croire que Copilot Chat de M365 = Copilot complet</em></div>
+    <div class="pitfall-text">Tu vois <em>« Copilot »</em> dans ton M365 Business Standard, tu penses avoir tout — pourquoi payer 30 $ de plus ? Erreur fréquente. <strong>Copilot Chat</strong> (inclus, gratuit) = chat IA basique dans Word/Excel/PowerPoint/OneNote, comme un ChatGPT intégré, sans grounding sur tes données M365. <strong>Copilot for Microsoft 365</strong> (add-on payant) = la version premium avec Microsoft Graph grounding (accès à tes mails, meetings, fichiers, contacts en cross-app). C'est ce grounding qui fait la valeur réelle. <strong>Correction :</strong> teste Copilot Chat d'abord (gratuit). Si tu sens que <em>« j'aimerais qu'il connaisse mes mails et meetings »</em>, c'est le moment d'investir dans la version add-on. Sinon, le gratuit suffit pour la majorité des cas.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>changer d'écosystème pour l'IA</em></div>
+    <div class="pitfall-text">Ton équipe est sur Microsoft depuis 5 ans. Tu lis que Gemini est moins cher et meilleur sur certains aspects. Tu décides de migrer vers Workspace. Coût réel : 50K-200K $ (selon estimations Forrester 2026) entre la migration des données, la formation, la perte de productivité pendant 3-6 mois, le rachat de licences. Pour économiser 2K $/an sur Copilot. Math négatif. <strong>Correction :</strong> reste dans ton écosystème actuel. Si Microsoft : Copilot. Si Google : Gemini. Le switching cost dépasse les économies de licence pour 95 % des organisations établies. Le calcul Workspace vs M365 est pertinent pour les <em>nouvelles</em> équipes qui partent de zéro, pas pour les migrations.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : <em>penser natif OU MCP, pas natif ET MCP</em></div>
+    <div class="pitfall-text">Tu décides : <em>« j'ai Copilot, donc je n'ai plus besoin de Claude ou ChatGPT »</em>. Ou inversement : <em>« j'utilise Claude avec MCP, donc je n'ai pas besoin de Copilot »</em>. Les deux postures sont sub-optimales. Copilot/Gemini excellent dans tes apps bureautiques (friction zéro, grounding natif). Claude/ChatGPT avec MCP excellent pour les outils tiers, les modèles spécifiques, les automatisations complexes. <strong>Correction :</strong> les utilisateurs avancés 2026 <em>combinent</em>. Copilot pour les emails Outlook et l'analyse Excel quotidienne. Claude Desktop avec MCP Notion + Drive pour les automatisations de réflexion stratégique. Les deux couches coexistent et se complètent. Pour 30-50 $/mois supplémentaires (Claude Pro ou ChatGPT Plus), tu débloques toute la couche MCP en plus du natif.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>L'erreur la plus fréquente que je vois en 2026 : les utilisateurs <em>achètent</em> ChatGPT Plus alors qu'ils ont déjà Copilot Chat dans leur M365 Business, ou ils <em>ignorent</em> Gemini alors qu'il est inclus dans leur Workspace. La couche d'IA déjà payée et déjà installée passe sous le radar parce qu'elle est trop évidente. <strong>Audit budget rapide :</strong> liste tes abonnements IA, liste tes abonnements bureautiques, vérifie les inclusions IA. Tu vas probablement découvrir que tu paies en double — ou que tu pourrais utiliser ce qui est déjà là. Suite logique : <a href="niveau-4-connecter-outils.html">retour à la rubrique R2</a> pour les articles 2.6 (Zapier/Make/n8n) et 2.7 (navigateurs IA). Pour l'article 2.8 ★ Sécurité connecteurs : essentiel après cette série d'intégrations, à venir.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Tu maîtrises maintenant les solutions natives. Pour aller plus loin : <a href="connecter-drive-notion.html">article 2.4 sur Drive et Notion via MCP</a> qui complète parfaitement (le natif d'abord, le MCP pour le reste). <a href="comprendre-mcp.html">Article fondation 2.1 sur MCP</a>. <a href="connecter-gmail-ia.html">Gmail 2.2</a> et <a href="connecter-calendar-ia.html">Calendar 2.3</a> pour la stack productivité complète. Pour les Custom GPTs avec actions custom (l'autre approche connecteur, propriétaire OpenAI) : <a href="actions-apis-assistant.html">article 1.5</a>. Pour comparer les outils IA grand public au-delà des suites bureautiques : <a href="outils-ia.html">l'annuaire des outils IA Niveau V</a>. Pour les automatisations cross-apps qui dépassent le natif : <a href="niveau-4-batir-automatisations.html">la rubrique R4 (Zapier/Make/n8n)</a>.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur Copilot et Workspace AI.</h3>
+    <ol class="recap-points">
+      <li>Avant de chercher des connecteurs MCP externes, vérifie ce que ton écosystème natif fait déjà. 4 raisons : friction zéro (pas de bascule d'app), permissions natives respectées, contexte multi-apps gratuit (Microsoft Graph grounding ou side panel Gemini), et coût souvent déjà inclus. Pour 60-70 % des cas pros bureautiques, le natif suffit.</li>
+      <li>Microsoft 365 Copilot : powered par GPT-5.1, intégré nativement dans Word, Excel, PowerPoint, Outlook, Teams. Microsoft Graph grounding = accès cross-app à tes données M365 avec permissions natives. Tarif 2026 : 30 $/user/mois en addition de M365 Business Standard. <strong>Restructuration majeure juillet 2026</strong> : l'add-on standalone à 30 $ disparaît, remplacé par des bundles plus chers — investis avant juillet pour bloquer l'ancien tarif.</li>
+      <li>Google Workspace Gemini : powered par Gemini 3 Pro (1M tokens de contexte vs ~256K Copilot), intégré nativement dans Gmail, Docs, Sheets, Slides, Meet, Drive. <strong>Inclus dans les plans Workspace Business depuis 2026</strong> (vs add-on payant Copilot). Side panel Gemini = équivalent Microsoft Graph grounding. Workspace Business Standard à 14 $/user/mois inclut tout. Add-on AI Expanded Access depuis mars 2026 pour usages avancés (Veo 3.1, Gemini 3 Pro deep reasoning).</li>
+      <li>Choisir : reste dans ton écosystème actuel. Microsoft 365 → Copilot. Google Workspace → Gemini. Ne change pas d'écosystème pour l'IA — switching cost (50K-200K $ pour mid-size org) dépasse les économies. Les cas où tu dois compléter avec MCP externe : outils hors écosystème (Notion, Linear, Figma, Slack), modèles spécifiques (Claude Opus pour raisonnement), automatisations multi-outils complexes, ou usages agentiques à fort volume.</li>
+      <li>5 pièges à éviter : chercher du MCP avant d'utiliser le natif (le natif suffit pour 60-70 % des cas), ignorer la restructuration Microsoft de juillet 2026, confondre Copilot Chat (gratuit, basique) avec Copilot complet (add-on payant avec grounding), changer d'écosystème pour l'IA (math négatif), penser natif OU MCP au lieu de natif ET MCP. L'approche pragmatique 2026 = combiner les deux couches selon les cas.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="niveau-4-connecter-outils.html">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">2.6 · Zapier, Make, n8n à l'ère MCP (à venir)</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-4-connecter-outils.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Connecter tes outils · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

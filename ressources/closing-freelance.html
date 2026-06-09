@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conclure : entretien+ proposition. – AutomationBoost</title>
+  <meta name="description" content="La structure d" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Conclure : entretien+ proposition.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#f43f5e;">Lancer un business</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Conclure : entretien+ proposition.</h1>
+    <p class="lede">La structure d'un entretien de découverte de 30 min qui amène au devis. La proposition commerciale qui convertit. Vente éthique sans techniques de manipulation.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Un prospect a accepté un appel de découverte : 30 minutes pour qualifier le projet, comprendre le vrai besoin, et repartir avec de quoi faire un devis qui convertit. C'est l'étape où la majorité des freelances échouent — pas par manque de compétence technique, mais parce qu'ils confondent appel de découverte et présentation de leur offre.</p>
+
+    <p>Les deux n'ont rien à voir. Les appels qui posent beaucoup de questions convertissent bien mieux que ceux qui se précipitent à argumentaireer. Voici comment mener un appel de découverte qui donne envie de signer.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>L'entretien de <em>découverte</em> · 30 min.</h2>
+
+  <div class="container reading">
+    <p>Structure minute-par-minute validée Gong.io et Auto Interview AI 2026. Pas un script à réciter — un <em>squelette</em> qui te garantit de couvrir l'essentiel sans rusher la qualification. L'entretien dure 30 min : 5 min d'opening, 20 min de découverte, 5 min de prochaine étape.</p>
+  </div>
+
+  <div class="codeblock">
+    <div class="codeblock-label">— Structure de l'entretien de découverte · 30 min</div>
+    <div class="codeblock-content"><em>0-5 MIN — OPENING (établir cadre + permission)</em>
+   "Merci d'avoir pris le temps. Avant qu'on rentre dedans,
+   je voudrais vous expliquer comment j'aimerais qu'on
+   utilise ces 30 minutes.
+
+   Je vais commencer par poser quelques questions pour
+   comprendre votre situation actuelle et ce que vous
+   essayez d'atteindre. Si ça fait sens, je pourrai
+   ensuite partager comment j'ai aidé des entreprises
+   similaires. Et à la fin, on décidera ensemble s'il y
+   a une raison de continuer à parler. Ça vous va ?"
+
+   <em>POURQUOI</em> : tu poses le cadre, tu obtiens permission
+   de poser des questions (sinon ça ressemble à un
+   interrogatoire), tu signales que tu acceptes le "non"
+   à la fin (réduit la pression).
+
+<em>5-25 MIN — DÉCOUVERTE (les 14 questions)</em>
+   Tu écoutes 60 % du temps. Tu prends des notes.
+   Tu reformules régulièrement : "Si je comprends bien,
+   votre vrai problème c'est X — c'est ça ?".
+   Cf section 2 pour les 14 questions exactes.
+
+<em>25-30 MIN — PROCHAINE ÉTAPE</em>
+   Tu RÉSUMES ce que tu as entendu en 60-90 secondes.
+   "Voilà ce que je retiens : votre situation c'est X,
+   votre objectif c'est Y, le frein c'est Z. C'est bien ça ?"
+
+   Puis SOFT CLOSE :
+   "Sur la base de ce qu'on vient de voir, y a-t-il
+   quelque chose qui vous empêcherait d'avancer si je
+   reviens avec une proposition qui répond à ces
+   éléments ?"
+   → si OUI : il sort une objection cachée que tu peux
+     traiter MAINTENANT (sinon elle te tuera après).
+   → si NON : tu peux proposer un prochaine étape calendaire.
+
+   ENGAGEMENT PROCHAINE ÉTAPE :
+   "Je vous envoie une proposition d'ici 24h. On peut
+   programmer 20 min jeudi pour la review ensemble ?"
+   → date précise dans le calendrier.
+   → JAMAIS "je vous tiens au courant" = contrat mort.
+
+<span class="comment"># Si tu sors d'un entretien sans : (1) résumé partagé, (2) soft
+# close pour faire remonter objections cachées, (3) prochaine étape
+# calendaire, ton contrat a 70 % de chances de mourir dans le
+# silence des 7 prochains jours. Ces 3 éléments en 5 minutes
+# changent radicalement ton taux de conclusion de vente.</span></div>
+  </div>
+
+  <p class="pull-quote">Un entretien de découverte n'est pas un argumentaire. C'est une conversation où tu cherches à savoir si tu peux aider — et si tu veux aider. La majorité des freelances qui ratent leurs closes ratent parce qu'ils ont voulu vendre. Ceux qui closent demandent à comprendre. La différence est massive.</p>
+
+  <!-- ============== 2. LES 14 QUESTIONS EXACTES ============== -->
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Les <em>14 questions</em> exactes.</h2>
+
+  <div class="container reading">
+    <p>Ordre validé Gong.io 2026. Tu n'as pas à toutes les poser de manière scolaire — tu les couvres dans la conversation, en t'adaptant. Mais à la fin de l'entretien, ces 14 zones doivent être couvertes, sinon ta proposition sera floue.</p>
+  </div>
+
+  <h3>Bloc 1 — Situation actuelle (Q1-Q4)</h3>
+
+  <div class="container reading">
+    <p><strong>Q1.</strong> <em>« Pour me situer, vous pouvez me parler de votre entreprise et de votre rôle ? »</em> — neutre, ouvre la conversation, te donne contexte.</p>
+
+    <p><strong>Q2.</strong> <em>« Qu'est-ce qui vous a amené à chercher [solution / aide] maintenant ? »</em> — révèle le déclencheur, le timing critique, et souvent la frustration sous-jacente.</p>
+
+    <p><strong>Q3.</strong> <em>« Comment vous gérez actuellement [le problème] ? »</em> — comprend ce qui est en place aujourd'hui (concurrent ? solution interne ? rien ?), évite de proposer ce qu'ils ont déjà.</p>
+
+    <p><strong>Q4.</strong> <em>« Qu'est-ce qui marche, qu'est-ce qui ne marche pas dans cette approche actuelle ? »</em> — identifie points de douleur précis et acquis à conserver dans ta solution.</p>
+  </div>
+
+  <h3>Bloc 2 — Objectifs et impact (Q5-Q9)</h3>
+
+  <div class="container reading">
+    <p><strong>Q5.</strong> <em>« À quoi ça ressemblerait, le succès, dans 3-6 mois si on travaillait ensemble ? »</em> — projection désirée, indicateur clé implicites, vision long terme.</p>
+
+    <p><strong>Q6.</strong> <em>« Pourquoi c'est important pour vous, maintenant ? »</em> — émotion sous-jacente, pression hiérarchique, pourquoi ce projet pas un autre.</p>
+
+    <p><strong>Q7.</strong> <em>« Quel impact business si on atteint cet objectif ? Quel impact si on ne fait rien ? »</em> — chiffre la valeur (essentiel pour pricing valeur, cf <a href="tarifs-freelance-valeur.html">2.4</a>).</p>
+
+    <p><strong>Q8.</strong> <em>« Qui dans votre équipe sera impacté positivement / négativement ? »</em> — identifie alliés et résistances internes, parties prenantes invisibles.</p>
+
+    <p><strong>Q9.</strong> <em>« Comment vous mesurez le succès concrètement ? Quels indicateur clé / chiffres ? »</em> — métriques précises pour proposition (sans elles, ta promesse est floue).</p>
+  </div>
+
+  <h3>Bloc 3 — Décision et budget (Q10-Q14)</h3>
+
+  <div class="container reading">
+    <p><strong>Q10.</strong> <em>« Qui d'autre est impliqué dans cette décision ? »</em> — identifie tous les décideurs (signer une proposition avec une seule personne décideur quand 3 doivent valider = 6 semaines de retard).</p>
+
+    <p><strong>Q11.</strong> <em>« Vous avez déjà travaillé avec d'autres prestataires sur ce sujet ? Comment ça s'est passé ? »</em> — révèle expériences passées (bonnes ou mauvaises), objections probables, anti-patterns à éviter.</p>
+
+    <p><strong>Q12.</strong> <em>« Y a-t-il une deadline ou un événement business qui rend le timing important ? »</em> — <em>« Q4 hiring push »</em>, <em>« lancement produit en juin »</em> = vraie deadline, pas <em>« on aimerait bien démarrer »</em> qui peut traîner 6 mois.</p>
+
+    <p><strong>Q13.</strong> <em>« Comment fonctionne le budget pour ce type d'investissement ? Allocation pré-approuvée, ou besoin de business case interne ? »</em> — pas <em>« quel budget vous avez ? »</em> (tabou), mais <em>« quel processus ? »</em> (acceptable, te dit si proposition à 8 K€ peut être validée immédiatement ou si elle nécessite 2 mois de circuit interne).</p>
+
+    <p><strong>Q14.</strong> <em>« Sur la base de ce qu'on vient de voir, y a-t-il quelque chose qui vous empêcherait d'avancer si la solution et l'économie collent ? »</em> — <strong>soft close magique</strong>. Fait remonter les objections cachées AVANT proposition. Réponse type <em>« j'aimerais comparer avec un autre prestataire »</em> = tu sais immédiatement à quoi t'attendre.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Le pré-entretien qui change tout</div>
+    <p>Validé UNBOUND HubSpot 2026 : envoie un email <strong>24h avant l'entretien</strong> avec UNE question : <em>« Que voudriez-vous apprendre, obtenir ou réussir dans nos 30 minutes ensemble pour que ce soit vraiment utile ? »</em>. 60-70 % des prospects répondent. Tu obtiens : (1) le vrai sujet qu'ils veulent traiter (souvent différent de leur demande initiale), (2) une co-création avant même l'entretien, (3) un signal de leur sérieux (s'ils ne répondent pas en 24h sur 1 question, ils ne sont pas chauds — annule ou raccourcis l'entretien). Cette question n'est pas une astuce — c'est la réelle préparation collaborative qui multiplie ton taux de conclusion de vente.</p>
+  </div>
+
+  <!-- ============== 3. LA PROPOSITION COMMERCIALE ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>La <em>proposition</em> qui convertit.</h2>
+
+  <div class="container reading">
+    <p>Sous 24h après l'entretien. Sous 5 pages. Structure validée Plutio 2026 : 6 sections dans cet ordre. Pas une de plus.</p>
+  </div>
+
+  <div class="codeblock">
+    <div class="codeblock-label">— Structure de la proposition commerciale · 5 pages max</div>
+    <div class="codeblock-content"><em>SECTION 1 — PROBLÈME REFORMULÉ (1/2 page)</em>
+   En MOTS DU CLIENT (pas tes interprétations).
+   Reprends les phrases qu'il a utilisées en entretien.
+   Exemple :
+   "Votre identité de marque actuelle a été créée il y a
+   6 ans quand l'entreprise faisait 3 personnes. L'équipe
+   est passée à 25, l'offre s'est étoffée, et l'identité
+   visuelle ne reflète plus l'échelle ni le positionnement
+   de l'entreprise."
+
+   <em>POURQUOI</em> : prouve que tu as écouté + accroche
+   émotionnelle (le client se reconnaît).
+
+<em>SECTION 2 — APPROCHE (1/2 page)</em>
+   COMMENT tu vas résoudre, en 3 phases haute-niveau.
+   PAS de deliverables détaillés ici.
+   Exemple :
+   "Le projet suivra une approche en 3 phases :
+   (1) Audit du site actuel pour performance et UX,
+   (2) Design d'un nouveau layout sur base des données
+       de conversion,
+   (3) Build du site responsive sur staging avant lancement."
+
+<em>SECTION 3 — LIVRABLES (1 page)</em>
+   Liste précise de ce que tu livres, par phase.
+   Phase 1 : audit PDF 15 pages + entretien de débriefing 1h
+   Phase 2 : 3 maquettes Figma + revisions 2 rounds
+   Phase 3 : site live + 30j optimisation post-lancement
+
+   <em>CRITIQUE</em> : ce qui n'est PAS dans cette section
+   n'existe pas dans le projet. Hors-périmètre = devis
+   séparé. Cette précision protège des dérives.
+
+<em>SECTION 4 — TIMELINE AVEC MILESTONES (1/2 page)</em>
+   Phase 1 : 1-15 mai, milestone = audit livré
+   Phase 2 : 16-31 mai, milestone = maquettes validées
+   Phase 3 : 1-30 juin, milestone = site live
+   Suivi : 1-30 juillet, milestone = optimisations livrées
+
+   <em>POURQUOI MILESTONES</em> : sans milestones, c'est juste
+   une deadline finale qui ne donne aucun warning si le
+   projet déraille. Avec milestones = points de contrôle
+   naturels qui rassurent client.
+
+<em>SECTION 5 — INVESTISSEMENT / PRICING (1/2 page)</em>
+   APRÈS le périmètre, JAMAIS avant.
+   Si client voit le prix avant comprendre la valeur,
+   réaction = choc tarifaire.
+
+   3 formats possibles :
+   - Forfait fixe : 8 500 € HT, 50% à la signature,
+     50% à la livraison
+   - Tiered : Starter 3 500 € / Standard 8 500 € /
+     Premium 18 000 €
+   - À la valeur : 0 € à la signature + 8% uplift
+     conversion mesuré sur 6 mois, capé à 25 K€
+
+<em>SECTION 6 — PROCHAINES ÉTAPES (1/4 page)</em>
+   "Pour démarrer le 15 mai, voici les prochaines
+   étapes :
+   1. Validation de cette proposition d'ici jeudi 11 mai
+   2. Signature contrat + acompte 50% d'ici lundi 15 mai
+   3. Réunion de lancement jeudi 18 mai à 10h"
+
+   Date précise. bouton d'action clair. Aucune ambiguïté.
+
+<span class="comment"># Format technique : PDF 5 pages max, signature électronique
+# native (Yousign, DocuSign, Pandadoc). Pas de Word attaché —
+# trop facile pour le client à modifier silencieusement et
+# créer dérive du périmètre. PDF signé numériquement = engagement
+# clair. Tu envoies le contrat séparément après signature.</span></div>
+  </div>
+
+  <h3>Pourquoi séparer la proposition du contrat</h3>
+
+  <div class="container reading">
+    <p>Erreur classique : combiner proposition commerciale et contrat juridique en un seul document. Plutio 2026 documente : <em>« combiner les deux crée un document dense qui ressemble à un commitment légal avant que le client ait décidé d'avancer »</em>. Résultat : 2 semaines de friction juridique sur des clauses légales alors que le client n'a même pas validé le principe.</p>
+
+    <p><strong>Bonne séquence :</strong> (1) Tu envoies la proposition (5 pages, business). (2) Le client valide la proposition (signature simple). (3) Tu envoies le contrat (5-10 pages, légal). (4) Signature contrat + acompte. (5) Démarrage.</p>
+
+    <p>Cette séquence respecte le processus naturel de décision en 2 étapes : <em>« est-ce que je veux travailler avec cette personne sur ce projet ? »</em> puis <em>« on formalise comment juridiquement ? »</em>. Combiner les deux force le client à tout valider d'un coup et freine la décision.</p>
+  </div>
+
+  <!-- ============== 4. GÉRER LES OBJECTIONS ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Gérer les <em>objections</em>.</h2>
+
+  <div class="container reading">
+    <p>5 objections classiques en 2026, leur traduction réelle, et comment les traiter sans manipulation. Réponses validées Auto Interview AI / Belkins / Plutio 2026.</p>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Objection 1 — <em>« C'est trop cher »</em></div>
+    <div class="tool-text"><strong>Traduction réelle :</strong> <em>« Je n'ai pas compris la valeur avant de voir le prix. »</em> (Plutio 2026 — <em>« les objections sur le prix signifient généralement que le client n'a pas pleinement saisi la valeur avant de voir le chiffre »</em>).<br><br>
+<strong>Mauvaise réponse :</strong> baisser le prix de 15-20 %. Tu entraînes le client à négocier sur tous les futurs projets, et tu casses ton ancrage.<br><br>
+<strong>Bonne réponse :</strong> reposition sur la valeur. <em>« Je comprends. Reprenons ensemble : quel est l'objectif business, quel est l'impact attendu en €, et quel est le coût de ne pas le faire ? »</em>. Souvent le client réalise que 8 K€ pour 80 K€ d'uplift attendu est rationnel.<br><br>
+<strong>Si budget réellement insuffisant :</strong> propose <em>périmètre réduit</em>, pas <em>prix réduit</em>. <em>« Je peux livrer la phase 1 pour 3 500 €, et on évalue ensemble si on continue les phases 2-3. »</em>. Tu protèges ton TJM tout en accommodant le budget.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Objection 2 — <em>« On va y réfléchir »</em></div>
+    <div class="tool-text"><strong>Traduction réelle :</strong> 80 % du temps c'est <em>« je n'ai pas envie de dire non frontalement »</em>. 20 % du temps c'est <em>« il y a une vraie objection cachée que je ne veux pas formuler »</em>.<br><br>
+<strong>Bonne réponse :</strong> <em>« Bien sûr. Pour vous aider à réfléchir efficacement, qu'est-ce que vous voulez challenger spécifiquement dans cette proposition — le périmètre, le pricing, le timing, ou autre chose ? »</em>. Tu forces la nommée explicite de l'objection.<br><br>
+<strong>Si toujours flou :</strong> <em>« Je peux vous tenir 7 jours sur cette proposition. Au-delà, j'aurai besoin de réajuster mon planning. Vous pouvez me revenir d'ici jeudi prochain ? »</em>. Crée une deadline naturelle, sort le prospect du <em>« on verra plus tard »</em>.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Objection 3 — <em>« On compare avec d'autres prestataires »</em></div>
+    <div class="tool-text"><strong>Traduction réelle :</strong> sain et normal en B2B. Le prospect fait son job de procurement.<br><br>
+<strong>Bonne réponse :</strong> <em>« Très bien — c'est ce que je ferais à votre place. Pour vous aider à comparer pommes avec pommes, voici les 3 critères qui font typiquement la différence : (1) [critère 1], (2) [critère 2], (3) [critère 3]. Demandez aux autres prestataires comment ils traitent ces 3 points. »</em><br><br>
+<strong>Pourquoi ça marche :</strong> tu donnes au client un cadre d'évaluation favorable à ton expertise. Si tu as un avantage différenciant (rapidité, méthode, niche), tu le mets dans les critères. Tu n'attaques pas les concurrents — tu donnes les bonnes questions à poser.<br><br>
+<strong>Si le client compare uniquement sur prix :</strong> mauvais signal de fit ICP. Souvent prospect <em>« budget-conscious »</em> qui ne valorisera jamais ton expertise. Mieux vaut perdre cette mission qu'la gagner et galérer 3 mois.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Objection 4 — <em>Le silence radio</em></div>
+    <div class="tool-text"><strong>Traduction réelle :</strong> 60 % du temps = priorité changée en interne (réorga, budget gelé, autre projet urgent). 30 % = ils ne savent pas comment dire non. 10 % = ils ont signé ailleurs.<br><br>
+<strong>Bonne réponse :</strong> séquence de relances <em>finie</em>. J+3 : <em>« Petit relance suite à ma proposition »</em>. J+7 : <em>« Je veux m'assurer que ma proposition n'est pas tombée dans les spams. »</em>. J+14 : <em>« Je clôture ce sujet de mon côté sauf info contraire. Bonne continuation. »</em>. Cette troisième relance « breakup email » obtient souvent une réponse là où les 2 premières ont échoué — l'effet « tu pars » réveille le prospect.<br><br>
+<strong>Discipline mentale :</strong> après J+14 sans réponse, tu sors le prospect de ton CRM mental. Tu ne relances PAS au mois 3 <em>« juste pour voir »</em>. Soit ils reviennent d'eux-mêmes (50 % des cas se réveillent à 3-9 mois), soit la mission ne s'est pas faite. Pas de drame.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Objection 5 — <em>« On va le faire en interne »</em></div>
+    <div class="tool-text"><strong>Traduction réelle :</strong> 70 % = ils ne le feront jamais en réalité (manque de bande passante, manque d'expertise interne). 30 % = vraie capacité interne.<br><br>
+<strong>Bonne réponse :</strong> <em>« C'est tout à fait pertinent si vous avez les ressources internes. Pour vous aider à évaluer, voici les 3 plus gros risques que je vois quand mes clients tentent en interne : (1) [risque 1, ex : courbe d'apprentissage 3-6 mois], (2) [risque 2, ex : opportunity cost équipe distraite du core business], (3) [risque 3, ex : pas de garantie de résultat la première fois]. Si ces 3 risques sont gérables pour vous, foncez. Sinon, je reste disponible. »</em><br><br>
+<strong>Pourquoi ça marche :</strong> tu n'attaques pas leur décision interne — tu les aides à évaluer honnêtement. Souvent ils reviennent 6-12 mois plus tard après avoir échoué en interne, et tu deviens leur référence parce que tu as été honnête au lieu de pousser la vente.</div>
+  </div>
+
+  <!-- ============== PIÈGES ============== -->
+  <h2 class="reading"><span class="h2-num">— Bonus</span>5 <em>pièges</em> classiques.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>parler 70 % du temps pendant la découverte</em></div>
+    <div class="pitfall-text">Tu es excité par le projet. Tu sens que tu peux aider. Tu commences à expliquer ta méthode, à donner des exemples, à comparer avec d'autres clients. Au bout de 30 min, tu as parlé 25 min. Le prospect a parlé 5 min. Tu n'as appris quasiment rien. Ta proposition sera basée sur tes assumptions, pas sur ses besoins. Taux conclusion de vente prévisible : 10-15 %. <strong>Correction :</strong> ratio idéal 40 % toi / 60 % prospect (Gong.io 2026). Tes interventions = questions précises + reformulations. Pas d'exemples ni de méthode tant que le prospect n'a pas tout sorti. <em>« Je vais partager ma méthode à la fin si on décide qu'il y a un fit »</em> — pas avant. Cette discipline simple double les taux de conclusion de vente.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : <em>envoyer la proposition 4-7 jours après l'entretien</em></div>
+    <div class="pitfall-text">Tu sors de l'entretien enthousiaste. Tu te dis <em>« je vais prendre le weekend pour bien la préparer »</em>. Tu rédiges la proposition 6 jours plus tard. Tu envoies. Le prospect est passé à autre chose, son niveau d'enthousiasme a chuté de 70 %. Plutio 2026 : <em>« proposals sent within 24 hours close at rates 25 % higher »</em>. <strong>Correction :</strong> proposition envoyée sous 24h après l'entretien, MAXIMUM 48h. Plus tu attends, plus le momentum meurt. Si tu n'as pas le temps de produire une proposition complète en 24h, c'est que ta structure n'est pas standardisée — investis 2-3h une fois pour créer un template Notion/Pandadoc qui prend 30 min à personnaliser ensuite. Cet investissement est rentabilisé sur la 1<sup>re</sup> mission gagnée grâce à la rapidité.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>baisser le prix sans réduire le périmètre</em></div>
+    <div class="pitfall-text">Le prospect dit <em>« c'est un peu cher, vous pouvez faire 7 K€ au lieu de 8 500 ? »</em>. Tu acceptes. Tu livres exactement le même périmètre pour 1 500 € de moins. Conséquences : (1) tu as enseigné au client que tes prix sont négociables — il négociera sur tous les futurs projets, (2) tu as cassé ton ancrage prix de 18 %, (3) ce client te référence à 7 K€ au lieu de 8 500. Sur 12 missions/an = perte 18 K€ de revenus. <strong>Correction :</strong> Plutio 2026 — <em>« réduire le prix sans réduire le périmètre entraîne les clients à négocier sur tous tes futurs projets »</em>. Si budget vraiment insuffisant : <strong>baisse le périmètre, pas le prix</strong>. <em>« 7 K€, OK — on retire la phase 3 et on évalue à mi-parcours si on continue ? »</em>. Tu protèges ton TJM tout en accommodant le budget. La négociation porte sur ce qui est livré, pas sur ton tarif.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>finir un entretien sans prochaine étape datée</em></div>
+    <div class="pitfall-text">L'entretien se passe bien. Vous êtes alignés. Tu termines avec <em>« super conversation, je vous tiens au courant »</em> ou <em>« je vous envoie une proposition prochainement »</em>. Aucune date. Aucun engagement. 2 semaines passent, le prospect est passé à autre chose. Tu relances 3 fois sans réponse. Le contrat est mort. <strong>Correction :</strong> Auto Interview AI 2026 — <em>« "Super conversation, je reviens vers vous" n'est pas une prochaine étape. Une prochaine étape, c'est : "Je vous envoie la proposition jeudi. On peut programmer 20 minutes vendredi pour la passer en revue ensemble ?" »</em>. Toujours sortir d'un entretien avec : (1) une date précise d'envoi de proposition, (2) un slot bloqué dans son calendrier pour la review. Si le prospect refuse de bloquer un slot, c'est un signal — il n'est pas vraiment chaud. Mieux vaut savoir maintenant que dans 3 semaines de relances vaines.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : <em>discuter du prix avant le périmètre</em></div>
+    <div class="pitfall-text">Le prospect demande dès la 5<sup>e</sup> minute de l'entretien : <em>« vous chargez combien environ ? »</em>. Tu réponds <em>« ça dépend, mais en gros 8 500 € pour ce type de projet »</em>. Réaction immédiate : choc tarifaire. Le prospect mentalise <em>« 8 500 € »</em> avant d'avoir compris la valeur. Toute la suite de l'entretien est filtrée à travers ce chiffre. Taux conclusion de vente : 20-30 %. <strong>Correction :</strong> Plutio 2026 — <em>« quand les clients voient un chiffre avant d'avoir compris ce qu'ils achètent, la réaction immédiate est un choc tarifaire »</em>. Quand on te demande le prix tôt, réponds : <em>« Le pricing dépend du périmètre et de l'impact business attendu. Mes missions vont de 3 500 à 30 000 € selon le périmètre. Je préfère vous donner un chiffre précis après notre discussion — ce sera plus utile pour vous. Ça vous va si on continue la découverte 15 min, et je reviens avec un chiffrage précis dans la proposition ? »</em>. Le client accepte 9 fois sur 10. Le prix arrive APRÈS la valeur. Conclusion de vente rate ×2.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Tu as ta machine de conclusion de vente. Suite logique : article 2.7 ★ pilier sur la face cachée du freelance (première année + piège des agences). Pré-requis amont : <a href="freelance-ou-salariat.html">2.1 freelance vs salariat</a>, <a href="statut-juridique-freelance.html">2.2 statut juridique</a>, <a href="offre-commerciale-freelance.html">2.3 offre commerciale</a>, <a href="tarifs-freelance-valeur.html">2.4 tarifs valeur</a>, <a href="premiers-clients-freelance.html">2.5 premiers clients</a>. Pour le contexte global : <a href="matrice-competences-marche.html">1.1 matrice compétences × marché</a>, <a href="trous-marche-ia.html">1.2 trous de marché</a>, <a href="etude-marche-ia.html">1.3 étude de marché</a>, <a href="analyser-concurrents-avatar.html">1.4 concurrents et avatar</a>, <a href="tester-idee-7-jours.html">1.5 tester en 7 jours</a>, <a href="abandonner-vs-perseverer.html">1.6 pivot ou persist</a>, <a href="piege-idees-ia.html">1.7 piège des idées générées par IA</a>. Pour les outils IA conclusion de vente : <a href="guide-claude-debutant-2026.html">Claude</a> (rédaction propositions structurées, reformulation après l'entretien), <a href="guide-chatgpt-debutant-2026.html">ChatGPT</a> (synthèse des notes d'entretien, préparation des questions personnalisées), <a href="outils-ia.html">le panorama Niveau V</a>. Pour la rubrique complète : <a href="niveau-6-freelance-conseil.html">R2 du Niveau VI</a>.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur le conclusion de vente freelance.</h3>
+    <ol class="recap-points">
+      <li>Données 2026 vérifiées : <strong>calls de découverte avec 11-14 questions closent à un taux 74 % supérieur</strong> à ceux avec moins de 7 questions (Gong.io). <strong>Talk-to-listen ratio idéal :</strong> 40 % toi, 60 % prospect (inverse de ce que font la majorité). <strong>Propositions sous 5 pages closent 31 % plus souvent</strong>, <strong>envoyées sous 24h closent 25 % plus souvent</strong> (Plutio 2026). <strong>Co-création &gt; argumentaire :</strong> <em>« les gens valorisent ce qu'ils aident à créer. Plus ton acheteur parle, plus il te fait confiance »</em> (Mahoney behavioral science, UNBOUND HubSpot 2026).</li>
+      <li>Structure entretien de découverte 30 min : <strong>0-5 min Opening</strong> (poser cadre + permission de poser questions). <strong>5-25 min Découverte</strong> (14 questions à couvrir, écoute 60 % temps, reformulations régulières). <strong>25-30 min Next step</strong> (résumé 60-90s + soft close <em>« y a-t-il quelque chose qui vous empêcherait d'avancer si la solution colle ? »</em> + engagement calendaire précis). <strong>Pré-entretien magique 24h avant :</strong> email avec UNE question <em>« que voudriez-vous accomplir dans nos 30 min ? »</em>. 60-70 % de réponse = co-création avant l'entretien. <strong>Sortir d'un entretien sans prochaine étape calendaire = contrat qui meurt à 70 %.</strong></li>
+      <li>14 questions exactes Gong.io 2026 en 3 blocs : <strong>Bloc 1 Situation actuelle (Q1-4)</strong> entreprise/rôle, déclencheur timing, gestion actuelle, ce qui marche/pas. <strong>Bloc 2 Objectifs et impact (Q5-9)</strong> succès dans 3-6 mois, pourquoi maintenant, impact business si succès/inaction, parties prenantes, indicateur clé mesure. <strong>Bloc 3 Décision et budget (Q10-14)</strong> décideurs, prestataires précédents, deadline business, processus budget (pas montant), soft close objections cachées.</li>
+      <li>Proposition commerciale 5 pages max envoyée sous 24h, structure 6 sections Plutio 2026 : <strong>(1) Problème reformulé</strong> en mots du client (1/2 page) — accroche émotionnelle. <strong>(2) Approche</strong> 3 phases haute-niveau (1/2 page). <strong>(3) Deliverables</strong> précis par phase (1 page) — ce qui n'y est pas n'existe pas. <strong>(4) Timeline avec milestones</strong> (1/2 page) — points de contrôle naturels. <strong>(5) Pricing APRÈS le périmètre</strong> (1/2 page) — jamais avant (choc tarifaire). <strong>(6) Prochaines étapes</strong> avec dates précises (1/4 page). <strong>Format :</strong> PDF signé électroniquement (Yousign/DocuSign/Pandadoc), JAMAIS Word modifiable. <strong>Séparer proposition du contrat :</strong> 2 étapes naturelles décision (business → légal).</li>
+      <li>5 objections classiques + traitement éthique : <strong>(1) « Trop cher »</strong> = manque de valeur perçue, repositionner sur outcomes business, JAMAIS baisser prix sans baisser périmètre. <strong>(2) « On va y réfléchir »</strong> = forcer nommée explicite <em>« qu'est-ce que vous voulez challenger spécifiquement »</em>, deadline 7 jours. <strong>(3) « On compare »</strong> = sain, donner 3 critères d'évaluation favorables à ton expertise sans attaquer concurrents. <strong>(4) Silence radio</strong> = séquence finie 3 relances J+3 / J+7 / J+14 « breakup email », après J+14 sortir prospect du CRM mental. <strong>(5) « On le fera en interne »</strong> = donner 3 risques honnêtes sans pousser, souvent reviennent 6-12 mois après avoir échoué.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="niveau-6-freelance-conseil.html">
+        <div class="next-link-label">— Article suivant ★ pilier</div>
+        <div class="next-link-title">2.7 · La face cachée du freelance : première année + piège agence</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-6-freelance-conseil.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Freelance et conseil · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

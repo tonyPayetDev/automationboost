@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gérer ton budget avec l'IA, sans tableur compliqué. – AutomationBoost</title>
+  <meta name="description" content="Y voir clair dans ton argent avec l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Gérer ton budget avec l'IA, sans tableur compliqué.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#22d3ee;">Au quotidien</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Gérer ton budget avec l'IA, sans tableur compliqué.</h1>
+    <p class="lede">Y voir clair dans ton argent : comprendre où il part, bâtir un budget que tu tiendras vraiment, et préparer un projet d'épargne. La méthode concrète avec ChatGPT, Claude ou Gemini — et la limite à ne jamais oublier.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">La plupart des gens ne tiennent pas de budget non par paresse, mais parce que les tableurs sont rébarbatifs et qu'on ne sait pas par où commencer. L'IA change ça — pas en gérant ton argent à ta place, mais en supprimant la friction.</p>
+
+    <p>Voici comment t'en servir pour enfin reprendre la main sur tes finances personnelles.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 6</span>D'abord, comprendre <em>où part ton argent</em>.</h2>
+
+  <div class="container reading">
+    <p>On ne peut pas piloter ce qu'on ne mesure pas. La première étape n'est pas de te restreindre, c'est de <strong>comprendre tes dépenses réelles</strong> — souvent très différentes de ce qu'on imagine.</p>
+
+    <p>Récupère ton relevé bancaire du dernier mois (ou des trois derniers, c'est mieux). Copie la liste des opérations, et demande à l'IA de les classer par catégories.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Le prompt à copier</div>
+    <p>« Voici la liste de mes dépenses du mois dernier. Classe-les en grandes catégories (logement, courses, transport, abonnements, loisirs, imprévus…). Pour chaque catégorie, donne le total et le pourcentage de mes dépenses. Termine par les 3 postes où je dépense le plus, et signale tout ce qui te semble inhabituel ou en double. »</p>
+  </div>
+
+  <div class="container reading">
+    <p>En quelques secondes, tu obtiens une photographie claire : ces trois abonnements oubliés, ce poste « livraison » plus gros que prévu, la part réelle du logement. C'est souvent un déclic — voir les chiffres rangés vaut mieux que toutes les bonnes résolutions.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Avant de copier ton relevé</div>
+    <div>
+      <p>Un relevé bancaire est une donnée sensible. <strong>Anonymise-le</strong> : retire ton nom, ton numéro de compte, ton IBAN. Tu n'as besoin que des libellés et des montants pour l'analyse. On revient sur la sécurité au dernier point.</p>
+    </div>
+  </div>
+
+  <!-- ============== 2 ============== -->
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 6</span>Bâtir un budget que tu <em>tiendras vraiment</em>.</h2>
+
+  <div class="container reading">
+    <p>Un budget ne sert à rien s'il est irréaliste : on l'abandonne au bout de deux semaines. L'intérêt de l'IA, c'est qu'elle part de <em>tes</em> chiffres réels (ceux de l'étape 1) au lieu d'un modèle théorique.</p>
+
+    <p>Donne-lui tes revenus, tes dépenses observées, et un objectif. Elle te propose une répartition concrète et ajustable.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Le prompt à copier</div>
+    <p>« Mes revenus mensuels nets sont de [montant]. Voici mes dépenses réelles par catégorie [colle le résultat de l'étape 1]. Aide-moi à construire un budget mensuel réaliste qui me permette de mettre [X] de côté chaque mois, sans que ce soit punitif. Propose une répartition par catégorie, et explique quels postes ajuster en priorité et comment. »</p>
+  </div>
+
+  <div class="container reading">
+    <p>Tu peux ensuite dialoguer : « C'est trop serré sur les loisirs, propose autre chose », « Que se passe-t-il si mes revenus baissent de 200 € ? ». C'est là que l'IA est précieuse — elle recalcule instantanément et t'aide à trouver un équilibre tenable, au lieu d'un budget figé que tu ne respecteras pas.</p>
+
+    <p>Une méthode connue que tu peux lui demander d'appliquer : la règle <strong>50/30/20</strong> (50 % pour les besoins, 30 % pour les envies, 20 % pour l'épargne et les dettes). Demande-lui de l'adapter à ta situation réelle plutôt que de la suivre aveuglément.</p>
+  </div>
+
+  <!-- ============== 3 ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 6</span>Simuler un <em>projet d'épargne</em>.</h2>
+
+  <div class="container reading">
+    <p>Un voyage, un apport, un matelas de sécurité : l'IA est très bonne pour transformer un objectif flou en plan chiffré et motivant.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Le prompt à copier</div>
+    <p>« Je veux économiser [objectif, ex : 6 000 € pour un voyage] d'ici [échéance, ex : 18 mois]. Combien dois-je mettre de côté chaque mois ? Si je peux épargner [montant] par mois, en combien de temps j'y arrive ? Propose-moi aussi deux scénarios : un réaliste et un plus ambitieux, avec ce que ça implique au quotidien. »</p>
+  </div>
+
+  <div class="container reading">
+    <p>Tu obtiens des paliers concrets, des échéances, et une idée claire de l'effort. Voir « 333 € par mois » plutôt que « 6 000 € » rend l'objectif beaucoup plus atteignable psychologiquement.</p>
+
+    <p>Attention toutefois : pour les <em>calculs précis</em> (intérêts composés d'un livret, par exemple), souviens-toi que l'IA peut se tromper sur l'arithmétique pure. Utilise un outil avec calculatrice intégrée, ou revérifie le résultat. C'est typiquement un cas où l'IA structure, mais ne doit pas être le seul juge du chiffre.</p>
+  </div>
+
+  <!-- ============== 4 ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 6</span>Préparer un <em>gros achat</em> ou un arbitrage.</h2>
+
+  <div class="container reading">
+    <p>Changer de voiture, souscrire un forfait, choisir entre louer et acheter du matériel : l'IA aide à poser les termes d'une décision financière, à condition de lui donner les vrais chiffres.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Le prompt à copier</div>
+    <p>« J'hésite entre [option A] et [option B] pour [achat]. Voici les coûts de chacune : [détaille prix, frais, durée, engagement]. Aide-moi à comparer le coût total réel sur [durée], en incluant tout (entretien, frais cachés, revente éventuelle). Liste les avantages et inconvénients de chaque option pour ma situation. »</p>
+  </div>
+
+  <div class="container reading">
+    <p>L'IA met à plat le coût complet — souvent là où on se trompe (on regarde le prix d'achat, pas le coût sur la durée). Elle ne décide pas pour toi, mais elle t'évite les angles morts et structure un choix que tu prenais « au feeling ».</p>
+  </div>
+
+  <!-- ============== 5 ============== -->
+  <h2 class="reading"><span class="h2-num">— 5 / 6</span>La limite à <em>ne jamais oublier</em>.</h2>
+
+  <div class="container reading">
+    <p>Voici le point le plus important de tout l'article, et c'est une limite, pas une astuce.</p>
+
+    <p><strong>L'IA n'est pas un conseiller financier, et tu ne dois jamais la traiter comme tel.</strong> Pour tout ce qui touche à l'investissement, aux placements, à la fiscalité ou à l'endettement, elle peut te donner une réponse qui <em>sonne</em> compétente — mais qui peut être périmée, inadaptée à ta situation, ou tout simplement fausse (souviens-toi des hallucinations).</p>
+
+    <p>La ligne est simple et tient en une phrase : <em>l'IA t'aide à organiser et comprendre ton argent ; elle ne décide pas où le placer.</em></p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Concrètement</div>
+    <div>
+      <p>Budgétiser, catégoriser ses dépenses, simuler une épargne, comparer un achat : <strong>oui</strong>, l'IA excelle. Choisir un placement, optimiser ses impôts, décider d'un crédit : <strong>non</strong> — là, c'est un professionnel (conseiller, banquier, comptable) qui doit valider. L'IA peut t'aider à <em>préparer tes questions</em> pour ce rendez-vous, c'est tout.</p>
+    </div>
+  </div>
+
+  <!-- ============== 6 ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 6 / 6</span>Protéger tes <em>données financières</em>.</h2>
+
+  <div class="container reading">
+    <p>Tes finances sont parmi les données les plus sensibles que tu puisses partager. Trois règles minimales :</p>
+
+    <p><strong>Anonymise systématiquement.</strong> Pas de nom complet, pas de numéro de compte, pas d'IBAN, pas de coordonnées bancaires. Pour analyser des dépenses, les libellés et les montants suffisent.</p>
+
+    <p><strong>Reste sur des montants, pas sur des identifiants.</strong> « 1 200 € de loyer » est inoffensif. Ton RIB ne doit jamais entrer dans un prompt.</p>
+
+    <p><strong>Pour un usage régulier et poussé</strong>, regarde si une fonction « mémoire » t'évite de recoller ton contexte à chaque fois (en gardant à l'esprit ce que tu y stockes), et garde les données vraiment sensibles hors de l'IA. Ces réflexes sont détaillés dans l'article sur <a href="donner-du-contexte.html">le contexte à donner</a>.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>6 points pour tes finances avec l'IA.</h3>
+    <ol class="recap-points">
+      <li>Commence par comprendre tes dépenses réelles : fais classer ton relevé (anonymisé) par catégories. Le déclic vient des chiffres rangés.</li>
+      <li>Construis un budget à partir de tes vrais chiffres, pas d'un modèle théorique. Dialogue jusqu'à un équilibre tenable (ex : règle 50/30/20 adaptée).</li>
+      <li>Transforme un objectif d'épargne flou en plan chiffré par paliers. Mais revérifie les calculs précis ailleurs.</li>
+      <li>Pour un gros achat, fais comparer le coût total réel sur la durée — c'est là qu'on se trompe.</li>
+      <li>L'IA organise ton argent, elle ne décide jamais où le placer. Investissement, fiscalité, crédit : un professionnel valide.</li>
+      <li>Anonymise tout : jamais de nom, de numéro de compte ni d'IBAN dans un prompt. Montants et libellés suffisent.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+
+
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="comparer-deux-produits.html">
+        <div class="next-link-label">— Article connexe</div>
+        <div class="next-link-title">Comparer deux produits avant un achat important</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-3.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Appliquer · Niveau III</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

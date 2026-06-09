@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comment donner du contexte : la compétence n°1. – AutomationBoost</title>
+  <meta name="description" content="Le contexte sépare un débutant d" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Comment donner du contexte : la compétence n°1.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#34d399;">Mieux prompter</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Comment donner du contexte : la compétence n°1.</h1>
+    <p class="lede">Le contexte est la variable qui sépare un débutant d'un utilisateur efficace. Que mettre, que ne pas mettre, jusqu'où détailler. La règle des 3 niveaux, les 4 catégories utiles, la checklist en 5 questions.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Si tu ne dois maîtriser qu'une seule compétence en prompt engineering, c'est celle-là. Tu sais que le contexte est l'un des quatre piliers de PTCF — mais c'est de loin le plus puissant.</p>
+
+    <p>Voici comment donner le bon contexte à l'IA, celui qui fait basculer une réponse générique en réponse sur-mesure.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi le contexte <em>pèse plus que le reste</em>.</h2>
+
+  <div class="container reading">
+    <p>Persona, format, tâche cadrent la <em>forme</em> de la réponse. Le contexte, lui, en détermine le <strong>fond</strong> : sans lui, l'IA répond à une question générale ; avec lui, elle répond à <em>ta</em> situation précise. C'est le pilier qui change le plus la pertinence.</p>
+
+    <p>Voici quoi inclure, et comment.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 7</span>La règle des <em>3 niveaux</em> de contexte.</h2>
+
+  <div class="container reading">
+    <p>Tout contexte utile se range dans l'un de ces trois niveaux. La règle pratique : pour un prompt rapide, niveau 1 suffit. Pour un prompt important, ajoute le niveau 2. Pour un prompt qui doit être parfaitement personnalisé, ajoute le niveau 3.</p>
+  </div>
+
+  <div class="level-box">
+    <div class="level-box-tag">— Niveau 1 · Le minimum vital</div>
+    <div class="level-box-title">Le contexte immédiat</div>
+    <div class="level-box-text">Les informations directement liées à la tâche : à qui c'est destiné, quel est l'objectif, dans quelles contraintes pratiques. Sans ça, l'IA produit du générique. <strong>Ce niveau n'est pas optionnel</strong> — c'est le seuil sous lequel ton prompt n'a aucune chance.</div>
+    <div class="level-box-example"><span class="label">— Exemple</span>Le mail est destiné à un client B2B. L'objectif est qu'il valide un devis. Il sera lu sur mobile, donc court. Je veux une réponse de sa part dans la semaine.</div>
+  </div>
+
+  <div class="level-box">
+    <div class="level-box-tag">— Niveau 2 · Recommandé</div>
+    <div class="level-box-title">Le contexte de situation</div>
+    <div class="level-box-text">L'historique récent, les contraintes implicites, l'enjeu sous-jacent. Ce niveau permet à l'IA d'éviter les <strong>pièges contextuels</strong> que tu connais mais qu'elle ignorerait. C'est ici que ton prompt commence à produire du sur-mesure plutôt que du générique amélioré.</div>
+    <div class="level-box-example"><span class="label">— Exemple</span>Notre dernière interaction date d'il y a trois semaines, sur un projet qui s'est mal passé à cause d'un bug technique de notre côté. Il vient de changer d'équipe et il est probablement débordé. Je veux réamorcer la relation sans m'excuser une troisième fois — j'ai déjà fait ça deux fois.</div>
+  </div>
+
+  <div class="level-box">
+    <div class="level-box-tag">— Niveau 3 · Avancé</div>
+    <div class="level-box-title">Le contexte personnel</div>
+    <div class="level-box-text">Tes propres préférences, ta voix, tes principes de communication, ce que tu refuses systématiquement. Ce niveau garantit que le livrable <strong>te ressemble</strong>, pas qu'il ressemble à un livrable type. C'est ce qui rend tes prompts irremplaçables : personne d'autre que toi ne pourrait les écrire.</div>
+    <div class="level-box-example"><span class="label">— Exemple</span>Mon style est direct, sans formules de politesse exagérées. Je tutoie quand le client le fait spontanément. Je n'utilise jamais les superlatifs (« ravi », « excellent », « parfait »). Je termine toujours par une question ouverte qui appelle une décision concrète, jamais par « n'hésitez pas ».</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Mon conseil de mentor</div>
+    <p>Le niveau 3 est le plus négligé et le plus puissant. Si tu utilises l'IA régulièrement, <strong>écris une fois pour toutes ton contexte personnel</strong> dans un fichier que tu gardes ouvert. À chaque prompt important, copie-colle. En 5 secondes tu rajoutes la signature qui rend chaque sortie indistinguable de ton propre travail.</p>
+  </div>
+
+  <!-- ============== 3. 4 CATÉGORIES ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 7</span>Les <em>4 catégories</em> d'informations utiles.</h2>
+
+  <div class="container reading">
+    <p>Quand tu rédiges ton contexte, tu tâtonnes souvent : <em>« qu'est-ce que je dois dire en plus ? »</em>. Voici les 4 catégories à passer en revue. Si chacune contient au moins une phrase, ton contexte est solide.</p>
+  </div>
+
+  <div class="cat-grid">
+    <div class="cat-card">
+      <span class="cat-num">— CATÉGORIE 1</span>
+      <div class="cat-name">Le destinataire / l'audience</div>
+      <div class="cat-desc">Qui va recevoir ou utiliser le résultat ? Métier, niveau, état d'esprit, attentes implicites. La même tâche change radicalement selon le destinataire.</div>
+    </div>
+    <div class="cat-card">
+      <span class="cat-num">— CATÉGORIE 2</span>
+      <div class="cat-name">L'historique pertinent</div>
+      <div class="cat-desc">Que s'est-il passé avant ? Échanges précédents, décisions déjà prises, tentatives passées qui ont échoué. Ce qui est implicite pour toi est invisible pour l'IA.</div>
+    </div>
+    <div class="cat-card">
+      <span class="cat-num">— CATÉGORIE 3</span>
+      <div class="cat-name">Les contraintes réelles</div>
+      <div class="cat-desc">Budget, temps, ressources, limites légales ou éthiques, obligations contractuelles. Sans contraintes, l'IA invente la lune. Avec, elle reste opérationnelle.</div>
+    </div>
+    <div class="cat-card">
+      <span class="cat-num">— CATÉGORIE 4</span>
+      <div class="cat-name">L'objectif sous-jacent</div>
+      <div class="cat-desc">Pas la tâche immédiate, mais l'objectif derrière. <em>« Pourquoi tu veux ça vraiment ? »</em>. C'est ce qui permet à l'IA de proposer mieux que ce que tu demandes parfois.</div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>Quatre catégories. Une phrase par catégorie minimum. Trois à cinq lignes au total pour un contexte efficace sur la plupart des sujets.</p>
+  </div>
+
+  <!-- ============== 4. PIÈGE ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 7</span>Le piège du <em>surplus</em>.</h2>
+
+  <div class="container reading">
+    <p>« Plus de contexte, c'est mieux » est vrai jusqu'à un certain point. Au-delà, ça devient contre-productif.</p>
+
+    <p>Si tu balances 800 mots d'historique pour une tâche qui en demande 100, l'IA va <strong>diluer son attention</strong>. Elle va essayer de répondre à toutes les implications de ton contexte au lieu de se concentrer sur la tâche. Tu vas obtenir une réponse trop longue, qui aborde des sous-sujets que tu n'avais pas demandés, et qui passe à côté du cœur de ta demande.</p>
+
+    <p>La règle : <strong>donne ce qui change la réponse</strong>, pas tout ce que tu sais. Si une info n'aurait pas modifié le livrable même si elle était absente, elle est superflue.</p>
+  </div>
+
+  <h3 class="reading">Le test : « Est-ce que ça change la réponse ? »</h3>
+
+  <div class="container reading">
+    <p>Avant d'inclure une info dans ton contexte, pose-toi la question : <em>« Si je supprimais cette phrase, est-ce que la réponse de l'IA serait différente ? »</em>.</p>
+
+    <p>Si oui, garde-la. Si non, supprime-la. C'est aussi simple que ça. Cette discipline t'amène à un contexte concentré : que de l'info utile, pas de remplissage.</p>
+  </div>
+
+  <p class="pull-quote">Donner du contexte, c'est de la sélection, pas de l'accumulation.</p>
+
+  <h3 class="reading">Le cas particulier des longs documents</h3>
+
+  <div class="container reading">
+    <p>Quand tu uploades un document long (rapport de 40 pages, livre, base de code), tu n'as pas à choisir : tu donnes tout, l'IA filtrera. Les modèles 2026 (Claude Opus 4.7, Gemini 3.1 Pro, GPT-5.5) ont des fenêtres de contexte d'1 million de tokens — l'équivalent de 1 500 pages. Le filtrage ne te coûte rien.</p>
+
+    <p>Mais dans le contexte que <em>tu rédiges toi-même</em>, sois sélectif. Chaque phrase a un coût attentionnel pour l'IA.</p>
+  </div>
+
+  <!-- ============== 5. CONTEXTE DE RÉFÉRENCE ============== -->
+  <h2 class="reading"><span class="h2-num">— 5 / 7</span>La technique du <em>contexte de référence</em>.</h2>
+
+  <div class="container reading">
+    <p>Si tu utilises l'IA souvent dans le même cadre (ton métier, tes projets récurrents, ta voix), tu vas vite trouver fastidieux de redonner le même contexte à chaque prompt. Solution : <strong>créer un contexte de référence</strong>, à charger une fois et réutiliser.</p>
+  </div>
+
+  <h3 class="reading">Méthode 1 : le bloc à copier-coller</h3>
+
+  <div class="container reading">
+    <p>Le plus simple. Tu rédiges un bloc <em>« À mon sujet »</em> de 100-200 mots, tu le gardes dans tes notes (Notion, Obsidian, fichier texte), et tu le copies au début de chaque prompt important. Ça prend 3 secondes et ça assure une cohérence parfaite d'un prompt à l'autre.</p>
+  </div>
+
+  <h3 class="reading">Méthode 2 : les fonctions natives des outils</h3>
+
+  <div class="container reading">
+    <p>ChatGPT a la <strong>Memory</strong> et les <strong>Custom GPTs</strong>. Claude a les <strong>Projects</strong> et la <strong>Memory</strong>. Gemini a les <strong>Gems</strong> et la <strong>Memory</strong>. Toutes ces fonctions servent à stocker un contexte une fois pour qu'il s'applique à toutes tes conversations futures.</p>
+
+    <p>Pour les sujets récurrents importants, c'est l'option idéale. Tu charges ton contexte personnel une fois, et tous tes prompts en bénéficient automatiquement. Configuration détaillée dans <a href="niveau-2-bien-configurer.html">la rubrique Bien configurer ton IA</a>.</p>
+  </div>
+
+  <h3 class="reading">Méthode 3 : le contexte versionné</h3>
+
+  <div class="container reading">
+    <p>Pour les usages très professionnels, garde plusieurs blocs de contexte selon le rôle. <em>« Contexte rédaction client »</em>, <em>« Contexte analyse stratégique »</em>, <em>« Contexte technique »</em>. Tu ne charges que celui qui correspond à la tâche du moment.</p>
+  </div>
+
+  <!-- ============== 6. CHECKLIST ============== -->
+  <h2 class="reading"><span class="h2-num">— 6 / 7</span>La <em>checklist</em> en 5 questions.</h2>
+
+  <div class="container reading">
+    <p>Avant chaque prompt important, fais passer ton contexte par ces 5 questions. Si tu réponds <em>« non »</em> ou <em>« je ne sais pas »</em> à plus d'une question, ton contexte est insuffisant.</p>
+  </div>
+
+  <div class="checklist">
+    <div class="checklist-title">— La checklist du contexte —</div>
+    <div class="checklist-item">
+      <div class="checklist-num">1</div>
+      <div class="checklist-q">Le destinataire est-il décrit ? Pas juste son nom — son <strong>profil, son niveau, son état d'esprit</strong>.</div>
+    </div>
+    <div class="checklist-item">
+      <div class="checklist-num">2</div>
+      <div class="checklist-q">L'historique pertinent est-il rappelé ? Si l'IA partait de zéro, comprendrait-elle <strong>pourquoi tu lui demandes ça maintenant</strong> ?</div>
+    </div>
+    <div class="checklist-item">
+      <div class="checklist-num">3</div>
+      <div class="checklist-q">Les contraintes réelles sont-elles posées ? Budget, temps, format imposé, limites légales — <strong>tout ce qui restreint la solution</strong>.</div>
+    </div>
+    <div class="checklist-item">
+      <div class="checklist-num">4</div>
+      <div class="checklist-q">L'objectif sous-jacent est-il clair ? Pas juste <em>« je veux ce livrable »</em>, mais <strong>« je veux ce livrable pour obtenir tel résultat »</strong>.</div>
+    </div>
+    <div class="checklist-item">
+      <div class="checklist-num">5</div>
+      <div class="checklist-q">Y a-t-il des éléments à <strong>éviter</strong> ? Erreurs typiques, formulations à bannir, sujets à ne pas aborder.</div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>Cette checklist prend 30 secondes à appliquer. Elle attrape la majorité des contextes incomplets. Au début, fais-la consciemment à chaque prompt. Après deux semaines, elle devient automatique.</p>
+  </div>
+
+  <!-- ============== 7. CAS PARTICULIERS ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 7 / 7</span>Cas particuliers : <em>confidentialité</em> et <em>sujets sensibles</em>.</h2>
+
+  <div class="container reading">
+    <p>Donner du contexte, c'est partager des informations. Plus tu en donnes, plus tu fournis de données potentiellement sensibles à l'éditeur de l'IA. Voici les règles minimales.</p>
+  </div>
+
+  <h3 class="reading">Anonymise tout ce qui est nominatif</h3>
+
+  <div class="container reading">
+    <p>Tu n'as pas besoin du vrai nom de ton client pour qu'un mail soit personnalisé. Remplace systématiquement les noms par des génériques (<em>« le client »</em>, <em>« mon manager »</em>, <em>« le candidat A »</em>). L'IA produit la même qualité, et tu protèges la vie privée des personnes concernées.</p>
+  </div>
+
+  <h3 class="reading">Évite les données structurelles confidentielles</h3>
+
+  <div class="container reading">
+    <p>Codes d'accès, mots de passe, identifiants bancaires, numéros de sécurité sociale, données médicales nominatives. Aucune de ces informations n'a sa place dans un prompt, ni dans un contexte. Pour les usages professionnels sensibles, regarde si ton entreprise a un déploiement Enterprise (Claude Enterprise, ChatGPT Enterprise, Gemini for Workspace) qui garantit que les données ne sont pas utilisées pour entraîner les modèles.</p>
+  </div>
+
+  <h3 class="reading">Pour les sujets médicaux, juridiques, financiers</h3>
+
+  <div class="container reading">
+    <p>Tu peux donner du contexte sur ta situation, mais tu ne peux pas remplacer un professionnel. L'IA va te donner une réponse plausible — pas forcément correcte ni applicable à ton cas. C'est un sujet traité dans la <a href="niveau-2-esprit-critique.html">rubrique Esprit critique</a> du Niveau II. Règle simple : pour ces sujets, l'IA structure ta réflexion, elle ne décide pas à ta place.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ce que tu vas voir dans les prochains articles</div>
+    <p>Cet article est le dernier sur la <em>construction</em> du prompt. Les deux derniers articles de la rubrique abordent des compétences complémentaires : <strong>l'art d'itérer</strong> (la première réponse n'est jamais la meilleure) et les <strong>12 mots-clés qui changent la qualité d'une réponse</strong> — l'article-pilier de la rubrique.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur l'art du contexte.</h3>
+    <ol class="recap-points">
+      <li>Le contexte représente 50 à 70 % du volume d'un bon prompt. Si tu es sous ce ratio, ton prompt est sous-optimal.</li>
+      <li>Trois niveaux : immédiat (minimum), de situation (recommandé), personnel (avancé). Empile selon l'enjeu.</li>
+      <li>Quatre catégories à couvrir : destinataire, historique, contraintes, objectif sous-jacent. Une phrase par catégorie minimum.</li>
+      <li>Donne ce qui change la réponse, pas tout ce que tu sais. Le surplus dilue l'attention de l'IA.</li>
+      <li>Crée un contexte de référence réutilisable. Memory, Projects, Gems, ou simple bloc copier-coller. C'est l'investissement le plus rentable.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a href="#" class="next-link">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">L'art d'itérer : ne jamais accepter la première réponse</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-2-bases-prompt.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Les bases du prompt · Niveau II</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

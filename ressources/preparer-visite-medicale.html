@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L'IA pour mieux préparer ta visite médicale. – AutomationBoost</title>
+  <meta name="description" content="46 % des utilisateurs dialoguent mieux avec leur médecin grâce à l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>L'IA pour mieux préparer ta visite médicale.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#22d3ee;">Au quotidien</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">L'IA pour mieux préparer ta visite médicale.</h1>
+    <p class="lede">46 % des utilisateurs disent que l'IA leur a permis de mieux dialoguer avec leur médecin. La méthode pour utiliser l'IA avant et après une consultation, sans tomber dans le piège de l'auto-diagnostic.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Une consultation dure 12 minutes en moyenne, et tu en oublies la moitié en rentrant. L'IA ne va pas te diagnostiquer — mais elle peut t'aider à tirer le maximum de ces 12 minutes.</p>
+
+    <p>Entre ceux qui promettent que ChatGPT remplace le médecin et ceux qui rejettent tout, voici l'usage juste : préparer ta visite, formuler tes symptômes, comprendre tes résultats. Sans jamais se substituer au diagnostic.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi préparer <em>change tout</em>.</h2>
+
+  <div class="container reading">
+    <p>Une consultation de médecine générale dure 12 à 18 minutes, pendant lesquelles le médecin doit écouter, examiner, réfléchir, prescrire et expliquer. Le temps réellement disponible pour <em>toi</em> est minime — d'où l'intérêt d'arriver avec une synthèse claire de ce que tu veux dire.</p>
+
+    <p>C'est exactement ce que l'IA t'aide à préparer. Voici comment, étape par étape.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Les <em>5 cas d'usage</em> qui marchent vraiment.</h2>
+
+  <div class="container reading">
+    <p>Voici les utilisations validées par les études 2025-2026 et par les retours patients. Chacune a un prompt précis. À utiliser <strong>avant</strong> ou <strong>après</strong> ta consultation, jamais pour la remplacer.</p>
+  </div>
+
+  <div class="use-card">
+    <div class="use-num">— USAGE 1 / 5 · AVANT LA CONSULTATION</div>
+    <div class="use-name">Préparer la <em>liste de questions</em> à poser</div>
+    <div class="use-desc">Le cas d'usage le plus rentable. Tu décris à l'IA tes symptômes, ton contexte, le type de consultation prévu. <strong>Elle te donne les questions intelligentes que tu devrais poser à ton médecin</strong>, et celles qu'il pourrait te poser pour que tu prépares tes réponses. Tu arrives en consultation organisé, tu ne perds plus de temps à chercher tes mots, et tu repars avec toutes les réponses.</div>
+    <div class="use-prompt"><span class="use-prompt-label">— Prompt à utiliser</span>Je vais consulter <span class="placeholder">[type de spécialiste : généraliste, dermato, gynéco, etc.]</span> dans <span class="placeholder">[délai]</span>.
+
+<strong>Mes symptômes :</strong> <span class="placeholder">[décris précisément : depuis quand, fréquence, intensité, ce qui aggrave/soulage]</span>.
+
+<strong>Mon contexte :</strong> <span class="placeholder">[âge, antécédents pertinents, traitements en cours, mode de vie utile]</span>.
+
+Aide-moi à préparer cette consultation :
+1. Les 5 questions importantes que je devrais poser au médecin
+2. Les 5 questions qu'il va probablement me poser et auxquelles je dois savoir répondre
+3. Les éléments à observer ou à mesurer chez moi avant la consultation (température, fréquence, déclencheurs)
+4. Ce que je dois absolument signaler même si on ne me le demande pas
+5. Les examens complémentaires possibles à anticiper
+
+<strong>Cadrage :</strong> reste informatif, pas diagnostique. Si tu n'es pas certain d'un point, dis-le.</div>
+  </div>
+
+  <div class="use-card">
+    <div class="use-num">— USAGE 2 / 5 · APRÈS LA CONSULTATION</div>
+    <div class="use-name">Comprendre ton <em>ordonnance</em> ou ton diagnostic</div>
+    <div class="use-desc">Tu es ressorti avec une ordonnance que tu ne comprends pas, un diagnostic dont tu n'as retenu que le nom, ou des recommandations floues. L'IA traduit en langage clair, explique le mécanisme, et te dit ce qu'il faut surveiller. <strong>Cet usage seul vaut son pesant d'or</strong> — beaucoup de patients sortent de consultation sans avoir vraiment compris ce qu'on leur a dit, et n'osent pas rappeler pour redemander.</div>
+    <div class="use-prompt"><span class="use-prompt-label">— Prompt à utiliser</span>Je sors d'une consultation chez <span class="placeholder">[type de médecin]</span>.
+
+<strong>Le diagnostic posé :</strong> <span class="placeholder">[ce qui a été dit]</span>.
+
+<strong>L'ordonnance / les recommandations :</strong> <span class="placeholder">[recopie ou photographie]</span>.
+
+Explique-moi en langage clair :
+1. Ce qu'est cette pathologie (mécanisme, fréquence, gravité typique)
+2. Comment fonctionne chaque médicament prescrit (effet, durée, à prendre quand)
+3. Les effets secondaires fréquents à connaître
+4. Ce que je dois surveiller dans les jours qui viennent et qui justifierait de rappeler
+5. Les questions que j'aurais dû poser et que je peux poser au pharmacien ou par téléphone
+
+<strong>Cadrage :</strong> ne remplace jamais l'avis du médecin. Si quelque chose te semble incohérent dans ce que tu lis, dis-le-moi clairement pour que je rappelle le cabinet.</div>
+  </div>
+
+  <div class="use-card">
+    <div class="use-num">— USAGE 3 / 5 · AVANT/APRÈS</div>
+    <div class="use-name">Décoder un <em>résultat d'examen</em></div>
+    <div class="use-desc">Prise de sang, IRM, radiologie, échographie. Tu reçois un compte-rendu rempli de termes techniques que personne n'a pris le temps de t'expliquer. L'IA te traduit chaque ligne. Elle te dit ce qui est normal, ce qui est hors norme, ce qui est inquiétant et ce qui est juste signalétique. <strong>Cette décrypte change l'expérience patient</strong> — au lieu d'attendre 3 semaines la prochaine consultation pour comprendre, tu sais en 5 minutes.</div>
+    <div class="use-prompt"><span class="use-prompt-label">— Prompt à utiliser</span>Voici les résultats de mon examen <span class="placeholder">[type d'examen]</span>.
+
+<strong>Contexte :</strong> <span class="placeholder">[pourquoi cet examen a été prescrit, mon âge, mes antécédents]</span>.
+
+<strong>Résultats :</strong>
+<span class="placeholder">[colle ou photographie le compte-rendu]</span>
+
+Explique-moi :
+1. Ce que mesure cet examen (en termes simples)
+2. Ligne par ligne, ce qui est dans la norme et ce qui ne l'est pas
+3. Ce que peuvent signifier les valeurs hors norme (sans diagnostiquer — juste les interprétations possibles)
+4. Les questions précises à poser au médecin lors du prochain rendez-vous
+5. Si quelque chose mérite de demander un rendez-vous plus rapide
+
+<strong>Cadrage :</strong> tu n'es pas mon médecin. Si une valeur te semble alarmante, dis-le-moi clairement pour que je contacte rapidement.</div>
+  </div>
+
+  <div class="use-card">
+    <div class="use-num">— USAGE 4 / 5 · AVANT/APRÈS</div>
+    <div class="use-name">Comprendre une <em>option de traitement</em></div>
+    <div class="use-desc">Le médecin t'a proposé deux options thérapeutiques et te demande de choisir. Tu n'as pas les éléments pour décider sereinement. L'IA t'aide à structurer ta réflexion : elle compare les options en termes simples, liste les questions à se poser, et identifie les éléments qui dépendent de ton profil personnel. <strong>L'objectif n'est pas que l'IA décide</strong> — c'est que tu arrives à la décision avec un cadre clair.</div>
+    <div class="use-prompt"><span class="use-prompt-label">— Prompt à utiliser</span>Mon médecin m'a proposé deux options pour <span class="placeholder">[problème de santé]</span> :
+- Option A : <span class="placeholder">[décris]</span>
+- Option B : <span class="placeholder">[décris]</span>
+
+Mon profil : <span class="placeholder">[âge, mode de vie, contraintes, valeurs personnelles importantes]</span>.
+
+Aide-moi à structurer la décision :
+1. Compare les deux options en termes simples (efficacité, durée, contraintes, effets secondaires)
+2. Identifie les facteurs qui devraient peser le plus selon mon profil
+3. Liste les 5 questions à reposer au médecin avant de trancher
+4. Identifie les profils où chaque option est typiquement préférée
+
+<strong>Cadrage :</strong> ne tranche pas à ma place. Donne-moi les éléments pour que je tranche en discutant avec mon médecin.</div>
+  </div>
+
+  <div class="use-card">
+    <div class="use-num">— USAGE 5 / 5 · APRÈS UNE CONSULTATION DÉCEVANTE</div>
+    <div class="use-name">Vérifier que <em>rien d'important n'a été oublié</em></div>
+    <div class="use-desc">Tu ressors d'une consultation rapide, le médecin était pressé, tu as l'impression qu'il a pas pris ton problème au sérieux. C'est légitime de vérifier. L'IA te liste les éléments qu'un examen complet aurait normalement couverts pour ton type de problème, te dit si quelque chose semble manquer, et te suggère si une seconde consultation ou un avis spécialiste serait justifié. <strong>L'étude West Health 2026 montre que 21 % des utilisateurs IA en santé l'utilisent précisément parce qu'ils se sont sentis ignorés par leur soignant</strong>. C'est un usage légitime.</div>
+    <div class="use-prompt"><span class="use-prompt-label">— Prompt à utiliser</span>Je sors d'une consultation pour <span class="placeholder">[motif]</span> et je n'ai pas le sentiment qu'elle a été complète.
+
+<strong>Ce qui a été fait :</strong> <span class="placeholder">[examens, questions posées, durée]</span>.
+
+<strong>Ce qui n'a pas été fait selon moi :</strong> <span class="placeholder">[éléments dont tu pensais qu'on parlerait]</span>.
+
+<strong>Mes symptômes restants :</strong> <span class="placeholder">[décris]</span>.
+
+Aide-moi à vérifier :
+1. Pour mon type de motif, qu'est-ce qu'une consultation thorough aurait normalement couvert ?
+2. Y a-t-il des éléments qui semblent manquer ?
+3. Mes symptômes restants justifient-ils une nouvelle consultation, et avec quel type de praticien ?
+4. Comment formuler une demande de second avis sans froisser ?
+
+<strong>Cadrage :</strong> ne décrédibilise pas mon médecin sans raison. Mais ne minimise pas non plus si quelque chose semble réellement manquer.</div>
+  </div>
+
+  <!-- ============== 3. LIMITES ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Les <em>limites infranchissables</em>.</h2>
+
+  <div class="container reading">
+    <p>Le revers de tous ces cas d'usage utiles : il y a des choses que l'IA ne doit <strong>jamais</strong> faire en santé. Pas par excès de prudence — par compréhension du fait que l'erreur en santé peut être irréversible. <a href="7-cas-jamais-confiance.html">Le médical est l'une des 7 zones rouges</a> où l'IA seule est insuffisante par construction. Voici les frontières précises.</p>
+  </div>
+
+  <div class="limit-card">
+    <div class="limit-name">Jamais d'<em>auto-diagnostic</em> qui remplace la consultation</div>
+    <div class="limit-text">L'IA peut t'aider à comprendre ce que tu ressens, à formuler tes symptômes, à savoir si tu dois consulter en urgence ou pas. Elle ne peut pas te dire <strong>« tu as la maladie X »</strong> avec une fiabilité suffisante pour que tu agisses sur cette base. Les taux d'erreur des IA en santé varient de 8 à 83 % selon les tâches selon une revue scientifique de 2025. Ne base aucune décision médicale sur un diagnostic IA.</div>
+  </div>
+
+  <div class="limit-card">
+    <div class="limit-name">Jamais de <em>posologies</em> ou modifications de traitement</div>
+    <div class="limit-text">L'IA peut expliquer comment fonctionne un médicament. Elle ne peut <strong>jamais</strong> te dire combien en prendre, quand l'arrêter, ou comment le combiner avec un autre. Ces décisions exigent un médecin parce qu'elles dépendent de ton dossier complet, de tes constantes, de tes interactions médicamenteuses, de ton historique. Une posologie modifiée sur conseil d'IA est l'un des cas où l'erreur peut être grave et irréversible.</div>
+  </div>
+
+  <div class="limit-card">
+    <div class="limit-name">Jamais sur les <em>urgences vitales</em></div>
+    <div class="limit-text">Douleur thoracique aiguë, signes d'AVC (asymétrie du visage, troubles d'élocution, paralysie d'un membre), saignement abondant, idées suicidaires, perte de conscience, anaphylaxie. <strong>Sur ces situations, on appelle le 15 (SAMU) ou le 112 immédiatement</strong>, on ne consulte pas une IA. Le délai compte plus que la précision. Si tu hésites une seconde sur la gravité d'un symptôme, c'est déjà un appel d'urgence.</div>
+  </div>
+
+  <div class="limit-card">
+    <div class="limit-name">Jamais sur la <em>santé mentale en crise</em></div>
+    <div class="limit-text">L'IA peut aider à formuler ce qu'on ressent et à préparer une consultation chez un psychiatre ou psychologue. Elle ne peut pas être un thérapeute, et surtout pas en situation de crise. Pour les pensées suicidaires : appel au <strong>3114 (numéro national de prévention du suicide)</strong> ou au 15. Pour un mal-être profond : prise de rendez-vous avec un professionnel humain, sans intermédiaire IA. <a href="quand-ia-veut-plaire.html">La sycophancy de l'IA</a> est particulièrement dangereuse en santé mentale — elle valide ce que tu lui dis, là où un thérapeute humain te confronterait.</div>
+  </div>
+
+  <div class="limit-card">
+    <div class="limit-name">Jamais comme <em>seule source</em> avant une décision importante</div>
+    <div class="limit-text">Décision opératoire, choix de protocole en cancérologie, traitement chronique de longue durée. <strong>Toujours avis humain croisé</strong>, et si tu hésites, second avis médical. L'IA peut t'aider à structurer le choix (usage 4 plus haut), mais la signature finale reste celle du médecin et la tienne, en discussion humaine. Voir <a href="double-check-ia-web.html">la méthode du double-check</a>.</div>
+  </div>
+
+  <!-- ============== 4. POSTURE ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>La <em>posture</em> juste face à ta santé.</h2>
+
+  <h3 class="reading">L'IA comme alliée du soignant, pas comme rivale</h3>
+
+  <div class="container reading">
+    <p>Beaucoup de patients hésitent à dire à leur médecin qu'ils ont consulté l'IA avant. Par peur de paraître présomptueux, ou de froisser. <strong>L'inverse est plus juste</strong>. Dire <em>« j'ai préparé cette consultation avec une IA, voici ce que je voulais comprendre »</em> est aujourd'hui parfaitement légitime. Cela montre que tu prends ta santé au sérieux, cela structure l'échange, cela aide ton médecin à mieux te répondre. Plusieurs études 2026 montrent que les médecins voient cet usage positivement quand il est annoncé honnêtement — bien plus mal quand le patient cache l'usage et arrive avec des questions étranges sans contexte.</p>
+
+    <p>La règle pratique : <strong>sois transparent</strong>. Dis à ton médecin que tu as utilisé l'IA pour préparer. Donne-lui les hypothèses qui t'ont marqué. Demande son avis sur ce qu'a dit l'IA. Tu transformes l'IA en aide à la consultation, pas en rivale du médecin. Cette posture donne les meilleurs résultats.</p>
+  </div>
+
+  <h3 class="reading">L'effet le plus profond : le rééquilibrage de la relation</h3>
+
+  <div class="container reading">
+    <p>Au-delà des cas d'usage individuels, l'IA produit un effet structurel rarement nommé. <strong>Elle rééquilibre la relation médecin-patient</strong>. Pendant des décennies, l'asymétrie d'information était totale — le médecin sait tout, le patient ne sait rien et doit faire confiance. Cette asymétrie a ses raisons (formation médicale = 9-12 ans), mais elle a aussi des effets pervers : patients infantilisés, questions non posées, décisions subies.</p>
+
+    <p>L'IA ne supprime pas l'asymétrie d'expertise — un patient qui a passé 30 minutes avec ChatGPT n'est pas devenu médecin. Mais elle réduit l'asymétrie d'<em>information de base</em>. Tu arrives en consultation avec un vocabulaire pertinent, tu sais quelles questions poser, tu comprends ce qu'on te dit. <strong>La consultation devient un dialogue d'adultes</strong>, pas un monologue sur lequel tu hoches la tête. C'est probablement le bénéfice le plus durable de cet usage — et celui qui justifie largement la légère friction d'apprentissage de la méthode.</p>
+  </div>
+
+  <h3 class="reading">La règle des 3 questions à se poser à chaque usage</h3>
+
+  <div class="container reading">
+    <p>Pour fixer la bonne posture, voici les 3 questions à te poser à chaque fois que tu ouvres l'IA pour un sujet santé. <strong>Si tu ne peux pas répondre oui aux trois, change d'usage.</strong></p>
+
+    <p><strong>Question 1 : « Est-ce que je vais tout de même consulter un humain compétent ? »</strong> Si la réponse est non, tu es en train d'utiliser l'IA en remplacement, pas en complément. C'est l'erreur principale à éviter.</p>
+
+    <p><strong>Question 2 : « Est-ce que je peux attendre quelques heures ou jours sans danger ? »</strong> Si la réponse est non (urgence vitale ou potentielle), tu n'as rien à faire avec une IA — tu dois appeler les secours ou aller aux urgences immédiatement.</p>
+
+    <p><strong>Question 3 : « Est-ce que j'utilise l'IA pour préparer/comprendre, et pas pour décider ? »</strong> Si tu cherches à valider une décision médicale via l'IA seule, tu as franchi la limite. La décision finale reste toujours humaine — médecin, ou toi en accord avec lui.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>L'IA en santé fonctionne comme un brillant <strong>assistant de patient</strong> — pas comme un médecin. Elle te rend mieux préparé, mieux informé, mieux outillé pour profiter du peu de temps que tu auras avec ton soignant. Sur ce périmètre, elle est extraordinairement utile et déjà adoptée par 25 % des adultes. Au-delà de ce périmètre — diagnostic, prescription, urgence, crise mentale — elle est dangereuse, et les éditeurs eux-mêmes le reconnaissent (OpenAI a banni les conseils médicaux personnalisés en octobre 2025). <strong>Reste dans le bon périmètre, et l'IA peut littéralement améliorer ta santé. Sors-en, et elle peut la dégrader.</strong></p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Pour aller plus loin sur les bonnes pratiques : <a href="7-cas-jamais-confiance.html">les 7 cas où ne jamais faire confiance à l'IA seule</a> (le médical en tête), <a href="hallucinations-ia.html">pourquoi l'IA hallucine</a> (essentiel à comprendre pour le santé), et <a href="prompt-anti-hallucination.html">les 4 phrases anti-hallucination</a> à ajouter à tes prompts médicaux.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur l'IA et ta santé.</h3>
+    <ol class="recap-points">
+      <li>Étude West Health-Gallup avril 2026 (5 500 adultes) : 25 % des adultes utilisent déjà l'IA pour la santé. 46 % disent qu'elle les a aidés à mieux dialoguer avec leur soignant. 22 % ont identifié un problème plus tôt. L'usage massif fonctionne — quand il est complémentaire et non substitutif.</li>
+      <li>5 cas d'usage validés : préparer la liste de questions avant la consultation, comprendre ordonnance/diagnostic après, décoder un résultat d'examen, structurer le choix entre options thérapeutiques, vérifier qu'une consultation décevante n'a pas oublié quelque chose.</li>
+      <li>5 limites infranchissables : jamais d'auto-diagnostic, jamais de posologies/modifications de traitement, jamais sur les urgences vitales (15/112), jamais en santé mentale en crise (3114), jamais comme seule source pour une décision importante.</li>
+      <li>Sois transparent avec ton médecin sur ton usage de l'IA — c'est mieux perçu et donne de meilleurs résultats que cacher l'usage. La consultation devient un dialogue d'adultes, pas un monologue.</li>
+      <li>3 questions à se poser à chaque usage : vais-je consulter un humain de toute façon ? Puis-je attendre sans danger ? Est-ce que j'utilise l'IA pour préparer/comprendre, pas pour décider ? Si une seule réponse est non, l'usage n'est pas le bon.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="niveau-3-vie-quotidienne.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Vie quotidienne · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="7-cas-jamais-confiance.html">
+        <div class="next-link-label">— Article essentiel</div>
+        <div class="next-link-title">Les 7 cas où ne jamais faire confiance à l'IA seule</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

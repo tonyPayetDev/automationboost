@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Les hooks qui retiennent l'attention. – AutomationBoost</title>
+  <meta name="description" content="71 % des spectateurs décident en 3 secondes s" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Les hooks qui retiennent l'attention.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#e879f9;">Créer du contenu</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Les hooks qui retiennent l'attention.</h1>
+    <p class="lede">71 % des viewers décident dans les 3 premières secondes s'ils regardent. Le hook fait ou casse ton contenu — pas le talent, pas la qualité de production. Les 7 archétypes qui marchent en 2026, prompts IA précis, pièges à éviter.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tu fais de bons contenus, personne ne les regarde. Tu en conclus que la qualité ne paie pas, ou que l'algorithme te déteste. Faux. Tu as un problème de hook.</p>
+
+    <p>L'écart entre un créateur qui plafonne à 200 vues et un autre à 50 000, à qualité de fond égale, se joue presque entièrement sur les 3 premières secondes. Voici comment construire des accroches qui retiennent.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi <em>3 secondes</em> et pas plus.</h2>
+
+  <div class="container reading">
+    <p>Ton contenu est vu dans un flux infini, en mobilité, par quelqu'un sans aucun engagement envers toi : sa décision par défaut n'est pas « est-ce que je regarde ? » mais « je scrolle, sauf si tu m'arrêtes ». Tu as quelques instants pour créer cet arrêt.</p>
+
+    <p>Voici les archétypes d'accroches qui fonctionnent, et comment les construire.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Les <em>7 archétypes</em> qui marchent en 2026.</h2>
+
+  <div class="container reading">
+    <p>Voici les 7 archétypes que tu vois revenir dans 90 % des contenus à fort taux de rétention. Pour chacun : le mécanisme psychologique activé, 3 exemples génériques adaptables, et le contexte d'usage idéal. <strong>Ne tente pas de les utiliser tous sur un même contenu</strong> — choisis-en un, exécute-le proprement.</p>
+  </div>
+
+  <div class="hook-card">
+    <div class="hook-num">— ARCHÉTYPE 1 / 7 · LE PLUS UNIVERSEL</div>
+    <div class="hook-name">La <em>contre-intuition</em></div>
+    <div class="hook-mecha"><strong>Mécanisme :</strong> rupture de pattern. Tu énonces quelque chose qui contredit la croyance par défaut du viewer. Son cerveau dit « attends, c'est bizarre » et reste pour comprendre.</div>
+    <div class="hook-examples">
+      <span class="hook-examples-label">— 3 exemples adaptables</span>
+      → <strong>« Plus tu en fais sur Instagram, moins tu progresses. Voici pourquoi. »</strong><br>
+      → <strong>« Le secret pour mieux dormir, c'est de moins respecter ton sommeil. »</strong><br>
+      → <strong>« J'ai gagné 30 % de plus en travaillant 2 jours de moins par semaine. »</strong>
+    </div>
+    <div class="hook-when"><strong>Quand l'utiliser :</strong> dès que tu as une thèse qui contredit le sens commun. Marche partout, particulièrement bien en éducation, business, productivité. <strong>Piège :</strong> ne contredis pas pour contredire — la suite doit livrer un raisonnement qui justifie le retournement.</div>
+  </div>
+
+  <div class="hook-card">
+    <div class="hook-num">— ARCHÉTYPE 2 / 7 · LE PLUS PUISSANT</div>
+    <div class="hook-name">La <em>question identitaire</em></div>
+    <div class="hook-mecha"><strong>Mécanisme :</strong> enjeu personnel. Tu adresses directement le viewer dans une situation qu'il vit. Son cerveau dit « ah, c'est pour moi » et reste parce qu'il veut savoir si tu vas valider ou résoudre son cas.</div>
+    <div class="hook-examples">
+      <span class="hook-examples-label">— 3 exemples adaptables</span>
+      → <strong>« Si tu te dis "je n'ai pas le temps de m'y mettre", écoute 30 secondes. »</strong><br>
+      → <strong>« Tu détestes ton job mais tu ne sais pas par où partir ? Voilà la première étape. »</strong><br>
+      → <strong>« Si tu as déjà fait 3 régimes en 2 ans sans résultat, le problème n'est pas toi. »</strong>
+    </div>
+    <div class="hook-when"><strong>Quand l'utiliser :</strong> tout contenu où tu peux nommer précisément la situation de ton public. Plus tu es spécifique, plus l'effet est puissant. <strong>Piège :</strong> ne tombe pas dans le générique « si toi aussi tu veux réussir » — trop large = ne s'adresse à personne.</div>
+  </div>
+
+  <div class="hook-card">
+    <div class="hook-num">— ARCHÉTYPE 3 / 7 · LE PLUS DIRECT</div>
+    <div class="hook-name">La <em>promesse chiffrée</em></div>
+    <div class="hook-mecha"><strong>Mécanisme :</strong> promesse + précision. Tu annonces un bénéfice mesurable et chiffré. La précision crédibilise (un chiffre rond sonne faux, un chiffre précis sonne vrai), le bénéfice crée l'envie.</div>
+    <div class="hook-examples">
+      <span class="hook-examples-label">— 3 exemples adaptables</span>
+      → <strong>« 3 phrases à ajouter à ton mail qui doublent ton taux de réponse. »</strong><br>
+      → <strong>« La méthode qui m'a fait gagner 7,5 heures par semaine. Décompte précis dans 60 secondes. »</strong><br>
+      → <strong>« 2 minutes le matin pour économiser 1h dans la journée. Pas une métaphore. »</strong>
+    </div>
+    <div class="hook-when"><strong>Quand l'utiliser :</strong> contenu utilitaire / éducatif où le bénéfice est mesurable. <strong>Piège majeur :</strong> ne tombe pas dans le clickbait Maverick-style (« le résultat va te choquer ») — la suite doit absolument livrer le chiffre annoncé. Sinon tu détruis ta crédibilité long-terme. La promesse chiffrée n'est pas une accroche — c'est un contrat.</div>
+  </div>
+
+  <div class="hook-card">
+    <div class="hook-num">— ARCHÉTYPE 4 / 7 · LE PLUS ÉMOTIONNEL</div>
+    <div class="hook-name">La <em>confession</em></div>
+    <div class="hook-mecha"><strong>Mécanisme :</strong> rupture de pattern + complicité. Tu admets quelque chose d'inhabituel ou de gênant. Le viewer est surpris (les gens sur internet ne se confessent pas) et reste par curiosité.</div>
+    <div class="hook-examples">
+      <span class="hook-examples-label">— 3 exemples adaptables</span>
+      → <strong>« J'ai abandonné mon premier business 4 fois avant qu'il marche. Voici ce que j'aurais dû voir. »</strong><br>
+      → <strong>« Pendant 2 ans j'ai fait semblant de comprendre ce que mon manager disait. Comment j'ai arrêté. »</strong><br>
+      → <strong>« Mon cours de fac le moins utile de toute ma scolarité a été celui qui m'a le plus servi 10 ans après. »</strong>
+    </div>
+    <div class="hook-when"><strong>Quand l'utiliser :</strong> quand tu peux puiser dans une expérience personnelle authentique. Marche extrêmement bien sur LinkedIn, en personal branding, en créateur solo. <strong>Piège :</strong> n'invente pas de confession — l'authenticité se sent, l'inauthenticité aussi. Si tu n'as pas vraiment vécu ce que tu racontes, n'utilise pas cet archétype.</div>
+  </div>
+
+  <div class="hook-card">
+    <div class="hook-num">— ARCHÉTYPE 5 / 7 · LE PLUS RICHE</div>
+    <div class="hook-name">La <em>liste-promesse</em></div>
+    <div class="hook-mecha"><strong>Mécanisme :</strong> promesse + structure. Tu annonces un nombre précis d'éléments à venir. Le cerveau aime les listes (charge cognitive prévisible) et reste pour les obtenir tous.</div>
+    <div class="hook-examples">
+      <span class="hook-examples-label">— 3 exemples adaptables</span>
+      → <strong>« 5 erreurs qui te font perdre 10 ans en début de carrière. La 4 est la plus violente. »</strong><br>
+      → <strong>« Les 3 phrases que les meilleurs négociateurs disent toujours en premier. »</strong><br>
+      → <strong>« 7 signes qu'il est temps de changer de boîte. Si tu en coches 3, c'est urgent. »</strong>
+    </div>
+    <div class="hook-when"><strong>Quand l'utiliser :</strong> formats listes / carrousels / threads. <strong>Piège :</strong> annoncer une liste de 5 et ne livrer que 3 (frustration garantie). Et l'astuce « la 4 est la plus violente » est devenue tellement utilisée qu'elle commence à fatiguer — à doser, ne pas l'utiliser sur tous tes contenus.</div>
+  </div>
+
+  <div class="hook-card">
+    <div class="hook-num">— ARCHÉTYPE 6 / 7 · LE PLUS OBSERVATIONNEL</div>
+    <div class="hook-name">L'<em>observation tranchante</em></div>
+    <div class="hook-mecha"><strong>Mécanisme :</strong> rupture de pattern par formulation. Tu énonces une vérité que les gens pensent confusément, que personne ne formule clairement, et tu la formules. Effet de reconnaissance massif.</div>
+    <div class="hook-examples">
+      <span class="hook-examples-label">— 3 exemples adaptables</span>
+      → <strong>« Personne ne te dira jamais que ton produit est nul. C'est pour ça que tu n'as pas de vente. »</strong><br>
+      → <strong>« Les pires managers ne sont pas les méchants. Ce sont les gentils incapables de dire non. »</strong><br>
+      → <strong>« Tout le monde sait que les réunions sont inutiles. Et tout le monde continue à les programmer. »</strong>
+    </div>
+    <div class="hook-when"><strong>Quand l'utiliser :</strong> quand tu as une vraie thèse, formulée précisément, sur ton domaine. Demande de la maturité dans le sujet — pas l'archétype des débuts. <strong>Piège :</strong> faire de la formule pour faire de la formule, sans contenu derrière. Le viewer revient une fois mais pas deux.</div>
+  </div>
+
+  <div class="hook-card">
+    <div class="hook-num">— ARCHÉTYPE 7 / 7 · LE PLUS RISQUÉ</div>
+    <div class="hook-name">La <em>scène in medias res</em></div>
+    <div class="hook-mecha"><strong>Mécanisme :</strong> rupture de pattern par contexte. Tu commences au milieu d'une scène, sans introduction. Le viewer reste pour comprendre où il vient d'arriver. Très utilisé en storytelling visuel TikTok / Reels.</div>
+    <div class="hook-examples">
+      <span class="hook-examples-label">— 3 exemples adaptables</span>
+      → <strong>« Il m'a regardé et il a dit "tu es viré". Je ne savais pas que ce serait la meilleure nouvelle de ma carrière. »</strong><br>
+      → <strong>« 2h47 du matin. Je relis mon CV pour la 14e fois. Et là je comprends ce qui cloche. »</strong><br>
+      → <strong>« Premier jour. J'ouvre l'ordi. Je vois 3 200 mails. Je ferme le couvercle. »</strong>
+    </div>
+    <div class="hook-when"><strong>Quand l'utiliser :</strong> contenu narratif / storytelling personnel. <strong>Piège :</strong> ouvrir sur une scène sans qu'il y ait de vraie histoire derrière — frustration totale du viewer qui s'est engagé. À réserver aux formats où tu as 60-90 secondes pour développer.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Données 2026 · Le sweet spot de durée</div>
+    <p>Les études convergent en 2026 sur un point : <strong>la durée optimale pour le format court est 60-90 secondes</strong> sur Reels et 90-120 secondes sur TikTok. Plus court (15s) = retention élevée mais peu d'amplification algorithmique (un Reel de 30s vu à 60% performe mieux qu'un Reel de 15s vu à 40%). Plus long (>2 min) = chute brutale de complétion. <strong>Cette donnée doit guider ta création :</strong> conçois ton hook pour amener un développement de 60 à 90 secondes, pas plus court, pas plus long. La règle a évolué — ce qui marchait en 2022-2023 (15 secondes max) ne marche plus en 2026.</p>
+  </div>
+
+  <!-- ============== 3. PROMPT IA ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Le <em>prompt IA</em> qui génère 30 hooks en 2 minutes.</h2>
+
+  <div class="container reading">
+    <p>L'IA n'écrit pas les bons hooks à ta place — mais elle peut générer un éventail de formulations à partir de ton sujet, parmi lesquels tu choisis et tu affines. Le ratio rentable : sur 30 hooks générés, tu en gardes 2-3 que tu reformules avec ta voix. Voici le prompt qui fonctionne.</p>
+  </div>
+
+  <div class="master-prompt">
+    <span class="master-prompt-label">— Prompt-master à recopier</span>
+Je crée un contenu sur <strong>[SUJET PRÉCIS]</strong> pour le format <strong>[TIKTOK/REELS/SHORTS/LINKEDIN/POST X]</strong>.
+
+Mon angle de fond : <strong>[la thèse ou l'enseignement principal du contenu]</strong>
+
+Mon audience : <strong>[décris en 2-3 lignes : âge, situation, ce qui les bloque, ce qu'ils cherchent]</strong>
+
+Génère-moi <strong>30 hooks</strong>, à raison de <strong>3 par archétype</strong> dans cet ordre :
+
+1. Contre-intuition (3 hooks)
+2. Question identitaire (3 hooks)
+3. Promesse chiffrée (3 hooks — chiffres réalistes pour mon sujet)
+4. Confession (3 hooks — basés sur ce que je vais te dire)
+5. Liste-promesse (3 hooks)
+6. Observation tranchante (3 hooks)
+7. Scène in medias res (3 hooks)
+8. Variations libres (9 hooks à toi de proposer en mélangeant les archétypes)
+
+<strong>Contraintes strictes :</strong>
+— Chaque hook fait moins de 15 mots
+— Aucun hook ne doit être générique (« voici comment réussir », « 5 conseils pour... »). Sois spécifique.
+— Pas de clickbait creux (« le résultat va te choquer », « personne ne te le dit »). Il faut tenir la promesse derrière.
+— Pas de jargon, pas de mots à la mode, pas d'emojis dans le texte du hook.
+— Pour les confessions, demande-moi <strong>quelles vraies expériences</strong> je peux mobiliser <strong>avant</strong> d'écrire les 3 hooks confession. Ne les invente pas.
+
+À la fin, propose-moi <strong>les 3 hooks</strong> que tu juges les plus puissants pour mon sujet et mon audience, avec une ligne d'argumentaire pour chacun.</div>
+
+  <div class="callout">
+    <div class="callout-label">L'astuce du mentor</div>
+    <p>L'erreur la plus fréquente avec ce prompt : prendre le hook tel quel et l'utiliser. <strong>Tu perds 80 % de l'effet</strong> parce que les hooks IA, même bons, ont une signature détectable (formulations standardisées, rythme prévisible). Tu utilises l'IA pour <em>accéder à 30 angles d'attaque</em> que tu n'aurais pas vus seul. Ensuite, tu reformules ton préféré <strong>avec ta voix, ton rythme, tes mots à toi</strong>. C'est cette dernière étape qui fait la différence entre un contenu qui sonne IA (et que les viewers fuient en 2026) et un contenu qui sonne toi. Voir <a href="ia-ecrire-comme-humain.html">l'article sur les marqueurs IA à éviter</a>.</p>
+  </div>
+
+  <!-- ============== 4. PIÈGES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Les <em>5 pièges</em> qui sabotent les hooks.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>l'introduction</em> avant le hook</div>
+    <div class="pitfall-text">L'erreur n°1 du débutant. Tu commences par « Salut tout le monde, j'espère que vous allez bien, aujourd'hui on va parler de... ». À la 4e seconde, le viewer est parti — tu n'as même pas commencé. <strong>Le hook est la première seconde de ta vidéo, point.</strong> Salutations, présentation, contexte arrivent en deuxième position si nécessaire — pas avant. Sur une vidéo de 60 secondes, tu n'as pas le luxe de dépenser 5 secondes en politesse. Et même si tu en as le luxe, ton viewer ne te l'accorde pas.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : la <em>promesse non tenue</em></div>
+    <div class="pitfall-text">Tu utilises un hook fort, le viewer reste, mais le contenu ne livre pas ce que le hook promettait. Le viewer se sent floué. Algorithmiquement, ce n'est pas grave une fois — c'est catastrophique en répétition. <strong>Ton compte se construit ou se détruit sur le rapport entre tes hooks et ce que tu livres.</strong> Si tu tiens systématiquement, ton audience te suit et ton algorithme te pousse. Si tu trompes, l'audience décroche en 2-3 contenus, et l'algorithme baisse ta distribution. Règle : si tu n'es pas certain de tenir le hook, choisis-en un autre.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : la <em>copie sans adaptation</em></div>
+    <div class="pitfall-text">Tu vois un hook qui marche chez un créateur, tu le réutilises tel quel. Deux problèmes : (1) ton audience le reconnaît, ça sent l'imitation ; (2) le hook a marché parce qu'il était cohérent avec la voix de l'autre, dans ta voix il sonne faux. <strong>Les archétypes se copient, les formulations non.</strong> Tu peux apprendre qu'un certain créateur excelle en confession, et utiliser cet archétype pour ton propre sujet — mais avec tes propres formulations, ton propre rythme, ton propre angle.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>changer de hook</em> à chaque post</div>
+    <div class="pitfall-text">L'erreur inverse de la copie : tu testes 7 archétypes différents en 7 posts, tu n'arrives à maîtriser aucun. <strong>La maîtrise d'un archétype demande 20-30 itérations.</strong> Choisis 1 ou 2 archétypes qui te ressemblent, exécute-les pendant 1 à 2 mois jusqu'à les maîtriser, ensuite ajoute. C'est l'inverse de l'intuition (« je dois varier ») mais c'est ce qui construit la voix. Les meilleurs créateurs ont en général 2-3 archétypes signature, pas 7.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : le <em>hook au détriment du fond</em></div>
+    <div class="pitfall-text">À force de travailler les hooks, certains créateurs en arrivent à fabriquer des contenus dont le fond est faible mais qui démarrent fort. Court terme : ça performe (le hook joue son rôle). Moyen terme : l'audience se détourne parce qu'elle voit des promesses constamment plus grandes que les contenus. <strong>Le hook n'est pas un substitut au fond — il est ce qui permet au fond d'être vu.</strong> Si tu n'as pas de fond solide, travailler les hooks est mettre un beau cadre autour d'un mur vide. Le travail du hook vient après celui du fond, pas avant.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>Le hook est la compétence la plus rentable et la plus mal enseignée de la création de contenu. <strong>La rentabilité vient du fait qu'elle multiplie tout le reste</strong> — un même contenu de fond avec un meilleur hook fait 5-10× plus de vues. La mauvaise pédagogie vient du fait que la majorité des contenus sur le sujet est elle-même clickbait (« 50 hooks viraux ! ») et n'enseigne pas la mécanique. <strong>Si tu repars de cet article avec une seule chose, retiens que les hooks ne sont pas un gadget — ce sont 7 mécanismes psychologiques sur les 3 secondes</strong>. Tu choisis lequel tu actives selon ton message, et tu le formules avec ta voix. Cette discipline, appliquée pendant 2-3 mois, te place dans le top 10 % des créateurs sur ta niche. Pas parce que tu as plus de talent — parce que tu as compris ce que 90 % ignorent encore.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Pour aller plus loin : <a href="cloner-style-ecriture.html">cloner ton style d'écriture</a> (essentiel pour reformuler les hooks IA avec ta voix), <a href="ia-ecrire-comme-humain.html">faire écrire l'IA comme un humain</a> (pour ne pas que tes hooks IA sonnent IA), <a href="bibliotheque-prompts.html">la bibliothèque de prompts</a> (pour capitaliser les prompts hooks qui marchent sur ta niche), et <a href="quand-ia-veut-plaire.html">la sycophancy</a> (l'IA aura tendance à valider tous tes hooks comme bons — exige le contraire).</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur les hooks qui retiennent.</h3>
+    <ol class="recap-points">
+      <li>71 % des viewers décident dans les 3 premières secondes (étude Marketing LTB 2025). Stratégie « hook-in-first-3-seconds » = +58 % de watch time. C'est le levier le plus rentable de toute la création de contenu, mieux qu'un meilleur matériel ou une meilleure production.</li>
+      <li>3 mécanismes psychologiques activables : rupture de pattern (quelque chose d'inattendu), enjeu personnel (quelque chose qui me concerne), promesse (quelque chose qui va me servir). Tous les hooks efficaces activent au moins l'un des 3.</li>
+      <li>7 archétypes documentés : contre-intuition, question identitaire, promesse chiffrée, confession, liste-promesse, observation tranchante, scène in medias res. Chaque archétype a un mécanisme propre, des contextes d'usage et des pièges spécifiques.</li>
+      <li>Prompt-master IA pour générer 30 hooks en 2 minutes (3 par archétype + 9 variations). Règle d'usage : tu utilises l'IA pour accéder à des angles d'attaque, pas pour fournir le hook final. Le hook final doit être reformulé avec ta voix sous peine de sonner IA.</li>
+      <li>5 pièges principaux : introduction avant le hook (politesse qui mange tes 3 secondes), promesse non tenue (catastrophe en répétition), copie sans adaptation (les archétypes se copient, pas les formulations), changer de hook à chaque post (la maîtrise d'un archétype demande 20-30 itérations), hook au détriment du fond (le hook permet au fond d'être vu, il ne le remplace pas). Format optimal 2026 : 60-90 secondes Reels, 90-120 secondes TikTok.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="transformer-video-10-contenus.html">
+        <div class="next-link-label">— Article suivant logique</div>
+        <div class="next-link-title">Transformer une vidéo en 10 contenus</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-3-creer-contenu.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Créer du contenu · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

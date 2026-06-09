@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scripts pour vidéo et podcast. – AutomationBoost</title>
+  <meta name="description" content="Les scripts IA génériques retiennent mal ; les scripts bien structurés gardent l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Scripts pour vidéo et podcast.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#e879f9;">Créer du contenu</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Scripts pour vidéo et podcast.</h1>
+    <p class="lede">Les scripts IA génériques tiennent 28-42 % de rétention, les scripts bien structurés 52-68 %. La méthode pour écrire des scripts vidéo et podcast avec l'IA — sans tomber dans le piège du contenu lisse et oubliable.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tu écris ton script vidéo dans ChatGPT, tu sors un texte propre, tu enregistres, tu publies. Personne ne regarde au-delà des 30 premières secondes, et tu blâmes l'algorithme. Le vrai problème : ton script retenait moins d'un tiers des spectateurs.</p>
+
+    <p>L'écart est énorme entre un script IA brut et un script bien structuré : du simple au double sur la rétention. Voici comment écrire, avec l'IA, des scripts vidéo et podcast qui retiennent vraiment l'attention.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>La <em>structure-mère</em> du script qui retient.</h2>
+
+  <div class="container reading">
+    <p>Avant la méthode, comprendre la structure. Tout script qui retient — vidéo ou podcast — repose sur la même architecture de base, validée par les analyses de rétention sur Spotify, YouTube, TikTok et Substack vidéo. Cette structure n'est pas une tendance 2026 — elle est l'application de la dramaturgie classique aux formats courts numériques. Je te donne les 5 blocs avec leur fonction et leur durée relative.</p>
+
+    <p><strong>Bloc 1 — Hook (3 à 8 secondes selon le format).</strong> Pas une intro polie, pas une présentation. Une accroche qui pose une tension. Trois formes qui marchent : (1) <em>contre-intuitif</em> (« Tout ce qu'on t'a dit sur X est faux »), (2) <em>chiffre choc</em> (« 73 % des Y échouent à cause de ça »), (3) <em>question ouverte qui dérange</em> (« Pourquoi ton podcast a 40 écoutes alors que ton concurrent en a 40 000 ? »). Si après le hook le spectateur ne peut pas s'empêcher de se demander <em>« et alors ? »</em>, c'est gagné. <strong>71 % des spectateurs décident de rester ou de partir dans les 3 premières secondes</strong> selon les données Instagram research 2025.</p>
+
+    <p><strong>Bloc 2 — Contexte (10 à 30 secondes).</strong> Pourquoi ce contenu existe et pour qui. C'est ici que tu poses ton angle, ton autorité (sans la jouer), ton cadrage. Erreur fréquente : sauter le contexte parce que « c'est ennuyeux ». Conséquence : l'audience ne sait pas pourquoi elle devrait écouter <em>cette</em> personne sur <em>ce</em> sujet. Sans contexte, le hook tombe à plat 10 secondes plus tard.</p>
+
+    <p><strong>Bloc 3 — Promesse (5 à 15 secondes).</strong> Ce que le spectateur va apprendre/comprendre/ressentir s'il reste. Précis et concret, pas vague. <em>« Tu vas comprendre comment X »</em> bat <em>« On va parler de X »</em>. La promesse fait office de contrat : si tu la tiens, le spectateur reste. Si tu la trahis (clickbait), il quitte et ne reviendra jamais. <a href="hooks-attention.html">Voir l'article dédié aux hooks</a> pour la mécanique fine.</p>
+
+    <p><strong>Bloc 4 — Corps (60 à 80 % du temps total).</strong> Le contenu lui-même, structuré en 3 à 5 sections clairement séparées. Chaque section doit avoir : (1) une transition courte qui annonce le micro-thème, (2) le développement avec exemples concrets, (3) un mini-cliffhanger qui pousse vers la section suivante. <strong>Le « tunnel d'ennui » de la section unique sans relances internes est le tueur n°1 de rétention.</strong></p>
+
+    <p><strong>Bloc 5 — CTA (5 à 15 secondes).</strong> Action précise demandée à l'audience. Pas « like et abonne-toi » qui marche peu — une action liée au contenu (« si tu veux le template gratuit, c'est en commentaire »). Le CTA doit donner envie d'agir <em>maintenant</em>, pas dans une semaine. Il vient en dernier — jamais avant que la promesse de l'introduction ait été tenue.</p>
+
+    <p><strong>Format-clés à connaître pour le minutage</strong> (Descript / Adobe Podcast 2026) : <em>120-160 mots par minute</em> pour audio standard, <em>140-180 mots par minute</em> pour vidéo dynamique. Donc une vidéo de 5 min = 700-900 mots de script ; un podcast de 30 min = 4 500-4 800 mots. Si l'IA t'écrit 6 000 mots pour 5 minutes de vidéo, elle se trompe — coupe.</p>
+  </div>
+
+  <p class="pull-quote">L'algorithme ne pénalise pas les scripts IA. Il pénalise les scripts qui ne tiennent pas l'attention. Les deux ne sont pas la même chose — sauf quand on confond ChatGPT par défaut et un vrai outil.</p>
+
+  <!-- ============== 2. MÉTHODE 5 PHASES ============== -->
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>La <em>méthode 5 phases</em>.</h2>
+
+  <div class="container reading">
+    <p>Le protocole pour passer d'une idée à un script publiable. Chaque phase a un prompt précis. Total : 30-60 minutes pour un script propre, vs 10 minutes pour un script générique qui ne marchera pas — donc <em>plus rentable en temps total</em> si on compte le temps perdu à publier du contenu qui ne décolle pas.</p>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 1 / 5 · ANGLE</div>
+    <div class="phase-name">Trouver <em>l'angle</em> qui n'est pas générique</div>
+    <div class="phase-purpose">L'erreur n°1 est de demander à l'IA un script sur un sujet large. « Fais-moi un script sur l'IA » te donne du contenu fade à coup sûr. Tu commences par contraindre ton angle — l'IA t'aide à le trouver, pas à l'écrire pour toi.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>Je veux faire <span class="placeholder">[un Reel / une vidéo YouTube / un épisode de podcast]</span> sur le sujet : <span class="placeholder">[sujet général]</span>.
+
+Mon audience : <span class="placeholder">[décris en 2 lignes : qui, quel niveau, quel besoin]</span>.
+
+<strong>Ne me propose pas de script.</strong> Aide-moi d'abord à trouver l'angle.
+
+1. Donne-moi <strong>5 angles potentiels</strong> sur ce sujet, classés du plus consensuel au plus tranchant.
+
+2. Pour chaque angle :
+   — Une formulation en 1 phrase de la thèse défendue
+   — Le type d'audience qui réagit (qui en a marre / qui sera surpris / qui sera énervé)
+   — Le risque (« ça peut déranger les X »)
+
+3. Identifie <strong>les 2 angles déjà saturés</strong> en 2026 sur ce sujet (à éviter sauf si on a vraiment quelque chose de nouveau à dire).
+
+4. Identifie <strong>l'angle le plus contre-intuitif</strong> qui a une chance de surprendre — celui où la majorité des créateurs n'est pas allée.
+
+Sois honnête. Si le sujet est trop saturé pour tenir 5 minutes sans répéter ce qui est partout ailleurs, dis-le.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 2 / 5 · STRUCTURE</div>
+    <div class="phase-name">Construire la <em>structure</em> avant les mots</div>
+    <div class="phase-purpose">Une fois l'angle choisi, tu construis la charpente. À ce stade tu ne veux toujours pas de phrases — tu veux les os du script : hook + contexte + promesse + 3 à 5 sections de corps + CTA. C'est la phase la plus négligée et la plus déterminante pour la rétention.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>Mon angle choisi : <span class="placeholder">[la formulation en 1 phrase]</span>
+
+Format : <span class="placeholder">[Reel 60s / vidéo YouTube 8 min / podcast 30 min...]</span>
+
+Construis la <strong>structure du script</strong> en respectant l'architecture suivante. Pas de phrases rédigées encore — uniquement la charpente :
+
+1. <strong>Hook (3-8 secondes selon format)</strong> : propose-moi 3 hooks possibles dans 3 styles différents (contre-intuitif, chiffre choc, question dérangeante). Pour chacun, dis pourquoi il fonctionne.
+
+2. <strong>Contexte (10-30 secondes)</strong> : pourquoi ce contenu existe, pour qui. En 2-3 lignes.
+
+3. <strong>Promesse (5-15 secondes)</strong> : ce que l'audience aura compris / appris / changé à la fin. Précis.
+
+4. <strong>Corps (60-80 % du temps total)</strong> : 3 à 5 sections principales. Pour chacune :
+   — Le micro-thème en 1 phrase
+   — Le mini-cliffhanger qui pousse vers la section suivante
+   — L'exemple concret prévu (1 par section minimum)
+
+5. <strong>CTA (5-15 secondes)</strong> : action précise liée au contenu (pas « abonne-toi »).
+
+À la fin, vérifie que :
+— L'audience a une raison de rester à chaque transition
+— Aucune section ne dure plus de 90 secondes sans relance
+— Le minutage total tient dans le format visé (120-160 mots/min audio, 140-180 mots/min vidéo)</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 3 / 5 · ÉCRITURE</div>
+    <div class="phase-name">Écrire <em>section par section</em>, pas en un coup</div>
+    <div class="phase-purpose">L'erreur classique est de demander à l'IA d'écrire le script complet en un seul prompt. Tu obtiens un script lisse et plat, sans variation. La meilleure technique : tu fais écrire <em>chaque section séparément</em>, en ajustant le ton et la longueur au fur et à mesure. C'est plus long mais le résultat est radicalement différent.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser (par section)</span>Voici la structure validée à la phase 2 : <span class="placeholder">[colle la structure]</span>
+
+Écris uniquement <strong>la section <span class="placeholder">[numéro]</span></strong> du corps : <span class="placeholder">[micro-thème]</span>.
+
+Contraintes strictes :
+— Durée cible : <span class="placeholder">[X secondes]</span> (donc <span class="placeholder">[Y]</span> mots maximum)
+— Ton : <span class="placeholder">[direct / didactique / provocant / chaleureux selon ton style]</span>
+— Niveau d'audience : <span class="placeholder">[novice / habitué / expert]</span>
+— Voix : <span class="placeholder">[parlée comme à un ami / formelle / hybride]</span>
+
+<strong>Règles d'écriture parlée :</strong>
+1. Phrases courtes (max 15-20 mots par phrase pour de la vidéo)
+2. Pas de transitions chevillées (« par ailleurs », « en outre », « il est important de noter »)
+3. Au moins 1 exemple concret tangible dans la section
+4. Une formulation tranchée au moins (un avis assumé ou une affirmation forte)
+5. Le mini-cliffhanger en dernière phrase pour pousser vers la section suivante
+
+<strong>Termine par 3 versions alternatives</strong> de la première phrase de la section, pour me permettre de choisir celle qui s'enchaîne le mieux avec la section précédente.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 4 / 5 · OPTIMISATION RÉTENTION</div>
+    <div class="phase-name">Tester avec un <em>œil critique</em> avant d'enregistrer</div>
+    <div class="phase-purpose">Avant de te lancer dans l'enregistrement, tu fais relire le script à l'IA en mode « anti-spectateur » — pour identifier les passages où l'attention va tomber. Cette phase de critique active te fait gagner 50 % de rétention sur le produit fini.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>Voici mon script complet : <span class="placeholder">[colle le script]</span>
+
+Format : <span class="placeholder">[Reel / vidéo / podcast]</span>
+
+Joue le rôle d'un spectateur exigeant <strong>qui cherche une excuse pour partir</strong>. Identifie :
+
+1. <strong>Les 3 passages où l'attention va le plus probablement chuter</strong> — avec timestamp précis et raison (transition molle, exemple manquant, redondance, etc.)
+
+2. <strong>Les marqueurs IA</strong> qui restent et qui font sonner « écrit par ChatGPT » : transitions chevillées, formulations creuses (« il est important de noter », « dans le monde d'aujourd'hui »), structures parallèles trop régulières (« d'abord X, ensuite Y, enfin Z »). Liste-les avec le passage exact à réécrire.
+
+3. <strong>Les 2 endroits</strong> où la promesse de l'intro semble ne pas être tenue — où le spectateur risque de penser « je suis venu pour autre chose ».
+
+4. <strong>L'évaluation du hook</strong> : note-le sur 10 selon ces 3 critères (force de tension, clarté de la promesse implicite, originalité). Si moins de 7, propose 3 alternatives.
+
+5. <strong>Les zones à improviser</strong> : marque les 2-3 passages que je devrais <em>ne pas lire mot pour mot</em> mais reformuler avec mes mots à l'enregistrement, pour casser le côté lisse.
+
+Sois sévère. Je préfère réécrire avant qu'avoir une mauvaise rétention après publication.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 5 / 5 · ADAPTATION SUPPORT</div>
+    <div class="phase-name">Ajuster pour la <em>parole vs lecture</em></div>
+    <div class="phase-purpose">Le script est presque prêt — dernière étape. Un script vidéo/podcast s'écrit pour être <em>parlé</em>, pas lu. Cette adaptation finale change tout. C'est elle qui distingue le créateur amateur (lit son script en monocorde) du créateur professionnel (parle naturellement à partir de son script).</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>Voici mon script optimisé : <span class="placeholder">[colle le script]</span>
+
+Adapte-le pour qu'il sonne <strong>parlé et pas lu</strong>. Pour ça :
+
+1. <strong>Marque les pauses naturelles</strong> avec « // » entre les segments où je dois respirer ou laisser respirer le spectateur (pas plus de 3 segments par minute).
+
+2. <strong>Identifie 5-8 mots-clés</strong> à <strong>souligner à l'oral</strong> (intonation marquée). Ces mots portent l'argument — sans accent dessus, le script tombe.
+
+3. <strong>Réécris les phrases trop écrites</strong> en version parlée :
+   — Remplace les subordonnées par des phrases simples
+   — Remplace « cependant » par « mais »
+   — Remplace « par conséquent » par « donc »
+   — Si une phrase fait plus de 20 mots, coupe-la en deux
+
+4. <strong>Ajoute 2-3 « décrochages »</strong> : moments où je peux improviser ou réagir spontanément (anecdote courte, parenthèse, réaction). Marque-les « [DÉCROCHAGE possible : sujet] ».
+
+5. <strong>Donne-moi le minutage prévu par section</strong> : section 1 = X secondes, etc. — pour que je vérifie en relisant à voix haute si je tiens dans le format.
+
+Le script final doit pouvoir être lu à voix haute en sonnant comme une conversation, pas comme un communiqué.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">L'astuce du mentor</div>
+    <p>Le geste qui transforme un bon script en script qui décolle : <strong>lis-le à voix haute avant l'enregistrement</strong>, idéalement le jour avant. Tu repères en 5 minutes les phrases qui sonnent écrites alors qu'elles devraient sonner parlées. Tu repères les passages où ta voix s'éteint (signe que la section est plate). Tu repères les passages où tu trébuches (signe que la formulation n'est pas naturelle pour toi). Cette discipline est invisible pour le créateur débutant et systématique pour le créateur confirmé. <strong>L'écart entre les deux n'est pas le talent — c'est ce passage de 5 minutes à voix haute</strong>. Si tu n'as pas le temps de le faire, ton script n'est pas prêt à être enregistré.</p>
+  </div>
+
+  <!-- ============== 3. ADAPTATION 5 FORMATS ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Adaptation aux <em>5 formats</em>.</h2>
+
+  <div class="container reading">
+    <p>La méthode générale fonctionne sur tous les formats. Mais chaque format a ses contraintes. Voici les ajustements précis pour les 5 plus fréquents.</p>
+  </div>
+
+  <div class="format">
+    <div class="format-name">Format 1 · <em>Shorts / Reels / TikTok</em> (15 à 90 secondes)</div>
+    <div class="format-text"><strong>Spécificité :</strong> les 3 premières secondes décident de tout (71 % des spectateurs partent ou restent en 3s). Le hook prend 50 % du poids éditorial. <strong>Ajustement :</strong> demande à la phase 2 <em>5 hooks</em> au lieu de 3. Saute le bloc « contexte » — il est intégré dans le hook ou la première phrase. Corps en 2 sections max (3 si tu maîtrises). CTA en 1 phrase, en commentaire de préférence pour ne pas casser le rythme final. Sweet spot durée : 45-75s sur Reels, 60-90s sur TikTok. <strong>Engagement moyen 2026 :</strong> TikTok 2,80 %, Reels 0,65 %, Shorts 0,30 % — ce qui change la priorité plateforme selon ton audience.</div>
+  </div>
+
+  <div class="format">
+    <div class="format-name">Format 2 · <em>Vidéo YouTube longue</em> (5 à 20 minutes)</div>
+    <div class="format-text"><strong>Spécificité :</strong> le format où la rétention compte le plus pour l'algorithme. Une chute de rétention au milieu coule la vidéo entière. <strong>Ajustement :</strong> à la phase 2, exige <em>4 à 6 sections</em> de corps avec mini-cliffhangers obligatoires entre chaque. À la phase 4, fais identifier <em>tous</em> les passages à risque (pas seulement les 3 principaux). Le hook doit promettre du concret dans les 3 premières minutes (« en 30 secondes, tu vas voir... »). Pour les vidéos > 10 min, ajoute des <em>ancres visuelles</em> dans le script (« je te montre à l'écran ») pour soutenir la rétention. Voir l'article complémentaire <a href="transformer-video-10-contenus.html">3.4 sur transformer une vidéo en 10 contenus</a>.</div>
+  </div>
+
+  <div class="format">
+    <div class="format-name">Format 3 · <em>Podcast solo</em> (10 à 60 minutes)</div>
+    <div class="format-text"><strong>Spécificité :</strong> pas de visuel pour soutenir l'attention. Tout repose sur la voix, le rythme, les variations. <strong>Ajustement :</strong> écris un script un peu plus aéré que pour de la vidéo (pause de respiration plus marquée). Sections plus courtes (5-7 min max) avec transitions sonores. À la phase 5, ajoute des <em>variations vocales</em> à marquer (changement de ton sur les anecdotes vs les démonstrations). <strong>Privilégie 10-15 minutes pour les nouveaux shows</strong> selon Adobe Podcast 2026 — la rétention sur les épisodes longs s'effondre vite si l'audience n'est pas déjà fidélisée. Aim for 120-150 mots/min, plus lent que vidéo.</div>
+  </div>
+
+  <div class="format">
+    <div class="format-name">Format 4 · <em>Podcast interview</em> (30 à 90 minutes)</div>
+    <div class="format-text"><strong>Spécificité :</strong> le « script » n'est pas linéaire — c'est une cartographie de questions et de relances. <strong>Ajustement :</strong> à la phase 1 (angle), tu identifies <em>l'arc narratif de l'invité</em> que tu veux faire émerger (pas une liste de questions chronologique — une trajectoire qui révèle quelque chose). À la phase 2, tu construis 3 blocs de questions (échauffement / cœur / révélation/CTA). À la phase 3, tu écris pour chaque bloc <em>5 questions principales + 3 relances par question</em>. Les relances sont l'élément qui distingue un podcast moyen d'un excellent — l'IA peut t'aider à anticiper les réponses probables et préparer les relances qui creusent.</div>
+  </div>
+
+  <div class="format">
+    <div class="format-name">Format 5 · <em>Voice-over commercial</em> (15 à 60 secondes)</div>
+    <div class="format-text"><strong>Spécificité :</strong> chaque mot doit gagner sa place. Format ultra-condensé où l'argument doit tenir en 1-2 phrases percutantes. <strong>Ajustement :</strong> à la phase 1, tu ne cherches pas un angle complexe — tu cherches <em>la promesse en 1 phrase</em> et <em>l'objection principale à neutraliser</em>. À la phase 3, tu écris 3 versions du script et tu testes celle qui sonne le moins « pub ». À la phase 5, tu marques les 2-3 mots-clés qui doivent absolument porter à l'oral (le nom de la marque ne suffit pas — il faut un mot émotionnel). Plus le format est court, plus la phase 5 (adaptation parlée) est cruciale — un voice-over qui sonne lu est mort.</div>
+  </div>
+
+  <!-- ============== 4. PIÈGES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Les <em>5 pièges</em> qui tuent un script.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : demander un <em>script complet en un prompt</em></div>
+    <div class="pitfall-text">Le piège le plus fréquent. Tu écris « écris-moi un script de 5 minutes sur X » — l'IA te sort 700 mots cohérents et plats. Ce script aura les caractéristiques exactes du contenu IA générique : structure prédictible, transitions chevillées, ton homogène, pas de point de vue tranché. <strong>Discipline :</strong> jamais de script complet en un prompt. Méthode 5 phases obligatoire — angle, structure, écriture par sections, optimisation rétention, adaptation parlée. Le surcoût en temps (30-60 min vs 10 min) est largement compensé par le gain en rétention (×2 à ×2,5 selon les analyses 2026).</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : laisser passer les <em>marqueurs IA</em></div>
+    <div class="pitfall-text">Voir <a href="ia-ecrire-comme-humain.html">l'article 3.2 sur les marqueurs IA</a>. Les transitions chevillées (« par ailleurs », « en outre »), les formulations creuses (« il est important de noter », « dans le monde d'aujourd'hui »), les structures parallèles trop régulières — l'audience les détecte en 2026 même inconsciemment. Sur de l'écrit, c'est mauvais. Sur de la vidéo/podcast, c'est mortel — la voix amplifie ces marqueurs et le spectateur décroche en 30 secondes. <strong>La phase 4 de la méthode est dédiée à ça.</strong> Si tu la sautes, ton script aura ces marqueurs et tu ne le verras pas tout seul (biais de cécité d'auteur).</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>lire mot pour mot</em> au lieu de parler</div>
+    <div class="pitfall-text">Le piège qui ruine même un excellent script. Tu lis ton script comme un texte écrit, ton intonation est plate, ton rythme est mécanique, l'audience entend que tu lis et décroche. <strong>Discipline :</strong> phase 5 (adaptation parlée) <em>obligatoire</em>. Lecture à voix haute la veille de l'enregistrement. À l'enregistrement, tu utilises le script comme <em>une carte</em>, pas comme un texte sacré. Tu peux et tu dois improviser sur les passages où ça vient naturellement. Les meilleurs créateurs travaillent avec un script à 80 % rédigé et 20 % improvisé en direct — et ces 20 % sont ce que l'audience préfère.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>négliger le hook</em></div>
+    <div class="pitfall-text">71 % des spectateurs décident en 3 secondes. Si ton hook est faible, ton corps est inutile. Pourtant la majorité des créateurs passent 90 % du temps sur le corps et 10 % sur le hook. <strong>Inversion à pratiquer :</strong> 30 % du temps sur le hook (génération de 3-5 alternatives, choix du meilleur, test à voix haute). 10 % sur le contexte. 30 % sur le corps. 20 % sur les transitions et le CTA. 10 % sur la phase d'optimisation. Le hook est l'investissement marginal le plus rentable de tout le process. Voir <a href="hooks-attention.html">l'article dédié 3.3 sur les hooks</a>.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : <em>déconnecter</em> le script de la production</div>
+    <div class="pitfall-text">Tu écris ton script comme s'il s'auto-suffisait. Tu enregistres. Au montage, tu réalises que rien n'a été pensé pour le visuel : pas de B-roll prévu, pas de moments où tu veux insérer une animation, pas de variation de ton. Résultat : la vidéo finale est plate visuellement même si le script est bon. <strong>Discipline :</strong> à la phase 3, demande à l'IA d'ajouter <em>des notes B-roll et visuelles</em> en marge du texte (« [insérer image de X] », « [graphique des chiffres] »). Pour le podcast : demande des notes sonores (« [pause longue] », « [musique stinger ici] »). Le script et la production se pensent ensemble.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>L'écriture de scripts est l'un des cas d'usage IA où la frontière entre « ça marche pas » et « ça décolle » passe entièrement par la méthode, pas par l'outil. Un débutant sur Claude Opus 4.7 (le meilleur modèle 2026) qui demande « écris-moi un script » obtient un produit moins performant qu'un créateur expérimenté sur GPT-3.5 (modèle de 2022) qui suit la méthode 5 phases. <strong>L'investissement utile n'est pas dans l'outil — il est dans le protocole.</strong> Et ce protocole se transmet en une lecture de cet article + 3-4 scripts pour s'approprier les phases. C'est l'un des rares domaines où 2 heures d'apprentissage te font passer de la moyenne au top 5 % des créateurs IA. Pour la suite : lis l'article 3.7 sur l'article long si tu écris aussi de l'écrit, et l'article 3.6 sur les newsletters si tu construis une audience email parallèle au format vidéo/podcast.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Pour aller plus loin : <a href="hooks-attention.html">les hooks d'attention</a> (cœur du bloc 1 de tout script), <a href="ia-ecrire-comme-humain.html">les marqueurs IA à éliminer</a> (essentiel à la phase 4), <a href="cloner-style-ecriture.html">cloner ton style d'écriture</a> (utile pour calibrer la voix dans la phase 3), <a href="transformer-video-10-contenus.html">transformer une vidéo en 10 contenus</a> (logique de repurposing après diffusion), <a href="article-long-qui-tient-debout.html">l'article-pilier 3.7 sur l'écriture longue</a> (méthode-mère pour l'écrit, complémentaire de celle-ci pour le parlé). Pour la production audio elle-même, voir <a href="outils-ia.html">l'annuaire d'outils IA</a> (Descript, Adobe Podcast, ElevenLabs, Riverside).</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur les scripts vidéo et podcast.</h3>
+    <ol class="recap-points">
+      <li>Étude Virvid 2026 : scripts IA génériques 28-42 % de rétention vs 52-68 % pour scripts bien structurés. Écart de 26 points qui fait la différence entre vidéo enterrée et vidéo qui décolle. La cause n'est pas la qualité brute du modèle — c'est la méthode d'utilisation.</li>
+      <li>Structure-mère universelle : Hook (3-8s, 71 % décident dans les 3 premières secondes selon Instagram research) + Contexte (10-30s) + Promesse (5-15s) + Corps (60-80 % du temps, 3-5 sections avec mini-cliffhangers) + CTA (5-15s, action précise liée au contenu). Minutage : 120-160 mots/min audio, 140-180 mots/min vidéo.</li>
+      <li>Méthode 5 phases : (1) angle non-générique avec 5 alternatives classées par tranchant, (2) structure complète sans phrases avant écriture, (3) écriture section par section avec contraintes strictes, (4) optimisation rétention avec relecture critique anti-marqueurs IA, (5) adaptation parlée avec marqueurs de pause et décrochages. 30-60 min total vs 10 min pour un script générique qui ne marchera pas — donc plus rentable.</li>
+      <li>5 formats à connaître : Shorts/Reels/TikTok (hook = 50 % du poids, sweet spot 45-90s), vidéo YouTube longue (4-6 sections avec cliffhangers obligatoires, ancres visuelles), podcast solo (script aéré, 10-15 min idéal pour nouveaux shows), podcast interview (cartographie d'arc narratif, relances cruciales), voice-over commercial (promesse en 1 phrase, phase 5 décisive).</li>
+      <li>5 pièges qui tuent un script : demander un script complet en un prompt (méthode 5 phases obligatoire), laisser passer les marqueurs IA (phase 4 dédiée), lire mot pour mot au lieu de parler (script = carte, pas texte), négliger le hook (30 % du temps total à investir), déconnecter script et production (notes B-roll et sonores intégrées dès la phase 3).</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="article-long-qui-tient-debout.html">
+        <div class="next-link-label">— Article pilier complémentaire</div>
+        <div class="next-link-title">Article long qui tient debout · La méthode pour l'écrit</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-3-creer-contenu.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Créer du contenu · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Facturer ta valeur, pas ton temps. – AutomationBoost</title>
+  <meta name="description" content="Définir un tarif qui te respecte sans te griller : la méthode pour facturer ta valeur plutôt que ton temps, et justifier un prix élevé." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Facturer ta valeur, pas ton temps.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#f43f5e;">Lancer un business</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Facturer ta valeur, pas ton temps.</h1>
+    <p class="lede">La méthode pour définir un tarif qui te respecte sans te griller. Comment justifier un prix élevé sans expérience, comment passer de la facturation au temps à la facturation à la valeur, quand l'augmenter, comment annoncer une hausse à un client existant.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Ton offre est claire. Reste la question qui paralyse la plupart des freelances qui démarrent : combien facturer ? La réponse dominante — « 500 €/jour parce que c'est le marché » — est justement l'erreur qui plombe ta trajectoire de revenus pendant deux ou trois ans.</p>
+
+    <p>Ton tarif n'est pas une moyenne de marché : c'est un signal de positionnement. Le mauvais signal te bloque mécaniquement chez des clients qui négocient ton temps. Ceux qui facturent à la valeur gagnent nettement plus que ceux qui facturent à l'heure. Voici comment fixer tes tarifs sur cette logique.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>La formule <em>MAR</em> · ton tarif plancher.</h2>
+
+  <div class="container reading">
+    <p>Avant tout tarification avancé, tu as besoin d'un <strong>plancher</strong> : le tarif en dessous duquel tu ne descends jamais, parce qu'en dessous tu travailles à perte une fois charges et impôts payés. C'est ton <em>Minimum Acceptable Rate</em>. La formule est simple, le plancher non négociable.</p>
+  </div>
+
+  <div class="codeblock">
+    <div class="codeblock-label">— Formule MAR · 2026</div>
+    <div class="codeblock-content"><em>FORMULE</em> :
+   MAR = (revenu cible + charges + impôts) / heures facturables/an
+
+<em>EXEMPLE CONCRET — freelance France, micro-entreprise</em> :
+- Revenu cible net dans la poche : 45 000 €/an
+- Charges sociales micro (22 % CA brut) : ~12 700 €
+- Impôt revenu (versement libératoire 2,2 %) : ~1 270 €
+- Frais pro (matos, coworking, abos) : 4 000 €
+- <em>CA brut nécessaire</em> : 63 000 €/an
+
+- Jours travaillés : 230 jours/an (5 sem congés)
+- Mais facturable réel : 60 % = <em>138 jours facturables</em>
+  (40 % en admin, prospection, formation, non-facturable)
+- Heures facturables : 138 × 7h = 966 heures
+
+- <em>MAR plancher</em> : 63 000 / 966 = <em>~65 €/h</em>
+- <em>TJM plancher</em> : 65 × 7 = <em>~455 €/jour</em>
+
+<em>LECTURE CORRECTE DU MAR</em> :
+- En dessous de 455 €/jour = tu travailles à perte
+- Ce n'est PAS ton tarif cible, c'est ton tarif plancher
+- Tarif cible = MAR × 1,3 à 2 selon expertise/niche
+  → 590 à 910 €/jour pour ce profil
+
+<em>SI TU ES TENTÉ DE BAISSER</em> :
+- Premier client = MAR + 20 % minimum (590 €/jour)
+- Jamais en dessous, MÊME pour acquisition
+- Préfère DONNER 1-2 jours de prestation gratuite
+  pour case study/témoignage qu'BAISSER ton tarif
+- Tarif bas = ancrage cognitif définitif chez ton réseau
+
+<span class="comment"># Variables à adapter selon ta situation : revenu cible,
+# statut juridique (charges 22% micro vs 45% TNS vs 75% SASU),
+# nombre jours travaillés, ratio facturable. Les outils en ligne
+# (SoloHourly, EconKit, Malt simulateur) calculent
+# automatiquement avec ta situation précise.</span></div>
+  </div>
+
+  <h3>Pourquoi la majorité des freelances ignorent le MAR</h3>
+
+  <div class="container reading">
+    <p>Trois raisons documentées (FinanceDigs 2026, EarnifyHub 2026). <strong>(1)</strong> Ils calculent leur TJM en divisant leur ancien salaire mensuel par 18-20 jours, oubliant les charges TNS qui sont 2× supérieures aux charges salarié. <strong>(2)</strong> Ils comptent 220 jours facturable au lieu de 138 jours réels (oubli des 40 % non-facturables). <strong>(3)</strong> Ils n'incluent pas les frais pro et la marge profit (10-20 % minimum recommandé EconKit 2026).</p>
+
+    <p><strong>Conséquence directe :</strong> ils facturent 350-400 €/jour en pensant être <em>« raisonnables »</em>, alors que leur MAR réel est 450-500 €/jour. Ils travaillent 230 jours, déclarent 80 K€ CA, et finissent l'année avec 38 K€ net dans la poche — soit moins qu'un CDI senior équivalent. Le sentiment de <em>« freelance qui galère »</em> vient en large partie de cette erreur de calcul de base. Cf <a href="freelance-ou-salariat.html">article 2.1</a> sur la comparaison chiffrée freelance/salariat.</p>
+  </div>
+
+  <p class="pull-quote">Ton MAR n'est pas une opinion. C'est une équation. Si tu factures en dessous, tu travailles à perte — peu importe ce que ressentent tes clients ou ce qu'écrivent les baromètres marché. La première discipline du freelance qui dure, c'est de ne jamais descendre sous son MAR.</p>
+
+  <!-- ============== 2. LES 3 MODÈLES DE PRICING ============== -->
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Les 3 <em>modèles de tarification</em>.</h2>
+
+  <div class="container reading">
+    <p>Trois modèles dominants en 2026, pas un meilleur dans l'absolu. Le bon modèle dépend du type de mission, du client, et de ta phase de carrière. La majorité des freelances seniors <em>combinent</em> les trois selon le contexte (Plutio 2026).</p>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Modèle 1 — <em>Facturation horaire / TJM</em></div>
+    <div class="tool-text"><strong>Principe :</strong> tu factures un tarif horaire ou journalier × le temps passé. Modèle dominant chez les juniors et sur Upwork/Malt en démarrage.<br><br>
+<strong>Force :</strong> simple à comprendre pour le client, transparent, peu de risque de mauvais périmètre. Bon pour périmètre flou (audits, conseils ponctuels, missions de découverte).<br><br>
+<strong>Faiblesse majeure :</strong> <em>punit ton expertise</em>. Plus tu deviens efficace, moins tu gagnes par tâche. Plafond mécanique 100-150 K€/an avec 1 000-1 200 h facturables réelles. Conversation client centrée sur les heures, pas la valeur.<br><br>
+<strong>Quand l'utiliser :</strong> consulting calls, audits techniques, missions de découverte avec périmètre inconnu, débuts d'activité pour rassurer les premiers clients.<br><br>
+<strong>TJM marché France 2026 :</strong> junior 250-400 €/j, mid-level 400-600 €/j, senior 600-900 €/j, spécialistes premium IA/data/cyber 900-1 500 €/j (Malt baromètre 2025).</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Modèle 2 — <em>Projet à prix fixe</em></div>
+    <div class="tool-text"><strong>Principe :</strong> tu factures un montant fixe pour un livrable défini, peu importe le temps passé. Modèle de transition vers le à la valeur.<br><br>
+<strong>Force :</strong> récompense ton efficacité (tu gagnes pareil que tu prennes 20h ou 8h pour le même livrable), prévisibilité financière pour toi et le client, oblige à périmètrer précisément.<br><br>
+<strong>Faiblesse :</strong> risque de dérive du périmètre si mal cadré (le client demande des extras <em>« vite fait »</em>), nécessite de bien estimer ton temps réel les premières fois.<br><br>
+<strong>Quand l'utiliser :</strong> livrables clairement définis (refonte page de vente, audit SEO, série de 10 articles, stratégie marketing pour 1 produit), créatif où ta vitesse est ton avantage.<br><br>
+<strong>Calcul :</strong> heures estimées × ton TJM × 1,2 (buffer 20 % pour révisions et imprévus). Toujours intégrer 1 round de révisions max dans le périmètre, le 2<sup>e</sup> round en option payante.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Modèle 3 — <em>Tarification à la valeur</em></div>
+    <div class="tool-text"><strong>Principe :</strong> tu factures un % de l'impact financier estimé pour le client. Modèle des freelances qui dépassent 100 K€/an.<br><br>
+<strong>Force :</strong> ton revenu n'est plus lié à ton temps. Tu peux facturer 8 K€ pour une mission qui te prend 3 jours si elle génère 80 K€ de revenu additionnel pour le client. Le client paie pour le résultat, pas pour ta présence. <strong>+42 % par projet en moyenne</strong> vs hourly (SoloHourly 2026).<br><br>
+<strong>Faiblesse :</strong> nécessite que tu maîtrises assez ton domaine pour estimer l'impact (revenue uplift, économies, temps gagné, risque évité). Demande au client une transparence sur ses chiffres business. Ne marche que si l'impact est <em>mesurable</em>.<br><br>
+<strong>Quand l'utiliser :</strong> growth marketing, optimisation conversion, automatisation processus, advisory stratégique, dev de fonctionnalités à fort ROI direct. <em>Pas adapté</em> pour : maintenance, support, formations standards, production volumes.<br><br>
+<strong>Calcul typique :</strong> impact estimé sur 12 mois × 5-15 % = ton fee. Exemple : tu refonds un tunnel checkout qui passe de 1,8 % à 3 % de conversion sur 50 000 visiteurs/mois × panier moyen 80 € = +540 K€ revenu/an. Ton fee à 10 % = 54 K€. Ton temps réel : 8 jours = 6 750 €/jour effectif.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Le mix recommandé selon ton stade</div>
+    <p><strong>An 1 (démarrage)</strong> — 70 % horaire/TJM (rassure les premiers clients, prouve la fiabilité), 30 % projet fixe sur livrables clairs. Pas encore à la valeur — tu n'as pas la track record. <strong>An 2-3 (consolidation)</strong> — 30 % horaire (consulting calls et audits), 50 % projet fixe (ton offre Standard productisée), 20 % à la valeur (1-2 projets/an à fort ROI mesurable, montée en compétence tarification). <strong>An 4+ (sénior)</strong> — 10 % horaire (audits stratégiques premium, 200-400 €/h), 30 % projet fixe (offre Premium structurée), 40 % à la valeur (cœur de revenu), 20 % forfait mensuels (stabilité). C'est le profil des freelances 100-200 K€/an documentés Plutio 2026.</p>
+  </div>
+
+  <!-- ============== 3. LA TRANSITION 4 ÉTAPES ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>La <em>transition</em> jour-homme → valeur.</h2>
+
+  <div class="container reading">
+    <p>Tu ne passes pas du jour à la valeur en un email. C'est une transition en 4 étapes sur 6-12 mois. La majorité échoue parce qu'elle saute des étapes. Voici la séquence validée 2026.</p>
+  </div>
+
+  <h3>Étape 1 — Sortir des termes de temps dans tes échanges</h3>
+
+  <div class="container reading">
+    <p>Dans tes propositions commerciales, ton site, tes appels de découverte, <strong>arrête de mentionner des heures, des jours, des durées</strong>. Tu vends un livrable et un résultat. Le temps est ton problème, pas celui du client.</p>
+
+    <p><strong>Mauvais (mode jour-homme) :</strong> <em>« Cette mission représente environ 8 jours de travail à 600 €/jour, soit 4 800 €. »</em></p>
+
+    <p><strong>Bon (mode résultat) :</strong> <em>« La refonte de votre tunnel de checkout pour passer de 1,8 % à 3 % de conversion représente 4 800 € fixe, livrable + 30 jours d'optimisation post-déploiement inclus. »</em></p>
+
+    <p><strong>Pourquoi ça change tout :</strong> dans la version 1, le client négocie le nombre de jours (<em>« on peut faire en 6 jours ? »</em>) — tu défends ton temps. Dans la version 2, le client négocie le périmètre (<em>« on peut enlever l'optimisation post-déploiement ? »</em>) — tu défends la valeur. Tu sors mécaniquement de la conversation hourly.</p>
+  </div>
+
+  <h3>Étape 2 — Apprendre à estimer l'impact business</h3>
+
+  <div class="container reading">
+    <p>Avant de pricer en à la valeur, tu dois savoir <em>chiffrer l'impact</em> de ton travail. Question type à poser en appel de découverte : <em>« Quel est l'objectif business de cette mission, en € ou en indicateur clé ? Quelle est la valeur d'une amélioration de 10 % sur ce indicateur clé ? »</em>. La majorité des prospects savent répondre — ils n'ont juste jamais été questionnés ainsi.</p>
+
+    <p><strong>3 leviers d'impact à savoir chiffrer :</strong> (1) <strong>revenue uplift</strong> — combien de revenu additionnel ton travail génère sur 12 mois (conversion, AOV, retention), (2) <strong>cost savings</strong> — combien tu fais économiser (temps, outils, FTE équivalents), (3) <strong>risk reduction</strong> — combien tu réduis l'exposition (compliance, sécurité, dette technique).</p>
+
+    <p><strong>Outil concret :</strong> dans tes 3 prochaines missions, fais l'exercice de calculer l'impact <em>après coup</em> en demandant les indicateur clé au client 90 jours après livraison. Tu construis ainsi ta propre base de données <em>« j'ai livré X = client a gagné Y »</em>. Au bout de 5-10 missions, tu sauras estimer l'impact en pré-vente.</p>
+  </div>
+
+  <h3>Étape 3 — Tester la valeur sur 1-2 missions par trimestre</h3>
+
+  <div class="container reading">
+    <p>Tu ne convertis pas tout ton tunnel en à la valeur d'un coup. Tu identifies <strong>1-2 missions par trimestre</strong> où l'impact est mesurable et où le client est prêt à jouer le jeu (généralement les missions growth, conversion, automatisation). Pour ces missions, tu proposes le tarification valeur. Le reste reste en projet fixe.</p>
+
+    <p><strong>Pitch type :</strong> <em>« Pour cette mission, je peux vous proposer 2 modes de tarification. (A) Forfait projet fixe 6 500 €. (B) Tarification valeur : 0 € à la signature + 8 % de l'uplift conversion mesuré sur 6 mois, plafonné à 25 K€. La mode (B) m'incite à maximiser votre résultat — je gagne uniquement si vous gagnez. Quelle option vous convient mieux ? »</em></p>
+
+    <p><strong>Effet observé :</strong> 30-50 % des prospects choisissent l'option (B) parce qu'elle aligne les intérêts et limite leur risque. Sur ces missions, ton effective hourly rate explose si tu livres bien (souvent 3-5×). Tu construis ta crédibilité à la valeur avec des cas concrets pour les missions suivantes.</p>
+  </div>
+
+  <h3>Étape 4 — Productiser ton offre Standard en valeur fixe</h3>
+
+  <div class="container reading">
+    <p>Une fois 5-10 missions à la valeur réussies, tu peux <strong>productiser</strong> ton offre Standard avec un prix fixe ancré sur la valeur livrée — plus une % variable en option. Cf <a href="offre-commerciale-freelance.html">article 2.3 sur la productisation</a>.</p>
+
+    <p><strong>Exemple de transition complète :</strong></p>
+    <p>An 1 — <em>« Stratégie SEO pour SaaS B2B, 15 jours à 600 €/j = 9 000 €. »</em><br>
+    An 2 — <em>« Stratégie SEO B2B SaaS pour atteindre 100 K€ ARR en 6 mois, 8 500 € fixe. »</em><br>
+    An 3 — <em>« Stratégie SEO B2B SaaS, 8 500 € fixe + 5 % de l'ARR généré au-delà de 100 K€, plafonné à 30 K€. »</em></p>
+
+    <p>Au bout de 3 ans, le même travail effectif rapporte 3-5× plus parce que la <em>structure de prix</em> a changé, pas le volume. C'est le vrai levier de passer à l'échelle solo. Cf <a href="abandonner-vs-perseverer.html">article 1.6 sur le timing pivot/persist</a> — le tarification valeur est un <em>« persist »</em> sur ton positionnement, pas un pivot.</p>
+  </div>
+
+  <!-- ============== 4. ANNONCER UNE HAUSSE ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Annoncer une <em>hausse</em>.</h2>
+
+  <div class="container reading">
+    <p>Sujet le plus tabou du freelance solo : annoncer à un client existant que tu augmentes ton tarif. La majorité des freelances <em>ne le font jamais</em> et restent bloqués au tarif de leur première mission pendant 2-3 ans. Voici la méthode 4 étapes validée EarnifyHub / EconKit 2026.</p>
+  </div>
+
+  <div class="codeblock">
+    <div class="codeblock-label">— Méthode 4 étapes augmentation tarifs · 2026</div>
+    <div class="codeblock-content"><em>ÉTAPE 1 — Tester sur les nouveaux prospects d'abord</em>
+   AVANT d'augmenter sur les clients existants, tu testes
+   le nouveau tarif sur les 5-10 prochains nouveaux prospects.
+   - Si tu signes au moins 50 % au nouveau tarif → marché valide
+   - Si tu signes moins de 30 % → tu as monté trop vite,
+     redescends de 10-15 %
+   <em>Logique</em> : tu ne risques pas tes clients existants
+   sur un tarif que le marché ne valide pas.
+
+<em>ÉTAPE 2 — Préavis 30 à 60 jours aux clients existants</em>
+   Email pro, 4-6 semaines avant l'application :
+   - Pas d'excuse, pas de justification longue
+   - Annonce ferme avec date d'application précise
+   - Préservation du tarif historique : les projets engagés avant la date conserventnt
+     l'ancien tarif (signal de respect)
+   <em>Format type</em> :
+   "À partir du [date], mes tarifs passent à [nouveau tarif].
+    Je conserve l'ancien tarif sur tout projet signé avant
+    cette date. Je reste disponible pour en discuter."
+   Pas plus. Pas de paragraphe d'excuses.
+
+<em>ÉTAPE 3 — Ancrer la hausse sur capacités/marché</em>
+   Si le client demande pourquoi, tu réponds factuellement :
+   - "Mon expertise s'est consolidée sur [X cas similaires] depuis
+     notre dernière mission, et le tarif s'aligne avec le marché
+     actuel pour ce niveau d'expertise."
+   - JAMAIS d'excuse, JAMAIS "désolé", JAMAIS "j'ai pas le choix"
+   - L'augmentation est un fait professionnel normal, pas une
+     concession arrachée
+   <em>Cadence recommandée</em> : +10 à 20 % tous les 12-18 mois
+   en début d'activité. +5-10 % tous les 12 mois en consolidation.
+
+<em>ÉTAPE 4 — Accepter de perdre 10-20 % des clients</em>
+   La hausse FAIT perdre des clients. C'est normal et sain.
+   Si TOUS tes clients acceptent sans broncher, tu n'as pas
+   monté assez (FinanceDigs 2026 : « si tous tes clients acceptent immédiatement, tu sous-tarifies »).
+   Calcul à faire :
+   - 10 clients × 5 K€/mission × 8 missions/an = 400 K€ CA
+   - Hausse 20 % → 6 K€/mission, perte 20 % clients = 8 clients
+   - 8 × 6 K€ × 8 = 384 K€ CA pour 20 % moins de travail
+   <em>Net</em> : tu gagnes pareil avec moins d'effort + tu as
+   capacité libre pour acquérir mieux.
+
+<span class="comment"># Le frein psychologique numéro 1 à augmenter, c'est la peur
+# de perdre des clients. Mais le vrai risque, c'est de NE PAS
+# augmenter — tu finis bloqué à un tarif qui ne reflète plus
+# ta valeur, surchargé, et amer. La hausse régulière n'est
+# pas une option. C'est une condition de durabilité.</span></div>
+  </div>
+
+  <h3>Quand augmenter — les 4 signaux</h3>
+
+  <div class="container reading">
+    <p><strong>Signal 1 :</strong> ton agenda est plein 4-6 semaines à l'avance et tu refuses des prospects. Demande &gt; offre = augmente.</p>
+
+    <p><strong>Signal 2 :</strong> 90 % de tes prospects acceptent ton tarif sans négocier. Trop facile = trop bas (FinanceDigs 2026).</p>
+
+    <p><strong>Signal 3 :</strong> tu as livré 5-10 missions avec résultats mesurables documentés. Ta track record justifie un repositioning.</p>
+
+    <p><strong>Signal 4 :</strong> ta dernière augmentation date de plus de 18 mois. Cadence recommandée : +10-20 % tous les 12-18 mois minimum.</p>
+
+    <p><strong>Si tu coches 2+ signaux :</strong> programme la hausse dans les 30 jours. Si tu coches les 4 signaux et que tu n'as pas augmenté, tu es probablement à 30-40 % en dessous du marché — la rattrapage prend 2-3 hausses successives sur 18 mois.</p>
+  </div>
+
+  <!-- ============== PIÈGES ============== -->
+  <h2 class="reading"><span class="h2-num">— Bonus</span>5 <em>pièges</em> classiques.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>diviser ton ancien salaire par 18 jours</em></div>
+    <div class="pitfall-text">Tu gagnais 4 000 € net/mois en CDI. Tu te dis <em>« je veux 4 000 € net en freelance, donc je facture 4 000 € / 18 jours = 220 €/jour »</em>. Erreur de calcul fatale qui ignore les charges TNS (45 % en EI, 22 % en micro), les frais pro, et les 40 % de jours non-facturable. Pour avoir 4 000 € net mensuel en freelance micro, il te faut ~6 200 € CA mensuel = ~450 €/jour facturable réel. <strong>Correction :</strong> calcule ton MAR avec la formule correcte (cf section 1) avant de fixer ton premier tarif. La règle de 3 <em>« salaire / 18 jours »</em> sous-estime systématiquement de 30-50 %. Cf <a href="freelance-ou-salariat.html">article 2.1</a> pour la comparaison chiffrée complète.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : <em>baisser ton tarif pour signer le premier client</em></div>
+    <div class="pitfall-text">Premier client te dit <em>« c'est trop cher, je peux faire 350 €/jour ? »</em>. Tu acceptes. 6 mois plus tard : ce client t'a référencé à 3 partenaires <em>au tarif cassé</em>. Tu es bloqué à 350 €/jour pour 18-24 mois minimum dans son réseau. Il faudra une refonte complète de ton positionnement pour casser cet ancrage. <strong>Correction :</strong> ton premier tarif est ton tarif <em>permanent</em> dans le réseau de ce client. Si tu sens que tu vas baisser, préfère DONNER 1-2 jours de prestation gratuite pour case study/témoignage qu'BAISSER ton tarif facturé. Le gratuit ne crée pas d'ancrage prix. Le tarif cassé crée un ancrage de 18+ mois. Cette règle est documentée par tous les tarification consultants 2026 (Ken Yarmosh, SoloHourly, EarnifyHub).</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>rester en facturation horaire en montant en compétence</em></div>
+    <div class="pitfall-text">Tu démarres dev junior à 50 €/h, mission Stripe en 20h = 1 000 €. 3 ans plus tard, devenu senior avec Cursor + Claude, la même mission te prend 2h. À 50 €/h tu factures 100 €. Tu es devenu meilleur, plus rapide, et ton revenu par mission a baissé de 90 % (DEV Community 2026). C'est le piège horaire structurel. <strong>Correction :</strong> dès que ton expertise te fait gagner 30 %+ de temps sur des tâches récurrentes, sors immédiatement du modèle horaire. Passe en projet fixe avec prix ancré sur l'ancien temps que tu prenais. Le client paie le même prix qu'avant — tu gagnes le temps économisé. À terme, bascule en à la valeur. La facturation horaire est un piège de débutant, pas un modèle stable long terme.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>oublier le buffer de révisions dans le tarification projet</em></div>
+    <div class="pitfall-text">Tu factures 4 800 € pour une refonte page de vente estimée à 8 jours. Tu prends en compte le travail core. Tu oublies les 2 rounds de révisions qui prennent 1,5 jour cumulé. Plus 0,5 jour de gestion de projet, calls, emails. Tu finis à 10 jours réels effectifs = 480 €/jour effectif au lieu des 600 €/jour prévus. Sur 20 missions/an, tu perds 24 000 €. <strong>Correction :</strong> intègre toujours un buffer 20-25 % au prix projet pour couvrir révisions + gestion + imprévus. Calcul : (heures core × TJM) × 1,2 minimum, voire 1,3 pour les premières missions où ton estimation est encore floue. Et limite les révisions incluses à 1 round dans le périmètre, le 2<sup>e</sup> round en option payante. Cette discipline simple récupère 15-25 % de marge.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : <em>annoncer une hausse en s'excusant</em></div>
+    <div class="pitfall-text">Tu envoies l'email d'augmentation avec : <em>« Désolé pour cette nouvelle, je sais que c'est jamais agréable, mais j'ai pas vraiment le choix avec l'inflation et... »</em>. Le client lit l'excuse, sent ton inconfort, contre-attaque sur le prix. Tu cèdes à 50 % de ta hausse. Tu sors de l'échange en ayant perdu et en ayant l'air faible. <strong>Correction :</strong> l'augmentation est un fait professionnel normal, pas une concession arrachée. Ton email pro fait 4 phrases max : (1) la nouvelle date, (2) le nouveau tarif, (3) la préservation du tarif historique pour les projets engagés avant, (4) ta disponibilité pour discuter. JAMAIS de <em>« désolé »</em>, JAMAIS d'excuse, JAMAIS de justification longue. Le client peut accepter ou refuser — c'est son choix. Mais ton attitude détermine la conversation. Une augmentation annoncée avec calme et fermeté est acceptée 80 % du temps. Annoncée en s'excusant : 30 % au mieux.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Tu as ton tarification structuré. Pour la suite : article 2.5 sur l'acquisition des premiers clients (où tu vas appliquer ces tarifs), article 2.6 sur le closing (call de découverte + proposition commerciale), article 2.7 ★ pilier sur la face cachée du freelance. Pré-requis amont : <a href="freelance-ou-salariat.html">2.1 freelance vs salariat</a>, <a href="statut-juridique-freelance.html">2.2 statut juridique</a>, <a href="offre-commerciale-freelance.html">2.3 offre commerciale</a>. Pour le contexte global : <a href="matrice-competences-marche.html">1.1 matrice compétences × marché</a>, <a href="trous-marche-ia.html">1.2 trous de marché</a>, <a href="etude-marche-ia.html">1.3 étude de marché</a>, <a href="analyser-concurrents-avatar.html">1.4 concurrents et avatar</a>, <a href="tester-idee-7-jours.html">1.5 tester en 7 jours</a>, <a href="abandonner-vs-perseverer.html">1.6 pivot ou persist</a>, <a href="piege-idees-ia.html">1.7 piège des idées générées par IA</a>. Pour les outils IA freelance : <a href="guide-claude-debutant-2026.html">Claude</a> (rédaction propositions commerciales), <a href="guide-chatgpt-debutant-2026.html">ChatGPT</a> (admin), <a href="outils-ia.html">le panorama Niveau V</a>. Pour la rubrique complète : <a href="niveau-6-freelance-conseil.html">R2 du Niveau VI</a>.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur ton tarification freelance.</h3>
+    <ol class="recap-points">
+      <li>Le piège horaire structurel : <strong>l'amélioration de tes compétences te punit financièrement</strong>. Mission Stripe junior 20h × 50 €/h = 1 000 €. Mission identique senior 2h × 50 €/h = 100 €. Tu deviens meilleur, ton revenu baisse 90 %. Pour sortir : passer en projet fixe puis à la valeur. <strong>Données 2026 :</strong> à la valeur = revenu médian 96 K$ vs 58 K$ horaire = +66 % (Jobbers Benchmark), +42 % par projet (SoloHourly), 62 % des freelances 150 K$+/an utilisent à la valeur comme modèle principal (Plutio).</li>
+      <li>Formule MAR (Minimum Acceptable Rate) : <strong>(revenu cible + charges + impôts + frais pro) / heures facturables/an = ton plancher</strong>. Erreurs classiques : diviser salaire par 18 jours (oubli charges TNS), compter 220 jours facturable au lieu de 138 réels (40 % non-facturable), oublier marge profit 10-20 %. <strong>MAR moyen freelance France micro pour 45 K€ net cible :</strong> ~455 €/jour. <strong>Tarif cible</strong> = MAR × 1,3 à 2 = 590-910 €/jour selon expertise/niche. <strong>Jamais en dessous du MAR</strong> — préfère donner 1-2 jours gratuits pour case study qu'baisser ton tarif facturé (le gratuit ne crée pas d'ancrage prix).</li>
+      <li>3 modèles de tarification à mixer selon stade : <strong>(1) Horaire/TJM</strong> — simple, rassure, mais punit l'expertise. France 2026 : 250-400 €/j junior, 400-600 mid, 600-900 senior, 900-1 500 spécialistes. <strong>(2) Projet fixe</strong> — récompense l'efficacité, oblige périmètre précis, buffer 20-25 % obligatoire. <strong>(3) À la valeur</strong> — % de l'impact business mesurable (revenue uplift / cost savings / risk reduction). Calcul typique : impact 12 mois × 5-15 % = ton fee. <strong>Mix recommandé :</strong> An 1 70/30/0 — An 2-3 30/50/20 — An 4+ 10/30/40+20 forfait mensuels (profil 100-200 K€/an documenté Plutio).</li>
+      <li>Transition jour-homme → valeur en 4 étapes sur 6-12 mois : <strong>(1)</strong> sortir des termes de temps dans tes échanges (le temps est ton problème, pas celui du client), <strong>(2)</strong> apprendre à estimer l'impact business (3 leviers : revenue uplift, cost savings, risk reduction), <strong>(3)</strong> tester à la valeur sur 1-2 missions/trimestre avec pitch dual <em>« forfait OU 0 € + % du résultat »</em> (30-50 % choisissent l'option valeur), <strong>(4)</strong> productiser ton offre Standard en valeur fixe + % variable. <strong>Exemple transition complète sur 3 ans :</strong> <em>« 15 jours à 600 € = 9 000 € »</em> → <em>« 8 500 € fixe pour 100 K€ ARR en 6 mois »</em> → <em>« 8 500 € + 5 % ARR au-delà 100 K€ plafonné à 30 K€ »</em>.</li>
+      <li>Méthode 4 étapes pour annoncer une hausse : <strong>(1)</strong> tester sur nouveaux prospects d'abord (50 %+ acceptent = marché valide), <strong>(2)</strong> 30-60 jours préavis aux clients existants par email pro 4 phrases max, <strong>(3)</strong> ancrer sur capacités/marché jamais sur excuses (<em>« mon expertise s'est consolidée, le tarif s'aligne marché actuel »</em>), <strong>(4)</strong> accepter de perdre 10-20 % des clients (sain — si tous acceptent, sous-tarification). <strong>Cadence :</strong> +10-20 % tous les 12-18 mois début, +5-10 % tous les 12 mois consolidation. <strong>4 signaux d'augmentation :</strong> agenda plein 4-6 sem à l'avance, 90 % prospects acceptent sans négocier, 5-10 missions track record documenté, dernière hausse &gt; 18 mois. <strong>Si 2+ signaux : programme hausse dans les 30 jours.</strong></li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="niveau-6-freelance-conseil.html">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">2.5 · Trouver tes premiers clients sans réseau</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-6-freelance-conseil.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Freelance et conseil · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

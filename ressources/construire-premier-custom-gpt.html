@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ton premier Custom GPT en 30 minutes. – AutomationBoost</title>
+  <meta name="description" content="Tutoriel pas-à-pas pour créer ton premier Custom GPT en 30 minutes : du besoin aux instructions, jusqu" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Ton premier Custom GPT en 30 minutes.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#eab308;">Automatiser & agents</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">ChatGPT</span>
+    </div>
+    <h1 class="page-title">Ton premier Custom GPT en 30 minutes.</h1>
+    <p class="lede">Tutoriel pas-à-pas reproductible. De la préparation du besoin aux tests adversaires, en passant par les Instructions, Knowledge Files et Capabilities. Méthode applicable ensuite à tous tes assistants suivants.</p>
+
+    <div class="content-block">
+
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Construire un Custom GPT en 30 minutes, c'est possible. En construire un qui marche vraiment dans la durée, c'est moins une question d'outil que de méthode.</p>
+
+    <p>La plupart des tutoriels te montrent « clique ici, tape ça » et s'arrêtent là. Le résultat dérape au bout de quelques jours. Voici la méthode pour construire un assistant qui tient.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— PHASE 1 / 4 · 10 MIN</span>Avant d'ouvrir le <em>Builder</em>.</h2>
+
+  <div class="container reading">
+    <p>L'erreur la plus fréquente en construction d'assistant : ouvrir le GPT Builder avant d'avoir clairement défini le besoin. Tu te retrouves à improviser dans la conversation avec le Builder, l'assistant qui en sort est flou, tu itères 3 semaines sans converger. <strong>10 minutes de préparation hors-Builder valent mieux que 3 heures dans le Builder.</strong></p>
+
+    <p>Voici les 4 questions à répondre par écrit (sur papier, dans Notes, peu importe — mais à l'écrit) avant de cliquer « Create ».</p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">— Question 1 — 2 min</div>
+    <div class="step-title"><em>Quel cas précis</em> et à quelle fréquence ?</div>
+    <div class="step-text">Sois ultra-spécifique. Pas <em>« m'aider au travail »</em>. Plutôt : <em>« reformuler les emails clients en gardant mon ton (direct, sans formules creuses, signature standard) »</em>, ou <em>« résumer en 5 puces les comptes rendus de réunion en sortant les actions à faire avec porteur et deadline »</em>. <strong>Test de seuil :</strong> ce cas, je le fais combien de fois par semaine ? Si moins de 3 fois/semaine pendant 4 semaines minimum, ne construis pas. Reste sur un prompt direct copié-collé. La construction d'un assistant n'a un ROI positif qu'au-delà du seuil de répétition.</div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">— Question 2 — 3 min</div>
+    <div class="step-title">Quelles <em>règles strictes</em> et quels <em>exemples</em> ?</div>
+    <div class="step-text">Liste 3-5 règles strictes que l'assistant doit toujours suivre. Exemples : <em>« Toujours répondre en français, jamais en anglais. »</em> <em>« Ne jamais inventer de chiffre — si tu n'as pas la donnée, le dire. »</em> <em>« Garder les phrases courtes, max 25 mots. »</em> <em>« Ne jamais signer à ma place — laisser la signature à remplir. »</em> Plus 1-2 exemples concrets de bonne sortie attendue (un mail-type que tu as déjà rédigé et que tu valides comme parfait). Les exemples valent 10 paragraphes d'instructions abstraites — c'est le avec exemples learning qui fonctionne en pratique.</div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">— Question 3 — 3 min</div>
+    <div class="step-title">Quels <em>knowledge files</em> ?</div>
+    <div class="step-text">Quels documents l'assistant doit consulter à chaque conversation ? <strong>Limite-toi à l'essentiel</strong> — un document index + 2 à 5 documents de référence est largement supérieur à 15 documents en vrac. Privilégie le texte brut (TXT, MD) ou les PDF text-forward (pas des PDF scannés). Si tes docs existants sont mal structurés, prends 5 minutes de plus pour les nettoyer maintenant — ça t'évitera 3 semaines de réponses pauvres ensuite. Limite officielle 2026 : 20 fichiers max, 512 Mo par fichier — mais la qualité chute bien avant ces limites avec du contenu mal structuré.</div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">— Question 4 — 2 min</div>
+    <div class="step-title">Quelles <em>capabilities</em> activer ?</div>
+    <div class="step-text">3 capabilities possibles : <strong>Web Browsing</strong> (l'assistant peut chercher sur le web — utile pour info récente, dangereux pour cohérence si pas nécessaire), <strong>Image Generation</strong> (pour créer des visuels — souvent inutile dans un assistant pro), <strong>Code Interpreter</strong> (pour exécuter du Python sur tes fichiers — précieux pour analyse de données, dangereux en parasitage si pas de besoin). Règle : active uniquement ce qui sert directement le cas d'usage défini en Q1. <em>Web Browsing pour un assistant juridique sur tes propres docs ? Désactive.</em> Pour un assistant veille tech ? Active. Le défaut : tout activer en se disant <em>« on verra »</em> — résultat, l'assistant devient imprévisible.</div>
+  </div>
+
+  <p class="pull-quote">10 minutes de préparation hors-Builder valent mieux que 3 heures dans le Builder. La qualité de l'assistant final est presque entièrement déterminée par la clarté du besoin formulé par écrit avant de cliquer « Create ».</p>
+
+  <!-- ============== 2. SETUP ============== -->
+  <h2 class="reading"><span class="h2-num">— PHASE 2 / 4 · 5 MIN</span>Setup dans <em>GPT Builder</em>.</h2>
+
+  <div class="container reading">
+    <p>Maintenant tu peux ouvrir le Builder. Va sur <strong>chatgpt.com/gpts</strong>, clique <strong>+ Create</strong> en haut à droite. Tu arrives sur une interface en split-screen : à gauche le panneau de configuration, à droite la preview live de ton GPT. Deux onglets en haut à gauche : <strong>Create</strong> (mode conversationnel — tu décris au Builder ce que tu veux, il te pose des questions) et <strong>Configure</strong> (mode manuel — tu remplis directement les champs).</p>
+
+    <p>Recommandation : <strong>commence en mode Configure</strong>, pas Create. Le mode Create conversationnel est séduisant pour démarrer, mais il te laisse moins de contrôle et tu perds en précision. Avec ta préparation Phase 1 par écrit, tu remplis les champs Configure en 5 minutes propres.</p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">— Champ 1 / 4</div>
+    <div class="step-title"><em>Name + Description + Logo</em></div>
+    <div class="step-text"><strong>Name :</strong> précis, pas générique. <em>« Reformulateur emails clients (style Adrien) »</em> bat <em>« Mon assistant »</em>. Le nom apparaît dans la liste de tes GPTs et dans le partage — il doit te permettre de retrouver le GPT 6 mois plus tard sans effort.<br>
+<strong>Description :</strong> 1-2 phrases qui expliquent l'intention. Sera visible dans le GPT Store si tu publies. <em>« Reformule mes brouillons d'emails clients en gardant mon ton direct et ma signature standard. Pour les pros qui veulent gagner du temps sans perdre leur voix. »</em><br>
+<strong>Logo :</strong> tu peux laisser le Builder générer un logo automatiquement (clic sur l'icône, il propose), ou uploader le tien. Pour un assistant perso, le logo importe peu — passe vite.</div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">— Champ 2 / 4</div>
+    <div class="step-title"><em>Conversation starters</em></div>
+    <div class="step-text">3 à 4 prompts d'exemple qui apparaissent au début de chaque nouvelle conversation. Ils servent à 2 choses : (1) toi, te rappeler les usages prévus (utile 6 mois plus tard quand tu reviens dessus), (2) un utilisateur tiers à qui tu partages, comprendre vite les usages.<br>
+Mauvais conversation starter : <em>« Pose-moi une question »</em>. Bon : <em>« Reformule cet email : [colle ton brouillon] »</em>, <em>« Adoucis le ton de cette réponse de relance »</em>, <em>« Vérifie que ce mail respecte mon style avant envoi »</em>. Concrets, immédiatement actionnables.</div>
+  </div>
+
+  <!-- ============== 3. CONFIGURATION ============== -->
+  <h2 class="reading"><span class="h2-num">— PHASE 3 / 4 · 10 MIN</span>Instructions, <em>Knowledge</em>, Capabilities.</h2>
+
+  <div class="container reading">
+    <p>C'est ici que se joue 80 % de la qualité. Trois sous-étapes dans l'ordre : Instructions (4 min), Knowledge Files (4 min), Capabilities (2 min).</p>
+  </div>
+
+  <h3>Instructions — le squelette</h3>
+
+  <div class="container reading">
+    <p>Les Instructions sont le « system prompt » de ton GPT. Elles s'appliquent à chaque conversation. C'est <strong>le levier le plus puissant</strong> de ton assistant. Voici un template universel 2026 testé, que tu adaptes à ton cas. Les sections marquées <em>en orange</em> sont à remplir avec ton contenu :</p>
+  </div>
+
+  <div class="codeblock">
+<div class="codeblock-label">— Template Instructions (à adapter)</div>
+<div class="codeblock-content">## Rôle
+Tu es <em>[nom du rôle précis : Reformulateur d'emails clients pour Adrien, freelance IA]</em>.
+Tu aides à <em>[tâche précise : reformuler des brouillons d'emails clients]</em>.
+
+## Process
+Quand l'utilisateur te donne un brouillon d'email :
+1. Lis-le en entier avant de répondre.
+2. Identifie le ton actuel (trop formel, trop hésitant, trop long).
+3. Reformule en gardant le sens exact, en appliquant les règles ci-dessous.
+4. Termine toujours par : <em>« Veux-tu une version plus courte ? Plus chaleureuse ? »</em>
+
+## Règles strictes
+- Phrases courtes, max 25 mots.
+- Pas de formule creuse type <em>« n'hésitez pas à »</em>, <em>« je reste à votre disposition »</em>.
+- Garde toujours la signature à remplir manuellement (n'invente pas de signature).
+- Réponds toujours en français.
+- Si l'email du brouillon contient une donnée chiffrée que tu ne peux pas vérifier, indique <em>« [chiffre à vérifier] »</em>.
+
+## Format de sortie
+- Version reformulée prête à copier-coller, sans préambule explicatif.
+- Si plusieurs versions possibles, propose 2 variantes (courte / chaleureuse).
+
+## Hors périmètre
+Si l'utilisateur te demande autre chose qu'une reformulation d'email
+(traduction, recherche d'info, analyse juridique, etc.) :
+réponds <em>« Je suis spécialisé sur la reformulation d'emails. Pour [autre besoin],
+utilise plutôt ChatGPT directement. »</em>
+
+## Gestion de l'incertitude
+Si tu n'as pas une donnée nécessaire pour bien reformuler
+(par exemple le contexte du destinataire), pose la question avant de reformuler.
+Ne devine pas.</div>
+  </div>
+
+  <div class="container reading">
+    <p>3 principes derrière ce template : <strong>(1) instructions positives plutôt qu'interdictions</strong> — <em>« phrases courtes »</em> bat <em>« n'écris pas trop long »</em>. <strong>(2) Process explicite step-by-step</strong> — <em>« quand X arrive → fais Y »</em>. <strong>(3) Gestion explicite du hors-sujet et de l'incertitude</strong> — sinon l'assistant invente avec confiance, ce qui est le défaut le plus coûteux d'un Custom GPT mal cadré.</p>
+  </div>
+
+  <h3>Knowledge Files — le contexte permanent</h3>
+
+  <div class="container reading">
+    <p>Sous Instructions, tu trouves la section Knowledge. Clique <strong>Upload files</strong>. Charge tes 2-5 documents préparés en Phase 1. Petits conseils 2026 :</p>
+
+    <p><strong>Privilégie le texte structuré.</strong> Un fichier <em>.md</em> ou <em>.txt</em> avec des titres clairs (## Section 1, ## Section 2) est mieux indexé qu'un PDF avec colonnes complexes ou des images de texte. Si tu n'as qu'un PDF, vérifie que c'est un PDF text-forward (sélectionnable au copier-coller) — pas un PDF scanné qui forcerait l'OCR.</p>
+
+    <p><strong>Donne des instructions explicites sur l'usage des fichiers</strong> dans les Instructions ci-dessus. Ajoute par exemple : <em>« Pour toute question sur mes services, consulte le fichier services.md avant de répondre. Pour toute question sur mes tarifs, consulte tarifs.md. Si la question dépasse ces deux fichiers, signale-le. »</em></p>
+
+    <p><strong>Attention privacy :</strong> n'importe qui ayant accès à ton GPT pourra <strong>télécharger les fichiers du knowledge</strong> (si Code Interpreter est activé en particulier). Ne mets jamais de données sensibles, confidentielles ou personnelles dans un GPT que tu prévois de partager.</p>
+  </div>
+
+  <h3>Capabilities — le moteur</h3>
+
+  <div class="container reading">
+    <p>Sous Knowledge, la section Capabilities propose 3 cases à cocher : Web Browsing, Image Generation, Code Interpreter. Active <strong>uniquement</strong> celles qui servent ton cas (revoir Phase 1 question 4).</p>
+
+    <p>Plus bas, le champ <strong>Recommended Model</strong> te laisse fixer le modèle que ton GPT suggérera. En 2026 : pour un assistant rapide et peu coûteux, GPT-5.4 Instant. Pour des cas complexes nécessitant du raisonnement (analyse juridique, déboguerging code), GPT-5.4 ou 5.5 Thinking. Si tu utilises des Actions personnalisées, sache que seuls GPT-5.2 Instant, GPT-5.2 Thinking, GPT-5 Instant, GPT-4.1 et GPT-4o (jusqu'au 3 avril 2026) sont compatibles avec les Actions — les modèles o-series et Pro ne le sont pas.</p>
+
+    <p><strong>Actions :</strong> dans la même section, tu peux ajouter des Actions custom — c'est là que ton GPT peut appeler une API externe (envoyer un mail, créer un événement Calendar, requêter ta base CRM). Les Actions demandent un schéma OpenAPI et de l'authentification — ce n'est pas un sujet pour le premier GPT. <a href="niveau-4-connecter-outils.html">L'article 1.5 (Actions et APIs)</a> traite ça en détail. Pour un premier assistant, ignore cette section.</p>
+  </div>
+
+  <!-- ============== 4. TEST ============== -->
+  <h2 class="reading"><span class="h2-num">— PHASE 4 / 4 · 5 MIN</span>Tester avant de <em>déployer</em>.</h2>
+
+  <div class="container reading">
+    <p>Tu as un GPT fonctionnel à droite de l'écran. <strong>Ne le partage pas tout de suite.</strong> Lance ces 5 tests adversaires dans le panneau Preview. Chacun prend 1 minute. Si l'un échoue, retourne dans Instructions et corrige avant déploiement.</p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">— Test 1</div>
+    <div class="step-title">Le cas <em>nominal</em> — tout doit bien se passer</div>
+    <div class="step-text">Donne-lui un cas standard que tu maîtrises (un email-type que tu rédiges déjà bien à la main). La sortie doit être au moins aussi bonne que ce que tu ferais — sinon, les Instructions sont insuffisantes. Affine avant de continuer.</div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">— Test 2</div>
+    <div class="step-title">Le cas <em>hors-sujet</em> — il doit refuser proprement</div>
+    <div class="step-text">Demande-lui quelque chose qui sort de son périmètre. <em>« Comment je migre un site WordPress vers Webflow ? »</em> à un GPT reformulateur d'emails. L'assistant doit reconnaître le hors-sujet et rediriger (selon ta clause « Hors périmètre »). S'il répond quand même, tes Instructions ne sont pas assez fermes.</div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">— Test 3</div>
+    <div class="step-title">Le cas <em>donnée manquante</em> — il doit poser la question</div>
+    <div class="step-text">Donne-lui une demande où il manque une info clé. <em>« Reformule cet email »</em> sans coller l'email. L'assistant doit demander l'email avant de bricoler une réponse générique. S'il invente un email à la place, ta clause « Gestion de l'incertitude » est trop faible.</div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">— Test 4</div>
+    <div class="step-title">Le cas <em>contradictoire</em> — il doit signaler</div>
+    <div class="step-text">Donne-lui des instructions qui contredisent les Instructions configurées. <em>« Reformule cet email mais avec des phrases très longues et beaucoup de formules de politesse. »</em> L'assistant doit signaler la contradiction (« mes règles imposent des phrases courtes — préfères-tu adapter ta demande ou je suis tes règles habituelles ? ») plutôt que céder silencieusement.</div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">— Test 5</div>
+    <div class="step-title">Le cas <em>knowledge file</em> — il doit s'y référer</div>
+    <div class="step-text">Pose une question qui devrait déclencher la consultation d'un de tes knowledge files. L'assistant doit utiliser cette source (idéalement la mentionner). S'il ne consulte pas le fichier alors qu'il aurait dû, tes Instructions ne lient pas assez explicitement le besoin au fichier — ajoute la directive « consulte X avant de répondre à Y ».</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ces 5 tests sont la base. Pas la fin.</div>
+    <p>Ces 5 tests adversaires éliminent 80 % des bugs d'un Custom GPT débutant. Les 20 % restants se révèlent à l'usage réel — chez toi pendant 2 semaines avant de partager. <strong>Garde un fichier « bugs détectés » à côté</strong> où tu notes chaque cas où l'assistant dérape, et corrige les Instructions par production par lots toutes les 1-2 semaines. <a href="niveau-4-construire-assistants.html">L'article 1.6 (tester, débugger, maintenir)</a> traite ce processus dans la durée. Ne partage avec d'autres personnes que quand l'assistant a tenu 2 semaines stable chez toi.</p>
+  </div>
+
+  <h3>Sauvegarde et partage</h3>
+
+  <div class="container reading">
+    <p>En haut à droite du Builder, clique <strong>Create</strong> (ou <strong>Update</strong> si tu modifies un GPT existant). Choisis la confidentialité :</p>
+
+    <p><strong>Only me :</strong> usage perso uniquement. Choisis ça pour ton premier assistant — tu testes, tu ajustes, tu décides plus tard si tu partages. C'est le défaut sain.</p>
+
+    <p><strong>Toute personne avec le lien :</strong> partage par lien direct. Idéal pour partager avec quelques collègues ou amis sans publier. Eux doivent avoir un compte ChatGPT Plus ou plus pour utiliser le GPT (ou ChatGPT Free dans certains cas, vérifier le statut courant).</p>
+
+    <p><strong>Public (GPT Store) :</strong> visible dans le GPT Store, indexé. Pour des assistants destinés à un usage public et qualité testée. Attention : le GPT Store est saturé (plus d'1 million de GPTs publiés en 2026), la visibilité organique est faible. Ne publie pas un premier GPT non testé — c'est un mauvais signal pour toi (rating négatifs, abandon par les utilisateurs).</p>
+  </div>
+
+  <!-- ============== PIÈGES ============== -->
+  <h2 class="reading"><span class="h2-num">— Bonus</span>5 <em>pièges</em> qui ratent un premier GPT.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>passer par le mode Create conversationnel</em></div>
+    <div class="pitfall-text">Le mode Create du Builder (conversationnel) est une démo séduisante mais te fait perdre le contrôle des Instructions précises. Tu te retrouves avec un texte d'instructions auto-généré que tu n'as pas relu, qui contient des règles que tu n'aurais pas mises et qui rate des règles que tu aurais voulues. <strong>Discipline :</strong> commence en Configure manuel, écris tes Instructions toi-même selon le template ci-dessus. Tu vas 3x plus vite et 10x plus précis.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : <em>toutes les Capabilities activées « au cas où »</em></div>
+    <div class="pitfall-text">Tu actives Web Browsing + Image Generation + Code Interpreter sans en avoir besoin. Résultat : l'assistant active web browsing pour des questions où il a déjà tout le contexte dans le knowledge file, multiplie les recherches inutiles, ajoute du bruit dans les réponses, et augmente la latence. <strong>Discipline :</strong> active 1 capability max au démarrage. Ajoute les autres si un cas réel le demande, jamais préventivement.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>knowledge file = dump de docs existants</em></div>
+    <div class="pitfall-text">Tu uploades 12 PDFs de ta documentation interne en l'état. Mauvaise structure, doublons, sections obsolètes. Le RAG remonte des passages contradictoires, l'assistant donne des réponses qui se contredisent d'une conversation à l'autre. <strong>Discipline :</strong> 1 fichier index .md qui résume où trouver quoi + 2-5 fichiers thématiques propres et à jour. 30 minutes de nettoyage de tes docs en amont battent 3 semaines de débuggage en aval.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>publier dans le GPT Store sans test</em></div>
+    <div class="pitfall-text">Tu finalises ton GPT à 14h, tu le publies dans le Store à 14h05 parce que <em>« autant que d'autres en profitent »</em>. Les premiers utilisateurs rencontrent les bugs que tu n'as pas testés. Mauvais ratings dès la première semaine, le GPT est mort dans le Store même si tu corriges après. <strong>Discipline :</strong> tests adversaires + 2 semaines de bêta perso + 5 utilisateurs proches en feedback minimum, AVANT publication publique. Si tu ne fais pas ça, garde-le privé.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : <em>oublier de versionner les Instructions</em></div>
+    <div class="pitfall-text">3 mois plus tard, tu modifies les Instructions parce qu'un cas dérape. La modif règle le cas mais en casse 2 autres. Tu reviens en arrière — sauf que tu n'as pas la version précédente. Tu reconstruis de mémoire, mal. <strong>Discipline :</strong> garde un fichier .md externe (Notion, Drive, GitHub) avec l'historique de tes Instructions. À chaque modification, copie la nouvelle version + date + raison du changement. Tu peux revenir 6 mois en arrière en 30 secondes. C'est aussi ta protection contre une migration plateforme future (article <a href="custom-gpts-projects-gems.html">1.1 sur le risque Workspace Agents</a>).</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Tu as un premier Custom GPT fonctionnel. Pour aller plus loin : <a href="custom-gpts-projects-gems.html">l'article 1.1 (comparatif des 3 formats)</a> si tu hésites encore avec Claude Projects ou Gemini Gems. Les articles 1.3 (anatomie d'un assistant qui marche), 1.4 (knowledge files en profondeur), 1.5 (Actions et APIs), 1.6 (tester/débugger/maintenir), 1.7 (partager avec ton équipe) approfondissent chaque sujet de cet article. Pour brancher ton assistant sur tes outils existants : <a href="niveau-4-connecter-outils.html">la rubrique R2 sur les connecteurs MCP</a>. Pour les bases du prompt : retour au <a href="anatomie-prompt-qui-marche.html">guide du Niveau II sur l'anatomie d'un prompt qui marche</a>.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points pour ton premier Custom GPT.</h3>
+    <ol class="recap-points">
+      <li>Phase 1 (10 min) hors-Builder : par écrit, réponds aux 4 questions — quel cas précis et fréquence (test de seuil 3 fois/semaine pendant 4 semaines), quelles règles strictes et exemples concrets, quels knowledge files (essentiels seulement), quelles capabilities (uniquement nécessaires).</li>
+      <li>Phase 2 (5 min) dans le Builder : commence en mode Configure (pas Create conversationnel). Name précis, Description claire, 3-4 conversation starters concrets et actionnables.</li>
+      <li>Phase 3 (10 min) Instructions + Knowledge + Capabilities : utilise le template universel 6 sections (Rôle, Process, Règles strictes, Format de sortie, Hors périmètre, Gestion de l'incertitude). Limite : 20 fichiers, 512 Mo/fichier (mais qualité chute bien avant). Active 1 capability max au démarrage.</li>
+      <li>Phase 4 (5 min) tests adversaires : cas nominal, cas hors-sujet (doit refuser), cas donnée manquante (doit poser la question), cas contradictoire (doit signaler), cas knowledge file (doit s'y référer). 5 minutes qui éliminent 80 % des bugs.</li>
+      <li>Avant publication publique GPT Store : 2 semaines bêta perso + 5 utilisateurs en feedback minimum. Tiens un fichier .md externe avec l'historique des Instructions pour versionner et migrer si la plateforme évolue (transition Custom GPTs → Workspace Agents annoncée pour 2026-2027). Pour ton premier GPT : reste en « Only me » jusqu'à validation à l'usage.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="anatomie-assistant-ia.html">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">1.3 · Anatomie d'un assistant IA qui marche vraiment</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-4-construire-assistants.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Construire tes assistants · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

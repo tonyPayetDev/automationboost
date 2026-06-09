@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Les Fichiers de connaissances : nourrir ton assistant. – AutomationBoost</title>
+  <meta name="description" content="Alimenter ton Custom GPT, Claude Project ou Gemini Gem avec tes propres documents : le principe de la recherche dans les documents expliqué simplement, et la pr" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Les Fichiers de connaissances : nourrir ton assistant.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#eab308;">Automatiser & agents</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Les Fichiers de connaissances : nourrir ton assistant.</h1>
+    <p class="lede">Comment alimenter ton Custom GPT, Claude Project ou Gemini Gem avec tes propres documents. Le principe expliqué simplement, les formats qui marchent vraiment, comment organiser tes fichiers, et les 5 pièges qui font rater une base de connaissances.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Des instructions parfaites ne suffisent pas : ton assistant restera limité à ce que le modèle sait déjà. Pour qu'il connaisse ton entreprise, tes clients, ton métier, il lui faut une bibliothèque interne — c'est le rôle des Fichiers de connaissances.</p>
+
+    <p>Un fichier de connaissances est un document (PDF, Word, CSV…) que tu attaches à ton assistant et qu'il consulte en permanence. Voici comment ça marche et comment bien les préparer.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Le <em>principe</em>, expliqué simplement.</h2>
+
+  <div class="container reading">
+    <p>Le principe est simple : c'est le mécanisme qui permet à ton assistant d'aller consulter tes documents au moment où tu poses ta question, au lieu d'être limité à ce qu'il a appris pendant son entraînement. (Le terme technique est « recherche », pour <em>recherche puis génération</em>, mais l'idée suffit.)</p>
+
+    <p>Concrètement : tes documents sont découpés et indexés ; à chaque question, l'assistant retrouve les passages pertinents et s'appuie dessus pour répondre. Comprendre ça suffit pour bien préparer tes fichiers — c'est l'objet de la suite.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Les <em>limites 2026</em> par plateforme.</h2>
+
+  <div class="tool-card">
+    <div class="tool-name"><em>Custom GPTs</em> · OpenAI</div>
+    <div class="tool-text"><strong>20 fichiers maximum par GPT.</strong> Chaque fichier jusqu'à 512 Mo. En pratique, la limite utile tourne autour de 2 millions de mots pour les fichiers texte (au-delà, la recherche dans tes documents devient instable). Formats acceptés : PDF, TXT, DOCX, CSV, JSON, plus les images si le code est activé.
+
+<strong>Bon à savoir :</strong> le Markdown (.md) est paradoxalement <em>moins bien indexé</em> que le TXT brut sur Custom GPTs — des retours d'utilisateurs montrent que les fichiers .md sont parfois pris pour du code et ignorés. <strong>Recommandation 2026 :</strong> renomme tes .md en .txt avant import, ou copie-colle le contenu dans un fichier texte brut. CSV et JSON sont au contraire très bien pris en compte (leur structure proche d'une base de données est reconnue nativement).
+
+<strong>Privacy à connaître :</strong> les utilisateurs qui ont accès à ton GPT peuvent <strong>télécharger tes fichiers</strong> par une manipulation si le code est activé. Ne mets jamais de données sensibles dans un GPT que tu prévois de partager publiquement.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name"><em>Claude Projects</em> · Anthropic</div>
+    <div class="tool-text"><strong>30 Mo par fichier, fichiers illimités.</strong> Sa mémoire de travail (environ 150 pages de texte, et bien plus sur les modèles Opus récents) sert de limite pratique : tant que tes documents y tiennent, Claude les lit <em>intégralement</em> à chaque conversation (lecture directe, pas de recherche partielle). Au-delà, il passe automatiquement en mode recherche dans les documents.
+
+<strong>Avantage important :</strong> tant que tu restes sous ce seuil (environ 150 pages de texte), Claude n'a pas les imprécisions de la recherche partielle. Il <em>lit</em> tout. Pour des cas comme <em>« compare ce contrat avec les 5 autres »</em> ou <em>« qu'est-ce qui change entre ces 3 versions du brief ? »</em>, Claude Projects bat largement Custom GPTs sur Claude 4.6+.
+
+<strong>Bon à savoir :</strong> Claude Projects ne garde pas la mémoire de conversation entre chats à l'intérieur d'un projet — chaque nouveau chat repart vierge des Instructions du Projet. Bénéfique pour la cohérence (tu sais ce que tu as), limitant pour l'apprentissage adaptatif. Memory inter-sessions arrivée pour tous les utilisateurs depuis mars 2026 (Settings → Memory) mais elle s'applique au compte, pas au Projet spécifique.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name"><em>Gemini Gems</em> · Google</div>
+    <div class="tool-text"><strong>~4 000 caractères d'instructions.</strong> Fichiers acceptés (avec des limites variables selon l'offre), formats PDF, DOCX, TXT et autres. Limite pratique connue : moins de profondeur documentaire que Claude Projects, mais <strong>intégration native Google Drive</strong>. Tu peux référencer directement des Google Docs ou Sheets sans les re-importer, ce qui synchronise automatiquement avec leur version vivante.
+
+<strong>Avantage majeur 2026 :</strong> support multimodal natif. Gemini Gems traitent <strong>images, vidéos (jusqu'à 2 Go) et audio</strong> comme documents — pas seulement du texte. Cas d'usage uniques : un Gem qui a vu toutes les vidéos de tes formations clients, un Gem qui a écouté tous les enregistrements de tes calls de découverte.
+
+<strong>Limite à connaître :</strong> le tier gratuit ne supporte pas tous les types de fichiers (les .py, .js, .java demandent Gemini Advanced à 19,99 $/mois). Et la limite d'instructions à ~4 000 caractères oblige à concentrer la complexité dans les fichiers plutôt que dans les instructions — l'inverse des Custom GPT.</div>
+  </div>
+
+  <h3>Tableau de décision rapide</h3>
+
+  <div class="container reading">
+    <p><strong>Tu as un ensemble de documents &lt; 150 pages bien structuré et tu veux la qualité maximale ?</strong> Claude Projects sur un modèle Opus récent. La lecture intégrale bat la recherche partielle sur ce volume.</p>
+
+    <p><strong>Tu as un beaucoup de documents (plus de 150 pages) avec accès public ou semi-public ?</strong> Custom GPTs avec 20 fichiers bien découpés. La recherche dans les documents d'OpenAI est mûre et tient la charge.</p>
+
+    <p><strong>Tu vis dans Google Workspace, tes documents évolue souvent (Docs partagés, Sheets vivants) ?</strong> Gemini Gems avec sources Drive directes. La synchronisation automatique te dispense de ré-importer à chaque modif.</p>
+
+    <p><strong>Tu as besoin de multimodal (vidéos, audios) ?</strong> Gemini Gems, sans concurrence en 2026 sur ce point.</p>
+  </div>
+
+  <!-- ============== 3. STRUCTURATION ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Comment <em>structurer</em> tes documents.</h2>
+
+  <div class="container reading">
+    <p>La règle structurante : <strong>tes documents doivent ressembler à des fiches précises, pas à des manuels longs</strong>. Le recherche cherche par sens, donc plus chaque passage est sémantiquement cohérent (un sujet, un seul, traité proprement), meilleurs sont les résultats.</p>
+
+    <p>Voici les 5 principes qui changent réellement la qualité d'un ensemble de documents, du moins efficient au plus efficient :</p>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Principe 1 — <em>Un sujet par fichier</em></div>
+    <div class="tool-text">Plutôt qu'un document massif de 100 pages avec 12 sujets, fais 12 documents de 8-10 pages, un par sujet. <strong>Pourquoi :</strong> le moteur de recherche sélectionne plus précisément quand chaque fichier a un thème net. Et tu peux mettre à jour un sujet sans toucher au reste.<br><br>
+<strong>Exemple :</strong> au lieu d'un <em>Manuel Produit Complet</em> en PDF, fais : <em>produit-fonctionnalites.txt</em>, <em>produit-tarifs.txt</em>, <em>produit-faq-clients.txt</em>, <em>produit-cas-usage.txt</em>. L'assistant ira directement au bon fichier selon la question.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Principe 2 — <em>Un index en tête</em></div>
+    <div class="tool-text">Crée un fichier <em>index.txt</em> qui liste tes autres fichiers et résume leur contenu en 1-2 phrases. C'est ce fichier que tu cites dans tes Instructions : <em>« Avant de répondre, consulte index.txt pour identifier le ou les fichiers pertinents pour la question. »</em><br><br>
+<strong>Pourquoi :</strong> sur des documents de 5+ fichiers, sans index, l'assistant rate parfois le bon fichier (le moteur de recherche pondère mal). Avec un index, tu lui donnes une carte. Cette discipline est documentée dans la <em>CLAUDE.md convention</em> chez Anthropic et dans les meilleures pratiques OpenAI.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Principe 3 — <em>Texte brut bien titré</em></div>
+    <div class="tool-text">Privilégie le format <strong>.txt</strong> avec des titres H2 explicites (<em>## Section 1 — Tarifs Standard</em>) plutôt que des PDF complexes. Chaque section devient un passage cohérent.<br><br>
+<strong>Anti-patterns :</strong> PDFs scannés (l'OCR perd l'info), PDFs avec colonnes ou tableaux complexes (le parsing les casse), .doc avec mise en forme abusive (couleurs, polices, encadrés). Si ton document existe en PDF complexe, copie-colle le contenu dans un .txt et formate proprement avec des titres H2 — 30 minutes de nettoyage qui sauvent 3 semaines de débuggage.<br><br>
+<strong>Cas particulier :</strong> sur Custom GPTs, le .md a paradoxalement des problèmes documentés (parfois confondu avec du code et ignoré de la recherche dans les documents). Renomme en .txt par sécurité.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Principe 4 — <em>Données structurées en CSV/JSON</em></div>
+    <div class="tool-text">Pour les données <em>type base</em> (catalogue produits, liste de cas clients, grille tarifaire avec variations) : <strong>CSV ou JSON, jamais en texte narratif</strong>. Le moteur de recherche indexe nativement ces formats comme des records, la précision de récupération monte significativement.<br><br>
+<strong>Exemple concret :</strong> au lieu d'un <em>Tarifs.txt</em> qui décrit en prose <em>« Le pack Starter coûte 29 euros par mois et inclut... »</em>, fais un <em>tarifs.csv</em> avec colonnes <em>nom_offre, prix_mensuel, fonctionnalites, audience_cible</em>. L'assistant va trouver et utiliser la bonne ligne instantanément.<br><br>
+<strong>Inverse :</strong> ne mets PAS en CSV ce qui est essentiellement narratif (cas client en story-telling, témoignage, méthodologie). Garde-le en .txt structuré. Le bon format dépend du type de contenu, pas d'une règle absolue.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Principe 5 — <em>Citation explicite dans les Instructions</em></div>
+    <div class="tool-text">Le piège silencieux : tu as 5 beaux fichiers dans ton GPT, mais l'assistant ne les utilise jamais parce que tes Instructions ne lui ont pas dit de les consulter. <strong>Le recherche s'active mieux quand les Instructions le demandent explicitement.</strong><br><br>
+Bonnes formulations à inclure dans les Instructions :
+<em>« Avant de répondre à une question sur les tarifs, consulte tarifs.csv. »</em>
+<em>« Pour toute demande sur les fonctionnalités, vérifie produit-fonctionnalites.txt en priorité. »</em>
+<em>« Si la question dépasse le périmètre des fichiers fournis, signale-le à l'utilisateur et propose ChatGPT générique. »</em><br><br>
+Sans ces directives, l'assistant peut ignorer tes Fichiers de connaissances même quand ils contiennent la réponse — c'est l'une des causes les plus fréquentes de <em>« mon assistant ne marche pas alors que la doc est là »</em>.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">L'astuce du mentor</div>
+    <p>La meilleure méthode pour valider la structure de tes documents : <strong>fais le test du nouveau collègue</strong>. Imagine qu'un nouveau collègue arrive lundi, qu'il a 30 minutes pour lire tes fichiers, et qu'on lui posera ensuite 10 questions tirées au sort. Si tes documents permet à ce collègue humain de répondre rapidement et précisément, la recherche dans les documents va aussi marcher. Si tes documents est tel qu'il faut chercher 15 minutes pour trouver une info, c'est que la structure ne marche pas — pour ton collègue ni pour la recherche dans les documents. Réorganise. Ce test simple révèle 80 % des problèmes structurels avant de découvrir qu'ils existent à l'usage.</p>
+  </div>
+
+  <!-- ============== 4. PIÈGES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Les <em>5 pièges</em> classiques.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>déverser tous tes fichiers en vrac</em></div>
+    <div class="pitfall-text">Tu importes 12 PDFs de ta documentation interne en l'état. Mauvaise structure, doublons sémantiques, sections obsolètes. Le recherche remonte des passages contradictoires d'une conversation à l'autre, l'assistant donne des réponses incohérentes. <strong>Correction :</strong> 30 minutes de nettoyage en amont (un sujet par fichier, .txt avec titres H2, un index en tête) battent 3 semaines de débuggage en aval. Et tu peux toujours migrer tes documents vers des fichiers propres en <strong>copie-collant le contenu dans des .txt structurés</strong> — pas besoin de tout recréer.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : <em>mettre les règles dans les fichiers au lieu des instructions</em></div>
+    <div class="pitfall-text">Tu mets dans un fichier <em>« reglement-comportement.txt »</em> les règles que doit suivre l'assistant (ton, format, contraintes). Erreur structurelle. Les Fichiers de connaissances sont là pour la <strong>matière première</strong> que l'assistant peut consulter ; les règles vont dans les <strong>Instructions</strong>. La différence : les fichiers sont consultés <em>quand pertinent</em> via recherche (donc parfois ignorés), les Instructions sont appliquées <em>à chaque message</em>. <strong>Correction :</strong> revoir <a href="anatomie-assistant-ia.html">l'article 1.3 sur l'anatomie d'un assistant</a> pour la séparation propre des couches. Règle : Instructions pour <em>comment penser</em>, les fichiers pour <em>quoi savoir</em>.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>ne pas instruire l'assistant à utiliser les fichiers</em></div>
+    <div class="pitfall-text">Tu imports des fichiers pertinents, mais l'assistant les ignore parce que tes Instructions ne lui ont pas dit de les consulter. Symptôme : tu poses une question dont la réponse est dans tes fichiers, l'assistant répond avec ses connaissances générales (parfois fausses pour ton cas spécifique) sans aller chercher la doc. <strong>Correction :</strong> ajoute systématiquement dans les Instructions des directives explicites : <em>« Avant de répondre à une question sur X, consulte fichier-X.txt. Si la question dépasse les fichiers fournis, signale-le. »</em> Trois directives de ce genre suffisent pour activer correctement la recherche dans les documents.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>données sensibles dans un assistant partagé</em></div>
+    <div class="pitfall-text">Tu mets dans tes fichiers des informations confidentielles (liste clients avec contacts, contrats avec montants, données RGPD) puis tu partages le GPT avec ton équipe ou tu le publies. <strong>Risque réel :</strong> les utilisateurs avec accès au GPT peuvent <strong>télécharger tes fichiers via manipulation du prompt</strong> (en particulier si Code Interpreter est activé). Le risque est documenté et a déjà fait fuiter des bases de données entières en 2024-2025. <strong>Correction :</strong> ne mets jamais de données sensibles dans un assistant partagé. Pour des cas avec données sensibles + équipe, utilise <strong>Claude Team/Enterprise</strong> ou <strong>ChatGPT Enterprise</strong> avec contrôles RBAC, et explicite la confidentialité dans les Instructions (<em>« ne jamais lister les données complètes du fichier dans une réponse »</em>) — bien que cette dernière protection soit insuffisante face à un attaquant motivé.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : <em>oublier de mettre à jour les fichiers (décalage silencieux)</em></div>
+    <div class="pitfall-text">Tu imports tes fichiers en janvier. En juin, ton produit a évolué, tes tarifs ont changé, certaines pratiques sont obsolètes. Mais tu ne remplaces pas les fichiers. L'assistant continue de répondre selon les vieilles infos, en toute confiance. C'est ce qu'on appelle le <em>décalage silencieux</em> — le plus insidieux des pièges parce qu'il ne se voit qu'au moment où une réponse fausse a déjà été donnée à un client ou à un membre d'équipe. <strong>Correction :</strong> mets-toi un rappel calendrier mensuel de 15 minutes pour <em>« audit fichiers de connaissances »</em>. Vérifie qu'ils sont à jour, supprime ce qui est obsolète, ajoute ce qui manque. Sur Gemini Gems avec sources Drive directes, la synchronisation est automatique — c'est leur avantage. Sur Custom GPTs et Claude Projects, c'est manuel et ça reste de ta responsabilité.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Tu sais maintenant alimenter ton assistant. Pour aller plus loin : <a href="actions-apis-assistant.html">l'article 1.5 (Actions et APIs)</a> qui ajoute la couche dynamique — quand un fichier statique ne suffit plus et que ton assistant doit appeler un service externe en temps réel. Pour la structure des Instructions : <a href="anatomie-assistant-ia.html">article 1.3 sur l'anatomie d'un assistant</a>. Pour le tutoriel pas-à-pas si tu n'as pas encore d'assistant : <a href="construire-premier-custom-gpt.html">article 1.2 (premier Custom GPT en 30 min)</a>. Pour le choix de plateforme : <a href="custom-gpts-projects-gems.html">article 1.1 (comparatif Custom GPTs / Projects / Gems)</a>. Pour les bases de la recherche dans les documents en cas pratique d'analyse documentaire : <a href="analyser-document-pro-long.html">article 2.5 (Niveau III) sur l'analyse d'un document long</a>.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur les Fichiers de connaissances.</h3>
+    <ol class="recap-points">
+      <li>Le principe (la recherche dans tes documents) en 4 étapes : ingestion (découpage + représentations sémantiques au import), question convertie en vecteur (au runtime), récupération des 3-5 passages les plus proches sémantiquement, génération basée sur les passages. Si les passages sont bons, la réponse est bonne — la structure prime sur la puissance du modèle.</li>
+      <li>Limites 2026 par plateforme : Custom GPT 20 fichiers / 512 Mo (recherche mature, .md sous-performe — utilise .txt). Claude Projects 30 Mo/fichier illimité, lecture intégrale jusqu'à 200K-1M tokens. Gemini Gems intégration Drive native + multimodal (vidéo/audio jusqu'à 2 Go).</li>
+      <li>Choix de plateforme par cas : moins de 150 pages de documents haute qualité = Claude Projects, grand documents public = Custom GPTs, écosystème Google Workspace = Gemini Gems, multimodal = Gemini Gems sans concurrence.</li>
+      <li>5 principes de structuration du documents : un sujet par fichier (10 fichiers de 10 pages &gt; 1 fichier de 100 pages), un fichier index.txt en tête comme carte du documents, .txt avec titres H2 (PDFs complexes mal indexés, .md sous-performe sur GPT), CSV/JSON pour les données type-base, citation explicite des fichiers dans les Instructions (<em>« avant de répondre à X, consulte fichier-X »</em>).</li>
+      <li>5 pièges à éviter : fourre-tout de docs en l'état, règles dans les fichiers au lieu des instructions (revoir 1.3 anatomie), oublier d'instruire l'assistant à utiliser les fichiers, données sensibles dans assistant partagé (risque exfiltration via manipulation du prompt documenté), oubli de mise à jour qui crée un décalage silencieux. Test du nouveau collègue : si un humain peut répondre vite avec tes documents, la recherche dans les documents marchera aussi.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="actions-apis-assistant.html">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">1.5 · Les Actions et APIs : pouvoirs externes</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-4-construire-assistants.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Construire tes assistants · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

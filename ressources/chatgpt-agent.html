@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChatGPT Agent en 2026 : ce qu'il fait vraiment. – AutomationBoost</title>
+  <meta name="description" content="Au-delà du marketing : ce que ChatGPT Agent fait vraiment bien, les cas où il déraille, et le coût réel observé par tâche." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>ChatGPT Agent en 2026 : ce qu'il fait vraiment.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#eab308;">Automatiser & agents</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">ChatGPT</span>
+    </div>
+    <h1 class="page-title">ChatGPT Agent en 2026 : ce qu'il fait vraiment.</h1>
+    <p class="lede">Au-delà du marketing OpenAI : cas d'usage où il marche bien, cas où il déraille, prix observé par tâche (~400 runs/mois sur Plus). Workspace Agents lancés 22 avril 2026. Comparaison honnête avec Manus AI et la concurrence. Ton sans complaisance.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tu as entendu parler de « ChatGPT qui réserve tes vols, fait tes courses et gère tes mails ». La réalité 2026 est plus nuancée : ChatGPT Agent fait certaines choses très bien, en rate d'autres qu'OpenAI met pourtant en avant, et coûte plus cher qu'on ne le dit. Cet article ne vend rien — il décrit.</p>
+
+    <p>Un point qui peut te coûter cher : l'agent est inclus dans ChatGPT Plus (20 $/mois) mais <strong>pas</strong> dans l'offre Go à 8 $/mois. Voici ce qu'il sait vraiment faire, ce qu'il rate, et ce qu'il consomme réellement.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Ce qu'est ChatGPT Agent <em>en 2026</em>.</h2>
+
+  <div class="container reading">
+    <p>La confusion vient de la généalogie : OpenAI a sorti trois produits successifs en 18 mois (Operator, puis ChatGPT Agent, puis les agents d'équipe). Aujourd'hui, c'est un <strong>mode « Agent »</strong> activable dans ChatGPT qui combine navigateur intégré, exécution de code et connecteurs (Gmail, Slack, Drive…).</p>
+
+    <p>Voici ce qu'il fait vraiment, ce qu'il rate, et ce qu'il coûte.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Cas d'usage : <em>ce qui marche, ce qui dérape</em>.</h2>
+
+  <div class="container reading">
+    <p>La différence entre marketing OpenAI et utilisation réelle se fait là. Voici la grille honnête, basée sur les revues indépendantes 2026 et l'observation pratique.</p>
+  </div>
+
+  <h3>Ce qui marche bien (taux de réussite &gt; 80 %)</h3>
+
+  <div class="container reading">
+    <p><strong>Data extraction multi-pages.</strong> <em>« Compare ces 5 fournisseurs de SaaS, extrais leurs prix, leurs intégrations, leurs niveaux de support, dans un tableau structuré. »</em> L'agent ouvre 5 onglets, lit, structure. 3-5 minutes au lieu d'1 heure manuelle. Cas le plus fiable en 2026.</p>
+
+    <p><strong>Form filling sur sites bien structurés.</strong> Inscription à des newsletters, soumission de formulaires standards, demandes de devis avec données pré-existantes. L'agent navigue, remplit avec ton profil, soumet. Marche bien quand le site n'a pas de captcha trop compliqué.</p>
+
+    <p><strong>Scheduling et booking simples.</strong> Réservations de créneaux Calendly, rendez-vous médicaux sur des plateformes mainstream (Doctolib, Maiia, etc.). L'agent va sur le site, navigue le calendrier, choisit le créneau. <strong>Marche moins bien dès qu'il y a 2FA.</strong></p>
+
+    <p><strong>Email templates personnalisés.</strong> <em>« Envoie un mail de relance à ces 20 prospects avec ce template, en personnalisant le premier paragraphe avec leur dernière interaction LinkedIn. »</em> L'agent fait le tour, personnalise, envoie via Gmail connecté. <strong>Watch Mode te demande validation avant envoi.</strong></p>
+
+    <p><strong>Summarisation et veille structurée.</strong> <em>« Tous les lundis, lis ces 10 sites concurrents, identifie les nouveautés produit, et envoie-moi un brief par mail. »</em> Cas où Workspace Agents brille (persistent, hebdomadaire). Combine bien research et automation.</p>
+  </div>
+
+  <h3>Ce qui dérape régulièrement (taux d'échec significatif)</h3>
+
+  <div class="container reading">
+    <p><strong>Sites avec 2FA forcée.</strong> L'agent tente de se connecter, doit entrer un code SMS ou approuver depuis ton téléphone — il ne peut pas. Échec systématique. Solutions : utilise des connecteurs MCP officiels quand ils existent (Gmail, Drive, GitHub) qui passent par OAuth au lieu du browser.</p>
+
+    <p><strong>Custom web apps internes.</strong> SaaS métier, dashboards internes, apps avec UI non standard, beaucoup de JavaScript dynamique. L'agent peine à comprendre la structure, clique mal, déraille. Documentation OpenAI elle-même reconnaît cette limite.</p>
+
+    <p><strong>Anti-bot measures aggressives.</strong> Cloudflare, captchas Cloudflare Turnstile, fingerprinting browser. L'agent est détecté comme automation, bloqué. Cas concret : <strong>Amazon a poursuivi Perplexity en janvier 2026</strong> (cf <a href="navigateurs-ia.html">article 2.7</a>) sur un sujet similaire — le flou légal s'étend à ChatGPT Agent.</p>
+
+    <p><strong>Décisions qui demandent jugement humain en temps réel.</strong> Modération de contenu, gestion d'exceptions clients, négociation. L'agent applique des patterns mais n'a pas le jugement contextuel humain. <strong>Adobe 2026 :</strong> seules 31 % des organisations qui prétendent utiliser des agents ont une mesure framework — la majorité ne sait pas si leur agent fait des erreurs critiques.</p>
+
+    <p><strong>Tâches longues sans checkpoint.</strong> <em>« Recherche les 100 meilleurs hôtels de Tokyo, compare-les, classe-les. »</em> L'agent commence bien, dérive vers la 30e itération, halluciné des prix qu'il a vus, mélange des hôtels. Le manque de feedback loop court provoque des erreurs compoundées. <strong>Conseil :</strong> découpe en sous-missions de &lt; 15 étapes max.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">La règle pratique 2026</div>
+    <p>ChatGPT Agent excelle sur les <strong>tâches répétitives à structure claire</strong> sur le web public. Il dérape sur les <strong>tâches qui demandent jugement, contexte fin, ou navigation dans des UI atypiques</strong>. Pour les automatisations business critiques, ne pose pas de l'agent généraliste — pose des connecteurs MCP officiels (cf <a href="comprendre-mcp.html">article 2.1</a>) qui sont plus fiables, ou des automatisations déterministes Zapier/Make/n8n (cf <a href="zapier-make-n8n.html">article 2.6</a>) si le pattern est stable. ChatGPT Agent reste excellent pour l'<em>exploration tactique</em> — research, extraction one-shot, automation ad hoc.</p>
+  </div>
+
+  <!-- ============== 3. PRICING RÉEL ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Le <em>pricing réel</em> observé.</h2>
+
+  <div class="container reading">
+    <p>OpenAI ne publie pas de chiffre précis sur le coût par run. Voici ce qui est observé empiriquement par les revues 2026 et qui te permet de calculer ton ROI.</p>
+  </div>
+
+  <h3>Coût par tâche selon le plan</h3>
+
+  <div class="container reading">
+    <p><strong>Plus à 20 $/mois</strong> ≈ 400 runs/mois → <strong>~5 cents par run</strong> (en supposant que tu utilises ton quota complet). Pour une utilisation moyenne (50-100 runs/mois), le coût effectif est plutôt 20-40 cents par run.</p>
+
+    <p><strong>Pro à 200 $/mois</strong> ≈ 400 tasks lourdes/mois → <strong>~50 cents par task</strong> sur des Deep Research ou Agent runs longs. Plus cher au run, mais inclut des features absentes du Plus (priority access, accès au modèle GPT-5.5 Thinking/Pro avec 256K de contexte, 5x plus de Codex usage jusqu'au 31 mai 2026).</p>
+
+    <p><strong>Team à 30 $/utilisateur/mois</strong> = quota dédié par utilisateur (similaire Plus) + Workspace Agents partagés. <strong>ROI le plus intéressant pour 2-5 personnes</strong> qui ont des automatisations répétitifs partagés. À partir de 5 personnes, l'investissement Team se justifie largement vs Plus individuels.</p>
+
+    <p><strong>API GPT-5.2 (pour développeurs construisant leur propre agent)</strong> : 1,75 $/1K input tokens, 14 $/1K output tokens. Une requête typique (1K input + 2K output) = ~3 cents. Sur volume, l'API peut être plus cher ou moins cher selon le nombre de tasks par mois — fais le calcul. À partir de 6 600 tasks/mois sur Plus (quota explose), l'API devient économique. En dessous, Plus est meilleur.</p>
+  </div>
+
+  <h3>La comparaison qui compte vraiment</h3>
+
+  <div class="container reading">
+    <p>Pour une équipe de 10 personnes qui veut industrialiser des automatisations agentiques :</p>
+
+    <p><strong>Option A : 10 × Plus à 20 $</strong> = 200 $/mois. Quota individuel, pas de partage de connaissance entre utilisateurs, chaque personne reconfigure ses prompts. <strong>Adapté pour l'usage individuel ad hoc.</strong></p>
+
+    <p><strong>Option B : Team à 30 $/utilisateur × 10</strong> = 300 $/mois. Workspace Agents partagés, mémoire cross-équipe, admin controls, SOC 2. <strong>Adapté dès qu'il y a des automatisations répétitifs partagés.</strong> +50 % de coût pour gain de productivité substantiel.</p>
+
+    <p><strong>Option C : Construction custom via API</strong> = variable selon volume. Plus flexible, peut intégrer logique business spécifique, mais demande dev. <strong>Adapté quand tu as un cas d'usage très spécifique avec ROI mesurable.</strong></p>
+  </div>
+
+  <!-- ============== 4. ALTERNATIVES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Les <em>alternatives sérieuses</em>.</h2>
+
+  <div class="container reading">
+    <p>ChatGPT Agent n'est pas seul sur le marché. Voici les 3 alternatives sérieuses en avril 2026, avec leurs forces propres.</p>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Alternative 1 — <em>Manus AI</em></div>
+    <div class="tool-text"><strong>Origine :</strong> startup chinoise (Manus AI, anciennement Butterfly Effect) qui a fait sensation début 2025 avec un agent généraliste invité-only au lancement, devenu accessible plus largement. <strong>Force :</strong> approche end-to-end (de la planification à l'exécution), particulièrement fort sur les tâches longues complexes (research approfondie + structuration de rapport, par exemple). Excellents résultats sur les benchmarks publics 2025-2026.<br><br>
+<strong>Faiblesse :</strong> moins d'écosystème que ChatGPT (pas de connecteurs MCP officiels, intégrations limitées aux apps occidentales). Disponibilité hors Asie variable. Préoccupations légitimes côté privacy pour les données européennes/américaines passant par des serveurs chinois. <strong>Pour qui :</strong> users qui veulent tester un agent vraiment généraliste sans s'enfermer dans l'écosystème OpenAI. <strong>Pas adapté</strong> pour des automatisations business critiques avec données sensibles RGPD.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Alternative 2 — <em>Claude Computer Use</em> (Anthropic)</div>
+    <div class="tool-text"><strong>Approche fondamentalement différente :</strong> Claude pilote ton ordinateur entier (apps natives, IDE, fichiers locaux), pas seulement le navigateur. Lancé en research preview pour Pro/Max le 23 mars 2026 via Cowork et Claude Code (cf <a href="claude-computer-use.html">article 3.3 dédié</a>). <strong>Force :</strong> plus large que ChatGPT Agent (peut interagir avec n'importe quelle app, pas juste sites web), conception orientée permissions (Claude demande l'accord avant de toucher une nouvelle app — plus de friction mais plus de sécurité). Score 72,5 % sur OSWorld benchmark (vs &lt; 15 % en 2024).<br><br>
+<strong>Faiblesse :</strong> Mac uniquement en avril 2026. Demande Pro/Max (plus cher que ChatGPT Plus). Max 5x à 100 $/mois recommandé pour usage régulier. Anthropic a banni les agents tiers sur Pro/Max le 4 avril 2026 — ne peut plus servir d'API pour des agents externes. <strong>Pour qui :</strong> développeurs et power users sur Mac qui veulent piloter des apps natives. Excellent en coding (PR submission, test running). Couvert en détail dans le <a href="claude-computer-use.html">prochain article 3.3</a>.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Alternative 3 — <em>Claude Managed Agents</em> (8 avril 2026)</div>
+    <div class="tool-text"><strong>Pour les développeurs et équipes techniques.</strong> Anthropic a lancé Managed Agents en public beta le 8 avril 2026. Tu définis les tasks, tools, guardrails. Anthropic gère <strong>toute l'infrastructure derrière</strong> : sandboxed execution, state management, credential handling, error recovery, context management. <strong>Pricing :</strong> 0,08 $/heure de runtime + tokens Claude classiques. Un agent qui tourne 24/7 = ~58 $/mois en runtime + tokens.<br><br>
+<strong>Cas réels documentés :</strong> Notion (delegation de coding/slides/spreadsheets sans quitter Notion), Rakuten (specialist agents en product/sales/marketing/finance/HR, déployés en moins d'une semaine chacun), Asana (AI Teammates), Sentry (agent qui va du bug flagué au PR ouvert). <strong>Pour qui :</strong> équipes techniques qui veulent shipper des agents en production sans réinventer l'infrastructure. Pas adapté aux non-développeurs.</div>
+  </div>
+
+  <h3>La grille de choix simplifiée</h3>
+
+  <div class="container reading">
+    <p><strong>Tu es non-technique, usage individuel, web public ?</strong> → <strong>ChatGPT Agent</strong> (Plus 20 $). Le plus accessible et bien intégré dans l'écosystème ChatGPT.</p>
+
+    <p><strong>Tu es non-technique, équipe avec automatisations partagés ?</strong> → <strong>ChatGPT Workspace Agents (Team)</strong>. Le bon ratio coût/feature pour 2-10 personnes. Surveille la fin de la période gratuite (6 mai 2026).</p>
+
+    <p><strong>Tu es développeur sur Mac, tu veux piloter ton ordinateur (pas juste le web) ?</strong> → <strong>Claude Computer Use</strong> (Pro 20 $ ou Max 100 $). Couverture plus large, conception orientée permissions.</p>
+
+    <p><strong>Tu es développeur, tu construis un agent en production ?</strong> → <strong>Claude Managed Agents</strong> (0,08 $/h + tokens) ou OpenAI Agents SDK selon préférences techniques. L'avantage Managed Agents : Anthropic gère l'infra, tu te concentres sur le métier.</p>
+
+    <p><strong>Tu testes pour comparer ?</strong> Lance un test sur une tâche concrète identique sur 2-3 plateformes (Plus 20 $, Comet gratuit cf <a href="navigateurs-ia.html">article 2.7</a>, Claude Pro 20 $). Tu sauras en 1 semaine laquelle te convient.</p>
+  </div>
+
+  <p class="pull-quote">Le débat <em>« quel est le meilleur agent ? »</em> est mal posé. La bonne question est : <em>« quel agent pour quel cas d'usage ? »</em>. ChatGPT Agent gagne sur l'accessibilité et l'écosystème SaaS. Claude Computer Use gagne sur la couverture (apps natives). Manus AI gagne sur les benchmarks longs. Aucun ne gagne partout.</p>
+
+  <!-- ============== PIÈGES ============== -->
+  <h2 class="reading"><span class="h2-num">— Bonus</span>5 <em>pièges</em> classiques.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>croire que ChatGPT Go (8 $) inclut l'agent</em></div>
+    <div class="pitfall-text">ChatGPT Go a été lancé pour démocratiser ChatGPT à un prix inférieur. C'est tentant. Mais Go <strong>n'inclut PAS</strong> l'agent mode, pas plus que Sora, Codex, Deep Research, Tasks ou Agent Mode. Tu paies 8 $ et tu vois encore des ads (US, depuis février 2026). <em>Trap</em> selon tl;dv. <strong>Correction :</strong> si tu peux te permettre 8 $/mois, tu peux te permettre 20 $/mois. Le sweet spot 2026 est <strong>Plus à 20 $</strong> qui débloque toute la stack agentique. Va à Go uniquement si tu as un budget contraint et n'as pas besoin de l'agent.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : <em>déléguer des tâches à 2FA forcée</em></div>
+    <div class="pitfall-text">Tu demandes à ChatGPT Agent de te connecter à ton compte bancaire pour vérifier un solde. La banque demande un code 2FA SMS. L'agent ne peut pas le recevoir. Échec silencieux ou tentatives en boucle qui consomment ton quota. <strong>Correction :</strong> liste mentalement les apps avec 2FA dur. Pour ces apps, utilise des connecteurs MCP officiels quand ils existent (passent par OAuth, pas par le browser), ou fais la tâche manuellement. Ne gaspille pas tes runs sur des cas qui échouent par construction.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>ne pas activer Watch Mode pour les actions sensibles</em></div>
+    <div class="pitfall-text">Tu lances un automatisation d'envoi de mails à 50 prospects. Tu désactives Watch Mode pour <em>« aller plus vite »</em>. L'agent envoie 50 mails — dont 5 contenaient une erreur de personnalisation (mauvais nom de société, injection de variable non remplie). Tu te brûles auprès de 5 prospects. <strong>Correction :</strong> Watch Mode est conçu pour ça. Garde-le activé pour TOUTE action irréversible (envoi de mail, paiement, suppression de fichier, publication). Le coût en friction (3 sec de validation par action) est largement compensé par l'évitement des bourdes. Pour les automatisations non-sensibles (scraping, lecture, summarization), désactive si tu veux.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>industrialiser sans observabilité</em></div>
+    <div class="pitfall-text">Tu déploies Workspace Agents pour ton équipe. Personne ne regarde les logs. 3 mois plus tard, tu réalises qu'un agent fait des erreurs sur 15 % des tickets — mais tu ne sais pas lesquels. Adobe 2026 : <strong>seuls 31 % des organisations qui utilisent des agents ont un mesure framework</strong>. <strong>Correction :</strong> dès le jour 1 d'un Workspace Agent, mets en place : (1) logs accessibles pour l'équipe, (2) review hebdo des tâches échouées, (3) métrique de réussite (taux d'erreur, satisfaction utilisateur final). Sans observabilité, tu ne sais pas si l'agent te sert ou te dessert. Cf <a href="comprendre-agents-ia.html">article 3.1 fondation</a>.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : <em>vouloir tout faire avec ChatGPT Agent par fidélité écosystème</em></div>
+    <div class="pitfall-text">Tu es heavy user ChatGPT depuis 3 ans. Tu refuses de tester Claude Computer Use ou Manus AI <em>« par habitude »</em>. Tu te bloques sur les limites de ChatGPT Agent (Mac apps natives, anti-bot, custom UIs) sans réaliser qu'une autre solution résoudrait ton cas. <strong>Correction :</strong> abandonne la fidélité écosystème. En 2026, multi-IA est la norme — ChatGPT pour le web public et data extraction, Claude Computer Use pour les apps natives Mac, Manus pour la research longue, Comet (gratuit) pour la veille concurrentielle. Le coût additionnel d'un 2e abonnement (~20 $/mois) est largement payé par les cas qu'il débloque. Cf <a href="claude-computer-use.html">article 3.3 sur Claude Computer Use</a>.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>ChatGPT Agent en 2026 est <strong>le bon outil pour 60 % des cas d'agent généraliste grand public</strong> — accessibilité, écosystème SaaS, prix correct (20 $ Plus). Pour les 40 % restants, considère Claude Computer Use (apps natives Mac, dev), Manus AI (research longue benchmark-driven), ou des solutions custom (API + framework Anthropic/OpenAI Agents SDK). Mon stack 2026 : <strong>ChatGPT Plus à 20 $/mois</strong> (research extraction + scheduling), <strong>Claude Pro à 20 $/mois</strong> (rédaction longue + Computer Use occasionnel), <strong>Comet gratuit</strong> (veille). Coût total : 40 $/mois. Couvre 95 % des cas tactiques. Pas Workspace Agents pour l'instant — j'attends que la période gratuite finisse et que les cas en production maturent. Suite logique : <a href="claude-computer-use.html">article 3.3 sur Claude Computer Use</a> qui creuse la différence d'approche entre Anthropic et OpenAI.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Tu maîtrises maintenant ChatGPT Agent. Pour aller plus loin : <a href="claude-computer-use.html">article 3.3 sur Claude Computer Use</a> (l'approche concurrente d'Anthropic, fondamentalement différente). <a href="comprendre-agents-ia.html">Article fondation 3.1 sur agents/assistants/automatisations</a>. <a href="navigateurs-ia.html">Article 2.7 sur les navigateurs IA</a> (Atlas, Comet — agents web purs). <a href="zapier-make-n8n.html">Article 2.6 sur Zapier/Make/n8n</a> (automatisations déterministes, alternative aux agents pour les cas répétitifs). <a href="securite-connecteurs.html">Article 2.8 ★ sur la sécurité connecteurs</a> (s'applique aussi aux agents — surface d'attaque accrue par la mémoire persistante). Pour le panorama complet : <a href="niveau-4-deleguer-agents.html">la rubrique R3 complète</a>.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur ChatGPT Agent en 2026.</h3>
+    <ol class="recap-points">
+      <li>Généalogie en 3 étapes : Operator (janvier 2025, web only) → ChatGPT Agent (juillet 2025, navigateur intégré + code interpreter + connecteurs, Watch Mode pour actions sensibles) → Workspace Agents (22 avril 2026, persistents partagés équipe, propulsés par Codex, Team 30 $/utilisateur, gratuit jusqu'au 6 mai 2026 puis credit-based).</li>
+      <li>Cas d'usage qui marchent (&gt; 80 % réussite) : data extraction multi-pages, form filling sites bien structurés, scheduling/booking simples, email templates personnalisés, summarisation et veille structurée. Cas qui dérapent : sites avec 2FA forcée, custom web apps internes, anti-bot measures, décisions à jugement humain, tâches longues sans checkpoint (découpe en &lt; 15 étapes).</li>
+      <li>Pricing observé : Plus 20 $/mois ≈ 400 runs (~5 cents par run), Pro 200 $/mois ≈ 400 tasks lourdes (~50 cents par task), Team 30 $/utilisateur (Workspace Agents partagés inclus), API GPT-5.2 à 1,75 $/1K input + 14 $/1K output (~3 cents par requête typique). <strong>ChatGPT Go à 8 $/mois n'inclut PAS l'agent mode</strong> — piège classique.</li>
+      <li>3 alternatives sérieuses 2026 : Manus AI (startup chinoise, fort sur research longue, faible sur écosystème occidental + privacy RGPD), Claude Computer Use (Anthropic, 23 mars 2026, pilote ordinateur entier vs juste web, Mac uniquement, orienté permissions), Claude Managed Agents (8 avril 2026, public beta, 0,08 $/h runtime + tokens, infrastructure gérée par Anthropic, ~58 $/mois pour 24/7).</li>
+      <li>5 pièges à éviter : ChatGPT Go n'inclut pas l'agent (sweet spot Plus 20 $), 2FA forcée fait échouer l'agent (utilise MCP officiel à la place), désactiver Watch Mode pour actions sensibles, industrialiser sans observabilité (31 % seulement ont un mesure framework selon Adobe 2026), fidélité écosystème qui bloque les bons cas d'usage (multi-IA est la norme 2026).</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="claude-computer-use.html">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">3.3 · Claude Computer Use</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-4-deleguer-agents.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Déléguer aux agents · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

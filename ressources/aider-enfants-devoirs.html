@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aider tes enfants aux devoirs sans faire à leur place. – AutomationBoost</title>
+  <meta name="description" content="L" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Aider tes enfants aux devoirs sans faire à leur place.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#22d3ee;">Au quotidien</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Aider tes enfants aux devoirs sans faire à leur place.</h1>
+    <p class="lede">L'IA en mode tuteur socratique pour les devoirs : la méthode pour que ton enfant apprenne au lieu de copier. Cadrage parent, prompts par âge (CP-collège-lycée), pièges à éviter, signaux que ça dérape.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Ton enfant tape sa rédaction dans ChatGPT, la rend, obtient 14/20. Il croit avoir gagné. En réalité, il vient de perdre ce qui lui aurait servi 30 ans : apprendre à structurer une pensée. Tu peux empêcher ça sans interdire l'IA.</p>
+
+    <p>La question n'est plus de savoir <em>si</em> tes enfants utilisent l'IA pour leurs devoirs — la majorité le font déjà. Elle est de savoir comment en faire un outil qui les fait progresser au lieu de penser à leur place. Voici comment.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi l'usage par défaut <em>ne marche pas</em>.</h2>
+
+  <div class="container reading">
+    <p>« Écris-moi une dissertation sur Voltaire » donne un devoir présentable, mais l'enfant n'a rien appris : ni sur Voltaire, ni sur la dissertation, ni sur l'effort de construire une argumentation. Le cerveau a besoin de cette friction pour apprendre — la supprimer, c'est supprimer l'apprentissage.</p>
+
+    <p>La méthode qui suit garde la friction utile tout en utilisant l'IA comme appui.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Le <em>cadrage parent</em> à installer.</h2>
+
+  <div class="container reading">
+    <p>Voici les 4 actions à mettre en place une fois, qui structurent l'usage IA pour les devoirs sur l'année entière. Compte 30 minutes la première fois — ensuite ça roule tout seul.</p>
+  </div>
+
+  <div class="age-card">
+    <div class="age-num">— ACTION 1 / 4</div>
+    <div class="age-name">Créer un <em>compte famille</em> dédié aux devoirs</div>
+    <div class="age-detail">Idéalement, créer un compte ChatGPT (ou Claude/Gemini) <strong>avec ton email parent</strong>, pas le sien. Cela te donne une visibilité sur l'historique, et te permet de configurer les Custom Instructions et les Projets sans qu'il les modifie. Si l'enfant a moins de 13 ans, c'est juridiquement obligatoire (les CGU OpenAI exigent 13 ans + accord parent jusqu'à 18 ans). Voir <a href="enfants-ia-sans-danger.html">l'article complet sur les enfants et l'IA</a> pour les paramètres de sécurité à activer.</div>
+  </div>
+
+  <div class="age-card">
+    <div class="age-num">— ACTION 2 / 4</div>
+    <div class="age-name">Configurer les <em>Custom Instructions</em> en mode tuteur</div>
+    <div class="age-detail">L'action la plus rentable. Tu configures une fois pour toutes les <a href="custom-instructions.html">Custom Instructions</a> du compte avec un cadrage tuteur strict. Chaque fois que ton enfant utilisera l'IA pour un devoir, ce cadrage s'appliquera automatiquement, sans qu'il ait à y penser ni à le réécrire. C'est ce qui transforme l'IA d'oracle paresseux en tuteur exigeant — par défaut, sans effort permanent.</div>
+    <div class="age-prompt"><span class="age-prompt-label">— À copier dans Custom Instructions / Personnalisation</span><strong>Champ « Que voulez-vous que ChatGPT sache de vous ? » :</strong>
+
+Je suis un élève de <span class="placeholder">[CP, CE2, CM2, 6e, 4e, 2nde, terminale, etc.]</span> en France. J'utilise ChatGPT pour mes devoirs avec l'accord de mes parents.
+
+<strong>Champ « Comment voulez-vous que ChatGPT réponde ? » :</strong>
+
+Tu es mon tuteur. Tu m'aides à apprendre, jamais à tricher.
+
+Règles strictes :
+1. <strong>Ne fais JAMAIS le devoir à ma place.</strong> Si je te demande la réponse, refuse poliment et pose-moi des questions pour que je trouve.
+2. <strong>Quand je suis bloqué, donne-moi une indication minimale</strong> — la plus petite information qui me permet d'avancer d'une étape. Pas plus.
+3. <strong>Quand je te montre mon travail, ne le réécris pas.</strong> Pose-moi des questions sur les choix que j'ai faits. Repère ce qui ne marche pas mais laisse-moi corriger.
+4. <strong>Quand je te demande d'expliquer un cours</strong>, vérifie d'abord ce que je comprends déjà en me posant 2-3 questions. Adapte ton explication à mon âge.
+5. <strong>Si je te demande explicitement de faire le devoir à ma place, dis-moi gentiment non</strong> et explique-moi pourquoi ça me ferait du mal pour la suite.
+6. <strong>À la fin de chaque session, fais-moi reformuler</strong> ce que j'ai appris avec mes propres mots. Corrige si je me trompe.
+
+Si je te dis que c'est urgent ou que je suis en retard, applique quand même ces règles. Donne juste les indications plus rapidement.</div>
+  </div>
+
+  <div class="age-card">
+    <div class="age-num">— ACTION 3 / 4</div>
+    <div class="age-name">Faire <em>l'expérience ensemble</em> la première fois</div>
+    <div class="age-detail">Ton enfant ouvre l'IA, tu t'assieds à côté, vous traitez ensemble un devoir. <strong>L'objectif n'est pas de surveiller — c'est de lui montrer que l'usage tuteur est plus efficace que l'usage oracle</strong>, expérimentalement. Vous testez d'abord la version « écris-moi la réponse » (l'IA refuse poliment grâce aux Custom Instructions). Puis vous testez la version « aide-moi à comprendre » (l'IA pose les bonnes questions, l'enfant produit). À la fin, l'enfant constate <em>de lui-même</em> qu'il a appris quelque chose. C'est cette expérience qui crée l'adhésion — pas le sermon parental.</div>
+  </div>
+
+  <div class="age-card">
+    <div class="age-num">— ACTION 4 / 4</div>
+    <div class="age-name">Convenir des <em>matières où l'IA est OK</em> et celles où non</div>
+    <div class="age-detail">Conversation explicite à avoir une fois. <strong>Matières où l'IA tuteur est légitime :</strong> langues étrangères (vocabulaire, traduction, conversation), sciences (compréhension de concepts, exercices de méthode), histoire-géo (compréhension de cours, fiches révision), philosophie (clarification de notions). <strong>Matières où l'IA peut aider à comprendre mais pas à produire :</strong> français (rédaction, dissertation), arts (production), oraux (préparation seul). <strong>Matières où l'IA n'a rien à faire :</strong> contrôles, devoirs surveillés, productions personnelles évaluées sur la créativité, oraux d'examen. Cette ligne explicite évite les zones grises où l'enfant fera ce qu'il veut « parce qu'on n'avait pas dit le contraire ».</div>
+  </div>
+
+  <!-- ============== 3. PROMPTS PAR ÂGE ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Les <em>prompts par tranche d'âge</em>.</h2>
+
+  <div class="container reading">
+    <p>Le cadrage des Custom Instructions s'applique automatiquement, mais ton enfant peut et doit apprendre à formuler ses propres demandes selon son âge. Voici les 3 paliers d'usage à connaître. À adapter en fonction du niveau réel — un CM2 avancé peut être au niveau collège, un 4e en difficulté peut avoir besoin du palier primaire.</p>
+  </div>
+
+  <div class="age-card">
+    <div class="age-num">— PALIER 1 / 3</div>
+    <div class="age-name"><em>Primaire</em> · CP à CM2 · 6-10 ans</div>
+    <div class="age-rule">
+      <span class="label">— Règle d'or</span>
+      <strong>Usage uniquement avec un parent à côté.</strong> Sessions de 15-30 minutes max. Pas de compte personnel.
+    </div>
+    <div class="age-detail">À cet âge, ton enfant n'a pas encore les capacités d'auto-régulation pour utiliser l'IA seul sans tomber dans le mode oracle. <strong>L'IA est ton outil à toi pour aider ton enfant — pas son outil à lui.</strong> Tu te sers de l'IA pour poser les bonnes questions, créer des exercices, expliquer un concept différemment. L'enfant interagit avec toi, pas directement avec l'IA. C'est aussi le moment idéal pour lui montrer que <strong>l'IA peut se tromper</strong> — fais-lui tester une question dont vous connaissez la réponse, regardez-la hésiter ou répondre à côté.</div>
+    <div class="age-prompt"><span class="age-prompt-label">— Prompt parent à utiliser</span>Mon enfant est en <span class="placeholder">[classe]</span> et travaille sur <span class="placeholder">[exercice/leçon]</span>. Voici ce qu'il a fait : <span class="placeholder">[décris ou photographie son travail]</span>.
+
+Aide-moi à l'aider :
+
+1. <strong>Identifie où il a buté</strong> ou ce qu'il n'a pas compris (sans me donner la solution)
+2. <strong>Donne-moi 2 ou 3 questions à lui poser</strong> pour qu'il trouve par lui-même, adaptées à son âge
+3. <strong>Si vraiment il bloque encore après ces questions</strong>, donne-moi une indication minimale à lui transmettre — pas la solution
+4. <strong>Propose-moi 2 exercices similaires</strong> qu'il pourra faire seul après pour s'assurer qu'il a compris
+
+Reste exigeant. Ne valide pas une réponse approximative comme correcte.</div>
+  </div>
+
+  <div class="age-card">
+    <div class="age-num">— PALIER 2 / 3</div>
+    <div class="age-name"><em>Collège</em> · 6e à 3e · 11-15 ans</div>
+    <div class="age-rule">
+      <span class="label">— Règle d'or</span>
+      <strong>Usage autonome possible avec Custom Instructions activées.</strong> Conversation hebdomadaire avec parent sur ce qu'il a fait avec l'IA.
+    </div>
+    <div class="age-detail">À cet âge, ton enfant peut utiliser l'IA seul, mais le risque d'usage en mode oracle est maximal — pression scolaire qui monte, autonomie technique acquise, supervision parentale qui décroît. <strong>Les Custom Instructions deviennent ton allié principal</strong> : elles forcent l'IA à rester en mode tuteur même quand l'enfant fatigue et bascule en « écris-moi la réponse ». Tu vérifies de temps en temps l'historique pour t'assurer que ça tient.</div>
+    <div class="age-prompt"><span class="age-prompt-label">— Prompt à apprendre à ton enfant</span>J'ai un devoir en <span class="placeholder">[matière]</span>. Le sujet : <span class="placeholder">[énoncé]</span>.
+
+Voici ce que j'ai déjà fait / compris :
+<span class="placeholder">[décris ce que tu as commencé, même si c'est peu]</span>
+
+Voici où je bloque :
+<span class="placeholder">[explique précisément ta difficulté]</span>
+
+Aide-moi à débloquer cette étape — pose-moi des questions pour que je trouve, ne me donne pas la solution. Quand j'aurai trouvé, vérifie ma logique avant qu'on passe à la suite.</div>
+  </div>
+
+  <div class="age-card">
+    <div class="age-num">— PALIER 3 / 3</div>
+    <div class="age-name"><em>Lycée</em> · 2nde à terminale · 15-18 ans</div>
+    <div class="age-rule">
+      <span class="label">— Règle d'or</span>
+      <strong>Confiance par défaut, accompagnement vers la maîtrise pro.</strong> L'IA devient une compétence professionnelle à acquérir.
+    </div>
+    <div class="age-detail">À ce stade, le rôle parental change. <strong>Tu n'es plus là pour surveiller, tu es là pour transmettre une compétence pro.</strong> L'IA fera partie du quotidien de ton enfant dans 1 à 5 ans dans ses études supérieures puis son métier. Les usages utiles maintenant sont les compétences qu'il monnayera plus tard. Pour le bac et les concours, voir <a href="reviser-examen-concours-ia.html">l'article 1.6 sur les méthodes de révision avec l'IA</a> qui détaille les techniques scientifiques (active recall, répétition espacée, technique Feynman).</div>
+    <div class="age-prompt"><span class="age-prompt-label">— Prompt à transmettre à ton ado</span>Pour ce devoir / cette préparation au bac en <span class="placeholder">[matière]</span>, je veux que tu joues le rôle d'un examinateur exigeant.
+
+Voici l'énoncé : <span class="placeholder">[colle le sujet]</span>
+
+Voici ma copie / mes notes : <span class="placeholder">[colle ton travail]</span>
+
+1. <strong>Note sur 20</strong> en justifiant selon les critères du bac / du concours
+2. <strong>3 erreurs les plus pénalisantes</strong> avec impact précis sur la note
+3. <strong>3 manques structurels</strong> que l'examinateur attendrait
+4. <strong>Plan d'action</strong> pour les 3 prochaines révisions sur ce type d'épreuve
+
+Sois rigoureux. Ne note pas généreusement pour ne pas me décourager — j'ai besoin de la vérité, même dure, pour progresser.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">L'astuce du mentor</div>
+    <p>L'erreur classique des parents bien intentionnés : <strong>vouloir tout contrôler chaque jour</strong>. Tu lis ses échanges avec l'IA, tu vérifies chaque devoir, tu te transformes en surveillant. Effet : ton enfant apprend à contourner ta surveillance (autres comptes, téléphone du copain, prompt en français + traduction inverse, etc.) plutôt qu'à utiliser l'IA correctement. <strong>Inverse la logique</strong> : tu poses le cadre une fois (Custom Instructions, conversation initiale, matières OK ou non), tu vérifies une fois par semaine au début, puis une fois par mois quand ça roule. Tu fais confiance à 80 %. Tu surveilles à 20 %. Cette répartition est ce qui fonctionne sur la durée — tout l'inverse te transforme en flic et casse la relation, sans empêcher le contournement.</p>
+  </div>
+
+  <!-- ============== 4. SIGNAUX ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Les <em>5 signaux</em> que ça dérape.</h2>
+
+  <div class="container reading">
+    <p>Au-delà du cadrage initial, voici les signaux qui doivent te faire intervenir activement. Aucun n'est anodin — chacun mérite une conversation immédiate avec ton enfant, pas une punition mais une remise au cadre.</p>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Signal 1 : <em>les notes montent</em>, le niveau en classe stagne</div>
+    <div class="pitfall-text">L'écart se voit. Ton enfant ramène 16/20 sur les devoirs maison et stagne à 10/20 sur les contrôles en classe. <strong>C'est le signal le plus net que les devoirs maison sont produits par l'IA et pas par lui.</strong> Sa compréhension réelle (mesurée en classe sans IA) reste celle de son niveau, mais l'IA fait monter artificiellement les notes maison. Conversation à avoir : pas de drame, juste expliquer que cet écart va finir par se voir au brevet / bac où l'IA n'est pas accessible, et que c'est <em>maintenant</em> qu'il a besoin de construire les fondations qui lui serviront à ce moment-là.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Signal 2 : il <em>ne sait pas expliquer</em> ce qu'il a écrit</div>
+    <div class="pitfall-text">Test simple. Tu lis sa rédaction, tu lui demandes <em>« cette partie-là, qu'est-ce que tu voulais dire exactement ? »</em>. S'il n'arrive pas à reformuler avec ses propres mots, ou pire s'il a l'air surpris par ce qu'il a écrit, c'est qu'il n'a pas écrit. <strong>Ce qu'on ne peut pas reformuler, on ne le possède pas.</strong> Test à appliquer une fois par semaine sur un travail rendu. Si la réponse est régulièrement floue, le mode oracle a repris le dessus malgré les Custom Instructions — il faut remettre en place l'expérience commune et reposer le cadre.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Signal 3 : il <em>ne lit plus le cours</em></div>
+    <div class="pitfall-text">Avant l'IA, l'enfant ouvrait son cahier, lisait, comprenait, faisait. Avec l'IA en mauvais usage, il saute toute la phase « lire et comprendre le cours » — il pose directement à l'IA. Conséquence : il ne sait plus ouvrir un cours et en extraire l'information. Compétence cruciale pour les études supérieures où il faudra absorber des cours denses. <strong>Règle à imposer :</strong> avant toute interaction IA sur un sujet, il doit avoir lu le cours correspondant au moins une fois et te le confirmer. Pas négociable. L'IA vient compléter le cours, pas le remplacer.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Signal 4 : il <em>panique</em> sans accès à l'IA</div>
+    <div class="pitfall-text">Cas typique : il y a un devoir en classe, il découvre que l'IA n'est pas accessible, il craque. Cette panique disproportionnée signale une <strong>dépendance cognitive émergente</strong> — il a perdu la confiance dans sa propre capacité à raisonner sans assistant. Voir <a href="5-signes-trop-dependant-ia.html">les 5 signes de dépendance à l'IA</a>. Solution : créneaux réguliers de travail <em>sans IA</em> à la maison (1 ou 2 sessions par semaine), où il s'entraîne à raisonner seul. C'est une discipline sportive — la capacité à penser seul s'entretient comme un muscle.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Signal 5 : tu <em>ne reconnais plus</em> son écriture</div>
+    <div class="pitfall-text">Le signal le plus simple à détecter et le plus mal interprété. Ses textes deviennent étrangement parfaits, structurés, vocabulaire au-dessus de son niveau habituel. <strong>Beaucoup de parents pensent « il fait des progrès »</strong> — alors que c'est l'inverse, l'IA écrit à sa place. Voir <a href="ia-ecrire-comme-humain.html">les 7 marqueurs IA</a> à reconnaître. Si tu repères ces marqueurs (transitions chevillées « par ailleurs / en outre », formulations creuses « il est important de noter », vocabulaire homogène trop soutenu), conversation immédiate. Pas pour punir — pour ramener au cadrage tuteur qui produit son propre travail.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>L'IA pour les devoirs est l'un des sujets parentaux les plus mal posés en 2026. La majorité des parents oscille entre deux extrêmes inopérants : <strong>l'interdiction</strong> (qui ne marche pas — l'enfant utilise l'IA chez ses copains, ailleurs, autrement) et <strong>le laisser-faire</strong> (qui détruit l'apprentissage). La position juste est entre les deux : <strong>cadrage strict, supervision légère, transmission progressive</strong>. Le but final n'est pas d'empêcher ton enfant d'utiliser l'IA — c'est de lui apprendre à l'utiliser comme un outil pro, qu'il maîtrisera mieux que la majorité de ses concurrents quand il arrivera sur le marché du travail. Cette compétence vaudra de l'or dans 10 ans. Tu ne lui donnes pas un raccourci à 14 ans pour avoir 14/20 — tu lui donnes une compétence à vie. La différence entre les deux passe par les Custom Instructions tuteur, point d'entrée de toute la méthode.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Pour aller plus loin : <a href="enfants-ia-sans-danger.html">l'article pilier sur les enfants et l'IA</a> (cadre par tranches d'âge, contrôles techniques, conversations clés), <a href="tuteur-personnel-ia.html">la méthode-mère du tuteur personnel IA</a> dont cet article est l'application aux devoirs, <a href="reviser-examen-concours-ia.html">réviser un examen ou un concours efficacement</a> (techniques scientifiques pour les ados qui préparent brevet/bac/concours), <a href="custom-instructions.html">les Custom Instructions</a> pour configurer une fois pour toutes le cadrage tuteur, <a href="apprendre-coder-de-zero-ia.html">apprendre à coder de zéro avec l'IA</a> (même protocole G-P-T pour ceux qui veulent aller plus loin), <a href="ia-ecrire-comme-humain.html">les marqueurs IA à reconnaître</a> (essentiels pour détecter quand ton enfant a fait écrire l'IA à sa place).</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur l'IA et les devoirs.</h3>
+    <ol class="recap-points">
+      <li>Étude Lai & Wong 2025 : ChatGPT en mode oracle (« écris-moi la réponse ») fait baisser l'apprentissage de 18 % vs méthode traditionnelle. Le même outil en mode tuteur (« aide-moi à comprendre ») produit l'effet inverse. La nuance d'usage change tout — ni interdire, ni laisser-faire, mais cadrer.</li>
+      <li>Cadrage parent en 4 actions : (1) compte famille avec ton email, (2) Custom Instructions en mode tuteur strict (l'IA refuse de faire à sa place automatiquement), (3) première session ensemble pour démontrer expérimentalement la différence oracle vs tuteur, (4) conversation explicite sur les matières où l'IA est OK et celles où non.</li>
+      <li>3 paliers par âge : Primaire CP-CM2 (uniquement avec parent à côté, sessions courtes, l'IA est ton outil pas le sien) · Collège 6e-3e (autonomie possible avec Custom Instructions, conversation hebdomadaire) · Lycée 2nde-terminale (transmission de la compétence pro, voir aussi l'article 1.6 sur les révisions).</li>
+      <li>Astuce mentor : tout contrôler chaque jour ne marche pas — pousse au contournement. Inverse : poser le cadre une fois (CI, conversation, matières), vérifier hebdo au début puis mensuel quand ça roule. Confiance à 80 %, surveillance à 20 %.</li>
+      <li>5 signaux que ça dérape : notes maison qui montent / niveau classe qui stagne, ne sait pas expliquer ce qu'il a écrit, ne lit plus le cours, panique sans accès IA (dépendance émergente), tu ne reconnais plus son écriture (vérifier les 7 marqueurs IA). Chaque signal mérite une remise au cadre, pas une punition.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="enfants-ia-sans-danger.html">
+        <div class="next-link-label">— Article pilier complémentaire</div>
+        <div class="next-link-title">Apprendre à tes enfants à utiliser l'IA sans danger</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-3-vie-quotidienne.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Vie quotidienne · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

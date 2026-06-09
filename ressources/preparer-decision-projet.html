@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Préparer une décision ou un projet. – AutomationBoost</title>
+  <meta name="description" content="La matrice de décision pondérée utilisée par les pros : la méthode pour utiliser l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Préparer une décision ou un projet.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#f97316;">Gagner du temps au travail</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Préparer une décision ou un projet.</h1>
+    <p class="lede">Matrice de décision pondérée — utilisée par NASA et l'industrie pharma. La méthode pour utiliser l'IA pour cadrer une décision complexe ou structurer un projet — sans se laisser emporter par l'intuition ou par le premier conseil de l'IA.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tu dois trancher entre trois options en 90 minutes. Tu écris à ChatGPT « lequel choisir entre A, B et C ? ». Il te répond avec assurance, tu suis. Trois mois plus tard, tu réalises que sa recommandation reflétait surtout la formulation de ta question — pas une vraie analyse.</p>
+
+    <p>L'aide à la décision est l'un des usages les plus fréquents et les plus piégés de l'IA. Elle est conçue pour répondre, pas pour douter : pose une question orientée, elle te confortera. Voici comment t'en servir pour décider <strong>mieux</strong>, pas juste plus vite.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi « lequel choisir ? » <em>est la mauvaise question</em>.</h2>
+
+  <div class="container reading">
+    <p>Demander « lequel vaut le mieux ? » accumule trois problèmes silencieux : l'IA n'a pas <em>tes</em> critères (elle invente les siens), elle les traite tous comme égaux alors qu'ils ne le sont jamais, et elle tend à valider ton intuition dès qu'elle la devine dans ta question.</p>
+
+    <p>Bien décider avec l'IA ne consiste pas à lui demander la réponse, mais à lui faire structurer la tienne. Voici la méthode.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>La <em>méthode 5 phases</em> de la décision préparée.</h2>
+
+  <div class="container reading">
+    <p>Le protocole pour passer d'une décision floue à une décision argumentée. Durée : 60 à 120 minutes selon la complexité. Coût marginal énorme, bénéfice énorme : c'est probablement le ROI le plus élevé de tout l'usage IA professionnel.</p>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 1 / 5 · 15 MIN · FORMULATION</div>
+    <div class="phase-name">Reformuler la <em>décision</em> rigoureusement</div>
+    <div class="phase-purpose">L'erreur fatale est de partir du choix entre options sans avoir clarifié la décision elle-même. La même question (« quel CRM choisir ? ») peut cacher des décisions très différentes : « choisir le CRM le moins risqué », « choisir celui qui scale le mieux à 3 ans », « choisir celui qui s'intègre le mieux à mon stack actuel ». Selon la décision réelle, les options pertinentes et les critères changent radicalement.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>Je dois préparer une décision : <span class="placeholder">[décris la situation en 4-6 lignes : contexte, enjeu, échéance, parties prenantes]</span>
+
+<strong>Avant que tu me donnes la moindre recommandation</strong>, aide-moi à reformuler rigoureusement la décision :
+
+1. <strong>Quelle est la décision réelle</strong> que je suis en train de prendre ? (Pas le choix entre options — la décision sous-jacente. Souvent, la formulation initiale cache la vraie question.)
+
+2. <strong>Quel est le périmètre de la décision</strong> ?
+— Qu'est-ce qui est inclus
+— Qu'est-ce qui est explicitement exclu (et qu'on traitera plus tard)
+— L'échéance vraie (vs perçue)
+
+3. <strong>Quelle est la décision réversible vs irréversible</strong> ? (Les décisions réversibles peuvent être prises plus rapidement et moins préparées. Les irréversibles méritent toute la méthode.)
+
+4. <strong>Qui est le décisionnaire final</strong> ? (Si ce n'est pas moi seul, qui dois-je impliquer dans la matrice de pondération ?)
+
+5. <strong>Quel est le coût d'une mauvaise décision</strong> ? Estime en temps perdu, argent, opportunité, relations. Si le coût est faible, méthode allégée. Si élevé, méthode complète obligatoire.
+
+6. <strong>Reformule la décision</strong> en une seule phrase précise qui contient : le verbe d'action, l'objet, l'échéance, le critère principal de succès. Exemple : <em>« Choisir avant le 30 juin un outil de CRM permettant à mon équipe de 5 de suivre 200+ leads/mois avec un coût total de possession sur 3 ans inférieur à 30 k€ »</em>.
+
+À la fin, signale-moi <strong>2-3 angles que je n'ai peut-être pas considérés</strong> et qui pourraient changer la formulation. Si la décision réelle change après cette phase, on reprend tout — c'est normal et c'est rentable.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 2 / 5 · 20 MIN · OPTIONS</div>
+    <div class="phase-name">Générer les <em>options</em> largement</div>
+    <div class="phase-purpose">Tu te précipites avec 2-3 options en tête. Erreur. Une décision bien préparée commence par une exploration large — y compris les options « bâtardes » que tu n'as pas considérées (faire les deux à la fois, ne rien faire, déléguer à un tiers, attendre 6 mois). Le piège du créateur de décision est l'attachement précoce aux options évidentes.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>Décision reformulée à la phase 1 : <span class="placeholder">[colle la formulation finale]</span>
+
+Génère <strong>une liste large d'options</strong> avant que je ne tranche. Je veux explorer, pas choisir.
+
+Donne-moi <strong>8-12 options</strong> réparties dans 3 catégories :
+
+1. <strong>4-5 options « évidentes »</strong> — celles que j'aurais identifiées sans toi. Pour vérifier alignement et pour les comparer.
+
+2. <strong>3-4 options « latérales »</strong> — variantes des options évidentes (combinaisons partielles, scénarios hybrides, externalisation, partenariats).
+
+3. <strong>2-3 options « contre-intuitives »</strong> — options que mon biais cognitif tend à exclure :
+— Le statu quo (ne rien faire) : qu'est-ce qui se passe si je ne décide pas ?
+— Le report : qu'est-ce qui change si je décide dans 3 mois au lieu de maintenant ?
+— L'option radicalement différente que je n'ai pas envisagée
+
+Pour chaque option :
+— Description en 2-3 lignes
+— Coût grossier (temps, argent, énergie)
+— Risque principal en 1 phrase
+— Échéance réaliste de mise en œuvre
+
+À la fin, élimine les options qui ne respectent pas mes contraintes absolues identifiées en phase 1. Pour les autres, classe-les en 3 groupes : <strong>candidates sérieuses</strong> (à scorer), <strong>plan B</strong> (à garder en réserve), <strong>écartées avec justification</strong>.
+
+<strong>Important :</strong> garde l'option « ne rien faire / statu quo » dans les candidates sérieuses, sauf si elle est techniquement impossible. C'est l'option le plus souvent oubliée et fréquemment la meilleure quand on la calcule correctement.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 3 / 5 · 20 MIN · CRITÈRES PONDÉRÉS</div>
+    <div class="phase-name">Définir et <em>pondérer</em> les critères avant de scorer</div>
+    <div class="phase-purpose">Le cœur de la méthode Kepner-Tregoe. Tu sépares explicitement les exigences absolues (must-haves : si une option ne les remplit pas, elle est écartée d'office) et les critères pondérés (wants : à scorer chacun selon son poids). Cette séparation force la clarification des priorités stratégiques avant l'évaluation. C'est précisément ce qui révèle l'option sous-évaluée ou le critère sous-pondéré.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>Mes options retenues à la phase 2 : <span class="placeholder">[liste]</span>
+
+Aide-moi à <strong>définir et pondérer mes critères</strong> de décision :
+
+<strong>Volet A — Must-haves (exigences absolues)</strong>
+
+Aide-moi à identifier 3-5 critères qui sont des conditions sine qua non. Une option qui rate un must-have est éliminée, point. Pour chaque must-have :
+— Énoncé précis et mesurable (pas « bon support client », mais « support 24/7 en français »)
+— Pourquoi c'est non-négociable
+— Comment je vérifie objectivement qu'une option le remplit
+
+<strong>Volet B — Wants (critères pondérés)</strong>
+
+Aide-moi à identifier 5-8 critères pondérés. Pour chacun :
+— Énoncé précis
+— Échelle de scoring (1-5 ou 1-10) avec définition de chaque niveau
+— Poids relatif en pourcentage (la somme des poids doit faire 100 %)
+
+<strong>Discipline de pondération :</strong>
+1. Pose-moi des questions structurantes pour m'aider à pondérer correctement (« est-ce que le coût pèse plus que le délai ? si oui, ratio 60/40 ou 70/30 ? »)
+2. Si je suis incapable de différencier les poids, c'est que je n'ai pas clarifié ma stratégie — force-moi à choisir, ne me laisse pas mettre 25/25/25/25
+3. Vérifie que les critères sont indépendants (pas de double-comptage : « rapidité » et « productivité » se chevauchent)
+
+<strong>Volet C — Sanity check</strong>
+
+Avant de passer au scoring :
+— Ces critères pondérés reflètent-ils vraiment ma stratégie, ou seulement les enjeux apparents ?
+— Y a-t-il un critère implicite (ego, peur, attache à un fournisseur, biais culturel) qui devrait être explicité ?
+— Si la matrice me donne un résultat contre-intuitif, est-ce que je suis prêt à le suivre ? Si non, c'est que mes poids sont mal calibrés.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 4 / 5 · 20 MIN · ANALYSE STRESS-TESTÉE</div>
+    <div class="phase-name">Scorer <em>puis</em> stress-tester</div>
+    <div class="phase-purpose">Tu scores chaque option contre chaque critère, multiplie par le poids, additionne. Tu obtiens un classement. Mais le vrai travail commence ici — tu fais stress-tester ce résultat par l'IA en mode adversarial pour identifier ce qui pourrait fausser ton analyse.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>Voici ma matrice complète :
+
+Options retenues : <span class="placeholder">[liste]</span>
+Must-haves : <span class="placeholder">[liste]</span>
+Critères pondérés avec poids : <span class="placeholder">[liste avec %]</span>
+Mes scores option par critère : <span class="placeholder">[grille]</span>
+Total pondéré par option : <span class="placeholder">[résultats]</span>
+Classement actuel : <span class="placeholder">[option gagnante / 2e / 3e]</span>
+
+Maintenant <strong>joue le rôle d'un évaluateur adversarial</strong> qui cherche les failles de mon analyse :
+
+1. <strong>Vérification des must-haves</strong>
+Pour chaque option, vérifie que tous les must-haves sont vraiment remplis. Une option éliminée par mégarde ou conservée à tort fausse tout.
+
+2. <strong>Sensibilité aux poids</strong>
+Si je modifie les poids de ±10 points sur les 2 critères les plus lourds, est-ce que le classement change ? Si oui, mon analyse est <em>fragile</em> — je dois retravailler les poids.
+
+3. <strong>Sensibilité aux scores</strong>
+Identifie 3-5 scores qui pourraient être contestés. Si on modifie ces scores de ±1 ou ±2 points, est-ce que le classement change ? Si oui, je dois sourcer ces scores plus rigoureusement.
+
+4. <strong>Biais cognitifs probables</strong>
+Quels biais cognitifs ont pu fausser mon scoring ?
+— Biais de confirmation (j'ai mieux noté l'option que je préférais avant l'analyse)
+— Biais de dotation (je sur-valorise ce que j'ai déjà)
+— Effet de halo (une bonne note sur un critère contamine les autres)
+— Aversion à la perte (je sur-pondère les risques d'une option vs les opportunités d'une autre)
+
+Pour chaque biais probable : où l'a-t-il joué dans ma matrice ?
+
+5. <strong>Plan B et risques</strong>
+— Pour l'option n°1 : quels sont les 3 modes d'échec possibles, leur probabilité, leur coût ?
+— Pour chacun, quel signal d'alerte précoce ?
+— Si l'option n°1 échoue, l'option n°2 est-elle vraiment activable ? Délai et coût de bascule ?
+
+6. <strong>Sanity check final</strong>
+Si je présentais cette matrice à un sceptique professionnel exigeant, quels seraient ses 3 contre-arguments les plus solides ? Comment je leur réponds ?
+
+<strong>Sois sévère.</strong> Une matrice qui ne résiste pas au stress-test est un faux confort. Mieux vaut découvrir la fragilité maintenant qu'après la décision.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 5 / 5 · 15 MIN · DÉCISION ET PLAN B</div>
+    <div class="phase-name">Trancher avec un <em>plan B</em> explicite</div>
+    <div class="phase-purpose">Tu tranches. Mais une décision préparée n'est pas une décision aveugle au risque — tu valides la décision en explicitant le plan B et les signaux qui te feront basculer dessus. Cette discipline finale transforme une décision ponctuelle en stratégie résiliente.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>Décision finale : <span class="placeholder">[option choisie]</span>
+Plan B : <span class="placeholder">[option de repli identifiée à la phase 2]</span>
+
+Aide-moi à <strong>finaliser la décision</strong> avec ces 5 livrables :
+
+1. <strong>Énoncé court de la décision</strong> (1-2 phrases) que je peux communiquer à mon équipe / mon supérieur / mes parties prenantes.
+
+2. <strong>Justification synthétique</strong> (5-7 lignes) qui résume :
+— Pourquoi cette option (les 2-3 critères qui ont fait pencher la balance)
+— Pourquoi pas les autres (en 1 ligne pour chaque option écartée)
+— Les conditions de succès (ce qui doit se produire pour que cette décision soit la bonne)
+
+3. <strong>Plan B activable</strong>
+— L'option de repli précise
+— Les 3-5 signaux d'alerte précoce qui déclenchent la bascule
+— Le délai maximum entre signal et bascule
+— Le coût d'opportunité de basculer trop tard
+
+4. <strong>Plan d'exécution sur 30 jours</strong>
+— Les 5-7 actions concrètes des 30 prochains jours
+— Les jalons de validation (checkpoint à 15 jours, 30 jours)
+— Qui fait quoi si je ne suis pas seul·e décisionnaire
+
+5. <strong>Document de capitalisation</strong>
+Ce qui restera de cette analyse pour les décisions futures :
+— La méthode appliquée
+— Les critères que j'ai trouvés non-évidents
+— Les biais que j'ai identifiés
+— Les signaux que j'ai sous-estimés/sur-estimés
+
+<strong>Ce document de capitalisation</strong> est ce qui transforme cette décision unique en compétence pour les décisions suivantes. Sans lui, tu réinventes la matrice à chaque décision. Avec lui, tu construis ta bibliothèque personnelle de cadres de décision.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">L'astuce du mentor</div>
+    <p>La discipline qui sépare les bons décideurs des autres : <strong>écrire la décision avant de l'annoncer</strong>. Le simple fait de mettre par écrit l'énoncé court + la justification synthétique + le plan B révèle 30 % du temps une faille qu'on n'avait pas vue à l'oral. Le cerveau accepte des contradictions à voix haute qu'il refuse à l'écrit. <strong>Bonus :</strong> garde un dossier « décisions prises » avec un retour 6 mois et 12 mois plus tard. Ce que tu apprends de tes décisions passées vaut plus que tous les frameworks de décision théoriques. Les décideurs expérimentés ont presque tous cette pratique — pas parce qu'ils sont plus rigoureux, mais parce qu'ils savent qu'ils oublieront ce qu'ils ont vraiment pensé sur le moment, et que sans ce journal, ils ne peuvent pas apprendre.</p>
+  </div>
+
+  <!-- ============== 3. ADAPTATION 3 TYPES ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Adaptation aux <em>3 types</em> de décision.</h2>
+
+  <div class="container reading">
+    <p>La méthode 5 phases fonctionne sur tous les types. Mais 3 archétypes dominent en milieu professionnel et chacun a ses ajustements.</p>
+  </div>
+
+  <div class="scenario">
+    <div class="scenario-tag">Type 1 · Décision <em>binaire</em> (faire / ne pas faire)</div>
+    <div class="scenario-text"><em>Exemples : accepter une promotion / refuser, lancer un projet / le repousser, signer un contrat / négocier davantage.</em> <strong>Spécificité :</strong> seulement 2 options apparentes mais souvent 4-5 cachées (faire partiellement, faire avec délai, déléguer, négocier). <strong>Ajustement :</strong> phase 2 (génération d'options) particulièrement importante — force l'IA à proposer des variantes hybrides. La phase 4 (stress-test) doit explicitement chiffrer le coût d'opportunité de chaque option (qu'est-ce que je perds en ne faisant pas A vs en ne faisant pas B). <strong>Piège fréquent :</strong> traiter une décision binaire comme évidente alors qu'elle ne l'est jamais. Si tu hésites, c'est qu'il y a au moins 3-4 critères en tension — la matrice les rendra visibles.</div>
+  </div>
+
+  <div class="scenario">
+    <div class="scenario-tag">Type 2 · Décision <em>multi-options</em> avec critères tangibles</div>
+    <div class="scenario-text"><em>Exemples : choisir un fournisseur / un outil / un candidat / un local commercial / un prestataire.</em> <strong>Spécificité :</strong> 3-7 options à comparer sur 5-10 critères majoritairement quantifiables (prix, délai, fonctionnalités, références, etc.). C'est le cas-type de la méthode Kepner-Tregoe. <strong>Ajustement :</strong> méthode complète appliquée intégralement. La phase 3 (pondération) est ici la plus critique. <strong>Piège fréquent :</strong> sous-pondérer les critères qualitatifs (alignement culturel, qualité de la relation, soutien post-vente) qui s'avèrent souvent plus déterminants après-coup. Discipline : au moins 30-40 % du poids total doit aller sur des critères qualitatifs si la décision implique une relation longue.</div>
+  </div>
+
+  <div class="scenario">
+    <div class="scenario-tag">Type 3 · Cadrage de <em>projet</em> (pas une décision unique mais un design)</div>
+    <div class="scenario-text"><em>Exemples : structurer un projet de lancement, cadrer une réorganisation, planifier une transformation, préparer une réponse à appel d'offre.</em> <strong>Spécificité :</strong> ce n'est pas un choix unique mais une série de micro-décisions à articuler ensemble. <strong>Ajustement :</strong> tu fais d'abord une matrice de décision sur le <em>scénario global</em> (3-4 scénarios contrastés), puis tu décomposes le scénario gagnant en arbre de décisions secondaires. La phase 5 (plan B) devient une matrice de risques détaillée. <strong>Piège fréquent :</strong> sauter directement à la planification sans avoir choisi le scénario global. Tu finis par exécuter une stratégie hybride incohérente. Discipline : 1 scénario gagnant, 1 scénario plan B, les autres mémorisés mais écartés. Voir aussi <a href="preparer-reunion-5-minutes.html">l'article 2.2 sur préparer une réunion</a> qui complète la dimension exécution.</div>
+  </div>
+
+  <!-- ============== 4. PIÈGES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Les <em>5 pièges</em> qui transforment l'IA en biais maquillé.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>orienter</em> la question dès la formulation</div>
+    <div class="pitfall-text">Tu écris « je penche vers A, qu'est-ce que tu en penses ? ». L'IA te trouve les bonnes raisons d'aller vers A. Tu te confortes. Sycophancy Stanford 2026 : +49 points d'approbation des positions utilisateurs vs humains neutres. <strong>Discipline :</strong> ne révèle ta préférence à l'IA qu'<em>après</em> avoir reçu son analyse complète. Idéalement, dans la phase 1 et 2, tu ne lui dis pas du tout vers quelle option tu penches. Tu décris la situation, tu laisses l'IA générer les critères, puis tu confrontes ton intuition initiale au résultat.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : <em>sauter la pondération</em></div>
+    <div class="pitfall-text">Tu listes tes critères mais tu ne les pondères pas explicitement, parce que c'est inconfortable de hiérarchiser (« le prix compte plus que la qualité ? c'est gênant à dire »). Sans pondération, l'IA traite implicitement tous les critères comme égaux — alors qu'en réalité ils ne le sont jamais. <strong>Discipline :</strong> phase 3 non négociable. Si tu n'arrives pas à pondérer (« je ne sais pas si délai > prix »), c'est que tu n'as pas clarifié ta stratégie — c'est précisément le signal qu'il faut s'arrêter et y réfléchir, pas le contourner.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>croire l'IA</em> sur les chiffres précis</div>
+    <div class="pitfall-text">Tu lui demandes « quel est le prix moyen d'un CRM mid-market en 2026 ? ». Elle te donne un chiffre confiant. Tu l'utilises dans ta matrice. <strong>9 % d'hallucinations en moyenne, 30-50 % sur les chiffres précis et les benchmarks sectoriels</strong>. Voir <a href="hallucinations-ia.html">l'article 4.1</a>. <strong>Discipline :</strong> les chiffres entrant dans la matrice (prix, délais, taux de réussite, ROI estimés) doivent être vérifiés sur sources externes — devis fournisseurs réels, études de marché publiées, benchmarks publics. L'IA aide à structurer la matrice, elle ne remplace pas la vérification des données d'entrée.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>oublier l'option statu quo</em></div>
+    <div class="pitfall-text">Tu compares 3 options nouvelles. Tu choisis la meilleure des 3. Tu réalises 6 mois plus tard que ne rien faire aurait été mieux. Le statu quo est l'option le plus souvent oubliée et fréquemment la meilleure quand on la calcule correctement — surtout en contexte d'incertitude. <strong>Discipline :</strong> dans la phase 2, l'option « ne rien faire / différer / maintenir l'existant » est <em>obligatoire</em> dans les options scorées. Elle gagne dans 25-30 % des cas selon les analyses de décisions corporate documentées. La sur-confiance de l'action contre l'inaction est l'un des biais les plus coûteux en milieu professionnel.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : <em>ne pas écrire</em> la décision finale</div>
+    <div class="pitfall-text">Tu décides à voix haute en réunion ou mentalement. 2 mois plus tard, tu te souviens vaguement du raisonnement. 6 mois plus tard, tu ne peux plus reconstituer pourquoi tu as choisi cette option. Tu ne peux donc pas apprendre. <strong>Discipline :</strong> phase 5 obligatoire — énoncé court + justification synthétique + plan B + plan d'exécution + capitalisation. Document de 1-2 pages max, classé. Avec retour à 6 et 12 mois pour évaluer la qualité de la décision a posteriori. Sans cette discipline, tu prends 100 décisions/an sans jamais améliorer ta capacité de décision. Avec elle, tu deviens un meilleur décideur chaque trimestre.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>La préparation de décision est le cas d'usage IA où l'écart entre l'usage par défaut et l'usage maîtrisé est probablement le plus grand de tous les usages professionnels. L'usage par défaut (« lequel choisir ? ») est non seulement inefficace — il est <strong>activement nuisible</strong> parce qu'il maquille ton intuition initiale en analyse objective. La méthode Kepner-Tregoe avec assistance IA, en 60-90 minutes, transforme cette même décision en arbitrage assumé et résilient. La frontière entre les deux n'est pas l'intelligence — c'est la discipline. Tu reformules avant de chercher des options, tu pondères avant de scorer, tu stress-testes avant de trancher, tu écris la décision finale avec plan B explicite. Si tu tiens cette discipline sur les 5-10 décisions importantes que tu prends par mois, tu réduis probablement de 40-50 % le taux de mauvaises décisions (estimation de l'effet documenté pour la méthode Kepner-Tregoe en milieu corporate). C'est probablement le levier de carrière le plus rentable de l'IA professionnelle pour les cadres et les décideurs.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Pour aller plus loin : <a href="quand-ia-veut-plaire.html">l'article 4.4 sur quand l'IA veut plaire</a> (cœur du problème de la sycophancy dans les décisions), <a href="hallucinations-ia.html">l'article 4.1 sur les hallucinations</a> (essentiel pour les chiffres entrant dans la matrice), <a href="verifier-sources.html">l'article 4.2 sur la vérification des sources</a>, <a href="preparer-reunion-5-minutes.html">l'article 2.2 sur préparer une réunion</a> (utile pour communiquer la décision finale), <a href="analyser-document-pro-long.html">l'article 2.5 sur analyser un document pro long</a> (utile en phase 1 si la décision repose sur l'analyse de documents complexes), <a href="systeme-10h-semaine.html">l'article-pilier 2.8 sur le système 10h/semaine</a> (où la méthode de décision est l'une des briques d'efficacité). Pour les frameworks de structuration : <a href="framework-risen.html">RISEN</a> et <a href="framework-crispe.html">CRISPE</a> du Niveau II sont des frameworks de prompt complémentaires utiles.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur la préparation de décision avec l'IA.</h3>
+    <ol class="recap-points">
+      <li>« Lequel choisir ? » est la mauvaise question. L'IA tend à valider l'intuition lisible dans la formulation (sycophancy Stanford 2026 : +49 pts d'approbation vs humains neutres). La même décision sur la même IA peut produire 3 recommandations opposées selon la formulation. La méthode Kepner-Tregoe avec assistance IA corrige cette dérive en imposant une séquence rigoureuse.</li>
+      <li>Méthode 5 phases sur 60-120 minutes : (1) formulation rigoureuse de la décision réelle (15 min, distinguer décision réversible/irréversible, coût d'une mauvaise décision), (2) génération large d'options 8-12 incluant statu quo et options contre-intuitives (20 min), (3) définition pondérée des critères avec must-haves (élimination directe) et wants (% sommant à 100 %) (20 min), (4) scoring puis stress-test adversarial avec sensibilité aux poids et identification des biais cognitifs (20 min), (5) décision finale écrite avec plan B explicite et capitalisation (15 min).</li>
+      <li>3 types : Décision binaire (forcer la génération de 4-5 options cachées au-delà du oui/non, chiffrer les coûts d'opportunité), Multi-options avec critères tangibles (cas-type Kepner-Tregoe, 30-40 % du poids minimum sur critères qualitatifs si relation longue), Cadrage de projet (matrice sur scénario global d'abord, décomposition en arbre de décisions ensuite).</li>
+      <li>Cas Reflect OS 2026 documenté : choix de CRM, intuition pointait Vendor A, matrice pondérée par parties prenantes a révélé Vendor B significativement meilleur sur API (30 %) et intégration data (25 %). C'est précisément ce que la méthode est conçue pour faire — révéler les options sous-évaluées et les critères sous-pondérés. Méthode utilisée par NASA pour les décisions de mission critique et l'industrie pharma pour les choix de molécules à développer.</li>
+      <li>5 pièges : orienter la question dès la formulation (ne révéler ta préférence qu'après l'analyse), sauter la pondération (non négociable même si inconfortable), croire l'IA sur les chiffres précis (9 % moyen 30-50 % sur benchmarks sectoriels — vérifier sur devis et études externes), oublier le statu quo (gagne dans 25-30 % des cas, sur-confiance de l'action contre l'inaction est l'un des biais les plus coûteux), ne pas écrire la décision finale (sans capitalisation, tu prends 100 décisions/an sans apprendre — avec retour à 6 et 12 mois, tu deviens meilleur décideur chaque trimestre).</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="systeme-10h-semaine.html">
+        <div class="next-link-label">— Article-pilier de la rubrique</div>
+        <div class="next-link-title">Le système qui fait gagner 10h/semaine</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-3-gagner-du-temps.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Gagner du temps · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

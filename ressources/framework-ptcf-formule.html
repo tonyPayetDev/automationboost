@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le framework PTCF : la formule en 4 lignes. – AutomationBoost</title>
+  <meta name="description" content="Persona, Tâche, Contexte, Format : la formule en 4 lignes qui couvre 90 % des cas. La méthode la plus simple pour structurer un bon prompt." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Le framework PTCF : la formule en 4 lignes.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#34d399;">Mieux prompter</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Le framework PTCF : la formule en 4 lignes.</h1>
+    <p class="lede">Persona, Tâche, Contexte, Format. La méthode systématique de formulation qui couvre 90 % des cas. Plus simple que tu ne crois, plus efficace que tu ne penses.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Connaître les 4 piliers d'un bon prompt ne sert à rien si tu ne les actives pas systématiquement. La théorie, c'est Persona, Tâche, Contexte, Format. Encore faut-il l'appliquer à chaque fois.</p>
+
+    <p>Voici PTCF transformé en formule prête à l'emploi, pour écrire un bon prompt en deux minutes.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi un template <em>change tout</em>.</h2>
+
+  <div class="container reading">
+    <p>Connaître les piliers ne suffit pas : sous pression, on en oublie toujours un. Un template les rend automatiques — tu remplis quatre cases au lieu de te demander à chaque fois ce qu'il faut inclure. La qualité devient régulière, sans effort de mémoire.</p>
+
+    <p>Voici la formule, prête à copier.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 7</span>La formule en <em>4 lignes</em>.</h2>
+
+  <div class="container reading">
+    <p>La voici. À recopier dans tes notes. À mémoriser. À utiliser pour tes prompts importants pendant 2 semaines, jusqu'à ce que ce soit automatique.</p>
+  </div>
+
+  <div class="template-block">
+    <div class="template-header">— Le template PTCF universel</div>
+    <div class="template-line">
+      <div class="template-letter">P</div>
+      <div class="template-content"><span class="label">Tu es</span> <span class="placeholder">[rôle + niveau d'expérience + posture]</span>.</div>
+    </div>
+    <div class="template-line">
+      <div class="template-letter">T</div>
+      <div class="template-content"><span class="label">Ta tâche :</span> <span class="placeholder">[verbe d'action précis + objet de la tâche]</span>.</div>
+    </div>
+    <div class="template-line">
+      <div class="template-letter">C</div>
+      <div class="template-content"><span class="label">Contexte :</span> <span class="placeholder">[à qui c'est destiné, dans quelle situation, avec quelles contraintes, quel objectif sous-jacent]</span>.</div>
+    </div>
+    <div class="template-line">
+      <div class="template-letter">F</div>
+      <div class="template-content"><span class="label">Format :</span> <span class="placeholder">[longueur + structure + ton + ce qu'il faut éviter]</span>.</div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>Quatre lignes. Une par pilier. Tu peux écrire chaque ligne en 15 à 30 secondes, ce qui fait <strong>2 minutes maximum</strong> pour un prompt complet. C'est l'investissement le plus rentable que tu peux faire — 2 minutes en amont t'évitent souvent 10 minutes d'aller-retour pour corriger une réponse imprécise.</p>
+  </div>
+
+  <!-- ============== 3. DÉMONSTRATION ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 7</span>Démonstration : le <em>même besoin</em> avec et sans PTCF.</h2>
+
+  <div class="container reading">
+    <p>Imaginons que tu veuilles préparer un argumentaire pour demander une augmentation à ton manager. Voici le même besoin formulé deux fois.</p>
+  </div>
+
+  <h3 class="reading">Sans PTCF (réflexe naturel)</h3>
+
+  <div class="prompt-example">Aide-moi à préparer ma demande d'augmentation.</div>
+
+  <div class="container reading">
+    <p>L'IA va te livrer un guide générique de demande d'augmentation. Conseils universels, exemples standards, sans aucun lien avec ta vraie situation. Lisible mais inutile.</p>
+  </div>
+
+  <h3 class="reading">Avec PTCF (réflexe entraîné)</h3>
+
+  <div class="prompt-example">Tu es un coach en négociation salariale avec 10 ans d'expérience auprès de cadres en entreprise. Tu privilégies les arguments factuels aux discours émotionnels et tu refuses les techniques manipulatoires.
+
+Ta tâche : aide-moi à structurer un argumentaire de demande d'augmentation que je vais présenter à mon manager lors de notre prochain entretien individuel dans 10 jours.
+
+Contexte : je suis chef de projet IT dans une PME (120 personnes), je suis là depuis 3 ans, je n'ai eu qu'une seule augmentation de 2 % il y a 18 mois. Sur les 12 derniers mois, j'ai mené à bien deux migrations majeures qui ont fait économiser environ 80 K € à l'entreprise. Mon manager est plutôt analytique, il déteste les arguments émotionnels. Mon objectif est +8 % minimum, ma cible idéale est +12 %. Je veux préparer mes arguments mais aussi anticiper ses objections.
+
+Format : structure ton plan en 3 parties (mon contexte / ma valeur ajoutée mesurable / ma demande chiffrée), chaque partie en 4-5 phrases maximum. Termine par une liste de 3 objections probables et la réponse à donner pour chacune. Pas de phrase d'introduction ni de récap final.</div>
+
+  <div class="container reading">
+    <p>Le second prompt produit un argumentaire que tu peux <strong>amener directement à l'entretien</strong>. Calibré sur ton contexte, ton manager, ta cible chiffrée. Pas de phrases creuses, pas d'objections génériques. Du livrable utilisable.</p>
+
+    <p>La différence n'est pas dans la difficulté du prompt — il a juste pris 90 secondes de plus à écrire. La différence est dans la <strong>quantité d'informations</strong> données à l'IA pour qu'elle n'ait plus à deviner.</p>
+  </div>
+
+  <!-- ============== 4. 5 PROMPTS MODÈLES ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 7</span>5 prompts modèles dans <em>5 cas d'usage</em>.</h2>
+
+  <div class="container reading">
+    <p>Cinq cas typiques, prêts à être adaptés à ton contexte. Recopie celui qui te concerne, remplace les éléments en orange par les tiens, et envoie. Pour chaque cas, j'ai gardé la structure PTCF en 4 lignes pour que tu repères le pattern.</p>
+  </div>
+
+  <!-- USECASE 1 -->
+  <div class="usecase">
+    <div class="usecase-header">
+      <div class="usecase-num">— CAS 1</div>
+      <div class="usecase-title">Rédiger un mail délicat</div>
+    </div>
+  </div>
+
+  <div class="prompt-example">Tu es un rédacteur expérimenté en communication interne, habitué à rédiger des messages sensibles avec tact. Tu privilégies la clarté à la diplomatie excessive.
+
+Ta tâche : rédige un mail à <span class="placeholder">[destinataire]</span> pour <span class="placeholder">[annoncer / refuser / demander quelque chose de difficile]</span>.
+
+Contexte : <span class="placeholder">[notre relation, l'historique récent, ce qui rend le mail délicat, ce que je veux obtenir au final]</span>.
+
+Format : un mail de <span class="placeholder">[X]</span> mots, ton <span class="placeholder">[direct mais respectueux / chaleureux mais ferme / etc.]</span>, sans formule alambiquée. Termine par <span class="placeholder">[une question ouverte / un appel à l'action précis]</span>.</div>
+
+  <!-- USECASE 2 -->
+  <div class="usecase">
+    <div class="usecase-header">
+      <div class="usecase-num">— CAS 2</div>
+      <div class="usecase-title">Comprendre un sujet technique</div>
+    </div>
+  </div>
+
+  <div class="prompt-example">Tu es un professeur expert en <span class="placeholder">[domaine]</span>, capable d'expliquer des concepts compliqués sans jargon, à la manière d'un Richard Feynman.
+
+Ta tâche : explique-moi <span class="placeholder">[concept précis]</span>.
+
+Contexte : je suis <span class="placeholder">[ton métier ou niveau de base]</span>. J'ai besoin de comprendre ce concept pour <span class="placeholder">[but pratique]</span>. Je n'ai aucune base en <span class="placeholder">[domaine connexe]</span>.
+
+Format : 3 paragraphes maximum. Commence par une analogie concrète tirée de la vie quotidienne. Puis explique le mécanisme. Termine par un exemple concret d'application. Pas de jargon technique non défini.</div>
+
+  <!-- USECASE 3 -->
+  <div class="usecase">
+    <div class="usecase-header">
+      <div class="usecase-num">— CAS 3</div>
+      <div class="usecase-title">Analyser un document</div>
+    </div>
+  </div>
+
+  <div class="prompt-example">Tu es un analyste critique avec une approche rigoureuse. Tu identifies les failles d'argumentation, les biais, les chiffres douteux. Tu refuses de dire que tout est bien si ça ne l'est pas.
+
+Ta tâche : analyse le document ci-dessous selon mes critères.
+
+Contexte : c'est un <span class="placeholder">[type de document]</span> que j'ai reçu de <span class="placeholder">[source]</span>. Je dois <span class="placeholder">[décision à prendre]</span> à partir de ce document. Mes points d'attention sont <span class="placeholder">[X, Y, Z]</span>.
+
+Format : 3 sections — points solides du document, faiblesses ou zones grises, questions à poser à l'auteur avant de décider. 200 mots maximum au total. Sois explicite si une info importante manque.
+
+Document : <span class="placeholder">[colle le document ici]</span></div>
+
+  <!-- USECASE 4 -->
+  <div class="usecase">
+    <div class="usecase-header">
+      <div class="usecase-num">— CAS 4</div>
+      <div class="usecase-title">Brainstormer des idées</div>
+    </div>
+  </div>
+
+  <div class="prompt-example">Tu es un créatif qui pense en dehors des cadres mais reste connecté à la réalité opérationnelle. Tu refuses les idées génériques que n'importe qui pourrait avoir.
+
+Ta tâche : génère <span class="placeholder">[X]</span> idées pour <span class="placeholder">[objectif précis]</span>.
+
+Contexte : <span class="placeholder">[mon secteur, mon audience, mes contraintes (budget, temps, ressources), ce qui a déjà été essayé sans succès]</span>.
+
+Format : <span class="placeholder">[X]</span> idées numérotées. Chacune en une ligne (le concept) + une ligne (pourquoi c'est différent du standard). Évite les idées « faire un sondage », « créer un tutoriel », « faire un événement » — trop évidentes.</div>
+
+  <!-- USECASE 5 -->
+  <div class="usecase">
+    <div class="usecase-header">
+      <div class="usecase-num">— CAS 5</div>
+      <div class="usecase-title">Améliorer un texte</div>
+    </div>
+  </div>
+
+  <div class="prompt-example">Tu es un éditeur expérimenté, exigeant mais bienveillant. Tu corriges sans réécrire complètement. Tu respectes la voix de l'auteur.
+
+Ta tâche : améliore le texte ci-dessous.
+
+Contexte : c'est un <span class="placeholder">[type de texte]</span> destiné à <span class="placeholder">[audience]</span>, dans le but de <span class="placeholder">[objectif]</span>. Mon ton naturel est <span class="placeholder">[direct / chaleureux / formel...]</span> et je veux le garder. Je ne supporte pas <span class="placeholder">[telles formulations]</span>.
+
+Format : la version améliorée d'abord. Puis liste les 3 modifications principales et leur justification en une phrase chacune.
+
+Texte original : <span class="placeholder">[colle ton texte ici]</span></div>
+
+  <!-- ============== 5. VARIATIONS ============== -->
+  <h2 class="reading"><span class="h2-num">— 5 / 7</span>Les <em>variations</em> du framework.</h2>
+
+  <div class="container reading">
+    <p>PTCF est un cadre, pas un dogme. Une fois que tu maîtrises la version complète, tu peux l'ajuster selon le besoin. Voici les 3 variations principales que tu vas naturellement utiliser.</p>
+  </div>
+
+  <h3 class="reading">Variation 1 : PTCF court (pour les tâches simples)</h3>
+
+  <div class="container reading">
+    <p>Pour les tâches techniques ou ponctuelles sans dimension humaine (calcul, conversion, traduction littérale), tu peux fusionner ou alléger.</p>
+  </div>
+
+  <div class="prompt-example">Convertis ce tableau Excel en JSON. Format : un objet par ligne, avec les en-têtes comme clés. Garde les types numériques (pas de strings pour les nombres). [tableau]</div>
+
+  <div class="container reading">
+    <p>Persona absent (pas utile ici), tâche claire, contexte minimal (le tableau sera fourni), format précis. C'est suffisant pour une tâche purement opérationnelle.</p>
+  </div>
+
+  <h3 class="reading">Variation 2 : PTCF étendu (pour les sujets complexes)</h3>
+
+  <div class="container reading">
+    <p>Pour les sujets stratégiques où chaque détail compte, tu peux étendre chaque pilier sur plusieurs phrases. Le contexte peut faire 200 mots à lui seul. C'est normal — tu ne donnes pas trop d'infos, tu donnes les bonnes infos pour ton vrai besoin.</p>
+
+    <p>La règle : si l'enjeu est important, prends le temps. Un mauvais prompt sur un sujet stratégique te coûte plus cher qu'un long prompt bien fait.</p>
+  </div>
+
+  <h3 class="reading">Variation 3 : PTCF + exemples (pour le maximum de précision)</h3>
+
+  <div class="container reading">
+    <p>Pour des tâches où le ton ou le style sont critiques (rédaction qui doit ressembler à toi, code dans un style précis), ajoute une cinquième ligne : <strong>exemples</strong>.</p>
+  </div>
+
+  <div class="prompt-example">[PTCF habituel...]
+
+Exemples du style attendu :
+1. [exemple court 1]
+2. [exemple court 2]
+
+Inspire-toi de ces exemples pour le ton et la structure.</div>
+
+  <div class="container reading">
+    <p>Donner 2-3 exemples au modèle est l'une des techniques les plus puissantes de prompt engineering. Elle s'appelle <em>« few-shot prompting »</em> dans le jargon, et elle est traitée en détail dans la <a href="niveau-2-techniques-avancees.html">rubrique Techniques avancées</a> du Niveau II.</p>
+  </div>
+
+  <!-- ============== 6. ERREURS ============== -->
+  <h2 class="reading"><span class="h2-num">— 6 / 7</span>Les 3 erreurs typiques avec PTCF.</h2>
+
+  <h3 class="reading">Erreur 1 : remplir mécaniquement sans réfléchir</h3>
+
+  <div class="container reading">
+    <p>Le piège du template, c'est de le remplir comme un formulaire administratif. Tu mets « expert en marketing » comme persona parce que c'est la première chose qui te vient. Tu mets « rédige un mail » comme tâche sans préciser. Tu coches les 4 cases mais sans contenu utile.</p>
+
+    <p>Le template ne marche que si tu réfléchis à ce que tu mets dans chaque case. Si tu mets « tu es un expert » et que tu changes l'expertise selon le sujet, c'est aussi inutile que de ne rien mettre. Le template est un guide, pas une formule magique.</p>
+  </div>
+
+  <h3 class="reading">Erreur 2 : sur-spécifier le format au détriment du contexte</h3>
+
+  <div class="container reading">
+    <p>Beaucoup de débutants passent 80 % de leur temps à spécifier le format (longueur, structure, contraintes négatives) et 10 % sur le contexte. C'est l'inverse qu'il faut faire. Le contexte est <strong>3 fois plus impactant</strong> que le format. Un prompt avec un contexte riche et un format vague produit un meilleur résultat qu'un prompt avec un format hyper précis et un contexte pauvre.</p>
+
+    <p>Si tu dois choisir entre passer 1 minute de plus sur le contexte ou sur le format, choisis le contexte. Toujours.</p>
+  </div>
+
+  <h3 class="reading">Erreur 3 : utiliser PTCF pour des conversations exploratoires</h3>
+
+  <div class="container reading">
+    <p>PTCF est fait pour <strong>produire un livrable</strong>. Pour les conversations exploratoires (brainstorming en cours de réflexion, dialogue libre, recherche d'angles), il alourdit inutilement. Si tu es en mode « je pense à voix haute avec l'IA », laisse tomber le template.</p>
+
+    <p>Le test : si tu peux décrire à l'avance ce que tu veux comme livrable, utilise PTCF. Si tu cherches encore quoi vouloir, sois libre.</p>
+  </div>
+
+  <!-- ============== 7. INTÉGRATION ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 7 / 7</span>Comment en faire un <em>réflexe en 2 semaines</em>.</h2>
+
+  <div class="container reading">
+    <p>Connaître PTCF ne sert à rien si tu ne l'utilises pas. Voici la méthode d'intégration qui marche.</p>
+  </div>
+
+  <h3 class="reading">Semaine 1 : remplir le template explicitement</h3>
+
+  <div class="container reading">
+    <p>Pendant la première semaine, écris la structure complète à chaque prompt important : <em>« Tu es... Ta tâche : ... Contexte : ... Format : ... »</em>. Oui, c'est lourd. Oui, c'est lent. Mais c'est ce qui ancre le réflexe.</p>
+
+    <p>Pour les prompts triviaux (questions courtes, conversion rapide), tu peux laisser tomber le template. Sinon, force-toi.</p>
+  </div>
+
+  <h3 class="reading">Semaine 2 : intégrer la structure mentalement</h3>
+
+  <div class="container reading">
+    <p>À partir de la deuxième semaine, tu peux écrire en prose continue, sans labels explicites, mais en t'assurant mentalement que les 4 piliers sont présents. Par exemple : <em>« En tant que coach senior, j'aimerais que tu rédiges une feedback constructive pour un junior qui... [contexte]... La réponse doit faire 80 mots, ton encourageant mais clair... »</em>. Tu n'as plus écrit P/T/C/F en titres, mais tous les piliers y sont.</p>
+  </div>
+
+  <h3 class="reading">Au-delà : automatisme inconscient</h3>
+
+  <div class="container reading">
+    <p>Au bout d'un mois d'utilisation soutenue, le réflexe devient inconscient. Tu ne penses plus aux 4 piliers — tu les écris naturellement parce que ton cerveau a intégré la structure. C'est exactement comme apprendre à conduire : au début tu penses à chaque geste, après tu conduis sans y penser.</p>
+
+    <p>À ce stade, tu peux passer aux techniques avancées : few-shot, chain of thought, role-playing complexe, prompts itératifs. Sans la base PTCF, ces techniques ne marchent pas.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ce que tu vas voir dans le prochain article</div>
+    <p>Cet article a posé le template. Le suivant zoome sur le pilier le plus puissant : <strong>le contexte</strong>. La règle des 3 niveaux approfondie, les 4 catégories d'informations contextuelles utiles, le piège de la surcharge, et la checklist en 5 questions à se poser avant chaque prompt.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur le framework PTCF.</h3>
+    <ol class="recap-points">
+      <li>PTCF n'est pas une formule magique. C'est un guide pour ne pas oublier les fondamentaux quand tu es pressé.</li>
+      <li>Le template en 4 lignes : Tu es... Ta tâche : ... Contexte : ... Format : ... 2 minutes pour l'écrire, 10 minutes économisées en aller-retour.</li>
+      <li>Si tu dois choisir, mets toujours plus d'effort sur le contexte que sur le format. C'est 3 fois plus impactant.</li>
+      <li>Pour devenir un réflexe : 1 semaine à remplir explicitement, 1 semaine à intégrer mentalement, puis automatique.</li>
+      <li>Ne pas utiliser PTCF pour les conversations exploratoires. C'est un cadre pour produire, pas pour réfléchir à voix haute.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a href="#" class="next-link">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">Comment donner du contexte : la compétence n°1</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-2-bases-prompt.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Les bases du prompt · Niveau II</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

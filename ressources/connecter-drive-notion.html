@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connecter ton IA à Drive et Notion. – AutomationBoost</title>
+  <meta name="description" content="Passer du copier-coller à l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Connecter ton IA à Drive et Notion.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#eab308;">Automatiser & agents</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Connecter ton IA à Drive et Notion.</h1>
+    <p class="lede">Le passage du copier-coller à l'accès direct. Le serveur Notion MCP officiel lancé septembre 2025 (17 tools), Google Drive via Workspace MCP, OneDrive et Dropbox. Pourquoi c'est plus puissant qu'un Knowledge File — et les limites à connaître.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tes connaissances sont éparpillées : notes Notion, docs Google Drive, archives OneDrive. Et chaque fois que tu veux que ton IA travaille dessus, tu fais le même geste : copier, coller, attendre. Le connecteur change tout — ton IA accède directement, en temps réel, à ce que tu as déjà rangé.</p>
+
+    <p>La différence avec un fichier uploadé est structurelle : un fichier est figé au moment de l'envoi, alors qu'un connecteur lit la source en direct, à jour. Voici comment connecter Drive et Notion à ton IA.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Notion : le connecteur le <em>plus mature</em>.</h2>
+
+  <div class="container reading">
+    <p>Notion s'est positionné agressivement sur MCP en 2025-2026 et c'est aujourd'hui <strong>l'un des connecteurs les mieux conçus du marché grand public</strong>. Pas par hasard : Notion vit d'être <em>la base de connaissance</em> de millions d'équipes, et l'IA sans accès à cette base est paralysée. Notion l'a compris tôt.</p>
+
+    <p>Voici le tableau réaliste 2026 :</p>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name"><em>Notion MCP officiel hosted</em></div>
+    <div class="tool-text"><strong>La voie recommandée pour 99 % des cas.</strong> Endpoint <em>mcp.notion.com/mcp</em>, géré par Notion. Tu vas dans Claude/ChatGPT/Cursor, tu cliques connecter Notion, OAuth s'ouvre, tu accordes les permissions par page, c'est branché. <strong>Compte 3 minutes en tout.</strong><br><br>
+<strong>Caractéristiques 2026 :</strong> 17 tools optimisés pour agents IA, recherche sémantique (pas seulement full-text), réponses formatées en Markdown (densité tokens optimale, donc moins cher en usage), gestion permissions au niveau page (l'IA voit uniquement ce que tu lui donnes accès — différent du Notion API classique qui demande page-level connection manuel).<br><br>
+<strong>Pour les Enterprise :</strong> depuis Notion 3.2 (janvier 2026), audit logs des actions MCP, et contrôle admin sur quels AI tools peuvent se connecter au workspace. Si tu es admin Enterprise, c'est ici que tu approuves Claude, ChatGPT, Cursor, etc. avant que tes membres puissent les utiliser.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name"><em>Notion MCP open-source</em> (self-hosted)</div>
+    <div class="tool-text"><strong>Pour les cas avancés.</strong> Le repo <em>@notionhq/notion-mcp-server</em> sur npm/Docker, à installer dans ton claude_desktop_config.json. Plus de contrôle (read-only mode, filtrage par database, customisation des tools), mais demande Node.js et un peu de bricolage initial.<br><br>
+<strong>Cas typiques :</strong> tu veux exposer un sous-ensemble strict de ta base Notion à l'IA (par exemple uniquement la database <em>« Wiki public »</em>, pas le reste), tu veux tout self-héberger pour la conformité RGPD, tu veux étendre avec des tools métier custom.<br><br>
+<strong>Limite 2026 :</strong> moins de fonctionnalités optimisées agents que la version hosted (qui ajoute des tools <em>« privés »</em> non exposés via l'API REST publique). Pour la plupart, hosted est plus puissant. Self-hosted reste utile uniquement pour des contraintes spécifiques.</div>
+  </div>
+
+  <h3>Cas d'usage Notion qui valent le détour</h3>
+
+  <div class="container reading">
+    <p><strong>(1) Recherche dans ta seconde mémoire.</strong> <em>« Cherche dans ma base Notion ce que j'ai écrit sur le pricing de mon offre, et synthétise. »</em> Là où la recherche Notion native cherche par mots-clés, MCP fait de la recherche sémantique. Tu retrouves des notes même quand tu ne te souviens plus du vocabulaire exact que tu avais utilisé.</p>
+
+    <p><strong>(2) Génération de docs en cohérence avec ton existant.</strong> <em>« Crée une nouvelle page d'accueil client en t'inspirant du style et de la structure de mes pages existantes dans la database "Process". »</em> L'IA lit tes pages, comprend tes conventions, génère du contenu qui s'intègre — pas du contenu générique qui détonne.</p>
+
+    <p><strong>(3) Synthèse cross-pages.</strong> <em>« Lis mes 5 dernières meeting notes, identifie les décisions prises et les actions ouvertes, dépose-moi un récap dans la page "Suivi équipe". »</em> Un cas d'usage qui combine lecture + écriture en une commande. Sans MCP, tu fais 3 copier-coller minimum.</p>
+
+    <p><strong>(4) Mise à jour d'une database depuis tes conversations.</strong> <em>« J'ai eu un call avec [client X] aujourd'hui, on a parlé de [sujet]. Mets à jour son statut dans le CRM Notion à "Discussion en cours" et ajoute un suivi à 7 jours. »</em> L'IA fait l'update, tu valides.</p>
+
+    <p><strong>(5) Migration de contenu vers Notion.</strong> Tu as des notes éparses dans Apple Notes, Obsidian, Drive — l'IA peut lire ces sources et les structurer dans Notion en respectant tes templates de database. Cas d'usage majeur de la communauté Notion en 2026 (raison originelle pour laquelle Notion a poussé MCP — faciliter l'arrivée de nouveaux utilisateurs).</p>
+  </div>
+
+  <p class="pull-quote">Notion MCP fait la différence entre une IA qui réfléchit en isolation et une IA qui réfléchit avec ta seconde mémoire. Pour quiconque a déjà investi dans une base Notion sérieuse, c'est un multiplicateur immédiat.</p>
+
+  <!-- ============== 2. GOOGLE DRIVE ============== -->
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Google Drive et <em>l'écosystème Workspace</em>.</h2>
+
+  <div class="container reading">
+    <p>Google Drive est traité différemment de Notion. Pas un connecteur isolé, mais une <strong>brique de l'ensemble Workspace MCP</strong> qui inclut Drive, Docs, Sheets, Slides, Forms. Annoncé à Cloud Next '26 (50+ Google-managed MCP servers), livré progressivement en 2026.</p>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name"><em>Workspace MCP managé Google</em></div>
+    <div class="tool-text"><strong>L'option recommandée pour les utilisateurs Google Workspace.</strong> Endpoints managés par Google (similaires à Gmail MCP traité dans <a href="connecter-gmail-ia.html">article 2.2</a>), OAuth via Google Cloud Console, intégration aux contrôles IAM existants.<br><br>
+<strong>Capacités Drive :</strong> recherche dans tes fichiers, lecture de Docs/Sheets/Slides en format structuré (pas juste raw text), résumé de PDF stockés sur Drive, conversion entre formats. Pour les Sheets, l'IA peut lire les cell formulas et le contenu — utile pour des analyses.<br><br>
+<strong>Sécurité 2026 :</strong> Cloud IAM Deny policies pour contrôle d'accès granulaire, Cloud Audit Logs pour observabilité, Model Armor (intégration Google Cloud) pour défense contre <em>indirect prompt injection</em> et exfiltration de données. Si ton entreprise est en Workspace Enterprise, tu hérites de ces protections sans config.<br><br>
+<strong>Limite :</strong> moins flexible que les serveurs communautaires sur les opérations très spécifiques. Pour 95 % des usages courants, suffit largement.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name"><em>mcp-google-workspace</em> (communautaire, multi-comptes)</div>
+    <div class="tool-text"><strong>L'alternative pour multi-comptes.</strong> Serveur communautaire couvrant Gmail + Calendar + Drive + Docs + Sheets simultanément, multi-accounts natifs (perso + pro queryable en parallèle). Self-hosted via npm.<br><br>
+<strong>Cas idéal :</strong> tu jongles entre 2-3 comptes Google et tu veux que l'IA puisse les voir tous dans une seule conversation, sans devoir basculer manuellement. Le serveur géré Google ne propose pas (encore) cette fluidité multi-comptes.<br><br>
+<strong>Trade-off :</strong> pas de Cloud Audit Logs ni Model Armor — la sécurité repose sur tes propres disciplines. Pour usage perso ou petite équipe, OK. Pour Enterprise régulé, reste sur le managé.</div>
+  </div>
+
+  <h3>Cas d'usage Drive qui marchent</h3>
+
+  <div class="container reading">
+    <p><strong>(1) Recherche cross-fichiers.</strong> <em>« Retrouve sur mon Drive le contrat type qu'on utilisait pour les missions de conseil en 2024, et adapte-le pour [nouveau client]. »</em> L'IA fouille, identifie le bon fichier, le lit, et génère une version adaptée — sans que tu doives ouvrir ton Drive.</p>
+
+    <p><strong>(2) Analyse de données dans Sheets.</strong> <em>« Regarde ma feuille "Finances Q1 2026" sur Drive. Donne-moi les 3 catégories de dépenses qui ont le plus augmenté depuis Q4 2025. »</em> L'IA lit les données vives, fait l'analyse, te rend la synthèse.</p>
+
+    <p><strong>(3) Génération de docs depuis tes templates.</strong> <em>« Crée une nouvelle proposition commerciale en partant du template "Proposal v3" sur mon Drive. Personnalise pour [client] avec les infos de notre dernier échange mail. »</em> Lecture du template + contexte mail (cf <a href="connecter-gmail-ia.html">article 2.2</a>) + génération du nouveau doc dans Drive. Automatisation multi-MCP qui fait gagner 30 min.</p>
+
+    <p><strong>(4) Synthèse de gros documents.</strong> Tu as un PDF de 50 pages sur Drive. <em>« Résume-le-moi en 1 page, avec les chiffres clés en bullet points. »</em> Avantage clé : l'IA lit le doc en place, pas besoin de l'uploader (gain de temps, et le doc reste avec ses permissions Drive intactes).</p>
+  </div>
+
+  <!-- ============== 3. ONEDRIVE / DROPBOX ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>OneDrive et Dropbox : <em>la réalité 2026</em>.</h2>
+
+  <div class="container reading">
+    <p>Si tu vis dans l'écosystème Microsoft ou Dropbox, voici l'état honnête en 2026. Pas de gloss commercial : le support MCP n'est pas le même partout.</p>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name"><em>OneDrive</em> · approche Microsoft différente</div>
+    <div class="tool-text"><strong>Pas de serveur MCP officiel grand public en 2026.</strong> Microsoft a misé sur Copilot (intégré dans Word, Excel, OneDrive, etc.) plutôt que d'exposer OneDrive via MCP comme l'a fait Google. C'est une décision stratégique cohérente : Microsoft veut que tu utilises Copilot, pas Claude ou ChatGPT, sur tes données Microsoft 365.<br><br>
+<strong>Conséquence pratique :</strong> si tu veux que <em>Claude</em> accède à tes fichiers OneDrive, tu as 3 options : <em>(1)</em> Copilot Studio avec des MCP tools custom (demande config Enterprise, pas grand public), <em>(2)</em> serveurs communautaires non-officiels (qualité variable), <em>(3)</em> télécharger localement et utiliser Claude Desktop avec le filesystem MCP officiel.<br><br>
+<strong>L'alternative simple :</strong> si tu vis dans M365, utilise Copilot pour OneDrive (couvert dans <a href="copilot-workspace-ai.html">article 2.5</a>). Pour Claude/ChatGPT, fais transiter les fichiers manuellement par le filesystem local. Réaliste 2026, pas idéal.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name"><em>Dropbox</em> · marginal en 2026</div>
+    <div class="tool-text"><strong>Support MCP très limité.</strong> Pas de serveur officiel Dropbox MCP en 2026. Quelques projets communautaires existent (qualité hétérogène, maintenance variable), mais Dropbox n'a pas annoncé d'investissement majeur dans MCP comparable à Notion ou Google.<br><br>
+<strong>Workaround :</strong> Dropbox supporte ChatGPT deep research (depuis 2025) — l'IA peut lire tes fichiers Dropbox dans ce contexte spécifique. Pour usage MCP général avec Claude ou autres clients, c'est plus compliqué.<br><br>
+<strong>Si Dropbox est ta base de connaissance principale :</strong> envisage la stratégie hybride. Garde Dropbox pour le stockage, mais référence et lis tes documents importants dans Notion ou Drive (qui sont MCP-natifs en 2026). Ou utilise Zapier/Make pour synchroniser un sous-ensemble vers un service connecté.</div>
+  </div>
+
+  <p class="pull-quote">L'écart de maturité MCP entre les services de stockage cloud est réel en 2026. Notion en tête, Google Drive en force, OneDrive misé sur Copilot, Dropbox en retrait. Choisir un connecteur, c'est aussi choisir un fournisseur.</p>
+
+  <!-- ============== 4. CONNECTEUR vs KNOWLEDGE FILE ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Connecteur <em>vs Knowledge File</em>.</h2>
+
+  <div class="container reading">
+    <p>Question récurrente quand tu maîtrises les deux : pour un cas d'usage donné, faut-il <strong>uploader le doc en Knowledge File</strong> (cf <a href="knowledge-files-assistant.html">article 1.4</a>) ou <strong>passer par un connecteur</strong> ? La réponse n'est pas universelle. Voici les critères qui tranchent.</p>
+  </div>
+
+  <h3>Préférer le Knowledge File quand…</h3>
+
+  <div class="container reading">
+    <p><strong>(1) Le contenu est figé et ne change pas.</strong> Manuel produit, charte graphique, liste de FAQ stable. Le snapshot Knowledge File est largement suffisant et plus rapide à interroger (chargement direct dans le contexte de l'assistant, pas de round-trip MCP).</p>
+
+    <p><strong>(2) Tu construis un assistant partagé.</strong> Tu veux que tes 10 collègues utilisent le même assistant avec la même base. Le Knowledge File est embarqué dans le Custom GPT — pas de gestion de permissions individuelles. Avec un connecteur, chaque utilisateur doit faire son propre OAuth — friction de déploiement plus élevée.</p>
+
+    <p><strong>(3) Le doc est sensible et tu veux contrôle absolu.</strong> Avec Knowledge File, le contenu est dans la sphère de l'assistant — pas d'accès au-delà. Avec connecteur, l'IA accède à <em>toute</em> ta source (Notion entier, Drive entier) avec les permissions OAuth — surface plus large.</p>
+  </div>
+
+  <h3>Préférer le connecteur quand…</h3>
+
+  <div class="container reading">
+    <p><strong>(1) Le contenu évolue régulièrement.</strong> Notes de réunion, CRM, base produit. Avec Knowledge File, tu devrais réuploader chaque semaine — ingérable. Le connecteur lit toujours la version actuelle.</p>
+
+    <p><strong>(2) Le volume est trop important.</strong> Knowledge Files plafonnent à des limites par plateforme (10-20 fichiers, taille max). Si ta base fait 5 000 pages Notion, oublie l'upload. Le connecteur cherche dans tes 5 000 pages et ramène les 5 plus pertinentes — recherche dynamique.</p>
+
+    <p><strong>(3) Tu as besoin d'écrire, pas seulement lire.</strong> Knowledge File est en lecture seule. Si l'usage demande à l'IA de <em>créer/mettre à jour</em> des pages dans ta base, c'est forcément un connecteur.</p>
+
+    <p><strong>(4) Tu utilises plusieurs assistants.</strong> Knowledge File est embarqué dans <em>un</em> assistant spécifique. Connecteur fonctionne avec tous les hosts MCP — Claude Desktop, ChatGPT, Cursor en parallèle, sur la même base.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">L'approche pragmatique</div>
+    <p>En pratique 2026, les utilisateurs avancés <strong>combinent les deux</strong>. Knowledge Files pour le savoir <em>structuré et stable</em> (méthodologie, frameworks, références produit). Connecteurs pour le savoir <em>vivant et croissant</em> (notes en cours, CRM, projets actifs). C'est l'équivalent de la distinction entre <em>livres</em> et <em>journal de bord</em> dans une bibliothèque physique. Les deux ont leur place.</p>
+  </div>
+
+  <!-- ============== PIÈGES ============== -->
+  <h2 class="reading"><span class="h2-num">— Bonus</span>5 <em>pièges</em> classiques.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>donner trop de permissions Notion d'emblée</em></div>
+    <div class="pitfall-text">Tu connectes Notion via OAuth, tu accordes l'accès à <em>tout le workspace</em> par confort. L'IA peut lire (et potentiellement modifier) tes pages RH, juridiques, de stratégie. Risque réel d'<a href="connecter-gmail-ia.html">indirect prompt injection</a> via une page malveillante imported. <strong>Correction :</strong> commence en accordant accès à 3-5 pages/databases spécifiques (les pages où tu travailles activement avec l'IA). Étends si nécessaire. La discipline page-level que Notion impose par défaut sur l'API classique est intelligente — utilise-la.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : <em>croire que MCP rend les Knowledge Files inutiles</em></div>
+    <div class="pitfall-text">Tu découvres MCP, tu décides que tous les Knowledge Files de tes assistants existants doivent passer en connecteur. Erreur. Pour des contenus stables et partagés en équipe, le Knowledge File reste plus simple, plus rapide à interroger, et meilleur pour la sécurité (pas d'OAuth par utilisateur). <strong>Correction :</strong> applique les critères de la Phase 4. Knowledge File pour le savoir figé et partagé. Connecteur pour le savoir vivant et personnel.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>ne pas mettre à jour les approbations Enterprise</em></div>
+    <div class="pitfall-text">Tu es admin Notion Enterprise. Tu approuves Claude en mars, ChatGPT en avril. En octobre, ton équipe te demande Cursor — tu oublies de l'approuver, l'équipe pense que MCP est cassé. <strong>Correction :</strong> dans Notion (Settings → Connections), tu vois la liste des AI tools approuvés. Routine trimestrielle pour réviser : retirer ce qui n'est plus utilisé, ajouter ce qui est demandé. Audit logs MCP (depuis Notion 3.2 janvier 2026) te disent quels outils sont activement utilisés — base ta décision sur ces données.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>mélanger Drive perso et Drive pro</em></div>
+    <div class="pitfall-text">Tu connectes ton Drive perso ET ton Drive pro sur le même Claude Desktop pour <em>« tout avoir »</em>. Au mois 3, tu demandes <em>« crée une note de frais »</em> — l'IA crée le doc sur ton Drive perso au lieu du pro. Confusion, embarras quand tu partages ensuite par lien. <strong>Correction :</strong> stratégie identique à <a href="connecter-gmail-ia.html">l'article 2.2 sur Gmail</a>. Soit un seul Drive connecté (pro recommandé), soit utilise un serveur multi-comptes (mcp-google-workspace) qui force la précision dans tes prompts. Discipline : toujours préciser le compte dans les writes (<em>« crée le doc sur mon Drive pro »</em>).</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : <em>installer des serveurs Notion communautaires non audités</em></div>
+    <div class="pitfall-text">Tu vois un repo GitHub <em>« Notion MCP avec 30 tools avancés »</em>, tu l'installes pour tester. Le mainteneur n'est pas connu, le code n'est pas audité. La disclosure Ox Security d'avril 2026 a documenté des design flaws dans ~200 000 MCP servers tiers. Le risque est concret. <strong>Correction :</strong> en 2026, le serveur Notion MCP officiel hosted suffit pour 99 % des usages — il a moins de surface d'attaque qu'un self-hosted custom et évolue automatiquement avec les améliorations Notion. Privilégie l'officiel. Pour les serveurs communautaires (quels qu'ils soient), audit avant install : popularité GitHub, mainteneur identifié, dernière update récente.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>Drive et Notion sont la <strong>couche documentaire</strong> qui complète mail+agenda+communications (cf <a href="connecter-gmail-ia.html">article 2.2</a> et <a href="connecter-calendar-ia.html">2.3</a>). Avec ces 4 connecteurs activés, tu couvres 80 % des données pros sur lesquelles ton IA peut travailler — c'est la stack productivité 2026. Mon conseil pratique : commence par Notion MCP officiel hosted (le plus mature, le plus simple), ajoute Drive si tu vis dans Workspace, ignore OneDrive et Dropbox sauf besoin spécifique. Et garde les Knowledge Files pour ce qui doit rester figé et partagé. La suite logique de ce parcours : <a href="copilot-workspace-ai.html">article 2.5 sur Copilot et Workspace AI</a> — qui couvre les solutions natives intégrées dans tes apps Microsoft/Google et te dit quand elles suffisent au lieu de chercher des connecteurs externes.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Tu maîtrises maintenant la couche documentaire. Pour aller plus loin : <a href="copilot-workspace-ai.html">article 2.5 sur Copilot et Workspace AI natifs</a> (avant de chercher des connecteurs externes, l'IA est souvent déjà dans tes apps). <a href="knowledge-files-assistant.html">Article 1.4 sur les Knowledge Files</a> pour la comparaison approfondie. <a href="comprendre-mcp.html">Fondation MCP article 2.1</a>. <a href="connecter-gmail-ia.html">Gmail 2.2</a> et <a href="connecter-calendar-ia.html">Calendar 2.3</a> qui complètent ce tryptique. Pour les automatisations <em>cross-services</em> (synchroniser Dropbox → Notion par exemple) : <a href="niveau-4-batir-automatisations.html">la rubrique R4 sur les automatisations durables</a> traitera Zapier/Make/n8n. Pour les agents qui travaillent en autonomie sur ta base Notion : <a href="niveau-4-deleguer-agents.html">la rubrique R3 sur les agents IA</a>.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur Drive et Notion en 2026.</h3>
+    <ol class="recap-points">
+      <li>Le connecteur change la nature de la relation à ta base de connaissance : passage du <em>snapshot</em> figé (Knowledge File) au <em>flux temps réel</em>. Modification dans Notion à 14h, prompt à 14h05, ton IA voit la version à jour. Différence structurelle qui change qualitativement les automatisations possibles.</li>
+      <li>Notion est le connecteur le plus mature en 2026. Serveur MCP officiel hosted lancé septembre 2025 (mcp.notion.com/mcp), 17 tools optimisés agents, recherche sémantique cross-workspace, OAuth en un clic, audit logs depuis Notion 3.2. Self-hosted disponible pour cas avancés. La voie hosted couvre 99 % des usages.</li>
+      <li>Google Drive via Workspace MCP managé (annoncé Cloud Next '26, livré 2026) : Drive + Docs + Sheets + Slides + Forms inclus, sécurisé via Cloud IAM + Audit Logs + Model Armor. Alternative communautaire mcp-google-workspace pour multi-comptes natifs. OneDrive : pas de MCP officiel (Microsoft mise sur Copilot). Dropbox : marginal en 2026.</li>
+      <li>Connecteur vs Knowledge File — quand utiliser quoi : Knowledge File pour contenu figé / partagé / sensible. Connecteur pour contenu vivant / volumineux / écriture nécessaire / multi-assistants. Approche pragmatique 2026 : combiner les deux selon la nature du savoir (figé vs vivant). C'est l'équivalent <em>livres</em> vs <em>journal de bord</em>.</li>
+      <li>5 pièges à éviter : permissions Notion trop larges (commencer par 3-5 pages spécifiques), croire que MCP rend Knowledge Files inutiles (ils gardent leur place), oublier de mettre à jour les approbations Enterprise (routine trimestrielle), mélanger Drive perso/pro (un seul ou multi-comptes explicite), serveurs communautaires non audités (privilégier l'officiel hosted, vu disclosure Ox Security avril 2026 sur 200 000 serveurs).</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="copilot-workspace-ai.html">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">2.5 · Copilot et Workspace AI</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-4-connecter-outils.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Connecter tes outils · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

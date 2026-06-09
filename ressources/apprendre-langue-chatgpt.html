@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apprendre une langue avec ChatGPT. – AutomationBoost</title>
+  <meta name="description" content="Transformer une IA en partenaire linguistique : conversations au bon niveau, corrections en temps réel et entraînement régulier pour progresser vite." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Apprendre une langue avec ChatGPT.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#22d3ee;">Au quotidien</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">ChatGPT</span>
+    </div>
+    <h1 class="page-title">Apprendre une langue avec ChatGPT.</h1>
+    <p class="lede">La méthode complète pour transformer une IA en partenaire linguistique : conversations niveau adapté, correction en temps réel, drills personnalisés. Plus efficace qu'une appli payante, gratuit.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Le seul vrai moyen d'apprendre une langue, c'est de parler avec quelqu'un qui la maîtrise et qui te corrige. Pendant 30 ans, ce quelqu'un coûtait 30 € de l'heure. Depuis 2024, il est gratuit, disponible en permanence, et infiniment patient.</p>
+
+    <p>On sait depuis longtemps ce qui marche pour apprendre une langue : parler beaucoup, être corrigé, pratiquer régulièrement. Voici comment transformer une IA en partenaire de conversation qui applique exactement ces principes.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi l'IA <em>bat les applis</em>.</h2>
+
+  <div class="container reading">
+    <p>Les applis type Duolingo ont un défaut structurel : elles ne te font pas vraiment <em>parler</em>. Tu cliques sur des cartes et tu glisses des mots dans des phrases toutes faites, en accumulant des « streaks » qui donnent l'illusion de progresser. L'IA, elle, te fait produire de la langue librement et te corrige en contexte.</p>
+
+    <p>C'est ce qui change tout. Voici comment t'en servir, niveau par niveau.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Le <em>setup</em> de ton tuteur linguistique.</h2>
+
+  <div class="container reading">
+    <p>Voici le prompt fondateur à utiliser pour démarrer une session efficace. Il transforme l'IA générique en tuteur linguistique calibré à ton niveau et à tes objectifs. À copier-coller en début de session — ou à mettre dans <a href="custom-instructions.html">tes Custom Instructions</a> permanentes si tu pratiques quotidiennement.</p>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PROMPT FONDATEUR · TUTEUR LINGUISTIQUE</div>
+    <div class="phase-name">Le <em>cadre</em> à instaurer</div>
+    <div class="phase-purpose">Ce prompt définit la langue cible, ton niveau actuel, ton objectif, et la méthode pédagogique à appliquer. Une seule fois en début de session.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à copier</span>Tu es mon partenaire d'apprentissage de <span class="placeholder">[langue cible]</span>.
+
+<strong>Mon niveau actuel :</strong> <span class="placeholder">[A1 débutant / A2 élémentaire / B1 intermédiaire / B2 avancé / C1 maîtrise]</span> — décris ce que tu sais faire.
+
+<strong>Ma langue maternelle :</strong> français.
+
+<strong>Mon objectif :</strong> <span class="placeholder">[conversation pour voyage / contexte professionnel / examen X / lecture / aisance générale]</span>.
+
+<strong>Méthode pédagogique à appliquer :</strong>
+
+1. Toutes nos conversations se passent en <span class="placeholder">[langue cible]</span>, avec des explications en français uniquement quand je bloque ou demande explicitement.
+
+2. Adapte ton niveau de complexité à mon niveau réel. Si tu utilises un mot que je ne devrais pas connaître à mon niveau, donne sa traduction entre parenthèses.
+
+3. À chaque message que j'envoie, repère mes erreurs et corrige-les en 2 parties : (a) la version corrigée de ma phrase, (b) une explication brève de la règle ou de l'erreur.
+
+4. Tu me poses régulièrement des questions ouvertes pour me faire produire du langage actif.
+
+5. Tu signales si je fais une erreur récurrente sur 3 messages, pour que je sache où concentrer mon attention.
+
+6. Une fois sur 3 messages environ, propose-moi un mini-exercice contextuel (reformulation, traduction inversée, vocabulaire spécifique).
+
+Tu peux commencer par me poser une question ouverte sur un sujet quotidien adapté à mon niveau, et on enchaîne.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Le test du niveau réel</div>
+    <p>Si tu n'es pas sûr de ton niveau CECR (A1 à C2), demande à l'IA de te faire passer un mini-test en début de session : <em>« avant de commencer, fais-moi passer un test rapide pour évaluer mon niveau réel : 5 questions de difficulté progressive, dont 2 où tu me demandes de raconter quelque chose. À la fin, situe-moi sur l'échelle CECR et identifie mes points faibles. »</em>. 5 minutes pour calibrer correctement le reste des sessions.</p>
+  </div>
+
+  <!-- ============== 3. LES 4 PHASES ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Les <em>4 phases</em> d'une session efficace.</h2>
+
+  <div class="container reading">
+    <p>Une session de 25-30 minutes bien structurée vaut mieux que 2 heures dispersées. Voici les 4 phases à enchaîner, avec leur prompt spécifique. Cette structure suit la méthode-mère du <a href="tuteur-personnel-ia.html">tuteur IA personnel</a> appliquée à l'apprentissage des langues.</p>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 1 / 4 · ÉCHAUFFEMENT<span style="display: inline-block; padding: 2px 8px; background: var(--accent); color: var(--cream); font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; border-radius: 2px; margin-left: 8px; font-weight: 700;">5 MIN</span></div>
+    <div class="phase-name">La <em>conversation libre</em> de démarrage</div>
+    <div class="phase-purpose">Réactiver tes acquis avant d'apprendre du nouveau. Comme un échauffement sportif. 5 minutes de dialogue libre, pas d'exercice formel.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt</span>Pose-moi 3 questions ouvertes en <span class="placeholder">[langue cible]</span> sur ma journée ou un sujet quotidien. Adapte ton niveau au mien. Réponds à mes messages, corrige mes erreurs au passage avec une brève explication, et continue le dialogue. Pas d'exercice formel, on est en mode conversation.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 2 / 4 · APPRENTISSAGE NOUVEAU<span style="display: inline-block; padding: 2px 8px; background: var(--accent); color: var(--cream); font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; border-radius: 2px; margin-left: 8px; font-weight: 700;">10 MIN</span></div>
+    <div class="phase-name">Le <em>focus</em> sur un point précis</div>
+    <div class="phase-purpose">Une session = un point de focus. Une règle de grammaire, un champ lexical, un type de structure. Mieux vaut un point bien intégré que cinq points effleurés.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt</span>Aujourd'hui je veux travailler sur <span class="placeholder">[point précis : ex. le subjonctif espagnol, vocabulaire de la cuisine en italien, prépositions allemandes]</span>.
+
+Procédure :
+1. Explique-moi le point en français en 5 phrases max, avec 3 exemples en <span class="placeholder">[langue cible]</span>.
+2. Propose-moi 5 mini-exercices de difficulté progressive pour appliquer.
+3. Pour chaque exercice, attends ma réponse, corrige avec explication, ne passe à la suivante qu'après ma réponse.
+4. À la fin, pose-moi 3 questions ouvertes en <span class="placeholder">[langue cible]</span> qui me forcent à utiliser ce point dans une vraie production.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 3 / 4 · MISE EN SITUATION<span style="display: inline-block; padding: 2px 8px; background: var(--accent); color: var(--cream); font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; border-radius: 2px; margin-left: 8px; font-weight: 700;">10 MIN</span></div>
+    <div class="phase-name">Le <em>jeu de rôle</em> contextualisé</div>
+    <div class="phase-purpose">Le moment où tu manipules vraiment la langue dans un contexte qui ressemble à la vraie vie. C'est cette phase qui te fait progresser le plus, et c'est aussi celle que les applis ne savent pas faire.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt</span>On va faire un jeu de rôle. Tu joues <span class="placeholder">[le commerçant / le serveur / le recruteur / le voisin / le client / le médecin / etc.]</span>, je joue moi-même. Le contexte : <span class="placeholder">[décris la situation : je viens d'arriver dans le pays X, je dois acheter Y / je passe un entretien pour un poste Z / etc.]</span>.
+
+Reste dans le rôle pendant tout l'échange. Conduis le dialogue de manière naturelle. Si je fais une erreur grammaticale, intègre une légère correction implicite (en utilisant la bonne forme dans ta réponse) plutôt que de casser le rôle. À la fin du dialogue, sors du rôle et donne-moi un debrief : 3 erreurs à retenir, 3 expressions utiles que j'aurais pu utiliser.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 4 / 4 · CONSOLIDATION<span style="display: inline-block; padding: 2px 8px; background: var(--accent); color: var(--cream); font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; border-radius: 2px; margin-left: 8px; font-weight: 700;">5 MIN</span></div>
+    <div class="phase-name">L'<em>ancrage</em> dans la mémoire long terme</div>
+    <div class="phase-purpose">Sans cette phase, 80 % de la session s'évapore en 24h. Elle utilise les techniques de répétition espacée validées par les sciences cognitives.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt</span>Pour terminer la session :
+
+1. Liste-moi les 5 mots ou expressions les plus importants qu'on a vus aujourd'hui, avec traduction.
+2. Donne-moi 5 phrases de drill à traduire, qui utilisent ces mots et le point de grammaire qu'on a vu en phase 2.
+3. Génère-moi 3 questions à me reposer dans 24h, 3 jours et 7 jours pour ancrer la mémorisation.
+4. En 3 phrases : résume ce que j'ai progressé aujourd'hui et identifie le point sur lequel je dois encore travailler.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Pourquoi 30 minutes par jour vaut mieux que 3 heures par week-end</div>
+    <p>Les sciences cognitives sont sans appel sur ce point : <strong>la régularité quotidienne bat l'intensité ponctuelle</strong> pour l'apprentissage des langues. 25-30 minutes par jour, 5-6 jours par semaine, t'amèneront beaucoup plus loin en 3 mois que 3 heures intenses chaque dimanche. La raison est physiologique — l'ancrage neuronal demande plusieurs cycles de sommeil entre les sessions pour se consolider. Adapte la longueur, garde la régularité.</p>
+  </div>
+
+  <!-- ============== 4. AVANCÉ + LIMITES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Les <em>techniques avancées</em> et les vraies limites.</h2>
+
+  <h3 class="reading">Techniques pour les niveaux intermédiaires et avancés</h3>
+
+  <div class="tip-card">
+    <div class="tip-name">L'<em>immersion contextuelle</em> par contenu</div>
+    <div class="tip-text">Prends un article ou un texte court dans la langue cible (presse, blog, livre). Colle-le à l'IA et demande : <em>« explique-moi ce texte en restant en [langue cible], pose-moi 5 questions de compréhension dessus, puis demande-moi de le résumer dans mes mots »</em>. <strong>Tu travailles sur du vrai contenu adulte au lieu de phrases simplifiées</strong> — accélération massive du vocabulaire spécifique à tes centres d'intérêt.</div>
+  </div>
+
+  <div class="tip-card">
+    <div class="tip-name">Le <em>shadowing</em> avec mode vocal</div>
+    <div class="tip-text">En 2026, ChatGPT Voice, Gemini Live et Claude Voice permettent une vraie conversation orale fluide. Active le mode vocal et demande à l'IA de te <strong>parler à vitesse réelle</strong> sans simplifier. Ton boulot : suivre, comprendre, et répondre. Pour t'entraîner à la prononciation, demande : <em>« lis-moi cette phrase, puis je te répète et tu me corriges la prononciation des mots où je traîne »</em>. Limite : la détection précise des erreurs de prononciation reste imparfaite — pour ça, un humain natif fait mieux.</div>
+  </div>
+
+  <div class="tip-card">
+    <div class="tip-name">Le <em>vocabulaire ciblé</em> à ton métier</div>
+    <div class="tip-text">Aucune appli grand public ne te donnera le vocabulaire technique exact de ton métier. L'IA, oui. Demande : <em>« je suis [métier] et je vais devoir interagir avec des [clients/collègues] en [langue cible]. Apprends-moi les 30 expressions techniques que je dois absolument maîtriser, classées par fréquence d'usage »</em>. <strong>C'est l'avantage le plus différenciant de l'IA</strong> — la personnalisation totale au contexte d'usage réel.</div>
+  </div>
+
+  <div class="tip-card">
+    <div class="tip-name">Le <em>débat structuré</em></div>
+    <div class="tip-text">Pour les niveaux B2+, demande à l'IA de tenir un débat avec toi sur un sujet d'actualité. <em>« On débat sur [sujet]. Tu défends la position [X], moi je défends [Y]. Réponds-moi avec des arguments solides, force-moi à argumenter à mon tour, et corrige mes erreurs de langue à la fin de l'échange. »</em>. <strong>Tu travailles ton expression argumentée</strong>, le vocabulaire abstrait, et les structures complexes — exactement ce qui fait monter en niveau et que les manuels classiques ne savent pas faire.</div>
+  </div>
+
+  <h3 class="reading">Les vraies limites de la méthode</h3>
+
+  <div class="container reading">
+    <p>Pour boucler honnêtement, voici ce que l'IA ne peut pas faire — et où un humain natif reste utile.</p>
+
+    <p><strong>La prononciation parfaite</strong>. Le mode vocal de ChatGPT/Gemini parle bien, mais ne détecte pas finement tes propres erreurs de prononciation. Un humain natif corrige à l'oreille des nuances que l'IA rate. Pour aller chercher l'accent quasi-natif, des séances avec un tuteur humain restent supérieures.</p>
+
+    <p><strong>Le contexte culturel non explicite</strong>. L'IA connaît les règles, les expressions idiomatiques, les niveaux de langue. Elle est moins fiable sur les codes sociaux subtils — quand on tutoie un Italien, comment on s'excuse en japonais, ce qui est offensant en arabe. Sur ces points, un échange avec un natif vaut mille manuels et mille IA.</p>
+
+    <p><strong>La régularité de pratique réelle avec d'autres humains</strong>. À terme, parler une langue, c'est parler avec des humains. L'IA est un excellent <em>échauffement</em> et un excellent <em>complément</em>, pas un remplacement total. <strong>L'idéal en 2026 : 80 % d'IA pour la pratique quotidienne, 20 % d'humains natifs</strong> (séances payantes, échange linguistique sur Tandem ou HelloTalk, immersion réelle quand c'est possible). Le ratio inverse n'est plus rentable.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>L'IA va t'amener à un niveau B2 confortable sans aucune intervention humaine. C'est plus de 90 % de ce dont la majorité des gens ont besoin pour voyager, travailler à l'international, lire la presse étrangère. Pour aller au-delà — atteindre la fluidité totale, l'aisance dans le second degré, l'accent quasi-natif — il te faudra l'IA <strong>plus</strong> de la pratique humaine. Mais le seuil de 90 % de l'utilité, l'IA seule te le fait franchir. Et ça, c'était impossible il y a 5 ans, à n'importe quel prix.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes dans cette rubrique</div>
+    <p>Si cette méthode résonne, tu vas trouver utiles : <a href="tuteur-personnel-ia.html">la méthode-mère du tuteur IA personnel</a> (article fondateur de la rubrique), et les autres applications spécifiques à venir — <strong>lire un livre dense et le mémoriser</strong>, <strong>maîtriser un nouveau domaine en 30 jours</strong>, <strong>réviser un examen efficacement</strong>, <strong>apprendre à coder de zéro</strong>. Toutes appliquent le même cadre socratique à des contextes d'apprentissage différents.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur l'apprentissage de langue avec l'IA.</h3>
+    <ol class="recap-points">
+      <li>L'IA bat les applis grand public sur tous les critères qui comptent vraiment : production active de langue, adaptation au niveau réel, correction explicative, vocabulaire personnalisé, mode vocal avancé. Seul avantage des applis : la gamification motivationnelle.</li>
+      <li>Setup en début de session : prompt fondateur qui définit langue cible, niveau réel, objectif, et impose 6 règles pédagogiques (conversation dans la langue cible, correction systématique, exercices contextuels, signalement des erreurs récurrentes).</li>
+      <li>Session-type 25-30 minutes en 4 phases : échauffement (conversation libre 5 min), apprentissage focus (un seul point précis 10 min), mise en situation (jeu de rôle contextualisé 10 min), consolidation (drills + plan de révision espacée 5 min).</li>
+      <li>Régularité quotidienne >> intensité ponctuelle. 30 min/jour 5x par semaine = progression nette en 3 mois. 3h le dimanche = stagnation. Loi physiologique de consolidation par cycles de sommeil.</li>
+      <li>Limites réelles : prononciation fine (humain natif fait mieux), codes culturels subtils, ancrage par pratique humaine. Ratio idéal : 80 % IA + 20 % humains natifs au-delà du B2. L'IA seule t'amène à 90 % de l'utilité — c'était impossible avant.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="tuteur-personnel-ia.html">
+        <div class="next-link-label">— Méthode-mère</div>
+        <div class="next-link-title">Transformer ton IA en tuteur personnel</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-3-apprendre-plus-vite.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Apprendre plus vite avec l'IA · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

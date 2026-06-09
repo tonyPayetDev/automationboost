@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Faire écrire l'IA comme un humain. – AutomationBoost</title>
+  <meta name="description" content="Pourquoi les textes IA sonnent faux : les 7 marqueurs qu" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Faire écrire l'IA comme un humain.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#e879f9;">Créer du contenu</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Faire écrire l'IA comme un humain.</h1>
+    <p class="lede">Pourquoi les textes IA sonnent faux. Les 7 marqueurs qu'un lecteur humain repère en 5 secondes. La méthode pour transformer des productions IA fades en textes que personne ne soupçonnera.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Un lecteur attentif détecte un texte IA en 5 secondes — à l'oreille, sans outil. Le problème n'est pas que l'IA écrit mal : c'est qu'elle écrit toujours pareil.</p>
+
+    <p>Si on t'a déjà dit « on dirait du ChatGPT », tu sais à quel point c'est immédiat. Voici les marqueurs qui trahissent l'IA, et comment les éliminer pour produire un texte qui sonne humain.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi on détecte <em>les textes IA</em>.</h2>
+
+  <div class="container reading">
+    <p>L'IA produit du texte en optimisant le mot le plus probable. Conséquence directe : elle génère le texte le plus <em>moyen</em> — rythme régulier, phrases de longueur égale, transitions attendues, vocabulaire lisse. C'est cette uniformité que ton oreille repère, pas une faute.</p>
+
+    <p>Une fois le mécanisme compris, les marqueurs deviennent évidents. Les voici, avec la parade pour chacun.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Les <em>7 marqueurs</em> de l'écriture IA.</h2>
+
+  <div class="container reading">
+    <p>Voici les sept patterns les plus reconnaissables dans les productions IA en 2026, identifiés à la fois par les chercheurs (UMass, étude WriteHuman sur 80 000 humanisations) et par les retours empiriques des éditeurs et créateurs. Pour chacun : le symptôme, un exemple concret, et le correctif à appliquer.</p>
+  </div>
+
+  <div class="marker-card">
+    <div class="marker-num">— MARQUEUR 1 / 7</div>
+    <div class="marker-name">Le <em>hedging</em> systématique</div>
+    <div class="marker-symptom">Les modèles atténuent toutes leurs affirmations avec des modulateurs : <em>« il est important de noter »</em>, <em>« il convient de souligner »</em>, <em>« on peut considérer »</em>, <em>« d'une certaine manière »</em>, <em>« souvent »</em>, <em>« généralement »</em>. C'est <strong>le marqueur n°1 selon l'étude WriteHuman 2026</strong> sur 80 141 humanisations. Les humains qui écrivent bien tranchent. Les IA atténuent par défaut.</div>
+    <div class="marker-example"><strong>Exemple IA typique :</strong> « Il est important de noter que la productivité au travail peut être considérablement améliorée par certaines méthodes qui sont généralement reconnues comme efficaces. »</div>
+    <div class="marker-fix">
+      <span class="label">— Correctif</span>
+      Élimine 80 % des hedges. Remplace par des phrases tranchées : <em>« Trois méthodes augmentent la productivité au travail. Voici lesquelles. »</em>. Mets une vraie affirmation, prends ton risque.
+    </div>
+  </div>
+
+  <div class="marker-card">
+    <div class="marker-num">— MARQUEUR 2 / 7</div>
+    <div class="marker-name">L'<em>uniformité</em> des phrases</div>
+    <div class="marker-symptom">Les phrases IA ont tendance à toutes faire à peu près la même longueur (15-25 mots), à toutes se construire de la même manière (sujet + verbe + complément + complément), et à toutes utiliser à peu près la même structure rythmique. Un humain qui écrit bien <strong>alterne brutalement</strong>. Phrase de 4 mots. Puis paragraphe entier de 40 mots qui développe en une seule respiration. Cette variation crée le rythme — et l'absence de variation est l'un des signaux les plus immédiatement perceptibles à l'oreille du lecteur, même non spécialiste.</div>
+    <div class="marker-example"><strong>Exemple IA typique :</strong> « La méthode est efficace pour les débutants. Elle permet de gagner du temps sur les tâches répétitives. Elle s'applique également aux utilisateurs avancés. Elle nécessite une courte phase d'apprentissage. »</div>
+    <div class="marker-fix">
+      <span class="label">— Correctif</span>
+      Casse le rythme volontairement. Une phrase courte. Puis une longue qui déploie une idée plus complexe avec plusieurs propositions subordonnées et qui prend son temps. Puis encore une courte. C'est ça. Tu vois la différence à la lecture.
+    </div>
+  </div>
+
+  <div class="marker-card">
+    <div class="marker-num">— MARQUEUR 3 / 7</div>
+    <div class="marker-name">Les <em>transitions chevillées</em></div>
+    <div class="marker-symptom">Connecteurs logiques omniprésents et un peu trop scolaires. <em>« En outre »</em>, <em>« par ailleurs »</em>, <em>« de plus »</em>, <em>« d'autre part »</em>, <em>« toutefois »</em>, <em>« néanmoins »</em>, <em>« cependant »</em>. Les humains compétents les utilisent — mais avec parcimonie, et souvent en les remplaçant par des transitions implicites ou des ruptures franches. L'IA met des transitions partout parce que c'est le pattern le plus probable d'un texte structuré.</div>
+    <div class="marker-example"><strong>Exemple IA typique :</strong> « De plus, cette approche présente plusieurs avantages. Par ailleurs, elle est facile à mettre en œuvre. Cependant, elle n'est pas sans limites. En outre... »</div>
+    <div class="marker-fix">
+      <span class="label">— Correctif</span>
+      Supprime 70 % des connecteurs. Ils sont rarement nécessaires : la logique entre deux phrases proches est presque toujours évidente sans béquille verbale. Quand tu en gardes, varie : <em>« mais »</em>, <em>« sauf que »</em>, <em>« d'ailleurs »</em>, <em>« en réalité »</em>, ou rien du tout.
+    </div>
+  </div>
+
+  <div class="marker-card">
+    <div class="marker-num">— MARQUEUR 4 / 7</div>
+    <div class="marker-name">Les <em>structures binaires</em> trop nettes</div>
+    <div class="marker-symptom">Une fixation IA particulière : poser systématiquement les choses en couples opposés. <em>« Non seulement X mais aussi Y »</em>, <em>« d'un côté... de l'autre »</em>, <em>« il ne s'agit pas de... mais de... »</em>, <em>« plutôt que de... »</em>. Cette structure binaire donne une impression de réflexion, mais quand elle se répète en cascade, elle révèle l'optimisation IA pour les structures rhétoriques équilibrées. Les humains pensent rarement de manière aussi proprement dichotomique.</div>
+    <div class="marker-example"><strong>Exemple IA typique :</strong> « Il ne s'agit pas de remplacer les humains par l'IA, mais de leur donner les outils pour mieux travailler. D'un côté, l'efficacité augmente. De l'autre, la créativité reste humaine. »</div>
+    <div class="marker-fix">
+      <span class="label">— Correctif</span>
+      Casse la binarité. Au lieu de <em>« non seulement... mais aussi... »</em>, fais <strong>deux phrases distinctes qui ne sont pas en miroir</strong>. Accepte la complexité asymétrique. Les vraies idées ne s'organisent pas en dyades parfaites.
+    </div>
+  </div>
+
+  <div class="marker-card">
+    <div class="marker-num">— MARQUEUR 5 / 7</div>
+    <div class="marker-name">L'<em>abstraction</em> sans exemples</div>
+    <div class="marker-symptom">L'IA produit naturellement du contenu général, abstrait, valable partout et donc pour personne. Elle parle d'<em>« optimiser ses processus »</em>, de <em>« mettre en place une stratégie efficace »</em>, de <em>« favoriser un environnement propice »</em>. Les humains compétents ancrent leurs idées dans des exemples concrets, des chiffres précis, des anecdotes spécifiques. Ce détail concret est ce qui rend un texte vivant — et il est presque toujours absent des productions IA non calibrées.</div>
+    <div class="marker-example"><strong>Exemple IA typique :</strong> « Les entreprises qui investissent dans la formation de leurs équipes constatent généralement une amélioration significative de leur performance globale. »</div>
+    <div class="marker-fix">
+      <span class="label">— Correctif</span>
+      <strong>Une affirmation = un exemple ou un chiffre.</strong> <em>« BCG a documenté +47 % de productivité chez les consultants formés à l'IA en 6 semaines (étude Dell'Acqua 2023). »</em>. Si tu n'as pas l'exemple, demande à l'IA d'en trouver un — mais ne laisse jamais d'affirmation abstraite seule.
+    </div>
+  </div>
+
+  <div class="marker-card">
+    <div class="marker-num">— MARQUEUR 6 / 7</div>
+    <div class="marker-name">Le <em>vocabulaire</em> trop neutre</div>
+    <div class="marker-symptom">L'IA évite par défaut les mots familiers, les expressions imagées, les régionalismes, les mots un peu osés. Elle dit <em>« remarquable »</em> au lieu de <em>« dingue »</em>, <em>« considérable »</em> au lieu de <em>« énorme »</em>, <em>« il s'agit de »</em> au lieu de <em>« c'est »</em>. Cette neutralité lexicale a une raison structurelle (RLHF d'inoffensivité) — mais elle produit un effet immédiat de fadeur. Les humains compétents ont une <strong>palette lexicale large</strong> qui mélange registres soutenus et populaires.</div>
+    <div class="marker-example"><strong>Exemple IA typique :</strong> « Cette approche présente une efficacité considérable et permet d'obtenir des résultats remarquables sur la durée. »</div>
+    <div class="marker-fix">
+      <span class="label">— Correctif</span>
+      Mélange les registres. Une phrase soutenue, une phrase parlée. Un mot un peu vulgaire ou familier de temps en temps (<em>« ça marche pas »</em>, <em>« c'est bidon »</em>, <em>« énorme »</em>). Les vrais auteurs ont du grain dans leur voix.
+    </div>
+  </div>
+
+  <div class="marker-card">
+    <div class="marker-num">— MARQUEUR 7 / 7</div>
+    <div class="marker-name">L'<em>absence de point de vue</em></div>
+    <div class="marker-symptom">Le marqueur le plus profond. Une IA non instruite produit des textes qui présentent toujours <em>« plusieurs points de vue »</em>, <em>« différentes approches »</em>, <em>« les avantages et les inconvénients »</em>. Elle est entraînée à éviter de prendre position. Cette neutralité perpétuelle est précisément ce qu'aucun auteur compétent ne fait — un texte humain de qualité <strong>tranche, prend position, défend une thèse</strong>. Ce qui te fait reconnaître la voix d'un auteur, c'est ce qu'il refuse de dire et ce qu'il ose affirmer. Sans cela, ce n'est pas un texte, c'est un compte-rendu.</div>
+    <div class="marker-example"><strong>Exemple IA typique :</strong> « Le télétravail présente plusieurs avantages comme la flexibilité et la réduction des trajets, mais aussi des inconvénients tels que l'isolement social et la difficulté à séparer vie pro et vie perso. »</div>
+    <div class="marker-fix">
+      <span class="label">— Correctif</span>
+      Force-toi à prendre position. <em>« Le télétravail a un défaut massif que personne ne nomme : il liquide la séparation entre maison et bureau, ce qui détruit le repos. Les avantages que tout le monde cite ne compensent pas ce coût-là. »</em>. Trancher est un acte d'écriture.
+    </div>
+  </div>
+
+  <!-- ============== 3. PROMPT À LA SOURCE ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Le <em>prompt</em> qui élimine 80 % des marqueurs à la source.</h2>
+
+  <div class="container reading">
+    <p>Plutôt que de corriger après, il vaut mieux générer mieux dès le départ. Voici le prompt à utiliser pour que l'IA produise dès le premier jet un texte beaucoup plus humain. Il intègre les correctifs aux 7 marqueurs et impose une voix tranchée. À copier-coller en début de session de rédaction.</p>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PROMPT FONDATEUR · ÉCRITURE NATURELLE</div>
+    <div class="phase-name">Le <em>cadre</em> à instaurer dès le premier jet</div>
+    <div class="phase-purpose">À utiliser pour toute génération de contenu où le naturel compte. Ce prompt impose les correctifs aux 7 marqueurs IA en amont.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à copier</span>Tu vas écrire un texte sur <span class="placeholder">[sujet]</span> pour <span class="placeholder">[contexte de publication : blog perso, article LinkedIn, newsletter, etc.]</span>.
+
+<strong>Public visé :</strong> <span class="placeholder">[décris]</span>.
+
+<strong>Voix à adopter :</strong> directe, tranchée, prend position. Pas neutre, pas équilibrée.
+
+<strong>Règles de style impératives :</strong>
+
+1. <strong>Pas de hedging.</strong> Bannir : « il est important de noter », « il convient de souligner », « on peut considérer », « généralement », « souvent », « d'une certaine manière ». Affirmer ou se taire.
+
+2. <strong>Casser le rythme.</strong> Alterner phrases courtes (4-8 mots) et phrases longues (25-40 mots). Jamais 3 phrases d'affilée de longueur similaire. Une phrase d'un seul mot est autorisée.
+
+3. <strong>Couper les transitions chevillées.</strong> Bannir « en outre », « par ailleurs », « de plus », « toutefois », « néanmoins ». Si une transition est nécessaire, utiliser « mais », « sauf que », « en réalité », ou rien.
+
+4. <strong>Pas de structures binaires forcées.</strong> Bannir « non seulement... mais aussi », « d'un côté... de l'autre », « il ne s'agit pas de... mais de... ». Penser asymétrique.
+
+5. <strong>Une affirmation = un exemple concret ou un chiffre.</strong> Pas d'idée abstraite seule. Si tu n'as pas l'exemple, demande-le-moi avant d'écrire.
+
+6. <strong>Mélange des registres lexicaux.</strong> Mots soutenus et mots familiers cohabitent. Pas de fadeur uniforme.
+
+7. <strong>Prendre position.</strong> Trancher. Ce que défend le texte doit être identifiable en une phrase. Pas de « plusieurs points de vue existent ».
+
+Style cible : un texte qu'un lecteur attentif ne soupçonnera pas d'avoir été écrit par une IA. Une voix d'auteur, pas un compte-rendu.
+
+<strong>Avant d'écrire</strong>, dis-moi en 2 phrases la position que le texte va défendre. Si tu n'arrives pas à formuler une thèse claire, demande-moi laquelle je veux défendre.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">L'effet immédiat</div>
+    <p>Avec ce prompt, le premier jet IA est <strong>substantiellement meilleur</strong> qu'avec un prompt standard — moins de hedging, plus de tranchant, plus d'exemples. Mais il reste imparfait. Compte ~70-80 % du chemin parcouru à l'écriture, et 20-30 % à faire en relecture humaine. Voir la phase suivante.</p>
+  </div>
+
+  <!-- ============== 4. RELECTURE 4 PASSES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>La <em>méthode de relecture</em> en 4 passes.</h2>
+
+  <div class="container reading">
+    <p>Aucun prompt, même excellent, ne produit un texte 100 % humain au premier jet. La <strong>relecture humaine ciblée</strong> reste indispensable. Voici la méthode en 4 passes successives, chacune dédiée à un type de marqueur. Tu déroules dans l'ordre, sans sauter d'étape. Compte 10 à 20 minutes pour un texte de 1000 mots.</p>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PASSE 1 / 4 · ÉLIMINATION DU HEDGING</div>
+    <div class="phase-name">Couper les <em>atténuateurs</em></div>
+    <div class="phase-purpose">La passe la plus rentable. Élimine 80 % des modulateurs et formules d'atténuation. Le texte gagne instantanément en autorité.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Procédure</span>Lance Ctrl+F (Cmd+F sur Mac) et cherche dans le texte ces expressions :
+- "il est important de noter"
+- "il convient de souligner"
+- "il faut souligner"
+- "on peut considérer"
+- "d'une certaine manière"
+- "en quelque sorte"
+- "généralement"
+- "souvent"
+- "peut être"
+- "tend à"
+
+<strong>Pour chaque occurrence : supprime ou réécris en affirmation tranchée.</strong> Si la phrase ne tient plus sans le hedge, c'est qu'elle n'avait rien à dire.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PASSE 2 / 4 · CASSE DU RYTHME</div>
+    <div class="phase-name">Varier les <em>longueurs</em> de phrase</div>
+    <div class="phase-purpose">Pour donner du tempo. Aucun outil automatique ne fait cette correction — c'est un geste humain.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Procédure</span>Relis paragraphe par paragraphe. À chaque paragraphe :
+1. Compte les longueurs de phrases approximatives.
+2. Si toutes les phrases font ~15-25 mots, <strong>force des cassures</strong> :
+   - Coupe une phrase moyenne en deux phrases courtes (5-8 mots).
+   - Fusionne deux phrases courtes en une phrase plus longue avec subordonnées.
+   - Insère une phrase de 1-3 mots à un endroit pour appuyer.
+3. Lis le paragraphe à voix haute. Si le rythme est plat, recommence.
+
+<strong>Test final :</strong> à la lecture orale, ton paragraphe doit avoir des respirations différentes — sinon il sonne IA.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PASSE 3 / 4 · INJECTION DE CONCRET</div>
+    <div class="phase-name">Ajouter des <em>exemples</em> et des chiffres</div>
+    <div class="phase-purpose">Le marqueur le plus différenciant. Une affirmation isolée sonne IA. Une affirmation suivie d'un exemple précis sonne humain.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Procédure</span>Relis chaque affirmation générale. Pour chacune :
+1. Si elle n'est pas suivie d'un exemple concret, d'un chiffre, ou d'une référence précise → action requise.
+2. Soit tu as l'exemple en tête → tu l'ajoutes.
+3. Soit tu ne l'as pas → tu demandes à l'IA : <em>« donne-moi 3 exemples concrets et précis pour appuyer cette affirmation : [phrase]. Inclus des chiffres ou des cas réels si possible. »</em>
+4. Tu vérifies les exemples (l'IA peut halluciner — voir <a href="hallucinations-ia.html" style='color: var(--accent-warm);'>l'article hallucinations</a>) et tu intègres.
+
+<strong>Règle :</strong> 1 affirmation = 1 ancrage concret. Sinon supprime l'affirmation.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PASSE 4 / 4 · INJECTION DE VOIX</div>
+    <div class="phase-name">Ajouter ta <em>signature</em></div>
+    <div class="phase-purpose">La passe finale, qui fait que le texte ressemble à toi et pas à n'importe qui. Sans cette passe, même un texte techniquement bon reste anonyme.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Procédure</span>Relis le texte une dernière fois et injecte 3 à 5 marqueurs personnels :
+
+1. <strong>Une formule récurrente</strong> que tu utilises naturellement (un tic verbal qui te caractérise).
+2. <strong>Un mot un peu fort ou familier</strong> dans une phrase clé (« énorme », « bidon », « ça change tout »).
+3. <strong>Une digression ou un aparté personnel</strong> (« j'ai mis 2 ans à comprendre ça », « contrairement à ce que pense la majorité de mes pairs »).
+4. <strong>Une opinion clivante non négociable</strong> que tu défends explicitement.
+5. <strong>Une fin qui te ressemble</strong> (formule, ton, ouverture/fermeture qui sont à toi).
+
+Sans ces signatures, ton texte est lisible mais interchangeable. Avec, il devient identifiable comme étant de toi — ce qui est l'objectif final.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>L'objectif n'est pas de tromper les détecteurs IA. C'est de produire des textes qui <strong>te ressemblent vraiment</strong> et qui ont une vraie autorité de voix. Si tu fais ça bien, tu passes les détecteurs comme bonus — mais surtout tu construis une signature reconnaissable que tes lecteurs apprennent à aimer. Le détecteur IA est un test, pas un objectif. <strong>Ton public est l'objectif.</strong> Et ton public détecte un texte fade en 5 secondes, bien avant qu'aucune IA ne le détecte techniquement.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Article suivant logique</div>
+    <p>Tu sais maintenant éliminer les marqueurs IA. L'étape suivante, c'est de faire en sorte que l'IA <strong>écrive directement avec ta voix</strong> au lieu de te forcer à corriger après. C'est le sujet de l'article 3.1 — <a href="cloner-style-ecriture.html">Cloner ton style d'écriture en 3 prompts</a>. Tu y apprends à analyser ta propre signature pour la transmettre à l'IA en début de session.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur l'écriture IA naturelle.</h3>
+    <ol class="recap-points">
+      <li>Les humains détectent les textes IA bien mieux que les outils automatiques (étude UMass 2025 : ~100 % de précision pour les utilisateurs réguliers d'IA, vs 70 % pour les détecteurs). Le problème n'est pas qu'on n'arrive pas à cacher l'IA — c'est qu'on ne s'occupe pas des marqueurs.</li>
+      <li>7 marqueurs principaux : hedging systématique, uniformité des phrases, transitions chevillées, structures binaires forcées, abstraction sans exemples, vocabulaire trop neutre, absence de point de vue. Chacun a son correctif.</li>
+      <li>Prompt à utiliser à la source : impose les 7 correctifs en amont (pas de hedging, casser rythme, supprimer transitions, abandonner binaires, exemples concrets, mélange registres, position tranchée). Élimine 70-80 % des marqueurs au premier jet.</li>
+      <li>Méthode de relecture en 4 passes (10-20 min pour 1000 mots) : élimination du hedging au Ctrl+F, casse du rythme paragraphe par paragraphe à l'oral, injection de concret (1 affirmation = 1 exemple), injection de voix personnelle (3-5 marqueurs personnels).</li>
+      <li>L'objectif final n'est pas de tromper les détecteurs — c'est de produire des textes qui te ressemblent. Ton public détecte la fadeur en 5 secondes, bien avant qu'aucune IA ne le détecte techniquement.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="cloner-style-ecriture.html">
+        <div class="next-link-label">— Article suivant logique</div>
+        <div class="next-link-title">Cloner ton style d'écriture en 3 prompts</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-3-creer-contenu.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Créer du contenu · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

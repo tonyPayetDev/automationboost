@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>« Ask Me Questions First » : la technique du diagnostic. – AutomationBoost</title>
+  <meta name="description" content="La technique inverse : demander à l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>« Ask Me Questions First » : la technique du diagnostic.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#34d399;">Mieux prompter</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">« Ask Me Questions First » : la technique du diagnostic.</h1>
+    <p class="lede">Demander à l'IA de te poser des questions avant de répondre. La technique inverse qui transforme un brouillon en réponse ciblée. Le meilleur ratio simplicité/impact de la rubrique.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">C'est la technique la plus sous-utilisée du prompt engineering. Elle prend 30 secondes à apprendre et change tout : au lieu de tout dire à l'IA, tu lui demandes de <strong>te</strong> poser des questions d'abord.</p>
+
+    <p>Toutes les autres techniques supposent que c'est à toi d'anticiper ce dont l'IA a besoin. Celle-ci inverse la charge. Voici comment l'utiliser.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi cette technique <em>est si efficace</em>.</h2>
+
+  <div class="container reading">
+    <p>Quand tu rédiges un prompt, tu choisis ce qui te semble important — et tu te trompes souvent sur ce dont l'IA a réellement besoin. En lui faisant poser les questions, c'est <em>elle</em> qui identifie les informations manquantes, celles auxquelles tu n'aurais pas pensé.</p>
+
+    <p>Voici comment déclencher et exploiter ce réflexe.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 7</span>La <em>phrase magique</em> à connaître.</h2>
+
+  <div class="magic-phrase">
+    <div class="magic-phrase-label">— La formulation universelle —</div>
+    <div class="magic-phrase-text">« Avant de répondre, pose-moi <em>3 à 5 questions</em> qui te permettraient de me donner la meilleure réponse possible. »</div>
+  </div>
+
+  <div class="container reading">
+    <p>C'est la formulation de base. Ajoute-la à n'importe quelle demande importante, et l'IA va basculer automatiquement en mode diagnostic. Trois éléments dans cette phrase la rendent particulièrement efficace :</p>
+
+    <p><strong>« Avant de répondre »</strong> — donne explicitement la permission à l'IA de différer la réponse. Sans ça, elle est conditionnée à produire <em>maintenant</em>, ce qui supprime l'option de poser des questions.</p>
+
+    <p><strong>« 3 à 5 questions »</strong> — borne le nombre. Sans ça, l'IA pose soit une seule question (insuffisant) soit dix questions (épuisant). 3-5 est le sweet spot qui couvre les zones d'ombre principales sans devenir un interrogatoire.</p>
+
+    <p><strong>« Te permettraient de me donner la meilleure réponse possible »</strong> — oriente la nature des questions. L'IA ne va pas te poser des questions de curiosité — elle va poser celles dont la réponse aurait <em>le plus d'impact sur la qualité de sa sortie finale</em>.</p>
+  </div>
+
+  <!-- ============== 3. EXEMPLE COMPLET ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 7</span>Exemple complet : <em>du flou au ciblé</em>.</h2>
+
+  <div class="container reading">
+    <p>Voici un cas réel. Imagine que tu veux que l'IA t'aide à préparer ton entretien annuel avec ta manager. Voici comment se passe la conversation avec « Ask Me Questions First ».</p>
+  </div>
+
+  <div class="demo-flow">
+    <div class="demo-step user">
+      <div class="demo-step-label">— Toi (prompt initial)</div>
+      <div class="demo-step-text">Aide-moi à préparer mon entretien annuel avec ma manager. Avant de répondre, pose-moi 3 à 5 questions qui te permettraient de me donner la meilleure réponse possible.</div>
+    </div>
+
+    <div class="demo-step ai">
+      <div class="demo-step-label">— IA (les questions ciblées)</div>
+      <div class="demo-step-text">Pour t'aider efficacement, j'ai besoin de comprendre :
+        <ol>
+          <li>Quel est ton objectif principal pour cet entretien : obtenir une augmentation, un changement de poste, une évolution de périmètre, ou simplement faire un bilan ?</li>
+          <li>Comment ça se passe avec ta manager actuellement — bonne relation, tendue, distante, conflictuelle ?</li>
+          <li>Sur les 12 derniers mois, quels sont tes 2 ou 3 accomplissements les plus visibles ? Et y a-t-il eu des points difficiles à aborder ?</li>
+          <li>L'entretien annuel chez vous est-il plutôt informel (discussion ouverte) ou structuré (formulaire à remplir, grille d'évaluation) ?</li>
+          <li>Que veux-tu obtenir comme livrable de ma part : une liste d'arguments à préparer, un déroulé minute par minute, ou une simulation des questions/réponses possibles ?</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="demo-step user-answer">
+      <div class="demo-step-label">— Toi (les réponses)</div>
+      <div class="demo-step-text">1. Obtenir une augmentation de 8 %. 2. Bonne relation, professionnelle et cordiale. 3. J'ai mené à bien la migration de notre CRM (gros chantier de 6 mois) et j'ai formé 3 juniors. Pas de point difficile particulier. 4. Plutôt structuré, on remplit une grille d'évaluation. 5. Une liste d'arguments à préparer + une simulation de 3 objections probables avec mes réponses.</div>
+    </div>
+
+    <div class="demo-step final">
+      <div class="demo-step-label">— IA (la réponse finale ciblée)</div>
+      <div class="demo-step-text">L'IA livre maintenant un argumentaire calibré sur le contexte précis : 5 arguments factuels (la migration CRM avec ses chiffres, la formation des juniors, ton ancienneté, le marché, l'écart avec la grille interne), 3 objections classiques de manager dans ton cas (« le budget est contraint », « on revoit ça à mi-année », « tu as déjà eu une augmentation l'an dernier »), avec pour chacune une réponse adaptée à une grille d'évaluation structurée. Livrable directement utilisable, sans aller-retour.</div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>Note l'écart : sans cette technique, tu aurais probablement reçu un guide générique sur la préparation d'entretien annuel. Avec cette technique, tu reçois <strong>ton</strong> argumentaire, calibré sur ton contexte précis, en 2 messages.</p>
+
+    <p>Le coût : 90 secondes de plus que tu aurais passé à écrire un prompt PTCF complet. L'avantage : tu n'as pas eu à <em>deviner</em> quelles informations donner. L'IA te les a demandées.</p>
+  </div>
+
+  <!-- ============== 4. VARIANTES ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 7</span>Les <em>5 variantes</em> selon le contexte.</h2>
+
+  <div class="container reading">
+    <p>La phrase de base marche partout, mais il existe 5 variantes qui activent des nuances différentes. À utiliser selon le type de tâche.</p>
+  </div>
+
+  <div class="variant-card">
+    <div class="variant-num">— VARIANTE 1 · Pour les sujets analytiques</div>
+    <div class="variant-name">Le diagnostic stratégique</div>
+    <div class="variant-phrase">« Avant de répondre, identifie les 3 informations manquantes qui auraient le plus d'impact sur ta recommandation, et demande-les-moi. »</div>
+    <div class="variant-when"><strong>Quand l'utiliser :</strong> conseil stratégique, analyse business, audit, prise de décision. Force l'IA à hiérarchiser les variables-clés et à ignorer les détails secondaires. Tu obtiens 3 questions à fort levier au lieu d'un sondage exhaustif.</div>
+  </div>
+
+  <div class="variant-card">
+    <div class="variant-num">— VARIANTE 2 · Pour la rédaction</div>
+    <div class="variant-name">Le diagnostic éditorial</div>
+    <div class="variant-phrase">« Avant d'écrire, pose-moi des questions sur le ton, l'audience, l'objectif et tout ce qui pourrait changer ta façon de rédiger. »</div>
+    <div class="variant-when"><strong>Quand l'utiliser :</strong> articles, mails, posts, contenu marketing. Force l'IA à clarifier les paramètres éditoriaux avant de produire. Particulièrement utile pour les contenus à forte dimension stylistique où le ton compte autant que le fond.</div>
+  </div>
+
+  <div class="variant-card">
+    <div class="variant-num">— VARIANTE 3 · Pour le code</div>
+    <div class="variant-name">Le diagnostic technique</div>
+    <div class="variant-phrase">« Avant d'écrire le code, pose-moi des questions sur les contraintes techniques, l'environnement, les cas limites et les attentes en performance. »</div>
+    <div class="variant-when"><strong>Quand l'utiliser :</strong> développement, debug, architecture logicielle. L'IA va demander la version du langage, l'environnement d'exécution, les inputs limites, les contraintes de performance. Ces questions évitent 80 % des allers-retours pour code non adapté.</div>
+  </div>
+
+  <div class="variant-card">
+    <div class="variant-num">— VARIANTE 4 · Pour les décisions personnelles</div>
+    <div class="variant-name">Le diagnostic introspectif</div>
+    <div class="variant-phrase">« Avant de me conseiller, pose-moi 5 questions qui m'aideront moi-même à clarifier ce que je veux vraiment. »</div>
+    <div class="variant-when"><strong>Quand l'utiliser :</strong> choix de carrière, décisions personnelles importantes, dilemmes. La force ici est secondaire : ce ne sont pas seulement les réponses qui comptent, c'est l'<strong>acte de répondre aux questions</strong> qui te clarifie tes propres priorités. L'IA devient un mentor socratique.</div>
+  </div>
+
+  <div class="variant-card">
+    <div class="variant-num">— VARIANTE 5 · Pour les sujets que tu maîtrises mal</div>
+    <div class="variant-name">Le diagnostic d'apprentissage</div>
+    <div class="variant-phrase">« Avant de me conseiller, vérifie d'abord ce que je sais déjà sur le sujet en me posant des questions de niveau, puis adapte ta réponse. »</div>
+    <div class="variant-when"><strong>Quand l'utiliser :</strong> tu cherches à comprendre un sujet où tu pars de loin (juridique, médical, technique). L'IA évalue ton niveau réel par 3-4 questions, puis adapte sa réponse à ce niveau. Fini les explications trop techniques ou trop infantilisantes.</div>
+  </div>
+
+  <!-- ============== 5. CAS D'USAGE ============== -->
+  <h2 class="reading"><span class="h2-num">— 5 / 7</span>Les <em>4 cas d'usage</em> où la technique brille.</h2>
+
+  <div class="container reading">
+    <p>« Ask Me Questions First » n'a pas besoin d'être utilisée tout le temps. Voici les 4 cas où elle est nettement supérieure aux autres approches.</p>
+  </div>
+
+  <div class="usecase-grid">
+    <div class="usecase-card">
+      <span class="usecase-num">— CAS 1</span>
+      <div class="usecase-name">Quand tu sais ce que tu veux mais pas comment le formuler</div>
+      <div class="usecase-desc">Tu as une intuition floue de ton besoin. Tu sais que tu veux quelque chose, mais tu n'arrives pas à structurer ta demande. L'IA te pose les bonnes questions et révèle ton propre besoin par ricochet.</div>
+    </div>
+    <div class="usecase-card">
+      <span class="usecase-num">— CAS 2</span>
+      <div class="usecase-name">Pour les sujets complexes à enjeu élevé</div>
+      <div class="usecase-desc">Décision importante (carrière, finance, stratégie business), document professionnel critique, code en production. Quand le coût d'une mauvaise réponse est élevé, les 90 secondes de questions valent toujours leur prix en aval.</div>
+    </div>
+    <div class="usecase-card">
+      <span class="usecase-num">— CAS 3</span>
+      <div class="usecase-name">Quand tu n'as pas le temps d'écrire un PTCF complet</div>
+      <div class="usecase-desc">Tu es pressé, tu écris un prompt court, tu sais qu'il manque du contexte. Plutôt que d'accepter une réponse moyenne, ajoute la phrase magique. Tu paies le contexte par questions/réponses au lieu de tout rédiger en amont.</div>
+    </div>
+    <div class="usecase-card">
+      <span class="usecase-num">— CAS 4</span>
+      <div class="usecase-name">Pour les sujets où l'IA risque de mal interpréter</div>
+      <div class="usecase-desc">Demandes ambiguës, sujets de niche, cas particuliers que l'IA risque de traiter génériquement. La phase de questions force l'IA à vérifier sa compréhension avant de produire une réponse à côté.</div>
+    </div>
+  </div>
+
+  <!-- ============== 6. PIÈGES ============== -->
+  <h2 class="reading"><span class="h2-num">— 6 / 7</span>Les <em>3 pièges</em> à éviter.</h2>
+
+  <h3 class="reading">Piège 1 : utiliser la technique pour les tâches simples</h3>
+
+  <div class="container reading">
+    <p>Pour <em>« traduis ce paragraphe en anglais »</em>, ajouter <em>« pose-moi des questions d'abord »</em> est contre-productif. L'IA va te poser des questions inutiles (<em>« quel registre de langue ? »</em>, <em>« quelle audience ? »</em>) pour des informations qui n'ont pas vraiment d'impact sur le résultat. Tu perds du temps pour un gain marginal.</p>
+
+    <p>La règle : utilise « Ask Me Questions First » uniquement quand <strong>plusieurs réponses très différentes sont possibles</strong> selon les paramètres de ta demande. Pour les tâches déterministes (traduction, calcul, formatage simple), passe directement à la demande.</p>
+  </div>
+
+  <h3 class="reading">Piège 2 : répondre superficiellement aux questions</h3>
+
+  <div class="container reading">
+    <p>Si l'IA te pose une bonne question et que tu réponds en 3 mots <em>« je ne sais pas »</em> ou <em>« peu importe »</em>, tu sabotes la technique. La qualité de la réponse finale est directement proportionnelle à la qualité de tes réponses aux questions.</p>
+
+    <p>Discipline : prends le temps de répondre à chaque question avec une phrase substantielle. Si tu ne sais vraiment pas, dis pourquoi tu ne sais pas — c'est déjà une information utile. <em>« Je ne sais pas si c'est plutôt B2B ou B2C parce que ce produit s'adresse aux deux, l'enjeu est de trouver l'angle qui touche les deux à la fois »</em> est infiniment plus utile que <em>« B2B et B2C »</em>.</p>
+  </div>
+
+  <h3 class="reading">Piège 3 : l'utiliser pour éviter de réfléchir</h3>
+
+  <div class="container reading">
+    <p>La technique peut donner l'illusion qu'on peut sous-traiter complètement la réflexion à l'IA. <em>« Je ne sais pas ce que je veux, débrouille-toi pour me poser les bonnes questions »</em>. Ça peut marcher, mais le résultat sera moins bon que si tu avais d'abord fait l'effort de clarifier ton intention de base.</p>
+
+    <p>« Ask Me Questions First » est un outil pour <strong>raffiner</strong> une demande, pas pour <strong>créer</strong> une demande à partir de rien. Avant de l'utiliser, assure-toi d'avoir au moins une intention claire — même si elle est imparfaitement formulée. La phase de questions affinera, elle ne remplacera pas ta réflexion initiale.</p>
+  </div>
+
+  <!-- ============== 7. INTÉGRATION ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 7 / 7</span>Comment en faire un <em>réflexe permanent</em>.</h2>
+
+  <div class="container reading">
+    <p>« Ask Me Questions First » est tellement utile que beaucoup d'utilisateurs avancés en font un <strong>réglage par défaut</strong> dans leurs outils IA. Tu peux faire pareil.</p>
+  </div>
+
+  <h3 class="reading">Configuration n°1 : Custom Instructions / System Prompt</h3>
+
+  <div class="container reading">
+    <p>Sur ChatGPT, dans les <em>Custom Instructions</em>. Sur Claude, dans les <em>Projects</em> (instructions du projet). Sur Gemini, dans les <em>Gems</em> personnalisés. Ajoute une instruction permanente du type : <em>« Pour toute demande complexe, propose-moi 3 à 5 questions de clarification avant de répondre. Pour les demandes simples, réponds directement. »</em>.</p>
+
+    <p>Avec cette configuration, l'IA bascule automatiquement en mode diagnostic dès que tu lui poses une question ambiguë, sans avoir à le demander à chaque fois. Configuration détaillée à venir dans <a href="niveau-2-bien-configurer.html">la rubrique Bien configurer ton IA</a>.</p>
+  </div>
+
+  <h3 class="reading">Configuration n°2 : raccourci clavier</h3>
+
+  <div class="container reading">
+    <p>Si tu n'utilises pas la fonction Custom Instructions, crée un raccourci texte (sur Mac : Réglages → Clavier → Saisie de texte. Sur Windows : utilitaires comme aText, PhraseExpress). Tape <em>« ;ask »</em>, le système développe automatiquement <em>« Avant de répondre, pose-moi 3 à 5 questions qui te permettraient de me donner la meilleure réponse possible. »</em>.</p>
+
+    <p>Tu ajoutes la phrase à n'importe quel prompt en 4 caractères. C'est l'un des raccourcis les plus rentables que tu puisses configurer pour ton usage IA quotidien.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>Pour toute demande où tu hésites entre <em>« écrire un PTCF complet »</em> et <em>« balancer un prompt rapide »</em>, choisis l'option intermédiaire : <strong>prompt court + « Ask Me Questions First »</strong>. C'est 60 secondes pour le rédiger, et tu obtiens en aval une réponse de meilleure qualité qu'un PTCF qui aurait pris 3 minutes — parce que l'IA a posé les questions auxquelles tu n'aurais pas pensé.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ce que tu vas voir dans le prochain article</div>
+    <p>Tu connais maintenant la technique pour faire <em>parler</em> l'IA avant qu'elle réponde. Le prochain article te donne l'autre face : comment <strong>verrouiller</strong> ce que l'IA ne doit PAS faire. Les <strong>instructions négatives</strong> — souvent plus efficaces que les instructions positives, et largement sous-utilisées.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur « Ask Me Questions First ».</h3>
+    <ol class="recap-points">
+      <li>L'IA sait toujours ce qui lui manque pour bien répondre. Donne-lui la permission de demander, et tu obtiens en 2 échanges ce qui aurait pris 5 itérations.</li>
+      <li>La phrase universelle : « Avant de répondre, pose-moi 3 à 5 questions qui te permettraient de me donner la meilleure réponse possible. »</li>
+      <li>5 variantes selon le contexte : diagnostic stratégique, éditorial, technique, introspectif, ou d'apprentissage. Une phrase par cas d'usage.</li>
+      <li>Utilise la technique pour les sujets à enjeu élevé, les demandes complexes, et les sujets ambigus. Évite-la pour les tâches déterministes.</li>
+      <li>Le piège n°1 : répondre superficiellement aux questions. La qualité de la réponse finale est proportionnelle à la qualité de tes réponses aux questions.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a href="#" class="next-link">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">Les instructions négatives : ce que l'IA ne doit PAS faire</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-2-techniques-avancees.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Techniques avancées · Niveau II</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

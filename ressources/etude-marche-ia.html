@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Étude de marché en 1 journée. – AutomationBoost</title>
+  <meta name="description" content="Ce qui demandait deux semaines de recherche prend une journée avec l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Étude de marché en 1 journée.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#f43f5e;">Lancer un business</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Étude de marché en 1 journée.</h1>
+    <p class="lede">Ce qui prenait 2 semaines de research manuelle en 2022 prend 1 journée en 2026 avec une méthode IA-augmentée rigoureuse. Taille du marché TAM/SAM/SOM, demande chiffrée, tarification observée, zones géographiques porteuses. Plus les limites assumées : l'IA ne remplace pas le contact direct.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tu as identifié un trou de marché prometteur. Reste la question brutale : est-il assez grand pour que tu en vives ? Pas en théorie — en chiffres concrets. Sans estimer la taille, la demande et les prix observés, tu te lances dans le brouillard.</p>
+
+    <p>La promesse 2026 est mesurable : ce qui prenait deux à trois mois d'étude et coûtait des milliers d'euros de cabinet tient désormais en une journée, pour quelques dizaines d'euros d'outils IA. Mais attention au piège : demande « fais-moi une étude de marché sur X » sans cadre, et l'IA te sort des chiffres ronds crédibles… souvent inventés. La méthode rigoureuse consiste à lui donner le bon cadre (TAM/SAM/SOM ascendant) avec des sources que tu peux vérifier toi-même.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Le cadre <em>TAM / SAM / SOM</em>.</h2>
+
+  <div class="container reading">
+    <p>Avant les outils, le cadre. Le triangle TAM/SAM/SOM est la grammaire universelle de l'étude de marché en 2026. <strong>L'utilité concrète :</strong> il te force à passer du <em>« il y a un gros marché »</em> intuitif à des chiffres vérifiables et défendables. Pour un solo, c'est le filtre qui distingue une intuition d'un projet bancable.</p>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">TAM — <em>Marché Total Adressable</em></div>
+    <div class="tool-text"><strong>Définition (PMToolkit / Ainna 2026) :</strong> total des revenus si tu capturais 100 % du marché avec zéro contrainte. Le ciel théorique.<br><br>
+<strong>Exemple concret :</strong> tu vises les freelances qui veulent un outil de facturation IA. TAM = (nombre total de freelances dans le monde qui pourraient utiliser un outil de facturation × prix annuel moyen). Sources : Statista, gouv data, FreelanceUK, MBO Partners pour le freelancing.<br><br>
+<strong>Utilité :</strong> montre l'ambition et le plafond. <strong>Limite :</strong> personne ne capture jamais 100 %. Un TAM seul ne prouve rien — c'est le terrain de jeu théorique.<br><br>
+<strong>Anti-pattern dominant 2026 :</strong> <em>« TAM 500 Md $ »</em> sans source. <em>« Un TAM crédible de 5 milliards $ vaut mieux qu'un TAM incroyable de 500 milliards $ »</em> (Preuve AI avril 2026). Mieux vaut un TAM modeste sourcé qu'un TAM gigantesque inventé.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">SAM — <em>Marché Adressable Disponible</em></div>
+    <div class="tool-text"><strong>Définition :</strong> portion du TAM que tu peux <em>réellement</em> servir avec ton business model, ta géographie, tes capacités. Filtre du TAM par tes vraies contraintes.<br><br>
+<strong>Filtres typiques pour un solo 2026 :</strong> géographie (France ? UE ? US ? monde anglophone ?), taille de l'entreprise cliente (TPE 1-10 ? PME 10-50 ? mid-market 50-200 ?), modèle de tarification (subscription ? ponctuel ? marketplace ?), langue, canaux d'acquisition que tu maîtrises.<br><br>
+<strong>Règle 2026 (Preuve AI) :</strong> SAM doit être 10-50 % du TAM, typiquement. Si SAM = TAM, tu n'es pas honnête sur tes contraintes. Si SAM = 1 % du TAM, soit tu as une contrainte structurelle (segment de niche), soit tu peux élargir.<br><br>
+<strong>Pour un solo français :</strong> SAM réaliste se situe souvent entre 1 et 50 M€/an (selon le secteur). Un SAM de 1 Md$ pour un solo signale que tu as mal segmenté.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">SOM — <em>Marché Adressable Capturable</em></div>
+    <div class="tool-text"><strong>Définition :</strong> portion du SAM que tu peux <em>capturer</em> dans un délai défini, en tenant compte de la compétition, de tes ressources et de ta capacité GTM (stratégie commerciale).<br><br>
+<strong>Méthode honnête :</strong> recherche le market share que des nouveaux entrants capturent typiquement dans ton secteur. Pour la majorité des B2B SaaS, un cible année-3 réaliste = 1-5 % du SAM (Preuve AI). Pour un solo français, plutôt 0,1-1 % en 12-18 mois.<br><br>
+<strong>Calcul concret :</strong> SOM = SAM × % réaliste de market share. Exemple : SAM 50 M€ × 0,5 % = 250 K€ de revenu annuel cible année 1-2. C'est le chiffre qui doit être <em>économiquement viable pour toi</em> (couvre tes besoins + offre une marge). Si SOM = 50 K€/an, ce n'est pas un projet pour vivre — c'est un side hustle.<br><br>
+<strong>Anti-pattern critique :</strong> le <em>« lazy 1 % of a big market »</em>. Calcule SOM depuis ta capacité d'acquisition réelle (combien de clients tu peux toucher avec ton budget marketing et tes canaux), pas depuis un % rond.</div>
+  </div>
+
+  <p class="pull-quote">TAM montre l'ambition. SAM montre le focus. SOM montre la réalité de l'exécution. Les trois doivent être ancrés dans des assumptions transparentes et challengeable. Si tu ne peux pas défendre un chiffre, ne l'utilise pas.</p>
+
+  <!-- ============== 2. BOTTOM UP VS TOP DOWN ============== -->
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Bottom-up vs top-down : <em>la méthode qui résiste</em>.</h2>
+
+  <div class="container reading">
+    <p>Deux méthodes pour calculer ces chiffres. Une qui résiste à la due diligence d'un VC. Une qui s'effondre au premier challenge. Maîtrise les deux, mais utilise <em>toujours</em> la première comme primaire.</p>
+  </div>
+
+  <h3>Top-down — la méthode séduisante mais fragile</h3>
+
+  <div class="container reading">
+    <p><strong>Mécanisme :</strong> tu pars d'un chiffre publié de marché total (Statista, McKinsey, Grand View Research). Tu narrows à ta slice par pourcentages. <em>« Le marché de la facturation B2B est 12 Md$ ; les freelances représentent 15 % ; donc TAM freelance = 1,8 Md$. »</em></p>
+
+    <p><strong>Problème :</strong> les rapports payants de marché total sont souvent vieux de 2-3 ans, mal segmentés, et leurs % par segment sont eux-mêmes des estimations. Empilement d'incertitudes. <strong>VC pattern :</strong> <em>« D'où vient ce 15 % ? »</em> — tu peux pas répondre, ton chiffre est mort.</p>
+
+    <p><strong>Quand l'utiliser :</strong> uniquement comme <em>vérification de cohérence</em> sur un calcul ascendant. Si ton calcul ascendant donne 50 M€ de TAM et un rapport sectoriel donne 100 M€, l'ordre de grandeur est cohérent. Si ton ascendant donne 50 M€ et le rapport 10 Md$, tu as raté quelque chose.</p>
+  </div>
+
+  <h3>Bottom-up — la méthode qui résiste</h3>
+
+  <div class="container reading">
+    <p><strong>Mécanisme :</strong> tu pars de la réalité observable. Combien de buyers qualifiés existent dans ta zone géographique cible ? À quel ARPU ou ACV (annual contract value) achètent-ils typiquement ? Multiplie. <em>« Montre ton raisonnement. »</em></p>
+
+    <p><strong>Exemple concret :</strong> tu cibles les freelances français qui facturent &gt; 30 K€/an (cible solvable). Selon URSSAF / ACOSS 2026 : ~1,2 M de freelances en France, dont environ 35 % facturent &gt; 30 K€/an = 420 000 freelances. ARPU cible 15 €/mois = 180 €/an. <strong>TAM ascendant = 420 000 × 180 € = 75,6 M€.</strong></p>
+
+    <p><strong>Force :</strong> chaque chiffre est sourcé. <em>« D'où viennent les 1,2 M ? »</em> → ACOSS public. <em>« D'où vient ce 35 % ? »</em> → étude Malt 2026. <em>« D'où viennent les 15 €/mois ? »</em> → benchmark de 5 concurrents (Indy, Tiime, FreshBooks). Chaque assumption est défendable.</p>
+  </div>
+
+  <h3>Les 6 étapes ascendant avec IA</h3>
+
+  <div class="codeblock">
+    <div class="codeblock-label">— Automatisation ascendant TAM/SAM/SOM avec IA · 1 journée</div>
+    <div class="codeblock-content"><span class="comment"># OBJECTIF : TAM/SAM/SOM défendable en 6-8 heures</span>
+
+<em>ÉTAPE 1 — DÉFINIR L'UNITÉ DE DEMANDE</em>  (30 min)
+   Formula : (buyer + product unit + geography) à ACV/ARPU/an
+   Exemple : freelance français + abonnement facturation IA
+            + France métropolitaine + 180 €/an
+   <em>Output</em> : 1 phrase claire, pas plus.
+   <em>Anti-pattern</em> : flou sur l'unité = tous les chiffres sont
+   incohérents derrière.
+
+<em>ÉTAPE 2 — COUNT QUALIFYING BUYERS</em>  (1-2h)
+   Sources fiables 2026 :
+   - INSEE / ACOSS / URSSAF (data publiques)
+   - Eurostat pour UE
+   - LinkedIn Sales Navigator (filtres firmographics)
+   - Crunchbase / CB Insights (B2B)
+   - Statista (cross-check)
+   <em>Outil IA</em> : Perplexity AI pour citation de sources,
+   Claude pour synthèse multi-sources.
+   <em>Output</em> : nombre exact + sources + date des données.
+
+<em>ÉTAPE 3 — PRICING OBSERVÉ</em>  (1-2h)
+   Méthode : analyse 5-10 concurrents directs + indirects
+   Sources : pricing pages, G2, Capterra, reviews
+   Compute : moyenne pondérée par adoption observée
+   <em>Outil IA</em> : Claude Opus 4.7 pour analyse de pricing pages
+            (long context, structurer en JSON)
+   <em>Output</em> : ARPU/ACV moyen + dispersion + tendances.
+
+<em>ÉTAPE 4 — TAM = ÉTAPE 2 × ÉTAPE 3</em>  (15 min)
+   Calcul direct. Documente les sources de chaque chiffre.
+   Sanity check top-down : compare à 1-2 rapports sectoriels.
+
+<em>ÉTAPE 5 — SAM (FILTRER PAR CONTRAINTES RÉELLES)</em>  (1h)
+   Filtres successifs : géo, taille entreprise, langue,
+   canal d'acquisition, segment psychographique.
+   <em>Output</em> : SAM = TAM × (% atteignable) avec justification.
+   <em>Règle</em> : SAM = 10-50 % du TAM typiquement.
+
+<em>ÉTAPE 6 — SOM (RÉALITÉ DE L'EXÉCUTION)</em>  (1h)
+   Méthode 1 : market share comparable (1-5 % SAM en 3 ans B2B)
+   Méthode 2 : basé sur la capacité (combien de clients ton acquisition
+              peut toucher × taux de conversion typique)
+   <em>Output</em> : SOM cible 12-18 mois.
+   <em>Décision</em> : SOM × marge = revenu cible. Économiquement
+   viable pour toi ? Si oui, lance. Si non, repense.</div>
+  </div>
+
+  <!-- ============== 3. LES 4 LIVRABLES D'UNE ÉTUDE 1 JOUR ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Les <em>4 livrables</em> d'une étude en 1 journée.</h2>
+
+  <div class="container reading">
+    <p>Une étude de marché solo en 2026 doit produire 4 livrables exploitables, pas un rapport de 50 pages que personne ne lira. Voici les 4 outputs concrets que ta journée doit produire.</p>
+  </div>
+
+  <h3>Livrable 1 — Une page TAM/SAM/SOM sourcée</h3>
+
+  <div class="container reading">
+    <p>Une seule page. Format minimaliste. <strong>Pour chaque chiffre, la source citée à côté</strong>. Pas <em>« le marché B2B SaaS est de 200 Md$ »</em>. Plutôt <em>« TAM ascendant = 75,6 M€ (420 K freelances FR ACOSS 2026 × 180 €/an benchmark 5 concurrents) »</em>.</p>
+
+    <p><strong>L'utilité concrète :</strong> tu peux la coller dans un pitch deck, la défendre devant un mentor critique, et tu peux y revenir dans 6 mois pour ré-évaluer. Sans cette traçabilité, ton étude est un château de sable.</p>
+  </div>
+
+  <h3>Livrable 2 — Tableau de tarification observée</h3>
+
+  <div class="container reading">
+    <p>Tableau simple : <strong>5-10 lignes pour 5-10 concurrents directs</strong>. Colonnes : nom, positionnement (1 phrase), pricing entry, pricing standard, pricing premium, modèle (subscription/ponctuel/freemium), cible déclarée, signal de traction (utilisateurs annoncés, funding, popularité G2).</p>
+
+    <p><strong>L'utilité :</strong> ça te dit ton positionnement de prix réaliste, ta marge potentielle, et où il y a éventuellement une opportunité de pricing différencié (premium ou ultra-low). Sans cette analyse, tu vas pricer aveuglément et soit te brader, soit pricer trop haut.</p>
+
+    <p>Outil IA : Claude Opus 4.7 ou GPT-5.5 pour parser des pricing pages en bulk → output JSON structuré direct.</p>
+  </div>
+
+  <h3>Livrable 3 — Analyse de la demande chiffrée</h3>
+
+  <div class="container reading">
+    <p>Trois indicateurs minimum : <strong>(a) Volume de recherche</strong> sur les mots-clés cible (Google Keyword Planner, Ahrefs, Ubersuggest gratuit) — <em>« facturation freelance »</em> = 8 100/mois en France, c'est concret. <strong>(b) Trajectoire</strong> sur 24-36 mois (Google Trends) — croissance, plateau, déclin. <strong>(c) Saisonnalité</strong> — pics et creux qui affecteront ton CA mensuel.</p>
+
+    <p><strong>L'utilité :</strong> tu valides que la demande existe et grossit. Une trajectoire en déclin sur 24 mois sur ton mot-clé central = signal d'alarme à creuser avant de lancer.</p>
+
+    <p>Outils 2026 : Google Trends (gratuit), AnswerThePublic (questions à intent d'achat), Glimpse (validation de spike trends — distinguer durable vs viral).</p>
+  </div>
+
+  <h3>Livrable 4 — Carte des zones géographiques porteuses</h3>
+
+  <div class="container reading">
+    <p>Pour les solos, savoir <em>« où »</em> ta demande est concentrée vaut autant que <em>« combien »</em>. Si 70 % de tes prospects sont dans 3 grandes métropoles, ton marketing s'optimise différemment que si la demande est diffuse.</p>
+
+    <p><strong>Sources :</strong> Google Trends interest by region, INSEE pour France, Eurostat pour UE, Census Bureau pour US. <strong>Output :</strong> top 5 zones géographiques par densité de demande, et le ratio densité demande / densité concurrence (zone idéale = forte demande, faible concurrence locale).</p>
+
+    <p><strong>L'utilité :</strong> guide ton marketing géo (LinkedIn ads ciblés, événements à attaquer, langue de ton site). Pour un solo francophone qui hésite entre cibler France métropolitaine, France + Belgique + Suisse, ou monde francophone, ces données chiffrent l'arbitrage.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Le format livrable qui marche</div>
+    <p>Tes 4 livrables tiennent en <strong>4 pages maximum</strong>, format markdown ou Notion ou Google Doc — pas un PDF de 50 pages. Page 1 : TAM/SAM/SOM avec sources. Page 2 : tableau pricing 10 concurrents. Page 3 : graphique demande chiffrée + trajectoire. Page 4 : carte géographique + recommandations. <strong>Stratégie :</strong> tu y reviens chaque mois pendant les 6 premiers mois pour ajuster avec les vraies données que tu collectes en lançant. Une étude de marché solo n'est pas un livrable mort — c'est un document vivant qui se met à jour avec ton apprentissage terrain.</p>
+  </div>
+
+  <!-- ============== 4. LIMITES DE L'IA ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Les <em>limites honnêtes</em> de l'IA.</h2>
+
+  <div class="container reading">
+    <p>L'IA accélère brutalement la collecte et la synthèse. Mais elle a 4 limites structurelles que tu dois connaître pour ne pas te piéger. Si tu sautes cette section, tu vas faire confiance à des chiffres séduisants mais creux.</p>
+  </div>
+
+  <h3>Limite 1 — L'IA hallucine sur les chiffres précis</h3>
+
+  <div class="container reading">
+    <p>Demande à ChatGPT <em>« combien y a-t-il de freelances en France en 2026 ? »</em> sans grounding. Il te donne un chiffre crédible (souvent autour de 1-2 M, dans le bon ordre de grandeur). Mais ce chiffre est une estimation basée sur ses training data 2024 — il peut être obsolète, ou inventé pour <em>« faire crédible »</em>.</p>
+
+    <p><strong>Mitigation :</strong> utilise <strong>Perplexity AI</strong> ou <strong>ChatGPT avec recherche web activée</strong> ou <strong>Claude avec web search</strong> qui citent les sources URL. Tu vérifies toi-même la source. Sans citation vérifiable, tu ne fais pas confiance au chiffre. <em>« A number without a source is an opinion »</em> (Preuve AI 2026).</p>
+
+    <p>Anti-pattern majeur : copier-coller des chiffres IA dans ton étude sans vérification. C'est la cause n°1 d'études de marché fragiles qui s'effondrent au premier challenge.</p>
+  </div>
+
+  <h3>Limite 2 — L'IA ne capture pas le terrain</h3>
+
+  <div class="container reading">
+    <p>L'IA peut te dire <em>« le marché de la facturation freelance pèse X M€ »</em>. Elle ne peut pas te dire si <em>tes prospects spécifiques</em> sont prêts à payer aujourd'hui, à quel prix réel, avec quelles objections. Pour ça, tu dois <strong>parler à 5-10 personnes en face-à-face</strong> (cf <a href="trous-marche-ia.html">article 1.2 phase validation chiffrée</a>).</p>
+
+    <p>Une étude de marché 100 % desk research IA est <em>nécessaire</em> mais <em>pas suffisante</em>. Le marché chiffré confirme que tu es dans une zone viable. Les entretiens utilisateurs confirment que <em>ton offre spécifique</em> résout un problème assez douloureux pour qu'on paie. Sans les deux, tu lances dans le brouillard.</p>
+  </div>
+
+  <h3>Limite 3 — L'IA reflète des données passées</h3>
+
+  <div class="container reading">
+    <p>Les rapports sur lesquels l'IA s'appuie sont publiés avec 12-24 mois de décalage. Dans des secteurs qui bougent vite (IA elle-même, fintech, web3), les chiffres 2024 sont déjà obsolètes en 2026. L'IA ne le sait pas et te les présente comme actuels.</p>
+
+    <p><strong>Mitigation :</strong> exige des sources avec dates récentes (2025-2026). Cross-référence 2-3 sources. Pour les secteurs très dynamiques, complète avec des signaux temps-réel (volume de recherche Google Trends sur 6 mois, threads Reddit sur 30 jours, communiqués de presse récents). Cf <a href="trous-marche-ia.html">article 1.2</a> sur les signaux temps-réel.</p>
+  </div>
+
+  <h3>Limite 4 — L'IA ne juge pas la qualité des sources</h3>
+
+  <div class="container reading">
+    <p>Un rapport Statista et un blog post anonyme ont la même crédibilité textuelle pour un LLM. Si la source est dans son training data, l'IA ne distingue pas la rigueur. Elle te ressort le chiffre du blog avec autant de confiance que celui de l'INSEE.</p>
+
+    <p><strong>Mitigation :</strong> applique une hiérarchie explicite des sources. <strong>Tier 1 :</strong> données publiques officielles (INSEE, Eurostat, ACOSS, Census, World Bank). <strong>Tier 2 :</strong> rapports sectoriels payants vérifiables (Gartner, Forrester, IDC, McKinsey). <strong>Tier 3 :</strong> communiqués entreprises, financial reports, industry associations. <strong>Tier 4 :</strong> blogs spécialisés, médias business. <strong>À éviter :</strong> blogs anonymes, sites SEO génériques, articles non datés.</p>
+  </div>
+
+  <p class="pull-quote">L'IA accélère le scan de 50x. Mais elle ne remplace ni le contact terrain, ni la vérification critique des sources. C'est un outil puissant manié rigoureusement — pas un oracle qu'on consulte aveuglément.</p>
+
+  <!-- ============== PIÈGES ============== -->
+  <h2 class="reading"><span class="h2-num">— Bonus</span>5 <em>pièges</em> classiques.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>demander à l'IA « fais-moi une étude de marché »</em></div>
+    <div class="pitfall-text">Tu ouvres ChatGPT et tu demandes <em>« fais-moi une étude de marché complète sur les outils de facturation freelance en France »</em>. Output : un rapport de 3 pages avec des chiffres ronds (<em>« le marché pèse 200 M$ »</em>), des conclusions séduisantes (<em>« forte croissance attendue »</em>), aucune source vérifiable. Tu copies, tu colles, tu y crois. <strong>Correction :</strong> jamais de demande générique. Décompose en 6 étapes ascendant (cf section 2 de cet article). Force chaque chiffre à avoir une source vérifiable. Cross-référence systématiquement. C'est plus long, mais c'est rigoureux. Une étude IA générique non-sourcée vaut zéro et te trompe.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : <em>confondre TAM avec SOM</em></div>
+    <div class="pitfall-text">Tu écris <em>« mon marché fait 1 Md $, donc même 1 % = 10 M$, c'est énorme »</em>. Erreur classique. Le 1 Md$ est le TAM, le ciel théorique. Tu ne captureras jamais 1 %. Pour un solo en année 1-2, ton SOM réaliste est probablement 0,01-0,1 % du TAM, soit 100 K€ - 1 M€ — pas 10 M€. <strong>Correction :</strong> raisonne toujours en SOM, pas TAM. SOM = ce que tu peux <em>réellement</em> faire en 12-18 mois avec ta capacité d'acquisition. Si SOM × marge n'est pas viable pour toi, repense le projet — pas l'inverse.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>ignorer la tarification observée</em></div>
+    <div class="pitfall-text">Tu décides ton pricing avant d'analyser les concurrents. Tu te fies à ton intuition (<em>« 50 €/mois, ça paraît juste »</em>) ou à des règles de pouce (<em>« 10 % de la valeur créée »</em>). Tu lances. Tes prospects te répondent <em>« c'est trois fois plus cher que [Concurrent] »</em>. Tu réalises que tu n'avais pas fait l'analyse. <strong>Correction :</strong> livrable 2 obligatoire — tableau de 5-10 concurrents avec pricing entry/standard/premium. Tu te positionnes ensuite <em>en connaissance de cause</em> : low-cost, premium, ou différencié sur l'offre. Sans cette analyse, tu pricings aveuglément.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>sauter les entretiens face-à-face « parce que l'IA a validé »</em></div>
+    <div class="pitfall-text">L'IA te sort un beau rapport avec TAM/SAM/SOM, sources, tableaux. Tu te dis <em>« j'ai validé »</em>. Tu sautes les 5-10 entretiens utilisateurs. Tu construis 3 mois. Tu réalises que les acheteurs réels ont des objections que ton étude desk n'a pas captées (timing d'achat, processus de décision interne, intégrations existantes). <strong>Correction :</strong> étude IA + entretiens face-à-face = combo non-négociable. L'étude IA te dit <em>combien</em>. Les entretiens te disent <em>pourquoi</em> et <em>comment</em>. Sans les deux, tu n'as pas validé. Cf <a href="trous-marche-ia.html">article 1.2 sur la validation chiffrée 3 niveaux</a>.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : <em>traiter l'étude comme un livrable mort</em></div>
+    <div class="pitfall-text">Tu fais ton étude en 1 journée. Tu la sauvegardes dans un Drive. Tu l'oublies. 6 mois plus tard, tu galères avec ton acquisition et tu réalises que ton hypothèse de SOM était fausse — mais tu n'as pas mis à jour. <strong>Correction :</strong> traite l'étude comme un <em>document vivant</em>. Réserve 30 min/mois pour ajuster les chiffres avec les vraies données collectées (taux de conversion réel, ARPU réel observé, objections fréquentes terrain). Un VC TAM doit être recalculé trimestriellement (Span Global Services 2026) — pour un solo, mensuellement les 6 premiers mois, puis trimestriellement. C'est ce qui transforme l'étude d'exercice théorique en boussole opérationnelle.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>L'étude de marché en 1 journée n'est <strong>pas la fin du processus de validation</strong> — c'est l'étape qui te dit si ça vaut la peine de continuer (entretiens, MVP, lancement). <strong>Mon process :</strong> j'investis exactement 1 journée structurée (6-8 heures réelles) sur les 6 étapes ascendant, je produis les 4 livrables. Si SOM × marge est économiquement viable pour moi (couvre mes besoins + offre une marge de 50 %+), je passe à la phase entretiens. Si non, je n'investis pas un mois supplémentaire — je repense (pivote vers segment plus large, ou ARPU plus élevé, ou abandonne). Cette discipline brutale t'évite 6 mois investis sur un marché trop petit. <strong>Coût total :</strong> 20-50 € en tokens + abonnements ponctuels. <strong>ROI :</strong> potentiellement 6-12 mois de temps économisés à ne pas construire pour un marché trop petit. <strong>Suite logique :</strong> <a href="analyser-concurrents-avatar.html">article 1.4 sur l'analyse concurrents et la construction de l'avatar client</a> — décortiquer 5 concurrents en 2 heures pour cristalliser ton positionnement.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Tu as ton étude de marché. Pour aller plus loin : <a href="matrice-competences-marche.html">article 1.1 sur la matrice compétences × marché</a> (le pré-requis — où placer ton offre). <a href="trous-marche-ia.html">Article 1.2 sur les trous de marché</a> (la phase exploratoire avant l'étude chiffrée). <a href="analyser-concurrents-avatar.html">Article 1.4 sur l'analyse concurrents et avatar client</a> (la suite logique). Pour les outils IA d'analyse à grande échelle : <a href="guide-claude-debutant-2026.html">Claude</a> (long context idéal pour parser pricing pages), <a href="guide-chatgpt-debutant-2026.html">ChatGPT</a> avec recherche web, <a href="outils-ia.html">Perplexity et le panorama Niveau V des 81 outils</a>. Pour le panorama complet : <a href="niveau-6-trouver-idee.html">la rubrique R1 du Niveau VI</a>.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur l'étude de marché en 1 journée.</h3>
+    <ol class="recap-points">
+      <li>Le cadre TAM/SAM/SOM force à passer du <em>« il y a un gros marché »</em> intuitif à des chiffres défendables. <strong>TAM</strong> = revenus si 100 % market share zéro contraintes (ciel théorique). <strong>SAM</strong> = portion réellement servable avec business model + géo + capacités (10-50 % du TAM typiquement). <strong>SOM</strong> = portion capturable en 12-18 mois (1-5 % SAM B2B SaaS, 0,1-1 % pour solo français). Coût classique : 5-50 K€ et 2-3 mois. Coût IA-augmenté 2026 : 20-50 € et 1 journée, 89 % précision documentée.</li>
+      <li>Bottom-up bat top-down à tous les coups. <strong>Bottom-up</strong> = (count buyers qualifiés × ARPU/ACV par an), chaque chiffre sourcé et défendable. <strong>Top-down</strong> = (% d'un total category number publié) — facile à inflate, s'effondre au premier challenge. Utilise top-down comme vérification de cohérence seulement, jamais comme primaire. Anti-pattern : <em>« TAM 500 Md$ »</em> sans source — un TAM modeste sourcé bat un TAM gigantesque inventé.</li>
+      <li>Automatisation ascendant en 6 étapes (1 journée) : <strong>(1)</strong> définir l'unité de demande (30 min — buyer + product unit + geography à ACV/an), <strong>(2)</strong> count qualifying buyers (1-2h — INSEE/ACOSS/Eurostat/LinkedIn Sales Nav + Perplexity AI sources), <strong>(3)</strong> pricing observé (1-2h — Claude Opus 4.7 sur 5-10 concurrents), <strong>(4)</strong> TAM = 2 × 3 (15 min), <strong>(5)</strong> SAM avec filtres réels (1h), <strong>(6)</strong> SOM réalité exécution (1h — basé sur la capacité, pas en %).</li>
+      <li>4 livrables exploitables tenant en 4 pages : <strong>(1)</strong> TAM/SAM/SOM sourcé une page, <strong>(2)</strong> tableau pricing 5-10 concurrents (positionnement, entry/standard/premium, modèle, traction), <strong>(3)</strong> demande chiffrée (volume recherche + trajectoire 24 mois + saisonnalité), <strong>(4)</strong> carte géographique (top 5 zones par densité demande / concurrence). Format Notion/markdown — document vivant, pas PDF mort. Mise à jour mensuelle pendant 6 mois, trimestrielle ensuite.</li>
+      <li>4 limites honnêtes de l'IA à connaître : <strong>(1)</strong> hallucine sur les chiffres précis sans grounding (Perplexity ou Claude+web search obligatoires), <strong>(2)</strong> ne capture pas le terrain — entretiens 5-10 personnes face-à-face indispensables (cf <a href="trous-marche-ia.html">article 1.2</a>), <strong>(3)</strong> reflète des données passées 12-24 mois — exige sources 2025-2026 sur secteurs dynamiques, <strong>(4)</strong> ne juge pas la qualité des sources — applique hiérarchie 4 tiers (gov > rapports payants > entreprises > médias). <em>« A number without a source is an opinion. »</em></li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="analyser-concurrents-avatar.html">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">1.4 · Analyser tes concurrents et construire ton avatar client</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-6-trouver-idee.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Trouver ton idée · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

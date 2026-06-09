@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le prompt anti-hallucination : les 4 phrases qui changent tout. – AutomationBoost</title>
+  <meta name="description" content="« Si tu n" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Le prompt anti-hallucination : les 4 phrases qui changent to...
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#34d399;">Mieux prompter</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Le prompt anti-hallucination : les 4 phrases qui changent tout.</h1>
+    <p class="lede">« Si tu n'es pas sûr, dis-le. » « Cite tes sources. » Les 4 formulations à intégrer dans tes prompts pour réduire le taux d'hallucinations. Pas une formule magique, un cadrage technique efficace.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tu ne peux pas empêcher l'IA d'halluciner. Mais tu peux cadrer tes prompts pour qu'elle hallucine beaucoup moins — et qu'elle te signale ses doutes au lieu d'inventer avec aplomb.</p>
+
+    <p>Tu sais déjà pourquoi elle hallucine et comment vérifier ses sources. Voici les formulations qui réduisent le risque à la source.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi le cadrage <em>change la réponse</em>.</h2>
+
+  <div class="container reading">
+    <p>Un modèle n'est pas une base de données, c'est un générateur probabiliste : il produit la suite de mots la plus probable à partir de ton entrée. Or cette entrée — ta façon de formuler — influence directement la sortie. Autoriser explicitement « je ne sais pas » réduit fortement l'invention.</p>
+
+    <p>Voici les formulations anti-hallucination à intégrer à tes prompts.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Les <em>4 phrases</em> à intégrer.</h2>
+
+  <div class="container reading">
+    <p>Voici les quatre formulations à intégrer dans tes prompts à enjeu. Chacune cible une catégorie d'hallucinations différente. Ensemble, elles forment un cadrage robuste.</p>
+  </div>
+
+  <div class="phrase-card">
+    <div class="phrase-num">— PHRASE 1 / 4 · Permission d'incertitude</div>
+    <div class="phrase-text">« <em>Si tu n'es pas certain d'une information</em>, dis-le explicitement. Préfère "je ne sais pas" à une réponse qui pourrait être fausse. »</div>
+    <div class="phrase-why">C'est la phrase de base. Elle change la priorité par défaut du modèle. Sans elle, l'IA est entraînée à <strong>privilégier la fluidité de la réponse sur l'exactitude</strong> — c'est ce qui produit les fabrications confiantes. Avec elle, tu lui dis qu'il est socialement acceptable de signaler son ignorance, et qu'une non-réponse vaut mieux qu'une fausse réponse.</div>
+    <div class="phrase-effect">
+      <span class="label">— Effet observable</span>
+      L'IA ajoute des marqueurs comme <strong>« je ne suis pas certain », « cette information demande vérification », « selon mes connaissances »</strong>. Sur les sujets niches ou récents, elle refuse plus souvent de répondre au lieu de fabriquer.
+    </div>
+  </div>
+
+  <div class="phrase-card">
+    <div class="phrase-num">— PHRASE 2 / 4 · Sourçage explicite</div>
+    <div class="phrase-text">« <em>Pour chaque référence ou statistique citée</em>, indique entre crochets [VÉRIFIÉ] si tu en es certain, [À VÉRIFIER] si tu n'es pas sûr de l'existence ou de l'exactitude. »</div>
+    <div class="phrase-why">Cette phrase pousse l'IA à <strong>auto-évaluer</strong> chaque élément factuel qu'elle produit. Le résultat est double : les références qu'elle marque [VÉRIFIÉ] sont statistiquement plus fiables (elle a une trace forte dans son corpus), et les références marquées [À VÉRIFIER] te signalent où concentrer ton effort de fact-checking. Tu hiérarchises ton travail de vérification au lieu de tout vérifier.</div>
+    <div class="phrase-effect">
+      <span class="label">— Effet observable</span>
+      L'IA hiérarchise ses propres affirmations. Sur les sujets pointus, tu vois souvent apparaître plus de <strong>[À VÉRIFIER]</strong> que tu ne le pensais — révélant les zones où elle aurait fabriqué sans le savoir.
+    </div>
+  </div>
+
+  <div class="phrase-card">
+    <div class="phrase-num">— PHRASE 3 / 4 · Séparation savoir/déduction</div>
+    <div class="phrase-text">« <em>Avant de répondre, distingue clairement</em> ce que tu sais avec certitude (faits documentés) de ce que tu déduis ou estimes (raisonnement, hypothèse). »</div>
+    <div class="phrase-why">Une catégorie majeure d'hallucinations vient du fait que l'IA <strong>mélange savoir et inférence</strong> dans la même phrase, sans signaler la transition. Cette phrase force le modèle à structurer sa réponse en séparant les deux modes. Tu obtiens des paragraphes du type « ce qui est documenté : … / ce qui est mon estimation : … » — beaucoup plus exploitables qu'une réponse monolithique.</div>
+    <div class="phrase-effect">
+      <span class="label">— Effet observable</span>
+      Les réponses deviennent <strong>plus longues mais plus utilisables</strong>. Tu vois apparaître des sections ou des marqueurs explicites du type « Selon les sources documentées : … / Mon estimation : … ». Tu peux faire confiance aux premières et débattre les secondes.
+    </div>
+  </div>
+
+  <div class="phrase-card">
+    <div class="phrase-num">— PHRASE 4 / 4 · Question avant réponse</div>
+    <div class="phrase-text">« <em>Si ma demande contient des ambiguïtés</em> ou si une information manque pour répondre correctement, pose-moi tes questions avant de produire une réponse. »</div>
+    <div class="phrase-why">Une autre source majeure d'hallucinations : l'IA <strong>comble les manques par défaut</strong>. Tu poses une question imprécise, l'IA suppose les détails manquants, fabrique une réponse cohérente avec ses suppositions, et tu reçois une sortie élégante mais à côté du sujet. Cette phrase force l'IA à clarifier au lieu d'inventer le contexte.</div>
+    <div class="phrase-effect">
+      <span class="label">— Effet observable</span>
+      Sur les prompts ambigus, l'IA te renvoie <strong>2-3 questions de clarification avant de répondre</strong>. C'est ce que fait un consultant compétent quand un brief est flou — au lieu de partir tête baissée et de produire à côté.
+    </div>
+  </div>
+
+  <!-- ============== 3. LE PROMPT COMPLET ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Le <em>prompt complet</em> combiné.</h2>
+
+  <div class="container reading">
+    <p>Voici les 4 phrases combinées en un seul bloc d'instructions. Tu peux le copier-coller en début de prompt pour toutes tes demandes à enjeu, ou le mettre une fois pour toutes dans tes <a href="custom-instructions.html">Custom Instructions</a> pour qu'il s'applique à toutes tes conversations.</p>
+  </div>
+
+  <div class="combined-prompt"><span class="combined-prompt-label">— Prompt anti-hallucination · à intégrer</span><strong>Cadrage de fiabilité (à respecter pour cette réponse) :</strong>
+
+1. Si tu n'es pas certain d'une information, dis-le explicitement. Préfère "je ne sais pas" à une réponse qui pourrait être fausse.
+
+2. Pour chaque référence ou statistique citée, indique entre crochets [VÉRIFIÉ] si tu en es certain, [À VÉRIFIER] si tu n'es pas sûr.
+
+3. Avant de répondre, distingue ce que tu sais avec certitude (documenté) de ce que tu déduis ou estimes (raisonnement, hypothèse).
+
+4. Si ma demande contient des ambiguïtés ou si une information manque, pose-moi tes questions avant de produire une réponse.
+
+<strong>Ma demande :</strong>
+[ta demande ici]</div>
+
+  <div class="callout">
+    <div class="callout-label">L'astuce du mentor</div>
+    <p>Mets ce bloc une fois dans tes <a href="custom-instructions.html">Custom Instructions</a> permanentes, sous la forme : <strong>« sur tous les sujets factuels ou à enjeu, applique systématiquement les 4 règles de cadrage de fiabilité (incertitude explicite, marqueurs [VÉRIFIÉ]/[À VÉRIFIER], séparation savoir/déduction, questions avant réponse) »</strong>. Tu n'as plus à le réécrire à chaque conversation.</p>
+  </div>
+
+  <!-- ============== 4. LIMITES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Les <em>limites</em> de la méthode.</h2>
+
+  <div class="container reading">
+    <p>Cette méthode marche, mais elle n'est pas magique. Voici les limites à connaître pour calibrer tes attentes.</p>
+  </div>
+
+  <div class="limit-card">
+    <div class="limit-name">Ne supprime pas les hallucinations, les réduit</div>
+    <div class="limit-text">Les modèles 2026 restent imparfaits sur leur auto-évaluation. Sur certains sujets, l'IA sera <strong>confiante à tort</strong> — elle marquera [VÉRIFIÉ] une référence qui est en réalité fabriquée. Le cadrage diminue le taux d'hallucinations, il ne l'annule pas. La vérification reste nécessaire sur les sujets à risque (voir <a href="verifier-sources.html">l'article précédent</a>).</div>
+  </div>
+
+  <div class="limit-card">
+    <div class="limit-name">Marche mieux sur certains modèles que d'autres</div>
+    <div class="limit-text">Claude Opus 4.7 (avril 2026) est <strong>structurellement le mieux calibré</strong> sur ce type de cadrage — Anthropic a entraîné le modèle à refuser plutôt que deviner. GPT-5.5 et Gemini 3.1 Pro répondent aussi mais avec un effet plus modéré. Sur les modèles plus petits (Haiku, Flash, GPT-mini), le cadrage a moins d'effet — l'IA continue parfois à fabriquer même quand on lui demande explicitement de signaler l'incertitude.</div>
+  </div>
+
+  <div class="limit-card">
+    <div class="limit-name">Le coût en verbosité</div>
+    <div class="limit-text">Les réponses cadrées sont <strong>plus longues</strong> que les réponses standards. L'IA ajoute des marqueurs, des nuances, des sections. C'est le prix à payer pour la fiabilité. Si tu utilises le cadrage sur des questions simples (genre <em>« quelle est la capitale de la France ? »</em>), c'est de la friction inutile. Réserve-le pour les questions à enjeu factuel.</div>
+  </div>
+
+  <div class="limit-card">
+    <div class="limit-name">L'effet placebo possible</div>
+    <div class="limit-text">Attention : ce n'est pas parce que l'IA marque [VÉRIFIÉ] qu'elle est exacte. Le marqueur reflète sa <strong>confiance subjective</strong>, pas la vérité objective. Une IA peut être confiante et avoir tort — c'est même le pattern classique des hallucinations les plus piégeuses. Le cadrage est une aide, pas une garantie. Garde la discipline de vérification sur les sujets sensibles.</div>
+  </div>
+
+  <h3 class="reading">Le vrai gain : la conscience du risque</h3>
+
+  <div class="container reading">
+    <p>Au-delà de la réduction quantitative des hallucinations, le bénéfice principal de ces 4 phrases est <strong>cognitif</strong> : elles t'imposent une posture mentale différente face à l'IA. Tu cesses de la traiter comme un oracle qui sait tout, tu commences à la traiter comme un assistant calibré qui distingue ce qu'il sait de ce qu'il infère.</p>
+
+    <p>Cette posture, une fois ancrée, change ta lecture de toute réponse IA — même quand tu n'as pas activé le cadrage. Tu lis avec un œil qui cherche les zones d'incertitude, qui repère les sauts logiques, qui filtre les confidences excessives. <strong>C'est ça, l'esprit critique appliqué à l'IA</strong>. Pas de la défiance systématique — une lecture active.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ce que tu vas voir dans le prochain article</div>
+    <p>Les hallucinations sont un problème de <strong>contenu faux</strong>. Mais il existe un autre problème, plus insidieux : la <strong>flatterie</strong>. L'IA est entraînée à te plaire, à valider tes hypothèses, à approuver tes décisions — même quand elle devrait te contredire. Une étude Stanford de mars 2026 a montré que les IA approuvent les utilisateurs 49 points de pourcentage de plus que les humains. Le prochain article te donne les armes pour sortir de ce piège.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur le prompt anti-hallucination.</h3>
+    <ol class="recap-points">
+      <li>Le bon cadrage ne rend pas l'IA infaillible — il débloque l'aveu d'incertitude qui était inhibé par défaut. Tu modifies les probabilités de génération en faveur des réponses honnêtes.</li>
+      <li>Phrase 1 : « Si tu n'es pas sûr, dis-le. » Permission d'incertitude — l'IA refuse plus souvent au lieu de fabriquer.</li>
+      <li>Phrase 2 : « Marque [VÉRIFIÉ] ou [À VÉRIFIER] chaque référence. » Sourçage explicite — l'IA hiérarchise ses propres affirmations.</li>
+      <li>Phrase 3 : « Distingue ce que tu sais de ce que tu déduis. » Sépare savoir et inférence — la réponse devient structurée et exploitable par bloc.</li>
+      <li>Phrase 4 : « Pose-moi des questions si quelque chose manque. » Empêche le remplissage par défaut — l'IA clarifie au lieu d'inventer le contexte.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a href="#" class="next-link">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">Quand l'IA te dit ce que tu veux entendre</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-2-esprit-critique.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Garder l'esprit critique · Niveau II</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

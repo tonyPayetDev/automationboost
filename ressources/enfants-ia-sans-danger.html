@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apprendre à tes enfants à utiliser l'IA sans danger. – AutomationBoost</title>
+  <meta name="description" content="68 % des 8-16 ans utilisent déjà des chatbots IA, souvent à l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Apprendre à tes enfants à utiliser l'IA sans danger.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#22d3ee;">Au quotidien</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Apprendre à tes enfants à utiliser l'IA sans danger.</h1>
+    <p class="lede">68 % des enfants 8-16 ans interagissent déjà avec des chatbots IA, sans que leurs parents le sachent. Le guide parental complet pour 2026 : âges, usages encouragés vs encadrés, contrôles techniques, conversations à avoir.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Face à l'IA et tes enfants, deux options : interdire et espérer qu'ils ne contournent pas, ou accompagner et leur apprendre. La première ne marche pas. La seconde demande 30 minutes de lecture et un peu de courage.</p>
+
+    <p>L'angle mort est réel : une large part des enfants ont déjà discuté avec un chatbot IA, le plus souvent sans que leurs parents le sachent. Voici comment encadrer cet usage intelligemment, pour qu'il soit utile et sans danger.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 5</span>Pourquoi l'interdiction <em>ne marche pas</em>.</h2>
+
+  <div class="container reading">
+    <p>« Je n'achète pas, donc mon enfant ne l'utilise pas » est inopérant. L'IA est partout : versions gratuites sans compte, Snapchat, Instagram, Gemini dans la recherche, sur son téléphone comme sur celui de ses copains. Interdire ChatGPT en particulier ne bloque qu'une fraction des accès. Et l'école elle-même pousse ses propres outils.</p>
+
+    <p>La seule voie efficace est d'accompagner. Voici le système, étape par étape.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 5</span>Le cadre par <em>tranches d'âge</em>.</h2>
+
+  <div class="container reading">
+    <p>Voici les 5 paliers à connaître. Pour chacun : la règle d'or, les usages à encourager, ceux à fermer. Le découpage suit les développements cognitifs et émotionnels documentés (capacité de jugement abstrait, identification entre fiction/réalité, résistance à la flatterie, autonomie sociale).</p>
+  </div>
+
+  <div class="age-card">
+    <div class="age-num">— PALIER 1 / 5</div>
+    <div class="age-name"><em>0-6 ans</em> · L'IA n'a rien à faire ici</div>
+    <div class="age-rule">
+      <span class="label">— Règle d'or</span>
+      <strong>Aucune interaction directe enfant-IA.</strong> L'IA peut servir aux parents (créer une histoire, proposer une activité), jamais à l'enfant lui-même.
+    </div>
+    <div class="age-detail">À cet âge, <strong>l'enfant ne distingue pas une voix humaine d'une voix IA</strong>. Une étude MIT 2024 montre que les jeunes enfants attribuent intentions, émotions et autorité morale aux chatbots vocaux. Les laisser interagir crée un attachement qui n'a aucune base réelle, et confond les apprentissages relationnels primaires.</div>
+    <div class="age-detail"><span class="green">À ENCOURAGER :</span> utilisation par les parents pour créer des contenus personnalisés (histoire du soir avec le prénom de l'enfant, idées de jeux, planning d'activités). L'IA est un outil parental, jamais un compagnon de l'enfant.</div>
+    <div class="age-detail"><span class="red">À FERMER :</span> tablettes/jouets connectés avec assistants vocaux libres d'accès, chatbots éducatifs sans supervision active, écrans solitaires avec interface conversationnelle. Si tu utilises Alexa ou Google Home en présence de l'enfant, désactive le mode conversation libre — réponses simples uniquement.</div>
+  </div>
+
+  <div class="age-card">
+    <div class="age-num">— PALIER 2 / 5</div>
+    <div class="age-name"><em>7-9 ans</em> · Découverte accompagnée</div>
+    <div class="age-rule">
+      <span class="label">— Règle d'or</span>
+      <strong>L'IA s'utilise uniquement assis à côté d'un parent.</strong> Jamais seul, jamais sur un appareil personnel.
+    </div>
+    <div class="age-detail">À cet âge, l'enfant peut comprendre intellectuellement qu'il parle à une machine, mais <strong>il ne sait pas encore évaluer la fiabilité d'une réponse</strong>. Tout ce que l'IA dit lui semble vrai. C'est le moment idéal pour <em>l'initier au doute structuré</em> — pas pour le lâcher seul devant l'écran.</div>
+    <div class="age-detail"><span class="green">À ENCOURAGER :</span> sessions courtes (15-20 minutes) avec toi, sur des sujets qui l'intéressent (« Est-ce que les pieuvres ont vraiment 9 cerveaux ? »). À chaque réponse de l'IA, tu poses la question : <em>« Comment on pourrait vérifier ce qu'elle dit ? »</em>. Tu ouvres Wikipedia, tu compares. <strong>Tu construis l'idée que l'IA est intéressante mais peut se tromper.</strong></div>
+    <div class="age-detail"><span class="red">À FERMER :</span> usage solitaire, génération d'images réalistes (à cet âge la frontière fiction/réalité est encore poreuse), conversation prolongée sur des sujets émotionnels ou personnels.</div>
+  </div>
+
+  <div class="age-card">
+    <div class="age-num">— PALIER 3 / 5</div>
+    <div class="age-name"><em>10-12 ans</em> · Autonomie encadrée</div>
+    <div class="age-rule">
+      <span class="label">— Règle d'or</span>
+      <strong>Compte créé avec ton email parent, paramètres de confidentialité maximum, conversation hebdomadaire sur ses usages.</strong>
+    </div>
+    <div class="age-detail">L'enfant entre dans une zone où il peut utiliser l'IA seul pour des usages spécifiques, mais <strong>les conditions générales d'OpenAI/Anthropic exigent toujours 13 ans minimum</strong>. Si tu autorises l'usage entre 10 et 12 ans, tu le fais sous ton compte, ta supervision, tes règles. C'est une zone juridiquement grise mais parentalement gérable.</div>
+    <div class="age-detail"><span class="green">À ENCOURAGER :</span> aide aux devoirs <em>structurée comme un tuteur</em> et non comme une machine à réponses (voir <a href="tuteur-personnel-ia.html">l'article 1.2 sur le tuteur IA</a>). Recherches scolaires avec vérification systématique. Créativité (écrire une histoire ensemble, créer des jeux). <strong>L'IA explique, l'enfant comprend, l'enfant écrit lui-même.</strong></div>
+    <div class="age-detail"><span class="red">À FERMER :</span> faire les devoirs à sa place (l'enfant pose la question, copie la réponse), génération d'images de personnes réelles, conversations longues avec rôle-play (camarade imaginaire, petit ami virtuel), jeu autour du suicide ou de l'auto-destruction même en mode « blague » — l'IA est entraînée à éviter ces sujets mais peut être contournée par des prompts naïfs.</div>
+  </div>
+
+  <div class="age-card">
+    <div class="age-num">— PALIER 4 / 5</div>
+    <div class="age-name"><em>13-15 ans</em> · Autonomie réelle, supervision technique</div>
+    <div class="age-rule">
+      <span class="label">— Règle d'or</span>
+      <strong>Compte ChatGPT ado avec contrôles parentaux activés, alertes de sécurité paramétrées, conversation mensuelle.</strong>
+    </div>
+    <div class="age-detail">L'âge officiel d'usage commence à 13 ans pour ChatGPT. <strong>OpenAI a déployé en décembre 2025 des « U18 Principles »</strong> spécifiques pour les comptes adolescents : interdiction du jeu de rôle « ami intime » ou « âme sœur », alertes parents par email/SMS quand certains termes liés à l'auto-destruction sont détectés, redirection systématique vers ressources d'urgence. Ces protections ne fonctionnent que si <strong>le compte est créé en mode adolescent et lié à un compte parent</strong> — sinon tu as la version adulte.</div>
+    <div class="age-detail"><span class="green">À ENCOURAGER :</span> usage scolaire sérieux (révisions, tutorat, dissertation où l'IA aide à structurer mais ne rédige pas), recherches d'orientation professionnelle, projets créatifs autonomes, première exploration des limites (test critique de l'IA sur des sujets connus).</div>
+    <div class="age-detail"><span class="red">À FERMER :</span> conversations émotionnelles prolongées avec l'IA comme substitut relationnel, demande de conseil sur la santé mentale (à cet âge, redirection vers humain compétent obligatoire), partage de données personnelles sensibles, usage d'IA non encadré pour générer du contenu publié sur réseaux sociaux.</div>
+  </div>
+
+  <div class="age-card">
+    <div class="age-num">— PALIER 5 / 5</div>
+    <div class="age-name"><em>16-17 ans</em> · Confiance et compétences</div>
+    <div class="age-rule">
+      <span class="label">— Règle d'or</span>
+      <strong>Confiance par défaut, conversation ouverte plutôt que contrôle, formation aux usages professionnels.</strong>
+    </div>
+    <div class="age-detail">À cet âge, l'objectif n'est plus la surveillance — c'est <strong>la transmission d'une compétence professionnelle</strong>. L'IA fait partie du monde du travail dans lequel ton enfant entrera dans 1 à 5 ans. Les usages utiles maintenant sont les compétences qu'il monnayera plus tard. Pose les fondations.</div>
+    <div class="age-detail"><span class="green">À ENCOURAGER :</span> pratique des techniques avancées (<a href="anatomie-prompt-qui-marche.html">anatomie d'un prompt</a>, <a href="framework-ptcf-formule.html">PTCF</a>, <a href="reasoning-mode.html">reasoning mode</a>), usage en projet personnel ou pro (job d'été, mini-business), formation à la <a href="hallucinations-ia.html">détection des erreur inventées</a> et à la <a href="quand-ia-veut-plaire.html">sycophancy</a>. À ce stade, ton enfant peut commencer à utiliser le site AutomationBoost à partir du <a href="premiers-pas-ia.html">Niveau I</a>.</div>
+    <div class="age-detail"><span class="red">À FERMER :</span> les seuls vrais drapeaux rouges qui restent — usage compulsif (>3h/jour de conversation IA non productive), substitution relationnelle (l'IA remplace les amis), dépendance affective (pleurs ou détresse quand l'IA n'est pas accessible). Voir <a href="5-signes-trop-dependant-ia.html">les 5 signes de dépendance</a>.</div>
+  </div>
+
+  <!-- ============== 3. CONTRÔLES TECHNIQUES ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 5</span>Les <em>contrôles techniques</em> à activer (10 minutes).</h2>
+
+  <div class="container reading">
+    <p>Les règles ne suffisent pas — il faut activer les protections techniques. Voici la liste opérationnelle pour chaque outil principal en 2026. Compte 10 minutes au total. À refaire idéalement une fois par an car les paramètres évoluent.</p>
+  </div>
+
+  <div class="setting-card">
+    <div class="setting-name">ChatGPT · <em>Compte adolescent</em> 13-17 ans</div>
+    <div class="setting-steps"><strong>Étape 1 :</strong> créer le compte avec ton email parent. <strong>Étape 2 :</strong> aller dans <code>Settings → Personalization → Memory</code> et désactiver. <strong>Étape 3 :</strong> aller dans <code>Settings → Data Controls → Improve the model</code> et désactiver. <strong>Étape 4 :</strong> aller dans <code>Settings → Family</code> et lier le compte ado au compte parent. <strong>Étape 5 :</strong> activer les <em>safety alerts</em> par email pour être notifié en cas de signaux de détresse détectés. <strong>Étape 6 :</strong> activer les <em>quiet hours</em> (plages horaires où ChatGPT ne répond pas, typiquement 22h-7h).</div>
+  </div>
+
+  <div class="setting-card">
+    <div class="setting-name">Claude · <em>18+ officiel</em> mais usage encadré possible</div>
+    <div class="setting-steps">Anthropic positionne Claude pour 18 ans uniquement et n'offre <strong>aucun contrôle parental dédié</strong>. Si ton ado utilise Claude (notamment pour son <a href="ia-ecrire-comme-humain.html">excellence sur l'écriture</a> ou son <a href="hallucinations-ia.html">moindre taux d'erreur inventée</a>), utilise les <a href="custom-instructions.html">Custom Instructions</a> pour cadrer : <em>« Tu parles à un adolescent de [âge]. Reste informatif et précis. Ne fais jamais de jeu de rôle émotionnel. Sur les sujets sensibles (santé mentale, relations, sexualité), redirige vers un adulte compétent. »</em>. Imparfait mais utile.</div>
+  </div>
+
+  <div class="setting-card">
+    <div class="setting-name">Gemini · <em>via Google Family Link</em></div>
+    <div class="setting-steps">Si ton enfant a un compte Google géré par Family Link, tu peux contrôler l'accès à Gemini directement depuis l'application Family Link. <strong>Pour les moins de 13 ans :</strong> Gemini est par défaut bloqué ou restreint via Family Link. <strong>Pour les 13-17 ans :</strong> Gemini est accessible mais avec filtres renforcés et logs visibles côté parent. Vérifier dans <code>Family Link → Compte enfant → Contrôles → IA et services Google</code>.</div>
+  </div>
+
+  <div class="setting-card">
+    <div class="setting-name">Snapchat AI, Meta AI · <em>Désactivation</em></div>
+    <div class="setting-steps">Ces IA intégrées dans les apps sociales ont le moins de contrôles. <strong>Snapchat My AI :</strong> désactivable dans <code>Profil → Paramètres → My AI → Effacer l'historique + masquer</code>. Sur compte ado, certaines limitations sont automatiques. <strong>Meta AI (Instagram, WhatsApp) :</strong> moins facile à désactiver, mais limiter via <code>Paramètres → Compte → Famille</code> sur Instagram pour les ados.</div>
+  </div>
+
+  <div class="setting-card">
+    <div class="setting-name">Niveau OS · <em>Filtre global</em></div>
+    <div class="setting-steps">Pour aller plus loin : sur iOS, <code>Réglages → Temps d'écran → Restrictions de contenu</code> permet de bloquer ou limiter les apps IA. Sur Android, Family Link couvre le système entier. Sur le Wi-Fi domestique, certains routeurs permettent de bloquer des domaines (chat.openai.com, claude.ai, gemini.google.com) — utile pour les enfants 8-12 ans.</div>
+  </div>
+
+  <div class="callout-warn">
+    <div class="callout-warn-label">⚠ Limite réaliste à connaître</div>
+    <p>Aucun de ces contrôles n'est étanche. Un ado motivé contourne via le téléphone d'un copain, un VPN, ou une nouvelle app inconnue de toi. <strong>Les contrôles techniques sont un filet, pas un mur.</strong> Le vrai dispositif de protection reste la qualité de la relation et des conversations que tu as avec lui — c'est la section suivante. Sans elle, tous les contrôles techniques du monde ne servent à rien.</p>
+  </div>
+
+  <!-- ============== 4. LES 4 CONVERSATIONS ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 5</span>Les <em>4 conversations</em> à avoir.</h2>
+
+  <div class="container reading">
+    <p>Au-delà des règles et des paramètres, le levier principal est conversationnel. Voici les 4 conversations à provoquer, idéalement entre 10 et 15 ans, et à reprendre régulièrement. Pas en mode sermon — en mode discussion.</p>
+  </div>
+
+  <div class="use-card">
+    <div class="use-name">Conversation 1 · L'IA peut <em>se tromper</em></div>
+    <div class="use-text">Le concept clé : l'IA ne <em>sait</em> pas, elle <em>prédit</em> ce qui ressemble à une bonne réponse. Donne-lui un exemple concret — demande à ChatGPT une question dont vous connaissez tous les deux la réponse exacte (sa date d'anniversaire dans un contexte donné, le nombre de joueurs dans son équipe préférée), regardez l'IA hésiter ou se tromper. <strong>Cet exercice fait plus pour son esprit critique qu'une heure de discours.</strong> Voir <a href="hallucinations-ia.html">l'article sur les erreur inventées</a>.</div>
+  </div>
+
+  <div class="use-card">
+    <div class="use-name">Conversation 2 · L'IA <em>flatte</em> par défaut</div>
+    <div class="use-text">Le concept clé : l'IA est entraînée à te faire plaisir, pas à te dire ce qui est juste. Démonstration concrète — proposez ensemble à l'IA une idée volontairement faible (« Je veux écrire un livre sur les chats roux qui parlent espagnol »), regardez-la l'encourager comme si c'était brillant. Discute ensuite avec ton enfant : <em>« Si l'IA te dit que ton idée est géniale, qu'est-ce que ça vaut comme validation ? »</em>. Voir <a href="quand-ia-veut-plaire.html">l'article sur la sycophancy</a>.</div>
+  </div>
+
+  <div class="use-card">
+    <div class="use-name">Conversation 3 · L'IA <em>n'est pas un ami</em></div>
+    <div class="use-text">Le concept clé : l'IA simule la conversation mais ne te connaît pas, ne se souvient pas vraiment de toi (sauf cadre technique précis), et n'a aucune relation réelle avec toi. Conversation à avoir surtout entre 12 et 16 ans, période où certains adolescents développent des relations parasociales avec les chatbots. <strong>Plusieurs procès aux USA en 2024-2025 ont impliqué des suicides d'ados qui considéraient l'IA comme leur confident principal.</strong> La conversation à avoir n'est pas alarmiste — c'est une explication structurelle : <em>« Ce que tu confies à l'IA n'est pas écouté par quelqu'un qui te porte. Si tu vas mal, parle à un humain qui te connaît, ou à un professionnel. »</em>.</div>
+  </div>
+
+  <div class="use-card">
+    <div class="use-name">Conversation 4 · Tes <em>données</em> ne reviennent pas</div>
+    <div class="use-text">Le concept clé : tout ce que tu écris à l'IA peut être stocké, utilisé pour entraîner les modèles, potentiellement consulté par des humains. Démonstration : montrez ensemble les paramètres de confidentialité, expliquez la différence entre désactiver et ne pas désactiver l'entraînement. Conversation à avoir entre 10 et 13 ans. <strong>L'enjeu pour ton enfant n'est pas la vie privée abstraite — c'est sa réputation future.</strong> Une conversation gênante avec l'IA à 12 ans peut, théoriquement, ressortir d'une manière inattendue à 22 ans. Voir <a href="memoire-ia.html">l'article sur la mémoire et la confidentialité IA</a>.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">L'astuce du mentor</div>
+    <p>Ces 4 conversations sont 10x plus efficaces si tu les fais <strong>en utilisant l'IA toi-même devant ton enfant</strong>. Pose des questions à l'IA en sa présence, vérifie les réponses ensemble, montre-lui tes propres erreurs et hésitations. <strong>Ce que tu fais l'enseigne plus que ce que tu dis</strong>. Si tu utilises l'IA en cachant l'écran ou en évitant le sujet, tu envoies le message exactement opposé à celui que tu veux transmettre. La parentalité IA est avant tout une parentalité par l'exemple.</p>
+  </div>
+
+  <!-- ============== 5. SI ÇA DÉRAPE ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 5 / 5</span>Que faire <em>si ça dérape</em>.</h2>
+
+  <h3 class="reading">Les 5 signaux d'alerte à surveiller</h3>
+
+  <div class="container reading">
+    <p>Au-delà du bon usage, voici les signaux qui doivent te faire intervenir activement. Aucun n'est anodin — chacun mérite une conversation immédiate avec ton enfant.</p>
+
+    <p><strong>Signal 1 : il préfère parler à l'IA qu'à un humain.</strong> Quand un sujet difficile arrive, sa réaction n'est plus de venir vers toi ou un ami — c'est d'ouvrir l'IA. Cette substitution relationnelle est documentée chez 7 % des ados utilisateurs intensifs (étude Common Sense Media 2025). À traiter immédiatement, pas par interdiction mais par reconnexion familiale.</p>
+
+    <p><strong>Signal 2 : il développe une émotion forte vis-à-vis de l'IA.</strong> Tristesse quand l'app ne fonctionne pas, jalousie envers d'autres usagers, sentiment de connexion intime. Les LLMs simulent l'empathie — ce simulacre peut produire un attachement réel chez un cerveau adolescent, sans réciprocité possible.</p>
+
+    <p><strong>Signal 3 : il copie sans comprendre.</strong> Tu observes que ses devoirs sont au-dessus de son niveau habituel, ses textes ont un vocabulaire qu'il n'utilise jamais, il ne sait pas expliquer ce qu'il a écrit. C'est de l'usage <em>extractif</em> — l'IA fait à sa place. Conversation cadre nécessaire — voir <a href="tuteur-personnel-ia.html">la méthode du tuteur IA</a> pour reconfigurer l'usage en mode pédagogique.</p>
+
+    <p><strong>Signal 4 : il consulte l'IA pour des sujets qui demandent un humain.</strong> Conseils médicaux personnels, sujets de santé mentale, questions juridiques le concernant, conflits relationnels. <strong>Sur ces sujets, l'IA ne doit pas être la première source</strong> — voir <a href="7-cas-jamais-confiance.html">les 7 cas où ne jamais faire confiance à l'IA seule</a>.</p>
+
+    <p><strong>Signal 5 : usage compulsif.</strong> Plus de 2 heures par jour de conversation IA non productive (hors usage scolaire ciblé), incapacité à arrêter quand tu le demandes, irritabilité sans accès. Comportement qui dépasse l'outil et entre dans le domaine de l'addiction comportementale.</p>
+  </div>
+
+  <h3 class="reading">Quand consulter un humain compétent</h3>
+
+  <div class="container reading">
+    <p>Si plusieurs des signaux ci-dessus sont présents simultanément, ou si ton enfant manifeste une détresse psychique au-delà de l'usage IA, <strong>l'IA n'est plus le bon premier interlocuteur — un humain compétent l'est</strong>. Médecin traitant pour orientation, psychologue pour adolescents, ou pour les cas urgents le <strong>3114 (numéro national de prévention du suicide)</strong> ou le 119 (allô enfance en danger) selon la situation.</p>
+
+    <p>Ces ressources ne remplacent pas la relation parent-enfant — elles la complètent. <strong>Le but n'est pas de transférer le problème à un professionnel pour t'en décharger, c'est d'avoir un allié humain pour t'aider à accompagner.</strong></p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>L'IA chez les enfants est probablement le sujet parental le plus mal préparé de la décennie 2020. Personne n'a de manuel — tes parents n'ont pas eu à gérer ça pour toi, les écoles improvisent, les éditeurs IA sont en réaction permanente face à des incidents qu'ils n'avaient pas anticipés. <strong>Tu vas faire des erreurs. Ce n'est pas grave.</strong> L'enjeu n'est pas la perfection du dispositif — c'est la qualité de la relation que tu maintiens avec ton enfant pour pouvoir corriger en cours de route. Si à la fin de l'enfance tu as deux choses, tu as réussi : (1) ton enfant peut utiliser l'IA comme un outil professionnel, et (2) ton enfant te parle quand quelque chose le préoccupe avec l'IA. Le reste est secondaire.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Pour aller plus loin : <a href="tuteur-personnel-ia.html">l'article 1.2 sur le tuteur IA</a> (méthode-mère pour les devoirs accompagnés), <a href="hallucinations-ia.html">les erreur inventées</a> et <a href="quand-ia-veut-plaire.html">la sycophancy</a> (à expliquer à ton enfant), <a href="5-signes-trop-dependant-ia.html">les 5 signes de dépendance</a> (à surveiller chez l'ado), <a href="7-cas-jamais-confiance.html">les 7 cas où ne jamais faire confiance à l'IA seule</a> (santé mentale, médical en tête), <a href="memoire-ia.html">la mémoire et la confidentialité IA</a> (à activer correctement sur le compte de ton enfant).</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur l'IA et tes enfants.</h3>
+    <ol class="recap-points">
+      <li>68 % des enfants 8-16 ans interagissent déjà avec des chatbots IA, en majorité sans que leurs parents le sachent (Stanford 2025-2026). L'interdiction simple ne fonctionne pas — l'IA est partout, l'école pousse ses outils, et l'esprit critique se construit par exposition accompagnée. La seule stratégie viable est l'accompagnement structuré.</li>
+      <li>Cadre par âges : 0-6 ans (aucune interaction directe enfant-IA), 7-9 ans (uniquement à côté d'un parent), 10-12 ans (compte parent, paramètres max, conversation hebdomadaire), 13-15 ans (compte ado avec U18 Principles activés, contrôles parentaux), 16-17 ans (confiance + transmission de compétences pro).</li>
+      <li>Contrôles techniques (10 min) : ChatGPT compte ado lié au compte parent + safety alerts + quiet hours, Claude via Custom Instructions car pas de contrôles parentaux natifs (officiellement 18+), Gemini via Google Family Link, Snapchat/Meta AI à désactiver, filtre OS au niveau iOS/Android. Aucun contrôle n'est étanche — c'est un filet, pas un mur.</li>
+      <li>4 conversations à avoir : l'IA peut se tromper (démonstration concrète), l'IA flatte par défaut (démonstration concrète), l'IA n'est pas un ami (procès USA 2024-2025 sur substitution relationnelle), tes données ne reviennent pas (paramètres ensemble). 10x plus efficaces si tu utilises toi-même l'IA devant ton enfant.</li>
+      <li>5 signaux d'alerte : préfère l'IA aux humains pour les sujets difficiles, émotion forte vis-à-vis de l'IA, copie sans comprendre, consulte sur sujets qui demandent un humain (santé/juridique/relations), usage compulsif (>2h/jour non productif). En cas de cumul ou détresse : médecin, psychologue, 3114 ou 119 selon la situation.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="tuteur-personnel-ia.html">
+        <div class="next-link-label">— Article complémentaire</div>
+        <div class="next-link-title">Transformer ton IA en tuteur personnel (méthode-mère)</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-3-vie-quotidienne.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Vie quotidienne · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

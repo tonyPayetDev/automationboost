@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le framework CRISPE : pour les analyses nuancées. – AutomationBoost</title>
+  <meta name="description" content="Le framework CRISPE pour faire raisonner l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Le framework CRISPE : pour les analyses nuancées.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#34d399;">Mieux prompter</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Le framework CRISPE : pour les analyses nuancées.</h1>
+    <p class="lede">CRISPE fait raisonner l'IA avec une perspective claire et un ton défini. Le framework du conseil, de la critique et du raisonnement subtil. Quand la personnalité de l'IA compte autant que son contenu.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Certaines questions n'attendent pas une « bonne réponse » mais un point de vue. Quand tu demandes « critique mon raisonnement » ou « joue mon contradicteur », tu ne veux pas une réponse moyenne.</p>
+
+    <p>CRISPE est le framework taillé pour ces demandes de nuance et de regard critique. Voici comment l'utiliser.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi un framework <em>dédié à la nuance</em>.</h2>
+
+  <div class="container reading">
+    <p>Les frameworks classiques visent une sortie précise. Mais pour obtenir un vrai point de vue — critique, contradiction, exploration de plusieurs angles — il faut cadrer autrement : définir un rôle, une posture et une latitude d'expression. C'est ce que fait CRISPE.</p>
+
+    <p>Voici ses composants et comment les activer.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 6</span>Les <em>6 piliers</em> de CRISPE.</h2>
+
+  <div class="container reading">
+    <p>CRISPE est l'acronyme anglais de <strong>C</strong>apacity, <strong>R</strong>ole, <strong>I</strong>nsight, <strong>S</strong>tatement, <strong>P</strong>ersonality, <strong>E</strong>xperiment. En français : Capacité, Rôle, Perspective, Mission, Personnalité, Variantes. Six piliers dont l'ordre compte moins que la combinaison.</p>
+  </div>
+
+  <!-- PILIER C -->
+  <div class="pillar-block">
+    <div class="pillar-header">
+      <div class="pillar-letter-big">C</div>
+      <div>
+        <div class="pillar-name-big">Capacité (Capacity)</div>
+        <div class="pillar-question">Quel niveau d'expertise ?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>Le niveau de maîtrise que tu attribues à l'IA. Différent du Rôle suivant : la capacité ne dit pas <em>quelle</em> profession l'IA exerce, mais <em>à quel niveau</em>. Junior ? Senior ? Expert mondialement reconnu ? La capacité calibre la profondeur attendue de l'analyse.</p>
+
+    <p>Plus tu montes en capacité, plus l'IA active des connaissances spécialisées et des nuances. <em>« Tu es un avocat »</em> donne une réponse correcte. <em>« Tu es un avocat associé senior, 20 ans d'expérience, spécialisé en M&A »</em> active un registre beaucoup plus fin.</p>
+  </div>
+
+  <!-- PILIER R -->
+  <div class="pillar-block">
+    <div class="pillar-header">
+      <div class="pillar-letter-big">R</div>
+      <div>
+        <div class="pillar-name-big">Rôle (Role)</div>
+        <div class="pillar-question">Quel métier ou fonction ?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>Le métier précis. Combiné à la Capacité, il donne le profil complet de l'expert dont tu sollicites l'avis. Différent du Persona dans PTCF : ici on cherche moins le ton qu'<strong>une grille d'analyse professionnelle</strong>.</p>
+
+    <p>Un coach et un consultant donneront des réponses fondamentalement différentes sur la même question — pas parce qu'ils ont des opinions différentes, mais parce que leur grille de lecture professionnelle est différente. Le coach voit des dynamiques relationnelles, le consultant voit des structures et des process. CRISPE active explicitement la grille du métier choisi.</p>
+  </div>
+
+  <!-- PILIER I -->
+  <div class="pillar-block">
+    <div class="pillar-header">
+      <div class="pillar-letter-big">I</div>
+      <div>
+        <div class="pillar-name-big">Perspective (Insight)</div>
+        <div class="pillar-question">À travers quel angle d'attaque ?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>Le pilier qui n'a pas d'équivalent dans les autres frameworks et qui fait toute la spécificité de CRISPE. Tu précises l'<strong>angle particulier</strong> sous lequel l'expert doit aborder la question. Un même expert peut avoir plusieurs perspectives possibles selon le contexte.</p>
+
+    <p>Exemples : <em>« perspective : la rentabilité court-terme »</em>, <em>« perspective : la durabilité éthique »</em>, <em>« perspective : ce qui se passe quand ça tourne mal »</em>, <em>« perspective : le point de vue du client final, pas du gestionnaire »</em>. La perspective est la lentille à travers laquelle l'analyse va se déployer.</p>
+  </div>
+
+  <!-- PILIER S -->
+  <div class="pillar-block">
+    <div class="pillar-header">
+      <div class="pillar-letter-big">S</div>
+      <div>
+        <div class="pillar-name-big">Mission (Statement)</div>
+        <div class="pillar-question">Que dois-tu produire concrètement ?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>L'équivalent de la Tâche dans PTCF, mais formulée comme une mission qualifiée. Au lieu de <em>« analyse cette stratégie »</em>, tu écris <em>« critique cette stratégie en identifiant les 3 hypothèses les plus fragiles »</em>, ou <em>« évalue cette stratégie comme tu le ferais en comité de direction »</em>. La mission précise le format du rendu attendu, pas juste le sujet.</p>
+  </div>
+
+  <!-- PILIER P -->
+  <div class="pillar-block">
+    <div class="pillar-header">
+      <div class="pillar-letter-big">P</div>
+      <div>
+        <div class="pillar-name-big">Personnalité (Personality)</div>
+        <div class="pillar-question">Comment dois-tu t'exprimer ?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>Le trait de caractère que tu attribues à l'expert. Direct ? Diplomatique ? Sceptique ? Provocateur ? Analytique froid ? Bienveillant exigeant ? Ce pilier débloque la sortie du <em>« ton neutre par défaut »</em> et permet à l'IA de prendre vraiment position.</p>
+
+    <p>La personnalité change radicalement le résultat. Une critique <em>« avec un ton diplomatique »</em> et une critique <em>« avec un ton de mentor exigeant qui ne ménage pas son interlocuteur »</em> portent les mêmes points mais ne produisent pas les mêmes effets sur ta pensée. Ne sous-estime pas ce pilier — c'est ce qui fait que CRISPE produit des prompts mémorables là où les autres frameworks produisent des prompts corrects.</p>
+  </div>
+
+  <!-- PILIER E -->
+  <div class="pillar-block">
+    <div class="pillar-header">
+      <div class="pillar-letter-big">E</div>
+      <div>
+        <div class="pillar-name-big">Variantes (Experiment)</div>
+        <div class="pillar-question">Combien de versions différentes ?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>Le pilier qui demande à l'IA de produire <strong>plusieurs versions</strong> de la même analyse, avec des paramètres légèrement différents. Au lieu d'obtenir une seule sortie figée, tu obtiens 2 ou 3 angles complémentaires que tu peux confronter.</p>
+
+    <p>Exemples : <em>« propose-moi 2 versions : une qui privilégie la prudence, une qui privilégie la prise de risque »</em>, <em>« donne-moi 3 critiques différentes selon 3 points de vue : l'investisseur, le client, l'employé »</em>. Ce pilier transforme un prompt en mini-laboratoire où tu testes des hypothèses en parallèle.</p>
+  </div>
+
+  <!-- ============== 3. TEMPLATE ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 6</span>Le <em>template</em> à recopier.</h2>
+
+  <div class="template-block">
+    <div class="template-header">— Le template CRISPE universel</div>
+    <div class="template-line">
+      <div class="template-letter">C</div>
+      <div class="template-content"><span class="label">Capacité :</span> agis comme un <span class="placeholder">[niveau d'expertise — junior / senior / expert reconnu]</span>.</div>
+    </div>
+    <div class="template-line">
+      <div class="template-letter">R</div>
+      <div class="template-content"><span class="label">Rôle :</span> tu es <span class="placeholder">[métier précis avec spécialisation]</span>.</div>
+    </div>
+    <div class="template-line">
+      <div class="template-letter">I</div>
+      <div class="template-content"><span class="label">Perspective :</span> aborde le sujet sous l'angle de <span class="placeholder">[angle d'analyse précis]</span>.</div>
+    </div>
+    <div class="template-line">
+      <div class="template-letter">S</div>
+      <div class="template-content"><span class="label">Mission :</span> ta tâche est de <span class="placeholder">[verbe d'action qualifié + objet de l'analyse]</span>.</div>
+    </div>
+    <div class="template-line">
+      <div class="template-letter">P</div>
+      <div class="template-content"><span class="label">Personnalité :</span> exprime-toi avec un ton <span class="placeholder">[trait de caractère précis]</span>.</div>
+    </div>
+    <div class="template-line">
+      <div class="template-letter">E</div>
+      <div class="template-content"><span class="label">Variantes :</span> propose <span class="placeholder">[X]</span> versions différentes selon <span class="placeholder">[critère de variation]</span>.</div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>Six lignes. Compte 3 à 5 minutes pour rédiger un prompt CRISPE complet. C'est plus rapide que RISEN parce que les piliers sont moins descriptifs (pas d'étapes à séquencer) et plus calibrés sur l'attitude que sur le contenu.</p>
+  </div>
+
+  <!-- ============== 4. EXEMPLE ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 6</span>Exemple complet : <em>critiquer une idée de business</em>.</h2>
+
+  <div class="container reading">
+    <p>Voici un cas concret. Tu as une idée d'application mobile et tu veux qu'on te pousse dans tes retranchements avant de te lancer. Tu ne veux pas une analyse SWOT polie — tu veux qu'on te dise tout ce qui pourrait clocher dans ton plan.</p>
+  </div>
+
+  <div class="prompt-example"><span class="label">Capacité :</span> agis comme un investisseur en capital-risque expert, qui a évalué plus de 500 pitchs ces 10 dernières années et qui a vu beaucoup d'idées prometteuses échouer.
+
+<span class="label">Rôle :</span> tu es associé dans un fonds early-stage spécialisé dans le SaaS B2B et les applications mobiles consumer. Ton métier au quotidien : trier les bonnes idées des mauvaises en moins de 30 minutes.
+
+<span class="label">Perspective :</span> aborde mon idée sous l'angle de ce qui pourrait la faire échouer dans les 18 premiers mois — concurrence, acquisition utilisateur, modèle économique, exécution opérationnelle. Pas l'angle « tout va bien si on se donne les moyens ».
+
+<span class="label">Mission :</span> identifie les 5 hypothèses les plus fragiles de mon idée, ordonne-les par risque décroissant, et pour chacune indique ce que je devrais tester en priorité avant d'investir du temps ou de l'argent.
+
+<span class="label">Personnalité :</span> exprime-toi avec un ton direct, sans diplomatie excessive, comme tu le ferais en comité d'investissement entre associés. Tu peux être sceptique. Tu n'es pas là pour me plaire, tu es là pour me sauver de mes propres biais.
+
+<span class="label">Variantes :</span> à la fin, propose 2 versions de ton verdict global : une plus optimiste (« voici à quelles conditions je m'engagerais »), une plus pessimiste (« voici pourquoi je passerais »). Sans choisir entre les deux.
+
+Mon idée : <span class="placeholder">[décris ton idée en 5 phrases, avec le marché visé, la proposition de valeur, le modèle économique]</span>.</div>
+
+  <div class="container reading">
+    <p>Avec un prompt PTCF basique (<em>« évalue mon idée de business »</em>), tu aurais obtenu un panorama équilibré qui dit que <em>« ça peut marcher si tu fais ceci, mais attention à cela »</em>. Avec CRISPE, tu obtiens une critique tranchée, hiérarchisée, accompagnée de tests concrets, et avec deux verdicts complémentaires que tu peux confronter à ta propre intuition.</p>
+
+    <p>Le pilier <em>Personnalité</em> est ce qui débloque la qualité ici : <em>« sans diplomatie excessive »</em> + <em>« tu n'es pas là pour me plaire »</em> donne à l'IA la permission de te dire ce que tu n'as pas envie d'entendre. Sans cette permission, elle reste polie par défaut.</p>
+  </div>
+
+  <!-- ============== 5. GRILLE 3 FRAMEWORKS ============== -->
+  <h2 class="reading"><span class="h2-num">— 5 / 6</span>PTCF, RISEN ou CRISPE : <em>la grille des 3</em>.</h2>
+
+  <div class="container reading">
+    <p>Tu as maintenant trois frameworks dans ton arsenal. Voici la grille pour choisir le bon en moins de 10 secondes.</p>
+  </div>
+
+  <div class="compare">
+    <table>
+      <thead>
+        <tr>
+          <th>Quand le prompt vise...</th>
+          <th>Utilise</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Une action ponctuelle (rédiger, résumer, traduire)</td>
+          <td>PTCF</td>
+        </tr>
+        <tr>
+          <td>Un livrable structuré en plusieurs étapes (procédure, plan, audit)</td>
+          <td>RISEN</td>
+        </tr>
+        <tr>
+          <td>Une analyse nuancée avec un point de vue assumé (conseil, critique)</td>
+          <td>CRISPE</td>
+        </tr>
+        <tr>
+          <td>Une décision où tu veux confronter plusieurs angles</td>
+          <td>CRISPE (avec le pilier Variantes)</td>
+        </tr>
+        <tr>
+          <td>Un sparring intellectuel ou un contradicteur</td>
+          <td>CRISPE</td>
+        </tr>
+        <tr>
+          <td>Un cours ou une explication technique</td>
+          <td>PTCF (avec « étape par étape »)</td>
+        </tr>
+        <tr>
+          <td>Un audit complet d'un système ou d'un document</td>
+          <td>RISEN</td>
+        </tr>
+        <tr>
+          <td>Une critique constructive d'un travail que tu as produit</td>
+          <td>CRISPE</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Test rapide pour choisir</div>
+    <p>Trois questions à te poser dans l'ordre :<br>1. <strong>Le livrable nécessite-t-il plusieurs sous-étapes en séquence ?</strong> → si oui, RISEN.<br>2. <strong>Tu attends une opinion plutôt qu'une analyse neutre ?</strong> → si oui, CRISPE.<br>3. Si non aux deux → PTCF.</p>
+  </div>
+
+  <!-- ============== 6. ERREURS ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 6 / 6</span>Les <em>3 erreurs typiques</em> avec CRISPE.</h2>
+
+  <h3 class="reading">Erreur 1 : sous-spécifier la Personnalité</h3>
+
+  <div class="container reading">
+    <p>L'erreur n°1. Tu écris <em>« tu es un consultant senior »</em> et tu t'arrêtes là. La Capacité et le Rôle sont posés, mais sans Personnalité, l'IA reste dans son ton neutre par défaut. Résultat : un prompt CRISPE qui se comporte comme un PTCF basique.</p>
+
+    <p>Le pilier P est ce qui débloque vraiment l'utilité de CRISPE. Force-toi à toujours écrire au moins une phrase sur le ton attendu, et idéalement à donner explicitement la permission de dire des choses inconfortables (<em>« tu peux être sceptique »</em>, <em>« n'hésite pas à challenger »</em>, <em>« tu n'es pas là pour me plaire »</em>).</p>
+  </div>
+
+  <div class="trap">
+    <div class="trap-label">— Test rapide</div>
+    Si tu enlevais le pilier Personnalité de ton prompt, est-ce que la réponse changerait significativement ? Si non, c'est que tu n'as pas activé le pilier — tu l'as juste mentionné.
+  </div>
+
+  <h3 class="reading">Erreur 2 : confondre Capacité et Rôle</h3>
+
+  <div class="container reading">
+    <p>Les deux premiers piliers se ressemblent et on a tendance à les fusionner. C'est dommage parce qu'ils servent à des choses différentes : la Capacité dit <em>à quel niveau</em>, le Rôle dit <em>dans quelle profession</em>. Combinés, ils donnent un profil précis ; séparés ils donnent un profil flou.</p>
+
+    <p>Distinction claire : <em>« Capacité : expert reconnu mondialement »</em> + <em>« Rôle : architecte logiciel spécialisé en systèmes distribués »</em>. Tu ne peux pas confondre les deux.</p>
+  </div>
+
+  <h3 class="reading">Erreur 3 : abuser du pilier Variantes</h3>
+
+  <div class="container reading">
+    <p>Le pilier E est puissant mais sa surutilisation est un piège. Demander 5 variantes ou plus sature l'attention de l'IA — chaque variante devient superficielle. Maximum 2-3 variantes pour qu'elles soient vraiment substantielles.</p>
+
+    <p>Et surtout : ne demande des variantes que quand tu en as vraiment besoin pour comparer. Si tu cherches juste une analyse ciblée, ne demande qu'une version. Le pilier E est facultatif — pas obligatoire à chaque prompt CRISPE.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ce que tu vas voir dans les prochains articles</div>
+    <p>Tu connais maintenant les 3 frameworks majeurs : PTCF (base), RISEN (livrables structurés), CRISPE (analyses nuancées). Les prochains articles de la rubrique abordent des techniques complémentaires qui s'utilisent <em>à l'intérieur</em> de ces frameworks : <strong>Chain of Thought</strong> (forcer le raisonnement étape par étape), <strong>Few-Shot Prompting</strong> (montrer plutôt qu'expliquer), et l'article-pilier de la rubrique : <strong>« Ask Me Questions First »</strong>, la technique inverse qui transforme un brouillon en réponse ciblée.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur le framework CRISPE.</h3>
+    <ol class="recap-points">
+      <li>CRISPE est dédié aux analyses nuancées avec un point de vue assumé. Conseil, critique, sparring, raisonnement subtil.</li>
+      <li>6 piliers : Capacité, Rôle, Perspective, Mission, Personnalité, Variantes. Le pilier-clé est Personnalité — c'est lui qui débloque la sortie de la neutralité par défaut.</li>
+      <li>La grille des 3 frameworks : PTCF pour les actions ponctuelles, RISEN pour les livrables structurés, CRISPE pour les analyses avec opinion.</li>
+      <li>Donne explicitement la permission de te déplaire (« tu peux être sceptique », « n'hésite pas à challenger »). Sans ça, l'IA reste polie par défaut.</li>
+      <li>Le pilier Variantes est facultatif — utilise-le seulement quand tu veux confronter plusieurs angles, et limite-toi à 2-3 versions pour qu'elles restent substantielles.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="chain-of-thought.html">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">Chain of Thought : forcer l'IA à raisonner étape par étape</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-2-techniques-avancees.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Les techniques avancées · Niveau II</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apprendre à coder de zéro avec l'IA. – AutomationBoost</title>
+  <meta name="description" content="Apprendre à coder de zéro avec l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Apprendre à coder de zéro avec l'IA.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#22d3ee;">Au quotidien</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Apprendre à coder de zéro avec l'IA.</h1>
+    <p class="lede">Une étude 2025 sur 153 lycéens montre que ChatGPT diminue l'apprentissage du code quand il est mal utilisé. Voici la méthode qui inverse l'effet : protocole en 4 phases, choix du langage, outils 2026, parcours 90 jours.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tu peux apprendre à coder en 2026 en demandant à ChatGPT d'écrire le code à ta place. Tu sauras alors bricoler — mais tu n'auras pas appris à coder. La nuance change tout.</p>
+
+    <p>Le sujet est pris en otage par deux discours opposés et également faux : « plus besoin d'apprendre, l'IA le fait » et « l'IA détruit l'apprentissage ». La vérité est entre les deux : bien utilisée, l'IA est le meilleur prof de code jamais accessible. Voici comment t'en servir pour vraiment apprendre.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi l'usage par défaut <em>ne marche pas</em>.</h2>
+
+  <div class="container reading">
+    <p>Le débutant enchaîne toujours le même réflexe : « écris-moi un programme qui fait X » → il copie-colle → ça marche → il passe à la suite. Répétée 100 fois, cette boucle ne forme pas un programmeur, mais un copieur de code. La compétence — lire, comprendre, modifier, déboguer — ne se construit jamais.</p>
+
+    <p>La méthode qui suit inverse ce réflexe : l'IA t'explique et te corrige, mais c'est toi qui écris.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Le protocole <em>G-P-T</em> en 4 phases.</h2>
+
+  <div class="container reading">
+    <p>Voici le protocole à appliquer pour chaque concept que tu apprends (boucle, fonction, classe, structure de données). G = Guidance, P = Practice, T = Transformation. <strong>Le secret est dans le prompt initial qui cadre l'IA en mode tuteur</strong>, pas en mode oracle. Tu utilises ce cadrage à chaque session — sans lui, tu retombes dans l'usage par défaut.</p>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PRÉAMBULE OBLIGATOIRE</div>
+    <div class="phase-name">Le <em>cadrage tuteur</em></div>
+    <div class="phase-purpose">À copier-coller en début de chaque session de code. Utilise idéalement les <a href="custom-instructions.html">Custom Instructions</a> ou un Projet dédié pour que ce cadrage s'applique automatiquement. Sans ce cadrage, tu retournes vers l'usage béquille.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>Tu es mon tuteur de programmation. Je débute en <span class="placeholder">[langage]</span> et j'apprends <span class="placeholder">[concept précis]</span>.
+
+<strong>Règles strictes que tu dois respecter :</strong>
+
+1. <strong>Ne me donne JAMAIS le code complet d'un exercice.</strong> Si je te demande la solution, refuse poliment et pose-moi des questions pour que je trouve.
+
+2. <strong>Quand je suis bloqué, donne-moi une indication minimale</strong> — la plus petite information qui me permet d'avancer d'une étape. Pas plus.
+
+3. <strong>Quand je te montre mon code, ne le réécris pas.</strong> Pose-moi des questions sur les choix que j'ai faits. Repère ce qui ne marche pas mais laisse-moi corriger.
+
+4. <strong>Quand je te demande d'expliquer un concept, vérifie d'abord ce que je comprends déjà</strong> en me posant 2-3 questions. Adapte ton explication.
+
+5. <strong>À la fin de chaque session, fais-moi reformuler</strong> ce que j'ai appris avec mes propres mots. Corrige si je me trompe.
+
+<strong>Si tu me donnes du code prêt à copier sans m'avoir fait travailler, tu m'auras nui.</strong> Reste ferme sur ce point même si j'insiste.
+
+Mon objectif aujourd'hui : <span class="placeholder">[décris ce que tu veux apprendre/faire]</span></div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 1 / 4 · GUIDANCE</div>
+    <div class="phase-name">Comprendre <em>avant</em> de pratiquer</div>
+    <div class="phase-purpose">L'IA t'explique le concept en s'adaptant à ton niveau. Pas de pratique encore — l'objectif est de poser le modèle mental. Compte 15-30 minutes par concept.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt</span>Explique-moi <span class="placeholder">[concept]</span> en 4 étapes :
+
+1. <strong>L'analogie quotidienne</strong> qui rend le concept intuitif (sans utiliser de jargon code)
+2. <strong>Pourquoi ce concept existe</strong> : quel problème il résout que je ne pourrais pas résoudre sans lui ?
+3. <strong>La syntaxe minimale</strong> en <span class="placeholder">[langage]</span>, avec un exemple commenté ligne par ligne
+4. <strong>Les 2-3 erreurs typiques</strong> des débutants sur ce concept, avec ce qui se passe et comment les éviter
+
+Ensuite, pose-moi 3 questions de compréhension. Je dois pouvoir y répondre avant qu'on passe à la pratique.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 2 / 4 · PRACTICE</div>
+    <div class="phase-name">Coder <em>par toi-même</em>, accompagné</div>
+    <div class="phase-purpose">Le cœur du protocole. Tu codes seul, l'IA est en mode coach. Elle ne te donne ni la solution ni le squelette — elle te débloque par questions.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt</span>Donne-moi 3 exercices progressifs sur <span class="placeholder">[concept que je viens d'apprendre]</span> :
+
+- Exercice 1 : application directe (10 minutes)
+- Exercice 2 : application avec une petite variation (20 minutes)
+- Exercice 3 : application qui combine ce concept avec un que je connais déjà (30 minutes)
+
+Pour chaque exercice : énoncé clair, exemples d'entrée/sortie attendue, mais <strong>aucune indication sur la solution</strong>.
+
+Je vais coder. Quand je te montrerai mon code, applique les règles du cadrage tuteur — pose des questions, ne réécris pas. Si je suis bloqué plus de 10 minutes, donne-moi UNE indication minimale (pas la solution).</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 3 / 4 · TRANSFORMATION</div>
+    <div class="phase-name">Modifier et <em>casser</em> ce que tu as fait</div>
+    <div class="phase-purpose">L'étape la plus négligée mais la plus pédagogique. Tu prends ton code qui marche, et tu lui fais subir des transformations. C'est ce qui distingue ceux qui ont compris de ceux qui ont copié.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt</span>Voici mon code qui marche pour l'exercice :
+
+<span class="placeholder">[colle ton code]</span>
+
+Maintenant, fais-moi pratiquer la transformation :
+
+1. <strong>Donne-moi 3 modifications</strong> à apporter à ce code (changer le comportement, ajouter une contrainte, gérer un nouveau cas). Pas de solution.
+
+2. <strong>Donne-moi 2 façons de le casser</strong> (entrées qui posent problème, edge cases) et demande-moi de prédire ce qui se passe avant de tester.
+
+3. <strong>Demande-moi d'expliquer</strong> chaque ligne de mon code à un débutant qui n'aurait jamais vu ça. Si je n'arrive pas à expliquer, c'est que je n'ai pas compris — on revient en phase 1 sur le point flou.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 4 / 4 · CONSOLIDATION</div>
+    <div class="phase-name">Reformuler avec tes <em>propres mots</em></div>
+    <div class="phase-purpose">La phase finale, courte mais critique. Tu reformules le concept pour le verrouiller en mémoire long terme. Cette étape augmente la rétention de 40-50% selon les recherches en sciences cognitives.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt</span>Je vais te reformuler ce que j'ai appris aujourd'hui :
+
+<span class="placeholder">[explique le concept avec tes propres mots, ton analogie, tes exemples — pas de copier-coller depuis l'IA]</span>
+
+Maintenant :
+1. Pointe les <strong>imprécisions ou erreurs</strong> dans ma reformulation
+2. Identifie <strong>ce que je comprends bien</strong> et qui est solide
+3. Donne-moi <strong>une question de révision</strong> pour me retester sur ce concept dans 7 jours
+
+J'ajoute cette question dans mon agenda. Au moment de la révision, je dois pouvoir y répondre sans recourir à l'IA.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Pourquoi ce protocole marche</div>
+    <p>Les 4 phases reproduisent les principes pédagogiques validés en sciences de l'éducation depuis 50 ans : <strong>guidance avant pratique</strong> (Cognitive Load Theory de Sweller), <strong>pratique active avec feedback</strong> (deliberate practice d'Ericsson), <strong>variation et test des limites</strong> (interleaved practice), <strong>récupération espacée</strong> (testing effect de Roediger). L'IA n'invente rien — elle rend ces principes accessibles à un débutant qui n'a pas de tuteur humain. Bien utilisée, elle est <em>meilleure</em> qu'un cours classique parce qu'elle s'adapte à ton niveau en temps réel. Mal utilisée (en oracle), elle est pire que rien.</p>
+  </div>
+
+  <!-- ============== 3. CHOIX LANGAGE & OUTILS ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Quel <em>langage</em> et quels <em>outils</em> en 2026.</h2>
+
+  <h3 class="reading">Le bon langage de départ : Python</h3>
+
+  <div class="container reading">
+    <p>Pour un vrai débutant en 2026, <strong>la réponse ne fait plus débat : Python</strong>. Trois raisons : (1) syntaxe la plus proche du langage humain, donc courbe d'apprentissage la plus douce ; (2) usages couverts les plus larges (data, IA, web, automatisation, scripts) ; (3) écosystème pédagogique le plus riche en français comme en anglais.</p>
+
+    <p>Les exceptions à connaître. Si ton objectif final est <strong>le développement web front-end</strong> (sites, applications utilisateur), commence directement par JavaScript — tu auras besoin de l'apprendre de toute façon. Si tu veux faire <strong>de la data ou de l'IA</strong>, Python est le choix évident. Si tu veux faire <strong>du jeu vidéo ou des applications natives mobiles</strong>, c'est plus complexe (C# pour Unity, Swift/Kotlin pour mobile) — mais ces domaines ne sont pas conseillés pour un vrai débutant en autonomie.</p>
+
+    <p>Reste loin pour démarrer : C, C++, Rust, Go, Java EE. Ce sont d'excellents langages mais ils demandent de comprendre des concepts (mémoire, types, compilation) qui te ralentiront pendant les 3 premiers mois. Tu pourras y aller plus tard si ton métier le demande, mais pas en première intention.</p>
+  </div>
+
+  <h3 class="reading">Les outils 2026 par usage</h3>
+
+  <div class="container reading">
+    <p>Le paysage des outils a explosé en 2025-2026. Voici la sélection à connaître selon ton profil et ton stade.</p>
+  </div>
+
+  <div class="tool">
+    <div class="tool-name"><em>ChatGPT</em> · ton tuteur principal</div>
+    <div class="tool-text">Pour le protocole G-P-T décrit plus haut, ChatGPT (Plus à 20 €/mois ou Free pour débuter) reste le compagnon idéal — c'est le plus pédagogique, le plus polyvalent, et celui qui s'adapte le mieux au cadrage tuteur. <strong>À utiliser comme cerveau pédagogique</strong>, jamais comme générateur de code à copier.</div>
+  </div>
+
+  <div class="tool">
+    <div class="tool-name"><em>VS Code</em> · ton éditeur de code</div>
+    <div class="tool-text">Gratuit, standard de l'industrie en 2026, énormément de tutos. À installer dès la semaine 1. Permet d'apprendre le fonctionnement basique d'un éditeur (extensions, terminal intégré, debugger) qui te servira partout ensuite. <strong>Évite Replit ou les IDE en ligne</strong> au-delà des premières heures — tu n'apprendras pas à utiliser un vrai environnement.</div>
+  </div>
+
+  <div class="tool">
+    <div class="tool-name"><em>GitHub Copilot</em> · à éviter au début</div>
+    <div class="tool-text">Outil d'autocomplétion IA dans ton éditeur. Excellent pour des développeurs confirmés (gain documenté de 30% en productivité), <strong>mais à éviter strictement les 6 premiers mois</strong>. Il complète ton code en permanence — tu n'as plus à réfléchir à ce que tu écris. C'est l'antithèse du protocole G-P-T. À activer plus tard, quand tu as un socle solide.</div>
+  </div>
+
+  <div class="tool">
+    <div class="tool-name"><em>Cursor / Claude Code</em> · plus tard</div>
+    <div class="tool-text">Éditeurs IA-first qui dominent 2026 chez les pros. Cursor remplace VS Code avec un agent IA intégré, Claude Code est un agent terminal autonome (CLI). <strong>Outils excellents mais inadaptés au débutant</strong> — ils peuvent générer des projets entiers, ce qui sabote l'apprentissage. À découvrir au mois 6+, quand tu maîtrises le langage de base.</div>
+  </div>
+
+  <div class="tool">
+    <div class="tool-name"><em>Replit</em> · pour les premiers exercices</div>
+    <div class="tool-text">Plateforme cloud avec environnement Python prêt à l'emploi. Utile la première semaine pour faire tourner ton code sans friction d'installation. <strong>À abandonner après une semaine</strong> au profit d'un vrai setup VS Code + Python local. Sinon tu n'apprends pas à gérer ton environnement de dev.</div>
+  </div>
+
+  <div class="tool">
+    <div class="tool-name"><em>Google + StackOverflow</em> · indispensables</div>
+    <div class="tool-text">Sous-estimés à l'ère IA, mais essentiels. ChatGPT te dit comment faire — mais quand ton code ne marche pas, savoir <strong>chercher l'erreur exacte sur Google</strong> et lire la réponse StackOverflow est une compétence d'autonomie majeure. Force-toi à utiliser ces ressources avant de demander à l'IA. C'est ce qui distingue un programmeur autonome d'un programmeur assisté.</div>
+  </div>
+
+  <h3 class="reading">Le parcours 90 jours</h3>
+
+  <div class="container reading">
+    <p>Voici le séquençage réaliste pour aller de zéro à coder utile en 3 mois. Compte 1-2 heures par jour, 5 jours par semaine. Plus tu accélères, moins tu apprends — la régularité bat l'intensité.</p>
+
+    <p><strong>Mois 1 (semaines 1-4) — Les fondations.</strong> Variables, types de données, conditions, boucles, fonctions. Protocole G-P-T à 100%. Aucun outil au-delà de ChatGPT + VS Code. Objectif fin du mois : tu sais écrire un programme de 50 lignes qui fait quelque chose d'utile (calculatrice, jeu de pendu, gestionnaire de notes simples).</p>
+
+    <p><strong>Mois 2 (semaines 5-8) — Les structures.</strong> Listes, dictionnaires, classes (notion d'objet), fichiers, gestion d'erreurs. Continue avec G-P-T. Premier mini-projet personnel à choisir (ce qui te motive : un bot Discord, un script de scraping, une analyse de données perso). Objectif fin du mois : ton mini-projet tourne, même imparfaitement.</p>
+
+    <p><strong>Mois 3 (semaines 9-12) — L'autonomie.</strong> Les bibliothèques tierces (requests, pandas, etc.), Git/GitHub (versionning), lecture de documentation officielle. À ce stade, tu peux relâcher légèrement la rigueur G-P-T sur les détails techniques (l'IA peut t'expliquer plus directement), mais maintenir sur les concepts importants. Objectif fin du mois : tu sais lire un projet open-source simple et y comprendre 70% du code. Tu as un projet perso qui tourne et que tu peux montrer.</p>
+
+    <p>Au-delà de 90 jours, tu n'es pas développeur professionnel — mais tu es autonome. Tu peux choisir ta spécialité (web, data, automatisation) et continuer pendant 1 à 3 ans pour atteindre un niveau employable. <strong>L'erreur classique est de croire qu'on devient codeur en 3 mois. La vérité est qu'on devient autonome en 3 mois, et compétent en 1-3 ans</strong>. C'est très différent.</p>
+  </div>
+
+  <!-- ============== 4. PIÈGES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Les <em>5 pièges</em> qui font échouer.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>copier-coller</em> le code de l'IA</div>
+    <div class="pitfall-text">Le piège n°1 documenté par l'étude Lai & Wong 2025. Tu demandes la solution, tu copies, ça marche, tu passes. Au bout de 100 répétitions, tu <strong>n'as accumulé aucun modèle mental</strong>. Le test simple : peux-tu réécrire de mémoire un programme de la semaine dernière sans rouvrir l'IA ? Si non, tu n'as pas appris — tu as juste vu passer du code. La discipline du protocole G-P-T existe précisément pour casser ce piège.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : sauter <em>la phase 4</em> (consolidation)</div>
+    <div class="pitfall-text">L'erreur la plus fréquente une fois le protocole adopté. Tu fais correctement guidance + pratique + transformation, puis tu passes au concept suivant sans reformuler. <strong>Sans la consolidation et la révision espacée à 7 jours, ce que tu as appris s'évapore</strong> à 60-70% en 2 semaines (courbe d'oubli d'Ebbinghaus). La phase 4 prend 5 minutes — l'éviter coûte 50% de ce que tu as appris.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : changer de <em>langage</em> au bout de 3 semaines</div>
+    <div class="pitfall-text">Tu commences Python, tu lis un article qui dit que JavaScript est mieux, tu changes. Trois semaines plus tard, tu lis un article qui dit que Go c'est l'avenir. Tu changes encore. <strong>Tu accumules des bases superficielles dans 4 langages au lieu d'une vraie compétence dans un seul.</strong> Choisis Python (ou JavaScript si web), tiens-toi-y pendant les 3 mois minimum. Les bases sont 80% transférables d'un langage à l'autre — apprendre un deuxième langage prend 3 fois moins de temps que le premier.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : se former <em>sans projet personnel</em></div>
+    <div class="pitfall-text">Tu enchaînes les exercices abstraits sans jamais coder quelque chose qui te concerne. Au bout de 6 semaines tu décroches parce que tu n'as pas vu de résultat tangible dans ta vie. <strong>Choisis dès le mois 2 un projet perso qui te motive vraiment</strong> — un bot pour ton discord d'amis, un script qui automatise une tâche que tu détestes, une analyse de tes finances perso. Ce projet devient le terrain où tu appliques ce que tu apprends. Sans projet personnel, l'abandon est presque garanti à 6-8 semaines.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : croire que <em>3 mois suffisent</em> pour être employable</div>
+    <div class="pitfall-text">Le piège des promesses marketing « deviens dev en 3 mois ». La vérité empirique : 3 mois = autonomie suffisante pour des projets perso ou de l'automatisation. <strong>1-3 ans = niveau employable junior</strong> dans une équipe pro. La différence n'est pas la connaissance des concepts — c'est la maîtrise des dizaines de petits problèmes opérationnels (gestion de projets réels, debugging avancé, lecture de codebase complexe, communication avec une équipe). Si tu vises une reconversion pro, prévois minimum 12 mois à temps plein ou 18-24 mois en parallèle d'un autre travail. Annoncer 3 mois te pose mal et te déçoit. Voir <a href="reussir-reconversion-pro-ia.html">l'article 1.5 sur la reconversion pro avec l'IA</a> pour le cadre réaliste.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>L'IA pour apprendre à coder, c'est l'un des cas où elle peut être <strong>une accélération massive ou un poison subtil</strong>. La différence se joue dans le premier prompt que tu lui envoies. Si ton premier prompt de la session est <em>« écris-moi un programme qui... »</em>, tu es dans le poison. Si ton premier prompt est <em>« joue le rôle de mon tuteur, voici les règles... »</em>, tu es dans l'accélération. <strong>Le contenu identique sort de la même IA, mais le résultat sur ton cerveau est radicalement différent</strong>. Cette discipline de cadrage est la compétence n°1 à acquérir avant tout le reste — et elle vaut autant pour le code que pour <a href="tuteur-personnel-ia.html">tout autre apprentissage</a>.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Pour aller plus loin : <a href="tuteur-personnel-ia.html">la méthode-mère du tuteur personnel IA</a> dont cet article est l'application au code, <a href="custom-instructions.html">les Custom Instructions</a> pour automatiser le cadrage tuteur sur toutes tes sessions, <a href="hallucinations-ia.html">les hallucinations</a> et <a href="quand-ia-veut-plaire.html">la complaisance</a> (l'IA hallucine particulièrement sur les bibliothèques niches et te valide même quand ton code est mauvais — vigilance), <a href="5-signes-trop-dependant-ia.html">les 5 signes de dépendance cognitive</a> (le coding assisté est l'un des terrains où la dépendance se développe le plus vite).</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur l'apprentissage du code avec l'IA.</h3>
+    <ol class="recap-points">
+      <li>Étude Lai & Wong 2025 (153 lycéens) : ChatGPT en usage libre fait baisser l'apprentissage de ~18% (flow, auto-efficacité, réussite). La cause n'est pas l'outil mais l'usage par défaut comme béquille livreur de réponses. La solution est le protocole G-P-T (Guidance-Practice-Transformation).</li>
+      <li>Le protocole en 4 phases : préambule de cadrage tuteur (l'IA refuse de donner du code prêt à copier), guidance (comprendre le concept avant pratique), practice (coder seul, IA en mode coach par questions), transformation (modifier et casser ton code), consolidation (reformuler avec tes mots + révision à 7 jours). Le préambule est non négociable.</li>
+      <li>Choix du langage en 2026 : Python pour 90% des débutants, JavaScript si objectif web front-end. À éviter pour démarrer : C, C++, Rust, Go, Java EE (concepts trop lourds pour les 3 premiers mois).</li>
+      <li>Outils par usage : ChatGPT (tuteur principal), VS Code (éditeur dès semaine 1), Replit (uniquement la première semaine), Google + StackOverflow (à utiliser avant l'IA quand ton code plante). À éviter au début : GitHub Copilot, Cursor, Claude Code (excellents pour pros, sabotent l'apprentissage du débutant).</li>
+      <li>Parcours réaliste : 3 mois pour devenir autonome (projet perso qui tourne), 1-3 ans pour être employable junior. 5 pièges principaux : copier-coller le code IA, sauter la phase consolidation, changer de langage tous les mois, se former sans projet personnel, croire qu'on est dev en 3 mois.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="tuteur-personnel-ia.html">
+        <div class="next-link-label">— Méthode-mère</div>
+        <div class="next-link-title">Transformer ton IA en tuteur personnel</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-3-apprendre-plus-vite.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Apprendre plus vite · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

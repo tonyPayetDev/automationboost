@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Traiter ta boîte mail intelligemment. – AutomationBoost</title>
+  <meta name="description" content="100 mails en 30 minutes : tri, résumés, brouillons calibrés, désabonnements groupés. La méthode complète pour reprendre le contrôle de ta boîte." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Traiter ta boîte mail intelligemment.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#f97316;">Gagner du temps au travail</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Traiter ta boîte mail intelligemment.</h1>
+    <p class="lede">100 mails en 30 minutes : tri, résumé, brouillons calibrés, désabonnements groupés. La méthode end-to-end testée en 2026, avec ou sans intégration native Gmail/Outlook.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Un cadre passe en moyenne plus d'un jour par semaine dans sa boîte mail — sur la tâche la moins valorisante qui soit. Le mail est devenu le tueur de productivité n°1.</p>
+
+    <p>L'IA peut diviser ce temps par deux ou trois : tri, brouillons, classement, recherche. Voici la méthode complète pour transformer ta boîte mail en système efficace.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Le changement de méthode <em>à opérer</em>.</h2>
+
+  <div class="container reading">
+    <p>Tu ne traites probablement pas tes mails de façon optimale : ouvrir la boîte plusieurs fois par jour et répondre au fil de l'eau fragmente ton attention et te fait reprendre chaque mail plusieurs fois. La bascule : traiter par lots, à heures fixes, avec l'IA en appui.</p>
+
+    <p>Ce changement de méthode précède tous les outils. Voici comment le mettre en place.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>La <em>méthode</em> end-to-end en 4 étapes.</h2>
+
+  <div class="container reading">
+    <p>Voici le flux complet à appliquer 2 à 3 fois par jour, en remplacement de la consultation continue. Chaque étape a un rôle précis dans la chaîne. L'enchaînement est ce qui produit le gain de temps massif.</p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">— ÉTAPE 1 / 4 · TRI<span class="step-time">5 MINUTES</span></div>
+    <div class="step-name">Le <em>tri rapide</em> par catégorie</div>
+    <div class="step-purpose">Avant de répondre à quoi que ce soit, classe tous les mails non lus dans 4 catégories. La majorité des mails ne mérite aucune réponse — il faut le repérer en 5 secondes par mail.</div>
+    <div class="step-prompt"><span class="step-prompt-label">— Les 4 catégories</span><strong>Catégorie A · Action requise (réponse de moi)</strong> : mail qui demande une action ou une réponse personnelle de ma part. Le seul type qui nécessite vraiment du travail.
+
+<strong>Catégorie B · FYI (information sans action)</strong> : mail informatif que je dois lire mais qui n'attend pas de réponse. Lecture rapide, archivage.
+
+<strong>Catégorie C · Spam déguisé / newsletter</strong> : pubs, notifications, newsletters non lues depuis 3 mois, démarchage. Désinscription ou suppression directe.
+
+<strong>Catégorie D · Délégable / planifiable</strong> : mail que tu peux transférer à quelqu'un, ou traiter à un autre moment précis (mettre dans un dossier « à traiter cette semaine »).</div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">— ÉTAPE 2 / 4 · RÉSUMÉ<span class="step-time">5 MINUTES</span></div>
+    <div class="step-name">Le <em>résumé groupé</em> des mails complexes</div>
+    <div class="step-purpose">Sur les mails de catégorie A et B, certains sont longs ou complexes. Au lieu de les lire intégralement, tu colles les contenus à l'IA pour obtenir un résumé exploitable.</div>
+    <div class="step-prompt"><span class="step-prompt-label">— Prompt à utiliser</span>Voici 3 mails que je viens de recevoir. Pour chacun, donne-moi en 3 lignes maximum :
+1. Le sujet exact (en une phrase)
+2. Ce qui est attendu de moi (action précise ou rien)
+3. Le délai si mentionné, ou « non spécifié »
+
+Format : un bloc compact par mail, séparés par une ligne. Évite toute phrase superflue. Si un mail demande une décision, indique-le clairement avec [DÉCISION REQUISE].
+
+[Coller ici les 3 mails à la suite]</div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">— ÉTAPE 3 / 4 · BROUILLONS<span class="step-time">15 MINUTES</span></div>
+    <div class="step-name">Les <em>brouillons calibrés</em> pour la catégorie A</div>
+    <div class="step-purpose">L'étape qui prend le plus de temps en mode classique, et qui devient la plus rentable avec l'IA. Tu génères tous tes brouillons en production par lots, tu les ajustes, tu envoies.</div>
+    <div class="step-prompt"><span class="step-prompt-label">— Prompt à utiliser</span>Tu es mon assistant pour rédiger des emails professionnels.
+
+<strong>Mon profil :</strong> [ton métier + ton ton habituel : direct, diplomate, formel, etc.]
+
+<strong>Email reçu :</strong> [coller l'email]
+
+<strong>Ma réponse souhaitée (en français, 5-8 lignes max) :</strong> [points-clés que tu veux faire passer en français normal — pas besoin de phrases complètes]
+
+<strong>Ton à appliquer :</strong> [cordial / direct / ferme / chaleureux]
+
+<strong>À éviter :</strong> formules de politesse ronflantes, conditionnel mou, paraphrases, longues introductions.
+
+Génère un brouillon directement utilisable. Si tu manques d'info pour bien répondre, demande-le-moi avant d'écrire au lieu d'inventer.</div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">— ÉTAPE 4 / 4 · NETTOYAGE<span class="step-time">5 MINUTES</span></div>
+    <div class="step-name">Le <em>nettoyage</em> récurrent</div>
+    <div class="step-purpose">Les newsletters, notifications et spams représentent 60-70 % des mails reçus chez la plupart des utilisateurs. Si tu ne les élimines pas à la source, ton effort de tri se répète à chaque session. Ce nettoyage récurrent (1 fois par semaine ou par mois) supprime le travail à la racine.</div>
+    <div class="step-prompt"><span class="step-prompt-label">— Procédure</span>Une fois par semaine, en fin de session mail :
+
+1. Pour chaque newsletter que tu n'as pas lue depuis 3+ semaines : <strong>désinscription immédiate</strong> via le lien en bas de mail (et non simple suppression — sinon tu reçois encore la suivante).
+
+2. Pour les notifications automatiques (LinkedIn, X, Slack) : <strong>désactivation à la source</strong> dans les paramètres de la plateforme, pas du mail.
+
+3. Tous les 6 mois : recherche dans ta boîte « unsubscribe » ou « se désinscrire » et fais le tour.
+
+Ce nettoyage paraît mineur — il représente en réalité <strong>30 à 50 % de ton volume de mails à terme</strong>.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Le calcul du temps gagné</div>
+    <p>Méthode classique : 100 mails × 1,5 min en moyenne = <strong>2h30</strong> par jour. Méthode production par lots + IA : 30 minutes × 2 sessions = <strong>1h</strong> par jour, pour le même nombre de mails traités à qualité équivalente. <strong>Gain net : 1h30 par jour, soit ~7,5h par semaine</strong>. C'est presque une journée de travail récupérée.</p>
+  </div>
+
+  <!-- ============== 3. OUTILS 2026 ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Les <em>outils</em> 2026 selon ton client mail.</h2>
+
+  <div class="container reading">
+    <p>Les méthodes ci-dessus marchent partout (tu peux toujours copier-coller des mails dans une IA externe). Mais en 2026, des intégrations natives existent pour Gmail et Outlook qui rendent le flux beaucoup plus fluide. Tour d'horizon.</p>
+  </div>
+
+  <div class="tool-card">
+    <div class="tpl-num"><span class="tool-tag">Gmail</span><span class="tool-tag">Recommandé</span></div>
+    <div class="tool-name">Gemini intégré <em>directement dans Gmail</em></div>
+    <div class="tool-text">Google a intégré Gemini nativement dans Gmail (« Help me write », « Summarize this thread », « Suggested reply »). <strong>Disponible sur les comptes Google Workspace payants et progressivement sur Gmail gratuit en 2026.</strong> Permet de résumer une conversation longue en un clic, générer une réponse adaptée au ton du fil, et reformuler des brouillons. Le plus fluide du marché pour Gmail. Limite : la qualité reste inférieure à un prompt précis sur Claude ou GPT-5.5 — à utiliser pour la vélocité, pas la finesse.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tpl-num"><span class="tool-tag">Outlook</span><span class="tool-tag">Recommandé</span></div>
+    <div class="tool-name">Copilot intégré <em>dans Outlook 365</em></div>
+    <div class="tool-text">Microsoft a déployé Copilot (basé sur GPT) dans Outlook 365. Fonctions principales : résumé d'un long fil, génération de réponse, coaching de ton (« cet email semble agressif, voici une version plus diplomate »). <strong>Inclus dans les licences Microsoft 365 Copilot</strong>, environ 30 €/mois/utilisateur en plus de la licence 365 standard. Très efficace en entreprise. Pour les utilisateurs particuliers Outlook gratuits, l'intégration est limitée — il faut copier-coller dans ChatGPT/Claude externes.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tpl-num"><span class="tool-tag">Tous clients</span><span class="tool-tag">Universel</span></div>
+    <div class="tool-name">L'<em>extension navigateur</em> Claude / ChatGPT</div>
+    <div class="tool-text">Les extensions Chrome/Firefox d'Anthropic (Claude in Chrome, en bêta) et OpenAI permettent d'invoquer l'IA directement dans n'importe quelle interface mail. Tu sélectionnes du texte dans n'importe quel mail, l'IA résume ou génère une réponse. <strong>L'avantage : indépendance vis-à-vis du client mail</strong> — fonctionne partout, du webmail le plus basique aux interfaces pro.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tpl-num"><span class="tool-tag">Spécialisé</span><span class="tool-tag">Avancé</span></div>
+    <div class="tool-name">Les <em>clients mail IA-native</em></div>
+    <div class="tool-text">Plusieurs clients mail entièrement repensés autour de l'IA : <strong>Superhuman</strong> (premium, ~30 $/mois, IA pour résumés et écriture rapide), <strong>Shortwave</strong> (focus sur l'IA conversationnelle dans la boîte), <strong>Hey</strong> (philosophie anti-mail traditionnelle). À considérer si les mails représentent une grosse part de ton temps de travail. Investissement initial pour la migration, mais ROI rapide pour les gros volumes.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">L'astuce du mentor</div>
+    <p>Si tu débutes : commence avec <strong>la méthode manuelle (copier-coller dans Claude ou ChatGPT)</strong> pendant 2 semaines, sans payer pour aucun outil. Tu vas apprendre ce qui marche pour ton style et ton volume. Si après 2 semaines tu utilises l'IA-mail intensivement, alors investis dans l'intégration native (Gemini Gmail ou Copilot Outlook). Beaucoup d'utilisateurs paient pour des outils premium qu'ils n'utilisent pas vraiment — la séquence test → confirmer → investir te protège.</p>
+  </div>
+
+  <!-- ============== 4. PIÈGES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Les <em>4 pièges</em> à éviter absolument.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : la <em>réponse générique</em> qui sonne faux</div>
+    <div class="pitfall-text">L'IA produit par défaut des emails fluides, lisibles, mais souvent <strong>trop polis et trop génériques</strong>. Tes interlocuteurs réguliers vont reconnaître le pattern en quelques échanges. La parade : toujours <strong>injecter un détail personnel</strong> que l'IA ne pouvait pas inventer (« comme on s'est dit hier en réunion », « suite à ton mail de jeudi sur X »), ajouter ta touche habituelle (une formule, un trait d'humour récurrent), et raccourcir agressivement.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : la <em>confidentialité</em> sous-estimée</div>
+    <div class="pitfall-text">Coller dans une IA externe des mails contenant des informations confidentielles (RH, juridique, données clients, données médicales) <strong>peut violer les obligations de confidentialité</strong> de ton entreprise ou du RGPD. Selon le client mail et le plan IA, ces données peuvent être utilisées pour entraîner les futurs modèles. La parade : pour les mails sensibles, utilise <strong>Copilot/Gemini intégrés Enterprise</strong> (qui ont des clauses RGPD propres) ou <strong>désactive l'entraînement sur tes données</strong> dans les settings de ton IA. <a href="memoire-ia.html">Voir l'article sur la confidentialité</a>.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : la <em>relecture sautée</em></div>
+    <div class="pitfall-text">L'efficacité du flux peut te faire envoyer des brouillons IA <strong>sans relire</strong>. Conséquences vues : noms mal orthographiés (l'IA invente parfois), nuances importantes ratées, ton inadéquat à la relation, hallucinations factuelles. La parade : <strong>règle de fer = relire intégralement avant chaque envoi</strong>. Si tu ne peux pas le faire, le mail n'est pas prêt. La relecture prend 30 secondes — moins que le coût d'un mail mal envoyé qu'il faudra rectifier dans le suivant.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : la <em>déshumanisation</em> progressive</div>
+    <div class="pitfall-text">Le risque le moins visible mais le plus durable : à force de tout déléguer à l'IA, tu cesses d'écrire et tu perds graduellement ta voix propre. Tes échanges deviennent fonctionnels mais sans relief, et tes interlocuteurs le sentent — même sans détecter l'IA explicitement. La parade : garde <strong>une catégorie d'emails toujours écrits à la main</strong>. Mes critères : (1) emails à des personnes qui comptent pour toi (proches, mentors, contacts importants), (2) emails à enjeu relationnel (excuses, félicitations, remerciements, prises de contact), (3) emails créatifs où ta voix fait la différence. Sur ces mails-là, l'IA gagne 5 minutes mais te coûte ta singularité — c'est un mauvais trade.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>L'objectif n'est pas de répondre au plus de mails possible, c'est de récupérer du temps pour les choses qui comptent. Si l'IA te fait passer de 13h à 5h par semaine sur les mails, <strong>les 8h récupérées doivent aller ailleurs</strong> — travail de fond, pensée stratégique, créativité, repos, relations humaines. Sinon tu auras juste fait coulisser ton temps vers d'autres tâches secondaires. Le test : 6 mois après avoir adopté la méthode, qu'est-ce que tu as <em>réellement</em> fait du temps gagné ? Si la réponse est « plus de mails » ou « rien de marquant », tu n'as pas fini le travail.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ce que tu vas voir dans les autres articles de cette rubrique</div>
+    <p>Tu as la base des mails. Les articles suivants couvrent les autres terrains où l'IA fait gagner massivement du temps au travail : <strong>préparer une réunion en 5 minutes</strong>, <strong>transformer notes brutes en document structuré</strong>, <strong>construire une présentation en 1 heure</strong>, <strong>analyser un document pro long en 15 minutes</strong>, <strong>préparer une décision ou un projet</strong>, <strong>Excel et Sheets sans expertise</strong>, et <strong>le système qui te fait récupérer 10 heures par semaine</strong> (l'article-pilier qui synthétise toute la rubrique).</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur les mails avec l'IA.</h3>
+    <ol class="recap-points">
+      <li>13 heures par semaine en moyenne sont dépensées sur les mails. Le bon automatisation (production par lots 2-3 fois par jour) + l'IA = ~7,5h récupérées par semaine. L'IA seule sur un mauvais automatisation ne fait gagner que des miettes.</li>
+      <li>Méthode end-to-end en 4 étapes : tri en 4 catégories (Action / FYI / Spam / Délégable), résumé groupé des mails complexes, brouillons calibrés en production par lots pour les réponses, nettoyage récurrent des newsletters et notifications.</li>
+      <li>Outils 2026 : Gemini intégré Gmail et Copilot Outlook 365 sont les solutions natives les plus fluides. Pour démarrer : méthode manuelle (copier-coller dans Claude/ChatGPT) avant tout investissement payant.</li>
+      <li>4 pièges critiques : la réponse générique qui sonne faux (injecter un détail personnel + couper agressivement), la confidentialité sous-estimée (RGPD), la relecture sautée (règle de fer = relire), la déshumanisation progressive (garder une catégorie d'emails écrits à la main pour les relations qui comptent).</li>
+      <li>Test à 6 mois : qu'as-tu fait du temps gagné ? Si la réponse est « rien de marquant », tu as juste déplacé le problème. L'objectif n'est pas plus de mails, c'est plus de temps pour ce qui compte vraiment.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="niveau-3-gagner-du-temps.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Gagner du temps au travail · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-3-apprendre-plus-vite.html">
+        <div class="next-link-label">— Autre rubrique</div>
+        <div class="next-link-title">L'IA pour apprendre plus vite</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

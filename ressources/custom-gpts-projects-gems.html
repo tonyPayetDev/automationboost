@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Custom GPTs, Projects, Gems : quel format ? – AutomationBoost</title>
+  <meta name="description" content="Comparatif 2026 des 3 formats d" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Custom GPTs, Projects, Gems : quel format ?
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#eab308;">Automatiser & agents</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Custom GPTs, Projects, Gems : quel format ?</h1>
+    <p class="lede">Comparatif honnête 2026 des 3 formats d'assistants IA construits. Avec une transition critique chez OpenAI (Workspace Agents qui remplacent progressivement les Custom GPTs) et un arbre de décision pour choisir selon ton besoin.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tu écris le même prompt 15 fois par semaine, tu recolles les mêmes documents, tu rappelles le même contexte. À ce stade, tu n'as plus besoin d'un meilleur prompt — tu as besoin d'un assistant construit.</p>
+
+    <p>Un assistant construit (Custom GPT chez OpenAI, Project chez Claude, Gem chez Google) sauvegarde une fois pour toutes ton prompt, ton contexte et tes connaissances. Tu le configures une fois, tu l'utilises 100 fois sans répéter. Voici comment le créer sur chaque plateforme.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi un assistant construit <em>bat un prompt répété</em>.</h2>
+
+  <div class="container reading">
+    <p>La différence est économique et cognitive. Économique : un prompt de 200 mots tapé 5 fois par jour, c'est plus de 1 200 fois par an ; rédigé une fois dans un assistant, c'est zéro. Cognitive : tu ne portes plus la charge de te souvenir du contexte et des règles à chaque fois.</p>
+
+    <p>Voici comment construire le tien, et lequel des trois outils choisir.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Les <em>3 formats</em> en 2026, sans survente.</h2>
+
+  <div class="tool-card">
+    <div class="tool-name"><em>Custom GPTs</em> · OpenAI · ChatGPT Plus 20 $/mois et plus</div>
+    <div class="tool-text"><strong>Sortie :</strong> novembre 2023. Transition vers GPT-5.2 le 12 janvier 2026. <strong>État 2026 :</strong> en cohabitation avec les nouveaux Workspace Agents (research preview lancée en avril 2026), qui sont conçus pour les remplacer progressivement. OpenAI a précisé : <em>« Les GPT resteront disponibles pendant que les équipes testent les agents workspace avec leurs automatisations »</em> — autrement dit, fonctionnels mais en sursis stratégique.
+
+<strong>Forces :</strong> écosystème mature (millions de Custom GPTs créés depuis 2023, large bibliothèque publique dans le GPT Store). Actions personnalisées via API qui permettent d'appeler des services externes (Stripe, Notion, ton CRM) avec authentification OAuth. Intégrations natives 2026 avec Microsoft Outlook, Google Docs, Sheets, Calendar (write actions activables par l'admin workspace). Voice Mode désormais compatible avec Custom GPTs.
+
+<strong>Limites :</strong> roadmap incertaine vis-à-vis des Workspace Agents. Fichiers de connaissances limités à 20 fichiers et 512 Mo total (vs 30 Mo/fichier illimité chez Claude). Les Custom GPTs publics dans le GPT Store font face à un problème de qualité moyenne — la majorité sont médiocres, ce qui dilue l'expérience.
+
+<strong>Cas d'usage idéal :</strong> tu paies déjà ChatGPT Plus ou Pro, tu veux brancher l'IA sur des outils externes via Actions, tu travailles dans l'écosystème Microsoft (Outlook, Office) avec besoin de write actions natives.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name"><em>Claude Projects</em> · Anthropic · Claude Pro 20 $/mois et plus</div>
+    <div class="tool-text"><strong>Sortie :</strong> mai 2024. <strong>État 2026 :</strong> mature et en évolution rapide. Claude 4.6 (Sonnet et Opus) arrivés en février 2026 avec mémoire de travail 1 million de tokens — plusieurs dizaines de livres en mémoire active. Memory entre sessions activée pour tous les utilisateurs (free et payant) depuis mars 2026. Claude Opus 4.7 sorti récemment avec amélioration du raisonnement.
+
+<strong>Forces :</strong> base de connaissances la plus généreuse du marché — <strong>30 Mo par fichier, fichiers illimités sur Pro</strong>, formats supportés PDF/DOCX/CSV/TXT/HTML et plus. recherche dans les documents (recherche augmented generation) très solide pour interroger de grandes bases documentaires. Custom instructions par projet. Intégrations Google Workspace (Google Docs, Gmail) natives en 2026. Partage projets en équipe (Team / Enterprise) avec permissions granulaires. Version gratuite généreux : 5 projets et fichiers de connaissances supportés gratuitement.
+
+<strong>Limites :</strong> pas d'équivalent direct aux Actions de Custom GPTs (ne peut pas appeler une API externe arbitraire pendant la conversation — passage par MCP nécessaire pour ça, voir l'article 2.1 sur les connecteurs). GPT Store-équivalent absent : tu construis tes projets en local, pas de marketplace public. Disponibilité régionale parfois moins large qu'OpenAI.
+
+<strong>Cas d'usage idéal :</strong> traitement documentaire intensif (analyse de contrats, synthèse de papers académiques, base de connaissances métier). Travail de longue haleine sur le même corpus (1M tokens = un livre entier en contexte permanent). Équipes qui veulent partager assistants documentaires avec permissions.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name"><em>Gemini Gems</em> · Google · gratuit (avec limites) à 20 $/mois Gemini Advanced</div>
+    <div class="tool-text"><strong>Sortie :</strong> juillet 2024 (réservé Advanced), étendu à tous gratuitement en mars 2025. <strong>État 2026 :</strong> gratuit, mature, partage entre utilisateurs depuis septembre 2025.
+
+<strong>Forces :</strong> <strong>tier gratuit fonctionnel</strong> — point d'entrée le plus bas du marché pour construire ton premier assistant. Magic wand intégré : tu décris ton intention en 1 phrase, Gemini réécrit et étoffe les instructions pour toi (utile pour débuter sans expertise prompt engineering). Fichiers de connaissances supportés (avec limites selon plan). Sharing facile via lien Drive-style (équivalent <em>« partager un Doc »</em>). Premade Gems pré-configurés : Brainstormer, Career guide, Coding partner, Learning coach, Writing editor — tu pars d'une base et tu adaptes. Intégration native avec Google Workspace (Drive, Gmail, Calendar, Docs) sans configuration.
+
+<strong>Limites :</strong> moins puissant que Claude sur l'analyse documentaire profonde (la recherche dans les documents est correct mais pas exceptionnel). Moins d'écosystème Actions/connecteurs que Custom GPTs. Fichiers de connaissances plus limités en taille que Claude. La qualité de Gemini varie davantage selon les versions (mises à jour fréquentes, parfois des régressions).
+
+<strong>Cas d'usage idéal :</strong> tu es dans l'écosystème Google Workspace au quotidien. Tu veux un point d'entrée gratuit pour tester avant de payer. Tu veux partager un Gem facilement avec des collègues (sans compte payant chez eux). Tu commences en construction d'assistant et tu apprécies le magic wand qui guide la rédaction.</div>
+  </div>
+
+  <h3>Tableau de synthèse 2026</h3>
+
+  <div class="container reading">
+    <p>Sur les 6 critères qui comptent vraiment dans la pratique :</p>
+
+    <p><strong>Prix d'entrée :</strong> Gemini Gems gagne (gratuit), Claude Projects et Custom GPTs ex-aequo à 20 $/mois.</p>
+
+    <p><strong>Base de connaissances :</strong> Claude Projects gagne (30 Mo/fichier illimité, recherche dans les documents mature, 1M context), Gemini deuxième, Custom GPTs troisième (limite 20 fichiers, 512 Mo total).</p>
+
+    <p><strong>Connecteurs externes (API/Actions) :</strong> Custom GPTs gagne historiquement (Actions matures depuis 2023, intégrations Microsoft/Google récentes), Claude Projects via MCP en cours de maturation, Gemini intégrations Google natives mais moins extensible.</p>
+
+    <p><strong>Partage équipe :</strong> Gemini Gems gagne en simplicité (sharing à la Drive depuis septembre 2025, fonctionne avec utilisateurs gratuits), Claude Projects en granularité (Team/Enterprise avec permissions), Custom GPTs en distribution publique (GPT Store).</p>
+
+    <p><strong>Roadmap stable :</strong> Claude Projects et Gemini Gems gagnent — Custom GPTs sont en transition vers les Workspace Agents, donc <strong>investir lourdement dans la construction d'un Custom GPT en 2026 comporte un risque de migration future</strong> à anticiper.</p>
+
+    <p><strong>Écosystème modèle :</strong> tous bénéficient des modèles produit phare 2026 (GPT-5.4/5.5 chez OpenAI, Claude Sonnet/Opus 4.6/4.7, Gemini 3.1 Pro). Les écarts de qualité brute sur les tâches courantes sont faibles — la différence se fait sur les fonctionnalités d'écosystème.</p>
+  </div>
+
+  <!-- ============== 3. ARBRE DE DÉCISION ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>L'<em>arbre de décision</em> en 4 questions.</h2>
+
+  <div class="container reading">
+    <p>Au lieu de chercher le « meilleur outil » dans l'absolu, réponds à ces 4 questions dans l'ordre. Ton choix sortira tout seul.</p>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Question 1 — <em>Quel écosystème</em> tu utilises déjà au quotidien ?</div>
+    <div class="tool-text">→ Microsoft 365 (Outlook, Office, Teams) + ChatGPT Plus déjà payé : <strong>Custom GPTs</strong>, l'intégration write actions Outlook/Office en 2026 est mature et ça évite de payer un abonnement supplémentaire.<br>
+→ Google Workspace (Gmail, Drive, Docs, Calendar) au quotidien : <strong>Gemini Gems</strong>, l'intégration native sans configuration bat tout. Tier gratuit suffisant pour démarrer.<br>
+→ Aucun écosystème dominant, ou tu fais beaucoup d'analyse documentaire : <strong>Claude Projects</strong>, la recherche dans les documents et le 1M context sont incomparables sur ce cas.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Question 2 — Ton cas d'usage est-il <em>documentaire</em> ou <em>actionnel</em> ?</div>
+    <div class="tool-text"><strong>Documentaire</strong> = lire/synthétiser/extraire de l'information depuis des documents. Exemple : assistant qui répond à toutes les questions sur ton produit en ayant lu ta documentation entière (200 pages). → <strong>Claude Projects</strong>, sans hésitation.<br>
+<strong>Actionnel</strong> = faire des choses dans des outils externes (créer un événement Calendar, envoyer un email Outlook, ajouter une ligne dans un Sheet, déclencher un Zap). → <strong>Custom GPTs</strong> avec Actions, ou Gemini Gems pour Google Workspace natif.<br>
+<strong>Mixte (documentaire + actionnel léger) :</strong> regarde ce qui domine dans ton usage. La majorité des cas pros sont à 70-80 % documentaire.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Question 3 — Tu vas <em>partager</em> avec qui ?</div>
+    <div class="tool-text"><strong>Solo (toi seul) :</strong> tous les 3 fonctionnent. Choisis selon écosystème.<br>
+<strong>Petite équipe (2-10 personnes), tu veux partager facilement :</strong> Gemini Gems, le sharing à la Drive ne nécessite pas que tes collègues aient un compte payant.<br>
+<strong>Équipe ou entreprise avec besoin de gouvernance (permissions, audit, data privacy) :</strong> Claude Projects Team/Enterprise, ou ChatGPT Enterprise pour les Custom GPTs avec contrôles admin.<br>
+<strong>Distribution publique (tu veux que des inconnus utilisent ton assistant) :</strong> seul Custom GPT permet ça via le GPT Store. Mais attention : le Store est saturé, la visibilité est faible.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Question 4 — Quelle est ta <em>tolérance</em> au risque de migration future ?</div>
+    <div class="tool-text"><strong>Faible (tu veux investir une fois pour 3-5 ans) :</strong> Claude Projects ou Gemini Gems sont les choix les plus sûrs. La transition Custom GPTs → Workspace Agents annoncée par OpenAI en 2026 implique qu'un Custom GPT sophistiqué construit aujourd'hui devra probablement être migré dans 12-24 mois.<br>
+<strong>Élevée (tu acceptes de migrer si nécessaire) :</strong> Custom GPTs reste pertinent en 2026, surtout pour les cas avec Actions. Tu peux même utiliser cette période de transition pour tester les Workspace Agents en research preview si tu y as accès.<br>
+<strong>Règle pratique :</strong> pour un assistant <em>« perso/léger »</em> (1-3 cas d'usage simples), prends le plus accessible (Gemini Gems gratuit). Pour un assistant <em>« mission-critical »</em> (plusieurs personnes l'utilisent, données sensibles, intégrations complexes), prends le plus stable (Claude Projects).</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">L'astuce du mentor</div>
+    <p>La plupart des comparatifs 2026 que tu vas lire vont te dire <em>« le meilleur dépend de ton cas »</em> sans te donner de méthode pour trancher. Voici la mienne, testée : <strong>commence par Gemini Gems sur le tier gratuit pendant 7 jours</strong>. Construis 2-3 assistants pour tes cas d'usage prioritaires. Tu vas vite identifier ce qui fonctionne et ce qui te manque. Si Gemini te suffit (cas dans 60 % des situations), tu restes. Si la recherche dans les documents te frustre (fichiers de connaissances trop limités, recherche dans les documents pas assez précis), tu migres vers Claude Projects. Si tu as besoin d'Actions externes complexes, tu migres vers Custom GPTs. Cette approche te coûte 0 € initial et te donne des données réelles sur tes propres usages — elle bat largement le choix abstrait basé sur des comparatifs.</p>
+  </div>
+
+  <!-- ============== 4. PIÈGES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Les <em>5 pièges</em> qui ratent un projet d'assistant.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>construire un assistant pour un cas variable</em></div>
+    <div class="pitfall-text">Tu construis un assistant <em>« qui m'aide dans mon travail »</em> ou <em>« qui répond à toutes mes questions »</em>. Trop large. Le modèle ne sait pas quelles règles appliquer en priorité. Résultat : qualité moindre que ChatGPT direct. <strong>Discipline :</strong> un assistant = un cas d'usage précis avec règles stables. Si tu as 5 cas, fais 5 assistants — pas 1 méta-assistant. La règle de seuil (3 fois par semaine pendant 4 semaines) garantit que le cas est suffisamment stable pour valoir la construction.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : <em>un fichier de 200 pages mal structuré</em></div>
+    <div class="pitfall-text">Tu uploades 1 PDF de 200 pages mal structuré (un dump de ta documentation existante). Le recherche dans les documents remonte des passages mal contextualisés. Réponses pauvres. <strong>Discipline :</strong> structure tes fichiers de connaissances comme tu structurerais un brief. Un fichier par sujet logique (pas tout en un seul). Sections avec titres clairs. Si possible, un document <em>index</em> qui résume où trouver quoi. Claude Projects et Gemini Gems profitent énormément de cette discipline ; Custom GPTs encore plus parce que la limite totale est plus stricte (512 Mo).</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>oublier de tester avec des cas adversaires</em></div>
+    <div class="pitfall-text">Tu construis l'assistant, tu le testes 2-3 fois sur des cas faciles, ça marche, tu déploies. 2 semaines plus tard, tu découvres qu'il dérape sur les cas atypiques (questions hors-sujet, demandes contradictoires, données manquantes). <strong>Discipline :</strong> avant déploiement, teste explicitement 5 cas adversaires : (1) question hors du périmètre — l'assistant doit savoir refuser, (2) données contradictoires dans les fichiers — l'assistant doit savoir signaler, (3) demande sensible (donnée perso, info confidentielle) — l'assistant doit avoir une garde, (4) format de sortie cassé (utilisateur qui demande JSON sans guillemets), (5) instruction utilisateur qui contredit tes règles initiales. C'est l'objet de l'article 1.6 (tester, débugger, maintenir) — mais déjà l'esprit dès le premier assistant.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>verrouiller un fournisseur trop tôt</em></div>
+    <div class="pitfall-text">Tu construis 10 Custom GPTs sophistiqués avec Actions custom. Tu investis 40h. 6 mois plus tard, OpenAI te force à migrer vers Workspace Agents (annonce 2026 du modèle) et la migration n'est pas automatique pour tes Actions complexes. <strong>Discipline :</strong> documente tes assistants dans un format portable (un Notion ou un Google Doc qui contient les instructions, les connaissances structurées, le raisonnement). Cette doc te permet de migrer en 30 minutes si la plateforme évolue. Sans ça, tu repars de zéro.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : <em>construire pour soi, déployer pour les autres</em></div>
+    <div class="pitfall-text">Tu construis un assistant qui marche bien pour toi (tu connais tacitement les conventions de ton job). Tu le partages à 5 collègues. Pour eux, ça ne marche pas — il manque des contextes que toi tu avais en tête. <strong>Discipline :</strong> avant de partager, fais tester par une personne extérieure au cas (ami, conjoint, collègue d'un autre service). Ses questions naïves révèlent les implicites manquants. Article 1.7 traite ce sujet en profondeur — mais déjà l'esprit dès le premier assistant.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>Le choix entre Custom GPTs / Claude Projects / Gemini Gems n'est <strong>pas le levier de valeur</strong> dans un projet d'assistant IA réussi. La qualité de ton brief (instructions précises + connaissances bien structurées + tests adversaires) compte 5 fois plus que le choix de plateforme. Trois personnes qui choisissent la même plateforme produiront des assistants de qualité radicalement différente selon leur discipline de construction. Donc : (1) ne te bloque pas 3 semaines à choisir entre les 3 — utilise l'arbre de décision, prends le plus naturel pour ton écosystème, démarre, (2) investis ton énergie dans la construction propre (instructions claires, connaissances structurées, tests adversaires), pas dans le choix de plateforme, (3) reste portable — documente ton assistant pour pouvoir migrer si nécessaire. <strong>Le bon assistant est celui qui résout ton cas avec discipline. Pas celui qui est sur la bonne plateforme.</strong></p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Pour aller plus loin : <a href="construire-premier-custom-gpt.html">l'article 1.2 sur construire ton premier Custom GPT en 30 minutes</a> (le tutoriel pas-à-pas pratique), les articles 1.3 anatomie d'un assistant qui marche, 1.4 sur les fichiers de connaissances, 1.5 sur les Actions/APIs, 1.6 tester/débugger, 1.7 partager en équipe. Pour aller plus loin sur l'écosystème connecteurs : <a href="niveau-4-connecter-outils.html">la rubrique R2 sur les connecteurs MCP</a> qui élargit le sujet au-delà des Custom GPTs. Pour comprendre la différence assistants vs agents : <a href="niveau-4-deleguer-agents.html">la rubrique R3 sur les agents IA</a> où l'article 3.1 dissipe la confusion sémantique. Et si tu démarres juste avec l'IA, retour au <a href="quel-modele-choisir.html">guide 2.10 (Niveau II) sur quel modèle choisir</a> qui pose les bases.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur Custom GPTs / Projects / Gems.</h3>
+    <ol class="recap-points">
+      <li>Un assistant construit (Custom GPT, Claude Project, Gemini Gem) = version sauvegardée de ton prompt + contexte + connaissances + comportement. Bat un prompt répété sur les 2 axes : économique (1 250 répétitions/an évitées) et cognitif (formalisation force la qualité). Règle de seuil : construis quand tu fais 3 fois/semaine pendant 4 semaines, pas avant.</li>
+      <li>Custom GPTs (OpenAI, ChatGPT Plus 20 $/mois) : écosystème mature, Actions personnalisées matures, intégrations Outlook/Office 2026 natives. <strong>Mais en transition vers Workspace Agents</strong> annoncés en avril 2026 — risque de migration future à anticiper.</li>
+      <li>Claude Projects (Anthropic, Pro 20 $/mois) : meilleure base de connaissances du marché (30 Mo/fichier illimité, recherche dans les documents mature, 1M context). Idéal pour analyse documentaire intensive. Version gratuite 5 projets. Pas d'Actions externes natives (passage par MCP).</li>
+      <li>Gemini Gems (Google, gratuit) : tier gratuit fonctionnel, magic wand pour générer instructions, sharing à la Drive depuis sept 2025. Idéal écosystème Google Workspace + débuts. Fichiers de connaissances plus limités que Claude.</li>
+      <li>Arbre de décision en 4 questions : (1) écosystème dominant ? (Microsoft → GPTs, Google → Gems, neutre ou docs → Claude), (2) cas documentaire ou actionnel ? (docs → Claude, actions → GPTs/Gems), (3) partage avec qui ? (équipe légère → Gems, gouvernance → Claude/GPTs Enterprise), (4) tolérance migration future ? (faible → Claude/Gems, élevée → GPTs OK). 5 pièges à éviter : assistant trop large, connaissances mal structurées, pas de tests adversaires, verrouillage fournisseur sans doc portable, oubli des implicites lors du partage. La qualité du brief compte 5x plus que le choix de plateforme.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="construire-premier-custom-gpt.html">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">1.2 · Construire ton premier Custom GPT en 30 min</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-4-construire-assistants.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Construire tes assistants · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

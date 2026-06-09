@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trouver ce que tu peux vendre, à partir de tes compétences. – AutomationBoost</title>
+  <meta name="description" content="La méthode pour croiser tes compétences réelles avec une demande qui paye, et sortir du « je ne sais pas quoi vendre »." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Trouver ce que tu peux vendre, à partir de tes compétences.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#f43f5e;">Lancer un business</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Trouver ce que tu peux vendre, à partir de tes compétences.</h1>
+    <p class="lede">La méthode pour croiser tes compétences réelles avec une demande solvable. Sortir du « je ne sais pas quoi vendre » en 90 minutes structurées. Avec la matrice à 4 quadrants, l'angle niche vs généraliste qui change la rentabilité du simple au triple, et l'erreur que 80 % des solos commettent au démarrage.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tu veux te lancer en solo. Tu lis 30 articles d'« idées de business 2026 », tu en sors avec 50 idées et zéro décision. Le problème : ces listes te montrent ce que <strong>d'autres</strong> peuvent vendre, pas ce que <strong>toi</strong> tu peux vendre. La différence est décisive.</p>
+
+    <p>Les solos qui passent le cap des 12 mois ont un point commun : ils ont bâti autour de leurs propres compétences, sur une demande qu'ils ont vérifiée. Cet article te donne la matrice compétences × marché, une méthode structurée pour trouver ton angle plutôt que de copier celui des autres.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi la matrice <em>bat les listes d'idées</em>.</h2>
+
+  <div class="container reading">
+    <p>Piocher dans une liste « 73 idées de business » échoue parce qu'elle ignore les deux seules dimensions qui comptent ensemble : <strong>ce que tu sais vraiment faire</strong> (mieux que 80 % des gens, aujourd'hui — pas dans 6 mois) et <strong>ce que des gens paient déjà</strong> pour résoudre. Sauter la première, tu perds tes clients aux premières missions ; sauter la seconde, tu construis dans le vide.</p>
+
+    <p>Croiser les deux, c'est tout l'objet de la matrice. Voici comment la remplir.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>La matrice <em>en 90 minutes</em>.</h2>
+
+  <div class="container reading">
+    <p>Bloquer 90 min dans ton agenda. Pas un samedi <em>« si j'ai le temps »</em>. Un slot identifié, sans interruption. Voici les 4 étapes avec timing précis.</p>
+  </div>
+
+  <h3>Étape A — Inventaire de tes compétences réelles (20 min)</h3>
+
+  <div class="container reading">
+    <p>Liste tes <strong>compétences au-dessus de la moyenne</strong>. Critère brutal : tu fais ça mieux que 80 % des gens que tu connais professionnellement. Pas <em>« j'aime bien »</em>. Pas <em>« j'ai fait ça à l'école »</em>. <em>Concrètement supérieur à la moyenne</em>, démontrable.</p>
+
+    <p>Méthodologie : 3 catégories à explorer. <strong>(1) Compétences techniques métier</strong> — ce que tu fais dans ton job actuel ou passé. <strong>(2) Compétences transverses</strong> — synthèse, communication écrite, analyse, animation, négociation. <strong>(3) Compétences de niche bizarres</strong> — ce que tu fais sans y penser parce que ça te paraît évident, mais qui surprend les autres. Cette troisième catégorie est souvent la plus rentable.</p>
+
+    <p>Vise 8-12 items. Sois honnête. Si tu hésites entre <em>« compétent »</em> et <em>« moyen »</em>, c'est moyen — ne le mets pas. Une fois la liste faite, classe-les en 3 niveaux : <strong>★★★ supérieur à 95 %</strong> (rare expertise), <strong>★★ supérieur à 80 %</strong> (au-dessus de la moyenne pro), <strong>★ correct mais commun</strong> (à exclure pour la suite).</p>
+  </div>
+
+  <h3>Étape B — Inventaire de ton énergie (15 min)</h3>
+
+  <div class="container reading">
+    <p>Pour chaque compétence ★★★ et ★★ retenue, marque-la <strong>(+) énergisante</strong> ou <strong>(−) drainante</strong>. Question test : si tu devais faire <em>uniquement ça</em> 30 heures par semaine pendant 2 ans, te sentirais-tu vivant ou vidé ? Le futur business est <em>le seul</em> truc que tu vas faire — l'énergie compte autant que la compétence.</p>
+
+    <p>Cette dimension est ce qui sépare le zone idéale Shopify (<em>high skill + high passion</em>) du piège <em>high skill + low passion</em> où beaucoup de freelancers se retrouvent stuck pendant 5 ans. Tu peux faire de l'argent avec une compétence drainante — mais tu vas burn out à 12-18 mois et abandonner. <strong>Statistique 2026 :</strong> entrepreneurs qui échouent ne manquent pas de motivation initiale, ils <em>« s'épuiser pendant des mois, se sentir coincé, atteindre le burn-out et finir par tout abandonner »</em> (Entrepreneur).</p>
+
+    <p>Élimine les compétences (−). Tu ne construiras pas un business solo durable autour d'elles. Garde uniquement les (+). Ta liste devrait fondre à 4-6 items.</p>
+  </div>
+
+  <h3>Étape C — Audit de la demande solvable (35 min)</h3>
+
+  <div class="container reading">
+    <p>Pour chaque compétence retenue, vérifie qu'il existe une demande qui paie déjà. Méthode pratique en 5 minutes par compétence :</p>
+
+    <p><strong>(1) Recherche Google :</strong> <em>« services [ta compétence]  [tarif | freelance | consultant] »</em>. Si tu trouves rapidement des freelancers qui pratiquent et publient leurs tarifs, demande solvable confirmée. <strong>(2) Upwork / Malt / Comet :</strong> recherche les missions ouvertes sur ce domaine. Volume hebdomadaire des annonces = proxy de la demande active. <strong>(3) Reddit/forums :</strong> cherche les threads où des gens demandent <em>« comment trouver un [ta compétence] »</em>. Si la question revient régulièrement, demande non-couverte.</p>
+
+    <p>Pour chaque compétence : note <strong>★★★ demande forte et solvable</strong> (offres pro multiples, tarifs publiés &gt; 50 €/h ou &gt; 1000 €/mission), <strong>★★ demande existante</strong> (offres présentes mais pas premium), <strong>★ demande faible ou floue</strong> (à éliminer).</p>
+
+    <p>Garde uniquement les compétences qui sont <strong>★★★ ou ★★ sur compétence ET demande</strong>. Ta liste finale fait 2-4 items. Ce sont tes pistes business viables.</p>
+  </div>
+
+  <h3>Étape D — Croisement et choix (20 min)</h3>
+
+  <div class="container reading">
+    <p>Pour les 2-4 pistes retenues, applique la grille finale en 4 questions :</p>
+
+    <p><strong>(1) Asymétrie :</strong> as-tu une perspective ou une compétence rare combinée ? Exemple : <em>« je suis dev backend ET j'ai 10 ans de finance »</em> — l'intersection est plus rare que chaque côté isolé. Cherche les intersections de tes compétences ★★★.</p>
+
+    <p><strong>(2) Profondeur de demande :</strong> peux-tu nommer <em>3 personnes spécifiques</em> de ton réseau qui paieraient pour cette offre dans les 30 prochains jours ? Si oui, demande validée concrètement. Si tu ne peux pas, la demande est théorique.</p>
+
+    <p><strong>(3) Compatibilité énergétique :</strong> peux-tu te projeter à faire ça 30h/semaine pendant 2 ans ? Sans rétractation. Si tu hésites, ce n'est pas le bon choix.</p>
+
+    <p><strong>(4) Délai jusqu'au premier revenu :</strong> à partir d'aujourd'hui, en combien de jours peux-tu signer ton premier client ? &lt; 30 jours = excellent (offre alignée avec demande existante). 30-90 jours = OK avec effort marketing. &gt; 90 jours = piste fragile, retravailler.</p>
+
+    <p>Choisis la piste qui maximise le score sur ces 4 questions. <strong>Tu as ta direction.</strong> Une seule. Pas trois. Le focus est ce qui te fera survivre les 12 prochains mois.</p>
+  </div>
+
+  <div class="codeblock">
+    <div class="codeblock-label">— Exemple concret d'application · profil dev SaaS reconverti</div>
+    <div class="codeblock-content"><span class="comment"># ÉTAPE A — INVENTAIRE COMPÉTENCES (20 min)</span>
+   ★★★ <em>Architecture backend Python</em>
+   ★★★ <em>Optimisation perf BDD PostgreSQL</em>
+   ★★ Communication écrite (docs techniques)
+   ★★ Mentoring devs juniors
+   ★★ Animation atelier technique
+   ★ JavaScript frontend (commun)
+   ★ Anglais professionnel (commun)
+   ★★ <em>Connaissance secteur fintech</em> (8 ans)
+
+<span class="comment"># ÉTAPE B — ÉNERGIE (15 min)</span>
+   ★★★ Architecture backend Python (+) ✓
+   ★★★ Optimisation perf BDD PostgreSQL (−) ✗ exclu
+   ★★ Communication écrite (+) ✓
+   ★★ Mentoring devs juniors (+) ✓
+   ★★ Animation atelier technique (−) ✗ exclu
+   ★★ Connaissance fintech (+) ✓
+
+<span class="comment"># ÉTAPE C — DEMANDE SOLVABLE (35 min)</span>
+   <em>Architecture backend Python</em> → ★★★ (Malt 800-1200 €/j)
+   <em>Communication écrite</em> → ★★ (techwriters 400-600 €/j)
+   <em>Mentoring devs juniors</em> → ★ marché flou
+   <em>Connaissance fintech</em> → ★★ (consultants 700-900 €/j)
+
+<span class="comment"># ÉTAPE D — CROISEMENT FINAL (20 min)</span>
+   <em>Sweet spot identifié :</em>
+   <em>Architecture backend × Fintech expertise</em>
+   = "Architecte backend pour startups fintech"
+
+   ✓ Asymétrie : intersection rare (back Python + fintech 8 ans)
+   ✓ Profondeur : 3 ex-collègues fintech intéressés (validé)
+   ✓ Énergie : (+) sur les 2 dimensions
+   ✓ Délai jusqu'au premier revenu : 15 jours (réseau direct)
+
+<span class="comment"># DÉCISION : lance "Architecte backend fintech freelance"</span>
+<span class="comment">#           Day rate visé : 900 €/j (positionnement spécialisé)</span></div>
+  </div>
+
+  <!-- ============== 3. NICHE VS GÉNÉRALISTE ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Niche vs généraliste : l'<em>arbitrage clé</em>.</h2>
+
+  <div class="container reading">
+    <p>Une fois ta direction identifiée, une question critique : tu te positionnes <em>généraliste</em> (large) ou <em>niche</em> (étroit) ? Cet arbitrage change ta rentabilité du simple au triple. La donnée 2026 est sans appel : <strong>les niches commandent 2 à 3x les tarifs des généralistes</strong> (ideaproof, entrepreneurloop). Pourtant, 80 % des solos démarrent en généraliste par peur du manque de demande. Erreur.</p>
+  </div>
+
+  <h3>Pourquoi le généraliste perd en 2026</h3>
+
+  <div class="container reading">
+    <p>Le généraliste se positionne <em>« développeur freelance »</em>, <em>« graphic designer »</em>, <em>« copywriter »</em>. Il est en concurrence avec <strong>des centaines de milliers d'autres profils similaires</strong> sur Upwork, Malt, Fiverr. Cette commoditisation pousse les tarifs vers le bas. Le client choisit au prix parce que rien ne distingue le généraliste du concurrent.</p>
+
+    <p>Le coût d'acquisition client a augmenté chaque année depuis 2013 (Shopify 2026). Faire du marketing large et générique coûte plus cher pour des conversions plus faibles. Les algorithmes des plateformes pénalisent les profils non-différenciés. Le généraliste de 2026 fait moins d'argent qu'en 2020 pour le même niveau de compétence.</p>
+  </div>
+
+  <h3>Pourquoi la niche gagne</h3>
+
+  <div class="container reading">
+    <p>La niche se positionne <em>« développeur backend Python pour startups fintech B2B »</em>, <em>« graphic designer pour restaurants haut de gamme »</em>, <em>« copywriter pour SaaS B2B en hypercroissance »</em>. La concurrence chute brutalement — il y a peut-être 50 personnes qui ciblent exactement cette niche en France. Mais les clients qui cherchent <em>exactement ça</em> te trouveront, et paieront premium parce qu'ils savent que tu comprends leur contexte sans temps de ramp-up.</p>
+
+    <p><strong>Cas documenté :</strong> brand identity packages 2-15 K $ pour designers spécialisés vs 500-2000 $ pour généralistes. Restaurant branding specialist commande 2-3x les tarifs d'un graphic designer généraliste (ideaproof). McKinsey alumni en consulting solo : 200-500 $/h en niche vertical (healthcare, fintech) vs 100-200 $/h en stratégie générale. <em>« La spécialisation est le différenciateur clé »</em> — récurrent dans tous les benchmarks 2026.</p>
+  </div>
+
+  <h3>L'objection classique et sa réfutation</h3>
+
+  <div class="container reading">
+    <p><strong>Objection :</strong> <em>« Mais si je niche trop, je vais manquer de clients. »</em></p>
+
+    <p><strong>Réfutation :</strong> tu as besoin de <strong>10-30 clients par an</strong> pour un business solo, pas 10 000. Une niche qui contient 1000 entreprises potentielles est largement suffisante. Le piège du généraliste est l'inverse : il a accès à beaucoup de clients potentiels mais en convertit très peu, à des tarifs faibles, et passe son temps à se vendre. Le niché en convertit beaucoup à des tarifs élevés, et passe son temps à délivrer.</p>
+
+    <p><strong>Calcul concret :</strong> 30 clients/an × 3000 €/mission = 90 000 €. À 6000 €/mission en niche premium = 180 000 €. Même nombre de clients, ratio 2x. Sur 5 ans, l'écart cumulé devient massif.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">La règle du double-axe pour nicher</div>
+    <p>Une niche puissante combine <strong>2 axes de spécialisation</strong>. Axe 1 = <em>quel service</em> (dev backend, design, copywriting...). Axe 2 = <em>quel segment client</em> (fintech, restaurant haut de gamme, SaaS B2B...). L'intersection (1 × 2) est ce qui te positionne comme indispensable. <strong>Test :</strong> peux-tu finir cette phrase de manière unique ? <em>« Je suis le [service] spécialisé pour [segment précis]. »</em>. Si oui, tu as ta niche. Si la phrase peut être prononcée par 1000 autres personnes, retravaille.</p>
+  </div>
+
+  <!-- ============== 4. LES 5 ARCHETYPES SOLO ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Les <em>5 archétypes</em> solo dominants en 2026.</h2>
+
+  <div class="container reading">
+    <p>Une fois ta matrice complète et ta niche identifiée, ton offre prendra une forme. En 2026, 5 archétypes dominent le marché solo. Tu choisis lequel selon ton profil et ta niche. Ils sont compatibles entre eux à long terme — la plupart des solos qui réussissent commencent par un et migrent ou ajoutent les autres.</p>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Archétype 1 — <em>Consulting indépendant</em></div>
+    <div class="tool-text"><strong>Modèle :</strong> tu vends ton expertise à l'heure ou à la mission. Stratégie, opérations, transformation digitale, AI consulting. <strong>Earnings 2026 :</strong> 80-300 K $/an, day rates 1000-5000 $, McKinsey alumni 200-500 $/h. AI consultants spécialisés montent à 20-150 K $/mois.<br><br>
+<strong>Adapté pour :</strong> profils sénior avec expertise sectorielle ou fonctionnelle pointue. <strong>Délai jusqu'au premier revenu :</strong> 15-30 jours via réseau direct. <strong>Spécialisation critique :</strong> niche vertical (healthcare, SaaS pricing, fintech compliance) commande 2-3x les tarifs généralistes.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Archétype 2 — <em>Freelance services</em></div>
+    <div class="tool-text"><strong>Modèle :</strong> tu vends une compétence d'exécution à la mission ou en forfait mensuel mensuel. Dev, design, copywriting, social media, traduction. <strong>Earnings 2026 :</strong> très variable selon spécialisation et niveau, typiquement 50-200 K €/an pour solo niché.<br><br>
+<strong>Adapté pour :</strong> profils avec compétence d'exécution claire. <strong>Délai jusqu'au premier revenu :</strong> 30-60 jours selon plateforme (Malt, Comet) ou réseau. <strong>Spécialisation critique :</strong> double-axe service × segment client (cf section 3) — sinon commoditisation et tarifs en baisse.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Archétype 3 — <em>Micro-SaaS</em></div>
+    <div class="tool-text"><strong>Modèle :</strong> tu construis un petit produit logiciel (souvent en no-code 2026) qui résout un problème niche, et tu le vends en SaaS recurring. <strong>Earnings 2026 :</strong> 5-50 K $/mois de revenu mensuel pour les solos performants ; cas Pieter Levels = 12+ produits / 200 K $/mois.<br><br>
+<strong>Adapté pour :</strong> profils techniques ou no-code-fluents avec compréhension métier. <strong>Délai jusqu'au premier revenu :</strong> 60-180 jours (build + acquisition). <strong>Critique :</strong> <a href="trous-marche-ia.html">trouver un vrai trou de marché article 1.2</a> — les SaaS génériques échouent, les SaaS niche réussissent.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Archétype 4 — <em>Digital products</em></div>
+    <div class="tool-text"><strong>Modèle :</strong> tu vends des produits numériques ponctuel — formations, templates, ebooks, kits Notion, presets. <strong>Earnings 2026 :</strong> 8-40 K $/mois pour creators établis ; long tail (la majorité) entre 500 et 5000 $/mois.<br><br>
+<strong>Adapté pour :</strong> profils avec expertise systématisable et capacité de création de contenu. <strong>Délai jusqu'au premier revenu :</strong> 30-90 jours après build. <strong>Critique :</strong> demande une audience préalable ou un canal d'acquisition cher en paid ads. <em>Ne pas démarrer ici sans audience minimale.</em></div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Archétype 5 — <em>Creator economy</em></div>
+    <div class="tool-text"><strong>Modèle :</strong> tu construis une audience (newsletter, podcast, YouTube, communauté payante) et tu monétises via sponsoring, abonnements, ou produits adjacents. <strong>Earnings 2026 :</strong> très variable, top creators 100 K+ $/mois, médiane bien plus modeste, long tail très bas.<br><br>
+<strong>Adapté pour :</strong> profils avec voix unique, compétence de création de contenu, et endurance (12-24 mois minimum avant traction). <strong>Délai jusqu'au premier revenu :</strong> 6-18 mois. <strong>Critique :</strong> archétype le plus glamour mais aussi le plus aléatoire. Statistiques inconfortables : la majorité des creators ne franchissent jamais 1000 $/mois durables.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">L'ordre d'attaque recommandé pour 2026</div>
+    <p><strong>Démarre par consulting ou freelance services</strong> (archétypes 1 ou 2). Time to first revenue le plus court (15-60 jours), validation marché immédiate (les clients paient ou pas), feedback direct sur ton offre. Tu finances ta vie pendant que tu apprends. <strong>Au bout de 6-12 mois</strong>, tu as une clientèle, un cash-flow, une compréhension fine de ton marché. C'est <em>là</em> que tu peux ajouter un archétype scalable (3, 4 ou 5) en parallèle. Le piège classique : démarrer par un micro-SaaS ou un creator content sans cash-flow — tu te retrouves à 6 mois sans revenu et tu abandonnes (cf 80 % d'abandon documenté). Le consulting+freelance d'abord est <em>la</em> stratégie qui maximise tes chances de tenir 24 mois et bâtir progressivement.</p>
+  </div>
+
+  <!-- ============== PIÈGES ============== -->
+  <h2 class="reading"><span class="h2-num">— Bonus</span>5 <em>pièges</em> classiques.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>« suis ta passion »</em></div>
+    <div class="pitfall-text">Conseil le plus répandu et le plus mauvais. Si ta passion ne croise pas une demande solvable et une compétence supérieure, tu te lances dans une activité qui te plaît mais ne paie pas. <em>« Ne suis pas ta passion — la matrice compétences × passion est une approche plus intelligente »</em> (Shopify 2026). <strong>Correction :</strong> applique la matrice 4 axes — compétence supérieure × énergie positive × demande solvable × asymétrie. Passion seule ne suffit pas. Si tu ne croises que passion sans compétence, tu es au quadrant <em>low skill + high passion</em> = OK pour expérimenter en side, dangereux comme business principal.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : <em>croire que tu apprendras la compétence en cours de route</em></div>
+    <div class="pitfall-text">Tu identifies une demande chaude (AI consulting, par exemple). Tu te dis <em>« je vais apprendre l'IA en 6 mois et me lancer »</em>. Réalité : tu seras concurrent de profils qui ont 5+ ans dans le domaine. Tu vas livrer médiocrement, perdre tes premiers clients, et abandonner. <strong>Correction :</strong> démarre depuis ce que tu sais <em>déjà</em> faire au-dessus de la moyenne. Tu peux ajouter de l'IA comme <em>levier</em> à ton expertise existante (cf <a href="niveau-4-batir-automatisations.html">Niveau IV</a>), pas comme expertise principale si tu débutes. Construire sur des fondations solides bat la course aux modes.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>généraliste par peur du manque de demande</em></div>
+    <div class="pitfall-text">Tu te dis <em>« si je niche trop, je vais manquer de clients »</em>. Tu te positionnes large pour <em>« toucher plus de monde »</em>. Résultat : tu touches en effet plus de monde, mais tu convertis 10x moins, à des tarifs 2-3x plus bas. <strong>Correction :</strong> tu n'as besoin que de 10-30 clients/an pour vivre confortablement en solo. Une niche de 1000 entreprises est largement suffisante. La spécialisation (ideaproof 2026) commande 2-3x les tarifs généralistes. Niche par axe vertical (segment client) ET axe service. Si tu peux finir <em>« Je suis le [service] spécialisé pour [segment] »</em> de manière unique, tu as ta niche.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>démarrer par micro-SaaS ou creator economy sans cash-flow</em></div>
+    <div class="pitfall-text">Tu lis Pieter Levels qui fait 200 K $/mois en micro-SaaS. Tu te dis <em>« je vais faire pareil »</em>. Tu démissionnes. Tu codes 6 mois sur ton SaaS. Pas de revenu pendant ce temps. À 6 mois sans cash, tu lâches et retournes salarié. <strong>Correction :</strong> ordre d'attaque consulting/freelance d'abord (cf encadré). Time to first revenue 15-60 jours, cash-flow régulier, apprentissage marché. Au bout de 12 mois, tu as de la trésorerie pour bootstrap un SaaS ou un creator path. <em>Pieter Levels a démarré par freelance, pas directement par 12 SaaS.</em> Les histoires médiatisées cachent la phase de validation préalable.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : <em>refaire la matrice tous les 3 mois</em></div>
+    <div class="pitfall-text">Tu fais la matrice. Tu choisis une direction. 2 mois plus tard, tu lis un article inspirant sur un autre archétype et tu remets tout en question. Tu refais la matrice. Tu changes de direction. Au bout de 12 mois, tu as zigzagué sans jamais aller assez loin pour que ça paie. <strong>Correction :</strong> une fois la direction choisie, <strong>engagement minimum 12 mois sans pivoter</strong>. Sauf preuve absolue d'inadéquation après 6+ mois d'effort sérieux. Le pivot par FOMO est la cause n°2 d'échec après mauvaise validation marché. Discipline du focus &gt; créativité de pivot. <em>« La plupart des entrepreneurs n'échouent pas par manque de motivation. Ils échouent à cause d'un burn-out lié au manque de focus. »</em></div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>Cet article-fondation du Niveau VI te donne <em>la</em> méthode pour sortir du <em>« je ne sais pas quoi vendre »</em>. Pas une liste d'inspiration — un filtre rigoureux qui élimine 90 % des fausses pistes. <strong>Process recommandé :</strong> bloque 90 min cette semaine. Fais la matrice 4 étapes (A inventaire 20' / B énergie 15' / C demande 35' / D croisement 20'). Identifie 1 direction. Choisis l'archétype d'entrée — consulting ou freelance pour 90 % des cas. Niche par double-axe (service × segment). Engage-toi 12 mois minimum sans pivoter. <strong>Délai cible jusqu'au premier revenu :</strong> 30-60 jours. <strong>Critère de succès à 6 mois :</strong> 3-5 clients réguliers, pricing établi, demande claire. <strong>À 12 mois :</strong> tu sais si tu peux scaler vers archétype 3, 4 ou 5 en parallèle. Cette discipline simple t'évite les 80 % d'abandon documentés et te place dans les 20 % qui durent. <strong>Suite logique :</strong> <a href="trous-marche-ia.html">article 1.2 sur trouver des trous de marché avec l'IA</a> — la méthode rigoureuse pour identifier où placer ton offre, au-delà du <em>« demande à ChatGPT 10 idées »</em> qui produit du bruit.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Tu maîtrises maintenant la matrice. Pour aller plus loin : <a href="trous-marche-ia.html">article 1.2 sur trouver des trous de marché avec l'IA</a> (la méthode rigoureuse, complémentaire à la matrice). <a href="niveau-6-trouver-idee.html">Page-pilier R1 du Niveau VI</a> (panorama des 7 articles : matrice, trous, étude marché, concurrence, test, décision, piège des idées IA). Pour le contexte plus large : <a href="niveau-6-freelance-conseil.html">R2 Lancer ton activité freelance/conseil</a>, <a href="niveau-6-creer-produits.html">R3 Créer tes produits numériques</a>, <a href="niveau-6-produit-scalable.html">R4 Construire un produit scalable</a>, <a href="niveau-6-batir-audience.html">R5 Bâtir et monétiser une audience</a>. Pour les fondations IA qui te servent dans le business : <a href="niveau-4-batir-automatisations.html">Niveau IV (automatiser)</a> — utiliser l'IA comme levier de productivité de ton activité solo.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur la matrice compétences × marché.</h3>
+    <ol class="recap-points">
+      <li>Pourquoi la matrice bat les listes d'idées : <strong>42 % des startups échouent par absence de besoin marché</strong> (IdeaProof 2026), pas par manque d'idées. Les listes d'idées de business présentent des modèles génériques sans contextualiser à <em>tes</em> compétences ni vérifier <em>ta</em> demande spécifique. La matrice impose la double vérification compétence réelle × demande solvable, qui élimine 90 % des fausses pistes en 90 min structurées.</li>
+      <li>La matrice en 90 minutes : <strong>(A) Inventaire compétences 20 min</strong> — liste 8-12 items au-dessus de 80 % moyenne, classés ★★★/★★/★. <strong>(B) Énergie 15 min</strong> — marquer (+) énergisant ou (−) drainant pour chaque ★★★ et ★★ ; éliminer les (−). <strong>(C) Demande solvable 35 min</strong> — Google/Malt/Reddit pour vérifier que des gens paient déjà, classer ★★★/★★/★. <strong>(D) Croisement 20 min</strong> — 4 questions finales (asymétrie, profondeur, énergie, time to first revenue). Choisir 1 direction.</li>
+      <li>Niche vs généraliste : les niches commandent <strong>2 à 3x les tarifs des généralistes</strong> (ideaproof, entrepreneurloop 2026). Brand identity packages 2-15 K $ niche vs 500-2000 $ généraliste. McKinsey alumni consulting 200-500 $/h en niche vertical. <strong>Tu n'as besoin que de 10-30 clients/an</strong> en solo, donc une niche de 1000 entreprises est largement suffisante. <strong>Règle double-axe :</strong> spécialisation par <em>service</em> (axe 1) × <em>segment client</em> (axe 2). Si tu peux finir <em>« Je suis le [service] spécialisé pour [segment] »</em> de manière unique, tu as ta niche.</li>
+      <li>5 archétypes solo dominants en 2026 : <strong>(1) Consulting indépendant</strong> 80-300 K $/an, McKinsey alumni 200-500 $/h, time to revenue 15-30 j. <strong>(2) Freelance services</strong> 50-200 K €/an niché, time to revenue 30-60 j. <strong>(3) Micro-SaaS</strong> 5-50 K $/mois de revenu mensuel (Pieter Levels 12 produits / 200 K $/mois), time 60-180 j. <strong>(4) Digital products</strong> 8-40 K $/mois pour creators établis, time 30-90 j post-build. <strong>(5) Creator economy</strong> très variable, top 100 K+ $/mois, time 6-18 mois. <strong>Ordre d'attaque recommandé :</strong> consulting ou freelance d'abord (cash-flow), ajouter scalable au bout de 12 mois.</li>
+      <li>5 pièges classiques : <strong>(1) « Suis ta passion »</strong> — passion seule sans compétence + demande = piège, applique la matrice 4 axes. <strong>(2) Apprendre en cours de route</strong> — démarre depuis compétence existante au-dessus de la moyenne, ajoute IA comme levier. <strong>(3) Généraliste par peur</strong> — niche commande 2-3x, double-axe service × segment. <strong>(4) Micro-SaaS sans cash-flow</strong> — consulting/freelance d'abord, scalable ensuite (Pieter Levels a démarré freelance). <strong>(5) Refaire la matrice tous les 3 mois</strong> — engagement 12 mois minimum sans pivoter, focus &gt; créativité de pivot.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="trous-marche-ia.html">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">1.2 · Trouver des trous de marché avec l'IA</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-6-trouver-idee.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Trouver et valider ton idée · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

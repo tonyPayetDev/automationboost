@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transformer notes brutes en document structuré. – AutomationBoost</title>
+  <meta name="description" content="Notes de réunion en vrac, post-it, dictée vocale : la méthode pour transformer tes notes brutes en document clair et structuré avec l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Transformer notes brutes en document structuré.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#f97316;">Gagner du temps au travail</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Transformer notes brutes en document structuré.</h1>
+    <p class="lede">Notes de réunion bordéliques, brainstorming sur post-it, dictée vocale, brouillon mental. La méthode pour transformer en 5 minutes n'importe quelle matière brute en document propre, structuré, prêt à partager.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tu sais ce que tu veux dire : tu l'as griffonné, dicté ou jeté en vrac dans un fichier. Mais entre ce brouillon et un document propre, il y a 30 minutes de travail que personne n'a envie de faire. C'est là que l'IA reprend la main.</p>
+
+    <p>C'est l'usage le plus rentable de l'IA au quotidien. Voici comment transformer tes notes en documents structurés, sans qu'elle invente quoi que ce soit.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi structurer <em>est plus rentable</em>.</h2>
+
+  <div class="container reading">
+    <p>La plupart des débutants utilisent l'IA pour <em>générer</em> à partir de rien — et là, elle invente : tu obtiens un texte qui sonne bien mais qui n'est pas le tien. La structurer à partir de <strong>ta</strong> matière (tes notes) élimine ce risque : elle organise au lieu d'inventer.</p>
+
+    <p>C'est la différence entre un document fidèle et un texte générique. Voici la méthode.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Les <em>5 cas d'usage</em> les plus rentables.</h2>
+
+  <div class="container reading">
+    <p>Voici les cinq utilisations que je vois être les plus universelles et les plus rentables. Pour chacune : le besoin réel, le prompt à utiliser, et l'astuce qui fait la différence.</p>
+  </div>
+
+  <div class="use-card">
+    <div class="use-num">— USAGE 1 / 5 · LE PLUS QUOTIDIEN</div>
+    <div class="use-name">Notes de <em>réunion</em> griffonnées → compte-rendu propre</div>
+    <div class="use-desc">Tu sors de réunion avec un carnet rempli d'abréviations, de flèches, de noms à demi-rayés. <strong>Au lieu de passer 30 minutes à tout retaper, tu donnes la matière brute à l'IA et tu obtiens un compte-rendu structuré en 30 secondes.</strong> Si tes notes sont sur papier, prends une photo et donne-la à ChatGPT/Claude/Gemini qui reconnaissent l'écriture manuscrite.</div>
+    <div class="use-prompt"><span class="use-prompt-label">— Prompt à utiliser</span>Voici mes notes brutes prises pendant une réunion sur <span class="placeholder">[sujet]</span>. Format : abréviations, fragments, parfois mal écrit.
+
+<span class="placeholder">[colle ou photographie tes notes]</span>
+
+Transforme ces notes en compte-rendu propre avec ces sections :
+
+1. <strong>Décisions prises</strong> (formulations nettes)
+2. <strong>Actions</strong> (qui · quoi · pour quand, en tableau)
+3. <strong>Points en suspens</strong> (sujets non tranchés)
+4. <strong>Prochaine étape clé</strong>
+
+<strong>Ne complète rien que je n'ai pas écrit.</strong> Si une note est ambiguë, marque-la « [à clarifier] » plutôt que d'inventer. Si un nom n'est pas explicite (initiales, prénom seul), ne devine pas la personne complète, garde tel quel.
+
+Format : 200-300 mots maximum, copiable dans un mail.</div>
+  </div>
+
+  <div class="use-card">
+    <div class="use-num">— USAGE 2 / 5 · LE PLUS NATUREL</div>
+    <div class="use-name">Dictée vocale → <em>document écrit</em> structuré</div>
+    <div class="use-desc">Tu marches, tu conduis, tu fais la vaisselle. Une idée structurée arrive. Tu la dictes 5 minutes dans ton téléphone. Habituellement, cet enregistrement reste enseveli — personne n'a le temps de le retranscrire et de le mettre au propre. <strong>L'IA fait les deux en un seul passage : transcription + mise en structure</strong>. C'est l'un des usages les plus puissants en 2026.</div>
+    <div class="use-prompt"><span class="use-prompt-label">— Méthode</span><strong>Étape 1 :</strong> dicte directement dans ChatGPT (mode vocal sur mobile) ou enregistre via une app (vocal Apple, Google Recorder), puis donne le fichier audio ou la transcription à l'IA.
+
+<strong>Étape 2 — prompt :</strong>
+
+Voici une dictée vocale brute que j'ai faite sur <span class="placeholder">[sujet]</span>. Elle contient des hésitations, des répétitions, parfois des phrases inachevées.
+
+Transforme-la en document écrit structuré :
+1. Garde toutes les idées substantielles
+2. Élimine les hésitations, répétitions et auto-corrections
+3. Réorganise dans un ordre logique si nécessaire
+4. Ajoute une structure (introduction, sections, conclusion) si le contenu le justifie
+5. Conserve mon ton naturel — ne rends pas le texte plus formel que mon oral
+
+<strong>N'invente aucune idée.</strong> Si une partie n'est pas claire à la transcription, marque-la « [à reformuler] ».</div>
+  </div>
+
+  <div class="use-card">
+    <div class="use-num">— USAGE 3 / 5 · LE PLUS LIBÉRATEUR</div>
+    <div class="use-name">Brainstorming en vrac → <em>structure</em> hiérarchisée</div>
+    <div class="use-desc">Tu as fait une session de brainstorming (seul ou en groupe). Le résultat est un mur de post-it, une page Notion en désordre, ou un fichier texte avec 40 idées dans tous les sens. <strong>Le tri manuel de cette matière est précisément le travail que personne n'a envie de faire</strong> — résultat : 80 % des brainstormings se perdent. L'IA les sauve en 1 minute.</div>
+    <div class="use-prompt"><span class="use-prompt-label">— Prompt à utiliser</span>Voici les idées issues d'un brainstorming sur <span class="placeholder">[sujet/objectif]</span>. Format : liste en vrac, sans hiérarchie, parfois redondante.
+
+<span class="placeholder">[colle toutes les idées telles quelles]</span>
+
+Aide-moi à structurer ce brainstorming :
+
+1. <strong>Regroupe les idées par thème</strong> (5-7 catégories maximum)
+2. <strong>Identifie les redondances</strong> (idées qui disent la même chose)
+3. <strong>Hiérarchise dans chaque catégorie</strong> de la plus impactante à la moins impactante
+4. <strong>Détecte les angles morts</strong> (questions/aspects qu'on aurait dû explorer mais qu'on a oubliés)
+5. <strong>Propose les 3 idées qui me semblent les plus exploitables</strong> à court terme avec un argumentaire en 2 lignes pour chacune
+
+Sois direct sur les redondances et les idées faibles. Ne me valide pas tout pour me faire plaisir.</div>
+  </div>
+
+  <div class="use-card">
+    <div class="use-num">— USAGE 4 / 5 · LE PLUS UNIVERSEL</div>
+    <div class="use-name">Brouillon mental → <em>texte</em> publiable</div>
+    <div class="use-desc">Tu sais ce que tu veux écrire (post LinkedIn, mail important, paragraphe de doc, message de présentation). Tu l'as déjà tapé en 10 minutes, en vrac, sans soigner. <strong>L'IA n'écrit pas à ta place — elle nettoie, structure et améliore le rythme sans changer ton fond.</strong> Idéal pour quand tu sais quoi dire mais que la mise en forme te bloque.</div>
+    <div class="use-prompt"><span class="use-prompt-label">— Prompt à utiliser</span>Voici un brouillon que j'ai écrit en vrac sur <span class="placeholder">[sujet]</span>. C'est destiné à <span class="placeholder">[contexte de publication : post LinkedIn, mail à mon manager, etc.]</span>.
+
+<span class="placeholder">[colle ton brouillon]</span>
+
+Améliore ce texte en respectant ces règles :
+
+1. <strong>Garde mes idées exactement comme elles sont</strong> — n'ajoute aucune idée nouvelle
+2. <strong>Conserve ma voix</strong> (tutoiement/vouvoiement, niveau de langue, mes expressions)
+3. <strong>Améliore</strong> : structure logique, transitions, élimination des répétitions, rythme
+4. <strong>Ne me transforme pas en IA</strong> : pas de hedging (« il est important de noter »), pas de transitions chevillées (« par ailleurs », « en outre »), pas de formules creuses
+5. <strong>Donne-moi 2 versions</strong> : une version proche du brouillon (corrections minimales), une version plus restructurée
+
+Pour chaque version, indique en 1 ligne ce que tu as changé.</div>
+  </div>
+
+  <div class="use-card">
+    <div class="use-num">— USAGE 5 / 5 · LE PLUS COMPLEXE</div>
+    <div class="use-name">Conversation Slack/mails dispersée → <em>synthèse</em></div>
+    <div class="use-desc">Un sujet a été discuté sur 30 messages dispersés sur Slack/mails/Teams pendant 3 semaines. Quelqu'un te demande où en est le sujet. Tu ne sais pas par où commencer pour répondre. <strong>L'IA fait la synthèse de fils de discussion fragmentés en moins de 2 minutes</strong>, identifie les décisions prises, ce qui reste en suspens, et qui a dit quoi.</div>
+    <div class="use-prompt"><span class="use-prompt-label">— Prompt à utiliser</span>Voici une conversation/un fil de messages dispersé sur <span class="placeholder">[sujet]</span>, étalé sur <span class="placeholder">[période]</span>.
+
+<span class="placeholder">[copie tous les messages dans l'ordre chronologique, ou exporte le fil Slack/mail]</span>
+
+Synthétise pour moi :
+
+1. <strong>Position de chaque participant principal</strong> (qui défend quoi)
+2. <strong>Décisions explicitement prises</strong> (avec qui les a validées)
+3. <strong>Décisions implicites ou floues</strong> (où il y a un risque que les gens ne soient pas alignés)
+4. <strong>Sujets non tranchés</strong> qui reviennent et sur lesquels on tourne en rond
+5. <strong>Prochaine action concrète</strong> qui débloquerait la suite
+
+<strong>Ne reformule pas les positions des gens à leur avantage</strong>. Si quelqu'un a dit quelque chose d'ambigu, garde l'ambiguïté. Si deux participants se contredisent, signale-le clairement.</div>
+  </div>
+
+  <!-- ============== 3. RÈGLES ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Les <em>3 règles</em> qui changent les résultats.</h2>
+
+  <h3 class="reading">Règle 1 — Toujours dire « ne complète pas »</h3>
+
+  <div class="container reading">
+    <p>Le réflexe naturel de l'IA quand on lui donne de la matière brute est de <strong>combler les vides</strong>. Si tes notes contiennent une phrase ambiguë, l'IA va l'interpréter et la rendre lisible — au risque de transformer ton intention. Si une décision n'a pas été tranchée, l'IA peut « conclure pour toi » sur la base de ce qui semblait probable. Cette tendance à compléter est utile en génération créative, dangereuse en mise au propre.</p>
+
+    <p>La parade est simple : <strong>inclus systématiquement dans tes prompts l'instruction « ne complète rien que je n'ai pas dit »</strong>. Demande à l'IA de marquer explicitement les zones d'ambiguïté avec « [à clarifier] » plutôt que de combler. C'est une consigne d'une ligne qui transforme radicalement la fiabilité du résultat.</p>
+  </div>
+
+  <h3 class="reading">Règle 2 — Toujours préserver la voix</h3>
+
+  <div class="container reading">
+    <p>Quand tu donnes ton brouillon à l'IA et que tu lui demandes d'améliorer, elle a tendance à le rendre plus soutenu, plus formel, plus « lisse ». Ce phénomène est documenté par toutes les études sur les modèles 2026. Sans contre-instruction, l'IA fait dériver tes textes vers un registre plus neutre que le tien.</p>
+
+    <p>La parade : <strong>spécifie systématiquement « conserve ma voix »</strong>, et idéalement donne à l'IA un échantillon de ton écriture habituelle pour qu'elle s'aligne. Pour automatiser : crée un <a href="custom-instructions.html">Custom Instruction</a> permanent qui rappelle ton style à chaque session, ou utilise la méthode du <a href="cloner-style-ecriture.html">clonage de style en 3 prompts</a>.</p>
+  </div>
+
+  <h3 class="reading">Règle 3 — Toujours relire avant d'envoyer</h3>
+
+  <div class="container reading">
+    <p>La structuration IA est rapide et impressionnante. Tu vas être tenté d'envoyer le résultat sans relire. <strong>Erreur classique.</strong> Sur 100 mises au propre, environ 10 contiennent un détail qui te fait perdre la face si tu envoies sans vérifier : un nom déformé, une date inventée pour combler un manque, une décision attribuée à la mauvaise personne, un ton qui ne te ressemble pas.</p>
+
+    <p>La discipline est non négociable : <strong>relecture systématique de 30 à 60 secondes avant tout envoi</strong>. Le gain de temps de la mise au propre IA reste massif (5 minutes au lieu de 30) — mais ces 30 secondes finales sont ce qui fait la différence entre un système qui fonctionne et un système qui te fait honte tous les 10 envois.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">L'astuce du mentor</div>
+    <p>Pour automatiser la structuration récurrente, crée un <a href="maitriser-projets.html">Projet ChatGPT ou Claude</a> dédié appelé <em>« Mise au propre »</em>, avec en instructions du projet : <strong>« Tu transformes mes notes brutes en documents propres. Règles : ne complète rien que je n'ai pas dit, conserve ma voix, marque les ambiguïtés [à clarifier] plutôt que combler. Ton naturel, pas formel. Format demandé pour chaque tâche par moi. »</strong>. À chaque mise au propre, tu rentres dans ce projet, tu colles ta matière brute, tu spécifies juste le format de sortie. Tu gagnes 30 secondes par session — multiplié par 50 sessions par semaine, c'est 25 minutes/semaine d'économie pure.</p>
+  </div>
+
+  <!-- ============== 4. PIÈGES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Les <em>4 pièges</em> à éviter.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>déléguer</em> la pensée à l'IA</div>
+    <div class="pitfall-text">Le but de la mise au propre est de structurer <strong>ta pensée</strong>, pas de la remplacer. Si tu n'as pas réfléchi avant de dicter ou d'écrire, l'IA va fabriquer une structure cohérente <em>qui n'est pas la tienne</em>. Tu vas envoyer le document, et plus tard tu réaliseras que tu défends une position que tu n'avais pas vraiment formulée. Règle : <strong>la matière brute doit contenir tes idées substantielles, l'IA n'est là que pour le rangement</strong>. Si tu n'as rien à dire au départ, ne demande pas à l'IA de te trouver quelque chose à dire — ce n'est plus de la mise au propre, c'est de la génération, et le résultat sera détectable.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : faire confiance aux <em>chiffres</em> et aux noms</div>
+    <div class="pitfall-text">Quand l'IA met au propre, elle peut inventer ou déformer des chiffres et des noms propres pour combler des ambiguïtés dans tes notes. Si tu as écrit « 23 % » mal, elle peut le restituer en « 32 % » sans le signaler. Si tu as écrit « M. » suivi d'un nom à demi-rayé, elle peut compléter avec un prénom plausible mais faux. <strong>Vérification systématique des chiffres et noms propres avant tout envoi</strong> — c'est précisément le genre d'erreurs qui détruit la confiance. Voir <a href="hallucinations-ia.html">l'article sur les hallucinations</a>.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>perdre</em> l'information importante en passant au propre</div>
+    <div class="pitfall-text">L'IA hiérarchise selon ce qui lui semble important — pas selon ce qui est important pour toi. Une remarque latérale dans tes notes peut être en réalité l'élément crucial du sujet, et l'IA peut la classer comme « point mineur » ou la supprimer entièrement par souci de concision. <strong>Avant de demander la mise au propre, marque toi-même ce qui est non négociable</strong> : « les points X, Y, Z doivent absolument apparaître en évidence dans le document final ». Sans cette consigne, l'IA va peut-être lisser ton message principal au profit d'une structure plus « propre » mais moins fidèle.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : utiliser ce système pour des <em>contenus sensibles</em> sans précautions</div>
+    <div class="pitfall-text">Notes contenant des données personnelles (clients, collègues, informations RH), comptes-rendus de réunions confidentielles, documents stratégiques. <strong>Tu envoies tout ça aux serveurs de l'éditeur d'IA.</strong> Selon ton plan et tes paramètres, ces données peuvent être utilisées pour entraîner les futurs modèles. Avant de mettre au propre du contenu sensible : anonymise les noms et données critiques, désactive l'entraînement sur tes données dans les paramètres, et pour les contextes vraiment confidentiels (santé, juridique, industriel), utilise des outils avec garanties contractuelles fortes (ChatGPT Enterprise, Claude Team, ou local). Voir <a href="memoire-ia.html">l'article sur la mémoire et la confidentialité</a>.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>Le test simple pour savoir si tu utilises bien cette méthode : <strong>regarde le ratio entre matière brute et document final</strong>. Si tu donnes 200 mots de notes et obtiens 800 mots de document, l'IA a inventé 600 mots. Mauvais usage. Si tu donnes 800 mots de notes et obtiens 300 mots de document, l'IA a synthétisé tes 800 mots. Bon usage. <strong>La mise au propre réduit ou égalise le volume — elle ne le multiplie jamais</strong>. Si tu cherches à multiplier le volume, tu n'es plus en mise au propre, tu es en génération — et tu dois adapter ta méthode et tes attentes en conséquence.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Pour aller plus loin sur le gain de temps : <a href="preparer-reunion-5-minutes.html">préparer une réunion en 5 minutes</a> (le couple parfait avec cet article — préparer puis mettre au propre), <a href="boite-mail-intelligente.html">traiter ta boîte mail intelligemment</a>, <a href="custom-instructions.html">les Custom Instructions</a> et <a href="maitriser-projets.html">les Projets</a> pour automatiser la mise au propre récurrente, <a href="ia-ecrire-comme-humain.html">les 7 marqueurs IA</a> à connaître pour vérifier que tes documents structurés ne sonnent pas faux, et <a href="hallucinations-ia.html">les hallucinations</a> à surveiller dans les chiffres et noms.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur la mise au propre par IA.</h3>
+    <ol class="recap-points">
+      <li>L'usage le plus rentable au quotidien est la mise au propre — pas la génération from scratch. Tu pars de ta matière à toi (notes, vocal, brouillon, fil de discussion), l'IA structure sans inventer. Risque d'erreur minimal, gain de temps maximal (5 à 10 h/semaine économisées en moyenne).</li>
+      <li>5 cas d'usage les plus rentables : notes de réunion griffonnées (manuscrites incluses, l'IA reconnaît) → compte-rendu propre · dictée vocale → document écrit · brainstorming en vrac → structure hiérarchisée · brouillon mental → texte publiable · conversation Slack/mails dispersée → synthèse claire.</li>
+      <li>3 règles non négociables : « ne complète rien que je n'ai pas dit » (avec « [à clarifier] » plutôt que combler), « conserve ma voix » (sinon dérive vers un registre plus formel et IA-typé), « relire 30-60 secondes avant envoi » (~10 % de mises au propre contiennent un détail problématique).</li>
+      <li>Automatisation : crée un Projet « Mise au propre » avec ces règles en instructions permanentes. Tu n'as plus à recontextualiser à chaque usage. Économie : 30 secondes/session × 50 sessions/semaine = 25 min/semaine.</li>
+      <li>4 pièges : déléguer la pensée (l'IA structure ta matière, elle ne pense pas à ta place), faire confiance aux chiffres et noms (vérification systématique), perdre l'information importante (marquer toi-même les points non négociables), contenus sensibles sans précaution (anonymisation, désactivation entraînement, ou outils avec garanties contractuelles).</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="preparer-reunion-5-minutes.html">
+        <div class="next-link-label">— Article complémentaire</div>
+        <div class="next-link-title">Préparer une réunion en 5 minutes</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-3-gagner-du-temps.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Gagner du temps · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

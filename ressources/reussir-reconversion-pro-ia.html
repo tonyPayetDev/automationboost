@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Réussir une reconversion pro avec l'IA. – AutomationBoost</title>
+  <meta name="description" content="29 % des Français envisagent une reconversion, peu passent à l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Réussir une reconversion pro avec l'IA.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#22d3ee;">Au quotidien</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Réussir une reconversion pro avec l'IA.</h1>
+    <p class="lede">29 % des Français envisagent une reconversion, 7 % passent à l'acte. La méthode pour utiliser l'IA comme co-pilote — bilan, plan d'apprentissage, recherche d'emploi, suivi quotidien. Sans confondre IA et conseiller en évolution professionnelle.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tu envisages la reconversion depuis trois ans. Tu en parles, tu lis des articles, tu fais des bilans le dimanche soir — et tu n'as toujours pas avancé. Tu es dans la majorité de ceux qui y pensent et n'iront jamais au bout. L'écart entre l'intention et l'action est ici l'un des plus larges qui soient.</p>
+
+    <p>Beaucoup l'envisagent, peu la préparent activement, une minorité franchit le pas. Cet article te donne une méthode concrète, appuyée sur l'IA, pour transformer l'intention en plan d'action réaliste — sans tout plaquer du jour au lendemain.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi <em>l'IA seule</em> ne fait pas une reconversion.</h2>
+
+  <div class="container reading">
+    <p>Une règle simple structure tout ce qui suit : <strong>l'humain pour les décisions à enjeu</strong> (orientation, financement, validation du marché, rencontre avec quelqu'un qui exerce déjà le métier visé), <strong>l'IA pour le travail mécanique quotidien</strong> (structurer ta réflexion, préparer tes candidatures, t'entraîner aux entretiens).</p>
+
+    <p>L'IA ne décide pas de ta reconversion : elle absorbe les 80 % de travail solitaire qui découragent la plupart des candidats, et te laisse l'énergie pour les 20 % humains qui comptent vraiment. Ne jamais inverser ce ratio.</p>
+  </div>
+
+  <!-- ============== 2. MÉTHODE 6 PHASES ============== -->
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>La <em>méthode 6 phases</em>.</h2>
+
+  <div class="container reading">
+    <p>Le protocole complet, du « j'envisage » à la première semaine dans le nouveau métier. Compte 6 à 18 mois selon ton profil et la radicalité de la reconversion. Chaque phase a un livrable concret — sans ce livrable, tu ne passes pas à la suivante.</p>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 1 / 6 · 2 À 6 SEMAINES</div>
+    <div class="phase-name">Bilan <em>introspectif</em> avant tout</div>
+    <div class="phase-purpose">L'erreur fatale est de commencer par chercher des métiers. Avant les métiers, il faut comprendre <em>pourquoi</em> tu veux changer et <em>ce qui doit absolument être présent ou absent</em> dans le nouveau. 80 % des reconversions ratées le sont parce que cette phase a été sautée. Livrable : 1 page écrite avec tes 5 « non-négociables » et 5 « idéalement ».</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser (sessions de 60-90 minutes)</span>Je suis en réflexion sur une reconversion professionnelle. Avant que tu me parles métiers ou marché, aide-moi à faire un bilan introspectif honnête.
+
+<strong>Mon contexte actuel :</strong>
+— Métier actuel : <span class="placeholder">[poste + secteur + ancienneté]</span>
+— Ce qui me pèse : <span class="placeholder">[décris en 3-5 lignes ce qui ne va plus]</span>
+— Ce qui me retient : <span class="placeholder">[ce qui marche encore — paie, collègues, sens partiel, etc.]</span>
+
+Pose-moi <strong>20 questions structurantes</strong>, par lots de 5, pour me faire creuser :
+
+<strong>Lot 1 — Le « pourquoi maintenant »</strong> : qu'est-ce qui a changé récemment ? Est-ce une fatigue passagère ou une trajectoire de fond ? Un événement déclencheur précis ?
+
+<strong>Lot 2 — Les « non-négociables »</strong> : qu'est-ce qui doit absolument être présent dans mon prochain métier (rythme, autonomie, sens, salaire min, géographie, type de relation aux autres) ?
+
+<strong>Lot 3 — Les « rouge clignotant »</strong> : qu'est-ce qui doit absolument être absent (bureau ouvert, hiérarchie pesante, déplacements, weekends bloqués, etc.) ?
+
+<strong>Lot 4 — Mes ressources réelles</strong> : trésorerie disponible, soutien proche, capacité d'apprentissage, état de santé, situation familiale, durée que je peux tenir sans revenus.
+
+<strong>Lot 5 — Mes peurs nommées</strong> : ce qui me fait reporter depuis combien de temps ? Quelle est ma vraie peur (échec, regard des autres, perte de statut, repartir de zéro) ?
+
+<strong>Règles strictes :</strong>
+— Pose les questions une par une, attends ma réponse, creuse si elle est trop courte ou trop générique.
+— <strong>Ne me propose AUCUN métier à ce stade.</strong> Pas de pistes, pas de suggestions.
+— À la fin des 20 questions, fais-moi une synthèse en 1 page : 5 non-négociables, 5 idéalement, 3 ressources réelles, 2 peurs principales à traiter en parallèle de la reconversion.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 2 / 6 · 4 À 8 SEMAINES</div>
+    <div class="phase-name">Cartographie des <em>compétences transférables</em></div>
+    <div class="phase-purpose">L'étape que la majorité des candidats sous-estime. Tes années dans ton métier actuel ont produit des compétences qui valent dans bien plus de domaines que tu ne crois. <strong>92 % des dirigeants estiment les soft skills aussi importantes que les compétences techniques</strong> en 2026. Mais il faut savoir les nommer précisément, avec les preuves. Livrable : tableau complet des compétences transférables, hiérarchisées par solidité.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>À partir de mon parcours, aide-moi à cartographier mes compétences transférables.
+
+<strong>Mon parcours :</strong>
+— Postes occupés (résumé chronologique) : <span class="placeholder">[liste]</span>
+— Réalisations marquantes (3-5 max, avec contexte et résultat précis) : <span class="placeholder">[décris]</span>
+— Tâches que je faisais bien <em>sans effort</em> : <span class="placeholder">[souvent les plus précieuses — celles qui te paraissent naturelles le sont rarement pour les autres]</span>
+— Tâches que je faisais bien <em>avec effort</em> : <span class="placeholder">[compétences acquises, transférables mais à valider]</span>
+
+<strong>Construis-moi un tableau en 4 catégories :</strong>
+
+1. <strong>Soft skills documentées</strong> (avec exemple précis tiré de mon parcours pour chaque) : leadership, négociation, gestion de l'incertitude, pédagogie, écoute, etc.
+
+2. <strong>Compétences techniques transférables</strong> : outils, méthodes, savoirs spécifiques que je peux porter dans un autre secteur (ex : pilotage budget, analyse de données, gestion de projet, communication écrite).
+
+3. <strong>Connaissances sectorielles</strong> qui peuvent être un atout dans un autre secteur (ex : connaissance du retail = atout pour passer dans le marketing retail-tech).
+
+4. <strong>Compétences invisibles</strong> que je n'ai pas pensé à mentionner mais qui apparaissent dans mes réalisations.
+
+Pour chaque ligne :
+— <strong>Niveau de solidité</strong> (preuve forte / preuve modérée / impression personnelle)
+— <strong>Comment la formuler en CV/entretien</strong> (1 phrase + 1 exemple chiffré)
+
+À la fin, identifie <strong>les 3 compétences les plus différenciantes</strong> que je porte — celles qui m'ouvrent des portes que d'autres candidats n'ont pas. Sois honnête : si une compétence est moyenne, dis-le.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 3 / 6 · 4 À 12 SEMAINES</div>
+    <div class="phase-name">Exploration des <em>pistes</em> — IA + humains</div>
+    <div class="phase-purpose">Maintenant tu cherches. Mais tu cherches sur 2 fronts : l'IA pour cartographier large et identifier des pistes que tu n'aurais pas envisagées seul, les humains (entretiens-réseau) pour valider la réalité du métier <em>au quotidien</em>. Sans la deuxième moitié, tu choisis une piste sur la base d'une projection — et tu seras déçu une fois dedans. Livrable : 5 à 8 pistes explorées, 3 retenues pour approfondissement.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser (côté IA — exploration large)</span>À partir de mon profil et de mes critères, propose-moi <strong>10 pistes de reconversion</strong> classées par compatibilité.
+
+<strong>Mon profil :</strong>
+— Compétences transférables solides (top 5) : <span class="placeholder">[liste tirée de la phase 2]</span>
+— Non-négociables : <span class="placeholder">[liste tirée de la phase 1]</span>
+— Rejets explicites : <span class="placeholder">[ce qui doit être absent]</span>
+— Budget formation max : <span class="placeholder">[montant]</span>
+— Durée d'inactivité tenable : <span class="placeholder">[mois]</span>
+— Géographie : <span class="placeholder">[région ou télétravail accepté]</span>
+
+Pour chaque piste, donne-moi :
+1. <strong>Nom du métier</strong> (intitulé exact APEC ou France Travail si possible)
+2. <strong>Compatibilité estimée</strong> (forte / modérée / faible) avec justification
+3. <strong>Compétences transférables réutilisables</strong> (% approximatif de mes compétences réutilisées vs nouvelles à acquérir)
+4. <strong>Durée de transition réaliste</strong> (formation + insertion)
+5. <strong>Coût ordre de grandeur</strong> et financements possibles (CPF, PTP, OPCO selon mon statut)
+6. <strong>Risque IA</strong> du métier d'ici 5 ans (le métier visé doit rester pertinent)
+7. <strong>Salaire moyen débutant</strong> en France 2026 + perspective 5 ans
+8. <strong>Signal d'alerte</strong> : qu'est-ce qui pourrait me faire le détester ?
+
+<strong>Règles strictes :</strong>
+— <strong>Inclus 2 pistes que je n'aurais probablement pas envisagées seul</strong> (pivots adjacents auxquels on ne pense pas).
+— <strong>Inclus 1 piste « non-bouge »</strong> : monter en compétences dans mon métier actuel avec l'IA peut suffire — c'est statistiquement la meilleure option pour beaucoup. Sois honnête là-dessus.
+— Ne minimise aucun frein : si une piste demande 2 ans de formation à temps plein, dis-le clairement.
+
+À la fin, propose-moi <strong>les 3 pistes à creuser en priorité</strong> et <strong>3 questions précises</strong> à poser à un humain qui exerce ce métier (entretien-réseau de 30 min).</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 4 / 6 · 4 À 8 SEMAINES</div>
+    <div class="phase-name">Validation <em>terrain</em> avec un humain</div>
+    <div class="phase-purpose">L'étape la plus importante et la plus négligée. Pour chacune des 3 pistes retenues, tu rencontres au minimum 1 personne qui exerce ce métier <em>aujourd'hui</em>, idéalement 2-3. Cela ne se sous-traite pas à l'IA. Mais l'IA peut t'aider à <em>préparer</em> ces rencontres pour qu'elles soient utiles. Sans cette phase, ta reconversion repose sur une projection. Livrable : 6 à 9 entretiens réalisés, synthèse des écarts entre tes projections et la réalité.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser (préparation entretien-réseau)</span>Je vais avoir un entretien-réseau de 30 minutes avec une personne qui exerce le métier de <span class="placeholder">[métier visé]</span> depuis <span class="placeholder">[ancienneté]</span> dans <span class="placeholder">[secteur/entreprise type]</span>.
+
+Mon objectif : valider que ce métier correspond à mes critères et anticiper les difficultés de transition.
+
+Aide-moi à préparer en 4 parties :
+
+<strong>1. Cadrage initial (2 min)</strong>
+— Comment me présenter en 1 minute (mon parcours actuel + ma démarche de reconversion + pourquoi je l'ai contactée elle/lui spécifiquement).
+— Comment cadrer la conversation pour qu'elle ne devienne pas une recommandation de cours.
+
+<strong>2. 8 questions à poser, classées par priorité décroissante</strong>
+— Sur le quotidien réel (« décrivez-moi une journée typique »)
+— Sur les difficultés rares mentionnées (« qu'est-ce qui a été le plus dur dans la première année ? »)
+— Sur la rémunération réelle vs annoncée (« le marché actuel par rapport à ce qu'on lit »)
+— Sur le profil qui réussit / qui échoue (« quels profils tu as vu galérer dans ce métier ? »)
+— Sur les signaux d'alerte (« si tu devais te reconvertir maintenant, le referais-tu ? »)
+— Sur les passerelles (« quels sont les vrais points d'entrée pour quelqu'un comme moi ? »)
+— Sur le réseau (« qui d'autre devrais-je rencontrer dans ton univers ? »)
+— Une question d'ouverture pour la fin (« qu'aurais-tu voulu savoir avant de commencer ? »)
+
+<strong>3. Posture à adopter</strong>
+— Ce que je dois ABSOLUMENT éviter (jugement de valeur, comparaison avec mon métier actuel, monologue)
+— Ce que je dois faire (prendre des notes visibles, reformuler, demander des exemples concrets)
+
+<strong>4. Suivi (les 24h après)</strong>
+— Modèle de mail de remerciement à envoyer
+— Comment activer la mise en relation avec d'autres personnes
+— Combien de temps avant de recontacter sans gêner
+
+À la fin, donne-moi <strong>une grille à remplir après l'entretien</strong> en 5 questions : ce que j'ai confirmé / ce que j'ai infirmé / ce qui m'a surpris / ce qui me fait reculer / mon niveau de motivation après (1-10).</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 5 / 6 · 3 À 12 MOIS</div>
+    <div class="phase-name">Plan <em>d'apprentissage</em> et exécution</div>
+    <div class="phase-purpose">Une fois la cible métier choisie et validée, tu construis le plan d'apprentissage. C'est ici que l'IA est la plus puissante — elle peut décomposer une cible complexe en plan progressif et te servir de tuteur quotidien (voir <a href="tuteur-personnel-ia.html">l'article 1.2 sur le tuteur personnel IA</a>). Mais le plan doit s'articuler avec les dispositifs publics : CPF, PTP, CSP, CDD de reconversion 2026, VAE selon ton cas. Livrable : plan détaillé sur 3-12 mois + dispositif de financement validé.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser (construction plan)</span>Je vise le métier de <span class="placeholder">[métier validé phase 4]</span>.
+
+Mes acquis (compétences déjà solides issues de la phase 2) : <span class="placeholder">[liste]</span>
+
+Mes manques principaux (à acquérir) : <span class="placeholder">[liste à partir de la fiche métier APEC ou France Travail]</span>
+
+Mon contexte :
+— Temps disponible : <span class="placeholder">[heures/semaine]</span>
+— Budget : <span class="placeholder">[montant]</span>
+— Statut actuel : <span class="placeholder">[salarié, demandeur emploi, indépendant]</span>
+— Échéance souhaitée : <span class="placeholder">[durée pour être opérationnel]</span>
+
+Construis-moi un <strong>plan d'apprentissage en 3 phases</strong> :
+
+<strong>Phase A — Fondations (1-3 mois)</strong>
+Les apprentissages incontournables avant tout, par ordre de priorité. Pour chaque :
+— Qu'apprendre exactement (compétence précise, pas un sujet large)
+— Comment l'apprendre (formation certifiante recommandée si oui ou non, ressources gratuites possibles, pratique réelle)
+— Combien d'heures à y consacrer
+— Comment vérifier que c'est acquis (livrable concret, pas « je sens que je sais »)
+
+<strong>Phase B — Spécialisation (2-6 mois)</strong>
+Les compétences qui me différencient sur ce métier. Mêmes critères que phase A. Inclus une dimension « projet portfolio » — un livrable réel que je peux montrer à un recruteur (étude de cas, mini-projet, certification reconnue).
+
+<strong>Phase C — Insertion (1-3 mois)</strong>
+Préparation candidature et premiers postes. CV reformulé pour le nouveau métier, LinkedIn refait, lettres-types adaptées, préparation entretiens, premiers contacts recruteurs.
+
+<strong>Pour les financements :</strong>
+— Vérifie si le métier visé est éligible CPF (la majorité des formations diplômantes le sont)
+— Mentionne les dispositifs PTP, CSP, CDD de reconversion 2026, OPCO selon mon statut
+— Propose-moi <strong>3 dispositifs à explorer en priorité</strong> avec un humain (CEP gratuit, conseiller France Travail, OPCO de mon secteur)
+
+<strong>Règles strictes :</strong>
+— Privilégie les <strong>formations longues 7-12 mois</strong> qui ont 51 % de rappel par employeurs (vs 30 % pour les courtes selon Jedha 2026)
+— Ne propose pas un plan irréaliste : si je n'ai que 5h/semaine et que la cible exige 30h, dis-le et propose un plan plus long
+— Inclus des <strong>jalons mensuels</strong> de vérification (« à fin du mois 2, je dois savoir faire X »)</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 6 / 6 · 1 À 4 MOIS</div>
+    <div class="phase-name">Recherche d'emploi et <em>premiers pas</em></div>
+    <div class="phase-purpose">La phase finale — passer du « je suis formé » au « je travaille dans le nouveau métier ». L'IA est très utile ici sur tout ce qui est candidature et préparation, mais l'erreur fréquente est de l'utiliser <em>trop</em> et de produire des candidatures qui sonnent IA. Voir <a href="ia-ecrire-comme-humain.html">l'article 3.2 sur les marqueurs IA</a> — particulièrement coûteux quand un recruteur les détecte. Livrable : 1er contrat signé dans le nouveau métier.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser (préparation candidature)</span>Je suis maintenant prêt(e) à postuler comme <span class="placeholder">[métier visé]</span>.
+
+Voici une offre qui m'intéresse : <span class="placeholder">[colle l'offre complète]</span>
+
+Mon profil reconverti : <span class="placeholder">[CV nouvelle version + 3 réalisations clés liées au métier visé, issues de mon plan phase B]</span>
+
+Aide-moi à candidater intelligemment :
+
+<strong>1. Analyse de l'offre</strong>
+— Quels sont les <strong>3 critères incontournables</strong> mentionnés dans l'offre ?
+— Lesquels je remplis solidement (avec preuve dans mon profil) ?
+— Lesquels je remplis partiellement (à argumenter spécifiquement) ?
+— Lesquels je ne remplis pas du tout (à anticiper en entretien) ?
+
+<strong>2. Lettre de motivation</strong>
+— Rédige une première version (max 250 mots) qui :
+  · Adresse explicitement les critères incontournables
+  · Justifie ma reconversion en 2 phrases <strong>sans m'excuser</strong> (la reconversion est un atout, pas un handicap — 92 % des dirigeants valorisent les profils transférables)
+  · Termine par une proposition de rendez-vous concrète
+— <strong>Ne mets aucune transition chevillée</strong> (« par ailleurs », « il est important de noter »)
+— <strong>Ne sonne pas IA</strong> : si une phrase pourrait être écrite par n'importe qui, réécris-la
+
+<strong>3. CV adapté à cette offre précise</strong>
+— Quels éléments mettre en haut (les 3 plus pertinents pour ce poste précis)
+— Quelles formulations utiliser pour mes anciens postes (chaque réalisation reformulée pour montrer la pertinence reconversion)
+— Comment faire la transition vers ma période formation/reconversion (sans la cacher mais sans la sur-mettre en avant)
+
+<strong>4. Préparation entretien</strong>
+— Les 5 questions piège que je peux attendre sur ma reconversion (« pourquoi maintenant ? », « pourquoi pas un autre métier proche ? », « comment vous savez que vous tiendrez ? »)
+— Pour chacune, ma réponse-type en 30 secondes max, factuelle et sans excuse
+— Une question piège à <em>moi</em> poser au recruteur en fin d'entretien pour montrer ma préparation
+
+<strong>5. Suivi</strong>
+— Mail de remerciement type (à personnaliser)
+— Combien de temps avant de relancer
+— Comment gérer le silence de plus de 2 semaines
+
+<strong>Posture finale :</strong> je ne suis pas un junior repeint. Je suis un profil senior en transition assumée — c'est différent et ça doit transparaître.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">L'astuce du mentor</div>
+    <p>Le geste qui change tout dans une reconversion : <strong>pose un calendrier ferme avec dates butoirs sur les 6 phases dès la phase 1</strong>. La majorité des candidats commencent fort puis s'effilochent au bout de 3 mois — la reconversion devient un fond de pensée parasite qui dure 3 ans sans aboutir. Le calendrier ferme (« phase 1 finie le 30 juin, phase 2 le 31 août », etc.) crée une obligation interne qui contrecarre l'inertie. Si tu rates un jalon, tu refais le calendrier <em>la semaine suivante</em>, pas dans 6 mois quand tu te poses à nouveau la question. Cette discipline calendaire est ce qui distingue les 7 % qui passent à l'acte des 22 % qui restent en phase d'envisagement éternel.</p>
+  </div>
+
+  <!-- ============== 3. ARCHÉTYPES + RESSOURCES ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span><em>3 archétypes</em> et les ressources publiques.</h2>
+
+  <div class="container reading">
+    <p>Toutes les reconversions ne se ressemblent pas. Les ajustements de méthode dépendent largement de ton archétype. Je te donne les 3 cas les plus fréquents avec leurs spécificités.</p>
+  </div>
+
+  <h3 class="reading">Les 3 archétypes</h3>
+
+  <div class="resource">
+    <div class="resource-name">Archétype 1 · <em>Reconversion subie</em> (licenciement, burnout, problèmes santé)</div>
+    <div class="resource-text"><strong>Cas typique :</strong> licenciement économique, fin de CDD non-renouvelé, burnout qui rend impossible le retour, problèmes de santé qui imposent un changement. <strong>Spécificité :</strong> tu as une contrainte temporelle forte (revenu à sécuriser) et une charge émotionnelle élevée. <strong>Ajustement méthode :</strong> phase 1 (bilan introspectif) raccourcie à 2 semaines max — tu n'as pas le luxe de la rumination longue. Phase 5 (plan d'apprentissage) priorité absolue à un dispositif financé : <strong>CSP (Contrat de sécurisation professionnelle)</strong> si licenciement économique, <strong>CDD de reconversion 2026</strong> qui te permet d'être employé pendant que tu te formes, ou <strong>PTP (Projet de Transition Professionnelle)</strong>. Ne pars jamais en formation longue auto-financée dans cet archétype — tu doubles le risque. <strong>Ressource humaine prioritaire :</strong> conseiller France Travail dans la semaine qui suit l'événement, <em>avant</em> de toucher à l'IA pour quoi que ce soit.</div>
+  </div>
+
+  <div class="resource">
+    <div class="resource-name">Archétype 2 · <em>Reconversion choisie progressive</em></div>
+    <div class="resource-text"><strong>Cas typique :</strong> tu es en poste, tu te questionnes depuis 1-3 ans, tu veux changer mais sans casser ta sécurité financière. C'est le cas le plus fréquent et le plus tenable — <em>60 % des cadres avec projet de reconversion</em> optent pour une réorientation vers un métier proche ou un changement de secteur, pas un changement radical (Jedha 2026). <strong>Spécificité :</strong> tu peux te permettre un calendrier de 12-18 mois et un parcours mixte (formation en cours du soir, mobilité interne, transition par paliers). <strong>Ajustement méthode :</strong> phase 5 articulée avec ton entreprise actuelle — beaucoup ne le savent pas, mais <strong>40 % des DRH citent la difficulté à financer la reconversion interne</strong> comme obstacle, ce qui veut dire qu'<em>il y a parfois des budgets internes inutilisés</em>. Discussion explicite avec ton manager / RH possible sur une mobilité interne à terme. <strong>Ressource humaine prioritaire :</strong> bilan de compétences via CPF + CEP gratuit, <em>en parallèle</em> de tes responsabilités actuelles.</div>
+  </div>
+
+  <div class="resource">
+    <div class="resource-name">Archétype 3 · <em>Reconversion radicale</em></div>
+    <div class="resource-text"><strong>Cas typique :</strong> tu changes de monde — cadre marketing qui devient artisan, juriste qui devient agriculteur, commercial qui devient infirmier. <strong>Spécificité :</strong> 15 % seulement des cadres en reconversion choisissent cette voie (Jedha 2026), et c'est la plus risquée — <em>peu de compétences directement transférables</em>, formation longue obligatoire, salaire d'entrée souvent significativement bas. <strong>Ajustement méthode :</strong> phase 4 (validation terrain) <em>cruciale</em> — ne te lance jamais dans une reconversion radicale sans avoir passé au moins une journée immergé dans le métier visé (stage d'observation, journée découverte, vis ma vie). Phase 5 : favorise les <strong>formations longues 7-12 mois</strong> qui ont 51 % de rappel par employeurs (vs 30 % pour formations courtes). Prévois une <strong>réserve financière de 12-18 mois minimum</strong> — l'inactivité partielle ou totale est probable. <strong>Ressource humaine prioritaire :</strong> rencontrer 5+ personnes qui ont fait ce parcours avant toi, pas 5 personnes qui exercent le métier — la trajectoire de transition compte plus que le métier d'arrivée.</div>
+  </div>
+
+  <h3 class="reading">Les ressources publiques françaises gratuites à connaître</h3>
+
+  <div class="container reading">
+    <p>L'IA n'est qu'un complément. Voici les ressources humaines françaises gratuites ou financées qui font la différence sur une reconversion. La majorité sont peu connues — c'est précisément ce qui explique que <strong>60 % des actifs déplorent les difficultés d'accès aux dispositifs d'accompagnement</strong>.</p>
+  </div>
+
+  <div class="resource">
+    <div class="resource-name"><em>CEP</em> — Conseil en évolution professionnelle</div>
+    <div class="resource-text"><strong>Gratuit, sans condition de revenu, ouvert salariés + indépendants.</strong> Service public financé par France Compétences. 1-3 rendez-vous individuels avec un conseiller qui connaît le marché local. <strong>Le point de départ recommandé pour 90 % des cas.</strong> Ils t'aident à clarifier ton projet, identifier les passerelles, choisir une formation, mobiliser un financement. Va sur mon-cep.org pour trouver le conseiller près de chez toi.</div>
+  </div>
+
+  <div class="resource">
+    <div class="resource-name"><em>Bilan de compétences</em> via CPF</div>
+    <div class="resource-text"><strong>Financable à 100 % par CPF si tu as suffisamment de droits accumulés.</strong> 24 heures réparties sur 2-3 mois avec un cabinet certifié Qualiopi. <strong>68 % des reconvertis font un bilan</strong> — c'est presque le standard. Structure : phase préliminaire (volonté), phase d'investigation (intérêts, valeurs, compétences), phase de conclusion (projet réaliste). L'IA ne remplace PAS le bilan de compétences avec un humain — elle peut s'utiliser <em>en parallèle</em> pour creuser entre les séances.</div>
+  </div>
+
+  <div class="resource">
+    <div class="resource-name"><em>PTP</em> — Projet de Transition Professionnelle</div>
+    <div class="resource-text"><strong>Pour les salariés CDI/CDD avec ancienneté minimum.</strong> Prend en charge la formation longue qualifiante <em>et</em> maintient un revenu pendant la formation (souvent 80-100 % du salaire selon ancienneté). Géré par les Transitions Pro régionales. <strong>92 % des bénéficiaires concrétisent leur projet dans les 6 mois</strong> (chiffres 2024). Difficulté : sélection sur dossier, taux d'acceptation variable selon les régions. <strong>Le dispositif le plus puissant pour une reconversion choisie en CDI</strong> — à explorer en priorité si tu remplis les conditions.</div>
+  </div>
+
+  <div class="resource">
+    <div class="resource-name"><em>CSP</em> — Contrat de Sécurisation Professionnelle</div>
+    <div class="resource-text"><strong>Pour les salariés en licenciement économique uniquement.</strong> Statut spécifique pendant 12 mois avec accompagnement renforcé France Travail + indemnisation à 75 % du salaire brut antérieur (selon ancienneté) + accès facilité aux formations. Si tu es éligible et qu'on te propose un CSP, <em>signer ou pas est une décision irréversible à 21 jours</em> — prends le temps de vérifier avec un humain (avocat droit du travail, syndicat) avant. L'IA peut t'aider à comprendre les termes, pas à décider.</div>
+  </div>
+
+  <div class="resource">
+    <div class="resource-name"><em>CDD de reconversion 2026</em> (nouveauté)</div>
+    <div class="resource-text"><strong>Dispositif récent permettant d'être salarié dans le nouveau secteur pendant que tu te formes.</strong> Tu signes un CDD avec un employeur du secteur cible, tu es payé, et la formation est intégrée à ton temps de travail. Particulièrement intéressant pour les reconversions vers des secteurs en tension (santé, BTP, artisanat). À explorer auprès de France Travail ou directement auprès des employeurs cibles. Encore peu connu mais en croissance forte.</div>
+  </div>
+
+  <div class="resource">
+    <div class="resource-name"><em>VAE</em> — Validation des Acquis de l'Expérience</div>
+    <div class="resource-text"><strong>Pour faire reconnaître officiellement les compétences acquises par l'expérience pro</strong>, sans repasser par une formation complète. Aboutit à un diplôme reconnu. 12 mois en moyenne pour une VAE complète. Particulièrement utile dans les reconversions où tu as déjà des compétences solides mais pas le diplôme correspondant (ex : autodidactes en marketing digital, gestion de projet). Voir france-vae.fr pour démarrer.</div>
+  </div>
+
+  <div class="resource">
+    <div class="resource-name"><em>OPCO</em> et financements sectoriels</div>
+    <div class="resource-text"><strong>Les OPCO (Opérateurs de compétences) financent la formation pro dans chaque secteur.</strong> Si tu vises un secteur précis, l'OPCO de ce secteur peut financer ta formation, parfois sans passer par CPF. La majorité des candidats ne les contacte jamais. Le bon réflexe : identifier l'OPCO du secteur visé (Constructys pour le BTP, Atlas pour les services financiers, etc.), prendre contact avec leur cellule développement des compétences. <strong>Ressource sous-utilisée — peut financer 100 % d'une formation si le secteur recrute en tension.</strong></div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Le couple gagnant</div>
+    <p>L'idéal opérationnel pour une reconversion en 2026 : <strong>CEP humain pour le pilotage stratégique + IA pour l'exécution quotidienne</strong>. Tu prends rendez-vous avec ton CEP en début de phase 1 (gratuit, 1h-1h30). Tu fais le bilan introspectif phase 1 avec l'IA <em>entre</em> ce rendez-vous et le suivant. Tu reviens chez ton CEP avec ta synthèse phase 1 — c'est plus structuré que 90 % des candidats qu'il/elle voit. Ton CEP valide ou amende, te donne les ressources locales. Tu repars faire la phase 2 avec l'IA. Et ainsi de suite. <strong>Cette articulation humain stratégique + IA tactique te fait gagner 6 à 12 mois sur le calendrier moyen d'une reconversion</strong>. Sans confusion : le CEP décide avec toi des grandes orientations, l'IA exécute le travail mécanique entre. Si tu inverses (CEP pour les détails, IA pour l'orientation), tu perds 6 mois en errance.</p>
+  </div>
+
+  <!-- ============== 4. PIÈGES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Les <em>5 pièges</em> qui font perdre 6 mois.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>commencer par les métiers</em> au lieu de toi</div>
+    <div class="pitfall-text">Le piège n°1, à l'origine de la majorité des reconversions ratées. Tu sautes la phase 1 (bilan introspectif) parce qu'elle te paraît trop introspective ou inutile, et tu commences à demander à ChatGPT « quels métiers sont en tension en 2026 ? ». Tu retiens un métier qui « a l'air bien sur le marché ». Tu te formes. Tu te rends compte 1 an plus tard que ce métier ne correspond pas à tes non-négociables réels (rythme, autonomie, type de relations) — que tu n'avais pas explicités. <strong>Discipline absolue :</strong> phase 1 obligatoire, livrable écrit (5 non-négociables, 5 idéalement) <em>avant</em> de regarder un seul métier. Cette phase n'est pas du développement personnel — c'est de l'analyse de besoins.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : sauter la <em>validation terrain</em></div>
+    <div class="pitfall-text">Tu choisis ton métier sur la base de fiches APEC, articles de blog, propositions IA. Tu n'as jamais parlé à quelqu'un qui exerce ce métier au quotidien. Tu te lances. Tu découvres après 6 mois que la réalité du métier est très différente de ta projection (déplacements imprévus, charge émotionnelle, rythmes décalés, hiérarchie pesante). Statistiquement, c'est l'erreur la plus coûteuse. <strong>Règle stricte :</strong> phase 4 obligatoire, minimum 2 entretiens-réseau de 30 minutes <em>par piste retenue</em>, idéalement 3-5. Ces entretiens sont gratuits et la majorité des professionnels acceptent — il faut juste oser demander. Ne pas le faire signifie partir en reconversion à l'aveugle.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : confondre <em>IA et CEP</em></div>
+    <div class="pitfall-text">Tu utilises ChatGPT à la place du CEP. Tu obtiens des conseils plausibles mais déconnectés de la réalité de ton territoire et des dispositifs accessibles. Tu pars sur une formation auto-financée alors qu'un PTP aurait pris en charge à 100 %. Tu rates le calendrier de la commission Transitions Pro de ta région. Tu fais une demande CPF mal calibrée qui passe à côté de financements complémentaires possibles. <strong>L'IA ne connaît pas ton territoire</strong>. Elle ne sait pas qui sont les bons interlocuteurs, quel cabinet de bilan a la meilleure réputation localement, quels employeurs recrutent vraiment dans ta région. <strong>Règle :</strong> le CEP en parallèle de l'IA — pas l'IA à la place du CEP.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : produire des candidatures <em>qui sonnent IA</em></div>
+    <div class="pitfall-text">Tu utilises l'IA pour rédiger toutes tes lettres de motivation, ton CV, tes mails. Les recruteurs en 2026 détectent les marqueurs IA <em>automatiquement</em> — transitions chevillées, formulations creuses, structure trop régulière. Voir <a href="ia-ecrire-comme-humain.html">l'article 3.2 sur les marqueurs IA</a>. Pour une candidature en reconversion, l'effet est doublement négatif : (1) tu sembles incompétent sur l'écrit (alors qu'en reconversion ils cherchent justement des profils qui ont des soft skills solides), (2) tu sembles paresseux ou en mode candidatures de masse. <strong>Discipline :</strong> l'IA t'aide à <em>structurer</em> ta candidature et te donne un brouillon, mais le texte final doit être réécrit par toi. Si une phrase pourrait être écrite par n'importe qui d'autre, réécris-la avec ta voix.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : <em>tenir trop longtemps</em> seul</div>
+    <div class="pitfall-text">L'erreur silencieuse qui tue le moral. Tu fais ta reconversion seul, sans en parler à ton entourage, sans groupe de pairs, sans coach. Au bout de 4-6 mois, le moral s'effondre — la reconversion est <em>physiquement éprouvante</em>, surtout pour les profils 35+ qui combinent apprentissage intensif, baisse de revenus, doute sur le projet, pression familiale. <strong>Règle :</strong> intègre dès la phase 1 un <em>écosystème de soutien humain</em>. Au minimum : 1 personne qui a fait une reconversion réussie (mentor informel), 1 groupe de pairs (LinkedIn, Meetup, communauté de la formation visée), 1 personne pour le moral hors-sujet (conjoint, ami proche, thérapeute si besoin). L'IA peut t'aider à structurer tes journées, elle ne peut pas remplacer le soutien humain dans les moments de doute.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>La reconversion professionnelle est probablement le sujet où l'IA est le plus mal employée par défaut en 2026. Le marché est inondé de contenus qui promettent que ChatGPT va « révolutionner ta carrière » — c'est faux et ça produit beaucoup de gens en errance. <strong>L'IA dans la reconversion, c'est un outil de discipline quotidienne, pas un oracle stratégique</strong>. Les décisions stratégiques (orientation finale, financement, dispositif public à mobiliser, validation terrain) reviennent à des humains qualifiés et gratuits que la majorité ne consulte jamais. L'IA, elle, te tient la main sur les milliers de petites tâches mécaniques que personne d'autre ne va faire pour toi : creuser un bilan, écrire 30 versions de pitch, préparer 8 entretiens-réseau, structurer un plan d'apprentissage de 200 heures, suivre tes jalons hebdo. Cette discipline quotidienne avec l'IA est ce qui fait passer du 22 % qui envisagent éternellement au 7 % qui réussissent. Sans elle, tu fais partie de la majorité qui en parle pendant 5 ans. Avec elle, tu signes ton premier contrat dans le nouveau métier dans 9-18 mois.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Pour aller plus loin : <a href="tuteur-personnel-ia.html">l'article 1.2 sur le tuteur personnel IA</a> (méthode-mère pour la phase 5 d'apprentissage), <a href="apprendre-coder-de-zero-ia.html">apprendre à coder de zéro avec l'IA</a> (cas d'application si tu vises un métier tech), <a href="reviser-examen-concours-ia.html">réviser un examen ou un concours</a> (utile pour les certifications professionnelles type CACES, FIMO, infirmier, etc.), <a href="ia-ecrire-comme-humain.html">les marqueurs IA à éliminer</a> (essentiel pour la phase 6 de candidature), <a href="comprendre-courrier-administratif-juridique.html">comprendre un courrier administratif</a> (utile pour décoder les notifications CPF, CSP, PTP). Pour les outils : <a href="outils-ia.html">l'annuaire</a> liste les IA généralistes recommandées (Claude Opus 4.7, GPT-5.5) qui sont les plus performantes pour ce type d'accompagnement long.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur la reconversion pro avec l'IA.</h3>
+    <ol class="recap-points">
+      <li>29 % des Français envisagent une reconversion, 7 % seulement passent à l'acte (IFOP). Le frein réel n'est presque jamais le marché — c'est l'absence de méthode opérationnelle. Le PTP a 92 % de taux de concrétisation à 6 mois — l'écart est l'effet de l'accompagnement structuré.</li>
+      <li>L'IA ne remplace pas un CEP, un bilan de compétences, un dispositif public. Mais elle peut faire ce qu'aucune autre ressource ne fait : mentor quotidien gratuit qui structure le travail mécanique entre les rendez-vous humains. Règle : humain pour décisions stratégiques, IA pour exécution quotidienne. Ne jamais inverser.</li>
+      <li>Méthode 6 phases avec livrable obligatoire à chaque étape : (1) bilan introspectif 2-6 semaines avec 5 non-négociables, (2) cartographie compétences transférables, (3) exploration 5-8 pistes IA + humains, (4) validation terrain par entretiens-réseau (irremplaçable), (5) plan d'apprentissage 3-12 mois avec dispositif financement, (6) recherche d'emploi et premiers pas. 6-18 mois total selon archétype.</li>
+      <li>3 archétypes à connaître : reconversion subie (urgence + CSP/CDD reconversion 2026 + France Travail prioritaire), reconversion choisie progressive (60 % des cadres, articulation possible avec employeur actuel + PTP), reconversion radicale (15 % seulement, validation terrain cruciale, formations longues 7-12 mois recommandées). Ressources publiques gratuites essentielles : CEP (point de départ), bilan compétences CPF, PTP, CSP, CDD reconversion 2026, VAE, OPCO sectoriels.</li>
+      <li>5 pièges qui font perdre 6 mois : commencer par les métiers au lieu de soi (phase 1 sautée), sauter la validation terrain (entretiens-réseau obligatoires 2-3 par piste), confondre IA et CEP (l'IA ne connaît pas ton territoire), produire des candidatures qui sonnent IA (recruteurs détectent en 2026), tenir trop longtemps seul (écosystème de soutien humain dès le début).</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="tuteur-personnel-ia.html">
+        <div class="next-link-label">— Article fondateur complémentaire</div>
+        <div class="next-link-title">Transformer ton IA en tuteur personnel</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-3-apprendre-plus-vite.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Apprendre plus vite · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

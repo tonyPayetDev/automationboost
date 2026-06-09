@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donner des documents de référence à ton IA. – AutomationBoost</title>
+  <meta name="description" content="Charger PDF, Word, tableurs, CSV dans ton IA : ce qui marche, ce qui coince, et les limites selon l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Donner des documents de référence à ton IA.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#eab308;">Automatiser & agents</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Donner des documents de référence à ton IA.</h1>
+    <p class="lede">Charger PDFs, docs Word, tableurs, données CSV. Ce qui marche, ce qui ne marche pas. Limites par outil et par modèle en 2026.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Charger un fichier change la nature de la conversation : ton IA passe de l'opinion générale au travail sur ton vrai matériel. Tant que tu poses des questions en langage libre, tu obtiens des réponses générales.</p>
+
+    <p>Le moment où tu charges un rapport, un contrat ou un tableur, tout change. Voici comment exploiter à fond les fichiers de référence.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Ce que change <em>le chargement d'un fichier</em>.</h2>
+
+  <div class="container reading">
+    <p>En chargeant un fichier, l'IA bascule dans un autre mode : au lieu de générer à partir de connaissances générales, elle se connecte à <strong>ton</strong> matériel précis. Elle cite, extrait, compare ce que contient réellement le document plutôt que d'inventer.</p>
+
+    <p>Trois conséquences pratiques en découlent. Les voici.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 6</span>Les <em>limites</em> par plateforme en avril 2026.</h2>
+
+  <div class="container reading">
+    <p>Chaque outil a ses propres bornes. Connaître ces limites évite les uploads ratés et permet de choisir la bonne plateforme selon le fichier. Voici la grille de référence en avril 2026.</p>
+  </div>
+
+  <div class="limit-table">
+    <div class="limit-row header">
+      <div>Critère</div>
+      <div>ChatGPT</div>
+      <div>Claude</div>
+      <div>Gemini</div>
+    </div>
+    <div class="limit-row">
+      <div class="limit-criterion">Taille max par fichier</div>
+      <div class="limit-cell highlight">512 MB</div>
+      <div class="limit-cell">30 MB</div>
+      <div class="limit-cell">100 MB</div>
+    </div>
+    <div class="limit-row">
+      <div class="limit-criterion">Taille pratique fiable</div>
+      <div class="limit-cell">~50 MB</div>
+      <div class="limit-cell">~25 MB</div>
+      <div class="limit-cell">~80 MB</div>
+    </div>
+    <div class="limit-row">
+      <div class="limit-criterion">Fichiers max par chat</div>
+      <div class="limit-cell">10</div>
+      <div class="limit-cell">5 (Free) / 20 (Pro)</div>
+      <div class="limit-cell highlight">10</div>
+    </div>
+    <div class="limit-row">
+      <div class="limit-criterion">Quota Free</div>
+      <div class="limit-cell weak">3 / jour</div>
+      <div class="limit-cell">5 / chat</div>
+      <div class="limit-cell highlight">10 / prompt</div>
+    </div>
+    <div class="limit-row">
+      <div class="limit-criterion">Quota Plus / Pro</div>
+      <div class="limit-cell">80 / 3h</div>
+      <div class="limit-cell">20 / chat</div>
+      <div class="limit-cell">Élargi</div>
+    </div>
+    <div class="limit-row">
+      <div class="limit-criterion">Token limit / fichier</div>
+      <div class="limit-cell">2 M tokens</div>
+      <div class="limit-cell">1,2 M (Opus)</div>
+      <div class="limit-cell highlight">2 M+ tokens</div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>Quelques remarques importantes. <strong>Sur ChatGPT</strong>, la limite théorique de 512 MB est rarement atteignable en pratique : au-delà de 50 MB, les uploads échouent fréquemment ou expirent. Garde tes fichiers sous les 20-30 MB pour la fiabilité.</p>
+
+    <p><strong>Sur Claude</strong>, la limite à 30 MB paraît stricte mais le contexte large (1,2 M tokens sur Opus 4.7) permet de charger des documents très denses en texte sans problème. Pour 90 % des PDFs et docs professionnels, 30 MB est largement suffisant.</p>
+
+    <p><strong>Sur Gemini</strong>, le contexte de 2 M+ tokens en fait l'outil de choix pour les très longs documents (rapports de plus de 200 pages, codes complets, livres entiers). Mais attention : <strong>le plan gratuit ne supporte ni les fichiers de code ni les tableurs</strong> — il faut Gemini Advanced ($19.99/mois) pour les débloquer.</p>
+  </div>
+
+  <!-- ============== 3. FORMATS ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 6</span>Les formats <em>qui marchent</em> et ceux qui posent problème.</h2>
+
+  <div class="container reading">
+    <p>Tous les formats ne sont pas traités de la même manière. Voici l'état des lieux pratique en avril 2026.</p>
+  </div>
+
+  <h3 class="reading">Les formats qui marchent bien partout</h3>
+
+  <div class="format-card">
+    <div class="format-name">.pdf (textuel)</div>
+    <div class="format-text">Format universellement supporté. <strong>Important :</strong> seulement si le PDF contient du texte sélectionnable. Un PDF scanné (image de pages) demande une étape OCR préalable que ChatGPT et Gemini font automatiquement, mais Claude pas systématiquement. Pour les PDFs scannés, préfère ChatGPT ou Gemini.</div>
+  </div>
+
+  <div class="format-card">
+    <div class="format-name">.docx, .doc (Word)</div>
+    <div class="format-text">Lus correctement par les trois plateformes. Les éléments visuels (images insérées, tableaux complexes, mise en page) peuvent être perdus ou mal interprétés. Si la structure du document compte, copie-colle plutôt le texte directement dans le prompt.</div>
+  </div>
+
+  <div class="format-card">
+    <div class="format-name">.txt, .md (texte brut)</div>
+    <div class="format-text">Format idéal. Aucune perte de mise en forme parasite, traitement le plus rapide, le plus fiable. Si tu peux convertir tes documents en texte brut avant l'upload, tu obtiens souvent de meilleurs résultats qu'avec le format d'origine.</div>
+  </div>
+
+  <div class="format-card">
+    <div class="format-name">.jpg, .png, .webp (images)</div>
+    <div class="format-text">Les trois plateformes supportent l'analyse visuelle. ChatGPT et Gemini lisent les images avec une bonne fiabilité. Claude Opus 4.7 a fait un saut majeur sur l'analyse d'images en avril 2026 (résolution passée de 1,15 à 3,75 mégapixels). Excellent pour analyser des captures d'écran, des graphiques, des photos de documents.</div>
+  </div>
+
+  <h3 class="reading">Les formats qui demandent un plan payant</h3>
+
+  <div class="format-card">
+    <div class="format-name">.xlsx, .csv (tableurs)</div>
+    <div class="format-text">Supportés par ChatGPT (Free et payant), Claude (tous plans), <strong>mais bloqués sur le plan gratuit de Gemini</strong>. Pour analyser des tableurs sur Gemini, il faut le plan Advanced. Pour de la vraie analyse de données chiffrées, ChatGPT Plus est le plus fiable grâce à son outil de Code Interpreter intégré.</div>
+  </div>
+
+  <div class="format-card">
+    <div class="format-name">.py, .js, .html, autres fichiers de code</div>
+    <div class="format-text">Supportés par ChatGPT et Claude sur tous plans. <strong>Bloqués sur le plan gratuit de Gemini.</strong> Pour le code, Claude Pro est le choix de référence (meilleur sur SWE-bench Pro, voir <a href="quel-modele-choisir.html">l'article 3.1</a>).</div>
+  </div>
+
+  <h3 class="reading">Les formats spécialisés</h3>
+
+  <div class="format-card">
+    <div class="format-name">.mp3, .mp4, fichiers audio/vidéo</div>
+    <div class="format-text"><strong>Gemini est le seul à supporter nativement</strong> l'audio et la vidéo (jusqu'à 5 min en gratuit, 1h en Advanced). ChatGPT et Claude ne traitent pas directement ces formats — il faut passer par une transcription préalable. Si tu travailles régulièrement avec de l'audio ou de la vidéo, Gemini est le choix par défaut.</div>
+  </div>
+
+  <h3 class="reading">Les formats qui posent problème</h3>
+
+  <div class="format-card">
+    <div class="format-name">PDFs scannés ou protégés</div>
+    <div class="format-text">PDF protégés par mot de passe : aucune des plateformes ne peut les lire — tu dois retirer la protection avant l'upload. PDFs scannés (image-only) : ChatGPT et Gemini font automatiquement l'OCR (reconnaissance de caractères), Claude pas toujours fiable. Solution : convertir le PDF scanné en texte via un OCR externe avant l'upload.</div>
+  </div>
+
+  <div class="format-card">
+    <div class="format-name">Dossiers complets</div>
+    <div class="format-text"><strong>Aucune plateforme ne supporte l'upload de dossiers</strong>. Tu dois sélectionner les fichiers individuellement. Pour traiter un projet entier (codebase, archive de documents), tu dois soit zipper le tout (ChatGPT le décompresse en mode Code Interpreter), soit fusionner les fichiers en un seul document avant l'upload.</div>
+  </div>
+
+  <!-- ============== 4. COMMENT C'EST LU ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 6</span>Comment l'IA <em>lit vraiment</em> ton fichier.</h2>
+
+  <div class="container reading">
+    <p>Comprendre comment l'IA traite réellement un fichier change la façon dont tu vas formuler ton prompt et structurer ton fichier source. Deux mécanismes coexistent en 2026.</p>
+  </div>
+
+  <h3 class="reading">Mécanisme 1 : extraction de texte</h3>
+
+  <div class="container reading">
+    <p>C'est le mode standard pour les PDFs textuels, docs Word et fichiers texte. L'IA lance un parser qui extrait tout le texte du document, puis le traite comme du texte brut intégré à ton prompt. <strong>La mise en page d'origine est largement perdue</strong> — l'IA voit une longue suite de paragraphes, sans nécessairement savoir ce qui était en gras, en italique, en colonne, ou dans un tableau.</p>
+
+    <p>Conséquence pratique : si la structure visuelle du document compte (un tableau de comparaison, une mise en page complexe), l'extraction texte simple peut perdre l'information. Pour ces cas, préfère uploader une <strong>image du document</strong> plutôt que le PDF.</p>
+  </div>
+
+  <h3 class="reading">Mécanisme 2 : analyse visuelle</h3>
+
+  <div class="container reading">
+    <p>Pour les images uploadées (et les PDFs scannés sur ChatGPT/Gemini), l'IA utilise un modèle de vision. Elle voit l'image comme une image, comprend la disposition spatiale, lit les graphiques, repère les annotations manuscrites. C'est plus puissant que l'extraction texte pour les documents visuellement structurés.</p>
+
+    <p>L'analyse visuelle est aussi plus coûteuse en tokens et plus lente. À utiliser quand la mise en forme compte vraiment (graphiques à interpréter, schémas, captures d'écran de logiciels). Pour le texte pur, l'extraction est plus efficace.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">L'astuce des utilisateurs avancés</div>
+    <p>Si tu uploads un fichier complexe et que l'IA semble mal le comprendre, fais une capture d'écran des pages importantes et upload <strong>l'image en plus du document</strong>. L'IA combine les deux modes (texte + vision) et la qualité de compréhension monte d'un cran.</p>
+  </div>
+
+  <!-- ============== 5. PIÈGES ============== -->
+  <h2 class="reading"><span class="h2-num">— 5 / 6</span>Les <em>4 pièges</em> classiques.</h2>
+
+  <h3 class="reading">Piège 1 : l'illusion de la lecture complète</h3>
+
+  <div class="container reading">
+    <p>Tu uploads un rapport de 80 pages. L'IA te répond comme si elle l'avait entièrement lu. <strong>En réalité, elle peut avoir tronqué silencieusement</strong> au-delà de sa fenêtre de contexte ou de la limite tokens de la plateforme. Tu obtiens une réponse fluide qui rate les éléments des dernières pages.</p>
+
+    <p>Le test : pose une question précise sur une information située en fin de document (un chiffre, un nom, une conclusion). Si l'IA bloque ou invente, c'est qu'il y a eu troncature. Sur les très longs documents, préfère Gemini 3.1 Pro (2M+ tokens) qui digère vraiment l'ensemble, ou découpe ton document en sections traitées séparément.</p>
+  </div>
+
+  <h3 class="reading">Piège 2 : le mélange de plusieurs fichiers sans structure</h3>
+
+  <div class="container reading">
+    <p>Tu charges 5 PDFs en une fois et tu poses une question générale. L'IA mélange les sources, attribue mal les informations, ou répond uniquement sur le premier fichier en oubliant les autres. C'est mécanique : sans structure explicite, l'IA ne sait pas quoi prioriser.</p>
+
+    <p>Solution : <strong>nomme tes fichiers explicitement</strong> dans le prompt. <em>« Compare les arguments du fichier "Rapport_2025.pdf" et du fichier "Rapport_2026.pdf" sur le sujet X »</em>. Combine avec les <a href="balises-xml.html">balises XML</a> pour les prompts longs : <em>&lt;document_1&gt; ... &lt;/document_1&gt;</em>, etc.</p>
+  </div>
+
+  <h3 class="reading">Piège 3 : la confusion entre fichier et contexte permanent</h3>
+
+  <div class="container reading">
+    <p>Tu uploads un document dans une conversation, l'IA le lit, te répond. Tu ouvres une nouvelle conversation : <strong>le fichier n'existe plus</strong>. L'IA n'a aucun souvenir de son contenu. Beaucoup d'utilisateurs s'étonnent de devoir re-uploader systématiquement les mêmes documents.</p>
+
+    <p>Pour les fichiers de référence permanents (charte graphique, base de connaissances, documentation produit), utilise les <strong>Projects (ChatGPT/Claude)</strong> ou les <strong>Gems (Gemini)</strong> qui maintiennent les fichiers en mémoire entre conversations. Sujet traité dans <a href="niveau-2-bien-configurer.html">l'article 3.6</a> de cette rubrique.</p>
+  </div>
+
+  <h3 class="reading">Piège 4 : la donnée sensible uploadée sans précaution</h3>
+
+  <div class="container reading">
+    <p>Tu uploads un contrat client, un document RH, une base clients pour analyse. <strong>Sur les plans grand public</strong>, ces données peuvent être utilisées pour entraîner les futures versions du modèle, sauf si tu désactives explicitement cette option. Sur les plans Enterprise, ce n'est jamais le cas par défaut.</p>
+
+    <p>Avant chaque upload sensible : (1) vérifie ton paramètre <em>« utiliser mes données pour l'entraînement »</em> dans les settings, (2) anonymise les noms et données identifiantes quand tu peux, (3) considère un compte Enterprise pour les données vraiment confidentielles. Voir <a href="memoire-ia.html">l'article sur la confidentialité</a> pour le détail.</p>
+  </div>
+
+  <!-- ============== 6. BONNES PRATIQUES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 6 / 6</span>Les <em>4 bonnes pratiques</em> à appliquer.</h2>
+
+  <div class="practice">
+    <div class="practice-num">— PRATIQUE 1</div>
+    <div class="practice-title">Prépare ton fichier avant l'upload</div>
+    <div class="practice-text">Avant d'uploader, regarde ton fichier comme l'IA va le voir. <strong>Supprime les éléments parasites :</strong> en-têtes répétitifs, pieds de page, tables des matières si elles ne servent pas, sections inutiles. Renomme le fichier de manière descriptive (<em>« contrat-client-X-v3.pdf »</em> au lieu de <em>« document.pdf »</em>). Ces 2 minutes de préparation améliorent significativement la qualité de la réponse.</div>
+  </div>
+
+  <div class="practice">
+    <div class="practice-num">— PRATIQUE 2</div>
+    <div class="practice-title">Précise ton attente dans le prompt</div>
+    <div class="practice-text">Uploader sans contexte produit une réponse générique. <strong>Toujours dire à l'IA quoi faire avec le fichier</strong>, pas juste le lui donner. <em>« Voici le rapport. Extrais les 3 chiffres-clés et explique-moi leur évolution. »</em> est mille fois plus efficace que <em>« Voici le rapport. »</em>. Combine avec un <a href="framework-ptcf-formule.html">prompt PTCF</a> pour les demandes complexes.</div>
+  </div>
+
+  <div class="practice">
+    <div class="practice-num">— PRATIQUE 3</div>
+    <div class="practice-title">Découpe les très longs documents</div>
+    <div class="practice-text">Si ton document fait plus de 100 pages, ne compte pas sur l'IA pour tout traiter d'un coup, même sur les modèles à long contexte. <strong>Divise en sections logiques</strong> et traite-les séparément, en synthétisant à la fin. Cette discipline donne de bien meilleurs résultats qu'un upload monolithique. Exception : Gemini 3.1 Pro avec ses 2M+ tokens peut effectivement avaler des documents très longs en une seule passe.</div>
+  </div>
+
+  <div class="practice">
+    <div class="practice-num">— PRATIQUE 4</div>
+    <div class="practice-title">Vérifie avec une question test</div>
+    <div class="practice-text">Avant de te fier à une réponse basée sur un long fichier, <strong>pose une question dont tu connais déjà la réponse</strong> pour vérifier que l'IA a bien lu le document. Si elle se trompe sur ce que tu sais déjà, tu ne peux pas te fier à ses réponses sur ce que tu ne sais pas. Ce test prend 30 secondes et te protège des hallucinations basées sur des extractions ratées.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ce que tu vas voir dans le prochain article</div>
+    <p>Tu sais maintenant choisir ton modèle, le configurer, et le nourrir avec les bons fichiers. Le prochain article aborde le <strong>Reasoning mode</strong> — Extended Thinking sur Claude, Thinking sur GPT-5.5, Deep Think sur Gemini. Quand vaut-il le coup d'attendre 30 secondes à 2 minutes pour une réponse plus poussée ? La grille des 5 cas où ça change tout, et des 10 cas où c'est de la perte de temps.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur les fichiers de référence.</h3>
+    <ol class="recap-points">
+      <li>Charger un fichier change la nature de la conversation : moins d'hallucinations, accès à ton matériel précis, mais nouvelles questions de confidentialité.</li>
+      <li>Limites en avril 2026 : ChatGPT 512 MB max (50 MB fiable), Claude 30 MB, Gemini 100 MB et 2M+ tokens de contexte (le meilleur pour les longs documents).</li>
+      <li>Formats universels : PDF textuel, Word, texte brut, images. Bloqués sur Gemini Free : tableurs et code. Audio/vidéo : Gemini uniquement.</li>
+      <li>L'IA traite les fichiers en deux modes : extraction texte (rapide, perd la mise en page) ou analyse visuelle (plus coûteuse, garde la structure).</li>
+      <li>Toujours préciser ce que tu veux faire du fichier dans ton prompt. Tester avec une question dont tu connais déjà la réponse pour détecter les troncatures silencieuses.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="reasoning-mode.html">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">Le Reasoning mode : quand l'activer, quand l'éviter</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-2-bien-configurer.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Bien configurer ton IA · Niveau II</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Construire ta bibliothèque de prompts réutilisables. – AutomationBoost</title>
+  <meta name="description" content="Les 10 modèles de prompts à garder sous la main (mail, brief, résumé, analyse, brainstorm...) et comment les organiser pour les réutiliser." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Construire ta bibliothèque de prompts réutilisables.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#34d399;">Mieux prompter</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Construire ta bibliothèque de prompts réutilisables.</h1>
+    <p class="lede">Les 10 templates à avoir sous la main : mail, brief, résumé, analyse, brainstorm, refonte. Comment les organiser, où les stocker, comment les améliorer dans le temps.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tu réécris les mêmes prompts depuis des mois — alors que c'est ta bibliothèque qui devrait te les fournir. En usage régulier, environ 80 % de tes prompts sont des variations d'une dizaine de modèles récurrents.</p>
+
+    <p>Construire ta bibliothèque, c'est arrêter de repartir de zéro à chaque fois. Voici comment la monter et l'organiser.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi une bibliothèque <em>change ta productivité</em>.</h2>
+
+  <div class="container reading">
+    <p>Réécrire à chaque fois un prompt que tu as déjà formulé dix fois, c'est du temps et de la qualité perdus : tu oublies les détails qui marchaient. Une bibliothèque capitalise tes meilleures formulations — tu réutilises au lieu de réinventer, et la qualité monte à chaque itération.</p>
+
+    <p>Voici comment construire la tienne.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 6</span>Les <em>10 templates fondamentaux</em>.</h2>
+
+  <div class="container reading">
+    <p>Voici les 10 templates qui couvrent 80 % des usages quotidiens. Ils sont conçus pour fonctionner sur les trois principaux modèles 2026 (Claude, ChatGPT, Gemini). Tu peux les copier directement et les ajuster à ton contexte.</p>
+  </div>
+
+  <div class="template-card">
+    <div class="template-num">— TEMPLATE 1</div>
+    <div class="template-name">Le <em>mail professionnel</em></div>
+    <div class="template-when">Quand tu dois écrire un mail délicat, structuré ou diplomatique.</div>
+    <div class="template-prompt">
+<span class="label">— Template</span>
+Rédige un mail professionnel en français.
+
+<span class="placeholder">Destinataire :</span> [qui + relation hiérarchique]
+<span class="placeholder">Objectif :</span> [ce que tu veux obtenir concrètement]
+<span class="placeholder">Contexte :</span> [historique utile en 2-3 phrases]
+<span class="placeholder">Ton souhaité :</span> [direct / chaleureux / ferme / diplomatique]
+
+Contraintes : 120 mots maximum. Une seule demande claire. Pas de formules creuses.
+    </div>
+  </div>
+
+  <div class="template-card">
+    <div class="template-num">— TEMPLATE 2</div>
+    <div class="template-name">Le <em>brief de demande</em></div>
+    <div class="template-when">Quand tu dois cadrer une demande à un prestataire, freelance ou collègue.</div>
+    <div class="template-prompt">
+<span class="label">— Template</span>
+Rédige un brief structuré pour [prestataire / type de mission].
+
+<span class="placeholder">Mission :</span> [ce que tu veux concrètement]
+<span class="placeholder">Contexte projet :</span> [3-4 phrases sur le projet global]
+<span class="placeholder">Audience cible :</span> [qui consommera le résultat]
+<span class="placeholder">Livrables attendus :</span> [format + timing + canaux]
+<span class="placeholder">Critères de succès :</span> [ce qui rend le travail satisfaisant]
+<span class="placeholder">Ce qu'il faut éviter :</span> [écueils déjà rencontrés]
+
+Format : structure le brief en sections claires.
+    </div>
+  </div>
+
+  <div class="template-card">
+    <div class="template-num">— TEMPLATE 3</div>
+    <div class="template-name">Le <em>résumé exécutif</em></div>
+    <div class="template-when">Quand tu dois condenser un long document pour quelqu'un de pressé.</div>
+    <div class="template-prompt">
+<span class="label">— Template</span>
+Tu es un analyste senior. Lis le document fourni et produis un résumé exécutif.
+
+<span class="placeholder">Audience :</span> [niveau hiérarchique + connaissance préalable du sujet]
+<span class="placeholder">Décision à prendre :</span> [quelle décision le résumé doit éclairer]
+
+Structure :
+1. Situation en 1 phrase
+2. Les 3 points-clés à retenir
+3. La décision recommandée + ses risques principaux
+
+Format : 200 mots maximum. Pas d'introduction, pas de conclusion. Si une donnée chiffrée est centrale, garde le chiffre exact.
+    </div>
+  </div>
+
+  <div class="template-card">
+    <div class="template-num">— TEMPLATE 4</div>
+    <div class="template-name">L'<em>analyse contradictoire</em></div>
+    <div class="template-when">Quand tu hésites entre plusieurs options et veux les arbitrages clairs.</div>
+    <div class="template-prompt">
+<span class="label">— Template</span>
+J'hésite entre [option A] et [option B] pour [contexte].
+
+Donne-moi une analyse contradictoire en 4 angles :
+1. Le défenseur de A : 3 meilleurs arguments
+2. Le défenseur de B : 3 meilleurs arguments
+3. Le sceptique : ce que les deux camps ratent
+4. Synthèse : ta recommandation finale + ses 3 conditions de succès
+
+Sois direct, pas de pondération molle. Voir aussi la technique du <a href="perspective-shifting.html">Perspective Shifting</a> pour aller plus loin.
+    </div>
+  </div>
+
+  <div class="template-card">
+    <div class="template-num">— TEMPLATE 5</div>
+    <div class="template-name">Le <em>brainstorm structuré</em></div>
+    <div class="template-when">Quand tu cherches des idées sur un sujet et veux éviter le générique.</div>
+    <div class="template-prompt">
+<span class="label">— Template</span>
+Brainstorm structuré sur le sujet : [sujet précis].
+
+<span class="placeholder">Contexte :</span> [3-4 phrases]
+<span class="placeholder">Contraintes :</span> [budget, temps, ressources, autres]
+
+Génère 15 idées en 3 catégories :
+- 5 idées conventionnelles (ce qui marche d'habitude)
+- 5 idées originales (sorties du cadre habituel mais réalistes)
+- 5 idées radicales (qui te feraient sortir de la zone de confort)
+
+Pour chaque idée : 1 phrase de description + 1 condition de succès.
+    </div>
+  </div>
+
+  <div class="template-card">
+    <div class="template-num">— TEMPLATE 6</div>
+    <div class="template-name">La <em>refonte de texte</em></div>
+    <div class="template-when">Quand tu as un brouillon à améliorer sans changer le fond.</div>
+    <div class="template-prompt">
+<span class="label">— Template</span>
+Réécris ce texte en gardant le fond mais en améliorant la forme.
+
+<span class="placeholder">Audience :</span> [qui va lire]
+<span class="placeholder">Objectif :</span> [convaincre / informer / motiver / autre]
+<span class="placeholder">Ton souhaité :</span> [direct / chaleureux / institutionnel]
+
+Règles :
+- Garde toutes les informations factuelles intactes
+- Coupe ce qui ne sert pas (rasoir d'Ockham)
+- Phrases courtes et actives
+- Pas d'adverbes inutiles ni de formules creuses
+
+Texte à réécrire : [colle ton texte ici]
+    </div>
+  </div>
+
+  <div class="template-card">
+    <div class="template-num">— TEMPLATE 7</div>
+    <div class="template-name">La <em>recherche d'info</em></div>
+    <div class="template-when">Quand tu veux des données factuelles avec sources vérifiables.</div>
+    <div class="template-prompt">
+<span class="label">— Template</span>
+J'ai besoin d'informations factuelles sur : [sujet précis].
+
+Données recherchées :
+- [donnée 1 que tu veux]
+- [donnée 2 que tu veux]
+- [donnée 3 que tu veux]
+
+Règles strictes :
+- Cite tes sources pour chaque donnée
+- Indique la date de chaque information
+- Si tu n'es pas sûr d'un point, dis-le explicitement plutôt que d'inventer
+- Préviens si une donnée est contestée ou en évolution
+
+Format : un point par bloc, structure claire.
+    </div>
+  </div>
+
+  <div class="template-card">
+    <div class="template-num">— TEMPLATE 8</div>
+    <div class="template-name">Le <em>plan d'action</em></div>
+    <div class="template-when">Quand tu as un objectif et tu veux décomposer en étapes concrètes.</div>
+    <div class="template-prompt">
+<span class="label">— Template</span>
+Construis un plan d'action pour atteindre cet objectif.
+
+<span class="placeholder">Objectif :</span> [résultat précis et mesurable]
+<span class="placeholder">Délai :</span> [échéance]
+<span class="placeholder">Ressources disponibles :</span> [temps + budget + équipe]
+<span class="placeholder">Contraintes :</span> [obligations à respecter]
+
+Structure :
+1. Décomposition en 5-7 jalons clés
+2. Pour chaque jalon : actions concrètes + critère de validation + dépendances
+3. Les 3 risques principaux + comment les anticiper
+
+Format : tableau ou liste hiérarchique. Pas de jargon de management.
+    </div>
+  </div>
+
+  <div class="template-card">
+    <div class="template-num">— TEMPLATE 9</div>
+    <div class="template-name">La <em>FAQ anticipée</em></div>
+    <div class="template-when">Quand tu prépares une présentation ou un échange et veux anticiper les objections.</div>
+    <div class="template-prompt">
+<span class="label">— Template</span>
+Tu es un sceptique exigeant. Voici ma proposition :
+[décris ta proposition en 5-10 lignes]
+
+<span class="placeholder">Audience qui va l'évaluer :</span> [qui + leur biais probable]
+
+Génère :
+1. Les 5 questions les plus probables qui me seront posées
+2. Les 3 objections les plus difficiles auxquelles je devrais m'attendre
+3. Pour chaque, la meilleure réponse possible avec données concrètes
+
+Sois agressif dans les questions. Mieux vaut me préparer au pire qu'au moyen.
+    </div>
+  </div>
+
+  <div class="template-card">
+    <div class="template-num">— TEMPLATE 10</div>
+    <div class="template-name">L'<em>extraction de données</em></div>
+    <div class="template-when">Quand tu as un texte et tu veux en sortir des données structurées.</div>
+    <div class="template-prompt">
+<span class="label">— Template</span>
+Extrait du texte fourni les données suivantes au format structuré.
+
+<span class="placeholder">Données à extraire :</span>
+- [donnée 1 + format attendu]
+- [donnée 2 + format attendu]
+- [donnée 3 + format attendu]
+
+Format de sortie : tableau Markdown avec une ligne par occurrence.
+Si une donnée est manquante, écris « non précisé » plutôt que de deviner.
+Si plusieurs valeurs possibles, garde celle la plus explicitement énoncée.
+
+Texte source : [colle ton texte]
+    </div>
+  </div>
+
+  <!-- ============== 3. ORGANISER ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 6</span>Comment <em>organiser</em> ta bibliothèque.</h2>
+
+  <div class="container reading">
+    <p>Avoir 50 prompts dispersés sans organisation est presque pire que ne pas en avoir : tu perds du temps à chercher, tu finis par réécrire ad hoc parce que c'est plus rapide. La clé d'une bibliothèque utile, c'est <strong>la structure</strong>. Trois principes simples.</p>
+  </div>
+
+  <h3 class="reading">Principe 1 : classer par type de tâche, pas par sujet</h3>
+
+  <div class="container reading">
+    <p>Le piège courant : créer des dossiers <em>« Marketing », « Ventes », « RH »</em>. Ça paraît logique mais ça duplique la même structure pour chaque domaine. Mieux vaut classer par <strong>type d'action</strong> : <em>« Rédiger », « Analyser », « Synthétiser », « Brainstormer », « Extraire »</em>. Le même template <em>« Mail professionnel »</em> sert pour le marketing, les ventes ou les RH — il vit dans <em>« Rédiger »</em>, point.</p>
+  </div>
+
+  <h3 class="reading">Principe 2 : nommer pour retrouver, pas pour décrire</h3>
+
+  <div class="container reading">
+    <p>Les noms de prompts comme <em>« Prompt amélioré V3 finale.md »</em> ne te servent à rien dans 3 mois. Adopte une convention claire : <strong>verbe d'action + objet + contexte</strong>. Exemples : <em>« Resumer-rapport-pour-CODIR »</em>, <em>« Rediger-mail-recadrage »</em>, <em>« Analyser-CV-candidat »</em>. Tu retrouves le bon template à la première recherche.</p>
+  </div>
+
+  <h3 class="reading">Principe 3 : pas plus de 15 templates au début</h3>
+
+  <div class="container reading">
+    <p>Une bibliothèque de 50 prompts qu'on n'utilise jamais est inutile. <strong>Commence avec 10-15 templates qui couvrent 80 % de tes usages.</strong> Tu en ajoutes uniquement quand tu identifies un nouveau pattern récurrent. Cette discipline t'évite de transformer ta bibliothèque en cimetière de bonnes intentions.</p>
+  </div>
+
+  <!-- ============== 4. STOCKER ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 6</span>Où <em>stocker</em> ta bibliothèque.</h2>
+
+  <div class="container reading">
+    <p>Le choix du stockage dépend de ton automatisation. Voici les 4 options principales avec leurs avantages.</p>
+  </div>
+
+  <div class="storage-card">
+    <div class="storage-name">Option 1 — Un fichier markdown unique</div>
+    <div class="storage-pros"><strong>— Avantages</strong>Le plus simple et le plus portable. Un seul fichier .md ouvert dans un éditeur ou Apple Notes. Recherche par Ctrl+F. Synchronisation automatique sur tous tes appareils via iCloud, Google Drive ou Dropbox.</div>
+    <div class="storage-cons"><strong>— Inconvénients</strong>Fragile si tu dépasses 30 templates. Pas de catégorisation visuelle. Recommandé pour démarrer, pas pour scaler.</div>
+  </div>
+
+  <div class="storage-card">
+    <div class="storage-name">Option 2 — Notion ou Obsidian</div>
+    <div class="storage-pros"><strong>— Avantages</strong>Catégorisation, tags, base de données structurée, recherche puissante. Tu peux créer une page par template avec son contexte, ses cas d'usage, ses variantes. Idéal pour un usage professionnel structuré ou un partage en équipe.</div>
+    <div class="storage-cons"><strong>— Inconvénients</strong>Plus lourd à mettre en place. Risque de sur-structuration au lieu d'usage réel. Outil externe à ouvrir à chaque utilisation.</div>
+  </div>
+
+  <div class="storage-card">
+    <div class="storage-name">Option 3 — Custom GPT, Project Claude, Gem Gemini</div>
+    <div class="storage-pros"><strong>— Avantages</strong>Le template est intégré à l'IA elle-même (voir <a href="maitriser-projets.html">l'article 3.6</a>). Tu n'as plus besoin de copier-coller : tu ouvres l'assistant, il connaît déjà sa mission. Idéal pour les templates très utilisés.</div>
+    <div class="storage-cons"><strong>— Inconvénients</strong>Lié à un outil spécifique (pas portable d'une plateforme à l'autre). Plus rigide à modifier ad hoc. Réserve cette approche aux 3-5 templates les plus fréquents.</div>
+  </div>
+
+  <div class="storage-card">
+    <div class="storage-name">Option 4 — Outils spécialisés (PromptHub, PromptDrive, etc.)</div>
+    <div class="storage-pros"><strong>— Avantages</strong>Conçus pour la gestion de prompts à l'échelle équipe. Versioning, partage collaboratif, intégrations avec les API d'IA, métriques d'usage.</div>
+    <div class="storage-cons"><strong>— Inconvénients</strong>Surdimensionné pour un usage individuel. Coût mensuel additionnel. Lock-in sur un service tiers. À envisager seulement à partir de 5-10 utilisateurs en équipe.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma recommandation pratique</div>
+    <p>Démarre avec un <strong>fichier markdown unique</strong>, dans Apple Notes ou un Notion simple. Quand tu identifies tes 3-5 templates les plus utilisés, transforme-les en <strong>Custom GPT, Project ou Gem dédié</strong>. Pour le reste, garde le markdown. Cette combinaison couvre 95 % des besoins individuels.</p>
+  </div>
+
+  <!-- ============== 5. AMÉLIORER ============== -->
+  <h2 class="reading"><span class="h2-num">— 5 / 6</span>Comment <em>améliorer</em> tes templates dans le temps.</h2>
+
+  <div class="practice">
+    <div class="practice-num">— PRATIQUE 1</div>
+    <div class="practice-title">L'audit trimestriel</div>
+    <div class="practice-text">Tous les 3 mois, ouvre ta bibliothèque. <strong>Pour chaque template, demande-toi : « est-ce que je l'ai utilisé ces 3 derniers mois ? »</strong>. Si oui, garde-le et améliore-le selon ton expérience récente. Si non, archive-le ou supprime-le. Cette discipline empêche ta bibliothèque de devenir un fouillis. 30 minutes tous les 3 mois — gros impact.</div>
+  </div>
+
+  <div class="practice">
+    <div class="practice-num">— PRATIQUE 2</div>
+    <div class="practice-title">Le journal des prompts qui ratent</div>
+    <div class="practice-text">Quand un prompt ne te donne pas ce que tu attends après 2-3 itérations, <strong>note-le dans un fichier « prompts à améliorer »</strong>. À ton audit trimestriel, regarde ce journal : tu identifieras des patterns d'échec récurrents qui méritent un nouveau template optimisé.</div>
+  </div>
+
+  <div class="practice">
+    <div class="practice-num">— PRATIQUE 3</div>
+    <div class="practice-title">Le test du collègue</div>
+    <div class="practice-text">Donne ton template à un collègue qui n'a pas ton contexte. S'il peut l'utiliser et obtenir un résultat correct sans poser de question, le template est solide. <strong>Si ton template ne marche que pour toi, il est sous-spécifié</strong> — tu mémorises implicitement des éléments qui devraient être explicites dans le template.</div>
+  </div>
+
+  <div class="practice">
+    <div class="practice-num">— PRATIQUE 4</div>
+    <div class="practice-title">L'optimisation par méta-prompting</div>
+    <div class="practice-text">Une fois par trimestre, prends tes 3 templates les plus utilisés et utilise la technique du <a href="meta-prompting.html">méta-prompting</a> : demande à l'IA elle-même d'améliorer ton prompt. Compare la version optimisée avec la tienne sur 5 cas réels. Garde la meilleure. Cette méthode produit souvent des gains de qualité que tu n'aurais pas trouvés seul.</div>
+  </div>
+
+  <!-- ============== 6. PIÈGES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 6 / 6</span>Les 3 <em>pièges</em> à éviter.</h2>
+
+  <h3 class="reading">Piège 1 : la sur-templating qui tue la créativité</h3>
+
+  <div class="container reading">
+    <p>Tu finis par tout passer par un template, même quand un prompt ad hoc serait plus rapide. Tes réponses deviennent uniformes, tu perds en créativité. Garde la règle : <strong>les templates sont pour les tâches récurrentes</strong>. Pour une demande exceptionnelle ou créative, écris un prompt frais.</p>
+  </div>
+
+  <h3 class="reading">Piège 2 : la perte de contextualisation</h3>
+
+  <div class="container reading">
+    <p>Tu copies-colles ton template sans personnaliser les variables. L'IA répond au template générique, pas à ta situation spécifique. <strong>Un template n'est utile que si tu prends 30 secondes à remplir les variables avec ton contexte réel</strong>. Sinon tu obtiens du générique.</p>
+  </div>
+
+  <h3 class="reading">Piège 3 : la collection sans usage</h3>
+
+  <div class="container reading">
+    <p>Tu accumules 80 templates, tu en utilises 5. Le reste devient du bruit. La bibliothèque parfaite n'est pas la plus volumineuse — c'est <strong>celle dont tu te sers vraiment</strong>. 12 templates utilisés régulièrement valent infiniment mieux que 80 templates dormants.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Tu as terminé la rubrique « Bien configurer ton IA »</div>
+    <p>7 articles plus tard, tu maîtrises la configuration complète de l'IA en 2026 : choix du modèle, Custom Instructions, Memory, fichiers de référence, Reasoning mode, Projects et bibliothèque de prompts. La prochaine rubrique aborde un sujet critique et souvent négligé : <strong>garder l'esprit critique face à l'IA</strong>. Comprendre les hallucinations, vérifier les sources, savoir quand ne pas faire confiance. La compétence qui sépare l'utilisateur expert de celui qui se fait avoir.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur la bibliothèque de prompts.</h3>
+    <ol class="recap-points">
+      <li>80 % de tes prompts sont des variations de 10-15 templates récurrents. Construire une bibliothèque, c'est cesser de réécrire la roue.</li>
+      <li>Les 10 templates fondamentaux : mail, brief, résumé, analyse, brainstorm, refonte, recherche, plan d'action, FAQ, extraction de données.</li>
+      <li>Classe par type de tâche (Rédiger, Analyser, Synthétiser) pas par sujet (Marketing, Ventes). Nomme avec verbe + objet + contexte.</li>
+      <li>Démarre avec un fichier markdown unique. Transforme tes 3-5 templates les plus utilisés en Custom GPT / Project / Gem.</li>
+      <li>Audit trimestriel obligatoire. Une bibliothèque de 12 templates utilisés vaut infiniment mieux qu'une de 80 templates dormants.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="niveau-2-esprit-critique.html">
+        <div class="next-link-label">— Rubrique suivante</div>
+        <div class="next-link-title">Garder l'esprit critique face à l'IA</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-2-bien-configurer.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Bien configurer ton IA · Niveau II</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

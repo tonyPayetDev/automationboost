@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cloner un style visuel cohérent pour ta marque. – AutomationBoost</title>
+  <meta name="description" content="Le pendant visuel du clonage de style écrit : garder une vraie cohérence visuelle sur des dizaines d" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Cloner un style visuel cohérent pour ta marque.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#e879f9;">Créer du contenu</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Cloner un style visuel cohérent pour ta marque.</h1>
+    <p class="lede">Le pendant visuel de cloner ton style écrit. Comment garder une cohérence visuelle sur 50 images : Midjourney --sref/--cref, Recraft V4, mood board Pinterest. Méthode 4 phases pour bâtir une marque visuelle qui ne ressemble pas à du collage AI.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tu génères des images IA depuis six mois. Tu as un Instagram, un site, une newsletter. Et tes 50 dernières images n'ont aucune cohérence entre elles : chacune est belle, mais ensemble, c'est une foire à l'aléatoire.</p>
+
+    <p>La cohérence visuelle est ce qui sépare une marque crédible d'un compte qui ressemble à du collage IA. Les réseaux sont saturés d'images à l'esthétique « Midjourney par défaut », lassante en trois secondes. Voici comment définir et reproduire un style visuel constant pour ta marque.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi « génère-moi 50 images » <em>sans système ne marche pas</em>.</h2>
+
+  <div class="container reading">
+    <p>En générant au fil de l'eau, chaque image te paraît correcte — mais au bout de 20 ou 30, l'ensemble ne fait pas marque : il fait collection d'images au hasard. Le cerveau reconnaît une identité visuelle en une fraction de seconde, et cette reconnaissance vient de la <strong>cohérence</strong> entre des dizaines de signaux (palette, lumière, cadrage, ambiance), pas d'une belle image isolée.</p>
+
+    <p>Cette cohérence se construit en trois niveaux. Voici comment définir et reproduire le tien.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>La <em>méthode 4 phases</em> pour bâtir ton système visuel.</h2>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 1 / 4 · 30 MIN · MOOD BOARD PINTEREST</div>
+    <div class="phase-name">Définir ta <em>vérité visuelle</em> avant de prompt</div>
+    <div class="phase-purpose">L'erreur fréquente : commencer dans Midjourney avec une page blanche. Tu ne sais pas ce que tu veux exactement, l'IA te propose un compromis générique, tu acceptes. Le mood board Pinterest fait l'inverse — tu identifies précisément ton univers visuel avant que l'IA n'intervienne. C'est la phase la plus déterminante.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Automatisation Pinterest mood board</span><strong>1. Crée un board Pinterest dédié à ta marque visuelle</strong>
+Nom : « [Ton brand] — Visual Identity 2026 »
+Privé pour éviter le spam, dédié à cette tâche uniquement.
+
+<strong>2. Cherche des photos qui te parlent — PAS ton sujet, mais ton « vibe »</strong>
+Ce que tu ne fais PAS :
+— Si tu vends du café, ne cherche PAS « tasse à café »
+— Si tu fais du conseil tech, ne cherche PAS « ordinateur portable »
+
+Ce que tu fais :
+— Cherche des textures (« brushed aluminum », « linen fabric », « weathered wood »)
+— Cherche des lumières (« golden hour soft light », « dim moody lighting », « high-key minimal »)
+— Cherche des architectures (« brutalist concrete », « japanese minimalism », « warehouse loft »)
+— Cherche des palettes (« earthy desaturated », « monochrome blue », « warm autumn »)
+
+<strong>3. Pin 30-50 images au total, puis filtre</strong>
+Tu pin large d'abord (30-50 images qui résonnent émotionnellement).
+Puis tu reviens 24h après, tu enlèves les 80 % qui ne résonnent plus.
+
+<strong>4. Ton mood board final : 3 à 5 images représentatives</strong>
+Ces 3-5 images doivent répondre à : « si je devais montrer mon univers visuel à quelqu'un en 5 secondes, ce sont ces images ».
+Elles n'ont pas besoin de contenir ton sujet. Elles doivent contenir ton ambiance.
+
+<strong>5. Sauvegarde ces 3-5 images localement</strong>
+Renomme : visual-ref-01.jpg, visual-ref-02.jpg, etc.
+Tu vas les utiliser à chaque génération comme référence.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 2 / 4 · 15 MIN · UPLOAD ET TEST DE BASE</div>
+    <div class="phase-name">Tester ton <em>--sref</em> sur 5 prompts différents</div>
+    <div class="phase-purpose">Avant de t'engager dans 50 générations, tu valides que ton mood board fonctionne sur Midjourney. Tu uploads tes 3-5 références, tu testes sur 5 sujets différents avec --sref, tu vérifies que la cohérence est là.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Automatisation Midjourney V7 Web</span><strong>1. Upload tes 3-5 références sur Midjourney Web</strong>
+midjourney.com → ton dashboard → Upload images → copy direct URL pour chacune.
+
+<strong>2. Test 5 prompts différents avec --sref</strong>
+Choisis 5 sujets représentatifs de ton usage futur. Exemple si tu fais du conseil B2B :
+— Hero image page de vente (concept abstrait)
+— Photo équipe (portrait)
+— Cas client (objet métaphore)
+— Article LinkedIn (paysage urbain)
+— Newsletter cover (illustration concept)
+
+Pour chaque prompt, structure :
+[Sujet précis] + [contexte] + [lumière] --sref [URL ref 1] [URL ref 2] [URL ref 3] --sw 1000 --v 7 --ar 16:9
+
+<strong>3. --sw : le poids de la référence stylistique</strong>
+--sw 1000 = adhérence stylistique maximale (recommandé pour démarrer)
+--sw 500 = équilibre style référence et créativité Midjourney
+--sw 100 = référence faible (pas idéal pour cohérence)
+
+<strong>4. --v 7 : toujours utiliser la dernière version</strong>
+V7 introduit personalization profiles (Midjourney apprend tes préférences).
+
+<strong>5. Évalue la cohérence des 5 outputs ensemble</strong>
+Mets les 5 images côte à côte. Question : est-ce qu'elles « parlent la même langue visuelle » ?
+Si oui → ton mood board fonctionne. Passe à la phase 3.
+Si non → retour phase 1, ton mood board n'est pas assez ciblé. Réduis encore les références.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 3 / 4 · 10 MIN · PROCESSUS DE GÉNÉRATION RÉPÉTABLE</div>
+    <div class="phase-name">Industrialiser pour <em>50 images cohérentes</em></div>
+    <div class="phase-purpose">Tu as validé ton système. Maintenant tu industrialises pour pouvoir générer rapidement et systématiquement à chaque besoin. La discipline ici est de toujours utiliser ton automatisation — jamais de prompter sans --sref si tu veux la cohérence.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Template de automatisation répétable</span><strong>SETUP UNIQUE (à faire une seule fois) :</strong>
+
+1. Sauvegarde les URLs Midjourney de tes 3-5 références dans un fichier texte (refs.txt sur ton bureau).
+
+2. Crée un template prompt dans tes notes ou ton gestionnaire de prompts :
+[SUJET] [CONTEXTE] [LUMIÈRE] --sref [URL1] [URL2] [URL3] --sw 1000 --v 7 --ar [RATIO]
+
+3. Note tes ratios standards selon usage :
+— 16:9 : LinkedIn cover, YouTube thumbnail, hero web
+— 1:1 : Instagram post, profile pic
+— 9:16 : Stories, Reels, TikTok
+— 3:2 : print, photo classique
+— 4:5 : Instagram feed optimal
+
+<strong>PROCESSUS À CHAQUE GÉNÉRATION (5 min) :</strong>
+
+1. Identifie ton sujet et ton ratio
+2. Copie ton template, remplis les variables :
+   [SUJET] : ce que tu veux montrer
+   [CONTEXTE] : où / quand / avec quoi
+   [LUMIÈRE] : type d'éclairage (cohérent avec ton mood board)
+   [RATIO] : selon usage final
+3. Lance la génération (4 variations apparaissent)
+4. Choisis la meilleure
+5. Si besoin, raffine avec Vary Region (inpainting) ou Pan/Zoom
+
+<strong>EXEMPLE CONCRET :</strong>
+Si ton mood board est « warm minimal natural light » et tu veux une hero image pour un article sur le télétravail :
+prompt : « A wooden desk with a laptop, ceramic coffee cup, and morning light streaming through a window, calm focused atmosphere --sref [URL1] [URL2] [URL3] --sw 1000 --v 7 --ar 16:9 »
+
+<strong>RÈGLE D'OR :</strong> ne jamais prompter sans --sref si tu veux la cohérence. Même pour un test rapide. La discipline est tout.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 4 / 4 · ONGOING · VARIATION CONTRÔLÉE</div>
+    <div class="phase-name">Faire <em>évoluer</em> ton système sans le casser</div>
+    <div class="phase-purpose">Au bout de 20-50 images, tu vas vouloir évoluer (saison, thème ponctuel, expérimentation). La discipline : tu fais évoluer ton système par incréments contrôlés, pas par ruptures. Voici comment.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— 3 techniques de variation sans casser la cohérence</span><strong>Technique 1 — Garder --sref, varier le sujet et la lumière</strong>
+Tu fais varier le contexte (saison, lieu, sujet) tout en gardant le même --sref. Cohérence stylistique préservée même si les sujets changent radicalement.
+
+<strong>Technique 2 — Blend de styles (--sw graduel)</strong>
+Tu réduis progressivement --sw 1000 → 700 → 500 sur quelques images pour ouvrir un peu de variété. Tu remontes à 1000 dès que tu sens que tu dérives. Permet de tester de nouveaux sujets sans perdre l'ADN.
+
+<strong>Technique 3 — Ajout d'une référence sans en retirer</strong>
+Pour faire évoluer ton mood board sans rupture, tu ajoutes une 6e référence (mood board passe de 5 à 6) sans retirer les 5 originales. La nouvelle référence ajoute une nuance, mais la cohérence avec l'historique est préservée.
+
+<strong>QUAND faire évoluer ton mood board ?</strong>
+— Changement saisonnier majeur (palette automne → hiver)
+— Pivot positionnement (B2B startup → B2B enterprise)
+— Anniversaire de marque (1 an, 5 ans) avec rebranding
+— PAS pour un post unique : trop coûteux pour 1 visuel.
+
+<strong>QUAND NE PAS faire évoluer ?</strong>
+— Tu as une image qui ne sort pas comme tu veux : essaie d'autres prompts AVANT de modifier le mood board
+— Tu vois passer une tendance visuelle : si elle ne s'aligne pas avec ton ADN, ne suis pas la mode
+— Tu hésites : ne touche pas au mood board. La cohérence sur 12 mois bat la nouveauté ponctuelle.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">L'astuce du mentor</div>
+    <p>La discipline qui sépare un système visuel cohérent (perçu comme « ta marque ») d'un compte AI random : <strong>le test du « album cover »</strong>. Tous les 10-15 images générées, prends-les et compose-les en une grille 4×4 ou 3×5 sur Canva (ou même un screenshot Pinterest). Regarde l'ensemble pendant 10 secondes. Question : <em>« Est-ce que ces 12 images donnent l'impression d'avoir été créées par le même artiste / studio ? »</em>. Si oui, ton système marche. Si non, tu identifies l'image qui dépare et tu cherches pourquoi elle dépare (palette ? lumière ? sujet ?). Tu corriges ton automatisation avant de continuer. Cette discipline 5 min toutes les 10-15 images garantit que ton système ne dérive pas progressivement sans que tu t'en rendes compte. Le drift visuel est insidieux — chaque image individuelle te paraît OK, mais l'ensemble s'éparpille. Le test album cover empêche ça.</p>
+  </div>
+
+  <!-- ============== 3. OUTILS ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Les <em>4 outils</em> 2026 selon ton besoin.</h2>
+
+  <div class="tool-card">
+    <div class="tool-name">Top aesthetic + style reference · <em>Midjourney V7</em></div>
+    <div class="tool-text"><strong>Verdict :</strong> reste la référence 2026 pour la qualité aesthetic et la cohérence stylistique via --sref/--cref. Web UI 30 % plus rapide que Discord pour automatisations pro. Personalization profiles V7 apprennent tes préférences au fil du temps. <strong>Cas d'usage idéal :</strong> hero images, brand visuals, social media images premium, lookbooks, content qui doit avoir une identité visuelle forte. <strong>Prix :</strong> Basic 10 $/mois, Standard 30 $/mois, Pro 60 $/mois, Mega 120 $/mois (pour usage intensif). <strong>Limite :</strong> text rendering encore en retrait par rapport à Ideogram V3, pas de free tier permanent. Pas optimal pour logos précis ni typographie complexe — pour ces cas, va sur Recraft.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Top brand assets précision · <em>Recraft V4</em></div>
+    <div class="tool-text"><strong>Verdict :</strong> meilleur 2026 pour la précision brand work — logos, icons, typographic assets, SVG-exportable graphics. Fonctionnalité <em>« brand style »</em> dédiée qui verrouille palette, illustration style, line weight à travers générations. Suit les prompts plus littéralement que Midjourney, gère les négatif prompts plus fiablement. <strong>Cas d'usage idéal :</strong> teams qui génèrent des bibliothèques d'assets cohérents (logos, icons UI, product labels, packaging mockups, flat-lay marketing compositions). <strong>Limite :</strong> moins photoréaliste que Midjourney sur les portraits et environnements complexes. Pas l'outil pour tes hero images cinematic — c'est l'outil pour tes assets graphiques structurés.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Top photoréalisme produits · <em>Imagen 3</em> (Google)</div>
+    <div class="tool-text"><strong>Verdict :</strong> meilleur 2026 pour photoréalisme produits — packaged goods, beauty products, apparel, food. Supérieur à Midjourney sur les visages humains naturels en contexte lifestyle. Accessible via Google Vertex AI ou Gemini API. <strong>Cas d'usage idéal :</strong> e-commerce, catalogues produits, lifestyle photography simulée, campagnes mode, food photography. <strong>Limite :</strong> moins polyvalent que Midjourney sur les contenus artistiques, illustration, conceptuel. Pas optimal pour logos ou typography. À combiner avec Midjourney pour aesthetic et Recraft pour brand assets.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Top cohérence asset library · <em>Flux Kontext</em></div>
+    <div class="tool-text"><strong>Verdict :</strong> opère différemment des modèles text-to-image standards. Génère des images qui maintiennent une cohérence contextuelle avec une référence — produit des variations, adaptations et extensions de concepts visuels existants. <strong>Cas d'usage idéal :</strong> bibliothèques d'assets brand où un look spécifique établi doit se propager sur de nouveaux contenus. Best chain 2026 : Flux 2 Pro pour hero product shots, Flux Kontext pour la propagation cohérente. Particulièrement utile pour les marques qui produisent 100+ assets/an et veulent une cohérence inattaquable. <strong>Limite :</strong> écosystème dev plus jeune que Midjourney/Imagen. Documentation plus technique, moins pensé débutant.</div>
+  </div>
+
+  <h3>Bonus : Ideogram V3 si tu intègres du texte dans les images</h3>
+
+  <div class="container reading">
+    <p><strong>Ideogram V3</strong> est l'outil 2026 incontournable si tes brand visuals contiennent du texte (taglines, quotes, product names, social cards type meme-format). Sa typographie s'intègre comme un élément de composition, pas comme un add-on. Sa Character Reference feature maintient l'identité visuelle des personnages à travers générations. <strong>Combine-le avec Midjourney</strong> : Midjourney pour le visuel sans texte, Ideogram V3 pour les visuels textuels (citations, social proof, posts éducatifs). Tu obtiens le meilleur des deux mondes sans compromis sur la cohérence aesthetic.</p>
+  </div>
+
+  <!-- ============== 4. PIÈGES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Les <em>5 pièges</em> qui produisent l'aléatoire AI.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>oublier le mood board, prompter directement</em></div>
+    <div class="pitfall-text">Tu sautes la phase 1 (Pinterest mood board) parce que tu te dis que tu sais ce que tu veux. Tu prompts directement dans Midjourney avec ton intuition. Au bout de 20 images, tu réalises que tu as 20 styles différents. <strong>Discipline :</strong> 30 minutes d'investissement initial sur le mood board. Toujours. Même si tu penses savoir. La verbalisation visuelle (collecte d'images références) précise ton intuition mieux que ta verbalisation textuelle (prompts). C'est le ROI le plus élevé de toute la méthode.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : <em>chercher Pinterest sur ton sujet, pas sur ton vibe</em></div>
+    <div class="pitfall-text">Tu vends du café, tu cherches « tasse à café » sur Pinterest. Résultat : ton mood board est fait de tasses à café — la majorité avec des esthétiques différentes. Tu n'as pas un mood board, tu as un catalogue produit. <strong>Discipline :</strong> ton mood board ne contient PAS ton sujet. Il contient ton ambiance. Pour le café : cherche « morning ritual cozy », « warm wood grain texture », « rainy window light ». Le mood board capture l'émotion qui entoure ton produit, pas le produit lui-même. Cette distinction est non-négociable.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>changer de mood board trop souvent</em></div>
+    <div class="pitfall-text">Tu vois passer une tendance visuelle, tu l'aimes, tu modifies ton mood board pour suivre. Une autre tendance arrive, tu modifies encore. <strong>Au bout de 6 mois, ton compte n'a aucune cohérence longitudinale</strong>. Discipline : ton mood board est sacré pour 6-12 mois minimum. Tu peux ajouter (technique de variation contrôlée), mais tu ne retires pas et tu ne réinventes pas. La cohérence se mesure dans la durée — pas en 1 mois.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>--sw 100 ou pas de --sw</em></div>
+    <div class="pitfall-text">Tu utilises --sref mais tu oublies --sw, ou tu mets --sw à une valeur faible (100-300). Résultat : la référence stylistique influe peu, Midjourney revient à son aesthetic par défaut. Tu n'obtiens pas la cohérence attendue. <strong>Discipline :</strong> commence toujours à --sw 1000 (adhérence maximale). Réduis seulement si le style devient trop monotone et que tu veux ouvrir un peu de variété — et même là, ne descend pas sous 500. La cohérence est ton objectif, pas la créativité maximale de Midjourney.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : <em>vouloir générer logo principal en IA</em></div>
+    <div class="pitfall-text">Tu veux ton logo de marque en IA. Tu génères 50 versions Midjourney. Aucune ne marche vraiment, tu choisis la moins pire, tu publies. Erreur double : (1) Midjourney est mauvais pour les logos (formes simples + texte précis), Recraft V4 est meilleur ; (2) le logo principal d'une marque n'est PAS un travail d'IA. C'est une décision stratégique qui justifie un graphiste humain ou un long travail de validation collective. <strong>Discipline :</strong> utilise l'IA pour les <em>variations</em> visuelles (icons dérivés, applications, déclinaisons saisonnières), pas pour le <em>core asset</em> (logo principal, charte typographique). Le core mérite un investissement humain. Les déclinaisons IA sont un multiplicateur de productivité — pas un remplaçant.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>La cohérence visuelle est probablement <strong>le différenciateur n°1 entre une marque visuellement crédible en 2026 et un compte « collage AI »</strong>. À budget équivalent (10-30 $/mois Midjourney), un système cohérent bat 100x une approche prompt-par-prompt. La frontière entre les deux passe par 3 disciplines : (1) mood board Pinterest qui capture ton vibe, pas ton sujet (3-5 images de références), (2) automatisation systématique avec --sref/--cref/--sw 1000 sur chaque génération (jamais d'exception), (3) test album cover toutes les 10-15 images pour vérifier que le système tient sur la durée. Si tu tiens ces 3 disciplines, tu peux générer 50, 100, 500 images cohérentes en 2026 pour 30 $/mois — équivalent à un studio de design qui ferait 10× le coût. Si tu sautes une seule, tu rejoins la majorité Pinterest 2026 saturée d'images IA génériques que tout le monde scrolle sans s'arrêter. <strong>Le système bat l'intuition. Le mood board bat le prompt. La discipline bat la créativité aléatoire.</strong></p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Pour aller plus loin : <a href="prompt-image-anatomie-brief.html">l'article 4.1 sur l'anatomie d'un brief image</a> (les fondamentaux du prompt image qui se combinent avec --sref), <a href="modifier-image-existante.html">l'article-pilier 4.3 sur modifier une image existante</a> (techniques de retouche dans le système cohérent), <a href="photos-profil-pro-ia.html">l'article 4.2 sur photos de profil pro</a> (cohérence personnelle qui s'ajoute à la cohérence brand), <a href="cloner-style-ecriture.html">l'article 3.1 sur cloner ton style d'écriture</a> (le pendant texte de la cohérence visuelle — même logique de système), <a href="hooks-attention.html">l'article 3.3 sur hooks d'attention</a> (les visuels cohérents amplifient les hooks textuels), <a href="article-long-qui-tient-debout.html">l'article-pilier 3.7 sur les articles longs</a> (où les visuels cohérents structurent le récit).</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur la cohérence visuelle.</h3>
+    <ol class="recap-points">
+      <li>La cohérence visuelle est le séparateur n°1 entre une marque crédible et un compte « collage AI ». Elle se construit à 3 niveaux : palette (couleurs récurrentes), style (rendu / lumière), univers narratif (sujets / ambiance / point de vue). Les niveaux 2-3 sont impossibles par intuition prompt-par-prompt — ils exigent un système.</li>
+      <li>Méthode 4 phases : (1) mood board Pinterest 30 min — chercher ton vibe, pas ton sujet, finaliser à 3-5 images références, (2) test --sref sur 5 prompts variés 15 min — valider que le mood board fonctionne, (3) automatisation industrialisé 10 min setup — template prompt + URLs sauvegardées + ratios standards, (4) variation contrôlée ongoing — 3 techniques pour évoluer sans casser.</li>
+      <li>Outil principal Midjourney V7 : --sref [URL] pour Style Reference, --cref [URL] pour Character Reference, --sw 1000 pour adhérence stylistique maximale. Web UI 30 % plus rapide que Discord pour automatisations pro. Personalization profiles V7 apprennent tes préférences. Plans 10-120 $/mois.</li>
+      <li>4 outils 2026 selon besoin : Midjourney V7 pour aesthetic + style reference (best polyvalent), Recraft V4 pour brand assets précision (logos, icons, SVG export), Imagen 3 pour photoréalisme produits, Flux Kontext pour cohérence asset library. Bonus : Ideogram V3 pour visuels textuels (taglines, quotes). Combinaison stratégique bat l'usage exclusif d'un seul outil.</li>
+      <li>5 pièges : oublier le mood board (prompter directement = aléatoire), chercher ton sujet sur Pinterest (cherche ton vibe), changer de mood board trop souvent (sacré 6-12 mois minimum), --sw faible ou absent (commence toujours à 1000), vouloir générer ton logo principal en IA (core assets méritent humain — IA pour déclinaisons). Test album cover toutes les 10-15 images pour vérifier que le système tient.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="modifier-image-existante.html">
+        <div class="next-link-label">— Article-pilier complémentaire</div>
+        <div class="next-link-title">Modifier une image existante (★ pilier)</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-3-creer-visuel.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Créer du visuel · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

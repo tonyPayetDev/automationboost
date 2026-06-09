@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>C'est quoi un agent IA (et ce qui le distingue). – AutomationBoost</title>
+  <meta name="description" content="En 2026, le mot « agent » désigne tout et n" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>C'est quoi un agent IA (et ce qui le distingue).
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#eab308;">Automatiser & agents</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">C'est quoi un agent IA (et ce qui le distingue).</h1>
+    <p class="lede">En 2026, le mot « agent » est utilisé pour tout. Anthropic distingue automatisations et agents, OpenAI parle d'agents et de handoffs, IBM oppose agents et assistants. La grille de clarification définitive : 3 catégories, ce que chacune fait, quand utiliser laquelle. À lire avant tous les autres articles de cette rubrique.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Avant 2024, les mots étaient clairs : un assistant t'aidait, une automatisation tournait seule, un agent était secret ou immobilier. En 2026, « agent IA » est partout — et désigne au moins 5 choses différentes selon qui parle. Cet article remet de l'ordre.</p>
+
+    <p>Le marché y est pour beaucoup : tout le monde veut « faire de l'agent » parce que c'est le terme à la mode, et on l'applique à des produits qui sont en réalité de simples chatbots ou des automatisations classiques. Beaucoup d'entreprises prétendent avoir des agents en production, peu savent les évaluer. Voici comment distinguer un vrai agent du reste.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>La confusion qui <em>règne</em>.</h2>
+
+  <div class="container reading">
+    <p>Voici ce que tu vois en 2026 quand tu lis n'importe quel article ou page produit qui mentionne <em>« agent IA »</em>. Cinq exemples réels. Un seul est techniquement correct. Devine lequel.</p>
+
+    <p><strong>Exemple A.</strong> Un chatbot qui répond à des questions sur ton site web : <em>« notre nouvel agent IA réinvente le support client. »</em></p>
+
+    <p><strong>Exemple B.</strong> Un Custom GPT qui suit des instructions précises pour rédiger des emails type : <em>« cet agent rédige tous tes mails commerciaux en 30 secondes. »</em></p>
+
+    <p><strong>Exemple C.</strong> Un automatisation Zapier qui déclenche 7 actions à chaque nouveau lead : <em>« notre agent IA s'occupe de l'accueil entièrement. »</em></p>
+
+    <p><strong>Exemple D.</strong> Un système qui analyse une demande client, décide quelle action prendre selon le contexte (réponse directe, escalade humaine, demande d'info supplémentaire), exécute, et apprend du résultat : <em>« notre agent traite 80 % des tickets de manière autonome. »</em></p>
+
+    <p><strong>Exemple E.</strong> Claude qui fouille dans Notion, lit Drive, écrit un brief, le partage dans Slack — tout ça en une seule conversation guidée par toi : <em>« Claude est un agent qui orchestre tout votre stack. »</em></p>
+
+    <p>Réponse : <strong>seul l'exemple D décrit techniquement un agent au sens strict</strong>. Les 4 autres sont, dans l'ordre : un assistant conversationnel (A), un assistant configuré (B), une automatisation (C), un assistant agentique <em>guidé par l'utilisateur</em> qui n'est pas autonome (E). Les éditeurs appellent tout <em>« agent »</em> parce que ça vend mieux. Cette confusion a un coût pratique : tu achètes le mauvais outil pour ton besoin, ou tu sur-investis là où une solution simple suffit.</p>
+  </div>
+
+  <p class="pull-quote">Quand tout est appelé agent, le mot ne veut plus rien dire. Et tu ne peux plus prendre une décision éclairée. La clarification des 3 catégories n'est pas un débat académique — c'est ce qui te permet d'investir au bon endroit.</p>
+
+  <!-- ============== 2. LES 3 CATÉGORIES ============== -->
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Les 3 catégories <em>réelles</em>.</h2>
+
+  <div class="container reading">
+    <p>En croisant les définitions d'Anthropic, OpenAI, IBM et Google, on obtient 3 catégories techniquement distinctes. Voici la grille définitive.</p>
+  </div>
+
+  <div class="type-card">
+    <div class="type-name">Catégorie 1 — <em>Assistant</em></div>
+    <div class="type-text"><strong>Définition technique :</strong> un système IA qui produit des outputs (réponses, contenu, analyses) en réponse à tes prompts. Il peut utiliser des tools, lire des données via MCP, garder une mémoire — mais c'est <em>toi</em> qui guides à chaque étape.<br><br>
+<strong>Caractéristiques :</strong> conversationnel ou proche, exécution sur ton initiative à chaque tour, pas d'autonomie temporelle (n'agit pas sans toi), portée limitée à la conversation courante.<br><br>
+<strong>Exemples 2026 :</strong> ChatGPT, Claude.ai, Gemini, Microsoft 365 Copilot Chat (cf <a href="copilot-workspace-ai.html">article 2.5</a>), Custom GPTs et Projects (cf <a href="custom-gpts-projects-gems.html">article 1.1</a>), assistants avec connecteurs MCP guidés par l'utilisateur (cf <a href="comprendre-mcp.html">article 2.1</a>). Représente <strong>~95 % de l'usage IA grand public en 2026</strong>.<br><br>
+<strong>Pour quoi c'est bon :</strong> exploration, génération de contenu, raisonnement avec contexte, recherche, brainstorming. Tâches où ton expertise et ton jugement guident l'IA en temps réel.</div>
+  </div>
+
+  <div class="type-card">
+    <div class="type-name">Catégorie 2 — <em>Automatisation</em> (automatisation)</div>
+    <div class="type-text"><strong>Définition technique :</strong> un système où LLM(s) et tools sont orchestrés via <em>code paths prédéfinis</em>. Le flux est déterministe — étape 1 puis 2 puis 3, toujours dans le même ordre. L'IA peut intervenir à des étapes spécifiques (génération, classification) mais la structure du automatisation est fixée par toi à la conception.<br><br>
+<strong>Caractéristiques :</strong> persistent (tourne 24/7 sur déclencheur), déterministe (même structure toujours), composable (étapes claires), prévisible (même input → même structure d'output).<br><br>
+<strong>Exemples 2026 :</strong> Zapier, Make, n8n (cf <a href="zapier-make-n8n.html">article 2.6</a>), automatisations Microsoft Power Automate, Apple Shortcuts, scripts Python avec OpenAI API. Représente <strong>la majorité des projets « agent IA » en production en 2026</strong> — beaucoup d'éditeurs vendent des automatisations comme des agents.<br><br>
+<strong>Pour quoi c'est bon :</strong> tâches récurrentes, déterministes, déclenchées par événement, où la fiabilité prime sur la flexibilité. Accueil clients, notifications, sync de données, intégrations. <strong>Anthropic recommande de commencer ici</strong> : <em>« quand plus de complexité est justifiée, les automatisations offrent prévisibilité et cohérence pour des tâches bien définies »</em>.</div>
+  </div>
+
+  <div class="type-card">
+    <div class="type-name">Catégorie 3 — <em>Agent</em> (au sens strict)</div>
+    <div class="type-text"><strong>Définition technique (Anthropic) :</strong> un système où le LLM <em>dirige dynamiquement son propre processus et son tool usage, gardant le contrôle sur comment il accomplit les tâches</em>. Caractéristiques différenciantes selon IBM :<br><br>
+<strong>(1) Décision et action autonome :</strong> l'agent choisit quels tools utiliser et quand, sans validation humaine pour chaque étape.<br>
+<strong>(2) Mémoire persistante et apprentissage adaptatif :</strong> garde le contexte entre exécutions, refine son approche avec le temps.<br>
+<strong>(3) Multi-step reasoning autonome :</strong> décompose un problème en sous-tâches sans plan préalable défini par toi.<br>
+<strong>(4) Action sur l'environnement :</strong> exécute des actions réelles, pas juste des outputs textuels.<br><br>
+<strong>Exemples 2026 :</strong> Claude Computer Use (cliquer, taper, naviguer), OpenAI Operator, agents construits avec OpenAI Agents SDK ou Anthropic Agent SDK, Claude Cowork (orchestrateur multi-tâches), Notion Agents (Notion 3.0+), agents n8n 2.0 multi-agent (orchestrator + research + writing + QA, cf <a href="zapier-make-n8n.html">article 2.6</a>). Représente <strong>~5 % de l'usage IA réel en 2026</strong> — la frontière, le domaine en expansion rapide.<br><br>
+<strong>Pour quoi c'est bon :</strong> tâches variables qui demandent du raisonnement contextuel à chaque étape (un automatisation déterministe n'y arrive pas), tâches longues qui doivent tourner sans toi (un assistant ne peut pas — toi devrais être là), exploration autonome de problèmes mal définis.</div>
+  </div>
+
+  <div class="container reading">
+    <p>Les 3 catégories sont <strong>complémentaires, pas concurrentes</strong>. La sophistication 2026 consiste à savoir laquelle utiliser pour quel besoin — pas à <em>« passer aux agents »</em> systématiquement parce que c'est le buzz.</p>
+  </div>
+
+  <!-- ============== 3. MATRICE DE DÉCISION ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>La matrice <em>de décision</em>.</h2>
+
+  <div class="container reading">
+    <p>Voici comment trancher quand tu fais face à un nouveau besoin. 4 questions, 3 réponses possibles.</p>
+  </div>
+
+  <h3>Question 1 — Qui démarre l'exécution ?</h3>
+
+  <div class="container reading">
+    <p><strong>Toi, à la demande</strong> (tu poses une question, tu prompts) → <strong>Assistant</strong>. Tu es là pour guider, valider, corriger.</p>
+
+    <p><strong>Un événement externe</strong> (nouveau mail, paiement reçu, formulaire rempli) → <strong>Automatisation</strong>. Le déclencheur est extérieur à toi, le automatisation démarre sans intervention.</p>
+
+    <p><strong>Une condition autonome</strong> (l'IA décide elle-même qu'il faut agir, par exemple un agent monitoring qui détecte une anomalie) → <strong>Agent</strong>. C'est rare et nécessite une vraie sophistication.</p>
+  </div>
+
+  <h3>Question 2 — Le flux est-il prédictible ?</h3>
+
+  <div class="container reading">
+    <p><strong>Toujours les mêmes étapes, dans le même ordre</strong> (étape A → étape B → étape C) → <strong>Automatisation</strong>. Automatisation déterministe Zapier/Make/n8n est plus fiable et moins cher qu'un agent qui raisonnerait à chaque tour.</p>
+
+    <p><strong>Étapes variables selon le contexte</strong> (parfois A→B→D, parfois A→C, parfois A→B→C→D) → <strong>Agent</strong>. La variabilité justifie le coût en raisonnement IA.</p>
+
+    <p><strong>Une seule étape qui produit un output</strong> (génération, analyse, réponse) → <strong>Assistant</strong>. Pas besoin de complexité.</p>
+  </div>
+
+  <h3>Question 3 — L'IA doit-elle agir sans validation à chaque pas ?</h3>
+
+  <div class="container reading">
+    <p><strong>Oui, autonomie sur de longues séquences</strong> → <strong>Agent</strong>. Mais comprends le risque : moins de validation = plus de risque d'erreur compoundée.</p>
+
+    <p><strong>Validation humaine à chaque action significative</strong> → <strong>Assistant</strong>. Le human-in-the-loop est ta sécurité.</p>
+
+    <p><strong>Validation upfront, exécution déterministe ensuite</strong> → <strong>Automatisation</strong>. Tu valides la conception du automatisation, il tourne ensuite sans intervention.</p>
+  </div>
+
+  <h3>Question 4 — Quelle valeur business est en jeu ?</h3>
+
+  <div class="container reading">
+    <p><strong>Faible (productivité personnelle, exploration)</strong> → commence par un <strong>assistant</strong>. C'est le ratio bénéfice/coût optimal pour 95 % des cas perso.</p>
+
+    <p><strong>Moyenne (automatisation récurrent, gain de temps mesurable)</strong> → <strong>automatisation</strong>. Investissement de configuration justifié par le ROI sur 6-12 mois.</p>
+
+    <p><strong>Élevée (transformation d'un process clé, scaling sans recrutement)</strong> → considère un <strong>agent</strong>. Mais reconnais que les vrais agents en 2026 demandent de l'expertise technique. Anthropic recommande explicitement <em>« commencer simple, ajouter de la complexité uniquement quand nécessaire »</em>.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">L'arbre de décision résumé</div>
+    <p><strong>Tâche guidée par toi en temps réel ?</strong> → Assistant.<br><strong>Tâche récurrente déterministe sur déclencheur ?</strong> → Automatisation.<br><strong>Tâche variable autonome longue durée ?</strong> → Agent.<br><strong>Cas hybride :</strong> automatisation + IA dans certaines étapes (ex : Zapier qui appelle Claude pour classifier un mail). Pratique courante 2026 — la frontière s'estompe entre catégories 2 et 3 avec n8n 2.0 AI Agent Tool, Zapier Agents, Make AI Agents.</p>
+  </div>
+
+  <!-- ============== 4. CE QUI CHANGE EN 2026 ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Ce qui change <em>avec les vrais agents</em>.</h2>
+
+  <div class="container reading">
+    <p>Les vrais agents (catégorie 3) introduisent 3 paradigm shifts par rapport aux assistants et automatisations. Comprendre ces shifts te prépare aux articles suivants de la rubrique R3.</p>
+  </div>
+
+  <h3>Shift 1 — De la conversation à la délégation</h3>
+
+  <div class="container reading">
+    <p>Avec un assistant, tu prompts et attends. La conversation est synchrone — tu y participes activement à chaque tour. Avec un agent, tu <strong>délègues une mission</strong> et reviens plus tard. <em>« Compare ces 5 fournisseurs et donne-moi un dossier en 1 page d'ici demain matin. »</em> Tu n'es pas dans la boucle pendant l'exécution — l'agent travaille pendant que tu fais autre chose.</p>
+
+    <p><strong>Conséquence pratique :</strong> tu apprends à donner des missions <em>autonomes</em> plutôt que des prompts <em>conversationnels</em>. C'est une compétence en soi — formuler une mission claire, avec les contraintes, les critères de succès, les limites de portée. <strong>OpenAI estime que <em>« la qualité de la mission compte plus que le modèle »</em></strong> pour la réussite des agents en 2026.</p>
+  </div>
+
+  <h3>Shift 2 — Du déterminisme au raisonnement à chaque pas</h3>
+
+  <div class="container reading">
+    <p>Une automatisation Zapier exécute toujours les mêmes étapes. Un agent <em>raisonne</em> à chaque étape : <em>« Vu ce que j'ai trouvé à l'étape précédente, devrais-je continuer comme prévu, changer de direction, demander une clarification, ou m'arrêter ? »</em></p>
+
+    <p><strong>Conséquence pratique :</strong> les agents sont plus flexibles mais aussi <em>moins prévisibles</em>. Tu ne peux pas garantir que deux exécutions sur le même input produiront exactement le même résultat. Sur des tâches business critiques, c'est un trade-off à arbitrer. Beaucoup d'organisations en 2026 préfèrent des automatisations déterministes avec des étapes IA encapsulées (catégorie 2 enrichie) plutôt que des agents purs (catégorie 3).</p>
+  </div>
+
+  <h3>Shift 3 — De la mémoire éphémère à la mémoire persistante</h3>
+
+  <div class="container reading">
+    <p>Un assistant ChatGPT classique oublie tout entre les conversations (sauf si tu actives memory). Un automatisation Zapier n'a pas de mémoire — chaque exécution est isolée. <strong>Un agent maintient un état persistant</strong> entre exécutions : <em>« j'ai vu ce client la semaine dernière, voici ce qu'on s'était dit, je peux donc traiter sa nouvelle demande dans le contexte global. »</em></p>
+
+    <p><strong>Conséquence pratique :</strong> les agents deviennent plus utiles avec le temps. Mais cette mémoire persistante crée des risques (cf <a href="securite-connecteurs.html">article 2.8 sur la sécurité</a>) — informations sensibles qui restent accessibles longtemps, possibilité de manipulation par injection, leakage cross-utilisateurs si mal configuré. La gestion de la mémoire d'agent est l'enjeu d'ingénierie n°1 en 2026.</p>
+  </div>
+
+  <p class="pull-quote">Les vrais agents ne sont pas des assistants en mieux. Ce sont des outils différents, avec leurs forces, leurs faiblesses, leur courbe d'apprentissage. Le piège 2026 est de croire qu'on peut <em>« remplacer »</em> les assistants par des agents. La sophistication consiste à savoir composer les 3 catégories.</p>
+
+  <!-- ============== PIÈGES ============== -->
+  <h2 class="reading"><span class="h2-num">— Bonus</span>5 <em>pièges</em> classiques.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>appeler agent ce qui est un assistant</em></div>
+    <div class="pitfall-text">Tu construis un Custom GPT avec instructions précises et Knowledge Files. Tu l'appelles <em>« mon agent commercial »</em>. Erreur de catégorisation qui te coûte cher : tu lui demandes des choses qu'un agent vrai ferait (action autonome, raisonnement multi-step), il échoue parce que ce n'est pas ça qu'un Custom GPT fait. <strong>Correction :</strong> appelle les choses par leur nom. Custom GPT = assistant configuré (catégorie 1). Pour un vrai agent, tu as besoin d'OpenAI Agents SDK, Claude Agent SDK, ou plateformes type Cowork. Pas de honte à utiliser un assistant — 95 % des cas grand public n'ont pas besoin de plus.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : <em>vouloir construire un agent quand un automatisation suffit</em></div>
+    <div class="pitfall-text">Tu as identifié un process récurrent : nouveau lead → enrichissement données → email perso → ajout au CRM. Tu te lances dans la construction d'un agent IA sophistiqué. 3 semaines de travail. Anthropic publie son guide <em>« Building Effective Agents »</em> et te dit explicitement que pour un automatisation déterministe en 4 étapes, un agent est <em>over-engineering</em>. <strong>Correction :</strong> commence toujours par la solution la plus simple. Le ratio bénéfice/effort pour des tâches déterministes est largement en faveur de Zapier/Make/n8n vs un agent custom. Réserve les agents pour les cas où la variabilité justifie le raisonnement à chaque étape.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>déléguer trop tôt à un agent</em></div>
+    <div class="pitfall-text">Tu construis un agent qui doit autonomement traiter tes mails support. Tu le lances en production sans monitoring. 1 semaine plus tard, tu découvres qu'il a répondu de manière incorrecte à 30 clients, certains se sont plaints publiquement. Tu réalises que tu n'avais aucun système d'observabilité. <strong>Correction :</strong> les agents demandent <em>observabilité</em> dès le jour 1. Logs, métriques, alertes sur les comportements anormaux. Anthropic, OpenAI, Google insistent tous sur ce point en 2026. <strong>Adobe 2026 :</strong> seulement 31 % des organisations qui prétendent utiliser des agents ont mis en place une mesure framework. C'est le plus gros risque de l'année.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>croire qu'agent = remplacer un humain</em></div>
+    <div class="pitfall-text">Tu présentes un agent à ton équipe en disant <em>« il va faire le travail de Sarah »</em>. Réaction prévisible : Sarah résiste, l'équipe sabote, le projet échoue. Erreur de framing. <strong>Correction :</strong> les agents performants en 2026 augmentent les humains, ne les remplacent pas. Sarah passe moins de temps sur les tâches répétitives, plus sur le jugement, la relation, l'exception. C'est la promesse réaliste — pas la science-fiction. Les organisations qui posent les agents comme <em>productivity multipliers</em> ont un meilleur taux de réussite que celles qui visent l'automation totale (étude Dust 2026). Le ROI compte, pas la vitrine technologique.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : <em>l'agent solitaire (lonely agent)</em></div>
+    <div class="pitfall-text">Ryan Gavin (Slack/Salesforce) prédit que <em>« 2026 sera l'année du lonely agent »</em>. Pattern observé : les organisations déploient des centaines d'agents par employé, la majorité reste inutilisée — comme des licences logicielles non utilisées, impressionnantes mais invisibles. Tu construis 15 agents, tu en utilises 3 régulièrement, les 12 autres pourrissent. <strong>Correction :</strong> moins est plus. Un agent performant et utilisé bat 10 agents construits par enthousiasme. Critères de réussite : (1) un agent par mission claire et récurrente, (2) intégration aux automatisations existants (pas un silo séparé), (3) feedback loop pour amélioration. Si tu ne peux pas mesurer l'usage et l'impact, ne construis pas l'agent.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>Les 3 catégories ne sont pas une hiérarchie de sophistication où l'agent serait le sommet. Ce sont 3 outils différents pour 3 besoins différents. <strong>L'utilisateur lucide en 2026 :</strong> utilise des assistants pour l'exploration et le raisonnement guidé (60 % de son usage IA), des automatisations pour les automatisations récurrents déterministes (35 %), et des agents uniquement pour les tâches qui justifient leur complexité (5 %). Cette répartition contre-intuitive est ce qui sépare les utilisateurs efficaces des spectateurs du buzz. <strong>Suite logique :</strong> les 6 articles suivants de cette rubrique R3 vont creuser le territoire des vrais agents — Computer Use d'Anthropic, OpenAI Operator, Agent SDK comparison, gouvernance, observabilité, cas d'usage qui marchent vraiment. Mais cet article-fondation est ton garde-fou : reviens-y dès que tu lis <em>« nouveau super-agent »</em> et demande-toi : <em>est-ce vraiment un agent au sens strict ?</em></p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Tu maîtrises maintenant la grille des 3 catégories. Pour aller plus loin : <a href="niveau-4-deleguer-agents.html">la rubrique R3 complète sur déléguer aux agents</a> avec ses 7 articles. <a href="niveau-4-construire-assistants.html">La rubrique R1 complète</a> pour les assistants (catégorie 1). <a href="niveau-4-connecter-outils.html">La rubrique R2 complète</a> pour les connecteurs MCP qui équipent assistants et agents. <a href="zapier-make-n8n.html">Article 2.6 sur Zapier/Make/n8n</a> pour la catégorie 2 (automatisations). <a href="securite-connecteurs.html">Article 2.8 ★ sur la sécurité connecteurs</a> qui s'applique aussi aux agents (mémoire persistante = surface d'attaque accrue). Pour bâtir des automatisations dans la durée : <a href="niveau-4-batir-automatisations.html">la rubrique R4 sur les automatisations durables</a>. Pour le panorama des outils : <a href="outils-ia.html">l'annuaire Niveau V</a>.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur agents, assistants et automatisations.</h3>
+    <ol class="recap-points">
+      <li>La confusion 2026 est massive et coûteuse. Le marché agents IA passe de 5,1 Md $ en 2024 à 10,9 Md $ projetés en 2026 (+113 %), 52 % des executives prétendent avoir des agents en production mais seulement 31 % ont une mesure framework. Tout est appelé <em>« agent »</em> alors que les 3 catégories techniques sont distinctes.</li>
+      <li>Les 3 catégories définies par les éditeurs sérieux : <strong>Assistant</strong> (catégorie 1, ~95 % usage grand public 2026) = système IA qui produit des outputs sur tes prompts, conversationnel, guidé par toi à chaque étape — ChatGPT, Claude, Custom GPTs, Copilot Chat. <strong>Automatisation/Automatisation</strong> (catégorie 2) = LLMs orchestrés via code paths prédéfinis, déterministe, persistent 24/7 sur déclencheur — Zapier, Make, n8n, Power Automate. <strong>Agent</strong> (catégorie 3, ~5 % usage 2026) = LLM qui dirige dynamiquement son propre processus, autonomie, mémoire persistante, multi-step reasoning — Claude Computer Use, OpenAI Operator, Cowork, Notion Agents, n8n 2.0 AI Agent Tool.</li>
+      <li>Matrice de décision en 4 questions : (1) qui démarre l'exécution ? toi → assistant, événement → automatisation, condition autonome → agent. (2) flux prédictible ? oui → automatisation, variable → agent, étape unique → assistant. (3) action sans validation à chaque pas ? oui → agent, validation humaine → assistant, validation upfront → automatisation. (4) valeur business ? faible → assistant, moyenne → automatisation, élevée + variabilité → considérer agent. Anthropic recommande <em>« commencer simple, ajouter de la complexité uniquement quand nécessaire »</em>.</li>
+      <li>3 paradigm shifts avec les vrais agents : (1) de la conversation à la délégation (apprends à formuler des missions autonomes vs prompts conversationnels — la qualité de la mission compte plus que le modèle), (2) du déterminisme au raisonnement à chaque pas (flexibilité gagnée, prévisibilité perdue — trade-off à arbitrer), (3) de la mémoire éphémère à la mémoire persistante (utilité qui s'améliore avec le temps, mais surface d'attaque accrue — cf <a href="securite-connecteurs.html">article 2.8</a>).</li>
+      <li>5 pièges à éviter : appeler agent ce qui est un assistant (Custom GPT n'est pas un agent), vouloir construire un agent quand un automatisation suffit (over-engineering documenté par Anthropic), déléguer à un agent sans observabilité (31 % seulement ont une mesure framework — gros risque 2026), croire qu'agent = remplacer un humain (les meilleurs résultats viennent de l'augmentation, pas du remplacement), <em>« lonely agent »</em> Ryan Gavin (déployer 100 agents qui restent inutilisés vs construire 3 qui servent vraiment).</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="niveau-4-deleguer-agents.html">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">3.2 · Computer Use et Operator (à venir)</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-4-deleguer-agents.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Déléguer aux agents · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tester, débugger, maintenir. – AutomationBoost</title>
+  <meta name="description" content="Le côté ops qui fait rater 80 % des assistants : construire un jeu de tests en 30 minutes, déboguer et maintenir ton assistant dans la durée." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Tester, débugger, maintenir.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#eab308;">Automatiser & agents</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Tester, débugger, maintenir.</h1>
+    <p class="lede">Le côté ops qui rate 80 % des assistants. Comment construire un test set perso en 30 minutes, déboguer ciblé au lieu de réécrire tout, versionner sans outil natif, et maintenir un assistant 6 mois après sa création. Sujet quasi inexistant en français.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tu as construit un assistant qui marche, tu le partages. Trois semaines plus tard, il dérape sur certains cas. Tu modifies les instructions : ça règle un cas mais en casse deux autres. Tu veux revenir en arrière, sauf que tu n'as pas gardé la version précédente. Au bout de quelques mois, l'assistant est abandonné.</p>
+
+    <p>Ce n'est pas l'exception, c'est la trajectoire par défaut : la grande majorité des assistants publiés meurent en quelques semaines, faute de méthode pour les tester et les corriger. Voici comment fiabiliser le tien dans la durée.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi 80 % des assistants <em>finissent abandonnés</em>.</h2>
+
+  <div class="container reading">
+    <p>Ce qui condamne un assistant n'est ni la plateforme ni le modèle, mais quatre défauts opérationnels qui s'accumulent : pas de référence pour comparer avant/après une modification, pas d'historique des changements, des instructions qui enflent au fil des rustines, et aucun test systématique. Résultat : on corrige un cas en en cassant trois autres, jusqu'à l'abandon.</p>
+
+    <p>La méthode qui suit installe les garde-fous qui font tenir un assistant dans la durée.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Le <em>test set perso</em> en 30 minutes.</h2>
+
+  <div class="container reading">
+    <p>Le concept est emprunté aux pratiques pro 2026 (Braintrust, Adaline, Promptfoo) mais simplifié pour un usage solo. Un <strong>test set</strong> est un ensemble de cas représentatifs avec une réponse attendue documentée. Tu le passes à ton assistant à chaque modification importante des Instructions pour vérifier qu'aucun cas qui marchait avant ne dérape après.</p>
+
+    <p>Sans test set, modifier les Instructions est de l'aveuglement. Avec test set, c'est du débogage ciblé. La différence se voit dès la 2e modification importante.</p>
+  </div>
+
+  <h3>Méthode pas-à-pas (30 min, une fois)</h3>
+
+  <div class="tool-card">
+    <div class="tool-name">Étape 1 — <em>Choisis 8 à 12 cas représentatifs</em> (10 min)</div>
+    <div class="tool-text">Crée un Google Doc, Notion ou simple .md. Liste 8-12 cas qui couvrent les usages réels. Mix de :
+<br>• <strong>5-7 cas nominaux</strong> que tu maîtrises et qui doivent toujours marcher (les 3-4 demandes les plus fréquentes en production).
+<br>• <strong>2-3 cas adversaires</strong> qui doivent échouer proprement : hors-sujet, donnée manquante, demande qui contredit les règles.
+<br>• <strong>1-2 cas limites</strong> : à la frontière du périmètre, cas où l'assistant doit <em>nuancer</em> sa réponse plutôt que refuser ou répondre nettement.<br><br>
+<strong>Erreur classique :</strong> ne mettre que des cas faciles. Le test set ne sert à rien s'il valide tout le temps. Il faut au moins 2-3 cas qui poussent l'assistant dans ses retranchements.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Étape 2 — <em>Pour chaque cas, écris la réponse attendue</em> (15 min)</div>
+    <div class="tool-text">Pour chaque cas, note 3 lignes : <strong>l'input exact</strong> que tu vas donner, <strong>les caractéristiques attendues de la sortie</strong> (pas le mot-à-mot, les critères : longueur, format, présence/absence d'éléments précis), <strong>les critères d'échec</strong> (qu'est-ce qui te ferait dire <em>« non, là c'est cassé »</em>).<br><br>
+<strong>Exemple concret pour un assistant correcteur d'emails :</strong><br>
+<em>Input :</em> <em>« Reformule cet email : Bonjour Mr Dupont, je voulais juste vous redire que j'attends toujours votre validation sur le devis... »</em><br>
+<em>Attendu :</em> ton direct, max 50 mots, signature laissée à remplir, pas de formules creuses type <em>« n'hésitez pas »</em>.<br>
+<em>Échec si :</em> phrase au-dessus de 25 mots, signature inventée, formule creuse présente, ton soumis qui démarre par <em>« Je me permets de... »</em>.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Étape 3 — <em>Score baseline aujourd'hui</em> (5 min)</div>
+    <div class="tool-text">Passe les 8-12 cas à ton assistant <em>aujourd'hui</em>, dans son état actuel. Pour chaque cas, note <strong>passe</strong> ou <strong>échoue</strong>, plus 1 ligne d'observation si pertinent. Tu obtiens ton score baseline. Si tu as 11/12 qui passent, c'est ton point de référence. Toute modification future devra maintenir 11/12 minimum, sinon tu ne déploies pas.<br><br>
+<strong>Cas particulier :</strong> si ton baseline est faible (par exemple 6/12), c'est que ton assistant n'est pas encore prêt pour la production — pas le moment de partager. Travaille les Instructions jusqu'à atteindre 9-10/12 avant publication.<br><br>
+Tu peux automatiser ce passage avec un GPT dédié <em>« Eval »</em> qui prend les sorties de ton assistant et les compare aux critères attendus. C'est l'approche <em>LLM-as-a-judge</em> documentée dans les outils pro 2026 (Braintrust, Adaline). Mais pour un assistant solo, le scoring manuel en 5 minutes par évaluation est largement suffisant.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Le ROI invisible</div>
+    <p>Le test set perso ne montre sa valeur qu'à la 2e modification d'Instructions. La première fois que tu modifies, tu repasses ton test set et tu vois immédiatement si une régression a été introduite — alors qu'avant, tu l'aurais découverte 2 semaines plus tard via un retour utilisateur. <strong>30 minutes investies une fois te sauvent 2 à 5 heures de débuggage rétrospectif</strong> sur la durée de vie de l'assistant. C'est le ratio effort/retour le plus élevé de toute la rubrique.</p>
+  </div>
+
+  <!-- ============== 3. DÉBUGGAGE ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Le <em>débuggage ciblé</em> par catégorie.</h2>
+
+  <div class="container reading">
+    <p>Quand un cas dérape, la tentation est de <em>« réécrire les Instructions »</em>. Mauvais réflexe. Réécrire casse souvent ce qui marchait. La bonne méthode : <strong>identifier la catégorie exacte du bug, corriger ciblé, re-tester avec ton test set</strong>. Voici les 5 catégories qui couvrent 95 % des cas, avec leur correction type.</p>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Catégorie 1 — <em>Bug de Rôle</em></div>
+    <div class="tool-text"><strong>Symptôme :</strong> l'assistant répond comme un ChatGPT générique au lieu de son persona métier. Il perd son ton, oublie qui il aide, donne des réponses standards qui pourraient venir de n'importe quel assistant.<br><br>
+<strong>Diagnostic :</strong> demande-lui <em>« Qui es-tu et qui aides-tu ? »</em> Si la réponse est vague, le bug est dans la couche Rôle des Instructions (revoir <a href="anatomie-assistant-ia.html">anatomie en 5 couches, article 1.3</a>).<br><br>
+<strong>Correction :</strong> reprécise le Rôle en haut des Instructions. Pas <em>« assistant qui aide »</em> — un <strong>nom métier reconnaissable + audience cible définie</strong>. <em>« Tu es un correcteur de propositions commerciales pour des freelances IT francophones. »</em> Cette précision active des connaissances et un registre spécifique dans le modèle.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Catégorie 2 — <em>Bug de Process</em></div>
+    <div class="tool-text"><strong>Symptôme :</strong> l'assistant fait les bonnes choses mais dans le mauvais ordre. Il propose une reformulation avant d'avoir lu le contexte. Il refuse hors-sujet avant d'avoir analysé la demande. Il pose une question avant d'avoir tenté de répondre.<br><br>
+<strong>Diagnostic :</strong> regarde si tu as une couche Process explicite avec étapes numérotées (1, 2, 3, 4) — pas des bullets désordonnés. Si tu as juste <em>« fais X, fais Y, fais Z »</em>, le modèle improvise un ordre qui varie d'une fois à l'autre.<br><br>
+<strong>Correction :</strong> récris le Process en numérotation explicite. <em>« 1. Lis l'input en entier. 2. Identifie le ton actuel. 3. Reformule. 4. Termine par une question de relance. »</em> Cette discipline réduit l'imprévisibilité des sorties.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Catégorie 3 — <em>Bug de Format</em></div>
+    <div class="tool-text"><strong>Symptôme :</strong> les sorties varient en format d'une fois à l'autre. Parfois en markdown verbeux, parfois en prose. Parfois avec intertitres, parfois sans. Tu dois reformater à chaque usage.<br><br>
+<strong>Diagnostic :</strong> tu n'as probablement pas de couche Format de sortie explicite. C'est la couche la plus souvent oubliée — l'assistant rend dans son format par défaut (markdown générique, souvent inadapté).<br><br>
+<strong>Correction :</strong> ajoute une section <em>## Format de sortie</em> précise. <em>« Réponds en 3 sections H2 séparées : ## Diagnostic / ## Reformulation / ## Justification. La Reformulation doit être prête à copier-coller, max 200 mots, sans préambule explicatif. »</em> Spécifie longueur, structure, et présence/absence de préambule.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Catégorie 4 — <em>Bug de Contraintes</em></div>
+    <div class="tool-text"><strong>Symptôme :</strong> l'assistant invente des données. Il signe à ta place. Il ajoute des promesses commerciales que tu n'as pas écrites. Il fait précisément ce que tu lui as interdit.<br><br>
+<strong>Diagnostic :</strong> tes contraintes sont peut-être formulées en négatif (<em>« n'invente pas »</em>) — les modèles 2026 (GPT-5.4/5.5, Claude Opus 4.7) suivent moins bien les interdictions que les instructions positives concrètes.<br><br>
+<strong>Correction :</strong> reformule tes contraintes en positif. <em>« N'invente pas de chiffre »</em> → <em>« Si un chiffre manque, écris [à confirmer]. »</em> <em>« Ne signe pas »</em> → <em>« Termine toujours sans signature, en laissant la place vide pour que l'utilisateur signe à la main. »</em> Plus efficace, plus concret, plus respecté.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Catégorie 5 — <em>Bug d'Cas limite</em></div>
+    <div class="tool-text"><strong>Symptôme :</strong> l'assistant répond confiant à des questions hors-sujet (au lieu de rediriger). Il invente une donnée plutôt que de demander quand l'info manque. Il continue dans le doute au lieu de signaler son incertitude.<br><br>
+<strong>Diagnostic :</strong> couche Cas limites absente ou trop faible dans les Instructions. C'est la dernière des 5 couches mais c'est elle qui te protège des comportements imprévus.<br><br>
+<strong>Correction :</strong> ajoute deux clauses explicites en fin d'Instructions. <em>« Si la demande sort du périmètre [X], réponds : "Je suis spécialisé sur X. Pour [autre besoin], utilise ChatGPT générique." Ne tente pas une réponse générique. »</em> Plus : <em>« Si une donnée essentielle manque, pose la question avant de répondre. Ne devine pas. »</em> Ces deux clauses éliminent 80 % des dérapages atypiques.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Méthode du débuggage ciblé</div>
+    <p>Pour chaque bug remonté : <strong>(1)</strong> identifie la catégorie (1 à 5 ci-dessus), <strong>(2)</strong> applique la correction <em>uniquement</em> sur la couche concernée — pas tout réécrire, <strong>(3)</strong> repasse ton test set baseline pour vérifier que tu n'as pas introduit de régression, <strong>(4)</strong> ajoute le cas dérapé à ton test set comme nouveau cas (pour vérifier les futures modifications). Cette boucle est la version solo accessible des CI/CD pour prompts utilisés en pro chez Braintrust ou Adaline. <strong>Sans outil tiers, juste avec ton Notion et 5 minutes.</strong></p>
+  </div>
+
+  <!-- ============== 4. MAINTENANCE ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>La <em>routine de maintenance</em> mensuelle.</h2>
+
+  <div class="container reading">
+    <p>Un assistant non maintenu se dégrade silencieusement. Pas par bug technique — par <em>drift silencieux</em>. Le contexte évolue (ton produit, tes tarifs, tes pratiques) mais les Instructions et Connaissances Files restent figés. Au bout de 6 mois, l'assistant donne des réponses confiantes mais obsolètes, parfois fausses. La détection se fait au pire moment : un retour client embarrassant.</p>
+
+    <p>La parade : <strong>30 minutes par mois, calendrier-fixé</strong>. Voici la check-list à dérouler :</p>
+  </div>
+
+  <div class="codeblock">
+<div class="codeblock-label">— Audit mensuel · 30 min</div>
+<div class="codeblock-content"><span class="comment">// 1. Test set baseline (5 min)</span>
+- Repasser les 8-12 cas du test set
+- Comparer avec le score baseline
+- Score baisse de plus de 1 cas ? → investigation immédiate
+
+<span class="comment">// 2. Connaissances Files (10 min)</span>
+- Lister les fichiers actifs
+- Pour chaque : <em>« Cette info est-elle encore exacte ? »</em>
+- Mettre à jour les fichiers obsolètes
+- Supprimer les fichiers qui ne sont plus pertinents
+
+<span class="comment">// 3. Cas réels remontés depuis le mois dernier (10 min)</span>
+- Lister les cas où l'assistant a dérapé en pratique
+- Identifier la catégorie (1 à 5)
+- Appliquer la correction ciblée
+- Ajouter le cas au test set
+
+<span class="comment">// 4. Changelog (5 min)</span>
+- Documenter dans le fichier externe (Notion / GitHub / Drive) :
+  - Date
+  - Modifications appliquées
+  - Raison (cas X qui dérapait)
+  - Score test set après modif</div>
+  </div>
+
+  <h3>Le changelog externe — protection contre la perte d'historique</h3>
+
+  <div class="container reading">
+    <p>Comme aucune des 3 plateformes (Custom GPTs, Claude Projects, Gemini Gems) n'a de versionning natif des Instructions, tu dois <strong>tenir le changelog hors-plateforme</strong>. Sinon, à la 5e modification, tu ne sauras plus pourquoi telle règle a été ajoutée et tu hésiteras à la supprimer.</p>
+
+    <p>Format minimal qui marche : un fichier <em>changelog.md</em> dans Notion, Google Drive, ou un repo GitHub privé. Pour chaque modification importante :</p>
+
+    <p><strong>Date — Version — Raison — Diff — Score test set</strong></p>
+
+    <p>Exemple : <em>« 2026-04-15 — v3 — Cas client A dérapait sur emails longs (cat. 3 Format) — Ajout section ## Format de sortie max 200 mots — Test set 11/12 vs 10/12 v2 »</em>. Cette ligne te permettra dans 3 mois de revenir à la version 2 si v3 introduit un problème non détecté immédiatement.</p>
+
+    <p>Approche pro 2026 : les outils comme PromptLayer, LangSmith, Adaline offrent ce versionning avec interface git-like, branchements, pull requests pour prompts. Pour un assistant pro mission-critical avec 5+ assistants à maintenir, c'est rentable. Pour 1-3 assistants perso, le simple Notion suffit largement.</p>
+  </div>
+
+  <h3>Les 3 signaux de drift à surveiller</h3>
+
+  <div class="container reading">
+    <p><strong>Signal 1 — Score test set qui baisse.</strong> Tu repasses ton baseline et tu perds 1-2 cas qui passaient avant. Action : investigation immédiate, identifier ce qui a changé (modèle évolué côté plateforme ? Connaissances Files devenus obsolètes ? Instructions modifiées sans test ?).</p>
+
+    <p><strong>Signal 2 — Augmentation des retours utilisateurs négatifs.</strong> Si tu commences à recevoir 2-3 retours du genre <em>« ça n'a pas marché sur ce cas »</em> dans le mois, c'est un signal. Ne corrige pas individuellement — collecte 5-10 cas avant de modifier les Instructions, identifie la catégorie commune, corrige une fois bien.</p>
+
+    <p><strong>Signal 3 — Changement côté plateforme.</strong> En 2026 : Custom GPTs en transition vers Workspace Agents, modèles évoluent (GPT-5.5 a remplacé GPT-5.4 en avril 2026, Claude Opus 4.7 récent). Quand le modèle sous-jacent change, le comportement peut subtilement dériver. Repasse ton test set après chaque changement de version connue.</p>
+  </div>
+
+  <!-- ============== PIÈGES ============== -->
+  <h2 class="reading"><span class="h2-num">— Bonus</span>5 <em>pièges</em> qui ratent la maintenance.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>tester seulement quand on construit, jamais après</em></div>
+    <div class="pitfall-text">Tu testes 5 cas au moment de créer l'assistant. Ça marche. Tu déploies. Tu ne testes plus jamais. Trois mois plus tard, l'assistant a dérivé silencieusement et tu n'as aucune référence pour le mesurer. <strong>Correction :</strong> le test set baseline créé à l'étape 2 doit être <em>repassé à chaque modification</em> et <em>une fois par mois minimum</em> même sans modification (pour détecter le drift externe : changement de modèle, évolution silencieuse de la plateforme).</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : <em>modifier les Instructions sans changelog</em></div>
+    <div class="pitfall-text">Tu modifies les Instructions parce qu'un cas dérape. Tu ne notes rien. 2 mois plus tard, tu modifies à nouveau pour un autre cas. Tu n'as aucune trace de la première modif, donc tu refais peut-être la même erreur. Au bout de 5 modifications, tes Instructions sont un patchwork incohérent dont tu ne maîtrises plus l'historique. <strong>Correction :</strong> 5 minutes de changelog après chaque modif. Notion, Google Doc, peu importe — mais hors-plateforme. C'est la protection la plus rentable contre la dégradation cumulative.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>sur-corriger en empilant des règles défensives</em></div>
+    <div class="pitfall-text">Tu reçois un cas qui dérape. Tu ajoutes une règle dans les Instructions <em>« Ne pas faire X dans la situation Y »</em>. Cas suivant qui dérape, autre règle ajoutée. Au bout de 6 mois, tu as 25 règles défensives dans tes Instructions, le système prompt fait 1 200 mots, et le modèle commence à oublier les règles du milieu (effet <em>« lost in the middle »</em>). <strong>Correction :</strong> à chaque cas qui dérape, demande-toi <em>« est-ce un cas de la couche X (Rôle/Process/Format/Contraintes/Cas limite) qui n'est pas assez fort, ou un cas vraiment nouveau qui mérite une règle ? »</em> 80 % du temps, c'est une couche existante qu'il faut renforcer, pas une nouvelle règle à ajouter. Reste sous 400 mots de système prompt — au-delà, tu rentres dans la zone d'oubli.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>ne pas écouter les cas réels qui remontent</em></div>
+    <div class="pitfall-text">Un utilisateur te dit <em>« ça n'a pas marché sur ce cas précis »</em>. Tu corriges sur le moment dans la conversation. Tu ne notes pas. Trois mois plus tard, le même type de cas se reproduit chez un autre utilisateur — parce que tu n'as pas capitalisé l'apprentissage. <strong>Correction :</strong> tiens un fichier <em>cas-reels.md</em> où tu notes chaque dérapage remonté, avec la catégorie suspectée. Audit mensuel : si 3+ cas appartiennent à la même catégorie, c'est qu'une couche des Instructions est faible et mérite renforcement. Sans cette capitalisation, tu corriges toujours individuellement, jamais structurellement.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : <em>négliger le drift de Connaissances Files</em></div>
+    <div class="pitfall-text">Tu mets en place une routine mensuelle parfaite sur les Instructions, mais tu oublies que les Connaissances Files vieillissent aussi. Tes tarifs ont changé en mars, tu ne mets pas à jour le fichier <em>tarifs.csv</em>. L'assistant continue de citer les anciens tarifs en juin avec confiance. Un client le voit, te demande pourquoi, embarras. <strong>Correction :</strong> les Connaissances Files font partie de l'audit mensuel des 30 minutes (étape 2 du codeblock ci-dessus). Liste-les, vérifie chaque source, mets à jour ce qui a évolué. Les Gemini Gems avec sources Drive directes simplifient ce point (synchronisation automatique). Pour Custom GPTs et Claude Projects, c'est manuel et reste de ta responsabilité — voir <a href="knowledge-files-assistant.html">article 1.4 sur les Connaissances Files</a> pour les bonnes pratiques de structure qui facilitent la mise à jour.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>La maintenance d'assistant IA est <strong>le travail invisible qui sépare les amateurs des pros</strong>. Tout le monde sait construire un assistant correct la première semaine — la <em>preview</em> du Builder rend ça facile. Très peu savent maintenir un assistant pertinent au mois 6, parce que ça demande une discipline ops que personne ne montre dans les tutoriels. <strong>30 minutes par mois</strong> — c'est le coût total. C'est moins qu'un café-réseautage hebdomadaire, mais c'est ce qui transforme un assistant <em>« sympa la première semaine »</em> en outil <em>« fiable pendant 2 ans »</em>. Si tu sautes cette discipline, ne te plains pas quand ton assistant se dégrade ; et si tu l'appliques, tu vas naturellement passer dans les 5 % d'utilisateurs qui exploitent vraiment la valeur des assistants IA construits. <strong>C'est la différence structurante en 2026.</strong></p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Tu sais maintenant tester, déboguer et maintenir. Pour aller plus loin : <a href="niveau-4-construire-assistants.html">l'article 1.7 (à venir) sur partager ton assistant avec ton équipe</a> — sujet connexe parce qu'un assistant partagé reçoit des cas atypiques que tu ne testais pas seul. Pour les couches structurantes des Instructions : <a href="anatomie-assistant-ia.html">article 1.3 (anatomie en 5 couches)</a>. Pour la cohérence Connaissances Files : <a href="knowledge-files-assistant.html">article 1.4</a>. Pour les Actions et le débuggage de leur authentification : <a href="actions-apis-assistant.html">article 1.5</a>. Pour le tutoriel pas-à-pas si tu démarres : <a href="construire-premier-custom-gpt.html">article 1.2 (premier Custom GPT en 30 min)</a>. Pour l'écosystème automatisation autour des assistants : <a href="niveau-4-batir-automatisations.html">la rubrique R4 du Niveau IV</a> où l'article ★ Pilier sur le piège du sur-automatisation traite un sujet connexe (la maintenance qui devient un fardeau quand on multiplie les automatisations).</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur tester, débugger, maintenir.</h3>
+    <ol class="recap-points">
+      <li>80 % des assistants finissent abandonnés en 6 semaines pour 4 défauts ops cumulatifs : pas de baseline pour comparer, pas d'historique des Instructions, pas d'écoute des cas réels, pas de routine périodique. Aucune des 3 plateformes (Custom GPTs, Claude Projects, Gemini Gems) n'a de versionning natif — c'est à toi de tenir un changelog externe.</li>
+      <li>Test set perso en 30 minutes : 8-12 cas (5-7 nominaux + 2-3 adversaires + 1-2 limites) avec input, attendu et critères d'échec documentés. Score baseline aujourd'hui = ton point de référence. Toute modification future doit maintenir le score, sinon tu ne déploies pas. ROI invisible mais énorme : 30 min sauvent 2-5 heures de débuggage rétrospectif sur la durée de vie de l'assistant.</li>
+      <li>Débuggage ciblé en 5 catégories : (1) Bug de Rôle = persona générique, corriger Rôle précis. (2) Bug de Process = ordre incohérent, numéroter les étapes. (3) Bug de Format = sorties variables, ajouter section Format de sortie. (4) Bug de Contraintes = inventions / actions interdites, reformuler en positif. (5) Bug d'Cas limite = comportements imprévus hors-sujet ou incertitude, ajouter clauses Hors périmètre + Gestion incertitude.</li>
+      <li>Routine mensuelle 30 min en 4 étapes : repasser test set baseline, auditer Connaissances Files (drift silencieux), traiter les cas réels remontés (capitalisation), documenter dans le changelog externe. 3 signaux de drift à surveiller : score test set qui baisse, augmentation des retours négatifs, changement côté plateforme (modèle qui évolue).</li>
+      <li>5 pièges à éviter : tester seulement à la construction (jamais après), modifier sans changelog, sur-corriger en empilant des règles défensives (rester sous 400 mots de système prompt, sinon effet « lost in the middle »), ne pas écouter les cas réels qui remontent, négliger le drift des Connaissances Files. La maintenance est <strong>30 minutes par mois</strong> — le coût qui transforme un assistant « sympa la première semaine » en outil fiable pendant 2 ans.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="niveau-4-construire-assistants.html">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">1.7 · Partager ton assistant avec ton équipe (à venir)</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-4-construire-assistants.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Construire tes assistants · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

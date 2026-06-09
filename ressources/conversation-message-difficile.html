@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Préparer une conversation ou un message difficile. – AutomationBoost</title>
+  <meta name="description" content="Démission, rupture, conflit, recadrage : la méthode pour préparer un échange à enjeu avec l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Préparer une conversation ou un message difficile.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#f97316;">Gagner du temps au travail</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Préparer une conversation ou un message difficile.</h1>
+    <p class="lede">Démission, rupture, conflit familial, recadrage. La méthode pour structurer un échange à enjeu, anticiper les réactions, et trouver les mots justes — sans laisser l'IA flatter ta version des faits.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tu sais ce que tu veux dire, mais pas comment le dire. Tu repousses la conversation depuis des semaines parce que chaque répétition mentale finit en dispute imaginaire. C'est exactement là que l'IA, bien utilisée, change tout.</p>
+
+    <p>Annoncer une démission, poser une limite, aborder un sujet sensible : voici comment l'IA t'aide à préparer ces conversations difficiles — à condition d'éviter un piège majeur, qu'on voit tout de suite.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>La règle critique <em>avant tout</em>.</h2>
+
+  <div class="container reading">
+    <p>Un point décisif avant la méthode : l'IA a tendance à te donner raison, même quand tu as tort (la complaisance). Si tu lui racontes ta version d'un conflit, elle validera spontanément ton point de vue et te confortera dans ta colère — exactement l'inverse de ce qu'il te faut pour une conversation difficile.</p>
+
+    <p>La parade : lui demander explicitement de jouer l'autre partie et de te contredire. C'est la base de tout ce qui suit.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Les <em>4 phases</em> de préparation.</h2>
+
+  <div class="container reading">
+    <p>Une fois le cadrage anti-flatterie posé, voici le protocole à dérouler. Il prend 20 à 30 minutes pour une conversation importante. Ce temps paraît long avant — il paraît dérisoire après, comparé aux semaines passées à ruminer la conversation, et aux conséquences d'un échange mal mené.</p>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 1 / 4 · CLARIFICATION</div>
+    <div class="phase-name">Clarifier ce que tu veux <em>vraiment</em></div>
+    <div class="phase-purpose">90 % des conversations difficiles dérapent parce qu'on n'a pas clarifié son objectif avant de parler. Tu peux vouloir être entendu, ou obtenir un changement, ou maintenir la relation — ce sont trois conversations différentes.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt</span>Aide-moi à clarifier mes objectifs réels pour cette conversation.
+
+Pose-moi ces questions :
+1. Qu'est-ce que je veux que l'autre personne pense, ressente, ou fasse à la fin de cet échange ?
+2. Qu'est-ce que je veux exprimer pour moi-même, indépendamment de l'effet sur l'autre ?
+3. Quel est le résultat minimal acceptable ? Le résultat idéal ?
+4. Est-ce que je veux préserver la relation ou clore quelque chose ?
+5. Y a-t-il des arrière-pensées émotionnelles (vengeance, revanche, peur d'être quitté) que je dois reconnaître pour ne pas qu'elles parlent à ma place ?
+
+Aide-moi à formuler en 3 phrases claires : <strong>l'objectif explicite</strong>, <strong>l'objectif émotionnel sous-jacent</strong>, et <strong>la ligne rouge à ne pas franchir pendant l'échange</strong>.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 2 / 4 · FORMULATION</div>
+    <div class="phase-name">Trouver les <em>mots justes</em></div>
+    <div class="phase-purpose">Une fois l'objectif clair, l'IA t'aide à transformer ce que tu ressens en quelque chose de dicible. Sans accusations, sans euphémismes mous. Le cadre de la communication non violente (Marshall Rosenberg) fonctionne particulièrement bien ici.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt</span>Maintenant, aide-moi à formuler ce que je vais dire, en utilisant le cadre de la communication non violente :
+
+1. <strong>Faits observables</strong> : ce qui s'est passé, en termes neutres et factuels (pas en interprétations).
+2. <strong>Mes sentiments</strong> : ce que je ressens, en propre — sans rendre l'autre responsable.
+3. <strong>Mes besoins</strong> : ce dont j'ai besoin et qui n'est pas comblé.
+4. <strong>Ma demande</strong> : ce que je demande, formulée précisément, négociable, sans ultimatum.
+
+Donne-moi <strong>3 versions</strong> du message :
+- Version douce (préserver la relation, prudente)
+- Version directe (claire, ferme, sans agressivité)
+- Version dure (si la situation l'exige réellement)
+
+Pour chaque version, explique-moi pourquoi tu as choisi tel mot plutôt que tel autre. Identifie les phrases qui pourraient être perçues comme accusatrices et propose des alternatives.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 3 / 4 · SIMULATION</div>
+    <div class="phase-name">Jouer la <em>conversation</em> avant qu'elle ait lieu</div>
+    <div class="phase-purpose">L'étape la plus puissante, et celle que personne ne fait sans IA. Tu fais jouer ton interlocuteur à l'IA et tu vis la conversation à blanc, plusieurs fois, avec différentes réactions possibles. Quand le moment réel arrive, tu n'es plus surpris — tu as déjà entendu les réactions.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt</span>On va simuler la conversation. Tu joues <span class="placeholder">[la personne]</span>, je joue moi-même. Je vais commencer par dire <span class="placeholder">[la formulation choisie en phase 2]</span>.
+
+Profil de la personne : <span class="placeholder">[âge, contexte, tempérament, ce qui le caractérise dans ce type de situation, son historique avec moi]</span>.
+
+<strong>Reste dans le rôle pendant tout l'échange</strong>. Ne casse pas le rôle pour me conseiller. Réagis comme cette personne réagirait probablement, avec ses biais et ses défenses habituelles. Si je dis quelque chose de maladroit, ne sois pas indulgente — réponds comme la personne réagirait vraiment.
+
+Après le premier échange complet, sortons du rôle pour debriefer. Puis on rejoue avec une variante : <strong>cette fois, joue la version la plus difficile possible de cette personne</strong> (énervée, fermée, manipulatrice si pertinent).</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 4 / 4 · RÉVISION</div>
+    <div class="phase-name">Affiner après les <em>simulations</em></div>
+    <div class="phase-purpose">Les simulations révèlent ce qui ne marche pas. Tu ajustes. Tu testes encore. À la fin, tu disposes d'une version stable que tu sais tenir même sous pression.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt</span>Sortons du rôle. Sur la base de nos simulations, donne-moi :
+
+1. Les 3 phrases que j'ai dites qui ont mal fonctionné, et pourquoi
+2. Les 3 réactions de l'autre auxquelles je ne savais pas répondre, et les réponses possibles
+3. Les pièges émotionnels où j'ai failli tomber (culpabilisation, dérive vers d'autres sujets, perte de mon objectif)
+4. Une version finale du message d'ouverture, intégrant tous les ajustements
+5. Un plan de sortie si la conversation dérape vers de l'agression : qu'est-ce que je dis pour clore proprement ?
+
+Termine par : <strong>la phrase exacte que je dois savoir prononcer si la conversation devient impossible à tenir</strong>, et qui clôt sans détruire.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Pourquoi cette méthode marche</div>
+    <p>Les recherches en psychologie de la communication (Gottman, Rosenberg, Stone) convergent sur un point : <strong>la qualité d'une conversation difficile dépend à 80 % de ce qui se passe avant qu'elle commence</strong>. Clarification d'objectif, formulation préparée, anticipation des réactions. Les conversations qui dérapent sont presque toujours des conversations non préparées. L'IA n'invente rien — elle te permet juste de faire systématiquement ce que les bons communicants font de toute façon.</p>
+  </div>
+
+  <!-- ============== 3. SCÉNARIOS ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Les <em>5 scénarios</em> les plus courants.</h2>
+
+  <div class="container reading">
+    <p>Voici les 5 situations les plus fréquentes pour lesquelles cette méthode est appliquée. Pour chacune, le pivot spécifique à intégrer en plus du protocole général.</p>
+  </div>
+
+  <div class="scenario">
+    <div class="scenario-name">Scénario 1 · <em>Annoncer ta démission</em></div>
+    <div class="scenario-text"><strong>Pivot spécifique :</strong> ton objectif n'est pas de faire comprendre à ton manager pourquoi tu pars (ça ne le changera pas), c'est de partir proprement avec une bonne référence. Demande à l'IA de t'aider à trouver une formulation qui (1) ne ferme pas de portes professionnelles, (2) reste vague sur les critiques, (3) laisse une porte ouverte si tu changes d'avis dans 3 ans. <strong>Tu ne dois rien à ton employeur en termes d'explication détaillée.</strong> La sincérité totale est rarement servie ici.</div>
+  </div>
+
+  <div class="scenario">
+    <div class="scenario-name">Scénario 2 · <em>Rompre avec quelqu'un</em></div>
+    <div class="scenario-text"><strong>Pivot spécifique :</strong> demande à l'IA de te confronter sur la question « est-ce que tu romps pour les bonnes raisons, ou pour fuir une difficulté que tu pourrais traverser ? ». Si la décision est ferme, l'IA t'aide à dire ce qu'il faut dire <strong>en personne</strong> (pas par message — sauf situation à risque). Le format messages est presque toujours une mauvaise option pour rompre une relation longue, parce qu'il prive l'autre de la possibilité de poser ses questions et de digérer le choc en présence de toi.</div>
+  </div>
+
+  <div class="scenario">
+    <div class="scenario-name">Scénario 3 · <em>Recadrer un proche qui dépasse les bornes</em></div>
+    <div class="scenario-text"><strong>Pivot spécifique :</strong> beaucoup de gens repoussent ces conversations pendant des années par peur du conflit, et finissent par exploser de manière disproportionnée. L'IA t'aide à formuler un recadrage <strong>graduel et précis</strong> — pas un déversement accumulé. Demande-lui de t'aider à isoler <em>un seul comportement spécifique</em>, à le formuler factuellement, à proposer une demande concrète. C'est plus difficile et plus efficace que de tout dire d'un coup. La règle d'or : un recadrage = un sujet précis, jamais une accumulation.</div>
+  </div>
+
+  <div class="scenario">
+    <div class="scenario-name">Scénario 4 · <em>Demander une augmentation</em></div>
+    <div class="scenario-text"><strong>Pivot spécifique :</strong> l'IA est excellente pour t'aider à structurer l'argumentaire factuel (résultats chiffrés, comparatifs marché, valeur apportée). Mais elle a tendance à te faire surévaluer ta position. Demande-lui explicitement de jouer le manager qui pourrait te <strong>refuser</strong> et identifier les contre-arguments les plus solides. Tu prépares ainsi tes réponses à l'avance. Bonus : demande-lui les phrases exactes pour pivoter en cas de refus initial — souvent le « non » est négociable si tu sais quoi répondre dans les 15 secondes qui suivent.</div>
+  </div>
+
+  <div class="scenario">
+    <div class="scenario-name">Scénario 5 · <em>Refuser un service à un membre de la famille</em></div>
+    <div class="scenario-text"><strong>Pivot spécifique :</strong> c'est l'un des cas où l'IA est la plus utile, parce que les liens familiaux paralysent souvent la formulation. Demande à l'IA de t'aider à dire non <strong>sans justifier excessivement</strong>. Plus tu donnes de raisons, plus tu donnes de prises pour les contre-arguments. Une formulation type efficace : <em>« je comprends que c'est important pour toi, mais ce ne sera pas possible pour moi cette fois »</em>. Pas d'ajout. L'IA t'aide à tenir cette brièveté contre la tentation de te justifier longuement.</div>
+  </div>
+
+  <!-- ============== 4. PIÈGES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Les <em>4 pièges</em> à éviter absolument.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>copier-coller</em> directement le texte de l'IA</div>
+    <div class="pitfall-text">L'IA produit des formulations fluides, neutres, parfaites — et qui ne te ressemblent pas. Si tu envoies son texte tel quel à quelqu'un qui te connaît, <strong>cette personne va sentir le décalage</strong> immédiatement. Adapte toujours à ton vocabulaire, tes tournures, ton rythme habituel. La formulation IA est un point de départ, pas un produit fini. Si la voix sonne comme la tienne, le message porte. Sinon, il déclenche immédiatement de la méfiance.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : <em>partager des données sensibles</em> sans réfléchir</div>
+    <div class="pitfall-text">Tu vas naturellement vouloir donner du contexte. Nom de ton manager, détails du conflit avec ton conjoint, situation financière de ta famille. <strong>Tout ça part dans les serveurs de l'éditeur d'IA</strong>, et selon ton plan, peut être utilisé pour entraîner les futurs modèles. Anonymise au maximum (« mon manager X », « ma sœur Y »), désactive l'entraînement sur tes données dans les paramètres, et n'utilise jamais le mode mémoire permanente sur ce type de conversations. Voir <a href="memoire-ia.html">l'article sur la confidentialité IA</a>.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>sur-préparer</em> au point de devenir robotique</div>
+    <div class="pitfall-text">À force de répéter ta formulation, tu peux arriver à la conversation avec un script tellement rodé que tu ne réagis plus aux signaux que t'envoie ton interlocuteur. Tu déroules ton plan, l'autre est démuni, la conversation tourne mal pour une raison différente. <strong>La préparation doit servir la conversation, pas la remplacer.</strong> Une fois que tu as fait les 4 phases, oublie partiellement le texte exact. Garde juste tes 3 piliers (objectif, message clé, ligne rouge) en tête, et laisse l'humain de l'autre côté influencer le détail.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : utiliser l'IA pour des conversations qu'on devrait <em>fuir</em>, pas préparer</div>
+    <div class="pitfall-text">Certaines situations ne demandent pas une « conversation difficile bien préparée » — elles demandent de partir, de signaler aux autorités, ou de consulter un professionnel humain. Violences, manipulations psychologiques répétées, harcèlement, abus. <strong>L'IA peut donner l'illusion qu'on peut « bien gérer » ces situations par la communication</strong>, alors qu'elles dépassent largement le cadre relationnel normal. Si la conversation que tu prépares est dans ces zones, <strong>arrête le protocole et consulte un humain compétent</strong> : avocat, psychologue, association spécialisée, médecin du travail. L'IA n'est pas le bon outil ici.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>Le test ultime : <strong>après avoir préparé ta conversation avec l'IA, demande-toi si tu vas dire ce que tu pensais devoir dire au départ, ou si la préparation t'a fait évoluer</strong>. Si ce que tu vas dire est exactement ce que tu pensais avant de commencer, deux possibilités. Soit tu es très lucide. Soit l'IA t'a juste validé sans te confronter. Refais une session avec un cadrage anti-flatterie plus strict pour vérifier. Les meilleures préparations IA sont celles où la formulation finale diffère sensiblement de l'intuition initiale — c'est la marque d'un vrai travail de pensée, pas d'un autopolissage.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Pour aller plus loin : <a href="quand-ia-veut-plaire.html">la complaisance</a> (le piège n°1 dans ce type d'usage), <a href="7-cas-jamais-confiance.html">les 7 cas où ne jamais faire confiance à l'IA seule</a> (l'éthique en fait partie), <a href="prompt-anti-hallucination.html">les 4 phrases anti-hallucination</a> (à intégrer aussi pour les sujets factuels du conflit), et <a href="memoire-ia.html">la confidentialité IA</a> (essentielle quand tu parles de tes proches).</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur les conversations difficiles avec l'IA.</h3>
+    <ol class="recap-points">
+      <li>Règle critique : sans cadrage anti-flatterie explicite, l'IA va valider ta version et amplifier le conflit. Toujours commencer par : « repère où ma version est biaisée, donne-moi la version de l'autre, identifie ma part de responsabilité ».</li>
+      <li>Protocole en 4 phases (20-30 min) : clarification de l'objectif réel (vs émotionnel), formulation en communication non violente (3 versions douce/directe/dure), simulation jouée avec l'IA dans le rôle de l'autre, révision finale.</li>
+      <li>5 scénarios fréquents avec leur pivot spécifique : démission (ne pas fermer de portes), rupture (en personne, pas par message), recadrage (graduel et un seul sujet), augmentation (préparer le « non »), refus familial (pas se justifier excessivement).</li>
+      <li>4 pièges : copier-coller le texte IA tel quel (manque de naturel détecté), partager des données sensibles non anonymisées, sur-préparer au point de devenir robotique, utiliser l'IA pour des situations qui demandent un humain compétent (violences, manipulations).</li>
+      <li>Test ultime : si ta formulation finale est identique à ton intuition de départ, l'IA ne t'a probablement pas confronté — refais avec un cadrage plus strict. Les bonnes préparations font évoluer le message original.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="niveau-3-vie-quotidienne.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Vie quotidienne · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="quand-ia-veut-plaire.html">
+        <div class="next-link-label">— Article essentiel</div>
+        <div class="next-link-title">Quand l'IA te dit ce que tu veux entendre</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

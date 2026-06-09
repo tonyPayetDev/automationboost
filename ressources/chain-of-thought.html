@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raisonnement étape par étape : forcer l'IA à raisonner étape par étape. – AutomationBoost</title>
+  <meta name="description" content="La technique qui change tout sur les problèmes complexes : six mots qui forcent l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Raisonnement étape par étape : forcer l'IA à raisonner étape...
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#34d399;">Mieux prompter</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Raisonnement étape par étape : forcer l'IA à raisonner étape par étape.</h1>
+    <p class="lede">La technique qui change tout pour les problèmes complexes. Six mots qui multiplient la qualité du raisonnement par 3 en 2026.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">C'est la technique qui a déclenché toute l'évolution récente des IA. En 2022, des chercheurs ont décrit un phénomène contre-intuitif : demander à un modèle de « raisonner étape par étape » améliore radicalement ses réponses sur les problèmes complexes.</p>
+
+    <p>Le raisonnement étape par étape est aujourd'hui à la base des modèles de raisonnement. Voici comment l'utiliser dans tes prompts.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi les LLM <em>ratent les raisonnements complexes</em>.</h2>
+
+  <div class="container reading">
+    <p>Un modèle génère le mot le plus probable, token après token. Sur un calcul ou un raisonnement à plusieurs étapes, il « saute » directement à une réponse plausible sans poser les étapes intermédiaires — et se trompe. Lui demander de dérouler son raisonnement le force à poser ces étapes, ce qui fiabilise le résultat.</p>
+
+    <p>Voici comment déclencher ce raisonnement, simplement.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 6</span>La solution en <em>six mots</em>.</h2>
+
+  <div class="magic-phrase">
+    <div class="magic-phrase-label">— La phrase qui change tout —</div>
+    <div class="magic-phrase-text">« <em>Réfléchis étape par étape</em> avant de répondre. »</div>
+  </div>
+
+  <div class="container reading">
+    <p>C'est la formulation originale du papier de Google (en anglais : <em>« Let's think step by step »</em>). Ajoute-la à n'importe quel prompt complexe et tu vas voir une transformation immédiate du comportement de l'IA. Au lieu de produire une réponse compressée, elle va <strong>écrire son raisonnement</strong>, étape par étape, à voix haute.</p>
+
+    <p>Le résultat est paradoxal : la réponse devient plus longue, mais elle devient aussi <strong>plus juste</strong>. La longueur n'est pas du remplissage — c'est le raisonnement explicite qui n'aurait pas eu lieu sinon. Et ce raisonnement explicite te donne quelque chose de précieux : tu peux <strong>vérifier chaque étape</strong>, repérer où l'IA s'est trompée, et corriger.</p>
+  </div>
+
+  <h3 class="reading">Pourquoi ça marche techniquement</h3>
+
+  <div class="container reading">
+    <p>Quand l'IA écrit son raisonnement étape par étape, elle s'<strong>auto-conditionne</strong>. Chaque étape qu'elle pose devient un nouvel input pour les étapes suivantes. Le raisonnement de l'étape 3 prend en compte ce qu'elle a écrit aux étapes 1 et 2 — donc il est mieux ancré, plus rigoureux. Sans CoT, l'IA tente de tout faire en un seul saut probabiliste.</p>
+
+    <p>C'est l'équivalent de la différence entre <em>« réfléchis dans ta tête »</em> et <em>« écris ton raisonnement »</em>. Pour les humains aussi, écrire force la rigueur. Pour les LLM, c'est encore plus marqué.</p>
+  </div>
+
+  <!-- ============== 3. EXEMPLES ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 6</span>4 exemples <em>avant / après</em>.</h2>
+
+  <div class="container reading">
+    <p>Quatre cas concrets dans quatre domaines où Raisonnement étape par étape fait une différence visible. Tu peux tester chaque cas toi-même : pose la question vague à ton IA, puis ajoute la phrase magique, et compare les réponses.</p>
+  </div>
+
+  <!-- EXEMPLE 1 -->
+  <div class="demo-case">
+    <div class="demo-case-num">— EXEMPLE 1 · MATHÉMATIQUES</div>
+    <div class="demo-case-title">Un calcul à plusieurs étapes</div>
+  </div>
+
+  <div class="ba-pair">
+    <div class="ba-side before">
+      <div class="ba-label">Sans CoT</div>
+      <div class="ba-prompt">Si un train part à 14h25 et roule à 87 km/h, à quelle heure arrive-t-il à 326 km de distance ?</div>
+      <div class="ba-result">L'IA donne souvent une réponse fausse, en arrondissant ou en sautant des étapes (ex : 18h45 au lieu de 18h10).</div>
+    </div>
+    <div class="ba-side after">
+      <div class="ba-label">Avec CoT</div>
+      <div class="ba-prompt">Si un train part à 14h25 et roule à 87 km/h, à quelle heure arrive-t-il à 326 km de distance ? Réfléchis étape par étape avant de répondre.</div>
+      <div class="ba-result">L'IA pose : durée = 326 / 87 ≈ 3h45. Puis : 14h25 + 3h45 = 18h10. La réponse est juste, et tu peux vérifier chaque étape.</div>
+    </div>
+  </div>
+
+  <!-- EXEMPLE 2 -->
+  <div class="demo-case">
+    <div class="demo-case-num">— EXEMPLE 2 · LOGIQUE</div>
+    <div class="demo-case-title">Un problème de déduction</div>
+  </div>
+
+  <div class="ba-pair">
+    <div class="ba-side before">
+      <div class="ba-label">Sans CoT</div>
+      <div class="ba-prompt">Trois amis (Léa, Tom, Sami) ont chacun un fruit différent (pomme, orange, banane). Léa n'a pas de pomme. Sami n'a ni la banane ni l'orange. Qui a quoi ?</div>
+      <div class="ba-result">L'IA peut donner une réponse rapide mais incohérente, ou rater une déduction clé.</div>
+    </div>
+    <div class="ba-side after">
+      <div class="ba-label">Avec CoT</div>
+      <div class="ba-prompt">[même problème] Réfléchis étape par étape avant de répondre.</div>
+      <div class="ba-result">L'IA déduit : Sami n'a ni banane ni orange, donc Sami a la pomme. Léa n'a pas de pomme et la pomme est prise, donc Léa a soit l'orange soit la banane. Reste Tom. Conclusion vérifiable.</div>
+    </div>
+  </div>
+
+  <!-- EXEMPLE 3 -->
+  <div class="demo-case">
+    <div class="demo-case-num">— EXEMPLE 3 · DÉCISION STRATÉGIQUE</div>
+    <div class="demo-case-title">Choisir entre plusieurs options</div>
+  </div>
+
+  <div class="ba-pair">
+    <div class="ba-side before">
+      <div class="ba-label">Sans CoT</div>
+      <div class="ba-prompt">Je dois choisir entre embaucher un commercial à 50 K € ou investir 50 K € en publicité Google Ads pour ma startup B2B. Lequel ?</div>
+      <div class="ba-result">L'IA donne un avis tranché sans avoir réfléchi aux variables manquantes (cycle de vente, ticket moyen, maturité).</div>
+    </div>
+    <div class="ba-side after">
+      <div class="ba-label">Avec CoT</div>
+      <div class="ba-prompt">[même question] Réfléchis étape par étape avant de répondre. Liste d'abord les variables-clés, puis les scénarios où chaque option est meilleure, puis ta recommandation.</div>
+      <div class="ba-result">L'IA identifie les variables (durée du cycle, ticket moyen, capacité du dirigeant), pose les conditions où l'une ou l'autre option est meilleure, et conclut conditionnellement. Réponse beaucoup plus utilisable.</div>
+    </div>
+  </div>
+
+  <!-- EXEMPLE 4 -->
+  <div class="demo-case">
+    <div class="demo-case-num">— EXEMPLE 4 · DÉBOGAGE DE CODE</div>
+    <div class="demo-case-title">Trouver un bug dans une fonction</div>
+  </div>
+
+  <div class="ba-pair">
+    <div class="ba-side before">
+      <div class="ba-label">Sans CoT</div>
+      <div class="ba-prompt">Voici une fonction Python qui doit calculer la moyenne, mais elle renvoie un mauvais résultat. Trouve le bug. [code]</div>
+      <div class="ba-result">L'IA pointe parfois la mauvaise ligne, ou rate un cas limite.</div>
+    </div>
+    <div class="ba-side after">
+      <div class="ba-label">Avec CoT</div>
+      <div class="ba-prompt">[même problème] Réfléchis étape par étape : trace l'exécution de la fonction sur un cas d'exemple précis avant de pointer le bug.</div>
+      <div class="ba-result">L'IA simule l'exécution avec une entrée test, voit où le résultat dévie, et identifie la ligne fautive avec preuve à l'appui.</div>
+    </div>
+  </div>
+
+  <!-- ============== 4. VARIATIONS ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 6</span>Les <em>variantes</em> de la phrase magique.</h2>
+
+  <div class="container reading">
+    <p>« Réfléchis étape par étape » est la formulation de base. Il existe plusieurs variantes qui activent des nuances différentes du même mécanisme. À utiliser selon le type de problème.</p>
+  </div>
+
+  <div class="variation">
+    <div class="variation-label">— Variante 1</div>
+    <div class="variation-phrase">« Liste tes hypothèses avant de répondre. »</div>
+    <div class="variation-when"><strong>Quand l'utiliser</strong>Pour les questions où les conclusions dépendent fortement des hypothèses de départ. L'IA va expliciter ce qu'elle suppose, ce qui te permet de corriger une hypothèse fausse avant qu'elle ne contamine toute la réponse.</div>
+  </div>
+
+  <div class="variation">
+    <div class="variation-label">— Variante 2</div>
+    <div class="variation-phrase">« Pense à voix haute en explicitant ton raisonnement. »</div>
+    <div class="variation-when"><strong>Quand l'utiliser</strong>Pour les analyses subjectives où tu veux comprendre comment l'IA arrive à sa conclusion. Plus narratif et fluide que <em>« étape par étape »</em>, qui force une structure numérotée.</div>
+  </div>
+
+  <div class="variation">
+    <div class="variation-label">— Variante 3</div>
+    <div class="variation-phrase">« Vérifie chaque étape avant de passer à la suivante. »</div>
+    <div class="variation-when"><strong>Quand l'utiliser</strong>Pour les calculs et les raisonnements où une seule erreur intermédiaire compromet toute la chaîne. Force l'IA à un mode auto-critique en cours de raisonnement.</div>
+  </div>
+
+  <div class="variation">
+    <div class="variation-label">— Variante 4</div>
+    <div class="variation-phrase">« Décompose le problème en sous-problèmes plus simples avant de répondre. »</div>
+    <div class="variation-when"><strong>Quand l'utiliser</strong>Pour les questions très larges qui paraissent insolubles d'un bloc. L'IA va découper en sous-questions traitables, puis synthétiser. Excellent pour les analyses stratégiques.</div>
+  </div>
+
+  <div class="variation">
+    <div class="variation-label">— Variante 5</div>
+    <div class="variation-phrase">« Considère plusieurs angles avant de conclure, puis défends ton choix. »</div>
+    <div class="variation-when"><strong>Quand l'utiliser</strong>Pour les décisions où plusieurs points de vue valides existent. Force l'IA à ne pas s'enfermer dans la première hypothèse plausible.</div>
+  </div>
+
+  <!-- ============== 5. CoT vs Extended Thinking ============== -->
+  <h2 class="reading"><span class="h2-num">— 5 / 6</span>CoT manuel vs <em>Extended Thinking</em> 2026.</h2>
+
+  <div class="container reading">
+    <p>En 2026, les modèles avancés ont intégré le Raisonnement étape par étape directement dans leur architecture. Ces modèles s'appellent les <strong>modèles de raisonnement</strong> ou <em>« reasoning models »</em>. Les principaux sont :</p>
+
+    <p><strong>Claude Opus 4.7 avec Extended Thinking</strong> (Anthropic, sorti en février 2026). Tu actives un toggle, et l'IA prend explicitement 10 secondes à 2 minutes pour raisonner avant de répondre. Disponible sur les plans Pro et Max de Claude.</p>
+
+    <p><strong>ChatGPT en mode Thinking</strong> (OpenAI). GPT-5.5 Thinking est le modèle de raisonnement par défaut sur le plan Plus à 20 $/mois. Disponible aussi en mode <em>Pro</em> avec un raisonnement encore plus profond (jusqu'à plusieurs minutes).</p>
+
+    <p><strong>Gemini 3.1 Pro avec Deep Think</strong> (Google), réservé au plan AI Ultra. Le modèle de raisonnement le plus poussé de Google.</p>
+
+    <p>Pour ces modèles, tu n'as <strong>plus besoin d'écrire « réfléchis étape par étape »</strong> — c'est intégré. Le modèle décide tout seul quand activer le raisonnement profond et combien de temps y consacrer.</p>
+  </div>
+
+  <h3 class="reading">Alors, le CoT manuel sert encore à quoi ?</h3>
+
+  <div class="container reading">
+    <p><strong>Trois cas où le CoT manuel reste nécessaire</strong> en 2026 :</p>
+
+    <p><strong>1. Quand tu utilises un modèle non-Thinking.</strong> Sur les versions gratuites (Sonnet 4.6 sur Claude Free, GPT-5.3 Instant sur ChatGPT Free, Gemini 2.5 Flash), le raisonnement étendu n'est pas activé. Le CoT manuel reste indispensable.</p>
+
+    <p><strong>2. Quand tu veux contrôler la structure du raisonnement.</strong> Les modèles Thinking raisonnent <em>en interne</em> et te donnent juste la conclusion. Si tu veux voir le raisonnement, ou le diriger d'une manière précise (« d'abord les hypothèses, puis les scénarios, puis la recommandation »), le CoT manuel te donne ce contrôle.</p>
+
+    <p><strong>3. Quand le coût compte.</strong> Les modèles Thinking consomment plus de tokens et donc épuisent ton quota plus vite. Pour des cas où le CoT manuel suffit (questions simples avec un peu de raisonnement), il est plus économique d'utiliser le mode standard avec « réfléchis étape par étape ».</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>Si tu débutes en 2026 et que tu as un plan Pro chez Claude ou ChatGPT, <strong>laisse Extended Thinking activé par défaut</strong> sur les questions complexes. C'est plus efficace que le CoT manuel. Garde le CoT manuel pour les cas spécifiques (modèles gratuits, contrôle de structure, économie de quota).</p>
+  </div>
+
+  <!-- ============== 6. QUAND ÉVITER ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 6 / 6</span>Quand <em>ne pas utiliser</em> Raisonnement étape par étape.</h2>
+
+  <div class="container reading">
+    <p>Comme toute technique puissante, CoT a des contre-indications. L'utiliser au mauvais moment dégrade plutôt qu'améliore.</p>
+  </div>
+
+  <h3 class="reading">Évite CoT pour les tâches créatives</h3>
+
+  <div class="container reading">
+    <p>Pour la rédaction, la génération d'idées, l'écriture stylisée, le brainstorming, CoT est contre-productif. La créativité ne suit pas un chemin linéaire — la formaliser en étapes la tue. Si tu demandes <em>« écris-moi un poème, étape par étape »</em>, l'IA va te livrer un poème mécanique. Laisse l'IA tirer ses associations naturellement.</p>
+  </div>
+
+  <h3 class="reading">Évite CoT pour les questions factuelles simples</h3>
+
+  <div class="container reading">
+    <p>Pour <em>« qui a écrit Le Petit Prince ? »</em>, ajouter <em>« réfléchis étape par étape »</em> ne sert à rien et fait perdre du temps. CoT est conçu pour les <strong>raisonnements</strong>, pas pour les rappels factuels. Si la réponse tient en 5 mots, n'active pas CoT.</p>
+  </div>
+
+  <h3 class="reading">Évite CoT pour les conversations rapides</h3>
+
+  <div class="container reading">
+    <p>Pour les itérations courtes dans une conversation déjà bien établie (<em>« change le ton »</em>, <em>« plus court »</em>, <em>« reformule »</em>), CoT est superflu. L'IA n'a pas besoin de raisonner pour ces tâches d'ajustement, elle a besoin d'exécuter rapidement.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ce que tu vas voir dans le prochain article</div>
+    <p>Raisonnement étape par étape traite le <strong>raisonnement</strong>. La technique suivante traite la <strong>précision du format</strong> : comment obtenir exactement la structure de réponse que tu veux en montrant 2-3 exemples plutôt qu'en l'expliquant. C'est le <strong>Few-Shot Prompting</strong>, l'autre pilier des techniques cœur du prompt engineering en 2026.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur Raisonnement étape par étape.</h3>
+    <ol class="recap-points">
+      <li>« Réfléchis étape par étape avant de répondre » : six mots qui multiplient la qualité du raisonnement par 3 sur les problèmes complexes.</li>
+      <li>L'IA n'est pas mauvaise en raisonnement, elle est mauvaise en raisonnement compressé. CoT force la décomposition.</li>
+      <li>5 variantes utiles selon le cas : « liste tes hypothèses », « décompose », « vérifie chaque étape », « considère plusieurs angles », « pense à voix haute ».</li>
+      <li>En 2026, les modèles Thinking (Opus 4.7, GPT-5.5 Thinking, Gemini Deep Think) intègrent CoT automatiquement. Le CoT manuel reste utile pour les modèles gratuits et le contrôle de structure.</li>
+      <li>Évite CoT pour les tâches créatives, les questions factuelles simples, et les itérations courtes. CoT est fait pour le raisonnement, pas pour tout.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="few-shot-prompting.html">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">Few-Shot Prompting : montrer pour obtenir le bon format</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-2-techniques-avancees.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Techniques avancées · Niveau II</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

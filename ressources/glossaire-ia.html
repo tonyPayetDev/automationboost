@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le lexique de l'IA, en français clair. – AutomationBoost</title>
+  <meta name="description" content="lexique ia, glossaire intelligence artificielle, vocabulaire ia, termes ia expliqués, définitions ia, jargon ia 2026" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Le lexique de l'IA, en français clair.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#818cf8;">Comprendre l'IA</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Le lexique de l'IA, en français clair.</h1>
+    <p class="lede">LLM, token, prompt, hallucination, agent, RAG… Le vocabulaire de l'IA peut être intimidant. Voici les 30 termes que tu croiseras vraiment, définis simplement, chacun avec un exemple concret. À garder en favori.</p>
+
+    <div class="content-block">
+
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Le jargon de l'IA a une particularité : il est partout, très vite, et rarement expliqué. Pas besoin de tout maîtriser — mais connaître une trentaine de termes te permet de lire un article ou suivre une discussion sans décrocher.</p>
+
+    <p>Voici la liste des mots qui reviennent, expliqués simplement.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Les <em>incontournables</em>.</h2>
+
+  <h3 class="reading">IA générative</h3>
+  <div class="container reading"><p>Une IA capable de <em>créer</em> du contenu nouveau (texte, image, audio, code), par opposition aux IA qui se contentent de classer ou prédire. ChatGPT, Claude, Gemini en sont. <strong>Exemple :</strong> tu lui demandes un poème, elle l'écrit — elle ne le copie pas, elle le génère.</p></div>
+
+  <h3 class="reading">LLM (grand modèle de langage)</h3>
+  <div class="container reading"><p>Le type d'IA derrière les chatbots. « Large Language Model » en anglais. Il fonctionne en prédisant le mot le plus probable après un autre, à très grande échelle. <strong>Exemple :</strong> ChatGPT, Claude et Gemini sont tous des LLM. Le concept est détaillé dans <a href="premiers-pas-ia.html">comment marche une IA</a>.</p></div>
+
+  <h3 class="reading">Prompt</h3>
+  <div class="container reading"><p>L'instruction que tu donnes à l'IA. Ta question, ta demande, ton contexte — tout ce que tu écris. La qualité du prompt détermine la qualité de la réponse. <strong>Exemple :</strong> « Résume ce texte en 3 points » est un prompt.</p></div>
+
+  <h3 class="reading">Token</h3>
+  <div class="container reading"><p>L'unité de texte que l'IA manipule : un fragment de mot, environ trois quarts d'un mot en français. Sert à mesurer le volume traité et à facturer les versions payantes. <strong>Exemple :</strong> « anticonstitutionnellement » compte pour plusieurs tokens.</p></div>
+
+  <h3 class="reading">Contexte (fenêtre de contexte)</h3>
+  <div class="container reading"><p>Tout ce que l'IA « voit » pour répondre : ta question, l'historique de la conversation, les documents joints. La « fenêtre » est sa taille maximale. <strong>Exemple :</strong> dans une longue conversation, l'IA peut « oublier » le début quand la fenêtre est saturée.</p></div>
+
+  <h3 class="reading">Hallucination</h3>
+  <div class="container reading"><p>Quand l'IA invente une information fausse en la présentant avec assurance (date, citation, source inexistante). Conséquence directe de son fonctionnement « au plausible ». <strong>Exemple :</strong> elle cite un article qui n'existe pas. D'où la <a href="hallucinations-ia.html">vérification systématique des faits</a>.</p></div>
+
+  <h3 class="reading">Chatbot</h3>
+  <div class="container reading"><p>Une interface de conversation avec une IA. C'est la fenêtre de discussion que tu utilises. <strong>Exemple :</strong> l'application ChatGPT est un chatbot reposant sur un LLM.</p></div>
+
+  <!-- ============== 2 ============== -->
+  <h2 class="reading"><span class="h2-num">— 2 / 4</span>Comment ça <em>marche</em>.</h2>
+
+  <h3 class="reading">Modèle</h3>
+  <div class="container reading"><p>Le « cerveau » entraîné qui produit les réponses. Chaque IA propose plusieurs modèles (rapides ou plus puissants). <strong>Exemple :</strong> choisir entre un modèle « rapide » et un modèle « raisonnement » selon la tâche — voir <a href="quel-modele-choisir.html">quel modèle choisir</a>.</p></div>
+
+  <h3 class="reading">Entraînement (training)</h3>
+  <div class="container reading"><p>La phase où le modèle « apprend » sur d'énormes quantités de texte avant d'être mis à disposition. <strong>Exemple :</strong> un modèle entraîné jusqu'à une certaine date ne connaît pas les événements postérieurs (sa « date de connaissance »).</p></div>
+
+  <h3 class="reading">Paramètres</h3>
+  <div class="container reading"><p>Les milliards de « réglages » internes ajustés pendant l'entraînement. Plus il y en a, plus le modèle est gros (mais pas forcément meilleur sur tout). <strong>Exemple :</strong> on parle de modèles à plusieurs centaines de milliards de paramètres.</p></div>
+
+  <h3 class="reading">Multimodal</h3>
+  <div class="container reading"><p>Une IA capable de traiter plusieurs types de contenu : texte, image, audio, parfois vidéo. <strong>Exemple :</strong> tu envoies une photo et tu demandes « qu'est-ce qui ne va pas sur ce graphique ? ».</p></div>
+
+  <h3 class="reading">Raisonnement (reasoning)</h3>
+  <div class="container reading"><p>Un mode où le modèle « réfléchit » par étapes avant de répondre, utile pour les problèmes complexes. Plus lent, plus rigoureux. <strong>Exemple :</strong> Extended Thinking chez Claude, modes « Thinking » ailleurs.</p></div>
+
+  <h3 class="reading">Température</h3>
+  <div class="container reading"><p>Un réglage (surtout côté technique) qui contrôle le degré de « créativité » des réponses. Basse = prévisible et factuel ; haute = varié et créatif. <strong>Exemple :</strong> on baisse la température pour des réponses factuelles stables.</p></div>
+
+  <h3 class="reading">Fine-tuning</h3>
+  <div class="container reading"><p>Réentraîner un modèle existant sur des données spécifiques pour le spécialiser. Plutôt réservé aux usages avancés. <strong>Exemple :</strong> une entreprise fine-tune un modèle sur ses documents internes.</p></div>
+
+  <!-- ============== 3 ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Pour <em>aller plus loin</em>.</h2>
+
+  <h3 class="reading">RAG (génération augmentée par récupération)</h3>
+  <div class="container reading"><p>Technique qui permet à l'IA d'aller chercher des infos dans une base de documents avant de répondre, pour limiter les erreurs. <strong>Exemple :</strong> un assistant qui répond à partir de ta documentation interne au lieu de sa seule mémoire.</p></div>
+
+  <h3 class="reading">Embeddings</h3>
+  <div class="container reading"><p>Une façon de transformer du texte en nombres pour que l'IA mesure la proximité de sens entre deux contenus. Le moteur des recherches « par sens ». <strong>Exemple :</strong> retrouver des documents proches d'une question même sans mots-clés identiques.</p></div>
+
+  <h3 class="reading">Prompt engineering</h3>
+  <div class="container reading"><p>L'art de bien formuler ses prompts pour obtenir de meilleurs résultats. <strong>Exemple :</strong> donner du contexte, des exemples, un format attendu — tout le sujet de la rubrique <a href="niveau-2-bases-prompt.html">Mieux prompter</a>.</p></div>
+
+  <h3 class="reading">Few-shot / Zero-shot</h3>
+  <div class="container reading"><p>« Zero-shot » : tu demandes sans exemple. « Few-shot » : tu donnes 2-3 exemples du résultat voulu avant ta demande. <strong>Exemple :</strong> montrer deux mails bien rédigés pour que l'IA calque le style — voir <a href="few-shot-prompting.html">le Few-Shot Prompting</a>.</p></div>
+
+  <h3 class="reading">Custom Instructions</h3>
+  <div class="container reading"><p>Des réglages permanents qui s'appliquent à toutes tes conversations (ton, format, qui tu es). <strong>Exemple :</strong> « réponds toujours en français, en allant droit au but » — voir <a href="custom-instructions.html">configurer les Custom Instructions</a>.</p></div>
+
+  <h3 class="reading">Mémoire (memory)</h3>
+  <div class="container reading"><p>Une fonction qui permet à l'IA de retenir des infos d'une conversation à l'autre (sans elle, elle repart de zéro à chaque fois). <strong>Exemple :</strong> elle se souvient de ton prénom ou de ton métier sans que tu le redises.</p></div>
+
+  <h3 class="reading">Open source / propriétaire</h3>
+  <div class="container reading"><p>Un modèle « open source » est librement accessible et modifiable ; un modèle « propriétaire » appartient à une entreprise et s'utilise via son service. <strong>Exemple :</strong> certains modèles s'installent sur ton propre serveur, d'autres seulement via une appli.</p></div>
+
+  <!-- ============== 4 ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 4</span>Agents &amp; <em>automatisation</em>.</h2>
+
+  <h3 class="reading">Agent IA</h3>
+  <div class="container reading"><p>Une IA qui ne se contente pas de répondre, mais qui <em>agit</em> en plusieurs étapes pour accomplir un objectif (chercher, décider, exécuter). <strong>Exemple :</strong> un agent qui trie tes mails et prépare des réponses tout seul.</p></div>
+
+  <h3 class="reading">Assistant IA</h3>
+  <div class="container reading"><p>Une version personnalisée d'une IA, configurée pour un rôle précis et réutilisable. <strong>Exemple :</strong> un Custom GPT, un Claude Project ou un <a href="gemini-gems.html">Gemini Gem</a> dédié à la relecture.</p></div>
+
+  <h3 class="reading">MCP (Model Context Protocol)</h3>
+  <div class="container reading"><p>Un standard récent pour connecter proprement une IA à tes outils (mails, agenda, fichiers). <strong>Exemple :</strong> relier ton IA à ton Drive ou ton calendrier — voir <a href="comprendre-mcp.html">comprendre MCP</a>.</p></div>
+
+  <h3 class="reading">Connecteur / intégration</h3>
+  <div class="container reading"><p>Un pont entre l'IA et une application externe, qui lui permet de lire ou d'agir dedans. <strong>Exemple :</strong> un connecteur Gmail laisse l'IA lire et rédiger tes mails.</p></div>
+
+  <h3 class="reading">API</h3>
+  <div class="container reading"><p>Une « prise » technique qui permet à un logiciel de parler à l'IA directement, sans interface de chat. <strong>Exemple :</strong> une application qui utilise l'IA en coulisses passe par son API.</p></div>
+
+  <h3 class="reading">Workflow (automatisation)</h3>
+  <div class="container reading"><p>Une suite d'étapes automatisées, souvent déclenchée par un événement, où l'IA joue un rôle. <strong>Exemple :</strong> « quand un mail arrive → l'IA le résume → l'envoie sur Slack ». Voir <a href="anatomie-automatisation-ia.html">l'anatomie d'une automatisation</a>.</p></div>
+
+  <h3 class="reading">Human-in-the-loop</h3>
+  <div class="container reading"><p>Le principe de garder un humain qui valide les étapes sensibles d'une automatisation. <strong>Exemple :</strong> l'IA prépare la réponse, mais tu cliques « envoyer » — voir <a href="human-in-the-loop.html">human-in-the-loop</a>.</p></div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— Comment utiliser ce lexique —</div>
+    <h3>3 réflexes.</h3>
+    <ol class="recap-points">
+      <li>Pas besoin de tout retenir. Reviens-y quand un terme te bloque dans un article ou une vidéo.</li>
+      <li>Les 7 premiers (IA générative, LLM, prompt, token, contexte, hallucination, chatbot) suffisent pour 90 % des situations du quotidien.</li>
+      <li>Les familles « Agents & automatisation » deviennent utiles seulement quand tu passes au niveau IV. Inutile de t'y plonger avant.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+
+
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="premiers-pas-ia.html">
+        <div class="next-link-label">— Article fondateur</div>
+        <div class="next-link-title">C'est quoi une IA, expliqué simplement</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-1.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Découvrir l'IA · Niveau I</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fixer le juste prix de ton produit. – AutomationBoost</title>
+  <meta name="description" content="Sortir du « je n" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Fixer le juste prix de ton produit.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#f43f5e;">Lancer un business</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Fixer le juste prix de ton produit.</h1>
+    <p class="lede">Sortir du « je n'ai pas le droit de demander cher ». La grille de pricing 2026 par format, B2C vs B2B, pricing psychologique. Premium vs volume — choisir sa stratégie.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Ton produit est prêt. Reste la question qui paralyse la plupart des créateurs : combien facturer ? Le réflexe classique — « je commence à 17 € pour ne pas faire fuir » — condamne ton produit avant même son lancement.</p>
+
+    <p>À 17 € la vente, avec le même effort marketing qu'à 97 €, tu as simplement choisi de gagner 5 fois moins pour le même travail. Le prix d'un produit numérique est avant tout psychologique. Voici comment fixer le tien intelligemment, sans te sous-vendre.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>La <em>grille</em> par format.</h2>
+
+  <div class="container reading">
+    <p>Chaque format a sa fenêtre de prix de marché 2026. Sortir significativement de cette fenêtre (à la baisse <em>ou</em> à la hausse) = signal négatif pour l'acheteur. Voici les fenêtres validées par les top créateurs Gumroad / ThriveCart / Stan Store / Etsy 2026.</p>
+  </div>
+
+  <div class="codeblock">
+    <div class="codeblock-label">— Grille pricing 2026 · 6 formats principaux</div>
+    <div class="codeblock-content"><em>EBOOK COURT (12-30 pages, niche précise)</em>
+   - Entry tier : 17-27 € (volume B2C grand public)
+   - Standard tier : 37-67 € (niche professionnelle)
+   - Premium tier : 87-147 € (ebook + bonus + communauté 30j)
+
+<em>EBOOK LONG / GUIDE COMPLET (50-150 pages)</em>
+   - Standard tier : 47-97 € (niche standard)
+   - Premium tier : 147-297 € (transformation business B2B)
+
+<em>FORMATION SELF-PACED (mini 60-90 min)</em>
+   - Entry : 47-97 €
+   - Standard : 197-297 €
+   - Premium : 397-597 € (course + communauté + Q&amp;A)
+
+<em>FORMATION SELF-PACED (standard 3-10h)</em>
+   - Standard : 297-597 €
+   - Premium : 697-1 497 €
+   - Haut de gamme : 1 997-2 997 € (course + session en groupe 4 sem)
+
+<em>FORMATION EN GROUPE (en direct + communauté + 4-8 sem)</em>
+   - Standard : 1 497-2 497 €
+   - Premium : 2 997-4 997 €
+   - Mastermind : 5 997-12 997 € (session en groupe + 1:1)
+
+<em>TEMPLATE NOTION / CANVA / FIGMA</em>
+   - Entry simple : 19-37 €
+   - Standard : 47-97 € (template + guide + bonus)
+   - Premium : 147-247 € (pack 5-10 templates + support)
+
+<em>CUSTOM GPT / PROMPT PACK</em>
+   - Entry : 27-47 € (pack de prompts 30-50 prompts niche)
+   - Standard : 67-127 € (Custom GPT + pack + doc)
+   - Premium : 197-397 € (GPT spécialisé + automation + 30j support)
+
+<em>COMMUNAUTÉ ABONNEMENT (Skool, Circle)</em>
+   - Entry : 27-47 €/mois
+   - Standard : 77-147 €/mois (communauté + ressources + 1 live/mois)
+   - Premium : 197-497 €/mois (communauté + accountability + coaching)
+
+<em>MICRO-SAAS B2C</em>
+   - Entry : 9-19 €/mois (outil basique mono-feature)
+   - Standard : 29-49 €/mois
+   - Premium : 79-149 €/mois (features avancées + support prioritaire)
+
+<em>MICRO-SAAS B2B (niche pro)</em>
+   - Entry : 49-99 €/mois (per-user starter)
+   - Standard : 149-299 €/mois (per-team)
+   - Enterprise : 499-1 999 €/mois (custom + SLA)
+
+<span class="comment"># Ces fenêtres sont des références marché 2026, pas des
+# vérités absolues. Ton positionnement perso peut justifier
+# au-dessus si : niche ultra-précise, audience installée,
+# track record visible, transformation mesurable garantie.
+# Au-dessous si : démarrage absolu sans aucune crédibilité.
+# Mais ne jamais commencer plus de 30 % en-dessous du tier
+# Entry — c'est juste cramer ta marge sans gagner de ventes.</span></div>
+  </div>
+
+  <p class="pull-quote">Le prix bas n'est pas plus accessible — il signale <em>« produit médiocre »</em> à l'acheteur sérieux. Tu attires les chasseurs de bonnes affaires qui se plaignent le plus, donnent les pires reviews, et ne reviennent jamais acheter ton produit suivant. Le prix correct attire le client correct.</p>
+
+  <!-- ============== 2. LA STRATÉGIE TIERED 3 NIVEAUX ============== -->
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>La stratégie <em>tiered 3 niveaux</em>.</h2>
+
+  <div class="container reading">
+    <p>La structure validée 2026 par tous les top créateurs : <strong>3 tiers — Entry, Standard, Premium</strong>. Pas 1 prix unique (décision binaire = acheter ou partir). Pas 5-7 tiers (overwhelm = pas de décision). Exactement 3, avec différenciation claire entre chacun.</p>
+  </div>
+
+  <h3>Pourquoi exactement 3 tiers et pas plus</h3>
+
+  <div class="container reading">
+    <p>Profit Pro 2026 : <em>« 3 pricing options zone idéale — gives people choice without overwhelming »</em>. Avec 1 prix unique, l'acheteur décide <em>« j'achète ou je quitte »</em>. Avec 3 tiers, il décide <em>« quelle version je prends »</em> — la conversion globale est 30-60 % supérieure parce que la question mentale change. Avec 5+ tiers, l'analyse paralyse, taux d'abandon panier explose.</p>
+
+    <p><strong>Différenciation entre tiers :</strong> chaque tier doit ajouter quelque chose <em>tangible</em>, pas seulement <em>« plus de support »</em> ou <em>« accès prioritaire »</em> (vague et invendable). Ajouts qui marchent 2026 : communauté time-limited (30j Slack après achat), bonus assets (templates supplémentaires), 1 call privé, accès anticipé features futures, garantie remboursement étendue.</p>
+  </div>
+
+  <h3>Modèle de référence Tiago Forte (The Annual Review)</h3>
+
+  <div class="container reading">
+    <p>Documenté ThriveCart 2026 — référence absolue de tarification par niveaux efficace.</p>
+
+    <p><strong>Tier 1 Self-paced — 499 $ :</strong> recordings + templates + communauté access. Pour ceux qui veulent juste le contenu.</p>
+
+    <p><strong>Tier 2 Essential — 1 994 $ :</strong> tout du Tier 1 + 5 sessions live interactives avec Tiago. Pour ceux qui veulent la guidance live.</p>
+
+    <p><strong>Tier 3 1:1 Coaching — 5 000 $ :</strong> tout du Tier 2 + 3 sessions personal coaching avec Tiago. Pour ceux qui veulent la transformation accompagnée.</p>
+
+    <p><strong>Distribution typique des achats :</strong> 60-70 % Self-paced, 25-30 % Essential, 5-15 % Coaching. Mais le Coaching contribue 30-50 % du revenu total — bien plus que sa part des acheteurs. <strong>Sans le Tier 3, il n'y a pas de Tier 2.</strong> Le Premium élevé fonctionne comme ancre qui valorise le Standard.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Application concrète à tes premiers produits</div>
+    <p>Tu lances un mini-course en 2026. <strong>Mauvaise approche :</strong> 1 prix à 197 €. <strong>Bonne approche :</strong> Tier 1 <em>« Course seul »</em> 197 €, Tier 2 <em>« Course + communauté Slack 60j + 2 calls Q&A live »</em> 397 €, Tier 3 <em>« Course + communauté + Q&A + 2 sessions 1:1 personnalisées »</em> 997 €.<br><br>
+Sur 100 acheteurs typiques : 65 prennent Tier 1 = 12 805 €, 25 prennent Tier 2 = 9 925 €, 10 prennent Tier 3 = 9 970 €. Total : <strong>32 700 € vs 19 700 €</strong> avec un seul prix à 197 €. <strong>Soit +66 % de revenu</strong> pour le même produit core et le même effort marketing — uniquement grâce à la structure tiered.<br><br>
+La discipline cruciale : Tier 3 doit être <em>vraiment</em> premium (pas du <em>« j'envoie un email en plus »</em>). Si tu mets une 1:1 ou du contenu personnalisé dans le Tier 3, tu apportes une valeur réelle. Si tu mets juste <em>« badge VIP »</em>, tu perds toute crédibilité et personne ne le prend.</p>
+  </div>
+
+  <!-- ============== 3. LES 4 LEVIERS PSYCHOLOGIQUES ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Les 4 <em>leviers psychologiques</em>.</h2>
+
+  <div class="container reading">
+    <p>Le pricing n'est pas seulement math — c'est aussi perception. 4 leviers documentés Profit Pro / Stan Store / Gust de Backer 2026 que tu appliques de manière éthique (pas pour manipuler — pour aider la décision).</p>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Levier 1 — <em>Tarification psychologique</em> (prix qui finit par 7 ou 9)</div>
+    <div class="tool-text"><strong>Principe :</strong> 27 € convertit mieux que 30 € pour les produits sous 100 €. Effet <em>« left-digit effect »</em> — le cerveau lit <em>« 2X € »</em> avant <em>« 3X € »</em>. Documenté depuis le 19<sup>e</sup> siècle, validé encore en 2026.<br><br>
+<strong>Quand l'utiliser :</strong> produits Entry et Standard sous 100 € (tarification psychologique maximise conversion). Exemples : 27, 47, 67, 97 €.<br><br>
+<strong>Quand NE PAS l'utiliser :</strong> produits Premium 200 €+ ou haut de gamme. Round numbers (497, 997, 1 997 €) signalent <em>premium quality</em>. À l'inverse, 1 997 € peut sembler <em>« discount »</em> à un public premium qui voudrait sentir l'engagement, vs 2 000 € qui sonne plus <em>« sérieux »</em>. Test : Tiago Forte mixe Self-paced 499 $ (charm) et Coaching 5 000 $ (round) — adaptation au tier.<br><br>
+<strong>Test pratique :</strong> demande à 5-10 personnes de ton ICP : <em>« 297 € ou 300 € ? Lequel te semble plus pro ? »</em>. Si réponse majoritaire 297 = charm. Si réponse majoritaire 300 = round. La réponse dépend de ton positionnement — pas de règle absolue.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Levier 2 — <em>Anchoring</em> (montrer le plus cher d'abord)</div>
+    <div class="tool-text"><strong>Principe :</strong> en présentant un prix élevé d'abord, tous les prix suivants semblent plus raisonnables. Ton cerveau <em>« ancre »</em> sur le premier chiffre vu. C'est mécanique, automatique, et ça marche même quand tu sais que ça marche.<br><br>
+<strong>Application page de vente :</strong> présenter le Tier Premium d'abord, puis Standard, puis Entry. Ou structure tableaux comparatifs avec Premium colonne 1 (gauche), Standard colonne 2 (centre — souvent <em>« most popular »</em>), Entry colonne 3 (droite). L'œil scanne de gauche à droite, ancre sur Premium, perçoit Standard comme <em>« raisonnable »</em>.<br><br>
+<strong>Application au sein d'une seule offre :</strong> <em>« Habituellement 597 € — aujourd'hui 297 € tarif anticipé »</em>. Le 597 ancre, le 297 semble une <em>« bonne affaire »</em>. Mais attention — abuser de cette technique érode crédibilité. Utiliser uniquement si le 597 € est <em>vraiment</em> le prix futur, pas un fake price barré.<br><br>
+<strong>Limite éthique :</strong> ne pas utiliser de fake prices barrés (<em>« avant 999 € — maintenant 47 € ! »</em> alors que le produit n'a jamais été vendu 999 €). Pratique courante en marketing low-end mais qui détruit la confiance des acheteurs sérieux.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Levier 3 — <em>Decoy effect</em> (tier intermédiaire qui valorise le supérieur)</div>
+    <div class="tool-text"><strong>Principe :</strong> exemple café Gust de Backer 2026 — Café 2 € + Cupcake 1,50 € → 70/30 %. Ajout option <em>« Café+Cupcake 2,50 € »</em> → 90 % choisissent l'offre combinée. Le Café+Cupcake fait paraître le combo à 2,50 € <em>« évident »</em> parce que +0,50 € seulement vs le Café seul.<br><br>
+<strong>Application produits numériques :</strong> Tier Standard qui contient ce que ton acheteur cible <em>vraiment</em>, encadré par Tier Entry trop limité (donne envie d'upgrade) et Tier Premium trop coûteux (renforce le Standard comme <em>« raisonnable »</em>).<br><br>
+<strong>Exemple :</strong> Tier 1 ebook seul 47 €, Tier 2 ebook + workbook + communauté 30j 97 €, Tier 3 ebook + workbook + communauté + 1 call 1:1 297 €. Le Tier 2 est ton vrai <em>« zone idéale »</em>. Le Tier 1 est intentionnellement décevant (juste l'ebook) pour pousser vers Tier 2. Le Tier 3 est intentionnellement <em>« luxe »</em> pour renforcer Tier 2 comme bon rapport qualité/prix.<br><br>
+<strong>Distribution typique :</strong> 25-30 % Tier 1, 55-65 % Tier 2 (qui est ton tier cible), 10-15 % Tier 3. Le Tier 1 sert à attirer, le Tier 3 à valoriser, le Tier 2 à convertir.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Levier 4 — <em>Position prix par cadrage</em></div>
+    <div class="tool-text"><strong>Principe :</strong> compare ton prix à quelque chose du monde réel pour le faire paraître évident. Stan Store 2026 documente : <em>« 1h avec un coach productivity coûte 80 $+, mon Notion template 29 $ = système entier pour gérer ta vie »</em>. Le 80 $ ancre, le 29 $ devient <em>« évidence »</em>.<br><br>
+<strong>Applications efficaces 2026 :</strong> <em>« Une formation typique sur ce sujet coûte 1 500 €. Mon mini-course condensé : 297 €. Tu obtiens 80 % du résultat pour 20 % du prix »</em>. Ou : <em>« Un consultant à 800 €/jour passerait 5 jours = 4 000 €. Ce template + guide a été conçu pour livrer le même résultat en 4h pour 197 € »</em>.<br><br>
+<strong>Limite cruciale :</strong> ton ancrage doit être <em>crédible et vérifiable</em>. Si tu inventes un <em>« prix marché »</em> qui n'existe pas, ton acheteur le sent en 30 secondes Google et perd confiance. Utiliser des points de référence vrais (TJM consultant, prix formation premium connue, salaire annuel équivalent travail économisé).<br><br>
+<strong>Format efficace :</strong> <em>« Si tu payais [équivalent réel], ça te coûterait [montant honnête]. [Ton produit] te livre [pourcentage du résultat] pour [pourcentage du prix] »</em>. Le calcul rendu visible aide la décision rationnelle au lieu de l'enfouir.</div>
+  </div>
+
+  <!-- ============== 4. B2C VS B2B ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>B2C vs B2B — <em>choisir ta stratégie</em>.</h2>
+
+  <div class="container reading">
+    <p>Décision structurelle qui change tout. Tu ne peux pas servir B2C et B2B avec le même pricing — les psychologies, les budgets, les processus de décision sont radicalement différents (Omnibound 2026, BigCommerce 2026).</p>
+  </div>
+
+  <h3>Pricing B2C — volume + charm + tier visible</h3>
+
+  <div class="container reading">
+    <p><strong>Caractéristiques :</strong> prix visible publiquement et non-négociable. Tarification psychologique efficace (.97/.99). Décision rapide (10-30 min entre découverte et achat). Décideur unique (la personne qui paye = celle qui consomme). Budget personnel (souvent 50-500 €).</p>
+
+    <p><strong>Stratégie pricing optimale :</strong> Tier Entry sous 50 €, Tier Standard 100-300 €, Tier Premium 500-1 500 €. Tarification psychologique systématique (47, 97, 297, 497). Page de vente accessible (pas besoin de demande de devis). Garantie remboursement 14-30 jours visible. bouton d'action clair <em>« Acheter maintenant »</em>.</p>
+
+    <p><strong>Conversion typique B2C 2026 :</strong> 2,1 % moyen secteur (Smart Insights). Avec page de vente solide + audience warm + tarification par niveaux : 5-15 % atteignable. Sans : 0,5-1 %.</p>
+  </div>
+
+  <h3>Pricing B2B — segmentation + tiers nommés + price book</h3>
+
+  <div class="container reading">
+    <p><strong>Caractéristiques :</strong> prix souvent <em>caché</em> (<em>« nous contacter pour les tarifs »</em> sur enterprise tier). Pas de tarification psychologique (tier nommé <em>« Growth »</em> ou <em>« Enterprise »</em> mieux qu'un <em>« 999 € »</em>). Décision longue (semaines à mois). Multiples décideurs (acheteur + DAF + IT + équipe utilisatrice). Budget société (souvent 500-50 000 €+ par an).</p>
+
+    <p><strong>Stratégie pricing optimale :</strong> tiers nommés (Starter / Growth / Enterprise) plutôt que prix bruts. Prix par utilisateur ou par équipe (per-user pricing) qui passer à l'échelle avec adoption. Annual billing avec discount 15-25 % (rétention). Custom enterprise tier sur devis (pas de prix public). Free trial 14-30 jours sans carte bancaire pour réduire friction.</p>
+
+    <p><strong>Conversion typique B2B 2026 :</strong> 1,8 % moyen (Smart Insights). Plus longue mais valeur de transaction 5-50× supérieure à B2C. <strong>74 % des acheteurs B2B s'attendent à un pricing clair</strong> — la transparence post-login (montrer prix individualisés après création de compte) augmente conversion.</p>
+  </div>
+
+  <h3>Le piège du <em>« j'essaie B2C ET B2B »</em></h3>
+
+  <div class="container reading">
+    <p>Tentation classique en démarrage : positionner ton produit pour les deux audiences afin d'élargir le marché. <em>Erreur stratégique majeure</em>. Les psychologies sont opposées : B2C veut prix bas + charm + décision rapide, B2B veut tier nommé + custom pricing + processus.</p>
+
+    <p>Si tu mets <em>« 297 € »</em> sur ta page : B2C achète, B2B fuit (<em>« si c'est seulement 297 €, ce n'est pas sérieux pour mon entreprise »</em>). Si tu mets <em>« Contact us »</em> : B2B remplit le formulaire, B2C disparaît (<em>« je voulais acheter direct, je vais ailleurs »</em>).</p>
+
+    <p><strong>Choix forcé :</strong> tu choisis B2C OU B2B au lancement, pas les deux. Tu peux ajouter une offre Enterprise B2B après 12-18 mois si ton produit B2C reçoit des demandes B2B régulières — mais avec une <em>page séparée</em>, un <em>positionnement séparé</em>, un <em>prix structurellement différent</em>. Ne jamais mélanger sur la même page de vente.</p>
+  </div>
+
+  <!-- ============== PIÈGES ============== -->
+  <h2 class="reading"><span class="h2-num">— Bonus</span>5 <em>pièges</em> classiques.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>commencer trop bas pour <em>« ne pas faire fuir »</em></em></div>
+    <div class="pitfall-text">Tu lances ton premier ebook à 9 €. Tu te dis <em>« comme ça personne ne pourra critiquer »</em>. Réalité 2026 : tu attires les chasseurs de bonnes affaires qui demandent 4× plus de support, laissent les pires reviews, et ne reviennent jamais acheter ton produit suivant. Le 9 € signale <em>« produit médiocre »</em> à l'acheteur sérieux qui aurait payé 47 €. <strong>Correction :</strong> Profit Pro 2026 — <em>« la majorité des créateurs sous-tarifient leur premier produit de 50-70 % par rapport au prix optimal »</em>. Plusieurs créateurs ont multiplié ventes par 3-5× en doublant prix. Règle minimale : ton Tier Entry démarre à 27 € MINIMUM en B2C grand public, 47-97 € sur niche pro, 197 €+ sur transformation business. Si ton produit est moins valeur, ce n'est pas un problème de prix — c'est un problème de produit.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : <em>1 prix unique au lieu de 3 tiers</em></div>
+    <div class="pitfall-text">Tu lances ton mini-course à 197 € fixe. Conversion 2-3 %. Tu te dis <em>« le prix est correct »</em>. Réalité : avec 3 tiers structurés (197 / 397 / 997), ton revenu serait +66 % pour le même effort marketing parce que 30-40 % de tes acheteurs aurait préféré un Premium s'il existait, et 10-15 % aurait préféré un Coaching s'il existait. Tu laisses cet argent sur la table par défaut de structure. <strong>Correction :</strong> Stan Store 2026 — <em>« 3 pricing options zone idéale »</em>. Toujours structurer 3 tiers avec différenciation tangible (communauté time-limited, bonus assets, calls 1:1). Distribution typique : 60-70 % Tier 1, 25-30 % Tier 2, 5-15 % Tier 3 — mais le Tier 3 contribue 30-50 % du revenu total. <strong>Sans Tier 3, ton Tier 2 ne marche pas non plus.</strong> Le Premium élevé valorise mécaniquement le Standard.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>baisser le prix au lieu d'augmenter la valeur perçue</em></div>
+    <div class="pitfall-text">Ton produit ne se vend pas à 297 €. Réflexe automatique : baisser à 197 €. Toujours pas de ventes. Baisse à 97 €. Quelques ventes mais marges divisées par 3. Tu conclus <em>« le marché ne veut pas payer plus »</em>. Réalité : le problème n'est pas le prix — c'est la valeur perçue de ta page de vente, ton positionnement, ta crédibilité. <strong>Correction :</strong> Profit Pro 2026 — <em>« quand prix paraît trop élevé, problème = valeur perçue, pas prix »</em>. Au lieu de baisser : ajouter bonus tangibles (templates, communauté 30j, 1 call), améliorer témoignages chiffrés, anchorer sur prix marché plus élevé, raconter histoire transformation client. Ces 4 leviers augmentent valeur perçue sans toucher au prix. Si après itération sérieuse de la page de vente, ça ne se vend toujours pas → problème produit (mauvais format ? mauvais ICP ?), pas problème prix. Cf <a href="format-produit-numerique.html">3.1 sur le format</a>.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>tarification psychologique systématique sur produits premium</em></div>
+    <div class="pitfall-text">Tu vends un coaching par session en groupee premium 2 997 € (charm). Ton ICP cible (CEOs, dirigeants) lit le prix et pense <em>« 2 997 € sonne discount, pas premium »</em>. Conversion plus basse qu'attendu. <strong>Correction :</strong> tarification psychologique (27, 47, 97, 297) marche pour produits sous 100 €, parfois jusqu'à 500 €. Au-delà de 500 €, round numbers (500, 1 500, 3 000, 5 000 €) signalent <em>premium quality + engagement sérieux</em>. Tiago Forte mixe : Self-paced 499 $ (charm), 1:1 Coaching 5 000 $ (round). Adaptation au tier et au public. Test honnête : demande à 10 personnes de ton ICP ciblé (PAS au grand public) lequel sonne plus pro entre 2 997 € et 3 000 €. Réponse majoritaire = ton choix. Pas de règle absolue — règle de fit avec le segment.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : <em>ne jamais augmenter le prix après le lancement</em></div>
+    <div class="pitfall-text">Tu lances ton template Notion à 47 € en janvier. 12 mois plus tard, il s'est vendu 800 fois, témoignages excellents, position dominante sur ta niche. Mais tu factures toujours 47 €. Tu laisses 30-50 € de marge par vente sur la table parce que tu as peur d'augmenter <em>« maintenant que les anciens ont payé moins »</em>. <strong>Correction :</strong> les produits numériques sont conçus pour augmenter de prix au fil du temps. Règle 2026 : +20-30 % tous les 100 ventes ou tous les 6-12 mois. Tu communiques transparemment : <em>« À partir du [date], le template passe à 67 € (vs 47 € actuellement). Achat avant cette date = lock-in du prix actuel »</em>. Bonus secondaire : la deadline crée une urgence d'achat des indécis. Tu génères 30-50 % du revenu total annuel via ces hausses successives. <strong>Le prix de lancement n'est pas le prix permanent.</strong> Il est conçu pour évoluer avec ta crédibilité et ton volume de témoignages. Cf <a href="tarifs-freelance-valeur.html">2.4 — méthode 4 étapes augmentation tarifs</a>, applicable aux produits numériques aussi.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Tu as ton pricing structuré. Pour la suite : article 3.4 sur les <a href="plateformes-vente-produit.html">plateformes de vente Gumroad/Stan/Podia/Systeme.io</a>. Articles à venir R3 : 3.5 page de vente qui convertit, 3.6 lancement (preventes, séquence email, jour J), 3.7 ★ pilier <em>« Pourquoi 90 % des produits numériques ne vendent pas »</em>. Pré-requis amont : <a href="format-produit-numerique.html">3.1 sur le format</a>, <a href="construire-produit-30-jours.html">3.2 sur la construction</a>. Méthodologie pricing freelance applicable aussi aux produits numériques : <a href="tarifs-freelance-valeur.html">article 2.4 — formule MAR + 3 modèles + transition valeur + augmentation</a>. Pour les outils IA pricing : <a href="guide-claude-debutant-2026.html">Claude</a> (rédaction sales pages avec ancrage), <a href="guide-chatgpt-debutant-2026.html">ChatGPT</a> (test A/B copywriting), <a href="outils-ia.html">le panorama Niveau V</a>. Pour la rubrique complète : <a href="niveau-6-creer-produits.html">R3 du Niveau VI</a>.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur le pricing produit numérique.</h3>
+    <ol class="recap-points">
+      <li>Données 2026 vérifiées : <strong>marché digital products 242 G£ en 2024</strong>, croissance 11,7 %/an jusqu'à 2030 (Digital Biz PLR). <strong>Sweet spot 3 tiers</strong> Entry/Standard/Premium (Stan Store/Profit Pro 2026). <strong>Majorité des créateurs sous-tarifient leur premier produit de 50-70 %</strong> vs prix optimal — plusieurs ont multiplié ventes par 3-5× en doublant prix. <strong>Conversion B2C 2,1 % moyen</strong>, <strong>B2B 1,8 % moyen</strong> (Smart Insights). <strong>Distribution achats tiered typique :</strong> 60-70 % Entry, 25-30 % Standard, 5-15 % Premium — mais Premium contribue 30-50 % revenu total.</li>
+      <li>Grille pricing 2026 par format : <strong>Ebook court</strong> Entry 17-27 €/Standard 37-67 €/Premium 87-147 €. <strong>Ebook long</strong> Standard 47-97 €/Premium 147-297 €. <strong>Mini-course</strong> 47-97 €/197-297 €/397-597 €. <strong>Course standard</strong> 297-597 €/697-1 497 €/1 997-2 997 €. <strong>Session en groupe live</strong> 1 497-2 497 €/2 997-4 997 €/5 997-12 997 € mastermind. <strong>Template Notion/Canva</strong> 19-37 €/47-97 €/147-247 €. <strong>Custom GPT/pack de prompts</strong> 27-47 €/67-127 €/197-397 €. <strong>Communauté abonnement</strong> 27-47/77-147/197-497 €/mois. <strong>Micro-SaaS B2C</strong> 9-19/29-49/79-149 €/mois. <strong>Micro-SaaS B2B</strong> 49-99/149-299/499-1 999 €/mois. <strong>Règle :</strong> ne jamais commencer plus de 30 % en-dessous du tier Entry — prix bas signale produit médiocre, attire mauvais clients.</li>
+      <li>Stratégie tiered 3 niveaux validée 2026 : <strong>1 prix unique</strong> = décision binaire acheter/partir. <strong>3 tiers</strong> = décision <em>« quelle version »</em> = +30-60 % conversion. <strong>5+ tiers</strong> = paralyse analyse, abandon panier. <strong>Modèle référence Tiago Forte The Annual Review (ThriveCart 2026) :</strong> Self-paced 499 $ + Essential 1 994 $ (5 lives) + 1:1 Coaching 5 000 $ (3 sessions perso). <strong>Différenciation tangible obligatoire</strong> entre tiers — communauté time-limited 30-60j, bonus assets, calls 1:1 réels, accès anticipé. <strong>Pas de différenciation vague</strong> (<em>« support prioritaire »</em> invendable). <strong>Math typique application :</strong> mini-course 1 prix 197 € → 19 700 € sur 100 acheteurs vs tiered 197/397/997 → 32 700 € (+66 %) pour même effort marketing.</li>
+      <li>4 leviers psychologiques pricing 2026 (Profit Pro/Stan Store/Gust de Backer) : <strong>(1) Tarification psychologique</strong> .97/.99 → produits sous 100-500 € (left-digit effect). Round numbers → produits premium 500 €+ (signal premium quality). <strong>(2) Anchoring</strong> — montrer Premium d'abord rend Standard <em>« raisonnable »</em>. Page de vente : Premium colonne gauche, Standard centre <em>« most popular »</em>, Entry droite. <strong>(3) Decoy effect</strong> — Tier intermédiaire qui valorise tier supérieur. Café 2 € + Cupcake 1,50 € (70/30 %) + ajout combo 2,50 € = 90 % choisissent combo. Distribution cible 25/65/10 %. <strong>(4) Position prix par cadrage</strong> — comparer prix réel monde <em>« 1h coach 80 $ vs Notion template 29 $ système entier »</em>. Ancrage cross-categorie efficace. <strong>Limite éthique :</strong> ancrages réels et vérifiables, jamais fake prices barrés. Crédibilité &gt; manipulation court terme.</li>
+      <li>B2C vs B2B — choix structurel impactant tout : <strong>B2C</strong> prix visibles non-négociables, tarification psychologique efficace, décision rapide 10-30 min, décideur unique = consommateur, budget perso 50-500 €. Conversion 2,1 %, jusqu'à 5-15 % avec tunnel solide. <strong>B2B</strong> prix souvent caché (<em>« contact us »</em> enterprise tier), tiers nommés (Starter/Growth/Enterprise) plutôt que charm, décision longue semaines-mois, multiples décideurs (acheteur+DAF+IT+équipe), budget société 500-50 000 €+. <strong>74 % B2B buyers expect clear pricing</strong> (BigCommerce). Free trial 14-30 jours sans carte. Annual billing -15-25 %. Per-user pricing scale. <strong>Piège fatal du « j'essaie B2C ET B2B »</strong> — psychologies opposées, <em>« 297 € »</em> fait fuir B2B sérieux et <em>« contact us »</em> fait fuir B2C. <strong>Choix forcé au lancement :</strong> B2C OU B2B, pages séparées si les deux après 12-18 mois.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="plateformes-vente-produit.html">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">3.4 · Les plateformes de vente : Gumroad, Stan, Podia, Systeme.io</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-6-creer-produits.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Produits numériques · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

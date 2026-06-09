@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modifier une image existante : la révolution 2026. – AutomationBoost</title>
+  <meta name="description" content="Ce qui était impossible il y a 18 mois est devenu trivial : modifier une image existante avec l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Modifier une image existante : la révolution 2026.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#e879f9;">Créer du contenu</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Modifier une image existante : la révolution 2026.</h1>
+    <p class="lede">L'édition d'images par IA en 2026 : ce qui était impossible il y a 18 mois est devenu trivial. Inpainting, outpainting, transformations, transferts de style. La méthode complète et 5 cas d'usage qui changent vraiment la donne.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">En 2024, modifier une photo existante avec l'IA ratait 9 fois sur 10. En 2026, la même opération réussit 9 fois sur 10. Ce basculement, en 18 mois, compte plus que tout ce que la génération d'images a apporté en trois ans.</p>
+
+    <p>Le sujet ici n'est pas de créer une image depuis un prompt vide, mais de <strong>transformer une image existante</strong> : retoucher, étendre, remplacer un élément. Voici les concepts clés et les cas d'usage concrets.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Les <em>4 concepts</em> à comprendre.</h2>
+
+  <div class="container reading">
+    <p>Avant les cas d'usage, comprendre les quatre techniques de base. Elles ont des noms techniques (inpainting, outpainting, etc.) que tu n'as pas besoin de retenir — mais comprendre la mécanique te permet de savoir quel outil utiliser pour quel besoin.</p>
+  </div>
+
+  <div class="concept">
+    <div class="concept-name">L'<em>inpainting</em> · modifier une zone précise</div>
+    <div class="concept-text">Tu sélectionnes une zone de l'image (la tête, un objet, un fond), et tu demandes à l'IA de la modifier ou la remplacer. Le reste reste intact. <strong>Cas typiques :</strong> remplacer un visage flou, faire disparaître un objet gênant, changer un vêtement, retoucher un détail. C'est la technique la plus utilisée en pratique.</div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-name">L'<em>outpainting</em> · étendre l'image</div>
+    <div class="concept-text">Tu prends une image et tu demandes à l'IA d'<strong>imaginer ce qui se trouvait au-delà du cadre</strong> — à droite, à gauche, en haut, en bas. Idéal pour transformer une photo verticale en horizontale, recadrer pour différents formats, ou créer une scène plus large à partir d'un détail. <strong>Cas typiques :</strong> adapter une photo Instagram en bannière LinkedIn, donner du contexte à un portrait serré.</div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-name">Le <em>transfert de style</em></div>
+    <div class="concept-text">Tu donnes une image source (une photo de toi, par exemple) et tu demandes à l'IA d'appliquer un style visuel défini (peinture impressionniste, dessin manga, style Studio Ghibli, photo argentique 1970, etc.). <strong>Le sujet reste reconnaissable, le rendu change radicalement.</strong> C'est la technique virale du printemps 2025 (les portraits Ghibli) — devenue depuis un usage courant.</div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-name">La <em>transformation</em> globale</div>
+    <div class="concept-text">Plus puissant et plus complexe : tu décris à l'IA une modification globale qui touche plusieurs aspects de l'image en cohérence. <em>« Garde le sujet et la pose, mais change l'éclairage en lumière dorée de fin de journée et change le fond en plage californienne »</em>. <strong>L'IA recompose plusieurs éléments en cohérence</strong> au lieu de modifier une seule zone. C'est la spécialité d'Imagen 3 (« Nano Banana ») en 2026.</div>
+  </div>
+
+  <!-- ============== 2. 5 CAS D'USAGE ============== -->
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Les <em>5 cas d'usage</em> qui changent vraiment la donne.</h2>
+
+  <div class="container reading">
+    <p>Voici les usages que je vois être les plus rentables pour des utilisateurs non-spécialistes en 2026. Pour chacun : le besoin réel, le prompt à utiliser, l'outil recommandé.</p>
+  </div>
+
+  <div class="use-card">
+    <div class="use-num">— USAGE 1 / 5 · INPAINTING</div>
+    <div class="use-name">Faire disparaître un <em>élément gênant</em> sur une photo</div>
+    <div class="use-desc">L'usage le plus quotidien et le plus universel. Une personne en arrière-plan, un panneau publicitaire qui pollue le cadrage, un déchet par terre, un fil électrique qui traverse le ciel. <strong>30 secondes au lieu de 10 minutes Photoshop.</strong></div>
+    <div class="use-prompt"><span class="use-prompt-label">— Méthode</span>1. Ouvre l'image dans l'outil (ChatGPT, Photoshop avec Firefly, ou Photoroom).
+2. Sélectionne ou décris la zone à supprimer.
+3. Prompt : <strong>« Supprime [élément précis] de cette image. Reconstitue l'arrière-plan en cohérence avec ce qui l'entoure. »</strong>
+4. Si le résultat n'est pas parfait, itère : « la zone reconstituée est trop floue, refais avec plus de détails. »</div>
+    <div class="use-tools"><strong>Outils :</strong> Photoshop avec Firefly (le plus précis pour les pros), ChatGPT avec GPT-Image 1 (le plus accessible), Photoroom (gratuit, mobile-first).</div>
+  </div>
+
+  <div class="use-card">
+    <div class="use-num">— USAGE 2 / 5 · OUTPAINTING</div>
+    <div class="use-name">Adapter une image à un <em>format différent</em></div>
+    <div class="use-desc">Tu as une photo verticale parfaite pour Instagram, mais tu en as besoin en horizontal pour LinkedIn. Avant : recadrer en perdant 60 % de l'image, ou regénérer entièrement. Maintenant : <strong>l'IA imagine ce qu'il y avait à gauche et à droite</strong> du cadre original, en cohérence parfaite.</div>
+    <div class="use-prompt"><span class="use-prompt-label">— Méthode</span>1. Charge l'image dans l'outil.
+2. Demande l'extension : <strong>« Étends cette image en format 16:9 horizontal. Ajoute du décor cohérent à gauche et à droite, en gardant le sujet central inchangé. Conserve l'éclairage et l'atmosphère. »</strong>
+3. Si certaines parties extrapolées sonnent fausses, sélectionne-les et refais l'extension de cette zone seulement.</div>
+    <div class="use-tools"><strong>Outils :</strong> Photoshop (le pionnier de l'outpainting, très précis), GPT-Image 1, Imagen 3. Pour usage commercial : Adobe Firefly seul est 100 % copyright-safe.</div>
+  </div>
+
+  <div class="use-card">
+    <div class="use-num">— USAGE 3 / 5 · TRANSFERT DE STYLE</div>
+    <div class="use-name">Transformer une <em>photo en illustration</em> stylisée</div>
+    <div class="use-desc">Pour ta photo de profil professionnelle, ton avatar de réseau social, une illustration de blog, un cadeau personnalisé. <strong>Tu pars d'une photo réelle, tu obtiens une illustration au style choisi</strong> — peinture, dessin manga, style éditorial, art deco, etc. La technique virale Ghibli du printemps 2025 utilisait exactement ce mécanisme.</div>
+    <div class="use-prompt"><span class="use-prompt-label">— Méthode</span>1. Donne ta photo à l'IA.
+2. Prompt : <strong>« Transforme cette photo en [STYLE PRÉCIS]. Conserve les traits du visage, la pose et la composition. Modifie uniquement le rendu visuel. »</strong>
+3. Sois précis sur le style : pas « style cartoon » mais « style Studio Ghibli, traits doux, palette pastel, atmosphère onirique ». Plus le style est nommé, plus le résultat est conforme.</div>
+    <div class="use-tools"><strong>Outils :</strong> GPT-Image 1 (le plus polyvalent et facile par dialogue), Imagen 3 (excellent en transferts), Midjourney v8 avec image de référence. <strong>Attention copyright</strong> sur les styles d'œuvres protégées (voir limites plus bas).</div>
+  </div>
+
+  <div class="use-card">
+    <div class="use-num">— USAGE 4 / 5 · TRANSFORMATION GLOBALE</div>
+    <div class="use-name">Changer le <em>contexte</em> d'une image</div>
+    <div class="use-desc">Tu as une photo de toi en intérieur, et tu en veux une version « à la plage » ou « en haut de la montagne ». Tu as une photo produit dans un studio neutre, tu la veux en situation. <strong>L'IA reconstitue un environnement cohérent autour du sujet préservé.</strong> C'est ce qui était le plus difficile en 2024 et qui est devenu trivial en 2026.</div>
+    <div class="use-prompt"><span class="use-prompt-label">— Méthode</span>1. Charge l'image source.
+2. Prompt : <strong>« Garde le sujet principal exactement comme il est (pose, traits, vêtements). Change uniquement l'environnement : [DÉCRIS LE NOUVEAU CONTEXTE PRÉCISÉMENT]. Adapte l'éclairage à la nouvelle scène pour cohérence. »</strong>
+3. Si l'IA déforme le sujet, recommence avec : « Tu as modifié le visage du sujet, refais en gardant le visage strictement identique à l'original. »</div>
+    <div class="use-tools"><strong>Outils :</strong> Imagen 3 (« Nano Banana ») est leader sur ce cas d'usage en 2026, GPT-Image 1 est excellent aussi. Adobe Firefly pour usage commercial sans risque.</div>
+  </div>
+
+  <div class="use-card">
+    <div class="use-num">— USAGE 5 / 5 · ITÉRATION CRÉATIVE</div>
+    <div class="use-name">Décliner <em>plusieurs versions</em> d'une même image</div>
+    <div class="use-desc">L'usage le plus puissant pour les créateurs et marketeurs. Tu as une image qui marche bien (une photo produit, une illustration de campagne), tu en veux 10 variantes pour tester sur différentes plateformes ou audiences. <strong>L'IA décline en gardant l'identité visuelle, en variant les détails que tu spécifies.</strong></div>
+    <div class="use-prompt"><span class="use-prompt-label">— Méthode</span>1. Donne l'image source.
+2. Prompt : <strong>« Crée 5 variantes de cette image. Garde le sujet et le style identiques. Varie : [paramètres précis — ex. couleur de fond, posture, expression, accessoires]. »</strong>
+3. Les modèles 2026 (notamment Recraft, Midjourney v8) excellent à maintenir la cohérence d'identité visuelle entre les variantes.</div>
+    <div class="use-tools"><strong>Outils :</strong> Recraft (spécialisé dans la cohérence multi-images), Midjourney v8 (avec character reference), Imagen 3. À éviter : générer chaque variante from scratch — cohérence perdue.</div>
+  </div>
+
+  <!-- ============== 3. WORKFLOW ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Le <em>automatisation</em> à adopter.</h2>
+
+  <h3 class="reading">Quand modifier vs quand générer from scratch</h3>
+
+  <div class="container reading">
+    <p>Tu as deux options à chaque besoin visuel : générer une image à partir de rien (méthode classique, voir <a href="prompt-image-anatomie-brief.html">l'article 4.1 sur le brief visuel</a>) ou modifier une image existante. Voici la règle simple pour choisir.</p>
+
+    <p><strong>Modifie quand :</strong> tu pars d'une photo réelle qui a une valeur unique (toi, ton produit, ton lieu), tu veux maintenir une cohérence avec un visuel existant (charte de marque, série de contenus), tu as déjà 80 % de l'image et tu veux ajuster les 20 % restants.</p>
+
+    <p><strong>Génère quand :</strong> tu veux explorer plusieurs concepts visuels avant de choisir, tu n'as pas de matériau source, le sujet n'existe pas dans la réalité (créatures imaginaires, scènes futuristes, etc.).</p>
+
+    <p>L'erreur fréquente : <strong>regénérer from scratch des choses qu'on aurait dû modifier</strong>. Tu as une photo de profil correcte mais avec un fond moche ? Modifie le fond, ne refais pas tout. Tu as un visuel produit dont l'éclairage n'est pas idéal ? Modifie l'éclairage, ne regénère pas le produit. La modification est plus rapide, plus prévisible, et préserve ce qui marchait déjà.</p>
+  </div>
+
+  <h3 class="reading">L'itération conversationnelle</h3>
+
+  <div class="container reading">
+    <p>Le grand changement de 2026 (notamment avec GPT-Image 1) est l'<strong>édition par dialogue</strong>. Au lieu de relancer l'opération à chaque ajustement, tu enchaînes les demandes en conversation : <em>« Cette version est presque parfaite, mais le sourire est un peu forcé. Refais avec un sourire plus naturel. »</em>. L'IA garde tout le contexte de l'image et ajuste précisément ce que tu demandes.</p>
+
+    <p>Cette logique conversationnelle change la productivité. Avant : 10 prompts complets, chacun reprenant tout depuis zéro. Maintenant : 1 prompt complet + 5 ajustements rapides en langage naturel. <strong>Tu travailles avec l'IA comme avec un assistant qui te montre des versions et que tu guides étape par étape.</strong></p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">L'astuce du mentor</div>
+    <p>Pour les images importantes (visuels professionnels, photos clés), <strong>fais le travail en deux temps</strong>. Première session : explore librement, génère 4-5 directions différentes, choisis celle qui marche le mieux. Deuxième session (idéalement 24h plus tard) : reviens sur l'image choisie avec un œil neuf et fais les ajustements fins par dialogue. Le délai entre les deux sessions évite l'écueil classique de la fatigue créative qui te fait accepter une image moyenne par lassitude.</p>
+  </div>
+
+  <!-- ============== 4. PIÈGES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Les <em>4 pièges</em> à connaître.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : modifier des <em>portraits sans consentement</em></div>
+    <div class="pitfall-text">L'édition d'images IA rend trivialement facile de modifier le visage ou le corps d'une personne sans son accord. <strong>C'est juridiquement dangereux et éthiquement inacceptable.</strong> Le droit à l'image en France et en Europe protège chaque personne contre l'usage non autorisé de son apparence. Modifier la photo d'un proche pour la republier, retoucher l'image d'un collègue, transformer un portrait public sans accord — toutes ces actions peuvent constituer des infractions. Règle simple : <strong>n'utilise l'édition IA que sur des images dont tu as les droits</strong>, et obtiens un consentement explicite pour toute personne reconnaissable.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : appliquer un <em>style protégé</em> par le copyright</div>
+    <div class="pitfall-text">La technique virale Ghibli du printemps 2025 a fait scandale précisément parce qu'elle copiait sans autorisation un style protégé. <strong>Demander explicitement « style Studio Ghibli », « style Disney », « style Marvel » dans un prompt te place dans une zone juridique grise</strong> qui devient progressivement une zone rouge. Pour usage personnel privé : généralement toléré. Pour usage commercial ou publication : risque réel. Préfère décrire le style générique (« anime des années 90, palette pastel, traits doux ») plutôt que nommer un studio spécifique. Voir <a href="7-cas-jamais-confiance.html">les 7 cas où ne jamais faire confiance à l'IA seule</a>, point sur la propriété intellectuelle.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : la <em>dégradation</em> par itérations successives</div>
+    <div class="pitfall-text">Un défaut spécifique aux modèles d'édition : à force d'itérer (modification 1, puis modification 2, puis 3, etc.), <strong>la qualité de l'image se dégrade insidieusement</strong>. Détails qui disparaissent, couleurs qui dérivent, traits qui se déforment. C'est l'effet « photocopie de photocopie ». La parade : pour les modifications importantes, <strong>repars systématiquement de l'image originale</strong> plutôt que de cumuler des modifications sur une version déjà éditée. Tu gardes la fidélité maximale.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : confondre <em>retouche assistée</em> et fabrication mensongère</div>
+    <div class="pitfall-text">La frontière entre « améliorer une photo » et « truquer une photo » est floue avec l'IA. Recadrer, ajuster les couleurs, supprimer un élément gênant — pratiques classiques de retouche, légitimes. Modifier le visage, ajouter des personnes ou objets qui n'étaient pas là, changer le contexte de manière à induire en erreur — <strong>fabrication d'image manipulatrice, problématique éthiquement et parfois légalement</strong> (notamment dans le journalisme, le contexte légal, les preuves, les CV professionnels). Le test simple : <em>« si la personne sur la photo voyait cette modification, accepterait-elle qu'elle soit publiée ? »</em>. Si non, ne le fais pas.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>L'édition d'images par IA est <strong>l'usage le plus quotidien et le plus rentable</strong> de l'IA visuelle pour 90 % des utilisateurs non-créatifs. Tu n'as pas besoin de devenir artiste ni d'apprendre Photoshop. Tu as juste besoin de savoir prendre une photo correcte avec ton téléphone, puis de la confier à l'IA pour les retouches qui te bloquaient avant. Ce changement-là, en 18 mois, est plus important que tous les outils créatifs sortis depuis 2023. La vraie révolution n'est pas que tout le monde devient artiste — c'est que tout le monde peut désormais éditer ses propres images comme un pro le ferait.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Pour aller plus loin : <a href="prompt-image-anatomie-brief.html">l'article 4.1 sur l'anatomie d'un brief visuel</a> (méthode-mère pour la génération from scratch), <a href="meta-prompting.html">le meta-prompting</a> pour faire écrire tes prompts d'édition par une IA texte, <a href="bibliotheque-prompts.html">la bibliothèque de prompts</a> pour capitaliser tes formulations qui marchent, et <a href="memoire-ia.html">la confidentialité IA</a> (importante quand tu donnes des photos personnelles à éditer).</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur l'édition d'images par IA en 2026.</h3>
+    <ol class="recap-points">
+      <li>L'édition d'images existantes par IA a basculé en 2026 d'inutilisable à excellente. Sortie de GPT-Image 1 (fin 2025) et Imagen 3 / Nano Banana (début 2026) — les deux comprennent l'image source avec assez de précision pour la modifier intelligemment.</li>
+      <li>4 concepts à connaître : inpainting (modifier une zone précise), outpainting (étendre l'image), transfert de style (changer le rendu en gardant le sujet), transformation globale (recomposer plusieurs éléments en cohérence).</li>
+      <li>5 cas d'usage les plus rentables : faire disparaître un élément gênant, adapter une image à un format différent, transformer une photo en illustration stylisée, changer le contexte d'une image, décliner plusieurs versions cohérentes pour une marque.</li>
+      <li>Règle de choix : modifie quand tu pars d'une photo qui a de la valeur, génère from scratch quand tu explores des concepts. L'erreur fréquente est de regénérer ce qu'on aurait dû simplement modifier — perte de temps et de cohérence.</li>
+      <li>4 pièges : portraits sans consentement (droit à l'image), styles protégés par copyright (zone juridique grise pour usage commercial), dégradation par itérations successives (toujours repartir de l'original), confusion entre retouche assistée et fabrication mensongère (test : la personne photographiée accepterait-elle la modification ?).</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="prompt-image-anatomie-brief.html">
+        <div class="next-link-label">— Article complémentaire</div>
+        <div class="next-link-title">Le prompt image qui marche : anatomie d'un brief visuel</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-3-creer-visuel.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Créer du visuel · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

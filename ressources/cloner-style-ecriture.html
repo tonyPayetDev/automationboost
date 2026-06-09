@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cloner ton style d'écriture en 3 prompts. – AutomationBoost</title>
+  <meta name="description" content="La méthode en 3 prompts pour transmettre ta voix à l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Cloner ton style d'écriture en 3 prompts.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#e879f9;">Créer du contenu</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Cloner ton style d'écriture en 3 prompts.</h1>
+    <p class="lede">La méthode pour transmettre ta voix unique à l'IA et qu'elle écrive vraiment comme toi. Analyse de style en 3 étapes, prompt-style à réutiliser, garde-fous contre la dégradation de signature.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tu as une voix d'écriture, mais tu ne sais pas la décrire. C'est exactement le problème — et ce que cette méthode résout en 30 minutes, une fois pour toutes.</p>
+
+    <p>Éliminer les marqueurs IA donne un texte humain mais générique : c'est la moitié du chemin. L'autre moitié, c'est faire écrire l'IA avec <strong>ta</strong> voix à toi. Voici comment la cloner.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi cloner <em>plutôt qu'imiter</em>.</h2>
+
+  <div class="container reading">
+    <p>L'erreur classique : donner tes textes à l'IA en disant « écris comme ça ». Le résultat déçoit presque toujours, car l'IA imite des surfaces (quelques tournures) sans capter ce qui fait vraiment ta voix. Cloner, c'est extraire les caractéristiques durables de ton style et les lui donner comme règles.</p>
+
+    <p>C'est cette différence qui fait tout. Voici la méthode.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>La méthode en <em>3 prompts</em>.</h2>
+
+  <div class="container reading">
+    <p>Tu vas exécuter trois prompts dans l'ordre. Chacun produit un livrable spécifique. Au bout des trois, tu as ton fichier-style personnel. Fais-les en une session continue de 30-45 minutes pour que l'IA garde le contexte des étapes précédentes.</p>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PROMPT 1 / 3 · ANALYSE<span class="phase-time">15 MIN</span></div>
+    <div class="phase-name">Faire <em>analyser</em> tes propres textes</div>
+    <div class="phase-purpose">L'IA va lire 3-5 de tes meilleurs textes et identifier les patterns invisibles qui constituent ta signature. Tu dois fournir des textes que tu considères vraiment représentatifs de ta voix, pas n'importe lesquels.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>Je vais te donner 3 à 5 textes que j'ai écrits moi-même (sans IA) et qui représentent bien ma voix d'écriture. Ton rôle est de <strong>les analyser pour identifier les patterns spécifiques de mon style</strong>, ceux qui me distinguent d'un autre auteur.
+
+Pour chaque texte, puis dans une synthèse globale, identifie :
+
+1. <strong>Vocabulaire récurrent et caractéristique</strong> : les mots que j'utilise plus que la moyenne (familiers, soutenus, techniques, régionaux). Les mots que j'évite. Niveau de langue dominant.
+
+2. <strong>Structure des phrases</strong> : longueur typique, variations, présence ou non de phrases très courtes, de phrases longues à subordonnées multiples. Y a-t-il des structures syntaxiques que je répète ?
+
+3. <strong>Rythme et ponctuation</strong> : usage du tiret, deux-points, points d'exclamation, parenthèses, ellipses. Comment je relie mes idées.
+
+4. <strong>Ouvertures et chutes</strong> : comment je commence et finis mes textes. Y a-t-il un pattern récurrent ?
+
+5. <strong>Tics de langage</strong> : formules, expressions, transitions que je réutilise. Particularités stylistiques (humour, références, digressions, autodérision).
+
+6. <strong>Position éditoriale</strong> : est-ce que je tranche ? Est-ce que je nuance ? Quelle est mon attitude par rapport au lecteur (proche, distante, complice, frontale) ?
+
+7. <strong>Ce que je ne fais jamais</strong> : les structures, vocabulaires ou tournures que je semble systématiquement éviter.
+
+À la fin, donne-moi <strong>une synthèse en 10 points clés</strong> de ce qui constitue ma voix unique.
+
+Voici les textes :
+<span class="placeholder">[colle ici 3 à 5 textes complets que tu as écrits sans IA, idéalement de longueurs et contextes différents — un article long, un post court, une newsletter, etc.]</span></div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Quels textes choisir</div>
+    <p>Choisis tes textes <strong>les plus toi</strong> — pas tes textes les plus lus ou les plus récents, mais ceux où tu as l'impression d'avoir vraiment posé ta voix. Idéalement : 1 texte long (article 1500+ mots), 1 texte court (post court ou intro), 1 texte conversationnel (newsletter, mail, threads). La diversité de formats permet à l'IA de capter tes patterns dans différents registres.</p>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PROMPT 2 / 3 · CONSOLIDATION<span class="phase-time">10 MIN</span></div>
+    <div class="phase-name">Transformer l'analyse en <em>prompt-style</em> réutilisable</div>
+    <div class="phase-purpose">L'analyse brute n'est pas directement utilisable. Tu vas demander à l'IA de la transformer en un brief stylistique opérationnel que tu pourras coller en début de chaque session future.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>Sur la base de l'analyse que tu viens de produire, génère-moi maintenant un <strong>« prompt-style » opérationnel</strong> que je pourrai copier-coller en début de chaque session pour que tu écrives comme moi.
+
+Ce prompt-style doit :
+
+1. <strong>Donner des règles précises et applicables</strong>, pas des descriptions abstraites. Au lieu de dire « ton style est direct », dire « phrases courtes (8-12 mots) majoritaires, alternées avec des phrases plus longues à subordonnées ». Au lieu de dire « tu utilises l'humour », dire « insère 1 trait d'humour ou autodérision toutes les 200-300 mots, par exemple : [exemples concrets tirés de mes textes] ».
+
+2. <strong>Inclure des exemples concrets de mes formulations</strong> pour chaque règle, extraits des textes que je t'ai donnés.
+
+3. <strong>Lister les interdictions précises</strong> (mots, formules, structures) que tu ne dois jamais utiliser dans mes contenus.
+
+4. <strong>Préciser ma position éditoriale par défaut</strong> (comment je traite mon lecteur, mon rapport à l'autorité, ce que je défends habituellement).
+
+5. <strong>Tenir en 400-700 mots maximum</strong> pour rester opérationnel — pas un essai littéraire, un brief.
+
+Format final : un texte que je pourrai coller tel quel en début de prompt avec la mention « <em>écris dans le style suivant</em> ». Optimise pour la fidélité de reproduction, pas pour la beauté du brief.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PROMPT 3 / 3 · TEST ET AFFINAGE<span class="phase-time">15 MIN</span></div>
+    <div class="phase-name">Tester la <em>fidélité</em> du clone</div>
+    <div class="phase-purpose">Le prompt-style sortie du prompt 2 fonctionne rarement parfaitement du premier coup. Cette étape teste sa fidélité sur un sujet nouveau et l'affine itérativement.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>Maintenant, je vais tester la fidélité du prompt-style. Écris-moi un texte de <span class="placeholder">[longueur : 300-500 mots]</span> sur le sujet : <span class="placeholder">[sujet précis sur lequel tu n'as encore jamais écrit, mais qui te semble pertinent pour ton activité]</span>.
+
+Applique strictement le prompt-style que tu as produit. <strong>N'invente rien</strong> — si tu n'as pas la matière sur le sujet, demande-moi des éléments avant d'écrire.
+
+À la fin du texte, fais une <strong>auto-évaluation</strong> :
+- Quels sont les 3 points où tu as le mieux respecté mon style ?
+- Quels sont les 3 points où ton texte risque de sonner différemment de ce que j'aurais écrit ?
+- Quelles règles du prompt-style devraient être renforcées ou clarifiées pour une meilleure fidélité ?
+
+Une fois que tu as fait ça, je vais lire le texte. Si je trouve qu'il ne me ressemble pas suffisamment, je te dirai précisément ce qui sonne faux, et tu mettras à jour le prompt-style en conséquence. On itère jusqu'à ce que le résultat soit satisfaisant.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Quand le clone est-il « fini »</div>
+    <p>Test simple : <strong>fais lire le texte généré à 2-3 personnes qui te connaissent et qui lisent régulièrement tes contenus</strong> (sans leur dire que c'est de l'IA). Si elles ne décèlent rien d'anormal, ton prompt-style est prêt. Si elles disent « ça ressemble à toi mais bizarre quand même », tu sais où affiner. La validation par des humains réels est plus fiable que ton propre jugement, parce que <em>toi</em>, tu connais le procédé et tu sur-projettes.</p>
+  </div>
+
+  <!-- ============== 3. UTILISATION ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Comment <em>utiliser</em> ton prompt-style au quotidien.</h2>
+
+  <h3 class="reading">Stockage et réutilisation</h3>
+
+  <div class="container reading">
+    <p>Une fois ton prompt-style finalisé, tu as plusieurs options pour le réutiliser efficacement. <strong>Option 1 : le mettre dans tes <a href="custom-instructions.html">Custom Instructions</a></strong> de ChatGPT ou de Claude. Il s'applique automatiquement à toutes tes conversations sans avoir à le coller. Limite : si tu utilises l'IA pour autre chose que de l'écriture personnelle (analyse, code, etc.), le prompt-style polluera ces usages. À utiliser si l'écriture est ta tâche IA principale.</p>
+
+    <p><strong>Option 2 : le sauvegarder dans un fichier texte</strong> que tu colles en début de chaque session de rédaction. Plus flexible (n'affecte pas les autres tâches), légèrement plus chronophage (3 secondes par session). C'est l'option recommandée pour la majorité des créateurs.</p>
+
+    <p><strong>Option 3 : créer un <a href="maitriser-projets.html">Projet dédié</a></strong> dans ChatGPT ou Claude avec ton prompt-style en instructions du projet. Toutes les conversations dans ce projet appliquent automatiquement le style. Idéal si tu sépares clairement tes différents types de contenus (newsletter, articles, posts).</p>
+  </div>
+
+  <h3 class="reading">Automatisation de rédaction type</h3>
+
+  <div class="container reading">
+    <p>Voici le flux que tu peux mettre en place une fois ton prompt-style stable. <strong>Étape 1 : tu colles ton prompt-style</strong> en début de session (sauf si dans Custom Instructions). <strong>Étape 2 : tu décris le contenu à produire</strong> (sujet, longueur, public, point principal). <strong>Étape 3 : tu génères</strong>. <strong>Étape 4 : tu appliques la <a href="ia-ecrire-comme-humain.html">méthode de relecture en 4 passes</a></strong> de l'article précédent. Le résultat final ressemble à ce que tu aurais écrit toi-même — mais avec un gain de temps massif sur la production.</p>
+
+    <p>Note importante : même avec un prompt-style excellent, <strong>la relecture humaine reste indispensable</strong>. L'IA dérive subtilement de ton style sur les passages plus longs ou plus complexes. La discipline de relecture finale (5-10 min par texte) reste non négociable.</p>
+  </div>
+
+  <!-- ============== 4. PIÈGES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Les <em>4 pièges</em> à éviter.</h2>
+
+  <div class="tip-card">
+    <div class="tip-name">Piège 1 : utiliser <em>trop peu</em> de textes pour l'analyse</div>
+    <div class="tip-text">Avec 1 ou 2 textes, l'IA ne peut pas distinguer ce qui est ton style permanent de ce qui est un effet ponctuel d'un sujet. <strong>Minimum 3 textes, idéal 5</strong>, et de longueurs/formats différents si possible. Si tu n'as pas 3 textes longs représentatifs, prends 5-6 textes plus courts. La diversité bat la longueur.</div>
+  </div>
+
+  <div class="tip-card">
+    <div class="tip-name">Piège 2 : tester le clone <em>uniquement</em> sur soi-même</div>
+    <div class="tip-text">Tu es le pire juge de ton propre style. Tu sur-projettes ce que tu connais et tu sous-détectes les écarts. <strong>Fais valider par 2-3 lecteurs réguliers de ton contenu</strong> avant de considérer le clone comme stable. Cette étape te paraît superflue, elle ne l'est jamais. Beaucoup de créateurs surestiment la fidélité de leur clone parce qu'ils ne la testent pas en aveugle.</div>
+  </div>
+
+  <div class="tip-card">
+    <div class="tip-name">Piège 3 : laisser ton prompt-style <em>se figer</em></div>
+    <div class="tip-text">Ton style évolue. Si tu utilises le même prompt-style pendant 2 ans sans le mettre à jour, l'IA reproduit ton style d'il y a 2 ans, qui n'est plus tout à fait toi. <strong>Refais l'analyse une fois par an</strong> avec tes textes les plus récents. C'est 30 minutes pour rester aligné sur ta voix actuelle. Sinon, le clone vieillit pendant que toi tu évolues — et l'écart devient détectable.</div>
+  </div>
+
+  <div class="tip-card">
+    <div class="tip-name">Piège 4 : <em>identifier ton style à ton IA</em></div>
+    <div class="tip-text">Le risque le plus profond. À force de laisser l'IA écrire avec ton style, <strong>tu perds progressivement la capacité d'écrire toi-même sans elle</strong>. C'est exactement la dépendance cognitive décrite dans <a href="5-signes-trop-dependant-ia.html">l'article sur les 5 signes</a>. La parade : garde au moins une catégorie de textes que tu écris entièrement à la main, sans IA, régulièrement. Idéalement les contenus les plus importants pour toi (textes longs de fond, prises de parole engageantes). Sinon, l'IA n'a plus rien à cloner — parce que tu ne produis plus de matière fraîche pour la nourrir.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>Le but du clonage de style n'est pas de ne plus jamais écrire toi-même. C'est de <strong>déléguer les contenus moyens pour libérer ton énergie sur les contenus exceptionnels</strong>. Les newsletters hebdo, les posts de routine, les introductions standardisées — clonage. Les articles de fond, les manifestes, les contenus qui définissent ta voix — à la main. Si tu utilises le clone partout, tu deviens prévisible. Si tu l'utilises au bon endroit, tu produis 5 fois plus sans perdre ta singularité. La discipline est de ne jamais laisser le clone toucher à ce qui est <em>vraiment</em> toi.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Pour aller plus loin sur la création de contenu : <a href="ia-ecrire-comme-humain.html">l'article 3.2 sur les 7 marqueurs IA et la relecture en 4 passes</a> (à appliquer même avec un bon prompt-style), <a href="custom-instructions.html">les Custom Instructions</a> pour stocker ton prompt-style en permanence, <a href="maitriser-projets.html">les Projets ChatGPT/Claude</a> pour organiser tes différents types de contenus, et <a href="5-signes-trop-dependant-ia.html">l'article-pilier sur la dépendance cognitive</a> pour rester vigilant sur l'usage du clone.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur le clonage de ton style.</h3>
+    <ol class="recap-points">
+      <li>L'erreur classique : donner des exemples à l'IA en disant « écris comme ça ». Bonne méthode : faire analyser tes propres textes pour produire un brief stylistique explicite, puis l'utiliser comme règles à appliquer (style transfer par règles, pas par exemples).</li>
+      <li>3 prompts successifs en 30-45 min : analyse de 3-5 textes représentatifs (vocabulaire, rythme, structures, position éditoriale, tics, ouvertures/chutes), consolidation en prompt-style opérationnel 400-700 mots, test/affinage sur sujet nouveau jusqu'à fidélité satisfaisante.</li>
+      <li>Validation indispensable par 2-3 lecteurs réguliers (en aveugle, sans leur dire que c'est de l'IA). Tu es le pire juge de ton propre style — tu sur-projettes. Le test externe est la seule vraie validation.</li>
+      <li>3 modes d'utilisation : Custom Instructions (auto, mais pollue les autres usages), fichier texte à coller (recommandé pour la majorité), Projet dédié (idéal pour séparer types de contenus). Toujours coupler avec la relecture en 4 passes.</li>
+      <li>4 pièges : trop peu de textes pour l'analyse (min 3, idéal 5 diversifiés), tester uniquement sur soi-même, laisser le prompt-style se figer (rafraîchir 1x par an), s'identifier à son IA (garder une catégorie de textes écrits 100 % à la main pour ne pas perdre la voix originale).</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="ia-ecrire-comme-humain.html">
+        <div class="next-link-label">— Article complémentaire</div>
+        <div class="next-link-title">Faire écrire l'IA comme un humain (méthode 4 passes)</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-3-creer-contenu.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Créer du contenu · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

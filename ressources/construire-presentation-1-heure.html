@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Construire une présentation en 1 heure. – AutomationBoost</title>
+  <meta name="description" content="Construire une présentation propre en une heure avec l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Construire une présentation en 1 heure.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#f97316;">Gagner du temps au travail</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Construire une présentation en 1 heure.</h1>
+    <p class="lede">Gamma 70 millions d'utilisateurs en 2026, Tome a fermé sa fonction présentation, Microsoft Copilot à 18 €/mois. La méthode pour construire une présentation pro en 1 heure — sans tomber dans le piège du deck IA générique qui te coule en réunion ou te coûte 60 minutes de nettoyage à l'export PowerPoint.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Réunion stratégique vendredi. Tu ouvres Gamma, tu tapes ton sujet, tu obtiens 12 slides en 90 secondes, tu envoies. Vendredi, ta présentation est ignorée et ton message ne passe pas. Le problème n'était pas l'outil — c'est que tu as confondu « avoir des slides » et « avoir une présentation ».</p>
+
+    <p>Les outils de présentation IA ont explosé, mais générer des slides ne fait pas un propos qui convainc. Voici comment construire, en une heure, une présentation qui porte vraiment ton message.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi le deck IA brut <em>ne convainc pas</em>.</h2>
+
+  <div class="container reading">
+    <p>Un deck généré en 90 secondes a quatre défauts qui font que ton message ne passe pas : aucune idée centrale (10 slides au même niveau, l'audience ne retient rien), une structure plate sans tension narrative, des contenus génériques, et un design uniforme. Si tu ne peux pas résumer ta présentation en une phrase, tu as un sommaire, pas un message.</p>
+
+    <p>La méthode qui suit corrige ces quatre points pour construire, en une heure, une présentation qui porte vraiment.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>La <em>méthode 4 phases</em> en 60 minutes.</h2>
+
+  <div class="container reading">
+    <p>Le protocole de bout en bout. Compte 60 minutes effectives — variables : 75-90 min pour un deck client à fort enjeu, 45 min pour un deck interne récurrent. Le secret est dans la séparation stricte entre le travail intellectuel (toi seul) et le travail de production (l'IA). 80 % du gain vient des 15 premières minutes de structuration — pas de la génération elle-même.</p>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 1 / 4 · 15 MIN · MESSAGE</div>
+    <div class="phase-name">Construire <em>ton message</em> avant de toucher l'IA</div>
+    <div class="phase-purpose">L'erreur n°1 est de balancer un sujet à l'IA et de découvrir le message en lisant ses slides. Faux. Tu dois clarifier le message AVANT toute génération. Cette phase de 15 minutes est ce qui distingue une présentation qui convainc d'un deck qui meuble. Pas de prompt IA dans cette phase — uniquement de la pensée structurée.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Protocole humain (papier ou doc texte)</span>Réponds aux 6 questions suivantes en 15 minutes. Sans IA. Réponses courtes, précises.
+
+1. <strong>Audience exacte</strong> (3-5 lignes)
+   — Qui est dans la salle ? (titres, niveaux hiérarchiques)
+   — Qui décide réellement ? (pas le présentateur officiel — le décideur réel)
+   — Qu'est-ce qu'ils savent déjà sur le sujet ?
+   — Qu'est-ce qui les inquiète, qu'ils ne diront pas ?
+
+2. <strong>Objectif unique</strong> (1 ligne)
+   À la fin de la présentation, je veux qu'ils <em>fassent / décident / valident</em> précisément quoi ?
+   Verbe d'action. Pas « ils auront compris X » — ils auront décidé X.
+
+3. <strong>Message principal</strong> (1 phrase)
+   Si l'audience ne devait retenir qu'une seule phrase, ce serait : « ... »
+   Test : cette phrase est-elle <em>tranchée</em> ? Une phrase neutre n'est pas un message.
+
+4. <strong>Structure SCQA</strong> (4 lignes)
+   — <em>Situation</em> : ce que l'audience sait déjà et accepte
+   — <em>Complication</em> : ce qui change ou pose problème
+   — <em>Question</em> : la question qui en découle
+   — <em>Answer</em> : ma réponse, qui est le message principal
+
+5. <strong>3 arguments principaux</strong> (3 lignes)
+   Les 3 piliers qui soutiennent ta réponse. Pas plus. Si tu en as 5, tu n'as pas réfléchi assez — tu n'as pas hiérarchisé.
+
+6. <strong>Le pire moment</strong> (2 lignes)
+   Quelle est la question, l'objection, le sujet que tu redoutes ? À quel moment de la présentation va-t-il sortir ? Comment l'anticiper dans la structure plutôt que d'attendre qu'elle te prenne au dépourvu ?
+
+À la fin de cette étape, tu as : audience + objectif + message en 1 phrase + structure SCQA + 3 arguments + anticipation des objections. <strong>C'est ce squelette qui guide tout ce qui suit.</strong> Sans ce squelette, le deck final est une accumulation de slides sans message.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 2 / 4 · 5 MIN · CHOIX D'OUTIL ET PROMPT INITIAL</div>
+    <div class="phase-name">Choisir <em>l'outil</em> selon ton livrable</div>
+    <div class="phase-purpose">Le choix d'outil détermine 50 % du temps total. Mauvais choix = 60 min de plus en post-traitement. Le critère décisif n'est pas la qualité visuelle — c'est le format de livrable final attendu (web ou .pptx) et l'écosystème dans lequel ton entreprise vit.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Arbre de décision rapide</span>1. <strong>Mon livrable final est un .pptx que je vais devoir transmettre / présenter en local ?</strong>
+   → <strong>Microsoft Copilot pour PowerPoint</strong> (18 €/mois si tu as déjà M365) ou <strong>Plus AI</strong> (intégré PowerPoint/Google Slides). Pas d'export, pas de nettoyage, format natif.
+   → Alternative gratuite : <strong>NotebookLM</strong> (Google, gratuit, génère des slides depuis nov 2025) — bon pour rapports internes basés sur tes propres documents.
+
+2. <strong>Mon livrable final est un lien web partagé (équipe, client lecture en autonomie) ?</strong>
+   → <strong>Gamma</strong> (le plus rapide, design moderne, 70M utilisateurs). Le lien web est le format natif et le plus impressionnant.
+   → Alternative : <strong>Tome existait, mais a fermé sa fonction présentation en avril 2025 — ne plus l'utiliser.</strong>
+
+3. <strong>Je veux la qualité design maximale et je peux passer du temps sur le polissage ?</strong>
+   → <strong>Beautiful.ai</strong> (le plus design-driven, smart slides pour data-heavy) ou <strong>Canva Magic Design</strong> (250 000+ templates, écosystème complet).
+
+4. <strong>Je suis dans Google Workspace ?</strong>
+   → <strong>Gemini for Google Slides</strong> (intégré Workspace payant) ou <strong>Plus AI</strong> (compatible Slides ET PowerPoint).
+
+5. <strong>Cas particulier : pitch deck investisseurs ?</strong>
+   → Première version sur <strong>Gamma</strong> ou <strong>Beautiful.ai</strong>, puis transfert obligatoire vers <strong>PowerPoint/Keynote</strong> pour le polissage final (les VC veulent un .pptx ou un PDF, pas un lien web).
+
+<strong>Mon prompt initial à donner à l'outil choisi (à adapter) :</strong>
+
+« Construis une présentation de <span class="placeholder">[N]</span> slides sur le sujet : <span class="placeholder">[ton message principal en 1 phrase]</span>.
+
+<strong>Audience :</strong> <span class="placeholder">[décris en 2 lignes]</span>
+<strong>Objectif :</strong> à la fin, ils décident <span class="placeholder">[ta décision attendue]</span>
+<strong>Structure imposée (SCQA) :</strong>
+— Slide 1-2 : Situation (ce qu'ils savent déjà)
+— Slide 3 : Complication (ce qui change)
+— Slide 4 : Question (le choix qui s'impose)
+— Slide 5-8 : 3 arguments qui répondent à la question (1-2 slides par argument)
+— Slide 9 : Recommandation / décision demandée
+— Slide 10 : Annexes ou Q&amp;A
+
+<strong>Règles strictes :</strong>
+— 1 idée par slide maximum
+— Titres courts (max 6 mots)
+— 3 bullets max par slide
+— Aucune slide « Sommaire » ni « Merci »
+— Ton direct, pas commercial »</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 3 / 4 · 25 MIN · ITÉRATION ET PERSONNALISATION</div>
+    <div class="phase-name">Réécrire <em>3-5 slides</em> à la main</div>
+    <div class="phase-purpose">L'IA t'a sorti un premier draft de 10-12 slides en 90 secondes. Mais 3-5 slides sont critiques pour ton impact : la slide-titre, la slide-message, les slides-clés. Sur celles-là, tu reprends la main. Cette phase de 25 minutes fait 80 % de la différence entre « deck IA générique » et « présentation qui convainc ».</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Protocole de réécriture</span>Tu identifies les 3-5 slides critiques de ton deck :
+
+1. <strong>Slide 1 (titre)</strong> — Tu réécris à la main.
+   — Pas « Stratégie Q4 2026 ».
+   — Mais « Q4 : pourquoi nous changeons d'approche commerciale » ou « 2026 : passer de la croissance volume à la croissance valeur ».
+   — Le titre doit déjà annoncer ton message principal, pas le sujet.
+
+2. <strong>Slide 2-3 (situation + complication)</strong> — Tu vérifies que les chiffres sont exacts.
+   — L'IA peut halluciner des chiffres si tu ne lui as pas donné les vrais.
+   — Tu remplaces tous les chiffres « plausibles » par TES chiffres vérifiés.
+   — Si l'IA a inventé un chiffre, tu le supprimes ou le remplaces.
+
+3. <strong>Slide « message »</strong> — Souvent au milieu du deck (slide 5 ou 6).
+   — C'est la slide où tu dis explicitement le message principal.
+   — Format imposé : 1 phrase courte (max 12 mots) en gros, centrée, fond contrasté.
+   — Pas de bullets sur cette slide. Juste TA phrase.
+
+4. <strong>Slides arguments (3 slides)</strong> — Tu vérifies la pertinence.
+   — Chaque argument doit servir le message principal (test : si je supprime cet argument, le message s'effondre-t-il ?).
+   — Si un argument est faible, tu le supprimes plutôt que de le garder pour faire nombre.
+   — Bullets pertinents seulement, pas de bullets décoratifs.
+
+5. <strong>Slide finale (recommandation)</strong> — Tu réécris à la main.
+   — Pas « Conclusion ».
+   — Mais la recommandation explicite : « Nous recommandons X, parce que Y, à valider d'ici Z. »
+   — La slide finale doit appeler à une action précise — pas remercier l'audience.
+
+<strong>Pour les 5-7 autres slides (annexes, transitions, contexte secondaire)</strong>, tu peux laisser la production IA telle quelle ou avec des ajustements mineurs. Ce ne sont pas elles qui font la différence.
+
+<strong>Prompt IA pour t'aider sur les slides critiques :</strong>
+
+« Voici la slide actuelle : <span class="placeholder">[colle ou décris]</span>
+
+Mon objectif sur cette slide est <span class="placeholder">[précise]</span>. Mon message principal global est <span class="placeholder">[colle le message phase 1]</span>.
+
+Réécris cette slide en 3 versions différentes :
+1. Version factuelle (chiffre principal en gros + 1 phrase d'interprétation)
+2. Version narrative (1 phrase qui raconte la situation, sans bullets)
+3. Version visuelle (suggestion d'un graphique ou schéma + 1 phrase explicative)
+
+Pour chaque version, dis-moi laquelle marche le mieux pour mon audience <span class="placeholder">[type]</span> et pourquoi. »</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 4 / 4 · 15 MIN · POLISSAGE FINAL ET RÉPÉTITION</div>
+    <div class="phase-name">Tester ta <em>narration</em> à voix haute</div>
+    <div class="phase-purpose">Le deck est prêt visuellement. Maintenant tu vérifies qu'il tient en narration parlée. Cette phase est presque toujours sautée — et c'est précisément pour ça que tant de présentations sont jolies sur l'écran et plates en réunion. 15 minutes investies ici font la différence entre une présentation lue laborieusement et une présentation incarnée naturellement.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Protocole de répétition</span>1. <strong>Test narratif (5 min)</strong>
+   Tu présentes ton deck à voix haute, comme si tu étais devant l'audience. Tu te chronomètres.
+   — Si tu hésites sur une slide, c'est qu'elle n'est pas claire — à reprendre.
+   — Si une transition entre 2 slides ne coule pas naturellement, c'est que la structure SCQA est cassée — à reprendre.
+   — Si la durée totale dépasse de 50 % le temps imparti, tu as trop de slides — supprime les moins essentielles.
+
+2. <strong>Test « one-line takeaway » (1 min)</strong>
+   Demande-toi : si l'audience ne devait retenir qu'UNE phrase de toute ta présentation, ce serait laquelle ? Si tu hésites, ton message principal n'est pas assez explicite — la slide-message doit être renforcée.
+
+3. <strong>Test « hostile question » (5 min)</strong>
+   Imagine la pire question / objection possible que l'audience pourrait te poser. Note-la.
+   — Ta présentation l'anticipe-t-elle ? Si oui, où dans le deck ?
+   — Si non, ajoute 1 slide « anticipated questions » à la fin (annexes) avec ta réponse préparée.
+
+4. <strong>Prompt de feedback IA (5 min)</strong>
+   « Voici la structure de ma présentation : <span class="placeholder">[liste les titres des slides]</span>
+   Mon message principal : <span class="placeholder">[colle]</span>
+   Mon audience : <span class="placeholder">[décris]</span>
+
+   Joue le rôle d'un interlocuteur sceptique de cette audience. Identifie :
+   — Les 3 points où ma logique est la plus faible
+   — Les 2 questions les plus probables que je vais recevoir
+   — La transition qui semble la moins fluide d'après les titres
+   — Une slide qui pourrait être supprimée sans perdre l'argument
+
+   Sois sévère. Je préfère encaisser ta critique maintenant qu'en réunion. »
+
+À la fin de cette étape, tu as : un deck testé en narration, un message principal clair en 1 phrase, des objections anticipées, des points faibles identifiés. <strong>Tu peux présenter avec sérénité — pas en lisant tes slides, mais en t'appuyant dessus.</strong></div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">L'astuce du mentor</div>
+    <p>La discipline qui sépare ceux qui produisent des présentations vraiment efficaces de ceux qui produisent du joli vide : <strong>fixer le timing de chaque slide AVANT de la créer</strong>. Tu sais que tu as 20 minutes de présentation. Tu te dis : « 1 min slide-titre + 2 min situation + 1 min complication + 5 min × 3 arguments + 2 min recommandation + 4 min Q&amp;A = 19 minutes ». Cela t'oblige à savoir quelles slides existent <em>avant</em> de les créer, et à hiérarchiser. Une présentation où tu n'as pas pré-attribué le timing dérape systématiquement (les premières slides prennent trop de temps, les dernières sont sacrifiées). <strong>Bonus :</strong> tu te chronomètres en répétition (phase 4). Si tu fais 22 minutes au lieu de 20, tu coupes — tu ne te dis pas « ça ira plus vite la prochaine fois ». En réalité, ça prend toujours plus de temps que prévu (questions, hésitations, technique). Coupe avant.</p>
+  </div>
+
+  <!-- ============== 3. ADAPTATION 4 TYPES ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Adaptation aux <em>4 types</em> de présentations.</h2>
+
+  <div class="container reading">
+    <p>La méthode 4 phases fonctionne sur tous les types. Mais 4 archétypes dominent en entreprise et chacun a ses ajustements spécifiques. Identifie le tien avant de calibrer ton effort.</p>
+  </div>
+
+  <div class="type">
+    <div class="type-name">Type 1 · <em>Présentation interne</em> (équipe, manager, COMEX)</div>
+    <div class="type-text"><em>Exemples : revue trimestrielle, point projet, recommandation stratégique, briefing.</em> 5-15 slides typiquement, 15-30 minutes en réunion. <strong>Spécificité :</strong> audience qui te connaît, qui partage le contexte, qui veut une décision rapide. Pas besoin de longs préliminaires. <strong>Ajustement méthode :</strong> phase 1 (message) particulièrement importante — la décision attendue doit être ultra-claire. Phase 3 (réécriture) concentrée sur la slide-message et la slide-recommandation. <strong>Outil :</strong> Microsoft Copilot pour PowerPoint si la culture entreprise est M365, sinon NotebookLM gratuit. Évite les outils web-natifs qui semblent « trop marketing » pour de l'interne. Durée totale méthode : 45-60 minutes.</div>
+  </div>
+
+  <div class="type">
+    <div class="type-name">Type 2 · <em>Présentation client</em> (commercial, conseil, livrable)</div>
+    <div class="type-text"><em>Exemples : pitch commercial, présentation de propositions, livrable de mission, point de suivi client.</em> 12-20 slides typiquement, 30-60 minutes. <strong>Spécificité :</strong> audience externe à séduire et convaincre, contexte qu'il faut poser, brand identity de ton entreprise à respecter. <strong>Ajustement méthode :</strong> phase 1 inclut une recherche sur le client (ses enjeux récents, ses concurrents, ses priorités stratégiques). Phase 3 réécriture poussée — chaque slide doit avoir un ancrage spécifique au client (cite leur nom, leurs chiffres, leurs cas). <strong>Outil :</strong> Beautiful.ai si tu as un budget (qualité visuelle + brand controls), sinon Gamma + nettoyage manuel à l'export. <strong>Pour un .pptx final exigé par le client (cas le plus fréquent), prévois 30-45 min de nettoyage post-export.</strong> Durée totale : 90-120 minutes.</div>
+  </div>
+
+  <div class="type">
+    <div class="type-name">Type 3 · <em>Pitch deck</em> (investisseurs, levée de fonds, board)</div>
+    <div class="type-text"><em>Exemples : pitch seed/Série A, présentation board trimestriel, investor update.</em> 10-15 slides obligatoires (Sequoia template, Y Combinator template), enjeux financiers majeurs. <strong>Spécificité :</strong> structure ultra-codifiée (Problem → Solution → Market → Business Model → Traction → Team → Ask), tolérance zéro pour l'imprécision, format final imposé (.pptx ou .pdf). <strong>Ajustement méthode :</strong> phase 1 ne suffit pas — tu travailles le pitch sur plusieurs jours. Phase 3 inclut une vérification factuelle de TOUS les chiffres (TAM/SAM/SOM, traction, projections financières) — l'IA hallucine fréquemment sur ces chiffres. <strong>Outil :</strong> première version Gamma ou Beautiful.ai pour la structure, transfert obligatoire vers PowerPoint/Keynote pour le polissage final (les VC parsent 50+ pitchs/semaine et reconnaissent un Gamma à l'œil). Durée totale : 8-15 heures sur plusieurs jours, pas 1 heure.</div>
+  </div>
+
+  <div class="type">
+    <div class="type-name">Type 4 · <em>Présentation de formation / pédagogique</em></div>
+    <div class="type-text"><em>Exemples : module de formation, masterclass, conférence interne, atelier.</em> 20-50 slides, 1-3 heures. <strong>Spécificité :</strong> objectif d'apprentissage et non de décision, audience hétérogène (niveaux de connaissance variables), nécessité de répétition et d'exemples. <strong>Ajustement méthode :</strong> phase 1 redéfinit l'objectif (« à la fin de cette session, ils sauront faire X »). Structure SCQA s'applique au module entier mais aussi à chaque grande section (chaque section devient un mini-deck). <strong>Outil :</strong> Canva Magic Design (templates pédagogiques nombreux + bibliothèque visuelle massive) ou Gamma (storytelling fluide). <strong>Spécificité 2026 :</strong> ajoute des éléments interactifs (quiz, polls) si l'outil le permet — ce qui était optionnel en 2020 est attendu en 2026. Durée totale : 3-6 heures, mais réutilisable plusieurs fois.</div>
+  </div>
+
+  <!-- ============== 4. PIÈGES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Les <em>5 pièges</em> qui plombent une présentation.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>partir de l'IA</em> sans avoir clarifié le message</div>
+    <div class="pitfall-text">Le piège n°1 et le plus séduisant. Tu ouvres Gamma, tu tapes ton sujet, tu obtiens 12 slides, tu te dis « c'est parti, je vais juste éditer ». Erreur structurelle : tu adoptes inconsciemment la logique des 12 slides générées, plutôt que de construire ta propre logique. <strong>Conséquence :</strong> ton message principal disparaît, dilué dans la structure générique de l'outil. <strong>Discipline absolue :</strong> phase 1 (message) <em>avant</em> toute génération. 15 minutes de pensée structurée valent 60 minutes d'édition de slides mal nées. Si tu es pressé et qu'il faut sauter quelque chose, saute la phase 4 — pas la phase 1.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : <em>laisser passer les chiffres hallucinés</em></div>
+    <div class="pitfall-text">L'IA insère des chiffres « plausibles » dans ton deck. « Notre marché représente 4,7 milliards d'euros », « la croissance attendue est de 17 % par an », « 73 % des clients préfèrent X ». Ces chiffres ont l'air sérieux, ils sont faux ou inventés. Si tu présentes ces chiffres en réunion devant quelqu'un qui connaît le marché, tu perds en crédibilité pour les 6 mois suivants. <strong>Discipline :</strong> en phase 3, vérifier TOUS les chiffres. Si un chiffre n'a pas de source vérifiable, tu le supprimes ou le remplaces par un chiffre que tu peux sourcer. <strong>Voir aussi <a href="hallucinations-ia.html">l'article-pilier 4.1 sur les hallucinations IA</a></strong> et <a href="prompt-anti-hallucination.html">le prompt anti-hallucination</a>.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>surcharger les slides</em> en bullets denses</div>
+    <div class="pitfall-text">L'IA produit par défaut 5-7 bullets par slide, 15-25 mots chacun. Ça donne un deck qui ressemble à un document Word coupé en pages. <strong>Conséquence :</strong> ton audience lit la slide au lieu d'écouter ton discours. À la fin, ils n'ont rien retenu de ton intervention — ils ont juste lu tes slides. <strong>Discipline :</strong> en phase 3, max 3 bullets par slide, max 6-8 mots par bullet. Si tu as plus à dire, tu le dis à l'oral — c'est précisément ça que ton audience attend. Une présentation = ce que tu dis + ce qui est sur les slides. Si tout est sur les slides, à quoi tu sers ?</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>négliger l'export</em> PowerPoint</div>
+    <div class="pitfall-text">Tu construis ton deck sur Gamma. Très joli. Tu exportes en .pptx pour ton manager qui le veut sur PowerPoint. Polices substituées, layouts cassés, animations perdues. Tu mets 60 minutes à nettoyer. Le gain de productivité IA est annulé. <strong>Discipline :</strong> en phase 2, anticipe le format final. Si .pptx exigé, choisis un outil PowerPoint-natif (Microsoft Copilot, Plus AI). Si web acceptable, Gamma est l'outil le plus rentable. <strong>Coût caché à connaître pour 2026 :</strong> Gamma export PowerPoint moyen = 15-60 min de nettoyage. Microsoft Copilot export = 0 min (natif). Plus AI export = 0 min (natif). Cette différence change l'arbitrage économique.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : <em>ne jamais répéter</em> avant de présenter</div>
+    <div class="pitfall-text">Le deck est terminé visuellement. Tu te dis « je connais le sujet, je présenterai au feeling ». En réunion, tu hésites entre 2 slides, tu lis tes bullets de manière monotone, tu dépasses le timing, tu ne réponds pas bien aux questions. <strong>L'audience retient ta présentation comme « confuse » alors que ton deck était bon.</strong> La phase 4 (test narratif + question hostile + prompt feedback) prend 15 minutes et change tout. <strong>Discipline :</strong> sur tout deck à enjeu (>10 personnes ou >1 décideur), répète à voix haute au minimum 1 fois. Sur les decks à très fort enjeu (board, COMEX, gros client), répète 2-3 fois en chronométrant. Cette discipline est invisible pour les autres et systématique chez les top performers.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>La construction de présentations avec l'IA est un cas d'usage où les outils sont devenus suffisamment matures (Gamma, Copilot, Beautiful.ai) pour qu'il n'y ait plus de problème technique majeur. <strong>Le différentiel de qualité en 2026 ne vient plus de l'outil — il vient de la méthode.</strong> Ceux qui restent en mode « prompt → 12 slides → envoi » produisent du contenu interchangeable et oubliable. Ceux qui suivent les 4 phases (message → choix outil → réécriture des slides critiques → répétition) produisent des présentations qui font avancer leurs sujets, leurs carrières, leurs entreprises. Le coût de cette méthode (60 minutes vs 5 minutes brutes) est négligeable face au gain : impact en réunion × 5-10. <strong>Conseil opérationnel :</strong> si tu produis 10+ présentations par mois, investis 1 heure pour créer un template personnel (structure SCQA pré-formatée, slides-types, transitions habituelles). Ce template t'économise ensuite 15 minutes sur chaque deck — soit 30+ heures par an. Pour aller plus loin, voir <a href="systeme-10h-semaine.html">l'article-pilier 2.8 sur le système qui te fait récupérer 10h/semaine</a>.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Pour aller plus loin : <a href="systeme-10h-semaine.html">l'article-pilier 2.8 sur le système 10h/semaine</a> (cadre global dont cet article est une brique), <a href="preparer-reunion-5-minutes.html">préparer une réunion en 5 minutes</a> (méthode complémentaire pour le briefing avant ta présentation), <a href="hallucinations-ia.html">les hallucinations IA</a> (essentiel pour vérifier les chiffres en phase 3), <a href="hooks-attention.html">les hooks qui retiennent l'attention</a> (la slide-titre est un hook), <a href="ia-ecrire-comme-humain.html">faire écrire l'IA comme un humain</a> (les marqueurs IA sont aussi audibles dans une présentation), <a href="analyser-document-pro-long.html">analyser un document pro long en 15 minutes</a> (utile en amont si la présentation se base sur un rapport).</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur les présentations IA en 1 heure.</h3>
+    <ol class="recap-points">
+      <li>Marché 2026 : Gamma 70 M utilisateurs / 100 M$ de revenu annuel / valorisation 2,1 G$, Tome a fermé sa fonction présentation en avril 2025, Microsoft Copilot pour PowerPoint à 18 €/mois (21 € en juillet 2026), NotebookLM gratuit avec génération slides depuis nov 2025. Outils web-natifs (Gamma) demandent 15-60 min de nettoyage à l'export PowerPoint vs 0 min pour Copilot/Plus AI natifs.</li>
+      <li>« Avoir 12 slides » ≠ « avoir une présentation ». Le deck IA brut a 4 défauts : pas de message principal hiérarchisé, structure plate sans tension narrative SCQA, surcharge texte (5-7 bullets/slide vs 3 max), aucun ancrage personnel/contextuel. La méthode utilise l'IA <em>autour</em> du message — jamais à sa place.</li>
+      <li>Méthode 4 phases en 60 min : (1) message 15 min — audience + objectif + 1 phrase + SCQA + 3 arguments + anticipation objections, SANS IA, (2) choix d'outil et prompt initial 5 min — arbre de décision selon livrable final (.pptx vs web), (3) itération et personnalisation 25 min — réécrire 3-5 slides critiques (titre, message, recommandation), vérifier tous les chiffres, (4) polissage et répétition 15 min — test narratif à voix haute, test « one-line takeaway », anticipation question hostile, prompt feedback IA sceptique.</li>
+      <li>4 types à connaître : Interne (45-60 min, Copilot/NotebookLM), Client (90-120 min, Beautiful.ai/Gamma + nettoyage export), Pitch deck (8-15 h sur plusieurs jours, vérification factuelle obligatoire, transfert vers PowerPoint/Keynote pour polissage final), Formation/pédagogique (3-6 h mais réutilisable, Canva Magic Design ou Gamma + interactivité).</li>
+      <li>5 pièges qui plombent : partir de l'IA sans clarifier le message (la phase 1 fait 80 % du résultat), laisser passer les chiffres hallucinés (vérifier TOUS les chiffres en phase 3), surcharger en bullets denses (max 3 bullets × 6-8 mots), négliger l'export (anticiper le format final dès la phase 2), ne jamais répéter (15 min de phase 4 changent l'impact en réunion). Astuce : fixer le timing de chaque slide AVANT de la créer, te chronométrer en répétition.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="systeme-10h-semaine.html">
+        <div class="next-link-label">— Article-pilier complémentaire</div>
+        <div class="next-link-title">Le système qui te fait récupérer 10 h/semaine</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-3-gagner-du-temps.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Gagner du temps · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

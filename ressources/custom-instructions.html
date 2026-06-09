@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configurer les Custom Instructions : tes règles permanentes. – AutomationBoost</title>
+  <meta name="description" content="Le réglage qui élimine 80 % de la friction au quotidien : 5 sections à remplir une fois pour que l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Configurer les Custom Instructions : tes règles permanentes.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#eab308;">Automatiser & agents</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Configurer les Custom Instructions : tes règles permanentes.</h1>
+    <p class="lede">Le réglage qui économise 80 % de la friction au quotidien. Cinq sections à remplir une fois pour toutes, et chaque conversation démarre déjà calibrée.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">15 minutes de configuration aujourd'hui te font gagner des heures chaque mois, pour toujours. Si tu utilises l'IA régulièrement, tu redonnes les mêmes informations à chaque conversation : ton métier, ton ton, tes contraintes.</p>
+
+    <p>Les Custom Instructions enregistrent tout ça une fois pour toutes. Voici comment bien les régler.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi ce réglage <em>change tout</em>.</h2>
+
+  <div class="container reading">
+    <p>Sans Custom Instructions, chaque conversation repart de zéro : tu réexpliques qui tu es et ce que tu veux. Avec, l'IA connaît d'emblée ton contexte et ton style, et applique tes préférences sans que tu aies à les répéter. Le gain est permanent.</p>
+
+    <p>Voici quoi y mettre, et comment.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 6</span>Custom Instructions vs Memory vs Projects : <em>ne pas confondre</em>.</h2>
+
+  <div class="container reading">
+    <p>Trois fonctionnalités proches existent en 2026, et beaucoup d'utilisateurs les mélangent. Voici la distinction nette :</p>
+
+    <p><strong>Custom Instructions</strong> = tes règles <em>permanentes et explicites</em>, écrites une fois, qui s'appliquent à <strong>toutes</strong> tes conversations. Tu les écris toi-même, tu sais exactement ce qu'elles contiennent. C'est le sujet de cet article.</p>
+
+    <p><strong>Memory</strong> = ce que l'IA <em>retient automatiquement</em> de tes conversations passées. Extraction implicite. Tu peux la voir et l'éditer, mais c'est l'IA qui décide ce qu'elle garde. C'est le sujet de <a href="memoire-ia.html">l'article suivant</a>.</p>
+
+    <p><strong>Projects / Custom GPTs / Gems</strong> = des <em>espaces dédiés</em> avec leurs propres instructions, séparés de tes conversations générales. C'est le sujet de <a href="niveau-2-bien-configurer.html">l'article 3.6</a> de cette rubrique.</p>
+
+    <p>Les trois sont complémentaires, mais ils servent à des choses différentes. Pour la base, commence par les Custom Instructions — c'est le réglage qui a le plus d'impact pour le moins d'effort.</p>
+  </div>
+
+  <!-- ============== 3. OÙ ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 6</span>Où les configurer sur <em>chaque outil</em>.</h2>
+
+  <div class="container reading">
+    <p>Chaque éditeur a sa propre implémentation. La logique est la même, l'interface diffère. Voici les trois plateformes principales en avril 2026.</p>
+  </div>
+
+  <div class="platform-card">
+    <div class="platform-tag">— PLATEFORME 1</div>
+    <div class="platform-name"><em>ChatGPT</em> — Custom Instructions</div>
+    <div class="platform-feature">Disponible sur tous les plans (gratuit + Plus + Pro + Team + Enterprise)</div>
+    <div class="platform-path">
+      <span class="label">— Chemin d'accès</span>
+      Settings → Personalization → Custom Instructions
+    </div>
+    <div class="platform-desc"><strong>Deux champs à remplir.</strong> « What would you like ChatGPT to know about you? » (qui tu es : métier, contexte, projets) et « How would you like ChatGPT to respond? » (comment tu veux qu'elle réponde : ton, format, contraintes). Chaque champ a une limite de 1 500 caractères. Application immédiate sur toutes les nouvelles conversations.</div>
+  </div>
+
+  <div class="platform-card">
+    <div class="platform-tag">— PLATEFORME 2</div>
+    <div class="platform-name"><em>Claude</em> — Personal Preferences & Project Instructions</div>
+    <div class="platform-feature">Personal Preferences : tous plans · Projects : Pro/Team/Enterprise ($20+/mois)</div>
+    <div class="platform-path">
+      <span class="label">— Chemin d'accès</span>
+      Settings → Profile → Personal Preferences (global)
+      Sidebar → Projects → New project (par projet dédié)
+    </div>
+    <div class="platform-desc"><strong>Deux niveaux.</strong> Les Personal Preferences s'appliquent à toutes tes conversations Claude (équivalent direct des Custom Instructions ChatGPT). Les Project Instructions s'appliquent uniquement aux conversations dans un projet donné — utile pour avoir une configuration différente par client, par activité, ou par type de tâche. Plus de structure, mais nécessite Pro.</div>
+  </div>
+
+  <div class="platform-card">
+    <div class="platform-tag">— PLATEFORME 3</div>
+    <div class="platform-name"><em>Gemini</em> — Saved Info & Gems</div>
+    <div class="platform-feature">Saved Info : tous plans · Gems : gratuit, mieux avec AI Plus/AI Pro</div>
+    <div class="platform-path">
+      <span class="label">— Chemin d'accès</span>
+      Settings → Personal Intelligence → Saved Info (global)
+      Sidebar → Gem manager → New Gem (par assistant dédié)
+    </div>
+    <div class="platform-desc"><strong>Approche hybride.</strong> Saved Info contient les informations permanentes que tu veux que Gemini connaisse en toutes circonstances. Les Gems sont des assistants dédiés avec leurs propres instructions — équivalents fonctionnels des Custom GPTs et des Projects Claude. L'écosystème Google Workspace (Docs, Drive, Gmail) est nativement intégré aux deux.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">La méthode universelle</div>
+    <p>Quel que soit l'outil, le principe est le même : <strong>une zone décrit qui tu es, une zone décrit comment tu veux que l'IA te réponde</strong>. Le template ci-dessous est universel et fonctionne sur les trois plateformes — adapte juste le format à l'interface de ton outil.</p>
+  </div>
+
+  <!-- ============== 4. LES 5 SECTIONS ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 6</span>Les <em>5 sections</em> à remplir efficacement.</h2>
+
+  <div class="container reading">
+    <p>Pour 95 % des cas, cinq sections suffisent à couvrir l'essentiel. Trois pour décrire qui tu es, deux pour décrire comment tu veux que l'IA réponde. Voici le détail.</p>
+  </div>
+
+  <div class="section-card">
+    <div class="section-num">— SECTION 1 / 5 · QUI TU ES</div>
+    <div class="section-name">Ton profil professionnel</div>
+    <div class="section-purpose">Métier, niveau d'expérience, secteur, taille de structure. C'est ce qui permet à l'IA de calibrer le niveau de technicité de ses réponses et d'éviter de t'expliquer ce que tu connais déjà.</div>
+    <div class="section-example">
+      <span class="label">— Exemple</span>
+      Je suis chef de projet IT senior dans une PME industrielle de 120 salariés. 8 ans d'expérience. Je gère une équipe de 4 développeurs.
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-num">— SECTION 2 / 5 · QUI TU ES</div>
+    <div class="section-name">Tes projets ou activités principales</div>
+    <div class="section-purpose">Sur quoi tu travailles actuellement, quelles décisions tu dois prendre, quels sont les enjeux récurrents. Permet à l'IA de connecter chaque demande à ton contexte global, sans que tu aies à le redire.</div>
+    <div class="section-example">
+      <span class="label">— Exemple</span>
+      Mes 3 sujets actuels : (1) migration ERP vers SAP S/4HANA, (2) recrutement d'un dev senior Python, (3) préparation d'un audit RGPD.
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-num">— SECTION 3 / 5 · QUI TU ES</div>
+    <div class="section-name">Tes contraintes implicites</div>
+    <div class="section-purpose">Budget habituel, taille d'équipe, environnement légal, contraintes techniques permanentes. Évite à l'IA de proposer des solutions inadaptées à ton contexte structurel.</div>
+    <div class="section-example">
+      <span class="label">— Exemple</span>
+      Budget réduit (PME). Équipe technique petite (4 personnes). Soumis au RGPD et à des obligations sectorielles strictes.
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-num">— SECTION 4 / 5 · COMMENT RÉPONDRE</div>
+    <div class="section-name">Ton ton et format préférés</div>
+    <div class="section-purpose">Direct ou chaleureux, concis ou détaillé, structuré en sections ou en prose libre. La section qui te fait gagner le plus d'itérations au quotidien.</div>
+    <div class="section-example">
+      <span class="label">— Exemple</span>
+      Ton direct, factuel, sans politesse excessive. Réponses concises (sauf si je demande de développer). Tutoiement systématique. Structure les réponses longues avec des intertitres.
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-num">— SECTION 5 / 5 · COMMENT RÉPONDRE</div>
+    <div class="section-name">Ce qu'il ne faut pas faire</div>
+    <div class="section-purpose">Les contraintes négatives. Tics rédactionnels à éviter, sujets à ne pas aborder, formules bannies. Les <a href="instructions-negatives.html">instructions négatives</a> sont aussi puissantes que les positives — souvent plus.</div>
+    <div class="section-example">
+      <span class="label">— Exemple</span>
+      Évite : « Il est important de noter », « En effet », emojis, formules de politesse passe-partout. Pas d'introduction « Bien sûr ! Voici... ». Pas de récapitulatif final.
+    </div>
+  </div>
+
+  <!-- ============== 5. TEMPLATE ============== -->
+  <h2 class="reading"><span class="h2-num">— 5 / 6</span>Le <em>template</em> universel à recopier.</h2>
+
+  <div class="container reading">
+    <p>Voici un template prêt à l'emploi, adapté aux trois plateformes. Tu remplis les zones en orange avec tes propres informations, tu copies-colles dans le champ Custom Instructions, tu sauvegardes. C'est tout.</p>
+  </div>
+
+  <div class="template-box">
+<span class="template-box-tag">— Template universel · 5 sections</span>
+<span class="label">[QUI JE SUIS]</span>
+Profil : <span class="placeholder">[ton métier + années d'expérience + secteur + taille de structure]</span>.
+
+Projets actuels : <span class="placeholder">[3 sujets sur lesquels tu travailles activement]</span>.
+
+Contraintes structurelles : <span class="placeholder">[budget habituel, taille d'équipe, contraintes légales, limites techniques]</span>.
+
+<span class="label">[COMMENT JE VEUX QUE TU RÉPONDES]</span>
+Ton et format : <span class="placeholder">[direct/chaleureux, concis/détaillé, structuré/prose, tutoiement/vouvoiement]</span>.
+
+À éviter : <span class="placeholder">[liste des formules, tics, sujets à bannir]</span>.</div>
+
+  <div class="container reading">
+    <p>Trois conseils pour le remplir efficacement.</p>
+
+    <p><strong>Sois spécifique.</strong> <em>« Je travaille dans le marketing »</em> est trop vague. <em>« Je suis responsable marketing B2B SaaS dans une scale-up de 80 personnes, cible PME industrielles »</em> est utilisable. Plus c'est précis, mieux l'IA calibre.</p>
+
+    <p><strong>Sois honnête.</strong> Si tu es débutant sur un sujet, dis-le. Si tu n'aimes pas qu'on te flatte, dis-le. Si tu utilises l'IA pour des tâches personnelles aussi, dis-le. Les Custom Instructions sont privées — personne ne les lit. La franchise paie en qualité de réponses.</p>
+
+    <p><strong>Reste sous 500 mots.</strong> Plus n'est pas mieux. Au-delà de 500 mots, tu dilues l'attention de l'IA et tu perds en efficacité. Si tu dépasses, c'est probablement que tu mets des informations ponctuelles qui ont leur place dans la conversation, pas dans la configuration permanente.</p>
+  </div>
+
+  <!-- ============== 6. PIÈGES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 6 / 6</span>Les 4 <em>pièges classiques</em>.</h2>
+
+  <h3 class="reading">Piège 1 : trop de règles tue les règles</h3>
+
+  <div class="container reading">
+    <p>Le débutant enthousiaste remplit ses Custom Instructions avec 30 règles précises. Résultat : l'IA en respecte 5, en oublie 25, et toi tu finis frustré. La capacité d'attention d'un modèle aux instructions a une limite — au-delà de 8-10 règles distinctes, les performances se dégradent.</p>
+
+    <p>Garde les <strong>5-8 règles qui ont vraiment de l'impact</strong>. Si tu ajoutes une règle, demande-toi : <em>« est-ce que cette règle change le résultat dans 50 % de mes conversations ou dans 5 % ? »</em>. Si c'est 5 %, ne la mets pas. Tu peux toujours la rappeler ponctuellement.</p>
+  </div>
+
+  <h3 class="reading">Piège 2 : les Custom Instructions périmées</h3>
+
+  <div class="container reading">
+    <p>Tu as configuré tes Custom Instructions il y a 6 mois. Tu as changé de poste depuis. Tu as fini ton projet ERP. Tu as recruté ton dev senior. Mais tes Custom Instructions racontent encore ta vie d'il y a 6 mois — et l'IA répond comme si rien n'avait bougé.</p>
+
+    <p>Mets-toi un rappel <strong>tous les 3 mois</strong> pour réviser tes Custom Instructions. 5 minutes de mise à jour, gros impact sur la pertinence. Les utilisateurs avancés font cette révision en début de trimestre, en même temps qu'ils planifient leurs objectifs.</p>
+  </div>
+
+  <h3 class="reading">Piège 3 : confondre permanent et ponctuel</h3>
+
+  <div class="container reading">
+    <p>Tu prépares une présentation client cette semaine. Tu mets <em>« Je prépare une présentation pour le client X »</em> dans tes Custom Instructions. Mauvaise idée : c'est ponctuel, ça parasitera toutes tes autres conversations qui n'ont rien à voir avec ce client.</p>
+
+    <p>Les Custom Instructions sont pour ce qui est <strong>vrai sur tous tes prompts</strong>. Pour les sujets ponctuels, mets-les dans le contexte du prompt directement, ou crée un <a href="niveau-2-bien-configurer.html">Project / Gem dédié</a> (sujet de l'article 3.6).</p>
+  </div>
+
+  <h3 class="reading">Piège 4 : les contradictions internes</h3>
+
+  <div class="container reading">
+    <p>Tu écris <em>« réponses concises »</em> dans une section et <em>« explique-moi en détail »</em> dans une autre. L'IA fait au mieux pour respecter les deux, et le résultat est aléatoire. Vérifie toujours que tes règles ne se contredisent pas — relis tes Custom Instructions une fois écrites, et coupe ce qui s'oppose.</p>
+
+    <p>Cas particulier : <em>« sois honnête, mais ne sois pas trop critique »</em>. Choisis. Si tu veux de l'honnêteté, accepte que les retours puissent être durs. Si tu veux du soutien, l'IA ne peut pas être brutalement honnête. Les deux ensemble = de la mollesse polie.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>Configure tes Custom Instructions <strong>une fois maintenant</strong>, en 15 minutes, sur l'outil que tu utilises le plus. Ne cherche pas la perfection. Mets ce qui te vient, sauvegarde. Itère sur 2 semaines selon ce qui marche ou ne marche pas. Une configuration imparfaite vaut mille fois mieux que pas de configuration du tout. Le pire ennemi de la productivité est l'optimisation prématurée.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ce que tu vas voir dans le prochain article</div>
+    <p>Les Custom Instructions sont les règles que <strong>tu écris explicitement</strong>. La Memory, c'est ce que <strong>l'IA retient automatiquement</strong> de tes conversations. Le prochain article t'apprend à activer, contrôler et nettoyer cette mémoire — la fonction la plus mal comprise de 2026, qui peut soit te faire gagner beaucoup de temps, soit créer du bazar dans tes conversations.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur les Custom Instructions.</h3>
+    <ol class="recap-points">
+      <li>15 minutes de configuration aujourd'hui éliminent des heures de répétition par mois pour toujours.</li>
+      <li>5 sections à remplir : profil + projets + contraintes (qui tu es) + ton/format + à éviter (comment répondre).</li>
+      <li>Disponible sur les 3 plateformes : ChatGPT (Custom Instructions, gratuit), Claude (Personal Preferences + Projects), Gemini (Saved Info + Gems).</li>
+      <li>Reste sous 500 mots et 8 règles maximum. Au-delà, tu dilues l'attention de l'IA.</li>
+      <li>Révise tes Custom Instructions tous les 3 mois. Les Custom Instructions périmées sont pires que pas de Custom Instructions du tout.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="memoire-ia.html">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">Bien gérer la mémoire de ton IA</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-2-bien-configurer.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Bien configurer ton IA · Niveau II</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

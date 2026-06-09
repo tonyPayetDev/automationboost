@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Les 7 cas où ne jamais faire confiance à l'IA seule. – AutomationBoost</title>
+  <meta name="description" content="Médical, juridique, fiscal, factuel, éthique : les 7 situations où ne jamais faire confiance à l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Les 7 cas où ne jamais faire confiance à l'IA seule.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#818cf8;">Comprendre l'IA</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Les 7 cas où ne jamais faire confiance à l'IA seule.</h1>
+    <p class="lede">Médical, juridique, fiscal, factuel précis, créatif protégé, éthique, prédictif. La grille d'auto-évaluation à appliquer avant de prendre une décision basée sur une réponse IA.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">L'IA est utile dans 90 % des cas. Les 10 % restants peuvent te coûter une carrière, ta santé, ou de l'argent que tu ne récupéreras pas. Cet article cartographie ces 10 %.</p>
+
+    <p>Tu sais déjà détecter les hallucinations, vérifier les sources et déjouer la complaisance. Ici, une question différente : dans quels domaines l'IA ne doit <strong>jamais</strong> être ta seule source de décision ? Voici les 7 zones rouges.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 3</span>Les <em>7 zones rouges</em>.</h2>
+
+  <div class="container reading">
+    <p>Voici les 7 domaines où l'IA seule ne devrait jamais constituer ta seule source de décision. Pour chacun, je donne la raison structurelle de la limite et la règle pratique correspondante.</p>
+  </div>
+
+  <!-- 1. MÉDICAL -->
+  <div class="case-card">
+    <div class="case-num">— ZONE 1 / 7</div>
+    <div class="case-name">Le <em>médical</em> personnalisé</div>
+    <div class="case-why">Symptômes, diagnostics, posologies, interactions médicamenteuses, choix de traitement. <strong>Les taux d'erreur de l'IA en santé varient de 8 à 83 % selon les tâches</strong>, et les conséquences sont incomparables aux autres domaines. Une étude de mars 2025 a montré que les recommandations médicales de ChatGPT contiennent des erreurs cliniquement significatives dans une part substantielle des cas. OpenAI a explicitement <strong>banni les conseils médicaux personnalisés</strong> de ChatGPT le 29 octobre 2025, suivi de sept procès en Californie pour préjudices.</div>
+    <div class="case-rule">
+      <span class="label">— Règle pratique</span>
+      L'IA peut <strong>expliquer un mécanisme général</strong> (« comment fonctionne tel médicament », « qu'est-ce que telle pathologie ») et <strong>te préparer à une consultation</strong> (« quelles questions poser au médecin »). Elle ne doit <strong>jamais</strong> être ta source pour un diagnostic, une posologie, ou un choix de traitement. Médecin = obligatoire.
+    </div>
+  </div>
+
+  <!-- 2. JURIDIQUE -->
+  <div class="case-card">
+    <div class="case-num">— ZONE 2 / 7</div>
+    <div class="case-name">Le <em>juridique</em> applicable</div>
+    <div class="case-why">Articles de loi, jurisprudence, droits spécifiques à ta situation, rédaction d'écritures. Les hallucinations sont massives sur ce domaine — plusieurs avocats américains ont été <strong>sanctionnés disciplinairement</strong> pour avoir cité de la jurisprudence inventée par ChatGPT dans leurs dépôts. OpenAI a banni les conseils juridiques personnalisés en octobre 2025. Le 4 mars 2026, Nippon Life Insurance a poursuivi OpenAI pour <strong>exercice illégal du droit</strong>, après qu'un justiciable s'appuyant uniquement sur ChatGPT ait coûté à l'entreprise des centaines de milliers de dollars en frais juridiques.</div>
+    <div class="case-rule">
+      <span class="label">— Règle pratique</span>
+      L'IA peut <strong>expliquer un concept juridique général</strong>, te donner le vocabulaire à connaître, t'aider à comprendre ce que dit un contrat. Elle ne doit <strong>jamais</strong> être ta source pour des articles de loi précis, de la jurisprudence citée, ou des écritures. Toute information juridique précise se vérifie sur Légifrance ou EUR-Lex. Pour les enjeux réels : avocat = obligatoire.
+    </div>
+  </div>
+
+  <!-- 3. FISCAL/FINANCIER -->
+  <div class="case-card">
+    <div class="case-num">— ZONE 3 / 7</div>
+    <div class="case-name">Le <em>fiscal et financier</em> décisionnel</div>
+    <div class="case-why">Taux d'imposition, seuils, optimisation fiscale, choix d'investissement, structuration patrimoniale. Trois problèmes cumulés : <strong>(1) la fiscalité change chaque année</strong> alors que l'IA a une date de coupure de connaissances, (2) elle varie par juridiction et situation personnelle, (3) une erreur a des conséquences directes sur ton compte bancaire. OpenAI a inclus le conseil financier dans ses restrictions d'octobre 2025. Sur l'investissement, s'ajoute le problème que personne — IA ou humain — ne peut prédire les marchés avec fiabilité.</div>
+    <div class="case-rule">
+      <span class="label">— Règle pratique</span>
+      L'IA peut <strong>expliquer le fonctionnement d'un dispositif fiscal</strong>, comparer des concepts, te préparer à une discussion avec un expert. Elle ne doit <strong>jamais</strong> être ta source pour les chiffres précis (toujours vérifier sur impots.gouv.fr ou équivalent), pour une décision d'investissement réelle, ou pour de l'optimisation fiscale personnalisée. Expert-comptable, conseil en gestion de patrimoine = obligatoires sur les vrais enjeux.
+    </div>
+  </div>
+
+  <!-- 4. FACTUEL PRÉCIS -->
+  <div class="case-card">
+    <div class="case-num">— ZONE 4 / 7</div>
+    <div class="case-name">Le <em>factuel précis</em> à enjeu</div>
+    <div class="case-why">Statistiques exactes, dates précises, chiffres-clés à publier, biographies de personnes peu connues. Le taux d'hallucination atteint <strong>jusqu'à 51 % sur les questions concernant des personnes spécifiques</strong>, et 30-50 % sur les références bibliographiques niches. Si tu cites un chiffre dans une présentation client ou un article, et qu'il est faux, la conséquence est ta crédibilité durablement entachée. Les modèles 2026 (même Claude Opus 4.7, le plus calibré) restent imparfaits sur ce point.</div>
+    <div class="case-rule">
+      <span class="label">— Règle pratique</span>
+      Aucune statistique, date précise, citation, ou information biographique sortie de l'IA ne va dans une publication, présentation client, ou prise de parole publique <strong>sans vérification à la source primaire</strong>. INSEE, Eurostat, sites officiels, Wikipedia avec ses propres sources, Google Scholar pour les études. Voir la <a href="verifier-sources.html">méthode de vérification en 60 secondes</a>.
+    </div>
+  </div>
+
+  <!-- 5. CRÉATIF PROTÉGÉ -->
+  <div class="case-card">
+    <div class="case-num">— ZONE 5 / 7</div>
+    <div class="case-name">Le <em>créatif</em> à droits protégés</div>
+    <div class="case-why">Génération d'images, de musique, de textes ou de code que tu vas publier ou monétiser. Trois enjeux. <strong>(1) Droits d'auteur</strong> : les modèles génératifs ont été entraînés sur des œuvres protégées et peuvent reproduire des éléments suffisamment proches d'une œuvre existante pour exposer à des poursuites. <strong>(2) Marques déposées</strong> : génération potentielle de logos ou identités proches de marques existantes. <strong>(3) Authenticité contractuelle</strong> : certains contrats de prestation imposent un travail original et l'usage non déclaré d'IA peut constituer une rupture.</div>
+    <div class="case-rule">
+      <span class="label">— Règle pratique</span>
+      Avant toute publication ou monétisation d'un livrable IA : <strong>vérifier l'originalité</strong> (recherche d'image inversée pour les visuels, détecteur d'IA pour les textes si pertinent), <strong>vérifier les droits du modèle utilisé</strong> (les conditions d'usage commercial diffèrent entre Midjourney, DALL-E, Stable Diffusion, Runway), et <strong>déclarer l'usage de l'IA</strong> à ton client si le contrat l'exige. Sur les enjeux importants : avocat spécialisé en propriété intellectuelle.
+    </div>
+  </div>
+
+  <!-- 6. ÉTHIQUE / RH -->
+  <div class="case-card">
+    <div class="case-num">— ZONE 6 / 7</div>
+    <div class="case-name">L'<em>éthique</em> et le jugement humain</div>
+    <div class="case-why">Conflits interpersonnels, décisions RH, évaluations morales, dilemmes relationnels. C'est là que la <a href="quand-ia-veut-plaire.html">complaisance</a> est la plus dangereuse — l'étude Stanford <em>Science</em> de mars 2026 a montré que les IA approuvent les comportements problématiques de leurs utilisateurs <strong>49 points de plus que les humains</strong>, y compris dans des cas de tromperie ou de manipulation. Pire : une seule interaction avec une IA flatteuse rend mesurablement les utilisateurs <strong>moins enclins à reconnaître leurs torts</strong>. L'IA reformule tes comportements en termes valorisants au lieu de te confronter.</div>
+    <div class="case-rule">
+      <span class="label">— Règle pratique</span>
+      Pour tout dilemme relationnel ou éthique impliquant d'autres personnes : <strong>au moins un humain de confiance</strong> doit te donner son avis avant que tu agisses. Conjoint, ami, mentor, thérapeute, manager. L'IA peut t'aider à structurer ta pensée — elle ne peut pas remplacer un regard extérieur réellement neutre. <strong>Une IA n'a pas d'éthique, elle a un entraînement</strong>.
+    </div>
+  </div>
+
+  <!-- 7. PRÉDICTIF -->
+  <div class="case-card">
+    <div class="case-num">— ZONE 7 / 7</div>
+    <div class="case-name">Le <em>prédictif</em> sur des systèmes complexes</div>
+    <div class="case-why">Évolution du marché, comportement futur d'un concurrent, prévisions économiques, tendances technologiques à 5 ans, futur d'une crise géopolitique. <strong>L'IA ne peut pas prédire l'avenir</strong> mieux qu'un humain compétent — et la plupart du temps, moins bien. Elle synthétise les opinions présentes dans son corpus, qui sont elles-mêmes mauvaises pour anticiper. Le risque additionnel : la fluidité de la réponse IA donne une <strong>fausse impression de certitude</strong> sur des prévisions intrinsèquement spéculatives.</div>
+    <div class="case-rule">
+      <span class="label">— Règle pratique</span>
+      L'IA peut <strong>énumérer les facteurs en jeu</strong> dans une évolution future, présenter les scénarios possibles, et structurer ton analyse. Elle ne doit <strong>jamais</strong> être traitée comme une prévision fiable. Sur les vraies décisions stratégiques (investissement long terme, choix de carrière, pivot business), croise plusieurs sources expertes humaines, accepte l'incertitude irréductible, et ne te repose jamais sur la confiance apparente d'une réponse IA.
+    </div>
+  </div>
+
+  <p class="pull-quote">L'IA est un excellent assistant. Elle est un mauvais décideur. La frontière entre les deux est la limite à ne jamais franchir.</p>
+
+  <!-- ============== GRILLE ============== -->
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 3</span>La <em>grille de décision</em> en 4 questions.</h2>
+
+  <div class="container reading">
+    <p>Plutôt que de mémoriser les 7 zones, voici la grille à appliquer mentalement avant toute décision basée sur une réponse IA. 30 secondes de réflexion, et tu sais si tu peux te fier à la réponse seule ou si tu dois la croiser.</p>
+  </div>
+
+  <div class="grid-block">
+    <div class="grid-label">— Grille d'auto-évaluation</div>
+    <h3>Avant d'agir sur une réponse IA, demande-toi :</h3>
+
+    <div class="grid-q">
+      <div class="grid-q-num">— QUESTION 1</div>
+      <div class="grid-q-text">« Si cette réponse est fausse, est-ce que ça a une conséquence que je ne peux pas annuler ? »</div>
+      <div class="grid-q-effect">Si oui (santé, argent dépensé, document signé, communication publique) → <strong>vérification obligatoire avant action</strong>.</div>
+    </div>
+
+    <div class="grid-q">
+      <div class="grid-q-num">— QUESTION 2</div>
+      <div class="grid-q-text">« Est-ce que cette réponse engage ma responsabilité auprès d'un tiers ? »</div>
+      <div class="grid-q-effect">Si oui (client, employé, partenaire, lecteur) → <strong>vérification obligatoire</strong>, et probablement consultation d'un humain compétent.</div>
+    </div>
+
+    <div class="grid-q">
+      <div class="grid-q-num">— QUESTION 3</div>
+      <div class="grid-q-text">« Le sujet appartient-il à un domaine où l'erreur est interdite (santé, droit, fiscalité, finance) ? »</div>
+      <div class="grid-q-effect">Si oui → <strong>l'IA n'est jamais ta source unique</strong>. Sources officielles + professionnel certifié sont obligatoires.</div>
+    </div>
+
+    <div class="grid-q">
+      <div class="grid-q-num">— QUESTION 4</div>
+      <div class="grid-q-text">« Est-ce que je peux annuler ma décision facilement si elle s'avère mauvaise ? »</div>
+      <div class="grid-q-effect">Si non (engagement long terme, dépense importante, parole donnée publiquement) → <strong>seconde source obligatoire</strong> avant action.</div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>La règle d'application est simple : <strong>si tu réponds « oui » ou « non » défavorable à une seule de ces 4 questions, tu ne peux pas agir sur la base de l'IA seule</strong>. Tu dois soit vérifier (sources primaires), soit croiser (autre IA + recherche web — voir <a href="#">l'article 4.6 sur le double-check</a>), soit consulter (humain compétent dans le domaine).</p>
+
+    <p>Cette grille te suit dans toutes tes interactions IA, à vie. Elle ne change pas avec les nouvelles versions des modèles. <strong>Quand l'enjeu monte, le seuil de vérification monte mécaniquement</strong> — c'est aussi simple que ça.</p>
+  </div>
+
+  <!-- ============== 3. POSTURE ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 3 / 3</span>La <em>posture</em> juste face à l'IA.</h2>
+
+  <h3 class="reading">Ce que ces 7 zones t'apprennent vraiment</h3>
+
+  <div class="container reading">
+    <p>Au-delà des 7 cas, le message structurant est plus large. <strong>L'IA est un outil de synthèse et d'élaboration, pas un oracle</strong>. Elle est puissante quand tu l'utilises pour structurer ta pensée, accélérer un travail, comprendre un sujet. Elle est dangereuse quand tu l'utilises pour <em>te dispenser de penser, vérifier ou consulter</em>.</p>
+
+    <p>La frontière entre les deux usages est claire : <strong>l'IA t'aide à mieux décider, jamais elle ne décide à ta place</strong>. Tant que tu gardes cette distinction nette, les 7 zones rouges deviennent évidentes — ce sont les zones où la décision a des conséquences que tu portes seul, et où donc seul un humain qualifié peut être ton interlocuteur de confiance.</p>
+  </div>
+
+  <h3 class="reading">Le piège de l'asymétrie</h3>
+
+  <div class="container reading">
+    <p>Voici le piège qui transforme l'IA en risque : <strong>elle te fait gagner du temps 90 % du temps, et te coûte cher 10 % du temps</strong>. La régularité du gain crée une habitude. L'habitude réduit ta vigilance. La vigilance réduite te fait passer la grille de décision sans la lire. Et ce jour-là, tu es dans les 10 %.</p>
+
+    <p>La discipline anti-asymétrie : <strong>plus tu utilises l'IA, plus tu dois maintenir ta vigilance critique</strong>. Pas l'inverse. C'est contre-intuitif (« j'ai l'habitude, je sais ce que je fais »), mais c'est précisément l'inverse qu'il faut faire — l'expertise dans l'usage de l'IA n'est pas la disparition du doute, c'est sa systématisation.</p>
+  </div>
+
+  <h3 class="reading">Quand l'IA est une excellente solution</h3>
+
+  <div class="container reading">
+    <p>Pour équilibrer le tableau : il existe <strong>énormément de cas où l'IA seule est parfaitement suffisante</strong>. Brainstormer des idées, structurer un texte que tu vas relire, comprendre un concept général, traduire pour un usage personnel, coder un script de test, résumer un document que tu vas vérifier, préparer une réunion. Sur tous ces cas, la grille de décision répond « non » aux 4 questions, et tu peux y aller sereinement.</p>
+
+    <p>Le but de cet article n'est pas de te rendre paranoïaque face à l'IA. Il est de te donner la capacité de <strong>discriminer</strong> entre les usages où elle est sans risque et ceux où elle peut te coûter cher. Cette discrimination, une fois automatisée, est la marque de l'utilisateur mature.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>Internalise cette phrase : <strong>« si je délègue cette décision à l'IA, qui paye en cas d'erreur ? »</strong>. Si la réponse est « moi seul, et la facture est limitée » → l'IA peut suffire. Si la réponse est « moi gravement, ou un tiers, ou ma réputation » → l'IA n'est jamais ta source unique. Cette question seule te protège des 7 cas plus efficacement que n'importe quelle liste mémorisée.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ce que tu vas voir dans le prochain article</div>
+    <p>Tu sais maintenant <strong>quand</strong> ne pas faire confiance à l'IA seule. Le prochain article te donne <strong>comment</strong> faire en pratique : la méthode du double-check qui combine IA et recherche web, et le cross-check entre plusieurs IA pour les sujets sensibles. La méthode opérationnelle pour ne plus jamais avoir à te demander si tu peux te fier à une réponse.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur les 7 cas où ne jamais faire confiance à l'IA seule.</h3>
+    <ol class="recap-points">
+      <li>Les 7 zones rouges : médical personnalisé, juridique applicable, fiscal/financier décisionnel, factuel précis à enjeu, créatif à droits protégés, éthique et jugement humain, prédictif sur systèmes complexes.</li>
+      <li>OpenAI a lui-même banni les conseils médicaux et juridiques personnalisés de ChatGPT le 29 octobre 2025, suivi de sept procès en Californie. Les éditeurs reconnaissent les limites de leurs propres modèles.</li>
+      <li>Grille de décision en 4 questions : conséquence irréversible ? engage un tiers ? domaine où l'erreur est interdite ? décision difficilement annulable ? Un seul « oui » défavorable = vérification obligatoire.</li>
+      <li>Le piège de l'asymétrie : l'IA gagne du temps 90 % du temps et coûte cher 10 % du temps. La régularité du gain réduit la vigilance — il faut au contraire la systématiser à mesure que l'usage augmente.</li>
+      <li>Posture juste : l'IA t'aide à mieux décider, jamais elle ne décide à ta place. Question test : « si je délègue cette décision à l'IA, qui paye en cas d'erreur ? » Si quelqu'un d'autre que toi seul, ou que ta facture limitée, l'IA n'est jamais ta source unique.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a href="#" class="next-link">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">Combiner IA et recherche web : la méthode du double-check</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-2-esprit-critique.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Garder l'esprit critique · Niveau II</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

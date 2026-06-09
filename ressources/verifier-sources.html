@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vérifier les sources que l'IA cite. – AutomationBoost</title>
+  <meta name="description" content="Citations inventées, articles inexistants, dates fausses : le piège classique de l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Vérifier les sources que l'IA cite.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#818cf8;">Comprendre l'IA</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Vérifier les sources que l'IA cite.</h1>
+    <p class="lede">Citations inventées, articles inexistants, dates fausses, auteurs imaginaires. Le piège classique. La méthode en 60 secondes pour vérifier toute source IA avant de l'utiliser.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">L'IA peut t'inventer un livre, son auteur, son éditeur et sa date, le tout dans une phrase impeccable. Le pire, c'est que tu peux ne jamais t'en apercevoir si tu ne vérifies pas.</p>
+
+    <p>Tu sais maintenant pourquoi l'IA hallucine ses références. Voici la méthode concrète pour vérifier une source en quelques secondes.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi vérifier <em>change tout</em>.</h2>
+
+  <div class="container reading">
+    <p>L'effort de vérification dépend de l'enjeu. Pour un usage personnel (comprendre, explorer), une source approximative passe. Pour un usage public ou professionnel (article, rapport, décision), une référence inventée peut te décrédibiliser ou te coûter cher.</p>
+
+    <p>Calibre donc ton effort selon le contexte. Voici comment vérifier, vite et bien.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 5</span>La méthode en <em>4 étapes · 60 secondes</em>.</h2>
+
+  <div class="container reading">
+    <p>Voici la routine à appliquer pour chaque source citée par l'IA. Chaque étape filtre une catégorie de fabrications. Si une source passe les 4 étapes, tu peux raisonnablement t'y fier.</p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">— ÉTAPE 1 / 4<span class="step-time">10 SECONDES</span></div>
+    <div class="step-name">La <em>recherche directe</em> du nom exact</div>
+    <div class="step-desc">Copie-colle le nom de la référence (titre du livre, nom de l'étude, citation entre guillemets, nom de la personne) <strong>tel quel</strong> dans Google. Si la source existe, elle apparaît dans les premiers résultats. Si Google ne trouve <strong>aucune occurrence</strong>, c'est presque toujours une fabrication.</div>
+    <div class="step-action">
+      <span class="label">— Action</span>
+      Recherche Google : "[Titre exact entre guillemets]" + auteur. Lis les 3 premiers résultats. Si rien ne correspond, escalade vers l'étape 4.
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">— ÉTAPE 2 / 4<span class="step-time">15 SECONDES</span></div>
+    <div class="step-name">La vérification de <em>cohérence interne</em></div>
+    <div class="step-desc">Si la source apparaît dans les résultats, vérifie que les <strong>détails coïncident</strong> : auteur, date, éditeur, contexte. Une hallucination fréquente est de prendre un livre réel et de l'attribuer à un auteur inventé, ou de placer un événement réel à une mauvaise date. Le piège du « 80 % vrai » est plus piégeux que le « 100 % faux ».</div>
+    <div class="step-action">
+      <span class="label">— Action</span>
+      Compare ce que dit l'IA avec ce que dit la source officielle. Si l'auteur, la date ou l'éditeur diffèrent, considère la citation comme corrompue.
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">— ÉTAPE 3 / 4<span class="step-time">20 SECONDES</span></div>
+    <div class="step-name">L'accès à la <em>source primaire</em></div>
+    <div class="step-desc">Si la référence existe et que les détails coïncident, ouvre la source pour vérifier que <strong>la citation correspond bien à ce que dit la source</strong>. Une hallucination fréquente est d'attribuer à un auteur réel des propos qu'il n'a jamais tenus, ou de citer correctement une étude mais en déformant complètement ses conclusions.</div>
+    <div class="step-action">
+      <span class="label">— Action</span>
+      Va sur la source primaire (livre numérique, article original, papier scientifique sur Google Scholar). Cherche la phrase exacte avec Ctrl+F. Vérifie que le contexte est respecté.
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">— ÉTAPE 4 / 4<span class="step-time">15 SECONDES</span></div>
+    <div class="step-name">Le <em>cross-check</em> avec un autre modèle</div>
+    <div class="step-desc">Quand tu n'arrives pas à vérifier directement (sujet niche, source en langue étrangère, document non en ligne), pose la même question à un <strong>autre modèle d'IA</strong>. Si Claude et GPT-5.5 te donnent des références totalement différentes pour la même question, tu sais que les deux sont probablement fabriquées. Si elles convergent, la fiabilité augmente.</div>
+    <div class="step-action">
+      <span class="label">— Action</span>
+      Pose à Gemini ou GPT-5.5 : « Connais-tu [la référence donnée par Claude] ? Est-ce que cette source existe vraiment ? ». Croise les réponses.
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Quand zapper des étapes</div>
+    <p>Pour les sources <strong>très grand public</strong> (livres bestsellers, citations célèbres archi-connues), l'étape 1 suffit généralement. Pour les sources <strong>moyennement connues</strong>, étapes 1+2. Pour les sources <strong>spécialisées ou récentes</strong>, applique les 4 étapes — c'est précisément là que les hallucinations se concentrent.</p>
+  </div>
+
+  <!-- ============== 3. PAR TYPE ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 5</span>Méthode <em>par type de source</em>.</h2>
+
+  <div class="container reading">
+    <p>Chaque type de référence a ses spécificités de vérification. Voici les principales avec l'outil de vérification adapté.</p>
+  </div>
+
+  <div class="source-type">
+    <div class="source-name">Les <em>livres</em></div>
+    <div class="source-text"><strong>Vérification :</strong> recherche le titre exact sur Google Books ou Amazon. Si le livre existe, vérifie l'auteur, l'année, l'éditeur. Lecture rapide de la table des matières pour vérifier que les chapitres mentionnés par l'IA existent. <strong>Piège fréquent :</strong> livre réel attribué à un faux co-auteur, ou édition fictive (« édition 2024 mise à jour ») d'un livre vrai mais ancien.</div>
+  </div>
+
+  <div class="source-type">
+    <div class="source-name">Les <em>articles scientifiques</em></div>
+    <div class="source-text"><strong>Vérification :</strong> recherche sur Google Scholar avec le titre de l'article. Si l'article existe, vérifie le DOI, les auteurs, le journal. Pour les sciences dures, PubMed ou arXiv selon la discipline. <strong>Piège fréquent :</strong> auteurs vrais regroupés dans une étude qu'ils n'ont jamais conduite ensemble. Le DOI est le marqueur le plus fiable — un DOI fabriqué ne renvoie sur rien.</div>
+  </div>
+
+  <div class="source-type">
+    <div class="source-name">Les <em>citations attribuées</em> à des personnes</div>
+    <div class="source-text"><strong>Vérification :</strong> recherche la citation exacte entre guillemets sur Google. Si la citation existe, vérifie qu'elle est bien attribuée à la bonne personne et dans le bon contexte. <strong>Piège fréquent :</strong> citations apocryphes attribuées à Einstein, Churchill, Steve Jobs (les noms les plus victimes de fausses attributions). Outil utile : <em>Quote Investigator</em> qui documente les fausses attributions célèbres.</div>
+  </div>
+
+  <div class="source-type">
+    <div class="source-name">La <em>jurisprudence</em> et les textes de loi</div>
+    <div class="source-text"><strong>Vérification :</strong> Légifrance pour le droit français, EUR-Lex pour le droit européen, Westlaw ou Lexis pour les juridictions internationales. Vérifie le numéro exact, la juridiction, la date. <strong>Piège fréquent :</strong> jurisprudence totalement fabriquée avec des numéros de décision plausibles. Aucune affaire juridique ne doit jamais être citée sans vérification sur le site officiel correspondant.</div>
+  </div>
+
+  <div class="source-type">
+    <div class="source-name">Les <em>statistiques</em> et données chiffrées</div>
+    <div class="source-text"><strong>Vérification :</strong> identifie l'institut censé avoir produit la statistique (INSEE, Eurostat, OMS, Pew Research, etc.) et cherche le chiffre directement sur leur site. <strong>Piège fréquent :</strong> chiffre plausible attribué à un institut réel mais qui ne l'a jamais publié. Si tu ne trouves pas la statistique sur le site de l'institut, considère qu'elle est fabriquée.</div>
+  </div>
+
+  <!-- ============== 4. OUTILS ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 5</span>La <em>boîte à outils</em> de vérification.</h2>
+
+  <div class="container reading">
+    <p>Pour gagner en efficacité, garde sous la main cette liste d'outils. La plupart sont gratuits et ne nécessitent pas de compte.</p>
+  </div>
+
+  <div class="toolkit">
+    <div class="toolkit-label">— Outils essentiels</div>
+    <ul>
+      <li><strong>Google</strong><span>Le plus efficace pour 80 % des vérifications. Toujours commencer par lui.</span></li>
+      <li><strong>Google Scholar</strong><span>Recherche académique. Pour vérifier articles, papers, études.</span></li>
+      <li><strong>Google Books</strong><span>Vérifier l'existence d'un livre, son auteur, son éditeur, parfois lire des extraits.</span></li>
+      <li><strong>PubMed</strong><span>Articles médicaux et biologiques. Indispensable pour les sujets santé.</span></li>
+      <li><strong>arXiv</strong><span>Articles en physique, mathématiques, informatique, IA.</span></li>
+      <li><strong>Légifrance</strong><span>Droit français : lois, décrets, jurisprudence.</span></li>
+      <li><strong>EUR-Lex</strong><span>Droit européen : directives, règlements, arrêts CJUE.</span></li>
+      <li><strong>Quote Investigator</strong><span>Vérification de citations célèbres et de leurs vraies/fausses attributions.</span></li>
+      <li><strong>Wikipedia</strong><span>Point de départ acceptable pour les biographies et événements. Toujours suivre les sources citées en bas de page pour confirmer.</span></li>
+      <li><strong>Sites d'instituts</strong><span>INSEE, Eurostat, OMS, Pew Research, Banque mondiale. Pour vérifier les statistiques à la source.</span></li>
+    </ul>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">L'astuce 2026</div>
+    <p>Plusieurs modèles 2026 (GPT-5.5, Gemini 3.1 Pro) intègrent désormais une <strong>recherche web active</strong>. Activée, elle réduit drastiquement les hallucinations sur les références récentes — l'IA cherche réellement la source au lieu de la générer. <strong>Mais cela ne supprime pas la vérification</strong> : l'IA peut toujours mal interpréter ce qu'elle trouve, ou citer un site peu fiable. La discipline reste la même.</p>
+  </div>
+
+  <!-- ============== 5. INTÉGRER ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 5 / 5</span>Intégrer la vérification <em>dans ton flux</em>.</h2>
+
+  <h3 class="reading">La règle minimale : pas de référence sans vérification</h3>
+
+  <div class="container reading">
+    <p>La règle de base, simple et non négociable : <strong>tu ne sors aucune référence d'une réponse IA sans l'avoir vérifiée si tu vas l'utiliser publiquement</strong>. Pas dans un mail à un client, pas dans une présentation, pas dans un article, pas dans un échange professionnel. Cette règle vaut quel que soit le modèle, quel que soit son taux d'hallucination annoncé, quel que soit ton niveau de confiance ressenti.</p>
+
+    <p>Le coût de cette discipline est faible (60 secondes par référence en moyenne). Le coût de ne pas la suivre est asymétrique — tu peux passer dix mois sans incident puis avoir une réputation entachée par une seule fausse citation publiée. Le calcul est simple.</p>
+  </div>
+
+  <h3 class="reading">L'astuce : demander à l'IA d'auto-marquer ses incertitudes</h3>
+
+  <div class="container reading">
+    <p>Pour gagner en efficacité, ajoute systématiquement à tes prompts qui produisent des références : <em>« pour chaque source que tu cites, indique entre crochets ton niveau de confiance — [VÉRIFIÉ] si tu es sûr de l'existence et de l'exactitude, [À VÉRIFIER] si tu n'es pas certain. Préfère ne rien citer plutôt que citer du faux. »</em>.</p>
+
+    <p>Ce cadrage simple pousse les modèles 2026 à séparer ce dont ils sont sûrs de ce qu'ils inventent par défaut. Les références marquées <em>[À VÉRIFIER]</em> sont alors prioritaires dans ton flux de fact-checking. Tu n'élimines pas le besoin de vérifier, mais tu hiérarchises ton effort.</p>
+  </div>
+
+  <h3 class="reading">Le réflexe culturel : la vérification est une marque de sérieux</h3>
+
+  <div class="container reading">
+    <p>Dans les domaines où le travail intellectuel compte (recherche, journalisme, conseil, droit, médecine), <strong>citer une source non vérifiée est une faute professionnelle</strong>, indépendamment de l'IA. L'arrivée de l'IA n'a pas changé cette règle — elle l'a juste rendue plus difficile à respecter parce qu'elle a multiplié les occasions de produire des sources fabriquées.</p>
+
+    <p>Internalise ce point : la vérification n'est pas un dispositif anti-IA, c'est un <strong>standard professionnel</strong> qui s'applique à toute source que tu cites, quelle que soit son origine. L'IA n'est qu'un cas particulier d'une règle générale.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ce que tu vas voir dans le prochain article</div>
+    <p>Tu sais détecter les hallucinations et vérifier les sources. La prochaine étape : <strong>apprendre à les prévenir</strong>. Le prochain article traite des « 4 phrases qui changent tout » — les formulations précises à ajouter à tes prompts pour réduire le taux d'hallucinations de 80 %. Pas une formule magique, un cadrage technique efficace.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur la vérification de sources.</h3>
+    <ol class="recap-points">
+      <li>Les références bibliographiques sont fabriquées dans 30 à 50 % des cas sur les sujets niches. Aucune source IA ne doit être utilisée publiquement sans vérification.</li>
+      <li>Méthode en 4 étapes (60 secondes total) : recherche directe Google → vérification de cohérence → accès à la source primaire → cross-check avec un autre modèle.</li>
+      <li>Outils essentiels selon le type : Google et Google Scholar (universel), Légifrance (droit français), PubMed (médical), Quote Investigator (citations célèbres), sites d'instituts (statistiques).</li>
+      <li>Astuce de prompt : « pour chaque source citée, indique [VÉRIFIÉ] ou [À VÉRIFIER] — préfère ne rien citer plutôt que citer du faux ». Hiérarchise ton effort de vérification.</li>
+      <li>Règle absolue : aucune référence n'entre dans une publication, mail client ou présentation sans vérification. Le coût de 60 secondes est asymétriquement plus faible que le coût d'une réputation entachée.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a href="#" class="next-link">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">Le prompt anti-hallucination : les 4 phrases qui changent tout</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-2-esprit-critique.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Garder l'esprit critique · Niveau II</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

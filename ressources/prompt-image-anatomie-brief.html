@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le prompt image qui marche : anatomie d'un brief visuel. – AutomationBoost</title>
+  <meta name="description" content="90 % des prompts image produisent du déchet. Les 7 piliers d" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Le prompt image qui marche : anatomie d'un brief visuel.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#e879f9;">Créer du contenu</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Le prompt image qui marche : anatomie d'un brief visuel.</h1>
+    <p class="lede">Pourquoi 90 % des prompts image produisent du déchet. Les 7 piliers d'un brief visuel précis, le comparatif des modèles 2026, et la méthode pour obtenir l'image que tu as en tête.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tu tapes « image d'un homme qui boit un café » et tu reçois 4 images génériques inutilisables. Tu accuses l'IA — mais c'est ton brief qui est mauvais.</p>
+
+    <p>Le problème en image n'est pas le choix du modèle, c'est la qualité du brief. Voici l'anatomie d'un prompt visuel qui donne exactement ce que tu as en tête.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi la plupart des prompts <em>ratent</em>.</h2>
+
+  <div class="container reading">
+    <p>« Une femme en train de travailler dans un bureau » : trois mots-clés, aucune direction. L'IA a mille façons de l'interpréter — style, cadrage, lumière, ambiance — et choisit au hasard. Un bon brief, lui, ferme ces ambiguïtés une à une.</p>
+
+    <p>C'est tout l'enjeu. Voici les piliers d'un brief visuel précis.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Les <em>7 piliers</em> d'un brief visuel précis.</h2>
+
+  <div class="container reading">
+    <p>Voici les 7 dimensions à spécifier dans tout prompt image sérieux. Tu peux n'en utiliser que 4 ou 5 pour des cas simples, mais sur les 7, plus tu en remplis, plus le résultat est prévisible. Pour chaque pilier : ce que c'est, et un exemple comparatif (vague vs précis).</p>
+  </div>
+
+  <div class="pillar-card">
+    <div class="pillar-num">— PILIER 1 / 7</div>
+    <div class="pillar-name">Le <em>sujet</em> et ses caractéristiques</div>
+    <div class="pillar-desc">Qui ou quoi est au centre de l'image. <strong>Précise l'âge, le sexe, l'ethnicité, la posture, l'expression, les vêtements, ce qu'il fait</strong>. Plus tu donnes de détails, moins l'IA invente.</div>
+    <div class="pillar-example">
+      <span class="label">— Exemple</span>
+      <span class="vague">« Une personne qui boit un café »</span><br>
+      → <strong>« Un homme de 35 ans, barbe courte, col roulé gris, tient une tasse de café en céramique blanche à hauteur de poitrine, regard pensif tourné vers la fenêtre »</strong>
+    </div>
+  </div>
+
+  <div class="pillar-card">
+    <div class="pillar-num">— PILIER 2 / 7</div>
+    <div class="pillar-name">L'<em>environnement</em> et le contexte</div>
+    <div class="pillar-desc">Où la scène se déroule. <strong>Lieu spécifique, époque, éléments de décor visibles, profondeur de champ</strong>. Le contexte détermine 50 % de l'atmosphère perçue.</div>
+    <div class="pillar-example">
+      <span class="label">— Exemple</span>
+      <span class="vague">« Dans un café »</span><br>
+      → <strong>« Dans un café parisien des années 1930, comptoir en zinc à l'arrière-plan flou, étagères de bouteilles, miroir biseauté, plancher en mosaïque noir et blanc »</strong>
+    </div>
+  </div>
+
+  <div class="pillar-card">
+    <div class="pillar-num">— PILIER 3 / 7</div>
+    <div class="pillar-name">Le <em>style</em> visuel</div>
+    <div class="pillar-desc">Le registre esthétique de l'image. <strong>Photographique, illustration, peinture, 3D, croquis, cartoon</strong> — et dans chaque catégorie, des sous-styles précis (photo argentique, illustration vectorielle minimaliste, peinture à l'huile classique, etc.). Le style est le plus grand levier d'effet sur l'image finale.</div>
+    <div class="pillar-example">
+      <span class="label">— Exemple</span>
+      <span class="vague">« Beau style »</span><br>
+      → <strong>« Photo argentique 35mm, grain visible, palette désaturée style Wes Anderson, composition symétrique »</strong>
+    </div>
+  </div>
+
+  <div class="pillar-card">
+    <div class="pillar-num">— PILIER 4 / 7</div>
+    <div class="pillar-name">L'<em>ambiance</em> émotionnelle</div>
+    <div class="pillar-desc">Ce que l'image doit faire ressentir. <strong>Mots émotionnels précis</strong> — pas « belle » ou « cool » qui ne veulent rien dire, mais des termes comme : mélancolique, énergique, intime, tendu, paisible, oppressant, joyeux. Le mood guide les choix de couleurs et de lumière de l'IA.</div>
+    <div class="pillar-example">
+      <span class="label">— Exemple</span>
+      <span class="vague">« Ambiance sympa »</span><br>
+      → <strong>« Atmosphère mélancolique et contemplative, sentiment de solitude paisible, intimité du moment de pause »</strong>
+    </div>
+  </div>
+
+  <div class="pillar-card">
+    <div class="pillar-num">— PILIER 5 / 7</div>
+    <div class="pillar-name">La <em>composition</em> et le cadrage</div>
+    <div class="pillar-desc">Comment le sujet est positionné dans l'image. <strong>Plan (large, américain, rapproché, gros plan), angle (frontal, plongée, contre-plongée, profil), règle des tiers, format (carré, vertical, paysage)</strong>. C'est ce qui distingue une photo amateur d'une photo de pro.</div>
+    <div class="pillar-example">
+      <span class="label">— Exemple</span>
+      <span class="vague">« Bien cadré »</span><br>
+      → <strong>« Plan moyen rapproché, angle légèrement en contre-plongée, sujet placé sur le tiers gauche, format vertical 9:16, espace négatif à droite »</strong>
+    </div>
+  </div>
+
+  <div class="pillar-card">
+    <div class="pillar-num">— PILIER 6 / 7</div>
+    <div class="pillar-name">L'<em>éclairage</em></div>
+    <div class="pillar-desc">Le pilier le plus négligé alors qu'il est l'un des plus puissants. <strong>Source de lumière, direction, intensité, température de couleur, ombres</strong>. Une même scène avec un éclairage différent donne des images radicalement opposées en termes d'émotion et de qualité perçue.</div>
+    <div class="pillar-example">
+      <span class="label">— Exemple</span>
+      <span class="vague">« Bonne lumière »</span><br>
+      → <strong>« Lumière naturelle dorée de fin d'après-midi, source latérale gauche par la fenêtre, ombres douces et longues, contre-jour léger, halo lumineux sur les bords du visage »</strong>
+    </div>
+  </div>
+
+  <div class="pillar-card">
+    <div class="pillar-num">— PILIER 7 / 7</div>
+    <div class="pillar-name">La <em>technique</em> et les paramètres</div>
+    <div class="pillar-desc">Les détails techniques qui ancrent le rendu. <strong>Type d'objectif, ouverture, profondeur de champ, qualité, ratio d'aspect</strong>. À utiliser surtout en photo et illustration de qualité pro. Sur Midjourney, on ajoute aussi les paramètres (--ar 16:9 --style raw, etc.).</div>
+    <div class="pillar-example">
+      <span class="label">— Exemple</span>
+      <span class="vague">« Bonne qualité »</span><br>
+      → <strong>« Tourné avec un Leica M11, objectif 50mm f/1.4, ouverture grande pour fond très flou, ISO 200, haute définition 4K »</strong>
+    </div>
+  </div>
+
+  <!-- ============== 3. PROMPT MASTER ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Le <em>prompt-master</em> à recopier.</h2>
+
+  <div class="container reading">
+    <p>Voici la structure-type qui combine les 7 piliers dans un ordre que la plupart des modèles 2026 interprètent bien. Tu peux la réutiliser pour tous tes briefs. Les éléments entre crochets sont à remplacer.</p>
+  </div>
+
+  <div class="master-prompt">
+    <span class="master-prompt-label">— Structure-type universelle</span>
+    <strong>[STYLE]</strong> de <strong>[SUJET avec caractéristiques précises]</strong>, <strong>[ACTION ou POSTURE]</strong>, dans <strong>[ENVIRONNEMENT détaillé]</strong>. <strong>[AMBIANCE émotionnelle]</strong>. <strong>[COMPOSITION : plan, angle, cadrage]</strong>. <strong>[ÉCLAIRAGE : source, direction, qualité]</strong>. <strong>[TECHNIQUE : objectif, paramètres]</strong>. <strong>[PARAMÈTRES MODÈLE : --ar 16:9, etc.]</strong>
+    <br><br>
+    <span class="master-prompt-label">— Exemple complet</span>
+    Photo éditoriale documentaire d'une femme cadre dirigeante de 45 ans, cheveux courts grisonnants, blazer marine, concentrée sur un plan d'architecte étalé devant elle, dans un bureau d'angle au 30e étage avec vue sur Manhattan en arrière-plan flou. Atmosphère intense et concentrée, sentiment de moment de décision. Plan moyen rapproché, angle légèrement en plongée, sujet sur le tiers gauche du cadre. Lumière naturelle dorée de fin d'après-midi entrant par la baie vitrée à droite, ombres douces, contre-jour subtil sur les cheveux. Tourné avec un Canon R5, 35mm f/1.8, profondeur de champ moyenne, palette chromatique ocre et bleu nuit. <strong>--ar 3:2 --style raw</strong>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">L'astuce du mentor</div>
+    <p>Pour aller plus vite : <strong>fais d'abord rédiger ton brief par une IA texte</strong> (ChatGPT, Claude, Gemini). Tu lui décris l'image que tu veux en français normal (« je veux une photo de cadre dirigeante en train de réfléchir, ambiance new-yorkaise »), et tu lui demandes de le transformer en brief structuré selon les 7 piliers. Tu gagnes 80 % du temps de rédaction du prompt, et tu obtiens un résultat d'une qualité supérieure à ce que tu aurais écrit seul. <strong>Méta-niveau : utiliser une IA pour écrire les prompts d'une autre IA</strong>. Voir <a href="meta-prompting.html">l'article sur le meta-prompting</a>.</p>
+  </div>
+
+  <!-- ============== 4. MODÈLES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Quel <em>modèle</em> choisir en 2026.</h2>
+
+  <div class="container reading">
+    <p>Les modèles d'image ont chacun leurs forces. Voici la sélection à connaître en 2026, avec leur prix et leur usage idéal. <strong>La règle de base : commence par le modèle gratuit qui marche le mieux pour ton cas, monte en puissance seulement quand tu sens la limite.</strong></p>
+  </div>
+
+  <div class="models">
+    <div class="models-label">— Modèles d'image · Avril 2026</div>
+
+    <div class="models-row">
+      <div class="models-name"><em>Midjourney v8</em></div>
+      <div class="models-desc"><strong>Le meilleur en qualité artistique</strong>. Cinématique, photoréaliste, peinture, illustration. Idéal pour : éditorial, art, branding visuel, contenus à fort impact esthétique. <strong>10 $/mois</strong> Basic. Pas de version gratuite. Web ou Discord.</div>
+    </div>
+
+    <div class="models-row">
+      <div class="models-name"><em>GPT-Image 1</em></div>
+      <div class="models-desc"><strong>Le meilleur en respect du prompt et conversationnel</strong>. Intégré dans ChatGPT (gratuit limité, illimité avec Plus à 20 $/mois). Itération facile par dialogue. Idéal pour : usage débutant, contenus avec texte intégré (posters, logos), workflows par conversation.</div>
+    </div>
+
+    <div class="models-row">
+      <div class="models-name"><em>Imagen 3</em></div>
+      <div class="models-desc"><strong>Le meilleur en édition d'images existantes</strong>. Connu sous le nom « Nano Banana » dans la communauté IA. Excellent pour transformer, fusionner, modifier des images. Accessible <strong>gratuitement</strong> via Gemini et ImageFX (Google).</div>
+    </div>
+
+    <div class="models-row">
+      <div class="models-name"><em>Adobe Firefly</em></div>
+      <div class="models-desc"><strong>Le seul modèle 100 % copyright-safe</strong>, entraîné uniquement sur du contenu sous licence. Intégré à Photoshop, Illustrator, Express. Idéal pour : <strong>usage commercial sérieux</strong> où l'enjeu juridique compte (agences, indépendants, marques). Inclus dans les abonnements Adobe.</div>
+    </div>
+
+    <div class="models-row">
+      <div class="models-name"><em>Ideogram</em></div>
+      <div class="models-desc"><strong>Le meilleur pour le texte dans les images</strong>. Affiches, logos, menus, signalétique. <strong>Gratuit jusqu'à 10 crédits/semaine</strong>. À avoir dans son arsenal pour les cas où d'autres modèles butent sur le texte (95 % d'orthographe correcte sur DALL-E vs souvent défaillant sur Midjourney).</div>
+    </div>
+
+    <div class="models-row">
+      <div class="models-name"><em>Flux 1.1 Pro</em></div>
+      <div class="models-desc">L'open-source de référence. <strong>Très bonne qualité</strong>, accessible via plusieurs plateformes en pay-as-you-go. À considérer pour les workflows pros volumineux, ou en local si tu as un GPU correct.</div>
+    </div>
+  </div>
+
+  <h3 class="reading">Le bon réflexe : tester gratuit avant de payer</h3>
+
+  <div class="container reading">
+    <p>Voici la séquence que je recommande à tout débutant qui veut investir intelligemment. <strong>Mois 1 :</strong> teste GPT-Image 1 (gratuit ChatGPT) pour les usages généraux, Imagen 3 (gratuit Gemini) pour l'édition, Ideogram (gratuit) pour le texte. Cette stack gratuite couvre 80 % des besoins de la majorité des créateurs.</p>
+
+    <p><strong>Mois 2 :</strong> identifie ton cas d'usage principal. Si tu fais beaucoup d'éditorial ou de branding visuel, ajoute Midjourney (10 $/mois). Si tu travailles dans Photoshop quotidiennement, Firefly est probablement déjà dans ton abonnement Adobe.</p>
+
+    <p><strong>Mois 3 :</strong> stabilise sur 1 ou 2 modèles que tu maîtrises bien plutôt que de jongler entre 5. La maîtrise d'un seul modèle bat la connaissance superficielle de cinq. <strong>Une grosse partie de la qualité finale vient du prompt, pas du modèle</strong> — donc l'investissement dans la méthode (cet article) est plus rentable que l'investissement dans la collection d'abonnements.</p>
+  </div>
+
+  <h3 class="reading">Quelques règles complémentaires</h3>
+
+  <div class="container reading">
+    <p><strong>Itère, ne jette pas tout.</strong> Les modèles 2026 (surtout GPT-Image 1) permettent d'affiner par conversation. Si l'image est presque bonne, demande une modification précise (« même image mais avec une lumière plus chaude et un cadrage plus serré ») au lieu de tout recommencer. Tu gagnes du temps et tu apprends ce qui fonctionne.</p>
+
+    <p><strong>Sauvegarde tes prompts qui marchent.</strong> Quand un brief produit une image que tu aimes, garde-le dans ta <a href="bibliotheque-prompts.html">bibliothèque de prompts</a>. Tu peux le réutiliser et le décliner — c'est l'équivalent d'avoir un photographe attitré qui connaît ton style.</p>
+
+    <p><strong>Attention aux droits.</strong> En 2026, le US Copyright Office a confirmé que les images générées <em>purement</em> par IA ne sont pas protégeables par le droit d'auteur. Pour un usage commercial sérieux, soit tu modifies substantiellement (Photoshop), soit tu utilises Firefly (entraîné sous licence). Pour usage personnel, peu importe. Voir <a href="7-cas-jamais-confiance.html">les 7 cas où ne jamais faire confiance à l'IA seule</a> sur les questions de propriété intellectuelle.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>L'erreur la plus fréquente que je vois chez les débutants : <strong>essayer 30 prompts à la suite, jeter chacun en pestant contre l'IA, sans jamais s'arrêter pour penser au brief</strong>. Inverse la proportion. Passe 5 minutes à rédiger un brief sérieux selon les 7 piliers, lance 1 ou 2 générations, ajuste 1 à 3 fois par dialogue. Tu obtiens en 10 minutes ce que les autres n'obtiennent jamais. La précision du brief est l'unique levier vraiment différenciant — et il est entièrement à ta portée, gratuitement, dès aujourd'hui.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Pour aller plus loin : <a href="meta-prompting.html">le meta-prompting</a> pour faire écrire tes briefs visuels par une IA texte, <a href="bibliotheque-prompts.html">la bibliothèque de prompts</a> pour capitaliser tes meilleurs briefs visuels, et le prochain article de cette rubrique — <a href="modifier-image-existante.html">Modifier une image existante : la vraie révolution 2026</a>. Tu y apprends à transformer tes propres photos avec l'IA au lieu de générer from scratch.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur le prompt image qui marche.</h3>
+    <ol class="recap-points">
+      <li>L'IA ne cherche pas une image, elle la fabrique. Chaque ambiguïté que tu laisses dans ton prompt, l'IA la résout par la moyenne statistique = du générique. Plus tu précises, plus le résultat est prévisible.</li>
+      <li>Les 7 piliers d'un brief précis : sujet (qui/quoi avec caractéristiques), environnement (lieu/contexte détaillé), style (registre esthétique), ambiance (émotion en mots précis), composition (plan/angle/cadrage), éclairage (source/direction/qualité), technique (objectif/paramètres).</li>
+      <li>Le prompt-master réutilisable combine les 7 piliers dans cet ordre. Astuce de gain de temps : fais rédiger ton brief par une IA texte (meta-prompting) avant de le passer au modèle d'image.</li>
+      <li>Modèles 2026 : Midjourney v8 (qualité artistique max, 10 $/mois), GPT-Image 1 (respect du prompt et dialogue, gratuit limité), Imagen 3 (édition d'images, gratuit Google), Adobe Firefly (copyright-safe pour pro), Ideogram (le meilleur pour le texte dans les images, gratuit).</li>
+      <li>Stratégie débutant : commence avec le stack gratuit (GPT-Image + Imagen + Ideogram) qui couvre 80 % des besoins. Investis dans Midjourney ou Firefly seulement quand tu identifies un cas d'usage qui justifie. La maîtrise du prompt bat l'accumulation d'abonnements.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="modifier-image-existante.html">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">Modifier une image existante : la vraie révolution 2026</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-3-creer-visuel.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Créer du visuel · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Préparer un voyage ou un événement personnel. – AutomationBoost</title>
+  <meta name="description" content="40 % des voyageurs planifient avec l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Préparer un voyage ou un événement personnel.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#22d3ee;">Au quotidien</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Préparer un voyage ou un événement personnel.</h1>
+    <p class="lede">40 % des voyageurs utilisent l'IA pour planifier en 2026, 60 % chez les moins de 35 ans. ChatGPT donne 80 % du travail mais hallucine sur 20 % critiques (restaurants fermés, hôtels inexistants, horaires faux). La méthode complète pour utiliser l'IA sans se faire avoir.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<div class="container reading">
+    <p class="lede">Tu demandes à ChatGPT un programme de 5 jours à Lisbonne. Il te sort un itinéraire impressionnant, tu pars confiant. Mardi soir, le restaurant a fermé depuis deux ans ; mercredi, le musée a déménagé. Tu n'as plus d'agence, et plus de plan B.</p>
+
+    <p>Préparer un voyage avec l'IA a explosé — environ 40 % des voyageurs s'en servent. Mais une commande générique mène droit au mur. Voici la méthode pour obtenir un programme réellement fiable et à jour.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi « fais-moi un programme » <em>ne suffit pas</em>.</h2>
+
+  <div class="container reading">
+    <p>Une commande générique te livre un programme qui <em>semble</em> irréprochable, mais trois pièges se déclenchent : l'IA invente sur les détails locaux (horaires, adresses, ouvertures), elle ignore tes contraintes réelles (budget, rythme, enfants), et ses données peuvent dater. Les grandes lignes sont fiables, les détails précis non.</p>
+
+    <p>Voici comment lui faire produire un programme vérifié et adapté à toi.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>La <em>méthode 4 phases</em>.</h2>
+
+  <div class="container reading">
+    <p>Voici la méthode à appliquer pour tout voyage de 3 jours ou plus. Total : 1 à 2 heures de travail réel pour un voyage d'une semaine, soit 10 fois moins que la méthode classique pour un résultat supérieur. La séquence des phases est non négociable — chaque phase prépare la suivante.</p>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 1 / 4 · LA PLUS NÉGLIGÉE</div>
+    <div class="phase-name">Cadrer ton <em>profil voyageur</em> avant de regarder la destination</div>
+    <div class="phase-purpose">L'étape qui rend ton voyage personnel plutôt que générique. Tu poses ton profil, tes contraintes, tes envies <em>avant</em> de demander quoi que ce soit sur la destination. Tu peux la stocker en <a href="custom-instructions.html" style='color: var(--accent-warm);'>Custom Instructions</a> ou dans un <a href="maitriser-projets.html" style='color: var(--accent-warm);'>Projet voyage dédié</a> pour la réutiliser sur tous tes voyages futurs.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser une fois</span>Voici mon profil voyageur que tu utiliseras pour planifier mes voyages :
+
+<strong>Composition habituelle :</strong>
+<span class="placeholder">[seul / en couple / famille avec enfants âge X / groupe d'amis... selon les voyages]</span>
+
+<strong>Style de voyage privilégié :</strong>
+— Rythme : <span class="placeholder">[posé 2-3 activités/jour / dynamique 4-5 activités / intense 6+]</span>
+— Type d'expériences préférées : <span class="placeholder">[culturel / nature / gastro / fête / repos / mix avec %]</span>
+— Hébergement préféré : <span class="placeholder">[hôtel / Airbnb / chambre d'hôtes / camping / luxe]</span>
+— Budget habituel : <span class="placeholder">[fourchette par jour et par personne]</span>
+
+<strong>Mes contraintes durables :</strong>
+— Allergies / restrictions alimentaires : <span class="placeholder">[liste]</span>
+— Limitations physiques : <span class="placeholder">[mobilité réduite / mal des transports / dos fragile / aucune]</span>
+— Phobies : <span class="placeholder">[avion / bateau / hauteur / aucune]</span>
+
+<strong>Mes goûts en bloc :</strong>
+— Choses que j'aime particulièrement : <span class="placeholder">[3-5 mots-clés très précis]</span>
+— Choses que j'évite : <span class="placeholder">[3-5 mots-clés très précis]</span>
+
+Garde ce profil en mémoire pour tous les voyages que je vais planifier. À chaque nouveau voyage, je te dirai juste la destination et les dates — tu adapteras tout le reste à ce profil.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 2 / 4 · LE GROS DU TRAVAIL</div>
+    <div class="phase-name">Faire générer un <em>squelette</em> d'itinéraire</div>
+    <div class="phase-purpose">Maintenant que ton profil est posé, tu demandes à l'IA de te construire l'ossature du voyage. La discipline ici est d'<strong>activer la recherche web</strong> et d'imposer des contraintes réalistes de transport et de fatigue.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>Construis-moi le squelette d'un voyage à <span class="placeholder">[destination]</span> du <span class="placeholder">[date début]</span> au <span class="placeholder">[date fin]</span> avec mon profil voyageur.
+
+<strong>Active la recherche web</strong> pour les informations à jour.
+
+Structure :
+
+1. <strong>Vue d'ensemble</strong> : pourquoi cette destination à cette saison (météo, affluence, événements), 3-5 points forts à ne pas rater, 2-3 pièges typiques à anticiper.
+
+2. <strong>Découpage par jour</strong> avec maximum 3 activités principales par jour (sauf si je précise un rythme intense). Pour chaque jour :
+   — Matin / après-midi / soir : 1 activité par créneau maximum
+   — Quartier où se trouve chaque activité
+   — Distance et temps de trajet entre les activités (à pied / transport en commun / voiture)
+   — Suggestions de pause repas dans le quartier
+
+3. <strong>Logistique globale</strong> : où dormir (quartier recommandé, fourchette de prix nuitée pour mon profil), comment se déplacer (location de voiture / transports / mix), 3-4 réservations à faire à l'avance vs spontanées.
+
+<strong>Règles strictes :</strong>
+— <strong>Ne propose PAS de noms d'établissements précis pour le moment.</strong> On verra ça en phase 3 avec vérification.
+— Sur les distances et temps de trajet, sois <strong>réaliste</strong> : pas de programme qui demande 2h de bus aller-retour pour 1h de visite.
+— Signale-moi si une activité phare nécessite une réservation très en avance (Sagrada Família, Alhambra, etc.).
+— Indique <strong>la météo probable</strong> aux dates pour adapter activités intérieures / extérieures.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 3 / 4 · LA PLUS CRITIQUE</div>
+    <div class="phase-name">Vérifier les <em>détails factuels</em> sur outils dédiés</div>
+    <div class="phase-purpose">L'étape qui distingue un voyage réussi d'un voyage à problèmes. Tu sors de ChatGPT/Claude/Gemini pour les détails précis. Tu utilises les outils dédiés et les sources officielles. Cette phase prend 30-45 minutes mais évite 80 % des mauvaises surprises sur place.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Liste des vérifications à faire</span>Pour chaque activité du squelette :
+
+1. <strong>Existence et horaires actuels</strong> → Google Maps + site officiel de l'établissement
+2. <strong>Avis utilisateurs récents (moins de 6 mois)</strong> → Tripadvisor / Google Reviews
+3. <strong>Réservation requise ou non</strong> → site officiel
+4. <strong>Prix actuels</strong> → site officiel (les prix dans les résultats IA sont souvent dépassés)
+
+Pour les hébergements :
+1. <strong>Booking / Airbnb</strong> avec filtres mes critères → comparer 3-5 options
+2. <strong>Lecture des avis 1-2 étoiles</strong> sur les options shortlistées (où sont les vrais défauts ?)
+3. <strong>Vérification quartier sur Google Street View</strong> en mode photo et vidéo
+
+Pour les transports :
+1. <strong>Rome2Rio + Omio</strong> (intégrés à ChatGPT) pour comparer routes
+2. <strong>Trainline / Skyscanner</strong> pour les prix réels
+3. <strong>Google Maps avec horaires aux dates précises de ton voyage</strong>
+
+Pour la documentation administrative :
+1. <strong>Site officiel diplomatie.gouv.fr</strong> (visa, vaccins, sécurité du pays)
+2. <strong>Site de ton assurance voyage</strong> pour vérifier la couverture
+3. <strong>Application TousAntiCovid ou équivalent</strong> selon le pays</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 4 / 4 · L'AJUSTEMENT FINAL</div>
+    <div class="phase-name">Repasser à l'IA avec les <em>infos vérifiées</em></div>
+    <div class="phase-purpose">Tu retournes à ton IA avec les éléments que tu as vérifiés en phase 3. L'IA t'aide à intégrer les ajustements (un musée fermé le mardi à remplacer, un hôtel mieux placé que prévu, un événement local découvert dans les avis). C'est la phase qui transforme un squelette en programme final.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>Voici les ajustements à intégrer dans le squelette de la phase 2 après vérification :
+
+<strong>Activités confirmées :</strong>
+<span class="placeholder">[liste]</span>
+
+<strong>Activités à remplacer (raison) :</strong>
+<span class="placeholder">[liste avec raison : fermé tel jour, prix trop élevé, avis négatifs récents, etc.]</span>
+
+<strong>Découvertes à intégrer :</strong>
+<span class="placeholder">[liste : événements locaux, restaurants découverts dans les avis, conseils trouvés sur forum]</span>
+
+<strong>Hébergement choisi :</strong> <span class="placeholder">[adresse / quartier]</span> — adapter les itinéraires à ce point de départ.
+
+<strong>Reconstruis-moi le programme final</strong> en intégrant ces ajustements. Format souhaité :
+1. <strong>Tableau jour par jour</strong> avec horaires précis, lieux, distances
+2. <strong>Liste des réservations à faire</strong> avant le départ avec deadline
+3. <strong>Checklist des choses à apporter</strong> spécifique à la destination et saison
+4. <strong>Plan B</strong> pour 2-3 activités principales en cas de météo / fermeture imprévue
+5. <strong>Budget estimatif récapitulatif</strong> avec marge ±15 %
+
+À la fin, génère-moi un <strong>résumé compact</strong> que je peux mettre sur mon téléphone pour avoir l'essentiel sous la main pendant le voyage.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">L'astuce du mentor</div>
+    <p>Le geste qui change tout après cette méthode : <strong>ne fige pas le programme final</strong>. Garde 30-40 % du temps de chaque journée non programmé. Les meilleurs souvenirs de voyage viennent presque toujours de ce qui n'était pas prévu — un café découvert au hasard, une ruelle qui mène à une vue inattendue, une rencontre avec un habitant qui te recommande un endroit. Si ton programme est plein à 100 %, tu n'as plus la place pour ces moments. La méthode IA te fait gagner du temps de planification précisément pour <em>libérer</em> du temps sur place, pas pour le saturer. Cette discipline est plus difficile qu'il n'y paraît parce que la tentation de tout caser est forte — mais elle distingue un voyage exécuté d'un voyage vécu.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Les <em>outils 2026</em> par usage.</h2>
+
+  <div class="container reading">
+    <p>Le paysage des outils IA voyage a explosé en 2025-2026. Voici la sélection pertinente selon ton cas d'usage. Pas tout n'est utile pour tous les voyages — choisis ceux qui correspondent à ton type de voyage habituel.</p>
+  </div>
+
+  <div class="tool">
+    <div class="tool-name"><em>ChatGPT</em> / Claude / Gemini · pour les phases 1, 2 et 4</div>
+    <div class="tool-text">Les LLM généralistes restent <strong>les meilleurs pour structurer le voyage</strong> (cadrage profil, génération du squelette, ajustements après vérification). Active la recherche web pour la phase 2. ChatGPT a l'avantage des intégrations <strong>Rome2Rio et Omio en natif</strong> depuis 2026, ce qui aide pour les routes complexes. Claude est meilleur sur les longues conversations (utile pour itérer sur 1 mois de planification). Gemini est gratuit et efficace pour les recherches d'inspiration de destination.</div>
+  </div>
+
+  <div class="tool">
+    <div class="tool-name"><em>Mindtrip</em> · pour la vérification d'itinéraires (gratuit)</div>
+    <div class="tool-text">Outil dédié voyage qui combine la conversation IA avec une <strong>base de données vérifiée à la Tripadvisor</strong> (chaque recommandation est cliquable avec photos, reviews, infos pratiques). Plus fiable que ChatGPT seul sur les détails locaux car les hallucinations sont quasi-éliminées par le sourcing. Excellent pour la phase 3. Plan gratuit complet, sans paywall majeur.</div>
+  </div>
+
+  <div class="tool">
+    <div class="tool-name"><em>Layla.ai</em> · pour les voyages tout intégrés (49 €/an premium)</div>
+    <div class="tool-text">Outil dédié voyage avec <strong>réservation intégrée</strong> (vols, hôtels, activités). Approche « agent de voyage IA tout-en-un ». Utile si tu veux tout faire dans un seul outil sans jongler entre Booking, Skyscanner, et Tripadvisor. Plan gratuit pour planification, premium 49 €/an pour fonctions avancées. Bonne option pour voyageurs occasionnels qui veulent éviter la complexité multi-outils.</div>
+  </div>
+
+  <div class="tool">
+    <div class="tool-name"><em>Wanderlog</em> · pour les voyages collaboratifs (freemium)</div>
+    <div class="tool-text">Spécialiste des <strong>voyages en groupe avec édition collaborative en temps réel</strong>. Plusieurs personnes peuvent éditer le même itinéraire simultanément (comme Google Docs). Map intégrée pour visualiser les trajets. Excellent pour voyages d'amis ou en famille où chacun veut peser sur le programme. Plan gratuit limité à 5 messages IA par voyage, premium pour usage intensif.</div>
+  </div>
+
+  <div class="tool">
+    <div class="tool-name"><em>GuideGeek</em> · pour planifier dans WhatsApp / Messenger (gratuit)</div>
+    <div class="tool-text">Approche conversationnelle dans tes apps de messagerie habituelles (WhatsApp, Instagram, Messenger). <strong>Pas besoin de télécharger une app</strong>. S'appuie sur les contenus vérifiés de Matador Network (média voyage). Pratique pour planifier rapidement sur mobile pendant un trajet. Limites : mémoire de conversation courte sur les voyages longs.</div>
+  </div>
+
+  <div class="tool">
+    <div class="tool-name"><em>Ressources non-IA indispensables</em></div>
+    <div class="tool-text">Ne néglige jamais ces sources pour la phase 3 : <strong>Google Maps</strong> (street view + horaires aux dates précises de ton voyage), <strong>Tripadvisor</strong> (avis 1-2 étoiles plus instructifs que les 5 étoiles), <strong>diplomatie.gouv.fr</strong> (sécurité, visas, vaccins), <strong>routard.com</strong> (forums avec retours d'expérience récents francophones), <strong>Reddit r/travel + r/[destination]</strong> (avis honnêtes de voyageurs récents). L'IA accélère mais ne remplace pas ces sources de vérification.</div>
+  </div>
+
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Adaptation aux <em>5 types</em> d'événements.</h2>
+
+  <div class="container reading">
+    <p>La méthode générale fonctionne sur tout. Mais 5 cas particuliers méritent un ajustement spécifique. Pour chacun, ce qui change par rapport au cas standard.</p>
+  </div>
+
+  <div class="tool">
+    <div class="tool-name">Cas 1 · <em>Voyage en solo</em></div>
+    <div class="tool-text"><strong>Ajustement principal :</strong> à la phase 1, mets l'accent sur la sécurité (quartiers à éviter le soir, transport sûr à l'aéroport). À la phase 2, demande à l'IA de prévoir <strong>2-3 occasions de socialisation par semaine</strong> (free walking tours, hostels avec espaces communs, restaurants avec tables d'hôtes). Le piège du voyage solo est l'isolement subi — pas le solo en lui-même. À la phase 3, pour les destinations moins courues, vérifie la fiabilité des transports en solo (Reddit + forums voyage femme si applicable).</div>
+  </div>
+
+  <div class="tool">
+    <div class="tool-name">Cas 2 · <em>Voyage en famille</em> avec enfants</div>
+    <div class="tool-text"><strong>Ajustement principal :</strong> à la phase 1, précise l'âge de chaque enfant (3 ans, 7 ans et 12 ans n'ont pas les mêmes besoins). À la phase 2, demande à l'IA d'<strong>alterner 1 activité « enfants » + 1 activité « adultes » par jour</strong> et de prévoir un temps de repos après le déjeuner. Pas plus de 2h de visite continue avec des enfants en bas âge. À la phase 3, vérifie obligatoirement : présence de change/poussette/restauration enfant dans les lieux visités, distance hôtel ↔ activités (les transports longs avec enfants sont une catastrophe). Voir aussi <a href="aider-enfants-devoirs.html">l'article sur l'IA et les enfants</a> pour le cadre général.</div>
+  </div>
+
+  <div class="tool">
+    <div class="tool-name">Cas 3 · <em>Événement personnel</em> (mariage, anniversaire 50 ans, retraite)</div>
+    <div class="tool-text"><strong>Ajustement principal :</strong> ce n'est plus seulement un voyage, c'est un événement à organiser. À la phase 1, ajoute le <strong>nombre d'invités, leurs profils (âges, mobilité, restrictions), et le type de moment souhaité</strong>. À la phase 2, demande à l'IA de générer <strong>3 scénarios différents</strong> (économique / standard / premium) avec leurs implications budget précises. À la phase 3, multiplie les vérifications : disponibilité du lieu, prestataires (traiteur, animation, photographe), assurance événement. Pour les mariages et grosses retraites, garde aussi un humain pro (wedding planner) — l'IA prépare, l'humain exécute le jour J.</div>
+  </div>
+
+  <div class="tool">
+    <div class="tool-name">Cas 4 · <em>Voyage business</em> ou conférence</div>
+    <div class="tool-text"><strong>Ajustement principal :</strong> contraintes radicales — tu n'as pas la flexibilité d'un voyage loisir. À la phase 1, précise les contraintes professionnelles (horaires des réunions, code vestimentaire, budget de l'entreprise). À la phase 2, demande à l'IA d'<strong>optimiser la logistique pour minimiser les transports</strong> (hôtel à pied du lieu de la conférence si possible, repas de travail à proximité). Garde 1-2 plages libres par jour pour les imprévus pros (réunions ajoutées, dîners non prévus). À la phase 3, vérifie que ton hôtel a vraiment ce qu'il faut côté pro (Wi-Fi performant, espace de travail, bouilloire pour le café à 6h).</div>
+  </div>
+
+  <div class="tool">
+    <div class="tool-name">Cas 5 · <em>Voyage longue durée</em> (3 semaines+)</div>
+    <div class="tool-text"><strong>Ajustement principal :</strong> la méthode change profondément. Les voyages longs ne se planifient pas comme une succession de courts. À la phase 1, distingue <strong>les portions « cadrées » (les 3-4 premiers jours pour atterrir sereinement, et les 2-3 derniers pour le retour) des portions « ouvertes »</strong> au milieu (où tu décides en avançant). À la phase 2, ne demande pas un programme jour par jour de 21 jours — demande un <strong>squelette de 3 zones / périodes</strong> (« semaine 1 : Lisbonne et environs, semaine 2 : Algarve, semaine 3 : Açores ») avec des principes plutôt que des activités fixes. À la phase 3, ne vérifie en avance que les transports interzones — tout le reste se décide sur place. La sur-planification d'un voyage long le ruine.</div>
+  </div>
+
+  <h3 class="reading">Les 5 pièges à éviter absolument</h3>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>faire confiance aux noms précis</em> donnés par l'IA</div>
+    <div class="pitfall-text">Le piège n°1 documenté. L'IA invente des noms de restaurants, hôtels, et boutiques qui sonnent plausibles mais qui n'existent pas, ou qui ont fermé depuis. La phase 3 de la méthode existe précisément pour éliminer ce risque. <strong>Règle absolue :</strong> tout nom propre d'établissement donné par l'IA doit être vérifié sur Google Maps ou le site officiel avant de figurer dans ton programme final. Sans cette vérification, tu te retrouves devant une porte close ou une adresse qui n'existe pas. Voir <a href="hallucinations-ia.html">l'article sur les hallucinations</a>.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : <em>sur-planifier</em> chaque heure de chaque journée</div>
+    <div class="pitfall-text">L'erreur classique du voyageur méthodique. L'IA t'a donné un programme dense, tu te dis « tant qu'à faire ». Tu pars avec un planning au quart d'heure. Sur place : (1) la fatigue te rattrape dès le 3e jour, (2) le moindre retard casse toute la séquence, (3) tu n'as plus de place pour les découvertes spontanées. <strong>Garde 30-40 % de chaque journée non programmé.</strong> C'est ce qui distingue un voyage fluide d'un voyage exécuté en sprint.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>négliger les avis négatifs</em> dans la vérification</div>
+    <div class="pitfall-text">À la phase 3, beaucoup d'utilisateurs lisent les avis 5 étoiles et décident. Or les <strong>avis 1-2 étoiles sont généralement plus instructifs</strong> — ils révèlent les vrais défauts (« hôtel bien, mais bruit de la rue insupportable la nuit » ; « restaurant correct mais service très lent — éviter en groupe »). Discipline : pour chaque hébergement et activité phare shortlistés, lis 5-10 avis 1-2 étoiles pour repérer les angles morts. Si les défauts récurrents te concernent (sommeil sensible, groupe pressé), élimine.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>oublier les démarches administratives</em></div>
+    <div class="pitfall-text">L'IA ne te rappellera pas spontanément que ton passeport doit être valide 6 mois après ton retour, qu'il te faut un visa pour ce pays, ou qu'un certain vaccin est recommandé. <strong>Pour tout voyage hors UE, vérification obligatoire sur diplomatie.gouv.fr en début de planification</strong> (pas la veille du départ). Pour tout voyage long ou hors zones touristiques classiques, ajoute la consultation médicale voyageur 4-6 semaines avant le départ. Ces démarches ne sont pas le rôle de l'IA — c'est ton rôle de les déclencher.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : <em>tout réserver à l'avance</em> ou <em>rien réserver à l'avance</em></div>
+    <div class="pitfall-text">Deux erreurs symétriques. Tout réserver = aucune flexibilité, frais d'annulation si imprévu, voyage cassé au moindre changement. Rien réserver = au mieux des prix qui explosent, au pire pas de place sur les sites majeurs (Sagrada Família, Alhambra, Pompéi sont à réserver des semaines à l'avance). <strong>Règle :</strong> à la phase 2, demande explicitement à l'IA quelles sont les 3-5 réservations strictement obligatoires en avance vs ce qui peut se décider sur place. Le bon équilibre est typiquement 30-40 % réservé en avance, 60-70 % décidé en mode flexible.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>L'IA pour préparer un voyage est l'un des cas d'usage où elle <strong>remplace efficacement plusieurs heures de travail manuel</strong> sans qu'on perde grand-chose dans la traduction. Mais elle reste un outil de planification, pas un agent de voyage. La frontière entre les deux passe par la phase 3 — celle de la vérification des détails locaux. Sans cette phase, l'IA te livre un programme à 80 % bon avec 20 % de désastres potentiels. Avec cette phase, l'IA te livre un programme à 95 % bon. <strong>Le choix entre 80 et 95 % se joue sur 30-45 minutes de vérifications.</strong> C'est probablement le meilleur retour sur investissement de tout l'usage IA pour le voyage. Et c'est précisément ce que la majorité des contenus francophones n'enseigne pas — ils décrivent comment générer un programme, pas comment le rendre exécutable.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Pour aller plus loin : <a href="hallucinations-ia.html">les hallucinations IA</a> (cœur du problème en phase 2), <a href="double-check-ia-web.html">la méthode du double-check IA + web</a> (essentielle en phase 3), <a href="comparer-deux-produits.html">comparer 2 produits</a> (utile pour le choix d'hôtel), <a href="custom-instructions.html">les Custom Instructions</a> et <a href="maitriser-projets.html">les Projets ChatGPT/Claude</a> pour stocker ton profil voyageur réutilisable, <a href="comprendre-courrier-administratif-juridique.html">comprendre un courrier administratif</a> (utile pour décoder les conditions de visa ou d'assurance voyage).</p>
+  </div>
+
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur préparer un voyage avec l'IA.</h3>
+    <ol class="recap-points">
+      <li>40 % des voyageurs utilisent l'IA pour planifier en 2026 (Statista), 60 % chez les moins de 35 ans. Gain de temps documenté ~50 %. Mais l'IA hallucine sur les détails locaux précis (restaurants fermés, hôtels inexistants, horaires faux) — d'où la nécessité d'une méthode qui sépare ce qu'elle fait bien (structurer) de ce qu'elle fait mal (vérifier).</li>
+      <li>Méthode 4 phases : (1) cadrer ton profil voyageur en Custom Instructions / Projet pour réutilisation à vie, (2) générer le squelette d'itinéraire avec recherche web et contraintes réalistes de transport, (3) vérifier chaque détail factuel sur outils dédiés (Google Maps, Tripadvisor, sites officiels, diplomatie.gouv.fr), (4) repasser à l'IA pour intégrer les ajustements et générer le programme final + checklist + plan B.</li>
+      <li>Outils 2026 par usage : ChatGPT/Claude/Gemini pour structuration (phases 1, 2, 4) · Mindtrip pour vérification d'itinéraires gratuit · Layla pour voyages tout-intégrés avec réservation · Wanderlog pour voyages collaboratifs en groupe · GuideGeek pour planifier dans WhatsApp · Ressources non-IA indispensables : Google Maps, Tripadvisor avis 1-2 étoiles, diplomatie.gouv.fr, Reddit r/travel.</li>
+      <li>5 cas avec ajustements spécifiques : voyage solo (sécurité + occasions de socialisation), famille (alterner activités enfants/adultes + repos après déjeuner + vérifs poussette), événement personnel (3 scénarios + humain pro pour le jour J), voyage business (optimisation logistique + plages libres pour imprévus), voyage longue durée 3 semaines+ (zones cadrées et zones ouvertes plutôt que jour par jour).</li>
+      <li>5 pièges à éviter : confiance aux noms précis donnés par l'IA (vérifier sur Google Maps), sur-planifier chaque heure (garder 30-40 % de marge libre), négliger les avis négatifs en phase 3 (les 1-2 étoiles sont plus instructifs), oublier les démarches admin (diplomatie.gouv.fr en début de planification), tout réserver ou rien réserver (équilibre typique 30-40 % réservé / 60-70 % flexible).</li>
+    </ol>
+  </div>
+
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="comparer-deux-produits.html">
+        <div class="next-link-label">— Article complémentaire</div>
+        <div class="next-link-title">Comparer deux produits avant un achat important</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-3-vie-quotidienne.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Vie quotidienne · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

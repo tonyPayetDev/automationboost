@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le Reasoning mode : quand l'activer, quand l'éviter. – AutomationBoost</title>
+  <meta name="description" content="Mode raisonnement (Extended Thinking, Deep Think...) : quand ça vaut le coup d" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Le Reasoning mode : quand l'activer, quand l'éviter.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#818cf8;">Comprendre l'IA</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Le Reasoning mode : quand l'activer, quand l'éviter.</h1>
+    <p class="lede">Extended Thinking sur Claude. Thinking sur GPT-5.5. Deep Think sur Gemini. Quand vaut-il le coup d'attendre 30 secondes à 2 minutes pour une réponse plus poussée ?</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Le mode raisonnement est l'un des outils les plus mal utilisés de 2026 : soit on l'active partout, soit on l'ignore. Les deux sont une erreur. Les trois grandes IA proposent désormais un mode où le modèle réfléchit plus longuement avant de répondre.</p>
+
+    <p>Voici quand il apporte vraiment quelque chose, et quand il ne fait que te ralentir.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Ce qu'est vraiment <em>le mode raisonnement</em>.</h2>
+
+  <div class="container reading">
+    <p>En l'activant, l'IA n'est pas « plus intelligente » : elle prend simplement plus de temps de calcul, en générant une longue chaîne de raisonnement interne avant de répondre. Utile pour les problèmes complexes à étapes ; inutile, voire contre-productif, pour les tâches simples ou créatives.</p>
+
+    <p>Voici comment savoir quand l'activer.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 6</span>Les <em>3 modes</em> en avril 2026.</h2>
+
+  <div class="mode-card">
+    <div class="mode-card-tag">— PLATEFORME 1</div>
+    <div class="mode-card-name">Claude — <em>Extended Thinking</em></div>
+    <div class="mode-card-publisher">Anthropic · Disponible sur Claude Opus 4.7 et Sonnet 4.6</div>
+    <div class="mode-stats">
+      <div class="mode-stat">
+        <div class="mode-stat-label">Tokens de réflexion</div>
+        <div class="mode-stat-value">jusqu'à 50 K</div>
+      </div>
+      <div class="mode-stat">
+        <div class="mode-stat-label">Latence typique</div>
+        <div class="mode-stat-value">30 s à 2 min</div>
+      </div>
+      <div class="mode-stat">
+        <div class="mode-stat-label">Plan requis</div>
+        <div class="mode-stat-value">Pro / Max</div>
+      </div>
+    </div>
+    <div class="mode-desc"><strong>Activation : toggle « Extended Thinking » dans la zone de prompt.</strong> Tu vois apparaître une bulle de réflexion résumée pendant que Claude pense. La chaîne complète de raisonnement est visible si tu la déplies — utile pour vérifier la logique du modèle. Particulièrement performant sur le code complexe et les analyses multi-étapes.</div>
+  </div>
+
+  <div class="mode-card">
+    <div class="mode-card-tag">— PLATEFORME 2</div>
+    <div class="mode-card-name">ChatGPT — <em>Thinking</em></div>
+    <div class="mode-card-publisher">OpenAI · 3 variantes : Auto, Thinking (Light/Heavy), Pro</div>
+    <div class="mode-stats">
+      <div class="mode-stat">
+        <div class="mode-stat-label">Tokens de réflexion</div>
+        <div class="mode-stat-value">Variable</div>
+      </div>
+      <div class="mode-stat">
+        <div class="mode-stat-label">Latence typique</div>
+        <div class="mode-stat-value">10 s à 30 min</div>
+      </div>
+      <div class="mode-stat">
+        <div class="mode-stat-label">Plan requis</div>
+        <div class="mode-stat-value">Plus / Pro</div>
+      </div>
+    </div>
+    <div class="mode-desc"><strong>Activation : sélecteur de modèle en haut de la conversation.</strong> Trois niveaux : « Thinking » sur Plus pour le reasoning standard, « Pro » sur ChatGPT Pro ($200/mois) pour les tâches qui peuvent prendre 20-30 minutes. Le mode « Auto » laisse ChatGPT décider lui-même quand activer le reasoning. Le plus connu pour les analyses longues type rapport de recherche.</div>
+  </div>
+
+  <div class="mode-card">
+    <div class="mode-card-tag">— PLATEFORME 3</div>
+    <div class="mode-card-name">Gemini — <em>Deep Think</em></div>
+    <div class="mode-card-publisher">Google DeepMind · Disponible sur Gemini 3.1 Pro</div>
+    <div class="mode-stats">
+      <div class="mode-stat">
+        <div class="mode-stat-label">Tokens de réflexion</div>
+        <div class="mode-stat-value">Très étendu</div>
+      </div>
+      <div class="mode-stat">
+        <div class="mode-stat-label">Latence typique</div>
+        <div class="mode-stat-value">1 à 5 min</div>
+      </div>
+      <div class="mode-stat">
+        <div class="mode-stat-label">Plan requis</div>
+        <div class="mode-stat-value">AI Ultra</div>
+      </div>
+    </div>
+    <div class="mode-desc"><strong>Activation : toggle « Deep Think » dans la zone de prompt.</strong> Réservé au plan AI Ultra (le plus cher des trois plans Gemini). Le mode le plus poussé sur les benchmarks scientifiques (médaille d'or aux Olympiades internationales de Mathématiques 2025). Pertinent pour les sujets de recherche scientifique, mathématique, et raisonnement abstrait — moins utile sur les tâches business du quotidien.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Le piège des prompts « step by step »</div>
+    <p>Une étude de Wharton (2025) a montré que sur les modèles 2026 qui raisonnent déjà nativement, ajouter <em>« réfléchis étape par étape »</em> dans ton prompt n'apporte plus rien — et peut même dégrader la qualité en faisant dupliquer le raisonnement dans la réponse visible. Le <a href="chain-of-thought.html">Chain of Thought manuel</a> reste utile sur les modèles non-reasoning, mais sur Claude Opus 4.7, GPT-5.5 ou Gemini 3.1 Pro en mode standard, c'est devenu superflu.</p>
+  </div>
+
+  <!-- ============== 3. QUAND ACTIVER ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 6</span>Les <em>5 cas</em> où l'activer change tout.</h2>
+
+  <div class="usecase-positive">
+    <div class="usecase-num">— CAS 1 / 5</div>
+    <div class="usecase-title">Code complexe ou debugging profond</div>
+    <div class="usecase-text"><strong>Pourquoi :</strong> les bugs subtils (race conditions, fuites mémoire, comportements intermittents) demandent au modèle de tenir en tête plusieurs hypothèses simultanées et de les éliminer logiquement. Le Reasoning mode excelle sur ce type de problème. <strong>Gain typique :</strong> Claude Opus 4.7 avec Extended Thinking résout des bugs que la version instant rate, avec des taux de succès 10-15 % supérieurs en pratique.</div>
+  </div>
+
+  <div class="usecase-positive">
+    <div class="usecase-num">— CAS 2 / 5</div>
+    <div class="usecase-title">Analyse stratégique multi-paramètres</div>
+    <div class="usecase-text"><strong>Pourquoi :</strong> évaluer 4 options de marché en croisant 6 critères différents demande au modèle de structurer un raisonnement profond avant de produire une recommandation. En mode standard, l'IA simplifie excessivement. <strong>Cas typiques :</strong> choix de positionnement, décision d'investissement, arbitrage entre plusieurs stratégies, benchmarking concurrentiel structuré.</div>
+  </div>
+
+  <div class="usecase-positive">
+    <div class="usecase-num">— CAS 3 / 5</div>
+    <div class="usecase-title">Problèmes mathématiques ou scientifiques</div>
+    <div class="usecase-text"><strong>Pourquoi :</strong> les démonstrations, les calculs en plusieurs étapes, les modélisations bénéficient directement du temps de calcul supplémentaire. C'est le terrain de jeu historique du Reasoning mode. <strong>Spécificité :</strong> Gemini Deep Think est le plus performant sur ce créneau (médaille d'or IMO 2025), Claude Extended Thinking est très solide aussi, GPT-5.5 Thinking légèrement en retrait sur les maths abstraites.</div>
+  </div>
+
+  <div class="usecase-positive">
+    <div class="usecase-num">— CAS 4 / 5</div>
+    <div class="usecase-title">Décision à fort enjeu sans droit à l'erreur</div>
+    <div class="usecase-text"><strong>Pourquoi :</strong> quand tu veux la meilleure réponse possible et que tu peux te permettre d'attendre, le Reasoning mode te donne typiquement 10-20 % de qualité supplémentaire. Sur une décision d'embauche, un audit, un argumentaire juridique, ces 10-20 % font la différence. <strong>Critère pratique :</strong> si tu vas relire et utiliser cette réponse pendant des semaines, l'investissement de 2 minutes en latence est rentable.</div>
+  </div>
+
+  <div class="usecase-positive">
+    <div class="usecase-num">— CAS 5 / 5</div>
+    <div class="usecase-title">Analyse de gros volume avec contraintes croisées</div>
+    <div class="usecase-text"><strong>Pourquoi :</strong> tâches du type <em>« j'ai 50 candidats à classer selon 8 critères pondérés »</em> ou <em>« compare ces 12 propositions sur 6 dimensions »</em>. La complexité combinatoire explose, le modèle a besoin de méthodologie. En mode standard, il survole. En Reasoning, il décompose proprement et applique systématiquement les critères.</div>
+  </div>
+
+  <!-- ============== 4. QUAND ÉVITER ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 6</span>Les <em>10 cas</em> où c'est inutile.</h2>
+
+  <div class="container reading">
+    <p>Voici les 10 cas où activer le Reasoning mode est une perte de temps pure. Sur ces tâches, la réponse standard est aussi bonne et arrive 10-20 fois plus vite.</p>
+  </div>
+
+  <div class="negative-list">
+    <div class="negative-item">
+      <div class="negative-num">01</div>
+      <div class="negative-text"><strong>Rédaction d'un email courant.</strong> Pas de logique complexe, le modèle standard suffit largement.</div>
+    </div>
+    <div class="negative-item">
+      <div class="negative-num">02</div>
+      <div class="negative-text"><strong>Résumé d'un texte court</strong> (sous 10 pages). Tâche d'extraction, pas de raisonnement.</div>
+    </div>
+    <div class="negative-item">
+      <div class="negative-num">03</div>
+      <div class="negative-text"><strong>Reformulation, traduction, correction</strong> orthographique. Tâches transformatives sans inférence à produire.</div>
+    </div>
+    <div class="negative-item">
+      <div class="negative-num">04</div>
+      <div class="negative-text"><strong>Brainstorming créatif libre.</strong> Le Reasoning mode tend à converger vers des idées attendues — la créativité demande de la divergence, pas de la profondeur logique.</div>
+    </div>
+    <div class="negative-item">
+      <div class="negative-num">05</div>
+      <div class="negative-text"><strong>Génération de variations</strong> (3 versions d'un slogan, 5 angles d'un titre). Le modèle standard explore mieux les variations en moins de temps.</div>
+    </div>
+    <div class="negative-item">
+      <div class="negative-num">06</div>
+      <div class="negative-text"><strong>Conversation casual ou itération rapide.</strong> Quand tu cherches le ping-pong rapide pour affiner une idée, la latence du Reasoning mode casse le flux.</div>
+    </div>
+    <div class="negative-item">
+      <div class="negative-num">07</div>
+      <div class="negative-text"><strong>Question de connaissance simple</strong> (« quelle est la capitale de... », « combien coûte... »). Pas besoin de raisonner sur des faits.</div>
+    </div>
+    <div class="negative-item">
+      <div class="negative-num">08</div>
+      <div class="negative-text"><strong>Code simple ou auto-complete.</strong> Pour écrire une fonction standard ou compléter une syntaxe, la version instant est plus fluide.</div>
+    </div>
+    <div class="negative-item">
+      <div class="negative-num">09</div>
+      <div class="negative-text"><strong>Tâches répétitives en série.</strong> Si tu fais 50 fois la même tâche, le coût cumulé en latence devient absurde — utilise le mode standard.</div>
+    </div>
+    <div class="negative-item">
+      <div class="negative-num">10</div>
+      <div class="negative-text"><strong>Toute tâche où tu peux re-prompter facilement.</strong> Si ça ne convient pas en 5 secondes, tu peux corriger en 5 secondes. Inutile d'attendre 2 minutes pour la perfection du premier coup.</div>
+    </div>
+  </div>
+
+  <!-- ============== 5. GRILLE DÉCISION ============== -->
+  <h2 class="reading"><span class="h2-num">— 5 / 6</span>La <em>grille de décision</em> rapide.</h2>
+
+  <div class="container reading">
+    <p>Voici la grille pratique à mémoriser. Pour chaque type de tâche fréquente, le bon choix.</p>
+  </div>
+
+  <div class="decision-grid">
+    <div class="decision-row header">
+      <div>Type de tâche</div>
+      <div>Mode recommandé</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-task">Email, message, communication courante</div>
+      <div class="decision-mode normal">Standard</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-task">Résumé de document court</div>
+      <div class="decision-mode normal">Standard</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-task">Code simple, syntaxe, auto-complétion</div>
+      <div class="decision-mode normal">Standard</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-task">Brainstorming, génération de variantes</div>
+      <div class="decision-mode normal">Standard</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-task">Conversation rapide, itération</div>
+      <div class="decision-mode normal">Standard</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-task">Bug complexe, debugging profond</div>
+      <div class="decision-mode thinking">Reasoning</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-task">Analyse stratégique multi-critères</div>
+      <div class="decision-mode thinking">Reasoning</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-task">Démonstration mathématique, raisonnement scientifique</div>
+      <div class="decision-mode thinking">Reasoning</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-task">Décision à fort enjeu, audit</div>
+      <div class="decision-mode thinking">Reasoning</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-task">Classement de gros volumes avec critères croisés</div>
+      <div class="decision-mode thinking">Reasoning</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Lecture rapide de la grille</div>
+    <p>Les 5 cas Reasoning ont un point commun : <strong>le modèle doit produire une chaîne d'inférences rigoureuses</strong> sur plusieurs étapes interdépendantes. Les cas Standard ont un point commun aussi : <strong>la sortie est principalement du texte transformatif</strong> (réécriture, résumé, génération) ou une réponse factuelle directe. Si tu hésites, demande-toi : <em>« combien d'étapes de raisonnement séparées le modèle doit-il enchaîner pour bien répondre ? »</em>. Au-delà de 4-5 étapes, active le Reasoning.</p>
+  </div>
+
+  <!-- ============== 6. COMBINAISONS ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 6 / 6</span>Les bonnes <em>combinaisons</em> avec d'autres techniques.</h2>
+
+  <h3 class="reading">Reasoning + balises XML = duo gagnant</h3>
+
+  <div class="container reading">
+    <p>Sur un prompt long avec contexte, instructions et document, l'usage des <a href="balises-xml.html">balises XML</a> améliore significativement la qualité du Reasoning mode. La structure permet au modèle de raisonner section par section avec plus de rigueur. Combo recommandé pour les analyses complexes : balises XML + Reasoning mode + un prompt clair en <a href="framework-risen.html">RISEN</a>.</p>
+  </div>
+
+  <h3 class="reading">Reasoning + Perspective Shifting = analyses solides</h3>
+
+  <div class="container reading">
+    <p>Pour les décisions à enjeu, combine le Reasoning mode avec la <a href="perspective-shifting.html">technique de changement d'angle</a>. Tu poses ta question en Reasoning, tu obtiens une analyse pondérée. Tu pivotes ensuite avec « maintenant en sceptique exigeant », toujours en Reasoning. Tu termines par une synthèse des perspectives. Cette procédure produit la qualité d'analyse la plus haute disponible en 2026 — au prix de 5-10 minutes de temps total.</p>
+  </div>
+
+  <h3 class="reading">Ne combine pas Reasoning avec « step by step »</h3>
+
+  <div class="container reading">
+    <p>Comme rappelé plus haut, le <a href="chain-of-thought.html">Chain of Thought manuel</a> (« réfléchis étape par étape ») a perdu son utilité sur les modèles 2026 qui raisonnent déjà nativement, et il devient parasitaire en mode Reasoning où le modèle réfléchit déjà au maximum de sa capacité. Si tu utilises le Reasoning mode, supprime les formules « step by step » de ton prompt — elles n'ajoutent rien et peuvent dégrader la sortie.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>Sur ton prochain prompt, prends 2 secondes pour te poser la question : <strong>« ce que je demande à l'IA implique-t-il un vrai raisonnement enchaîné, ou une simple production / transformation de texte ? »</strong>. Si tu as un doute, fais le test : lance le prompt en mode standard, et si la réponse te paraît superficielle, relance la même question en Reasoning mode pour comparer. Tu calibres ton intuition en 4-5 essais. À terme, tu sauras instinctivement quand activer.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ce que tu vas voir dans le prochain article</div>
+    <p>Tu sais maintenant choisir ton modèle, le configurer, lui donner les bons fichiers, et activer le Reasoning quand c'est utile. Le prochain article couvre une autre brique majeure de la configuration : <strong>les Projets — workspaces dédiés sans coder</strong>. Comment configurer un espace par client, par activité, par type de tâche, pour ne plus jamais avoir à redonner ton contexte.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur le Reasoning mode.</h3>
+    <ol class="recap-points">
+      <li>Le Reasoning mode n'est pas « plus intelligent » — il alloue plus de temps de calcul. Tu sacrifies de la latence contre de la qualité.</li>
+      <li>Trois implémentations en avril 2026 : Extended Thinking sur Claude (Pro/Max), Thinking sur ChatGPT (Plus/Pro), Deep Think sur Gemini (AI Ultra uniquement).</li>
+      <li>Active sur 5 cas seulement : code complexe, analyse multi-critères, démonstration scientifique, décision à fort enjeu, gros volume avec contraintes croisées.</li>
+      <li>Évite sur les 10 cas du quotidien : email, résumé court, reformulation, brainstorming, conversation rapide, code simple, question factuelle, série répétitive.</li>
+      <li>Sur les modèles 2026, ajouter « step by step » dans ton prompt n'apporte plus rien — et est franchement parasitaire en Reasoning mode où le modèle pense déjà à fond.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="maitriser-projets.html">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">Maîtriser les Projets : workspaces dédiés sans coder</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-2-bien-configurer.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Bien configurer ton IA · Niveau II</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

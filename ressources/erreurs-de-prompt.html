@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Les 7 erreurs de prompt qui plombent tes résultats. – AutomationBoost</title>
+  <meta name="description" content="erreurs de prompt, mauvais prompt, erreurs prompt engineering, prompt vague, améliorer ses prompts, prompt ia 2026" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Les 7 erreurs de prompt qui plombent tes résultats.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#34d399;">Mieux prompter</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Les 7 erreurs de prompt qui plombent tes résultats.</h1>
+    <p class="lede">Avant d'apprendre des techniques avancées, élimine les fautes de base. La plupart des réponses décevantes ne viennent pas de l'IA, mais de sept erreurs de formulation très répandues. Les voici, avec le correctif pour chacune.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Quand une réponse de l'IA déçoit, le réflexe est de blâmer l'outil. Neuf fois sur dix, c'est le prompt. Bonne nouvelle : les fautes sont presque toujours les mêmes — sept, en réalité.</p>
+
+    <p>Voici ces 7 erreurs de prompt, et comment les corriger.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 7</span>Le prompt <em>trop vague</em>.</h2>
+
+  <div class="container reading">
+    <p><strong>Le symptôme :</strong> tu reçois une réponse générique, plate, qui pourrait s'appliquer à n'importe qui.</p>
+
+    <p>« Écris-moi un texte sur le sport » donnera une dissertation scolaire sans intérêt. L'IA ne peut pas deviner ce que tu as en tête — face au flou, elle produit la moyenne de tout ce qu'elle a vu, c'est-à-dire du banal.</p>
+
+    <p><strong>Le correctif :</strong> sois précis sur le quoi, le pour qui, le pourquoi. « Écris un post LinkedIn de 150 mots sur les bienfaits du sport en entreprise, ton motivant, destiné à des dirigeants de PME. » C'est la règle d'or : <a href="regle-or-entree-vague.html">entrée vague = sortie vague</a>.</p>
+  </div>
+
+  <!-- ============== 2 ============== -->
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 7</span>L'absence de <em>contexte</em>.</h2>
+
+  <div class="container reading">
+    <p><strong>Le symptôme :</strong> la réponse est correcte mais à côté de ta situation réelle.</p>
+
+    <p>Tu demandes un conseil sans dire qui tu es, où tu en es, ni quelles sont tes contraintes. L'IA répond pour un cas moyen, pas pour le tien.</p>
+
+    <p><strong>Le correctif :</strong> donne le contexte utile. C'est la compétence la plus rentable du prompt, détaillée dans <a href="donner-du-contexte.html">comment donner du contexte</a>. Souvent, une seule phrase de contexte transforme la réponse.</p>
+  </div>
+
+  <!-- ============== 3 ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 7</span>Les <em>questions multiples</em> en un seul prompt.</h2>
+
+  <div class="container reading">
+    <p><strong>Le symptôme :</strong> l'IA répond bien à une partie de ta demande et bâcle ou oublie le reste.</p>
+
+    <p>« Explique-moi X, donne 3 exemples, compare avec Y, et résume en un tableau » — tu empiles trop de tâches d'un coup. L'attention se dilue, certaines consignes passent à la trappe.</p>
+
+    <p><strong>Le correctif :</strong> une demande à la fois, ou découpe explicitement. Tu peux aussi enchaîner : pose la première question, puis « maintenant, compare avec Y ». L'IA garde le fil et traite chaque point à fond.</p>
+  </div>
+
+  <!-- ============== 4 ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 7</span>Ne pas préciser le <em>format</em> attendu.</h2>
+
+  <div class="container reading">
+    <p><strong>Le symptôme :</strong> tu voulais une liste courte, tu reçois trois paragraphes. Ou l'inverse.</p>
+
+    <p>Sans indication de forme, l'IA choisit pour toi — et rarement comme tu l'imaginais.</p>
+
+    <p><strong>Le correctif :</strong> dis la forme voulue. « En 5 puces », « en un tableau à 3 colonnes », « en un paragraphe de 50 mots », « sous forme d'email ». Le format fait partie du prompt autant que le fond.</p>
+  </div>
+
+  <!-- ============== 5 ============== -->
+  <h2 class="reading"><span class="h2-num">— 5 / 7</span>Ne donner <em>aucun exemple</em> quand le format compte.</h2>
+
+  <div class="container reading">
+    <p><strong>Le symptôme :</strong> tu as beau décrire ce que tu veux, le résultat ne ressemble jamais tout à fait à l'attendu.</p>
+
+    <p>Certaines choses se montrent mieux qu'elles ne se décrivent — un ton, une structure précise, un style.</p>
+
+    <p><strong>Le correctif :</strong> donne 2-3 exemples du résultat voulu avant ta demande. C'est souvent plus efficace que dix lignes d'explications — la technique du <a href="few-shot-prompting.html">Few-Shot Prompting</a>.</p>
+  </div>
+
+  <!-- ============== 6 ============== -->
+  <h2 class="reading"><span class="h2-num">— 6 / 7</span>Accepter la <em>première réponse</em>.</h2>
+
+  <div class="container reading">
+    <p><strong>Le symptôme :</strong> tu prends la première sortie telle quelle, alors qu'elle n'est qu'à 70 % de ce qu'elle pourrait être.</p>
+
+    <p>La première réponse est un point de départ, rarement le meilleur résultat possible. Ne pas itérer, c'est laisser de la qualité sur la table.</p>
+
+    <p><strong>Le correctif :</strong> rebondis. « Plus court », « plus concret », « change le ton », « tu as oublié X ». Le dialogue est là où l'IA devient vraiment bonne — c'est <a href="art-iterer.html">l'art d'itérer</a>.</p>
+  </div>
+
+  <!-- ============== 7 ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 7 / 7</span>Faire <em>confiance aveuglément</em> aux faits.</h2>
+
+  <div class="container reading">
+    <p><strong>Le symptôme :</strong> tu reprends un chiffre, une date ou une citation donnés par l'IA… qui se révèlent faux.</p>
+
+    <p>Ce n'est pas une erreur de prompt à proprement parler, mais elle ruine le résultat tout autant. L'IA peut inventer en restant fluide (l'hallucination).</p>
+
+    <p><strong>Le correctif :</strong> sur tout fait vérifiable (chiffres, sources, dates, citations), vérifie. Tu peux aussi ajouter au prompt « si tu n'es pas sûr, dis-le » — le principe du <a href="prompt-anti-hallucination.html">prompt anti-hallucination</a>.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>7 erreurs, 7 réflexes.</h3>
+    <ol class="recap-points">
+      <li>Trop vague → sois précis sur le quoi, pour qui, pourquoi.</li>
+      <li>Pas de contexte → donne ta situation et tes contraintes en une phrase.</li>
+      <li>Trop de questions d'un coup → une demande à la fois, ou enchaîne.</li>
+      <li>Pas de format → dis la forme (puces, tableau, longueur, type).</li>
+      <li>Pas d'exemple → montre 2-3 exemples du résultat voulu.</li>
+      <li>Tu acceptes la 1re réponse → itère, rebondis, affine.</li>
+      <li>Confiance aveugle → vérifie tout fait précis, ajoute « dis-le si tu n'es pas sûr ».</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+
+
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="regle-or-entree-vague.html">
+        <div class="next-link-label">— Article connexe</div>
+        <div class="next-link-title">La règle d'or : entrée vague = sortie vague</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-2-bases-prompt.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Les bases du prompt · Niveau II</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

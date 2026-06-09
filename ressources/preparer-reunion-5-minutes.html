@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Préparer une réunion en 5 minutes. – AutomationBoost</title>
+  <meta name="description" content="Les Français perdent 9 h par semaine en réunions inutiles. La méthode pour préparer une réunion utile en 5 minutes avec l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Préparer une réunion en 5 minutes.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#f97316;">Gagner du temps au travail</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Préparer une réunion en 5 minutes.</h1>
+    <p class="lede">Les Français perdent 9,1 h/semaine en réunions inutiles. La méthode pour préparer en 5 minutes une réunion qui sert vraiment à quelque chose : agenda, briefing IA, posture, prises de parole.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">La plupart des réunions sont mauvaises pour une seule raison : personne n'y arrive préparé. Pas par mauvaise volonté — parce que tout le monde court. L'IA résout exactement ça.</p>
+
+    <p>La France est en tête du temps perdu en réunions inutiles, autour de 9 heures par semaine et par personne. Voici comment, en 5 minutes de préparation IA avant chaque réunion, tu en changes radicalement l'utilité.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi la préparation <em>change tout</em>.</h2>
+
+  <div class="container reading">
+    <p>Une réunion mal préparée a trois maux : on perd les 10 premières minutes à recontextualiser (un tiers d'une réunion de 30 min), on n'aborde pas les bonnes questions faute d'agenda travaillé, et on ressort sans décisions claires — d'où des réunions de rattrapage.</p>
+
+    <p>Cinq minutes de préparation IA suffisent à éliminer les trois. Voici la méthode.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>La méthode en <em>3 phases</em>.</h2>
+
+  <div class="container reading">
+    <p>Voici le protocole en 3 phases. Total : <strong>5 minutes avant + 0 pendant (pas d'IA en réunion) + 3 minutes après</strong>. Soit 8 minutes au total qui te font gagner les 30+ minutes de chaos d'une réunion mal cadrée. Décline les prompts selon ton rôle (organisateur ou participant).</p>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 1 / 3 · AVANT<span class="phase-time">3 MIN</span></div>
+    <div class="phase-name">Clarifier l'<em>objectif réel</em></div>
+    <div class="phase-purpose">Le travail le plus rentable. La majorité des réunions partent dans le mauvais sens parce que l'objectif n'a pas été clarifié pour soi avant d'entrer dans la salle. L'IA force la clarification.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>Je vais participer à une réunion sur <span class="placeholder">[sujet]</span>.
+
+<strong>Mon rôle :</strong> <span class="placeholder">[organisateur, participant, décideur, observateur]</span>.
+
+<strong>Ce que je sais du contexte :</strong> <span class="placeholder">[décris : enjeu, historique, parties prenantes, ce qui s'est dit avant]</span>.
+
+<strong>Ce que je crois être l'objectif officiel :</strong> <span class="placeholder">[ce qui est annoncé sur la convocation]</span>.
+
+Aide-moi à préparer cette réunion :
+
+1. <strong>Identifie l'objectif réel</strong> derrière l'objectif officiel. Quel résultat concret signerait que cette réunion a servi à quelque chose ?
+2. <strong>Liste les 3 questions structurantes</strong> qui doivent être tranchées (pas juste discutées).
+3. <strong>Liste les 3 risques de dérive</strong> de cette réunion (sujets parasites, interlocuteurs qui peuvent prendre toute la place, débats secondaires probables).
+4. <strong>Donne-moi 5 phrases-clés</strong> que je peux préparer pour intervenir efficacement (sur les questions structurantes, pas pour briller).
+5. <strong>Identifie ce que je dois préparer comme matériau</strong> avant la réunion (chiffres, exemples, références, propositions concrètes).
+
+Sois direct, ne me flatte pas, ne me dis pas que toutes mes idées sont bonnes.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 2 / 3 · PENDANT<span class="phase-time">0 MIN IA</span></div>
+    <div class="phase-name">L'IA <em>n'est pas</em> dans la salle</div>
+    <div class="phase-purpose">Règle non négociable : l'IA n'est pas en réunion avec toi. Tu as fait ton boulot avant, tu déroules pendant. L'unique exception : prendre des notes par dictée pour le brief post-réunion (mais pas en temps réel pour t'aider à parler).</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Trois règles pendant la réunion</span><strong>1. Tu déroules ton plan</strong>, mais tu restes à l'écoute. Si la conversation prend une direction utile que tu n'avais pas prévue, suis-la. La préparation est un guide, pas une cage.
+
+<strong>2. Tu prends des notes brutes</strong> sans chercher à les structurer (décisions prises, points en suspens, désaccords notés, actions distribuées). Ne perds pas de temps à rédiger en temps réel — tu structureras après en 3 minutes avec l'IA.
+
+<strong>3. Tu trances ou tu fais trancher.</strong> Avant la fin de la réunion, vérifie que les 3 questions structurantes que tu avais identifiées en phase 1 ont reçu une réponse claire. Si non, force la clôture : « Avant qu'on parte, qu'est-ce qu'on décide sur X ? »
+
+<strong>Pas d'IA active dans la salle.</strong> C'est une marque de respect pour les humains présents et c'est ce qui rend ta présence utile.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 3 / 3 · APRÈS<span class="phase-time">3 MIN</span></div>
+    <div class="phase-name">Structurer les <em>décisions</em> et actions</div>
+    <div class="phase-purpose">La phase la plus négligée et pourtant la plus rentable. Sans elle, les décisions s'évaporent en 48 h. Avec elle, tu disposes d'un compte-rendu structuré que tu peux envoyer aux participants (ce qui te place en position de pilote) et qui sert de référence pour la suite.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>Je sors d'une réunion sur <span class="placeholder">[sujet]</span>. Voici mes notes brutes :
+
+<span class="placeholder">[colle tes notes telles quelles, même mal écrites, avec abréviations, fragments]</span>
+
+Transforme ces notes en un compte-rendu structuré avec ces sections :
+
+1. <strong>Décisions prises</strong> (formulées en phrases nettes, avec ce qui a été acté précisément)
+2. <strong>Actions distribuées</strong> (qui fait quoi pour quand, en format tableau)
+3. <strong>Points en suspens</strong> (sujets non tranchés à reprendre, et quand)
+4. <strong>Désaccords identifiés</strong> (s'il y en a, formulés sans prendre parti)
+5. <strong>Prochaine étape</strong> (la 1 chose la plus importante pour faire avancer le sujet entre cette réunion et la prochaine)
+
+<strong>Format :</strong> court, opérationnel, copiable dans un mail. Pas plus de 250 mots.
+
+Si tu remarques une incohérence ou un manque dans mes notes (par exemple : une décision sans responsable assigné, une action sans deadline), signale-le clairement à la fin.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">L'astuce du mentor</div>
+    <p>Le compte-rendu post-réunion <strong>n'a pas besoin d'être demandé pour avoir de l'impact</strong>. Si tu envoies systématiquement un récap structuré 30 minutes après chaque réunion à laquelle tu participes (même si tu n'es pas l'organisateur), <strong>tu deviens en 3 mois la personne dont tout le monde retient les décisions</strong>. C'est l'un des leviers les plus sous-estimés de visibilité professionnelle. Coût : 3 minutes par réunion. Effet : tu deviens la mémoire opérationnelle du projet.</p>
+  </div>
+
+  <!-- ============== 3. 4 TYPES ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Les <em>4 types</em> de réunion à adapter.</h2>
+
+  <div class="container reading">
+    <p>La méthode générale fonctionne sur toutes les réunions, mais chaque type a une mécanique propre. Voici les 4 archétypes les plus fréquents et l'ajustement spécifique pour chacun.</p>
+  </div>
+
+  <div class="type-card">
+    <div class="type-name">Type 1 · La réunion <em>de décision</em></div>
+    <div class="type-text">Une décision concrète doit être prise (choix d'option, validation d'un budget, arbitrage d'un conflit, recrutement). <strong>Ajustement :</strong> avant la réunion, prépare avec l'IA les 2 ou 3 options clairement formulées, leurs conséquences directes, et une recommandation argumentée. Ne viens jamais en réunion de décision sans avoir réfléchi à ce que tu défends. <strong>Test final :</strong> à la fin, la décision a un nom (option A retenue), un responsable (qui la met en œuvre), et une deadline. Sinon, la réunion a échoué — propose une nouvelle réunion ciblée.</div>
+  </div>
+
+  <div class="type-card">
+    <div class="type-name">Type 2 · La réunion d'<em>alignement</em></div>
+    <div class="type-text">Plusieurs personnes doivent arriver à une compréhension partagée d'un sujet (kick-off de projet, point d'avancement, synchronisation entre équipes). <strong>Ajustement :</strong> avant la réunion, prépare avec l'IA un état des lieux factuel en 5 lignes que tu envoies aux participants 24 h avant. Cela évite les 10 minutes de recontextualisation. <strong>Test final :</strong> à la fin, chacun peut formuler en une phrase ce qu'il fait dans la semaine qui vient. Si non, l'alignement n'a pas eu lieu.</div>
+  </div>
+
+  <div class="type-card">
+    <div class="type-name">Type 3 · La réunion d'<em>information</em></div>
+    <div class="type-text">Quelqu'un doit transmettre une info à plusieurs personnes (annonce, présentation de résultats, formation rapide). <strong>Ajustement honnête :</strong> dans 80 % des cas, ce type de réunion <em>ne devrait pas exister</em>. Un mail bien rédigé, une vidéo Loom de 5 minutes, ou un document partagé font le même travail en consommant 10 fois moins de temps collectif. Avant de programmer ce type de réunion, demande à l'IA : <em>« cette information peut-elle être transmise par écrit sans perte ? »</em>. Si oui, supprime la réunion. Si non (sujet sensible, besoin d'interaction immédiate), garde un format de 15 minutes maximum.</div>
+  </div>
+
+  <div class="type-card">
+    <div class="type-name">Type 4 · La réunion <em>créative</em></div>
+    <div class="type-text">Brainstorming, exploration de pistes, résolution d'un problème complexe en groupe. <strong>Ajustement :</strong> contre-intuitif, mais l'IA prépare moins la réunion elle-même que <em>la divergence préalable individuelle</em>. Demande à chaque participant (toi inclus) d'arriver avec 5 idées préparées en amont (avec ou sans IA). La réunion sert à confronter et croiser, pas à générer dans le vide. <strong>Sans préparation individuelle, une réunion créative collective produit toujours moins qu'une simple addition d'idées préparées seul.</strong> C'est documenté depuis les années 1970 (recherches sur le « groupthink » et la « productivity loss » dans les groupes).</div>
+  </div>
+
+  <!-- ============== 4. ADOPTER ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Comment <em>adopter</em> ce système au quotidien.</h2>
+
+  <h3 class="reading">Le déclencheur unique : 5 minutes avant</h3>
+
+  <div class="container reading">
+    <p>L'erreur classique quand on découvre une méthode comme celle-ci : tenter de l'appliquer parfaitement à toutes ses réunions dès la semaine 1, et abandonner après 4 jours parce que c'est lourd. <strong>L'approche qui marche : déclencher la préparation 5 minutes avant chaque réunion programmée</strong>. Pas la veille, pas le matin pour la journée — 5 minutes avant. C'est le seul moment où ton cerveau te dit naturellement « ah, ça commence ». Tu ouvres ton IA, tu lances le prompt phase 1, tu lis la réponse, tu entres en réunion.</p>
+
+    <p>Avec ce déclencheur, l'habitude prend en 2 semaines. Sans, elle ne prend jamais. Le secret est d'ancrer le geste sur un déclencheur naturel existant (l'alarme de la réunion à venir), pas de te demander un nouveau créneau dans ton agenda déjà saturé.</p>
+  </div>
+
+  <h3 class="reading">Sauvegarde tes meilleurs prompts</h3>
+
+  <div class="container reading">
+    <p>Très vite, tu vas remarquer que certaines formulations marchent mieux que d'autres pour ton contexte. Sauvegarde ces formulations dans ta <a href="bibliotheque-prompts.html">bibliothèque de prompts</a> personnelle. Idéalement, crée un <a href="maitriser-projets.html">Projet ChatGPT ou Claude dédié aux réunions</a>, avec ton contexte professionnel intégré dans les instructions du projet (ton rôle, ton entreprise, tes interlocuteurs habituels). À chaque nouvelle réunion, tu n'as plus à recontextualiser — tu rentres directement dans le sujet spécifique.</p>
+  </div>
+
+  <h3 class="reading">Les pièges à éviter</h3>
+
+  <div class="container reading">
+    <p><strong>Piège 1 : déléguer la décision à l'IA.</strong> L'IA t'aide à clarifier les options et leurs conséquences — elle ne tranche jamais à ta place. Pour les enjeux importants, sa <a href="quand-ia-veut-plaire.html">tendance à valider tes intuitions</a> peut t'enfermer dans une décision biaisée. Demande explicitement les contre-arguments avant de trancher.</p>
+
+    <p><strong>Piège 2 : préparer trop.</strong> Si tu passes 30 minutes à préparer une réunion de 45 minutes, tu as raté la cible. La préparation IA doit rester rapide (5 min avant, 3 min après). Sinon, tu t'épuises avant même la réunion et tu compromets ta concentration pendant.</p>
+
+    <p><strong>Piège 3 : envoyer le compte-rendu IA tel quel.</strong> Avant d'envoyer ton récap structuré, relis et ajuste — vérifie que rien n'a été inventé ou mal interprété par l'IA, modifie le ton pour qu'il sonne comme toi, retire les hallucinations potentielles. C'est ton nom qui signe l'envoi, pas celui de l'IA. Voir <a href="hallucinations-ia.html">l'article sur les hallucinations</a>.</p>
+
+    <p><strong>Piège 4 : envoyer le compte-rendu sans demander.</strong> Si tu n'es pas l'organisateur, demande discrètement : <em>« je vais t'envoyer un récap rapide de ce qu'on a tranché, ça t'aide ? »</em>. Personne ne refuse, et tu évites de paraître prendre la place du chef. <strong>L'effet d'autorité doit venir de la qualité, pas de la prise de pouvoir maladroite.</strong></p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>Le test que je te propose pour valider que cette méthode marche pour toi : <strong>tiens le rituel pendant 10 réunions consécutives</strong>. Pas 3, pas 5 — 10. Tu vas découvrir deux choses contre-intuitives. Premièrement, certaines réunions de ton agenda <em>ne devraient pas exister</em> et tu vas commencer à les annuler ou à les transformer en mails. Deuxièmement, ton positionnement professionnel change subtilement — tu deviens la personne qui « fait avancer », parce que tu es l'un des rares à arriver préparé. Cet effet est plus puissant que n'importe quelle compétence technique. Et il coûte 8 minutes par réunion.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Pour aller plus loin sur le gain de temps : <a href="boite-mail-intelligente.html">traiter ta boîte mail intelligemment</a> (le couple mail + réunions est le plus gros gisement de temps), <a href="bibliotheque-prompts.html">la bibliothèque de prompts</a> pour capitaliser tes meilleurs prompts de préparation, <a href="maitriser-projets.html">les Projets ChatGPT/Claude</a> pour créer un projet dédié aux réunions, et <a href="quand-ia-veut-plaire.html">la sycophancy</a> pour ne pas tomber dans le piège de l'IA qui valide tes intuitions sans les contester.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur la préparation de réunion par IA.</h3>
+    <ol class="recap-points">
+      <li>Données 2026 : la France perd 9,1 h/semaine par actif en réunions inutiles (étude Asana — pire pays au monde). 71 % des réunions sont jugées improductives. Cause principale : absence de préparation. Seulement 37 % ont un agenda, 37 % débouchent sur une décision claire.</li>
+      <li>La méthode en 3 phases : 3 min avant pour clarifier l'objectif réel + 3 questions structurantes + 5 phrases préparées · 0 min pendant (l'IA n'est pas dans la salle, tu déroules ton plan) · 3 min après pour structurer décisions/actions/points en suspens en compte-rendu copiable.</li>
+      <li>4 archétypes à adapter : décision (préparer 2-3 options argumentées), alignement (envoyer un état des lieux 24 h avant), information (souvent annulable au profit d'un mail), créative (préparation individuelle préalable obligatoire — la réunion sert à croiser les idées, pas à les générer).</li>
+      <li>Adoption : déclenche la préparation 5 minutes avant chaque réunion programmée (déclencheur naturel). Crée un Projet ChatGPT/Claude dédié aux réunions avec ton contexte pro intégré pour ne pas recontextualiser à chaque fois.</li>
+      <li>4 pièges : déléguer la décision à l'IA (sycophancy), préparer trop (5 min suffisent), envoyer le compte-rendu IA tel quel sans relire (hallucinations + ton non personnalisé), prendre la place du chef en imposant le récap (demander avant d'envoyer).</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="transformer-notes-document-structure.html">
+        <div class="next-link-label">— Article suivant logique</div>
+        <div class="next-link-title">Transformer notes brutes en document structuré</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-3-gagner-du-temps.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Gagner du temps · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

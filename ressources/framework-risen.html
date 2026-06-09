@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le méthode RISEN : prompts longs et structurés. – AutomationBoost</title>
+  <meta name="description" content="Le méthode RISEN prend le relais quand PTCF ne suffit plus : la méthode pour les demandes complexes en plusieurs étapes." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Le méthode RISEN : prompts longs et structurés.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#34d399;">Mieux prompter</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Le méthode RISEN : prompts longs et structurés.</h1>
+    <p class="lede">RISEN prend le relais quand PTCF ne suffit plus. Le méthode des demandes complexes en plusieurs étapes : procédures, plans d'action, livrables structurés.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">PTCF suffit pour 90 % de ce que tu fais — un mail, un résumé, une analyse simple. Mais certaines demandes complexes le débordent. C'est là qu'intervient RISEN.</p>
+
+    <p>Voici ce méthode plus complet, et quand l'utiliser à la place de PTCF.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi PTCF <em>ne suffit pas toujours</em>.</h2>
+
+  <div class="container reading">
+    <p>PTCF est parfait pour les tâches courantes, mais sur une demande à fortes contraintes (étapes imposées, périmètre précis, livrable structuré), ses quatre cases deviennent trop sommaires. RISEN ajoute ce qui manque : les étapes et les contraintes explicites.</p>
+
+    <p>Voici en quoi il consiste et comment l'appliquer.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 6</span>Les <em>5 piliers</em> de RISEN.</h2>
+
+  <div class="container reading">
+    <p>RISEN est l'acronyme anglais de <strong>R</strong>ole, <strong>I</strong>nstructions, <strong>S</strong>teps, <strong>E</strong>nd goal, <strong>N</strong>arrowing. En français : Rôle, Instructions, Étapes, Objectif final, Cadrage. Cinq piliers à activer dans cet ordre précis.</p>
+  </div>
+
+  <!-- PILIER R -->
+  <div class="pillar-block">
+    <div class="pillar-header">
+      <div class="pillar-letter-big">R</div>
+      <div>
+        <div class="pillar-name-big">Rôle (Role)</div>
+        <div class="pillar-question">Qui es-tu, et avec quelle expertise ?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>Le rôle attribué à l'IA, comme dans PTCF. Pour RISEN, on insiste plus sur l'expertise et la posture professionnelle, parce que la tâche est complexe et nécessite un point de vue qualifié. Tu ne dis pas juste <em>« tu es un consultant »</em>, tu précises le domaine et l'angle d'approche.</p>
+  </div>
+
+  <!-- PILIER I -->
+  <div class="pillar-block">
+    <div class="pillar-header">
+      <div class="pillar-letter-big">I</div>
+      <div>
+        <div class="pillar-name-big">Instructions</div>
+        <div class="pillar-question">Que dois-tu produire globalement ?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>L'équivalent de la Tâche dans PTCF — mais formulée comme une instruction globale, pas comme une action ponctuelle. Au lieu de <em>« rédige un mail »</em>, tu dis <em>« construis un plan complet de »</em>, <em>« établis une procédure pour »</em>, <em>« réalise un audit de »</em>. C'est la directive maîtresse qui chapeaute tout ce qui suit.</p>
+  </div>
+
+  <!-- PILIER S -->
+  <div class="pillar-block">
+    <div class="pillar-header">
+      <div class="pillar-letter-big">S</div>
+      <div>
+        <div class="pillar-name-big">Étapes (Steps)</div>
+        <div class="pillar-question">Dans quel ordre dois-tu procéder ?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>Le pilier qui n'existe pas dans PTCF, et qui justifie à lui seul l'utilisation de RISEN. Tu décomposes la tâche en sous-étapes ordonnées. Chaque étape doit être <strong>claire et indépendamment exécutable</strong>. L'IA suit alors l'ordre que tu donnes au lieu de partir dans le sien.</p>
+
+    <p>Exemple : pour une procédure d'accueil, les étapes pourraient être <em>« 1) liste les informations à transmettre le jour 1, 2) identifie les outils à configurer dans la première semaine, 3) propose un planning de réunions sur le premier mois, 4) liste les compétences à valider avant la fin du trimestre »</em>.</p>
+  </div>
+
+  <!-- PILIER E -->
+  <div class="pillar-block">
+    <div class="pillar-header">
+      <div class="pillar-letter-big">E</div>
+      <div>
+        <div class="pillar-name-big">Objectif final (End goal)</div>
+        <div class="pillar-question">À quoi servira ce livrable au final ?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>L'objectif sous-jacent : pourquoi tu fais ça vraiment. Pas la tâche immédiate, mais le résultat que tu cherches à obtenir <em>après</em> que le livrable ait été produit. Ce pilier permet à l'IA de calibrer son niveau de détail, son ton, et ses choix structurels en fonction du vrai but.</p>
+
+    <p>Pour la même procédure d'accueil : si l'objectif est <em>« réduire le turnover des nouvelles recrues à 3 mois »</em>, l'IA va mettre l'accent sur l'engagement et l'intégration humaine. Si l'objectif est <em>« raccourcir le temps avant productivité »</em>, elle va mettre l'accent sur les compétences à acquérir vite. Le même prompt donne deux livrables très différents selon l'objectif final.</p>
+  </div>
+
+  <!-- PILIER N -->
+  <div class="pillar-block">
+    <div class="pillar-header">
+      <div class="pillar-letter-big">N</div>
+      <div>
+        <div class="pillar-name-big">Cadrage (Narrowing)</div>
+        <div class="pillar-question">Quelles sont les limites à respecter ?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>Le pilier qui empêche l'IA de partir en hors-piste. Tu poses les bornes : ce qu'il faut faire, ce qu'il ne faut pas faire, ce qui est hors-périmètre. Sans ce pilier, l'IA va naturellement déborder sur des sujets connexes que tu n'avais pas demandés.</p>
+
+    <p>Exemple : <em>« reste sur les 6 premiers mois (pas plus loin), n'aborde pas la formation continue qui sera traitée séparément, ne mentionne pas la rémunération, focus sur les recrues ayant 0 à 3 ans d'expérience »</em>. Quatre bornes simples qui canalisent toute la production.</p>
+  </div>
+
+  <!-- ============== 3. LE TEMPLATE ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 6</span>Le <em>template</em> à recopier.</h2>
+
+  <div class="template-block">
+    <div class="template-header">— Le template RISEN universel</div>
+    <div class="template-line">
+      <div class="template-letter">R</div>
+      <div class="template-content"><span class="label">Rôle :</span> tu es <span class="placeholder">[expertise précise + niveau d'expérience + angle d'approche]</span>.</div>
+    </div>
+    <div class="template-line">
+      <div class="template-letter">I</div>
+      <div class="template-content"><span class="label">Instructions :</span> <span class="placeholder">[directive globale en une phrase claire — ce que tu dois produire dans son ensemble]</span>.</div>
+    </div>
+    <div class="template-line">
+      <div class="template-letter">S</div>
+      <div class="template-content"><span class="label">Étapes :</span><br>1. <span class="placeholder">[première sous-tâche]</span><br>2. <span class="placeholder">[deuxième sous-tâche]</span><br>3. <span class="placeholder">[troisième sous-tâche]</span><br>4. <span class="placeholder">[etc.]</span></div>
+    </div>
+    <div class="template-line">
+      <div class="template-letter">E</div>
+      <div class="template-content"><span class="label">Objectif final :</span> ce livrable servira à <span class="placeholder">[résultat concret recherché au-delà du livrable lui-même]</span>.</div>
+    </div>
+    <div class="template-line">
+      <div class="template-letter">N</div>
+      <div class="template-content"><span class="label">Cadrage :</span> <span class="placeholder">[limites de périmètre + ce qu'il faut éviter + bornes spécifiques]</span>.</div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>Cinq blocs. Plus long à rédiger que PTCF — compte 4 à 6 minutes au lieu de 2 — mais c'est l'investissement qui débloque les livrables complexes. À la fin, tu obtiens un document structuré, complet, et calibré sur ton vrai besoin.</p>
+  </div>
+
+  <!-- ============== 4. EXEMPLE ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 6</span>Exemple complet : une <em>procédure d'accueil</em>.</h2>
+
+  <div class="container reading">
+    <p>Voici un cas concret. Tu es manager dans une entreprise de 50 personnes, tu viens d'embaucher un développeur junior, et tu veux construire sa procédure d'accueil complète. Ce genre de demande est typiquement où PTCF craque et où RISEN brille.</p>
+  </div>
+
+  <div class="prompt-example"><span class="label">Rôle :</span> tu es responsable RH expérimenté, spécialisé dans l'intégration de profils tech junior dans les PME. Tu as 12 ans d'expérience et tu privilégies les processus simples et humains aux procédures lourdes.
+
+<span class="label">Instructions :</span> construis-moi une procédure d'accueil complète pour un développeur junior qui démarre dans 2 semaines.
+
+<span class="label">Étapes :</span>
+1. Liste les actions à mener AVANT son arrivée (de J-14 à J-1) : matériel, accès, communications.
+2. Détaille un planning précis pour la JOURNÉE 1 : accueil, présentations, objectifs.
+3. Construis le programme de la PREMIÈRE SEMAINE : formations, premier petit projet, points d'étape.
+4. Définis les jalons des 3 PREMIERS MOIS : compétences à acquérir, autonomie attendue, feedbacks formels.
+5. Identifie les 5 INDICATEURS qui te diront si l'intégration est réussie à 3 mois.
+
+<span class="label">Objectif final :</span> ce document servira à raccourcir son temps avant autonomie technique tout en évitant qu'il se sente perdu — l'enjeu est qu'il soit content de venir au bureau au mois 4, pas qu'il maîtrise toutes les bibliothèques techniques au mois 1.
+
+<span class="label">Cadrage :</span> reste sur les 3 premiers mois (pas la formation continue à long terme). N'aborde pas la rémunération ni les questions juridiques. C'est un junior tech, donc adapte le ton (pas de jargon RH, pas de formules corporate). Pas plus de 1500 mots au total.</div>
+
+  <div class="container reading">
+    <p>Compare ce résultat avec ce qu'aurait donné un prompt PTCF basique : <em>« Rédige-moi une procédure d'accueil pour un développeur junior, format détaillé »</em>. Tu aurais obtenu une procédure générique, sans phasage temporel clair, sans calibration sur l'objectif réel (le bien-être au mois 4 vs la maîtrise technique au mois 1), et sans bornes claires.</p>
+
+    <p>RISEN te donne en un seul prompt un document directement utilisable. PTCF t'aurait demandé 3 ou 4 itérations pour arriver au même résultat.</p>
+  </div>
+
+  <!-- ============== 5. PTCF VS RISEN ============== -->
+  <h2 class="reading"><span class="h2-num">— 5 / 6</span>PTCF ou RISEN : <em>la grille de décision</em>.</h2>
+
+  <div class="container reading">
+    <p>La question n'est pas de remplacer PTCF par RISEN — c'est de savoir quand utiliser quoi. Voici la grille pratique.</p>
+  </div>
+
+  <div class="compare">
+    <table>
+      <thead>
+        <tr>
+          <th>Critère</th>
+          <th>Utilise PTCF</th>
+          <th>Utilise RISEN</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Nature de la tâche</td>
+          <td>Action unique (rédiger, résumer, analyser)</td>
+          <td>Livrable composé en plusieurs sous-tâches</td>
+        </tr>
+        <tr>
+          <td>Longueur visée</td>
+          <td>Moins de 500 mots</td>
+          <td>Plus de 1000 mots, structure imposée</td>
+        </tr>
+        <tr>
+          <td>Séquence</td>
+          <td>L'ordre n'a pas d'importance</td>
+          <td>L'ordre des sections doit être respecté</td>
+        </tr>
+        <tr>
+          <td>Risque de hors-piste</td>
+          <td>Faible (sujet ciblé)</td>
+          <td>Élevé (sujet large, l'IA peut déborder)</td>
+        </tr>
+        <tr>
+          <td>Exemples typiques</td>
+          <td>Mail, résumé court, analyse d'un texte, génération d'idées</td>
+          <td>Procédure, plan d'action, audit, stratégie multi-leviers, formation</td>
+        </tr>
+        <tr>
+          <td>Temps de rédaction</td>
+          <td>1-2 minutes</td>
+          <td>4-6 minutes</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Règle pratique</div>
+    <p>Si tu peux décrire le livrable en une phrase, utilise PTCF. <strong>Si tu dois utiliser le mot « ensuite » ou « puis » pour expliquer ce que tu veux, utilise RISEN.</strong> C'est le test le plus simple.</p>
+  </div>
+
+  <!-- ============== 6. ERREURS ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 6 / 6</span>Les <em>3 erreurs typiques</em> avec RISEN.</h2>
+
+  <h3 class="reading">Erreur 1 : utiliser RISEN pour des tâches simples</h3>
+
+  <div class="container reading">
+    <p>Le piège du méthode qu'on vient d'apprendre. Tu maîtrises RISEN, tu veux l'utiliser partout. Résultat : tu passes 5 minutes à structurer un prompt RISEN pour rédiger un mail de relance, alors que PTCF en 1 minute aurait suffi. Tu perds du temps sans gain de qualité.</p>
+  </div>
+
+  <div class="trap">
+    <div class="trap-label">— Test rapide</div>
+    Si tu sens que ton bloc <em>« Étapes »</em> contient une seule sous-tâche, tu n'as pas besoin de RISEN. Reviens à PTCF.
+  </div>
+
+  <h3 class="reading">Erreur 2 : trop d'étapes (le piège de la sur-décomposition)</h3>
+
+  <div class="container reading">
+    <p>RISEN encourage à décomposer en étapes — c'est sa force. Mais à partir de 7-8 étapes, tu fragmentes trop et l'IA traite chaque étape superficiellement. Mieux vaut 4 étapes substantielles que 12 étapes superficielles.</p>
+
+    <p>Si tu as plus de 7 étapes, regroupe-les en grandes phases. Tu peux ensuite reprendre chaque phase dans un prompt RISEN dédié pour aller plus en profondeur. Itérer en cascade plutôt que d'empiler en un seul prompt.</p>
+  </div>
+
+  <h3 class="reading">Erreur 3 : oublier le pilier N (Cadrage)</h3>
+
+  <div class="container reading">
+    <p>C'est l'erreur la plus fréquente. Tu rédiges Rôle, Instructions, Étapes, Objectif — et tu oublies le Cadrage. Sans bornes, l'IA va aborder des sujets connexes que tu n'avais pas demandés (parfois utiles, souvent pas). Tu obtiens un document plus long que prévu, qui dilue le sujet principal.</p>
+
+    <p>Le Cadrage est rarement long — 2-3 phrases suffisent. Mais ces 2-3 phrases <strong>réduisent la longueur du livrable de 30 à 50 %</strong> tout en augmentant sa pertinence. Ne le saute jamais.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ce que tu vas voir dans le prochain article</div>
+    <p>RISEN est fait pour les <em>livrables structurés</em>. Le prochain article te présente <strong>CRISPE</strong>, le méthode dédié aux <em>analyses nuancées</em> où la personnalité et la perspective de l'IA comptent autant que le contenu. Conseil, critique, raisonnement subtil — un autre type de demande, un autre méthode.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur le méthode RISEN.</h3>
+    <ol class="recap-points">
+      <li>RISEN prend le relais de PTCF pour les livrables complexes en plusieurs étapes (procédures, plans, audits).</li>
+      <li>5 piliers : Rôle, Instructions, Étapes, Objectif final, Cadrage. À activer dans cet ordre.</li>
+      <li>Le pilier qui justifie RISEN, c'est <em>Étapes</em> : il oblige l'IA à respecter une séquence précise au lieu de partir dans la sienne.</li>
+      <li>Test pratique : si tu utilises « ensuite » ou « puis » pour expliquer ton besoin, prends RISEN. Sinon, reste sur PTCF.</li>
+      <li>N'oublie jamais le Cadrage. Sans bornes, l'IA déborde et tu perds 30 à 50 % de pertinence.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a href="#" class="next-link">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">Le méthode CRISPE : pour les analyses nuancées</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-2-techniques-avancees.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Les techniques avancées · Niveau II</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L'anatomie d'un prompt qui marche. – AutomationBoost</title>
+  <meta name="description" content="Disséquer un prompt efficace en 4 piliers universels : qui demande, quoi, dans quel contexte, et avec quel format de sortie." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>L'anatomie d'un prompt qui marche.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#34d399;">Mieux prompter</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">L'anatomie d'un prompt qui marche.</h1>
+    <p class="lede">Disséquer un prompt efficace en 4 piliers universels : qui demande, quoi demander, dans quel contexte, avec quel format de sortie. Le diagramme à imprimer.</p>
+
+    <div class="content-block">
+
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tous les prompts qui marchent ont la même charpente. Toujours, pour tous les usages. Tu sais qu'il faut être précis — mais précis sur quoi, exactement ?</p>
+
+    <p>Voici l'anatomie d'un prompt efficace : les composants qui reviennent à chaque fois, et le rôle de chacun.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— LE DIAGRAMME</span>Les 4 piliers, en un coup d'œil.</h2>
+
+  <div class="anatomy-diagram">
+    <div class="anatomy-title">— ANATOMIE D'UN PROMPT —</div>
+    <div class="anatomy-grid">
+      <div class="anatomy-pillar">
+        <div class="anatomy-letter">P</div>
+        <div class="anatomy-name">Persona</div>
+        <div class="anatomy-question">Qui répond ?</div>
+      </div>
+      <div class="anatomy-pillar">
+        <div class="anatomy-letter">T</div>
+        <div class="anatomy-name">Tâche</div>
+        <div class="anatomy-question">Que doit-il faire ?</div>
+      </div>
+      <div class="anatomy-pillar">
+        <div class="anatomy-letter">C</div>
+        <div class="anatomy-name">Contexte</div>
+        <div class="anatomy-question">Dans quelle situation ?</div>
+      </div>
+      <div class="anatomy-pillar">
+        <div class="anatomy-letter">F</div>
+        <div class="anatomy-name">Format</div>
+        <div class="anatomy-question">Sous quelle forme ?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>Cette structure s'appelle <strong>PTCF</strong>. Elle n'a pas été inventée par une grande école d'ingénieurs ni breveté par OpenAI — c'est juste la formalisation de ce qui marche, observée sur des millions de prompts. Garde ce diagramme en tête. À la fin de cet article, tu sauras pourquoi chacun des piliers est là.</p>
+  </div>
+
+  <!-- ============== PILIER 1 : PERSONA ============== -->
+  <div class="pillar-block">
+    <div class="pillar-header">
+      <div class="pillar-letter-big">P</div>
+      <div>
+        <div class="pillar-name-big">Persona — qui répond ?</div>
+        <div class="pillar-question">Le rôle, l'expertise, la posture</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>Le persona, c'est le rôle que tu attribues à l'IA. Quand tu écris <em>« tu es un médecin de famille »</em>, tu ne donnes pas juste une étiquette : tu actives un registre entier — vocabulaire, ton, niveau de détail, prudences typiques du métier. L'IA a été entraînée sur des millions de textes médicaux, journalistiques, marketing, juridiques. Le persona lui dit dans quel registre puiser.</p>
+
+    <p>Sans persona, l'IA prend un ton neutre par défaut. Ce ton neutre est ce qui rend les réponses <em>« génériques »</em> ou <em>« robotiques »</em>. C'est le ton qui ne s'adresse à personne, donc qui ne convainc personne.</p>
+  </div>
+
+  <h3 class="reading">Comment formuler un bon persona</h3>
+
+  <div class="container reading">
+    <p>Un bon persona contient trois éléments : un <strong>métier</strong> ou un <strong>rôle</strong>, un <strong>niveau d'expérience</strong>, et une <strong>posture</strong> (comment cette personne aborde son travail).</p>
+  </div>
+
+  <div class="mini-example">
+    <div class="mini-example-label">— Persona faible</div>
+    Tu es un expert en marketing.
+  </div>
+
+  <div class="mini-example good">
+    <div class="mini-example-label">— Persona précis</div>
+    Tu es un consultant en marketing digital avec 8 ans d'expérience auprès de PME B2B. Tu privilégies les solutions simples et mesurables aux stratégies complexes. Tu refuses les buzzwords et tu parles avec des chiffres.
+  </div>
+
+  <div class="container reading">
+    <p>Le second persona déclenche un comportement très différent : pas de jargon, des chiffres, du concret. Le premier laisse l'IA faire ce qu'elle veut.</p>
+  </div>
+
+  <div class="trap">
+    <div class="trap-label">— Piège fréquent</div>
+    Le persona <em>« Tu es un expert »</em> sans rien d'autre est presque inutile. Trop large, trop vague. Préfère un rôle précis (« médecin généraliste », « rédacteur web », « enseignant en CE2 ») à un titre flou (« expert », « professionnel », « spécialiste »).
+  </div>
+
+  <h3 class="reading">Quand le persona n'est pas nécessaire</h3>
+
+  <div class="container reading">
+    <p>Pour les tâches purement techniques sans dimension humaine (calcul, conversion, traduction littérale), le persona est facultatif. Tu n'as pas besoin de dire à l'IA <em>« tu es un mathématicien »</em> pour qu'elle calcule 47 × 83. Mais dès qu'il y a une dimension de jugement, de ton, ou d'expertise, le persona compte.</p>
+  </div>
+
+  <!-- ============== PILIER 2 : TÂCHE ============== -->
+  <div class="pillar-block">
+    <div class="pillar-header">
+      <div class="pillar-letter-big">T</div>
+      <div>
+        <div class="pillar-name-big">Tâche — que doit-il faire ?</div>
+        <div class="pillar-question">L'action, le verbe, le périmètre</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>La tâche, c'est ce que tu veux que l'IA produise. Ça paraît évident, mais c'est souvent flou. La différence entre <em>« aide-moi avec ce mail »</em> et <em>« réécris ce mail en plus court »</em> est énorme : la première formulation laisse l'IA décider du périmètre, la seconde le verrouille.</p>
+
+    <p>Un bon verbe d'action <strong>est précis et univoque</strong>. Tu peux deviner d'avance la nature du livrable.</p>
+  </div>
+
+  <h3 class="reading">Verbes flous vs verbes précis</h3>
+
+  <div class="mini-example">
+    <div class="mini-example-label">— Verbes flous</div>
+    aide-moi à... · peux-tu me parler de... · que penses-tu de... · explore le sujet de...
+  </div>
+
+  <div class="mini-example good">
+    <div class="mini-example-label">— Verbes précis</div>
+    rédige · résume en X mots · liste · compare · traduis · structure en 3 parties · corrige · reformule · classe par ordre de priorité · identifie les contradictions · génère 5 variantes · transforme en tableau
+  </div>
+
+  <div class="container reading">
+    <p>Le mot <em>« aide-moi »</em> est l'un des pires démarrages possibles. Il transfère à l'IA la charge de deviner ce que tu veux. Remplace-le systématiquement par un verbe d'action concret.</p>
+  </div>
+
+  <h3 class="reading">Décomposer si la tâche est trop large</h3>
+
+  <div class="container reading">
+    <p>Si tu te retrouves à écrire <em>« crée-moi une stratégie marketing complète »</em>, ta tâche est trop large. Tu vas obtenir un document généraliste qui survole tout. Décompose en plusieurs prompts successifs : d'abord identifier les 3 leviers prioritaires, puis approfondir chacun en détail. C'est ce qu'on appelle <em>« itérer »</em>, et c'est traité dans <a href="#">l'article 1.5 de cette rubrique</a>.</p>
+  </div>
+
+  <div class="trap">
+    <div class="trap-label">— Piège fréquent</div>
+    Empiler plusieurs tâches dans un seul prompt (« rédige un mail, propose 3 variantes, et fais-moi un plan de relance pour la suite »). L'IA va faire les trois moyennement plutôt qu'une seule correctement. Une tâche par prompt.
+  </div>
+
+  <!-- ============== PILIER 3 : CONTEXTE ============== -->
+  <div class="pillar-block">
+    <div class="pillar-header">
+      <div class="pillar-letter-big">C</div>
+      <div>
+        <div class="pillar-name-big">Contexte — dans quelle situation ?</div>
+        <div class="pillar-question">Le pilier le plus puissant</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>Si tu ne devais activer qu'un seul pilier sur les quatre, ce serait celui-là. Le contexte est ce qui transforme une réponse générique en réponse pertinente pour <strong>ta</strong> situation. C'est la variable qui sépare un débutant d'un utilisateur efficace.</p>
+
+    <p>Le contexte répond à toutes les questions que se poserait un humain compétent avant de produire ton livrable : à qui c'est destiné, dans quelle situation, avec quelles contraintes, dans quel historique, avec quel objectif final.</p>
+  </div>
+
+  <p class="pull-quote">Plus tu donnes de contexte, plus l'IA n'a plus à deviner — et moins elle invente.</p>
+
+  <h3 class="reading">Les 3 niveaux de contexte</h3>
+
+  <div class="container reading">
+    <p>Tout contexte utile se range dans l'un des trois niveaux suivants. Apprends à les distinguer.</p>
+  </div>
+
+  <h3 class="reading">Niveau 1 — Contexte immédiat (le minimum)</h3>
+
+  <div class="container reading">
+    <p>Les informations directement liées à la tâche : à qui c'est destiné, quel est l'objectif, quel format final. Sans ça, l'IA produit du générique.</p>
+  </div>
+
+  <div class="mini-example">
+    <div class="mini-example-label">— Exemple</div>
+    Le mail est destiné à un client B2B que je connais depuis 2 ans. L'objectif est qu'il valide un devis sans me rappeler. Il sera lu sur mobile, donc court.
+  </div>
+
+  <h3 class="reading">Niveau 2 — Contexte de situation (recommandé)</h3>
+
+  <div class="container reading">
+    <p>L'historique récent, les contraintes implicites, l'enjeu sous-jacent. Ce niveau permet à l'IA d'éviter les pièges contextuels que tu connais mais qu'elle ignorerait.</p>
+  </div>
+
+  <div class="mini-example">
+    <div class="mini-example-label">— Exemple</div>
+    Il vient de changer d'équipe il y a 2 semaines, donc il est probablement débordé. Notre dernière interaction a été un peu froide à cause d'un retard de livraison de notre part en mars. Je veux réamorcer la relation sans m'excuser une troisième fois.
+  </div>
+
+  <h3 class="reading">Niveau 3 — Contexte personnel (avancé)</h3>
+
+  <div class="container reading">
+    <p>Tes propres préférences, ta voix, ce que tu veux éviter, ton style de communication habituel. Ce niveau garantit que le livrable te ressemble, pas qu'il ressemble à <em>« un bon livrable type »</em>.</p>
+  </div>
+
+  <div class="mini-example">
+    <div class="mini-example-label">— Exemple</div>
+    Mon style est direct, sans formules de politesse exagérées. Je tutoie quand le client le fait spontanément. J'évite les superlatifs (« ravi », « excellent », « parfait »). Je termine toujours par une question ouverte qui appelle une décision.
+  </div>
+
+  <div class="trap">
+    <div class="trap-label">— Piège fréquent</div>
+    Croire que <em>« c'est évident »</em>. Ce qui est évident pour toi n'est pas évident pour l'IA. Tout ce qui n'est pas écrit n'existe pas dans son raisonnement. Si tu n'es pas sûr, mets-le quand même — un contexte excédentaire ne fait jamais de mal, un contexte manquant fait toujours mal.
+  </div>
+
+  <h3 class="reading">L'art du contexte, c'est de la sélection</h3>
+
+  <div class="container reading">
+    <p>Donner du contexte ne veut pas dire <em>« tout dire »</em>. Ça veut dire <em>« dire ce qui changerait la réponse »</em>. C'est tellement central que toute <a href="#">la rubrique 1.4 du Niveau II</a> y est dédiée.</p>
+  </div>
+
+  <!-- ============== PILIER 4 : FORMAT ============== -->
+  <div class="pillar-block">
+    <div class="pillar-header">
+      <div class="pillar-letter-big">F</div>
+      <div>
+        <div class="pillar-name-big">Format — sous quelle forme ?</div>
+        <div class="pillar-question">La structure, la longueur, le ton</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>Le format, c'est la forme du livrable. Sans contrainte de format, l'IA produit ce qu'elle considère comme la forme moyenne idéale — ce qui est généralement <strong>trop long, trop structuré, trop poli</strong>.</p>
+
+    <p>Spécifier le format, c'est gagner du temps en évitant l'aller-retour <em>« c'est trop long, raccourcis »</em>.</p>
+  </div>
+
+  <h3 class="reading">Les 4 dimensions à spécifier</h3>
+
+  <div class="container reading">
+    <p><strong>Longueur.</strong> En mots, en phrases, en paragraphes. <em>« 80 à 120 mots »</em>, <em>« 3 phrases maximum »</em>, <em>« deux paragraphes courts »</em>. Sans repère, l'IA livre 400 mots quand tu en voulais 80.</p>
+
+    <p><strong>Structure.</strong> Liste à puces, paragraphe continu, tableau, markdown, JSON, dialogue. <em>« Sous forme de tableau à 3 colonnes »</em>, <em>« en paragraphes sans liste »</em>, <em>« en bullet points courts »</em>.</p>
+
+    <p><strong>Ton.</strong> Direct, formel, chaleureux, technique, drôle, sérieux. <em>« Ton direct, pas de formules de politesse »</em>, <em>« ton chaleureux mais professionnel »</em>.</p>
+
+    <p><strong>Contraintes.</strong> Ce qu'il faut éviter. <em>« Sans superlatifs »</em>, <em>« sans jargon technique »</em>, <em>« sans phrases qui commencent par <em>il est important de</em> »</em>. Les négations dans le format sont aussi puissantes que les affirmations.</p>
+  </div>
+
+  <div class="trap">
+    <div class="trap-label">— Piège fréquent</div>
+    Demander <em>« sois concis »</em> sans donner de chiffre. La concision est subjective : pour l'IA, 200 mots peut être <em>« concis »</em>. Donne toujours une borne chiffrée — c'est la seule chose qui marche.
+  </div>
+
+  <h3 class="reading">Les contraintes négatives</h3>
+
+  <div class="container reading">
+    <p>Une astuce sous-utilisée : indiquer ce que tu ne veux pas. L'IA a des tics rédactionnels (commencer par <em>« Bien sûr ! »</em>, terminer par <em>« N'hésite pas si tu as besoin de plus d'aide »</em>, utiliser des superlatifs). Liste ces tics dans le format pour les bannir : <em>« Pas de phrase d'introduction, pas de récapitulatif final, pas d'emoji »</em>.</p>
+  </div>
+
+  <!-- ============== PRIORITÉ ============== -->
+  <h2 class="reading"><span class="h2-num">— ORDRE DE PRIORITÉ</span>Si tu n'as <em>que 30 secondes</em>, voilà l'ordre.</h2>
+
+  <div class="container reading">
+    <p>Tous les piliers ne sont pas égaux. Si tu es pressé et que tu dois activer un pilier après l'autre par ordre d'impact, voici la hiérarchie observée :</p>
+
+    <p><strong>1. Contexte (impact maximum).</strong> C'est ce qui transforme du générique en pertinent. Sans contexte, même un bon persona produit du moyen.</p>
+
+    <p><strong>2. Format (impact fort).</strong> Garantit un livrable utilisable directement. Sans format, tu perds 5 minutes à demander <em>« plus court »</em>.</p>
+
+    <p><strong>3. Tâche précise (impact moyen).</strong> Évite l'ambiguïté du périmètre. Un bon verbe vaut beaucoup mieux qu'un <em>« aide-moi »</em>.</p>
+
+    <p><strong>4. Persona (impact variable).</strong> Active un registre, mais devient critique sur les sujets à dimension humaine (écriture, conseil, communication) et facultatif sur le purement technique.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Mon conseil de mentor</div>
+    <p>Quand tu débutes, force-toi à activer <strong>les quatre piliers à chaque prompt</strong>, même si ça te prend deux minutes au lieu de trente secondes. Tu vas développer un réflexe en deux semaines. Ensuite tu sauras quand tu peux en sauter un — mais sauter un pilier sans avoir d'abord intégré la structure complète, c'est la garantie de stagner.</p>
+  </div>
+
+  <!-- ============== QUAND SORTIR DU CADRE ============== -->
+  <h2 class="reading"><span class="h2-num">— LIMITE</span>Quand sortir du cadre.</h2>
+
+  <div class="container reading">
+    <p>PTCF est un cadre, pas une cage. Une fois que tu maîtrises les quatre piliers, tu vas naturellement les ajuster.</p>
+
+    <p>Pour les <strong>conversations exploratoires</strong> (brainstorming, recherche d'angles, dialogue libre), tu peux te passer du persona et du format. Tu cherches à diverger, pas à converger vers un livrable.</p>
+
+    <p>Pour les <strong>tâches très techniques</strong> (calcul, conversion, code simple), le persona est inutile et le contexte minimal. La tâche et le format suffisent.</p>
+
+    <p>Pour les <strong>itérations dans une conversation</strong> où tu as déjà donné le contexte, tu peux faire des prompts courts (<em>« plus court »</em>, <em>« change le ton »</em>). L'IA garde le contexte précédent en mémoire.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ce que tu vas voir dans le prochain article</div>
+    <p>Cet article a décortiqué les quatre piliers en théorie. <strong>L'article suivant transforme cette anatomie en formule pratique</strong> : un template à remplir en quatre lignes, applicable en moins d'une minute, qui couvre 90 % des cas. C'est le framework PTCF.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur l'anatomie d'un prompt.</h3>
+    <ol class="recap-points">
+      <li>Tous les prompts qui marchent ont la même charpente : Persona, Tâche, Contexte, Format. C'est PTCF.</li>
+      <li>Le persona active un registre. Précise un métier, un niveau d'expérience et une posture.</li>
+      <li>La tâche doit être un verbe d'action précis. Bannir <em>« aide-moi »</em>.</li>
+      <li>Le contexte est le pilier le plus puissant. Trois niveaux : immédiat, de situation, personnel.</li>
+      <li>Le format évite les allers-retours. Spécifie longueur, structure, ton, contraintes négatives.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a href="#" class="next-link">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">Le framework PTCF : la formule en 4 lignes</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-2-bases-prompt.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Les bases du prompt · Niveau II</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

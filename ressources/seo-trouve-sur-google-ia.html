@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEO : être trouvé sur Google avec l'IA. – AutomationBoost</title>
+  <meta name="description" content="SEO avec l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>SEO : être trouvé sur Google avec l'IA.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#f43f5e;">Lancer un business</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">SEO : être trouvé sur Google avec l'IA.</h1>
+    <p class="lede">Faire venir du trafic gratuit et qualifié depuis Google, avec l'aide de l'IA — sans bourrage de mots-clés. Trouver les bons sujets, structurer, rédiger avec ton expertise, et t'adapter aux réponses IA de Google qui changent la donne en 2026.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Être trouvé sur Google reste le canal le plus rentable qui soit : du trafic qualifié et gratuit, qui vient à toi pendant que tu dors. Mais les règles viennent de changer.</p>
+
+    <p>L'IA bouleverse le SEO sur deux fronts à la fois. Voici comment t'en servir pour être trouvé, à l'heure des réponses générées par IA.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Trouver les bons sujets <em>avec l'IA</em>.</h2>
+
+  <div class="container reading">
+    <p>Le point de départ du SEO n'est pas d'écrire, mais de savoir <em>sur quoi</em> écrire : les questions que ta cible tape réellement. L'IA accélère cette recherche de sujets et d'intentions, à condition de la cadrer sur des requêtes vérifiables plutôt que sur des idées en l'air.</p>
+
+    <p>Voici la méthode pour identifier les bons sujets.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 5</span>Structurer un contenu qui se <em>classe</em>.</h2>
+
+  <div class="container reading">
+    <p>Google favorise les pages qui répondent clairement à une intention. L'IA t'aide à bâtir cette structure avant de rédiger.</p>
+
+    <p>Demande-lui un plan organisé par questions : un titre qui contient le sujet, des sous-titres qui sont eux-mêmes des questions ou des étapes, et une réponse directe en tête de chaque section. C'est exactement ce que les moteurs récompensent : <strong>la clarté et la correspondance à l'intention</strong>, pas le bourrage de mots-clés.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Le prompt à copier</div>
+    <p>« Crée le plan d'un article qui vise à se classer sur "[mot-clé cible]". Structure : un titre clair, une intro qui répond à l'intention dès les premières lignes, 5 à 7 sections avec des sous-titres formulés comme les questions que se posent les lecteurs, et une FAQ finale. Chaque section doit pouvoir donner une réponse autonome et nette. »</p>
+  </div>
+
+  <!-- ============== 3 ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 5</span>Rédiger sans tomber dans le <em>piège du contenu creux</em>.</h2>
+
+  <div class="container reading">
+    <p>Voici l'erreur qui peut te coûter cher : utiliser l'IA pour produire en masse des articles génériques. Google a été clair là-dessus — le contenu produit à grande échelle qui n'apporte pas de valeur peut être considéré comme du spam, et sanctionné.</p>
+
+    <p>La bonne approche : l'IA est un <strong>accélérateur, pas un substitut à ton expertise</strong>. Sers-t'en pour le plan, le premier jet, la reformulation — puis injecte ce qu'elle ne peut pas inventer : ton expérience réelle, tes exemples, tes chiffres, ton point de vue.</p>
+
+    <p>C'est devenu d'autant plus crucial que Google valorise les signaux d'expertise et de fiabilité. Un texte qui sonne comme un « blob » générique d'IA ne se classe pas et ne convertit pas. Pour faire écrire l'IA d'une voix humaine, regarde <a href="ia-ecrire-comme-humain.html">faire écrire l'IA comme un humain</a>.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">La règle simple</div>
+    <p>Si tu ne pourrais pas signer l'article de ton nom en assumant chaque phrase, c'est qu'il manque ta valeur. L'IA t'amène à 70 %, ton expertise fait les 30 % qui te classent.</p>
+  </div>
+
+  <!-- ============== 4 ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 5</span>La nouvelle donne : les <em>réponses IA de Google</em>.</h2>
+
+  <div class="container reading">
+    <p>C'est le changement majeur de 2026, et l'ignorer serait une erreur. Google affiche de plus en plus une réponse générée par IA en haut des résultats — les « AI Overviews ». En mars 2026, elles apparaissaient sur près de la moitié des recherches, contre un tiers fin 2025. La progression est rapide.</p>
+
+    <p>L'effet : quand cette réponse IA s'affiche, le premier résultat classique perd une partie de ses clics (l'utilisateur a déjà sa réponse). Sur les requêtes informationnelles, les baisses de trafic sont réelles.</p>
+
+    <p>Mais — et c'est l'essentiel — <strong>les pages citées comme source dans cette réponse IA reçoivent, elles, plus de clics</strong> qu'un simple premier rang. L'objectif a donc changé : il ne s'agit plus seulement d'« être premier », mais d'<em>être la source que l'IA de Google cite</em>.</p>
+  </div>
+
+  <h3 class="reading">Comment devenir une source citée</h3>
+  <div class="container reading">
+    <p>Les principes rejoignent ce qu'on a vu, en plus marqué : donne des <strong>réponses nettes et autonomes</strong> (l'IA extrait des affirmations claires, pas des idées noyées dans de longs paragraphes), structure en sections qui répondent chacune à une question, et appuie tes affirmations par des preuves concrètes (chiffres, exemples, sources). Une page vague n'est jamais citée.</p>
+  </div>
+
+  <!-- ============== 5 ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 5 / 5</span>Mesurer, et garder le <em>cap long terme</em>.</h2>
+
+  <div class="container reading">
+    <p>Le SEO est un jeu de patience : les résultats mettent des semaines à des mois. Deux réflexes pour tenir la distance.</p>
+
+    <p><strong>Suis les bons indicateurs.</strong> Ne te fie pas qu'au classement. Regarde le trafic réel et sa qualité (les visiteurs font-ils ce que tu veux ?). Avec les réponses IA, le trafic peut baisser tout en devenant plus qualifié — les gens qui cliquent quand même ont une intention plus forte.</p>
+
+    <p><strong>Mise sur l'autorité durable.</strong> Plutôt que de courir après chaque évolution d'algorithme, construis une vraie expertise reconnue sur ton sujet. C'est ce qui résiste aux changements. Le SEO s'inscrit dans une stratégie d'audience plus large — voir <a href="premiers-clients-freelance.html">trouver tes premiers clients sans réseau</a> et <a href="choisir-plateforme-principale.html">choisir ta plateforme principale</a>.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points pour être trouvé sur Google en 2026.</h3>
+    <ol class="recap-points">
+      <li>Trouve tes sujets avec l'IA (questions réelles par intention), mais valide les volumes avec un outil de mots-clés.</li>
+      <li>Structure pour l'intention : titre clair, sous-titres = questions, réponse nette en tête de chaque section.</li>
+      <li>Ne produis jamais de contenu creux en masse (risque de pénalité). L'IA fait 70 %, ton expertise fait les 30 % qui classent.</li>
+      <li>Nouvelle donne : les réponses IA de Google (≈ moitié des requêtes en 2026). L'objectif devient d'être la source citée, pas juste d'être premier.</li>
+      <li>Pour être cité : réponses autonomes, structure claire, preuves concrètes. Suis le trafic et sa qualité, mise sur l'autorité durable.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+
+
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="premiers-clients-freelance.html">
+        <div class="next-link-label">— Article connexe</div>
+        <div class="next-link-title">Trouver tes premiers clients sans réseau</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-6.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Entreprendre · Niveau VI</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

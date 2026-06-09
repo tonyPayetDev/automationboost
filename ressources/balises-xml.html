@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Les balises XML : structurer un prompt long sans confusion. – AutomationBoost</title>
+  <meta name="description" content="Quand ton prompt dépasse 200 mots, l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Les balises XML : structurer un prompt long sans confusion.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#34d399;">Mieux prompter</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Les balises XML : structurer un prompt long sans confusion.</h1>
+    <p class="lede">Quand ton prompt fait plus de 200 mots, l'IA confond les sections. Six balises suffisent pour rendre un prompt long aussi clair qu'un prompt court.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Au-delà de 200 mots, ton prompt cesse d'être lu comme une instruction : il devient un bloc confus où l'IA mélange contexte, consigne et exemples.</p>
+
+    <p>Les balises XML résolvent ça en délimitant clairement chaque partie. Voici comment structurer tes prompts longs pour que l'IA s'y retrouve.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi les prompts longs <em>deviennent confus</em>.</h2>
+
+  <div class="container reading">
+    <p>Quand tu empiles dans un même bloc le contexte, les instructions, un document à analyser et des exemples, l'IA ne sait plus distinguer ce qui est consigne de ce qui est matière. Elle confond, oublie une partie, ou traite tes exemples comme des ordres.</p>
+
+    <p>Délimiter chaque section par des balises lève l'ambiguïté. Voici comment faire.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 5</span>Pourquoi les balises XML <em>marchent si bien</em>.</h2>
+
+  <div class="container reading">
+    <p>Les modèles de langage 2026 (Claude Opus 4.7, GPT-5.5, Gemini 3.1 Pro) ont été massivement entraînés sur du contenu web — donc sur du HTML et du XML. Ils reconnaissent immédiatement les balises comme des structures sémantiques. Une balise &lt;document&gt; déclenche dans le modèle l'interprétation <em>« ce qui suit est un document à traiter, pas une instruction »</em>.</p>
+
+    <p>Cette reconnaissance n'est pas de la magie — c'est statistique. Dans les milliards de pages vues à l'entraînement, les balises XML ont quasi toujours servi à délimiter du contenu structuré. Le modèle a intégré ce pattern. Quand tu utilises des balises dans ton prompt, tu actives ce comportement appris.</p>
+
+    <p>Anthropic recommande explicitement cette technique pour Claude depuis Claude 3 (2024). En 2026, elle marche aussi très bien sur GPT-5.5 et Gemini 3.1 Pro, même si ces modèles ne la documentent pas aussi fortement. C'est devenu une <strong>convention universelle</strong> du prompt engineering avancé.</p>
+  </div>
+
+  <!-- ============== 3. LES 6 BALISES ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 5</span>Les <em>6 balises essentielles</em>.</h2>
+
+  <div class="container reading">
+    <p>Tu n'as pas besoin de connaître des dizaines de balises. Six suffisent pour 95 % des cas. Voici la liste minimale à mémoriser. Tu peux inventer tes propres balises pour des besoins spécifiques — le modèle s'adapte — mais ces six couvrent la majorité des situations.</p>
+  </div>
+
+  <div class="tag-card">
+    <div class="tag-name">&lt;contexte&gt;</div>
+    <div class="tag-purpose"><strong>Pour encadrer le contexte de la tâche.</strong> Tout ce qui n'est ni une instruction ni un document à traiter, mais qui aide l'IA à comprendre ta situation : ton métier, l'audience, les contraintes, l'objectif sous-jacent.</div>
+    <div class="tag-when"><strong>Quand l'utiliser</strong>Dès que ton contexte fait plus de 50 mots ou contient plusieurs informations distinctes.</div>
+  </div>
+
+  <div class="tag-card">
+    <div class="tag-name">&lt;instructions&gt;</div>
+    <div class="tag-purpose"><strong>Pour encadrer ce que l'IA doit faire.</strong> La tâche elle-même, formulée de manière directe. Souvent une liste numérotée d'étapes ou une mission claire en quelques phrases.</div>
+    <div class="tag-when"><strong>Quand l'utiliser</strong>Toujours, dès que ton prompt fait plus de 150 mots. C'est la balise qui empêche l'IA de confondre instruction et document.</div>
+  </div>
+
+  <div class="tag-card">
+    <div class="tag-name">&lt;document&gt;</div>
+    <div class="tag-purpose"><strong>Pour encadrer un texte à analyser, traiter, résumer ou modifier.</strong> Article, transcript, extrait, base de données. Tout ce qui doit être <em>l'objet</em> de la tâche, pas la tâche elle-même.</div>
+    <div class="tag-when"><strong>Quand l'utiliser</strong>Dès qu'un texte source dépasse 100 mots dans ton prompt. Sans cette balise, l'IA mélangera ton document avec tes instructions.</div>
+  </div>
+
+  <div class="tag-card">
+    <div class="tag-name">&lt;exemples&gt;</div>
+    <div class="tag-purpose"><strong>Pour encadrer des exemples du format ou du style attendu.</strong> Combine parfaitement avec la technique <a href="few-shot-prompting.html">Few-Shot Prompting</a> : tu donnes 2-3 exemples encadrés et l'IA reproduit le pattern.</div>
+    <div class="tag-when"><strong>Quand l'utiliser</strong>Quand tu utilises Few-Shot et que tu veux séparer clairement les exemples de la vraie demande.</div>
+  </div>
+
+  <div class="tag-card">
+    <div class="tag-name">&lt;contraintes&gt;</div>
+    <div class="tag-purpose"><strong>Pour encadrer les règles à respecter.</strong> Format de sortie, longueur maximum, ton, ce qu'il faut éviter. Toutes les contraintes que tu veux rendre visibles et non ignorables.</div>
+    <div class="tag-when"><strong>Quand l'utiliser</strong>Quand tu as 3+ contraintes spécifiques. Cette balise empêche l'IA de les oublier en route, ce qui arrive souvent sur les prompts longs.</div>
+  </div>
+
+  <div class="tag-card">
+    <div class="tag-name">&lt;reflexion&gt; ou &lt;thinking&gt;</div>
+    <div class="tag-purpose"><strong>Pour demander à l'IA de réfléchir avant de répondre.</strong> Combiné avec le <a href="chain-of-thought.html">Chain of Thought</a>, tu demandes à l'IA d'écrire son raisonnement dans une balise dédiée, puis sa réponse finale dans une autre balise. Tu sépares la réflexion de la conclusion.</div>
+    <div class="tag-when"><strong>Quand l'utiliser</strong>Sur les problèmes complexes où tu veux pouvoir lire le raisonnement de l'IA avant la conclusion finale.</div>
+  </div>
+
+  <!-- ============== 4. EXEMPLE COMPLET ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 5</span>Avant / après : <em>la transformation</em>.</h2>
+
+  <div class="container reading">
+    <p>Voici un cas concret. Tu veux faire analyser un long extrait de transcription de réunion par l'IA, en lui demandant de produire un compte-rendu structuré selon ton format préféré.</p>
+  </div>
+
+  <div class="ba-section">
+    <div class="ba-block before">
+      <div class="ba-label">— Sans balises XML (prompt confus)</div>
+Tu es un secrétaire de réunion expérimenté. J'ai eu hier une réunion stratégique de 90 minutes avec 6 participants pour valider notre roadmap Q3. Voici la transcription : « Marie : on doit d'abord parler du sujet du recrutement. Tom : je suis pas d'accord, le plus urgent c'est le projet client X. Sami : moi je vois trois priorités... [...transcription de 600 mots...] » Fais-moi un compte-rendu structuré, avec les décisions, les actions, et les points en suspens. Format : 1 page maximum, ton factuel, par ordre de priorité.
+    </div>
+
+    <div class="ba-block after">
+      <div class="ba-label">— Avec balises XML (prompt propre)</div>
+Tu es un secrétaire de réunion expérimenté.
+
+<span class="tag">&lt;contexte&gt;</span>
+J'ai eu hier une réunion stratégique de 90 minutes avec 6 participants pour valider notre roadmap Q3.
+<span class="tag">&lt;/contexte&gt;</span>
+
+<span class="tag">&lt;document&gt;</span>
+Marie : on doit d'abord parler du sujet du recrutement.
+Tom : je suis pas d'accord, le plus urgent c'est le projet client X.
+Sami : moi je vois trois priorités...
+[...transcription de 600 mots...]
+<span class="tag">&lt;/document&gt;</span>
+
+<span class="tag">&lt;instructions&gt;</span>
+Produis un compte-rendu structuré du document ci-dessus :
+1. Liste les décisions prises
+2. Liste les actions assignées (avec qui fait quoi)
+3. Liste les points en suspens
+<span class="tag">&lt;/instructions&gt;</span>
+
+<span class="tag">&lt;contraintes&gt;</span>
+- 1 page maximum
+- Ton factuel
+- Hiérarchise par priorité
+- Pas de jargon réunion
+<span class="tag">&lt;/contraintes&gt;</span>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>Le prompt « avant » est lisible mais l'IA peut <strong>confondre la transcription avec une instruction</strong>. Tu peux obtenir une réponse qui prend les paroles de Marie et Tom comme des consignes à respecter, ou un compte-rendu qui rate la moitié des décisions parce que l'IA n'a pas su distinguer le bruit de la réunion du vrai contenu.</p>
+
+    <p>Le prompt « après » a la même information. Mais grâce aux 4 balises (contexte, document, instructions, contraintes), l'IA <strong>comprend immédiatement la structure</strong>. Elle traite le contexte comme contexte, le document comme document, et les instructions comme instructions. Le compte-rendu produit est nettement plus précis et mieux calibré.</p>
+
+    <p>Le coût ? 8 lignes supplémentaires. Le bénéfice : une réponse fiable au lieu d'une réponse aléatoire. Le ratio est imbattable.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Combiner XML avec d'autres techniques</div>
+    <p>Les balises XML se combinent parfaitement avec le <a href="framework-risen.html">framework RISEN</a> et le <a href="few-shot-prompting.html">Few-Shot Prompting</a>. Tu peux mettre tes exemples Few-Shot dans &lt;exemples&gt;, ta mission RISEN dans &lt;instructions&gt;, ton contexte dans &lt;contexte&gt;. C'est la <strong>structure native</strong> des prompts professionnels en 2026.</p>
+  </div>
+
+  <!-- ============== 5. PIÈGES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 5 / 5</span>Les 3 <em>pièges</em> à éviter.</h2>
+
+  <h3 class="reading">Piège 1 : utiliser les balises sur tous tes prompts</h3>
+
+  <div class="container reading">
+    <p>Pour un prompt court (sous 150 mots), les balises XML ne servent à rien. Tu alourdis ton prompt sans gagner en précision. Garde les balises pour les prompts longs ou complexes — typiquement, dès que tu mélanges plusieurs types de contenu (instructions + document + exemples).</p>
+
+    <p>La règle pratique : si tu peux lire ton prompt d'un coup d'œil et savoir où chaque section commence et finit, tu n'as pas besoin de balises. Si ton œil hésite à la lecture, l'œil de l'IA hésite aussi.</p>
+  </div>
+
+  <h3 class="reading">Piège 2 : multiplier les balises imbriquées</h3>
+
+  <div class="container reading">
+    <p>L'IA gère parfaitement 4-6 balises au même niveau. Elle gère mal les balises imbriquées sur 3+ niveaux. <em>« &lt;instructions&gt; &lt;etape&gt; &lt;sous-etape&gt; &lt;detail&gt; »</em>, c'est trop. À ce niveau de profondeur, l'IA perd la trace de la structure et peut traiter une sous-balise comme une balise principale.</p>
+
+    <p>Reste sur 1 niveau de balises au maximum, avec éventuellement une seule sous-balise pour les structures simples. Si ta hiérarchie est complexe, c'est que ton prompt l'est aussi — découpe-le en plusieurs prompts successifs au lieu de tout caser.</p>
+  </div>
+
+  <h3 class="reading">Piège 3 : utiliser des noms de balises ambigus</h3>
+
+  <div class="container reading">
+    <p>Si tu utilises &lt;texte&gt; pour le document à traiter et &lt;texte&gt; aussi pour les exemples, tu crées de la confusion. Choisis des noms <strong>distincts et descriptifs</strong> : &lt;document_source&gt;, &lt;exemples_format&gt;, &lt;contraintes_finales&gt;. Plus le nom est explicite, mieux l'IA comprend la fonction de la balise.</p>
+
+    <p>Note : les noms de balises peuvent être en français ou en anglais. Le modèle s'adapte. Le critère est la clarté, pas la langue.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Tu as terminé la rubrique « Techniques avancées »</div>
+    <p>9 articles plus tard, tu maîtrises tout l'arsenal du prompt engineering 2026 : RISEN et CRISPE pour les missions complexes, Chain of Thought pour le raisonnement, Few-Shot pour le format, Ask Me Questions First pour le diagnostic, instructions négatives pour les contraintes, Perspective Shifting pour les angles, méta-prompting pour la formulation, et maintenant les balises XML pour la structure des prompts longs. La prochaine rubrique passe à un autre niveau : <strong>Bien configurer ton IA</strong> — Memory, Custom Instructions, Projects, choix du modèle, fichiers de référence.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur les balises XML.</h3>
+    <ol class="recap-points">
+      <li>Au-delà de 200 mots, l'IA mélange les sections de ton prompt. Les balises XML servent de bornes.</li>
+      <li>Ce ne sont pas du jargon technique. Ce sont des marqueurs &lt;mot&gt;...&lt;/mot&gt; que l'IA reconnaît comme des frontières fortes.</li>
+      <li>6 balises suffisent : &lt;contexte&gt;, &lt;instructions&gt;, &lt;document&gt;, &lt;exemples&gt;, &lt;contraintes&gt;, &lt;reflexion&gt;.</li>
+      <li>Les balises se combinent avec RISEN, Few-Shot et Chain of Thought. C'est la structure native des prompts professionnels en 2026.</li>
+      <li>3 pièges à éviter : utiliser les balises sur tous les prompts (inutile sous 150 mots), multiplier les niveaux (max 1-2), choisir des noms ambigus.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a href="#" class="next-link">
+        <div class="next-link-label">— Rubrique suivante</div>
+        <div class="next-link-title">Quel modèle choisir pour quelle tâche</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-2-techniques-avancees.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Techniques avancées · Niveau II</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

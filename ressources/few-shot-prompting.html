@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Few-Shot Prompting : montrer pour obtenir le bon format. – AutomationBoost</title>
+  <meta name="description" content="Donner 2-3 exemples du résultat voulu avant ta demande : souvent plus efficace qu" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Few-Shot Prompting : montrer pour obtenir le bon format.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#34d399;">Mieux prompter</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Few-Shot Prompting : montrer pour obtenir le bon format.</h1>
+    <p class="lede">Donner 2-3 exemples du résultat attendu avant la vraie demande. Souvent plus efficace que d'expliquer le format en 200 mots.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Quand tu veux un format précis, montrer est plus efficace qu'expliquer. Tu as sans doute déjà détaillé minutieusement un format attendu… pour obtenir tout autre chose.</p>
+
+    <p>Le few-shot règle ça : tu donnes quelques exemples du résultat voulu, et l'IA s'y conforme. Voici comment t'en servir.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Le principe : <em>montrer plutôt qu'expliquer</em>.</h2>
+
+  <div class="container reading">
+    <p>Décrire un format avec des mots laisse toujours de l'interprétation : « court », « structuré », « professionnel » sont flous. Montrer deux ou trois exemples du résultat exact que tu veux supprime cette ambiguïté — l'IA calque le motif plutôt que d'interpréter ta description.</p>
+
+    <p>Voici comment construire de bons exemples.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 6</span>Zero-shot, one-shot, <em>few-shot</em>.</h2>
+
+  <div class="container reading">
+    <p>Le vocabulaire technique distingue trois niveaux selon le nombre d'exemples que tu donnes. Connaître ces trois niveaux te permet de choisir le bon en fonction de la complexité de ta demande.</p>
+  </div>
+
+  <div class="levels-grid">
+    <div class="level-card">
+      <div class="level-card-name">Zero-shot</div>
+      <div class="level-card-count">— 0 EXEMPLE</div>
+      <div class="level-card-desc">Tu poses la question sans aucun exemple. C'est ce que tu fais 95 % du temps. Suffisant pour la majorité des cas, mais imprécis quand le format compte.</div>
+    </div>
+    <div class="level-card">
+      <div class="level-card-name">One-shot</div>
+      <div class="level-card-count">— 1 EXEMPLE</div>
+      <div class="level-card-desc">Tu donnes un seul exemple avant ta vraie demande. Souvent suffisant pour fixer le format. Compromis idéal entre simplicité et précision.</div>
+    </div>
+    <div class="level-card optimal">
+      <div class="level-card-name">Few-shot</div>
+      <div class="level-card-count">— 2 À 5 EXEMPLES</div>
+      <div class="level-card-desc">Le sweet spot. 2 à 5 exemples couvrent les variations possibles et l'IA infère un schéma fiable. Au-delà de 5, on entre dans la dilution.</div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>La règle pratique : <strong>commence en zero-shot</strong>. Si le format n'est pas bon, ajoute un exemple. Si l'IA ne saisit toujours pas, passe à 2-3 exemples. Tu n'as quasiment jamais besoin de plus.</p>
+  </div>
+
+  <!-- ============== 3. TEMPLATE ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 6</span>Le <em>modèle</em> du Few-Shot Prompt.</h2>
+
+  <div class="container reading">
+    <p>La structure d'un Few-Shot prompt est toujours la même : tu poses le contexte minimal, tu donnes 2-3 paires <em>« entrée → sortie »</em>, puis tu donnes ton vrai entrée. L'IA complète automatiquement avec le bon sortie.</p>
+  </div>
+
+  <div class="prompt-example"><span class="label">— Contexte</span>
+Voici comment je classifie les retours clients en 3 catégories : <span class="placeholder">[bug / suggestion / éloge]</span>.
+
+<span class="label">— Exemple 1</span>
+<span class="ex-entrée">Entrée : « L'application plante quand je veux exporter en PDF. »</span>
+<span class="ex-sortie">Sortie : Bug</span>
+
+<span class="label">— Exemple 2</span>
+<span class="ex-entrée">Entrée : « Ce serait top si on pouvait partager directement sur Slack. »</span>
+<span class="ex-sortie">Sortie : Suggestion</span>
+
+<span class="label">— Exemple 3</span>
+<span class="ex-entrée">Entrée : « Merci, c'est exactement ce que je cherchais ! »</span>
+<span class="ex-sortie">Sortie : Éloge</span>
+
+<span class="label">— À classifier maintenant</span>
+<span class="ex-entrée">Entrée : <span class="placeholder">[colle le retour client à classifier]</span></span>
+Sortie :</div>
+
+  <div class="container reading">
+    <p>Note la dernière ligne : tu termines par <em>« Sortie : »</em> sans rien après. C'est le signal qui invite l'IA à compléter. Elle va naturellement écrire la classification, sans rien d'autre, parce que c'est le schéma qu'elle a vu dans les exemples.</p>
+
+    <p>Cette technique est tellement efficace pour les tâches de classification que beaucoup d'entreprises l'utilisent en production via API. Pas besoin d'entraîner un modèle dédié — quelques exemples bien choisis suffisent.</p>
+  </div>
+
+  <!-- ============== 4. CAS D'USAGE ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 6</span>Les <em>cas d'usage</em> où Few-Shot brille.</h2>
+
+  <div class="container reading">
+    <p>Few-Shot n'est pas la technique universelle. Sur certains types de tâches, son impact est marginal. Sur d'autres, c'est la seule technique qui donne des résultats fiables. Voici les 4 cas où Few-Shot est le bon outil.</p>
+  </div>
+
+  <div class="usecase">
+    <div class="usecase-num">— CAS 1</div>
+    <div class="usecase-title">Classification</div>
+    <div class="usecase-when"><strong>Quand l'utiliser :</strong> tri d'emails, étiquetage de retours clients, catégorisation de tickets support, détection de sentiment. Toute tâche où tu veux que l'IA range des entrées dans des cases prédéfinies. Few-Shot fixe les frontières des catégories par l'exemple, ce qui marche mieux que toute description textuelle.</div>
+  </div>
+
+  <div class="usecase">
+    <div class="usecase-num">— CAS 2</div>
+    <div class="usecase-title">Format strict ou structure récurrente</div>
+    <div class="usecase-when"><strong>Quand l'utiliser :</strong> génération de fiches produit, transformation de données en JSON, création de variantes selon un même gabarit. Quand tu as un modèle précis (titre + 3 bullets + appel à l'action) à appliquer à de nombreux items, Few-Shot garantit la cohérence d'un livrable à l'autre, ce que les instructions textuelles peinent à obtenir.</div>
+  </div>
+
+  <div class="usecase">
+    <div class="usecase-num">— CAS 3</div>
+    <div class="usecase-title">Ton, voix, style à imiter</div>
+    <div class="usecase-when"><strong>Quand l'utiliser :</strong> rédaction qui doit sonner comme tes posts LinkedIn habituels, mails dans ton style, contenu marketing dans la voix de la marque. Donne 2-3 exemples de tes propres écrits, et l'IA imite avec une fidélité qu'aucune description textuelle (« ton direct, peu de superlatifs ») ne pourrait obtenir.</div>
+  </div>
+
+  <div class="usecase">
+    <div class="usecase-num">— CAS 4</div>
+    <div class="usecase-title">Tâches contre-intuitives ou nuancées</div>
+    <div class="usecase-when"><strong>Quand l'utiliser :</strong> quand ta tâche dévie du comportement standard de l'IA. Par exemple : extraire uniquement les chiffres d'un texte sans aucun commentaire, répondre uniquement par <em>« oui »</em> ou <em>« non »</em>, traduire en gardant les noms propres en anglais. Few-Shot impose le comportement non-standard par démonstration, ce qui est plus efficace que de l'expliquer.</div>
+  </div>
+
+  <!-- ============== 5. COMBIEN ============== -->
+  <h2 class="reading"><span class="h2-num">— 5 / 6</span>Combien d'exemples utiliser ?</h2>
+
+  <div class="container reading">
+    <p>Plus n'est pas toujours mieux. Au-delà d'un certain seuil, les exemples supplémentaires <strong>diluent</strong> au lieu d'aider. Voici la règle observée en 2026 sur les principaux modèles.</p>
+  </div>
+
+  <h3 class="reading">1 exemple : si la tâche est intuitive</h3>
+
+  <div class="container reading">
+    <p>Pour les formats simples ou les tâches que l'IA pourrait deviner avec un seul indice. <em>« Voici un mail dans le style que je veux. Maintenant rédige-en un autre sur ce sujet. »</em>. Souvent suffisant pour la rédaction stylisée. Économique en tokens.</p>
+  </div>
+
+  <h3 class="reading">2 à 3 exemples : la zone optimale</h3>
+
+  <div class="container reading">
+    <p>Le sweet spot pour la grande majorité des cas. 2-3 exemples permettent à l'IA d'identifier les variations possibles d'un même schéma. Tu couvres assez de cas pour qu'elle généralise sans dériver. <strong>C'est le réglage par défaut quand tu hésites.</strong></p>
+  </div>
+
+  <h3 class="reading">4 à 5 exemples : pour les tâches complexes</h3>
+
+  <div class="container reading">
+    <p>Justifié quand la tâche a beaucoup de variations légitimes que tu veux toutes couvrir. Classification avec cas limites, transformation où plusieurs structures sont valides selon l'entrée. Au-delà de 5, tu commences à payer en tokens et en attention sans gagner en qualité.</p>
+  </div>
+
+  <h3 class="reading">Plus de 5 : à éviter</h3>
+
+  <div class="container reading">
+    <p>Plus de 5 exemples diluent l'attention de l'IA et augmentent le coût en tokens sans amélioration mesurable. Si tu sens que 5 exemples ne suffisent pas, c'est que la tâche est trop floue ou trop variée — il vaut mieux la décomposer en plusieurs prompts plus simples avec leurs propres exemples ciblés.</p>
+  </div>
+
+  <p class="pull-quote">Trois exemples bien choisis valent mieux que dix exemples moyens.</p>
+
+  <!-- ============== 6. PIÈGES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 6 / 6</span>Les <em>pièges</em> à éviter.</h2>
+
+  <h3 class="reading">Piège 1 : les exemples non représentatifs</h3>
+
+  <div class="container reading">
+    <p>L'IA va imiter <em>tes</em> exemples. Si tes exemples contiennent une erreur, un biais, ou une formulation atypique, elle reproduira l'erreur, le biais, ou la formulation. Le test : choisis des exemples que tu serais content de voir reproduits 100 fois. C'est exactement ce qui va arriver.</p>
+
+    <p>Cas typique du piège : tu donnes 3 exemples de mails très formels. L'IA va générer un mail très formel, même si tu lui as précisé en contexte que tu voulais un ton décontracté. Les exemples l'emportent toujours sur les instructions textuelles. Tes exemples doivent refléter <strong>exactement</strong> ce que tu veux.</p>
+  </div>
+
+  <h3 class="reading">Piège 2 : les exemples trop similaires</h3>
+
+  <div class="container reading">
+    <p>Si tes 3 exemples sont quasi identiques, l'IA n'a pas appris à généraliser — elle a appris à reproduire. Quand tu lui donnes un entrée différent, elle force le résultat dans le même moule, même si ce n'est pas adapté.</p>
+
+    <p>La règle : tes exemples doivent <strong>couvrir des cas différents</strong> tout en partageant la même structure. Pour la classification de retours clients, ne donne pas 3 exemples de bugs : donne un bug, une suggestion, un éloge. La diversité est ce qui apprend à l'IA à reconnaître les frontières entre catégories.</p>
+  </div>
+
+  <h3 class="reading">Piège 3 : oublier le marqueur de fin</h3>
+
+  <div class="container reading">
+    <p>Si tu termines par <em>« Sortie : »</em> et que l'IA voit qu'il manque la valeur, elle complète. Si tu oublies cette ligne et que tu termines juste par <em>« voilà, à toi de faire pareil »</em>, l'IA peut faire n'importe quoi : commenter tes exemples, te demander des précisions, ou produire un résultat hors format.</p>
+
+    <p>Le marqueur de fin (<em>« Sortie : »</em>, <em>« Réponse : »</em>, <em>« Classification : »</em>) signale clairement que c'est à elle de compléter avec un résultat de la même nature que les exemples précédents. Ne l'oublie jamais.</p>
+  </div>
+
+  <h3 class="reading">Piège 4 : utiliser Few-Shot pour de la créativité</h3>
+
+  <div class="container reading">
+    <p>Few-Shot impose un schéma. C'est exactement l'inverse de ce que tu veux pour la créativité. Si tu donnes 3 exemples de slogans publicitaires, l'IA va te livrer un quatrième slogan dans le même registre — pas un slogan original. Pour la créativité, reste en zero-shot avec un bon contexte.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Few-Shot et les modèles 2026</div>
+    <p>Avec les modèles 2026 (Claude Opus 4.7, GPT-5.5, Gemini 3.1 Pro), Few-Shot est <strong>moins critique</strong> qu'à l'époque de GPT-3 ou GPT-3.5. Les modèles actuels comprennent mieux les instructions textuelles et déduisent souvent le format correct sans exemples. Mais pour les tâches de classification, de format strict, et d'imitation de style, Few-Shot reste la technique la plus fiable. Ne l'oublie pas dans ta boîte à outils.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ce que tu vas voir dans le prochain article</div>
+    <p>Tu connais maintenant les deux <em>techniques cœur</em> du art du prompt moderne : Chain of Thought (raisonnement) et Few-Shot Prompting (format). Le prochain article est l'<strong>article-pilier</strong> de la rubrique : <em>« Ask Me Questions First »</em>, la technique inverse — au lieu de tout dire à l'IA, lui demander de te poser des questions avant de répondre. Le meilleur ratio simplicité/impact de la rubrique.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur le Few-Shot Prompting.</h3>
+    <ol class="recap-points">
+      <li>2-3 exemples bien choisis sont souvent plus efficaces que 200 mots d'instructions. Montrer bat expliquer.</li>
+      <li>Trois niveaux : zero-shot (0 exemple, défaut), one-shot (1 exemple, simple), few-shot (2-5 exemples, optimal).</li>
+      <li>Few-Shot brille sur la classification, le format strict, l'imitation de style, et les tâches contre-intuitives.</li>
+      <li>Tes exemples doivent être <strong>parfaits</strong> et <strong>diversifiés</strong>. L'IA va exactement les imiter — y compris leurs défauts.</li>
+      <li>Évite Few-Shot pour la créativité. Il impose un schéma, ce qui est l'opposé de ce que tu veux pour des idées originales.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="ask-me-questions-first.html">
+        <div class="next-link-label">— Article-pilier suivant</div>
+        <div class="next-link-title">★ « Ask Me Questions First » : la technique du diagnostic</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-2-techniques-avancees.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Techniques avancées · Niveau II</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

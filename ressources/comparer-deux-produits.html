@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comparer deux produits avant un achat important. – AutomationBoost</title>
+  <meta name="description" content="77 % des gens utilisent l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Comparer deux produits avant un achat important.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#22d3ee;">Au quotidien</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Comparer deux produits avant un achat important.</h1>
+    <p class="lede">77 % des consommateurs utilisent l'IA pour comparer des produits en 2026. La majorité l'utilisent mal et sortent avec un mauvais choix. La méthode pour transformer ChatGPT en comparateur fiable, sans tomber dans la fausse certitude.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tu hésites entre deux machines à laver, deux ordinateurs, deux mutuelles. Tu tapes les deux noms dans ChatGPT, « lequel est mieux ? ». L'IA tranche en 30 secondes, tu suis — et tu te plantes sans le savoir.</p>
+
+    <p>L'IA est devenue le premier outil de comparaison de produits dans la majorité des foyers. Le problème, c'est qu'une question vague donne une réponse vague et parfois trompeuse. Voici comment lui faire faire une vraie comparaison, fiable et adaptée à <strong>tes</strong> critères.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi « lequel est mieux ? » <em>est la mauvaise question</em>.</h2>
+
+  <div class="container reading">
+    <p>« Est-ce que A est mieux que B ? » déclenche trois problèmes : l'IA n'a pas tes critères (elle s'appuie sur des critères moyens qui sont rarement les tiens), ses données peuvent être datées, et elle tend à confirmer ce que tu sembles déjà préférer. Tu obtiens un avis générique formulé comme un conseil personnalisé.</p>
+
+    <p>Pour une vraie comparaison adaptée à ton besoin, il faut s'y prendre autrement. Voici comment.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>La <em>méthode 4 étapes</em>.</h2>
+
+  <div class="container reading">
+    <p>Voici le protocole à appliquer pour tout achat où tu hésites entre 2 ou 3 options. Total : 15-30 minutes selon la complexité de l'achat. Le secret est dans la séquence — chaque étape s'appuie sur la précédente, aucune ne peut être sautée.</p>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— ÉTAPE 1 / 4 · LE PLUS NÉGLIGÉE</div>
+    <div class="phase-name">Clarifier <em>tes propres critères</em> avant de regarder les produits</div>
+    <div class="phase-purpose">L'étape qui distingue les bonnes décisions des mauvaises. La majorité des utilisateurs sautent directement à l'étape 2 (comparer les produits). Conséquence : ils comparent sur les mauvais critères, ceux que les fabricants mettent en avant plutôt que ceux qui leur importent vraiment.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>Je vais acheter <span class="placeholder">[catégorie de produit]</span>. Avant que tu me donnes le moindre conseil produit, aide-moi à clarifier mes propres critères.
+
+<strong>Mon contexte :</strong>
+— Usage prévu : <span class="placeholder">[décris en 2-3 lignes ce pour quoi tu vas l'utiliser concrètement]</span>
+— Budget : <span class="placeholder">[fourchette précise, pas un mot]</span>
+— Durée d'usage envisagée : <span class="placeholder">[1 an, 5 ans, 10 ans selon le produit]</span>
+— Mon profil utilisateur : <span class="placeholder">[novice / habitué / exigeant + 1 phrase d'explication]</span>
+
+<strong>Pose-moi 5 à 8 questions de clarification</strong> pour que je découvre les critères auxquels je n'avais pas pensé. Pour chaque question :
+1. Pose la question
+2. Explique brièvement pourquoi c'est important pour cette catégorie d'achat
+3. Donne-moi 2-3 réponses possibles si je suis bloqué
+
+<strong>Ne propose aucun produit pour le moment.</strong> Ne me dis pas ce qui est mieux. À la fin, on aura une liste de mes critères avec leur poids relatif (essentiel / important / secondaire).</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— ÉTAPE 2 / 4 · L'ANALYSE OBJECTIVE</div>
+    <div class="phase-name">Comparer <em>factuellement</em>, sans recommandation</div>
+    <div class="phase-purpose">Maintenant que tes critères sont posés, tu donnes les 2 ou 3 options à l'IA pour qu'elle les compare <strong>strictement sur ces critères</strong>. La discipline ici est d'interdire à l'IA de te dire « lequel est mieux » — tu veux des faits, pas un verdict.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>Voici les options que je considère :
+— Option A : <span class="placeholder">[nom + référence précise]</span>
+— Option B : <span class="placeholder">[nom + référence précise]</span>
+— Option C : <span class="placeholder">[nom + référence précise]</span> <em>(optionnel)</em>
+
+Voici mes critères de l'étape précédente :
+<span class="placeholder">[colle ta liste avec poids essentiel/important/secondaire]</span>
+
+<strong>Active la recherche web.</strong> Crée-moi un tableau comparatif strictement factuel :
+1. <strong>Lignes :</strong> mes critères, dans l'ordre essentiel → important → secondaire
+2. <strong>Colonnes :</strong> les 2-3 options
+3. <strong>Cases :</strong> données factuelles précises (chiffres, oui/non, durée), sources cliquables si possible
+
+<strong>Règles strictes :</strong>
+— <strong>Ne me dis pas qui gagne.</strong> Pas de « mieux », pas de recommandation, pas de « je conseille ».
+— <strong>Si une donnée n'est pas trouvable de manière fiable</strong>, écris « [non vérifié] » plutôt qu'inventer.
+— <strong>Si les modèles ont été remplacés par des versions plus récentes</strong>, signale-le explicitement.
+— <strong>Pour les prix, indique la date de la donnée</strong> (les prix bougent vite).
+
+À la fin, signale-moi <strong>les 2 ou 3 critères où l'écart entre les options est le plus net</strong> — ce sont eux qui devraient peser le plus dans ma décision.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— ÉTAPE 3 / 4 · LA CONTRADICTION</div>
+    <div class="phase-name">Forcer <em>l'avocat du diable</em> sur les avis utilisateurs</div>
+    <div class="phase-purpose">L'étape qui te protège des angles morts. Tu vas chercher activement les défauts cachés de chaque option auprès des vrais utilisateurs — ce que les fiches produits ne disent jamais. C'est aussi ici qu'on neutralise la complaisance en demandant explicitement le contraire.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>Pour chacune des options de mon tableau, fais une recherche web ciblée sur <strong>les retours d'expérience négatifs</strong> :
+
+— Forums spécialisés (Reddit FR, Doctissimo, Que Choisir, AlloCiné selon le type)
+— Avis 1-2 étoiles sur Amazon, Fnac, Darty, Cdiscount, sites spécialisés
+— Articles « problèmes courants avec [produit] » ou « regrets après achat »
+— Plaintes typiques après 6 mois, 1 an, 2 ans d'usage
+
+Pour chaque option, donne-moi :
+1. <strong>Les 3 défauts récurrents</strong> les plus mentionnés (avec source)
+2. <strong>Les 2 cas où ce produit n'est PAS adapté</strong> (selon les utilisateurs déçus)
+3. <strong>Les défauts qui apparaissent après 1+ an d'usage</strong> (très différents des défauts des premiers mois)
+
+<strong>Sois sévère.</strong> Trouve les défauts, ne les minimise pas. Je préfère renoncer à un achat que de découvrir le défaut après livraison.
+
+À la fin, identifie <strong>l'option qui a le PLUS de défauts dans les retours longs (1 an+)</strong> — c'est souvent le bon signal d'élimination.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— ÉTAPE 4 / 4 · LA DÉCISION ASSISTÉE</div>
+    <div class="phase-name">Prendre <em>ta</em> décision avec l'IA en miroir</div>
+    <div class="phase-purpose">La dernière étape. Tu prends maintenant ta décision, et tu utilises l'IA pour <em>tester</em> ton raisonnement, pas pour le valider. C'est ici qu'on arrête définitivement la complaisance en lui demandant explicitement de jouer l'opposition.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>Après les 3 étapes précédentes, je penche pour <strong>l'option <span class="placeholder">[A / B / C]</span></strong>.
+
+Mes raisons principales (3 max) :
+<span class="placeholder">[liste tes 3 raisons les plus fortes]</span>
+
+<strong>Ne valide pas mon choix.</strong> Joue le rôle d'un ami expert qui veut me protéger d'une mauvaise décision :
+
+1. <strong>Attaque les 3 raisons que je donne</strong> une par une. Chacune est-elle vraiment solide ? Ou est-ce que je me convaincs ?
+2. <strong>Identifie 2-3 raisons sérieuses</strong> de choisir une autre option à ma place — les meilleures qui existent, pas du remplissage.
+3. <strong>Dis-moi quel type de personne</strong> regretterait ce choix au bout de 6 mois.
+4. <strong>Pose-moi UNE question piège</strong> : un cas d'usage que je n'ai pas anticipé et qui ferait changer mon choix.
+
+Sois exigeant, ne me ménage pas. Je prendrai ma décision après — ton job ici est de tester sa solidité, pas de me rassurer.
+
+<strong>À la fin :</strong> dis-moi explicitement quels seraient <strong>les 3 points à vérifier en magasin / chez un conseiller / en avis utilisateur final</strong> avant de finaliser. Sois précis.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">L'astuce du mentor</div>
+    <p>L'erreur classique après l'étape 4 : prendre la décision dans la foulée, le soir même. <strong>Discipline simple qui sauve des achats ratés :</strong> attends 24h après l'étape 4 avant de cliquer ou signer. Tu reprends ta décision à tête reposée le lendemain. <strong>Statistique perso à appliquer :</strong> environ 1 fois sur 5, je change de décision après cette nuit. Pas parce que les 4 étapes étaient mauvaises — parce que la décision était bonne pour <em>l'état d'esprit du soir</em> et pas pour ma vraie situation. Pour les achats > 500 €, cette règle des 24h est non négociable. Pour les achats > 2 000 €, j'étends à 48-72h.</p>
+  </div>
+
+  <!-- ============== 3. ADAPTATION 4 CATÉGORIES ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Adaptation aux <em>4 catégories</em> d'achats.</h2>
+
+  <div class="container reading">
+    <p>La méthode générale fonctionne sur tout achat. Mais chaque catégorie a ses spécificités. Voici les ajustements précis pour les 4 types les plus fréquents.</p>
+  </div>
+
+  <div class="scenario">
+    <div class="scenario-name">Catégorie 1 · <em>Tech et électroménager</em></div>
+    <div class="scenario-text">Smartphones, ordinateurs, machines à laver, robots culinaires, casques audio. <strong>Spécificités :</strong> données techniques précises et publiquement disponibles, mais cycles produits courts (renouvellement tous les 6-12 mois). <strong>Ajustement :</strong> active <em>obligatoirement</em> la recherche web à l'étape 2 — les modèles « connus » par l'IA sans recherche sont souvent périmés. Concentre les critères de l'étape 1 sur la durée d'usage envisagée — un téléphone 2 ans vs 5 ans n'a pas les mêmes priorités. Sites de référence à exiger en source : <em>Que Choisir</em> (FR), <em>Les Numériques</em> (FR), <em>Wirecutter</em> (US), forums Reddit spécialisés (r/buyitforlife pour la durabilité).</div>
+  </div>
+
+  <div class="scenario">
+    <div class="scenario-name">Catégorie 2 · <em>Services récurrents</em> (mutuelle, banque, énergie, internet)</div>
+    <div class="scenario-text">Mutuelle santé, banque, fournisseur électricité/gaz, opérateur mobile, assurance auto/habitation. <strong>Spécificités :</strong> contrats complexes, prix variable selon profil, conditions cachées dans les CGV. <strong>Ajustement :</strong> à l'étape 1, demande <em>aussi</em> les questions à poser à un comparateur officiel (energie-info.fr, lecomparateurassurance.com, banque-france.fr) avant l'étape 2. À l'étape 2, demande à l'IA de t'aider à comprendre les CGV plutôt qu'à choisir — voir <a href="comprendre-courrier-administratif-juridique.html">la méthode pour décoder les courriers admin/juridique</a>. À l'étape 3, cherche spécifiquement les pratiques commerciales litigieuses (signal de l'UFC Que Choisir, recours collectifs). Pour les contrats engageants, <strong>consulte un humain neutre</strong> (banque France Services, association de consommateurs) avant signature.</div>
+  </div>
+
+  <div class="scenario">
+    <div class="scenario-name">Catégorie 3 · <em>Logement et automobile</em></div>
+    <div class="scenario-text">Voiture neuve ou occasion, location/achat appartement, travaux importants. <strong>Spécificités :</strong> sommes très importantes, faible fréquence d'achat, marché local très différent du marché général. <strong>Ajustement :</strong> l'IA est utile <em>surtout aux étapes 1 (critères) et 3 (défauts cachés)</em>. À l'étape 2, l'IA n'a pas les données locales fines (un appartement précis, une voiture d'occasion précise) — utilise des comparateurs spécialisés (LeBonCoin, AutoVisual, MeilleursAgents) en parallèle. À l'étape 4, <strong>la consultation d'un humain neutre est obligatoire</strong> : agent immobilier indépendant, expert auto pour occasion (avant signature), notaire. L'IA assistant l'humain bat l'IA seule sur ces achats — l'enjeu est trop élevé pour la complaisance.</div>
+  </div>
+
+  <div class="scenario">
+    <div class="scenario-name">Catégorie 4 · <em>Achats émotionnels engageants</em> (cadeau, voyage, expérience)</div>
+    <div class="scenario-text">Cadeau important, voyage planifié à l'avance, abonnement long, formation onéreuse. <strong>Spécificités :</strong> la dimension émotionnelle pèse beaucoup, les critères sont souvent flous, le « regret » dépend autant de l'expérience subjective que du produit objectif. <strong>Ajustement :</strong> insiste fortement à l'étape 1 sur la clarification émotionnelle (« qu'est-ce qui rend ce voyage / cadeau réussi pour moi ? »). À l'étape 3, cherche les <em>retours d'expérience qualitatifs</em> plutôt que techniques (ressentis 1 mois après, regrets typiques). Pour les voyages, voir l'article complémentaire <a href="niveau-3-vie-quotidienne.html">5.3 sur préparer un voyage</a> (à venir). Pour les cadeaux, <strong>la dimension humaine du destinataire pèse plus que toutes les analyses produit</strong> — l'IA t'aide à structurer mais pas à connaître la personne.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Le seuil financier qui change tout</div>
+    <p>Une règle pratique pour calibrer ton effort sur cette méthode. <strong>Achat &lt; 50 € :</strong> méthode allégée — étape 2 et 4 suffisent (10 minutes total). <strong>Achat 50-500 € :</strong> méthode complète sur 1-2 jours (4 étapes + 24h de recul). <strong>Achat 500-5 000 € :</strong> méthode complète sur 1 semaine (4 étapes + recul + consultation au moins une source humaine externe). <strong>Achat &gt; 5 000 € :</strong> méthode complète + consultation humaine professionnelle obligatoire (notaire, expert, conseiller indépendant payant — typiquement 100-300 € qui te font économiser des milliers d'euros). Ne pas confondre les seuils : appliquer la méthode allégée à un achat de 3 000 € est le piège le plus fréquent. Appliquer la méthode complète à un achat de 30 € te fait perdre du temps inutilement.</p>
+  </div>
+
+  <!-- ============== 4. PIÈGES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Les <em>5 pièges</em> à éviter.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : croire que l'IA <em>connaît tous les produits</em></div>
+    <div class="pitfall-text">L'IA a une connaissance figée à sa date de cutoff (variable selon le modèle, 6-18 mois en arrière typiquement). Sans recherche web activée, elle ignore les modèles récents, les changements de prix, les défauts émergents, les rappels constructeur. <strong>Sur tout achat où la fraîcheur compte (tech, services, automobile, logement), activer la recherche web est non négociable.</strong> Sur ChatGPT/Claude/Gemini, c'est en général un bouton à côté de la zone de saisie. Sans cette activation, l'IA donne des informations qui peuvent dater de l'année dernière avec une assurance trompeuse.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : faire <em>confiance aux prix</em> cités par l'IA</div>
+    <div class="pitfall-text">Même avec recherche web, les prix cités par l'IA sont approximatifs et souvent décalés de la réalité du moment. Les prix bougent quotidiennement (promotions, ruptures de stock, ventes flash). <strong>Règle :</strong> utilise l'IA pour comparer les <em>fourchettes de prix</em> et identifier les modèles à explorer, mais vérifie systématiquement le prix exact sur le site du marchand juste avant l'achat. Pour les achats à enjeu, vérifie aussi sur des comparateurs en temps réel (idealo, lesnumeriques.com pour la tech). Et ne crois jamais une réduction annoncée sans vérifier le prix sur les 3-6 derniers mois (Camelcamelcamel pour Amazon, etc.).</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>poser la question</em> en biaisant déjà la réponse</div>
+    <div class="pitfall-text">Le piège de la complaisance en action. Tu écris « Je penche pour A, est-ce que tu confirmes ? ». L'IA va trouver des arguments pour A. Tu écris la même question avec B. Elle trouvera des arguments pour B. <strong>Tu n'apprends rien — tu obtiens un miroir de ta pré-décision.</strong> Discipline absolue : aux étapes 1, 2 et 3, ne révèle <em>jamais</em> ta préférence. Tu ne révèles ton inclination qu'à l'étape 4, et c'est précisément pour la faire attaquer, pas pour la valider. L'ordre des étapes n'est pas décoratif — il évite cette pollution cognitive.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : oublier le <em>coût total de possession</em></div>
+    <div class="pitfall-text">Le prix d'achat n'est qu'une fraction du coût d'un produit. Sur 5 ans, une machine à laver pas chère mais énergivore peut coûter plus cher qu'une machine premium. Une voiture diesel d'occasion à 8 000 € avec courroie de distribution à 1 200 € peut coûter plus qu'une essence à 10 000 €. Un abonnement « gratuit la première année » peut être 2× plus cher que le concurrent sur 3 ans. <strong>Demande explicitement à l'IA à l'étape 2 le coût total sur la durée d'usage</strong> (achat + consommables + énergie + entretien + remplacement éventuel). Cette ligne change souvent le classement.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : <em>négliger l'humain</em> sur les achats à enjeu</div>
+    <div class="pitfall-text">Symétrique du piège du « tout IA ». Sur un achat à 5 000 € ou plus (auto, immobilier, formation longue, contrat engageant), l'IA est utile mais insuffisante. <strong>La consultation d'un humain qualifié et neutre</strong> (notaire, expert, conseiller financier indépendant payant, association consumeriste) reste indispensable. Le coût (100-500 € typiquement) est négligeable face à l'enjeu. Beaucoup d'utilisateurs avancés tombent dans le piège opposé du débutant : ils gèrent <em>tous</em> leurs achats avec l'IA seule, refusant la consultation humaine par fierté ou économie. Sur les enjeux importants, c'est plus cher au final.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>La comparaison produits avec IA est probablement le cas d'usage le plus mal posé pour les utilisateurs débutants. Le comportement par défaut (« lequel est mieux ? ») produit des décisions médiocres parce qu'il <em>donne l'illusion d'un conseil personnalisé</em> alors qu'il y a moyenne statistique + complaisance. Mais bien utilisée — avec la séquence critères → faits → contradiction → décision-test — l'IA devient un assistant comparateur supérieur à n'importe quel humain seul, parce qu'elle peut digérer en 5 minutes 50 sources et 100 avis utilisateurs. <strong>La frontière passe par la discipline du prompt, pas par les capacités de l'outil.</strong> Mêmes 4 modèles d'IA, mêmes données accessibles : 5 utilisateurs sur 6 obtiendront des comparaisons médiocres, 1 utilisateur sur 6 obtiendra des comparaisons d'expert. Cette différence se joue dans les 4 prompts de cet article, et nulle part ailleurs.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Pour aller plus loin : <a href="hallucinations-ia.html">les hallucinations IA</a> (l'IA invente des spécifications produit), <a href="quand-ia-veut-plaire.html">la complaisance</a> (cœur du problème dans les comparaisons), <a href="double-check-ia-web.html">la méthode du double-check IA + web</a> (essentielle aux étapes 2 et 3), <a href="comprendre-courrier-administratif-juridique.html">comprendre un courrier admin/juridique</a> (utile pour décoder les CGV des contrats engageants), <a href="ask-me-questions-first.html">la technique « pose-moi des questions d'abord »</a> qui structure l'étape 1 de cette méthode.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur la comparaison produits avec l'IA.</h3>
+    <ol class="recap-points">
+      <li>77 % des consommateurs utilisent déjà l'IA pour comparer produits (étude Exploding Topics 2026). 83 % en mode « trust but verify », seuls 14 % font confiance aveugle. Cette défiance est saine — mais prive l'utilisateur de l'IA comme outil structurant, faute de méthode.</li>
+      <li>« Lequel est mieux ? » est la mauvaise question : l'IA n'a pas tes critères, ses données peuvent être périmées, et la complaisance renforce ta pré-décision quelle qu'elle soit. La bonne formulation utilise l'IA pour structurer ta décision, pas pour la prendre.</li>
+      <li>Méthode 4 étapes : (1) clarifier tes critères avant de regarder les produits, (2) comparer factuellement avec recherche web et interdiction de recommander, (3) chercher activement les défauts cachés et les retours négatifs longs, (4) prendre TA décision et la faire attaquer par l'IA en mode avocat du diable. Discipline 24h de recul minimum après l'étape 4.</li>
+      <li>4 catégories d'ajustement : tech/électroménager (recherche web obligatoire, données techniques publiques), services récurrents (consulter un humain neutre avant contrat engageant), logement/auto (humain professionnel obligatoire en plus de l'IA), achats émotionnels (clarification émotionnelle à l'étape 1). Calibrage selon le seuil financier : &lt;50 € méthode allégée, 50-500 € méthode complète, 500-5 000 € + consultation source externe, &gt;5 000 € + consultation humaine professionnelle obligatoire.</li>
+      <li>5 pièges : croire que l'IA connaît tous les produits (recherche web non négociable), faire confiance aux prix (vérifier juste avant achat), poser la question en biaisant la réponse (ne révéler ta préférence qu'à l'étape 4), oublier le coût total de possession (achat + consommables + énergie + entretien sur durée d'usage), négliger l'humain sur les achats à enjeu (100-500 € de consultation économisent des milliers d'euros).</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="comprendre-courrier-administratif-juridique.html">
+        <div class="next-link-label">— Article complémentaire</div>
+        <div class="next-link-title">Comprendre un courrier administratif ou juridique</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-3-vie-quotidienne.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Vie quotidienne · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

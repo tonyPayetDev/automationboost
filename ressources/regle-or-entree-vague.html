@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La règle d'or : entrée vague = sortie vague. – AutomationBoost</title>
+  <meta name="description" content="La qualité de la réponse est proportionnelle à la précision de la demande. La règle d" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>La règle d'or : entrée vague = sortie vague.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#34d399;">Mieux prompter</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">La règle d'or : entrée vague = sortie vague.</h1>
+    <p class="lede">La qualité de la réponse est strictement proportionnelle à la précision de la demande. Démonstration en 5 exemples avant/après qui rendent la règle inoubliable.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tu peux apprendre cent techniques de prompt : si tu ne maîtrises pas celle-ci, les autres ne serviront à rien. C'est le vieux principe informatique « Garbage In, Garbage Out » — une entrée vague donne une sortie vague.</p>
+
+    <p>Voici pourquoi la qualité de ta demande détermine tout, et comment ne plus jamais donner d'entrée floue.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Le principe <em>en une phrase</em>.</h2>
+
+  <div class="container reading">
+    <p>« Garbage In, Garbage Out » : la qualité de la sortie ne dépasse jamais celle de l'entrée. Une demande floue (« parle-moi du marketing ») ne peut produire qu'une réponse floue, quelles que soient les techniques que tu connais par ailleurs.</p>
+
+    <p>Tout part de là. Voici comment transformer une entrée vague en demande précise.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 5</span>Pourquoi c'est <em>encore plus vrai</em> en 2026.</h2>
+
+  <div class="container reading">
+    <p>Avec les modèles de raisonnement (Claude Opus, GPT-5.5 Thinking, Gemini Deep Think), l'IA est devenue beaucoup plus intelligente. Mais cette intelligence amplifie la règle au lieu de la désactiver.</p>
+
+    <p>Une IA puissante avec une demande vague va te livrer une réponse <em>longue, élégante, et complètement à côté de ton vrai besoin</em>. Tu vas lire ça, te dire « c'est bien écrit », et passer à autre chose sans te rendre compte que tu n'as pas obtenu ce que tu cherchais. C'est plus dangereux que d'obtenir une réponse manifestement mauvaise — au moins là, tu sais qu'il faut recommencer.</p>
+
+    <p>Plus l'IA est capable, plus elle peut combler les vides à ta place. Mais elle les comble selon ses propres priorités, pas les tiennes. Donc plus elle est puissante, plus la règle compte.</p>
+  </div>
+
+  <!-- ============== 3. 5 EXEMPLES ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 5</span>5 exemples avant / après.</h2>
+
+  <div class="container reading">
+    <p>Cinq cas concrets, dans cinq domaines différents. Pour chacun, le même besoin formulé deux fois : la version vague (celle qu'on écrit par défaut) et la version précise (celle qui marche).</p>
+  </div>
+
+  <!-- EXEMPLE 1 : MAIL -->
+  <div class="demo-block">
+    <span class="demo-block-num">— EXEMPLE 1 · MAIL PROFESSIONNEL</span>
+    <div class="demo-block-title">Annoncer un retard à un client</div>
+  </div>
+
+  <div class="compare-pair">
+    <div class="compare-side bad">
+      <div class="compare-side-label">— Version vague</div>
+      <div class="compare-side-prompt">Écris-moi un mail pour annoncer un retard à un client.</div>
+    </div>
+    <div class="compare-side good">
+      <div class="compare-side-label">— Version précise</div>
+      <div class="compare-side-prompt">Rédige un mail de 80 mots à un client (que je connais depuis 3 ans) pour l'informer d'un retard de 5 jours sur la livraison de son projet, dû à un problème fournisseur. Ton honnête, sans excuses excessives, propose une solution concrète (livraison partielle dès vendredi). Termine par une demande de validation explicite.</div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>La version vague te donne un mail générique avec des formules toutes faites (<em>« Nous tenons à vous informer »</em>, <em>« Nous vous prions de bien vouloir »</em>). La version précise te donne un mail que tu peux envoyer après une seule relecture.</p>
+  </div>
+
+  <!-- EXEMPLE 2 : PLAN -->
+  <div class="demo-block">
+    <span class="demo-block-num">— EXEMPLE 2 · STRUCTURATION D'IDÉES</span>
+    <div class="demo-block-title">Construire un plan de présentation</div>
+  </div>
+
+  <div class="compare-pair">
+    <div class="compare-side bad">
+      <div class="compare-side-label">— Version vague</div>
+      <div class="compare-side-prompt">Fais-moi un plan de présentation sur l'intelligence artificielle.</div>
+    </div>
+    <div class="compare-side good">
+      <div class="compare-side-label">— Version précise</div>
+      <div class="compare-side-prompt">Construis-moi un plan de présentation de 15 minutes sur les usages concrets de l'IA en cabinet d'avocat. Public : associés non-techniques d'un cabinet de droit des affaires (50-60 ans). Objectif : leur faire comprendre les 3 outils à essayer cette semaine. Format : 5 sections maximum, avec un cas concret par section. Évite tout jargon technique.</div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>La version vague te donne un plan d'introduction générale style Wikipédia (« historique de l'IA », « définitions », « grandes catégories »). La version précise te donne une présentation directement utilisable, calibrée pour ton public.</p>
+  </div>
+
+  <!-- EXEMPLE 3 : ANALYSE -->
+  <div class="demo-block">
+    <span class="demo-block-num">— EXEMPLE 3 · ANALYSE DE DOCUMENT</span>
+    <div class="demo-block-title">Faire émerger l'essentiel d'un texte</div>
+  </div>
+
+  <div class="compare-pair">
+    <div class="compare-side bad">
+      <div class="compare-side-label">— Version vague</div>
+      <div class="compare-side-prompt">Résume ce document.</div>
+    </div>
+    <div class="compare-side good">
+      <div class="compare-side-label">— Version précise</div>
+      <div class="compare-side-prompt">Voici un rapport de 40 pages sur la stratégie 2026 d'une entreprise concurrente. Identifie les 3 décisions stratégiques majeures qu'ils annoncent, les 2 risques qu'ils admettent ouvertement, et les chiffres-clés à mémoriser. Format : liste à puces, maximum 200 mots au total. Si une info importante est absente du document, signale-le.</div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>La version vague te donne un résumé fluide mais lisse, qui survole tout sans rien creuser. La version précise te donne une fiche de lecture stratégique. Le même document, des résultats radicalement différents.</p>
+  </div>
+
+  <!-- EXEMPLE 4 : CODE -->
+  <div class="demo-block">
+    <span class="demo-block-num">— EXEMPLE 4 · CODE</span>
+    <div class="demo-block-title">Demander une fonction simple</div>
+  </div>
+
+  <div class="compare-pair">
+    <div class="compare-side bad">
+      <div class="compare-side-label">— Version vague</div>
+      <div class="compare-side-prompt">Code-moi une fonction qui calcule des dates.</div>
+    </div>
+    <div class="compare-side good">
+      <div class="compare-side-label">— Version précise</div>
+      <div class="compare-side-prompt">Écris une fonction Python qui prend en entrée une date (format JJ/MM/AAAA) et un nombre de jours ouvrés. Retourne la date d'arrivée en excluant les week-ends et les jours fériés français de 2026. Gère le cas où la date d'entrée tombe un week-end. Documente la fonction avec un docstring et inclus 3 cas de test.</div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>La version vague te donne une fonction générique qui ne gère rien des cas particuliers. Tu vas passer 30 minutes à corriger les bugs un par un. La version précise te donne du code qui marche du premier coup.</p>
+  </div>
+
+  <!-- EXEMPLE 5 : IDÉES -->
+  <div class="demo-block">
+    <span class="demo-block-num">— EXEMPLE 5 · BRAINSTORM</span>
+    <div class="demo-block-title">Générer des idées</div>
+  </div>
+
+  <div class="compare-pair">
+    <div class="compare-side bad">
+      <div class="compare-side-label">— Version vague</div>
+      <div class="compare-side-prompt">Donne-moi des idées de contenu pour mon Instagram.</div>
+    </div>
+    <div class="compare-side good">
+      <div class="compare-side-label">— Version précise</div>
+      <div class="compare-side-prompt">Je suis kinésithérapeute du sport, 8K abonnés sur Instagram, audience composée à 70 % de runners amateurs (30-50 ans). Donne-moi 10 idées de Reels courts (15-30 sec) à filmer chez moi sans matériel, sur le thème de la prévention des blessures de course. Format : titre accrocheur (sans clickbait) + 1 phrase qui explique l'angle + le hook des 3 premières secondes.</div>
+    </div>
+  </div>
+
+  <div class="container reading">
+    <p>La version vague te donne 10 idées génériques applicables à n'importe quel compte (« Présente-toi », « Partage tes coulisses », « Fais un avant/après »). La version précise te donne 10 idées spécifiques à ton métier, ton audience et ton format.</p>
+  </div>
+
+  <!-- ============== 4. LE TEST ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 5</span>Le test à faire sur tes <em>propres prompts</em>.</h2>
+
+  <div class="container reading">
+    <p>Avant d'envoyer n'importe quel prompt à une IA, pose-toi trois questions de cinq secondes chacune.</p>
+  </div>
+
+  <h3 class="reading">Question 1 : « Si je donnais ce brief à un humain inconnu, ferait-il ce que je veux ? »</h3>
+
+  <div class="container reading">
+    <p>Si la réponse est non, l'IA non plus. C'est le test le plus simple et le plus puissant. Un brief qui ne marche pas avec un humain ne marche pas avec une IA, parce que les deux ont besoin des mêmes informations pour produire un travail utile.</p>
+  </div>
+
+  <h3 class="reading">Question 2 : « Quelqu'un d'autre, avec ce même prompt, obtiendrait-il un résultat similaire ? »</h3>
+
+  <div class="container reading">
+    <p>Si oui, ton prompt est trop générique. Un bon prompt produit un résultat <strong>spécifique à ton contexte</strong>. Si ton voisin, qui ne connaît rien à ta situation, peut envoyer le même prompt et obtenir un résultat tout aussi pertinent pour lui — c'est que le prompt ne contient pas assez d'informations sur toi.</p>
+  </div>
+
+  <h3 class="reading">Question 3 : « Est-ce que je peux deviner à l'avance comment va commencer la réponse ? »</h3>
+
+  <div class="container reading">
+    <p>Si oui, c'est mauvais signe. Si tu peux écrire à l'avance les trois premières phrases de la réponse (<em>« L'intelligence artificielle est un domaine en pleine expansion qui... »</em>), c'est que ton prompt va générer du contenu prévisible et générique. Reformule pour amener l'IA dans un terrain plus spécifique.</p>
+  </div>
+
+  <!-- ============== 5. LA NUANCE ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 5 / 5</span>Quand être <em>volontairement vague</em> a du sens.</h2>
+
+  <div class="container reading">
+    <p>La règle a une exception. Il existe un seul cas où être vague est utile : quand tu cherches à <strong>élargir ton champ de pensée</strong>, pas à obtenir un livrable.</p>
+
+    <p>Si tu es bloqué sur un sujet et que tu veux explorer des angles auxquels tu n'avais pas pensé, un prompt large peut être utile : <em>« quels sont les 10 angles différents sous lesquels on peut aborder le sujet du burn-out chez les indépendants ? »</em>. Ici, la vague est volontaire. Tu cherches à diverger, pas à converger.</p>
+
+    <p>Mais c'est une étape. Une fois que tu as identifié l'angle qui t'intéresse, tu reviens à un prompt précis pour produire le livrable. Ne reste jamais en mode vague pour un travail final.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ce que tu vas voir dans les prochains articles</div>
+    <p>Cet article a posé la règle. <strong>Les articles suivants donnent les outils pour l'appliquer systématiquement</strong> : <a href="#" style="color: var(--accent-warm);">l'anatomie d'un prompt qui marche</a> (les 4 piliers à activer), le framework PTCF (le template à remplir), et l'art de donner du contexte (la compétence n°1).</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points pour ne plus jamais perdre de qualité.</h3>
+    <ol class="recap-points">
+      <li>L'IA ne lit pas dans tes pensées. Elle lit ce que tu écris. Tout ce qui est implicite est perdu.</li>
+      <li>Plus l'IA est puissante, plus la règle compte. Elle comble les vides à sa façon, pas à la tienne.</li>
+      <li>Un bon prompt produit un résultat spécifique à ton contexte. Si ton voisin obtenait pareil, c'est trop générique.</li>
+      <li>Le test : si un humain ne ferait pas ce que tu veux avec ce brief, l'IA non plus.</li>
+      <li>Être vague est utile uniquement pour explorer. Pour produire, sois toujours précis.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a href="#" class="next-link">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">L'anatomie d'un prompt qui marche</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-2-bases-prompt.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Les bases du prompt · Niveau II</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

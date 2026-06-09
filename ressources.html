@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ressources IA Gratuites – AutomationBoost</title>
-  <meta name="description" content="16 ressources gratuites sur Claude Code, agents IA et automatisation. Articles et vidéos sélectionnés pour booster votre productivité avec l'IA." />
+  <meta name="description" content="178 ressources gratuites sur l'IA, le prompting, l'automatisation et le business. Articles et vidéos sélectionnés pour booster votre productivité avec l'IA." />
   <link rel="canonical" href="https://automationboost.tonypayet.com/ressources" />
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
@@ -136,6 +136,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 8px;
+      flex-wrap: wrap;
     }
     .card-badge {
       display: inline-flex;
@@ -158,6 +159,41 @@
       color: var(--gold);
       border: 1px solid rgba(234,179,8,0.25);
     }
+    .badge-comprendre {
+      background: rgba(129,140,248,0.12);
+      color: #818cf8;
+      border: 1px solid rgba(129,140,248,0.25);
+    }
+    .badge-prompter {
+      background: rgba(52,211,153,0.12);
+      color: #34d399;
+      border: 1px solid rgba(52,211,153,0.25);
+    }
+    .badge-temps {
+      background: rgba(249,115,22,0.12);
+      color: #f97316;
+      border: 1px solid rgba(249,115,22,0.25);
+    }
+    .badge-contenu {
+      background: rgba(232,121,249,0.12);
+      color: #e879f9;
+      border: 1px solid rgba(232,121,249,0.25);
+    }
+    .badge-quotidien {
+      background: rgba(34,211,238,0.12);
+      color: #22d3ee;
+      border: 1px solid rgba(34,211,238,0.25);
+    }
+    .badge-agents {
+      background: rgba(234,179,8,0.12);
+      color: var(--gold);
+      border: 1px solid rgba(234,179,8,0.25);
+    }
+    .badge-business {
+      background: rgba(244,63,94,0.12);
+      color: #f43f5e;
+      border: 1px solid rgba(244,63,94,0.25);
+    }
     .card-duration {
       font-size: 12px;
       color: var(--text-muted);
@@ -170,10 +206,18 @@
       font-weight: 700;
       opacity: 0.5;
     }
+    .card-cat {
+      font-size: 10px;
+      color: var(--text-muted);
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
 
     .card-title {
       font-family: 'Orbitron', sans-serif;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
       color: var(--text);
       line-height: 1.4;
@@ -184,7 +228,7 @@
     .res-card:hover .card-title { color: var(--gold); }
 
     .card-desc {
-      font-size: 14px;
+      font-size: 13px;
       color: var(--text-muted);
       line-height: 1.65;
       flex: 1;
@@ -226,6 +270,21 @@
       margin-right: auto;
     }
 
+    /* ---- SECTION HEADER ---- */
+    .section-header {
+      margin: 48px 0 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-header h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0;
+    }
+    .section-header h2 span { color: var(--gold); }
+
     @media (max-width: 640px) {
       .resources-grid { grid-template-columns: 1fr; }
       .res-stats { gap: 16px; }
@@ -253,11 +312,11 @@
   <div class="container">
     <div class="res-hero-badge">⚡ Sélection gratuite</div>
     <h1>Ressources <span>IA</span> Gratuites</h1>
-    <p>Articles et vidéos sélectionnés sur Claude Code, agents IA et automatisation. Du concret, du pratique, du gratuit.</p>
+    <p>Articles et guides sélectionnés sur l'IA, le prompting, l'automatisation et le business. Du concret, du pratique, du gratuit.</p>
     <div class="res-stats">
-      <div class="res-stat"><span>16</span> ressources</div>
+      <div class="res-stat"><span>178</span> ressources</div>
       <div class="res-stat"><span>3</span> vidéos</div>
-      <div class="res-stat"><span>13</span> articles</div>
+      <div class="res-stat"><span>175</span> articles</div>
       <div class="res-stat"><span>100%</span> gratuit</div>
     </div>
   </div>
@@ -266,8 +325,14 @@
 <!-- ============ FILTRES ============ -->
 <div class="filters">
   <button class="filter-btn active" data-filter="all">Tout voir</button>
-  <button class="filter-btn" data-filter="article">Articles</button>
-  <button class="filter-btn" data-filter="video">Vidéos</button>
+  <button class="filter-btn" data-filter="video">Vidéos Claude</button>
+  <button class="filter-btn" data-filter="comprendre">Comprendre l'IA</button>
+  <button class="filter-btn" data-filter="prompter">Mieux prompter</button>
+  <button class="filter-btn" data-filter="temps">Gagner du temps</button>
+  <button class="filter-btn" data-filter="contenu">Créer du contenu</button>
+  <button class="filter-btn" data-filter="quotidien">Au quotidien</button>
+  <button class="filter-btn" data-filter="agents">Automatiser</button>
+  <button class="filter-btn" data-filter="business">Lancer un business</button>
 </div>
 
 <!-- ============ GRILLE ============ -->
@@ -275,9 +340,9 @@
   <div class="container">
     <div class="resources-grid">
 
+      <!-- === RESSOURCES CLAUDE CODE (originales) === -->
       <!-- 1 -->
-      <a href="ressources/skill-design-web.html"
-         class="res-card" data-type="video">
+      <a href="ressources/skill-design-web.html" class="res-card" data-type="video">
         <div class="card-top">
           <span class="card-badge badge-video">▶ Vidéo</span>
           <span class="card-duration">1m 47s</span>
@@ -289,8 +354,7 @@
       </a>
 
       <!-- 2 -->
-      <a href="ressources/claude-md-boris-cherny.html"
-         class="res-card" data-type="article">
+      <a href="ressources/claude-md-boris-cherny.html" class="res-card" data-type="video">
         <div class="card-top">
           <span class="card-badge badge-article">◈ Article</span>
           <span class="card-number">#02</span>
@@ -301,8 +365,7 @@
       </a>
 
       <!-- 3 -->
-      <a href="ressources/reduire-cout-tokens.html"
-         class="res-card" data-type="article">
+      <a href="ressources/reduire-cout-tokens.html" class="res-card" data-type="article">
         <div class="card-top">
           <span class="card-badge badge-article">◈ Article</span>
           <span class="card-number">#03</span>
@@ -313,8 +376,7 @@
       </a>
 
       <!-- 4 -->
-      <a href="ressources/127-sous-agents.html"
-         class="res-card" data-type="video">
+      <a href="ressources/127-sous-agents.html" class="res-card" data-type="video">
         <div class="card-top">
           <span class="card-badge badge-video">▶ Vidéo</span>
           <span class="card-duration">1m 38s</span>
@@ -326,8 +388,7 @@
       </a>
 
       <!-- 5 -->
-      <a href="ressources/5-couches-memoire.html"
-         class="res-card" data-type="article">
+      <a href="ressources/5-couches-memoire.html" class="res-card" data-type="article">
         <div class="card-top">
           <span class="card-badge badge-article">◈ Article</span>
           <span class="card-number">#05</span>
@@ -338,8 +399,7 @@
       </a>
 
       <!-- 6 -->
-      <a href="ressources/guide-deerflow.html"
-         class="res-card" data-type="article">
+      <a href="ressources/guide-deerflow.html" class="res-card" data-type="article">
         <div class="card-top">
           <span class="card-badge badge-article">◈ Article</span>
           <span class="card-number">#06</span>
@@ -350,8 +410,7 @@
       </a>
 
       <!-- 7 -->
-      <a href="ressources/claude-playwright.html"
-         class="res-card" data-type="article">
+      <a href="ressources/claude-playwright.html" class="res-card" data-type="article">
         <div class="card-top">
           <span class="card-badge badge-article">◈ Article</span>
           <span class="card-number">#07</span>
@@ -362,8 +421,7 @@
       </a>
 
       <!-- 8 -->
-      <a href="ressources/pdf-vers-markdown.html"
-         class="res-card" data-type="article">
+      <a href="ressources/pdf-vers-markdown.html" class="res-card" data-type="article">
         <div class="card-top">
           <span class="card-badge badge-article">◈ Article</span>
           <span class="card-number">#08</span>
@@ -374,8 +432,7 @@
       </a>
 
       <!-- 9 -->
-      <a href="ressources/claude-computer-use.html"
-         class="res-card" data-type="article">
+      <a href="ressources/claude-computer-use.html" class="res-card" data-type="article">
         <div class="card-top">
           <span class="card-badge badge-article">◈ Article</span>
           <span class="card-number">#09</span>
@@ -386,8 +443,7 @@
       </a>
 
       <!-- 10 -->
-      <a href="ressources/6-plugins-claude-code.html"
-         class="res-card" data-type="article">
+      <a href="ressources/6-plugins-claude-code.html" class="res-card" data-type="article">
         <div class="card-top">
           <span class="card-badge badge-article">◈ Article</span>
           <span class="card-number">#10</span>
@@ -398,8 +454,7 @@
       </a>
 
       <!-- 11 -->
-      <a href="ressources/cloner-site-claude.html"
-         class="res-card" data-type="video">
+      <a href="ressources/cloner-site-claude.html" class="res-card" data-type="video">
         <div class="card-top">
           <span class="card-badge badge-video">▶ Vidéo</span>
           <span class="card-duration">2m 05s</span>
@@ -411,8 +466,7 @@
       </a>
 
       <!-- 12 -->
-      <a href="ressources/redesigner-piece-claude.html"
-         class="res-card" data-type="article">
+      <a href="ressources/redesigner-piece-claude.html" class="res-card" data-type="article">
         <div class="card-top">
           <span class="card-badge badge-article">◈ Article</span>
           <span class="card-number">#12</span>
@@ -423,8 +477,7 @@
       </a>
 
       <!-- 13 -->
-      <a href="ressources/instruction-anti-flatterie.html"
-         class="res-card" data-type="article">
+      <a href="ressources/instruction-anti-flatterie.html" class="res-card" data-type="article">
         <div class="card-top">
           <span class="card-badge badge-article">◈ Article</span>
           <span class="card-number">#13</span>
@@ -435,8 +488,7 @@
       </a>
 
       <!-- 14 -->
-      <a href="ressources/claude-remotion-videos.html"
-         class="res-card" data-type="article">
+      <a href="ressources/claude-remotion-videos.html" class="res-card" data-type="article">
         <div class="card-top">
           <span class="card-badge badge-article">◈ Article</span>
           <span class="card-number">#14</span>
@@ -447,8 +499,7 @@
       </a>
 
       <!-- 15 -->
-      <a href="ressources/ruflo-stack.html"
-         class="res-card" data-type="article">
+      <a href="ressources/ruflo-stack.html" class="res-card" data-type="article">
         <div class="card-top">
           <span class="card-badge badge-article">◈ Article</span>
           <span class="card-number">#15</span>
@@ -459,8 +510,7 @@
       </a>
 
       <!-- 16 -->
-      <a href="ressources/1000-skills-claude-code.html"
-         class="res-card" data-type="article">
+      <a href="ressources/1000-skills-claude-code.html" class="res-card" data-type="article">
         <div class="card-top">
           <span class="card-badge badge-article">◈ Article</span>
           <span class="card-number">#16</span>
@@ -468,6 +518,986 @@
         <div class="card-title">+1 000 Skills en Une Seule Commande</div>
         <div class="card-desc">Débloquez plus de 1000 compétences dans Claude Code avec une commande unique. Le système détecte automatiquement quel skill activer selon votre demande — zéro configuration.</div>
         <div class="card-cta">Voir la ressource →</div>
+      </a>
+
+      <!-- === COMPRENDRE L'IA === -->
+      <a href="ressources/glossaire-ia.html" class="res-card" data-type="comprendre">
+        <div class="card-top"><span class="card-badge badge-comprendre">Comprendre l'IA</span></div>
+        <div class="card-title">Le lexique de l'IA : 30 termes expliqués simplement</div>
+        <div class="card-desc">LLM, token, prompt, hallucination, agent, RAG… 30 termes essentiels de l'IA expliqués en français clair, avec exemples concrets.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/securite-confidentialite-ia.html" class="res-card" data-type="comprendre">
+        <div class="card-top"><span class="card-badge badge-comprendre">Comprendre l'IA</span></div>
+        <div class="card-title">Ce qu'il ne faut jamais dire à une IA (confidentialité)</div>
+        <div class="card-desc">Les informations sensibles à ne jamais partager avec une IA et pourquoi. Guide pratique sur la confidentialité et la sécurité.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/pourquoi-ia-2026.html" class="res-card" data-type="comprendre">
+        <div class="card-top"><span class="card-badge badge-comprendre">Comprendre l'IA</span></div>
+        <div class="card-title">Pourquoi s'intéresser à l'IA en 2026</div>
+        <div class="card-desc">Les raisons concrètes et les opportunités réelles offertes par l'IA en 2026. Sans hype, avec des arguments solides.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/7-erreurs-debutants.html" class="res-card" data-type="comprendre">
+        <div class="card-top"><span class="card-badge badge-comprendre">Comprendre l'IA</span></div>
+        <div class="card-title">Les 7 erreurs des débutants à éviter</div>
+        <div class="card-desc">Les pièges classiques quand on débute avec l'IA et comment les contourner pour progresser rapidement.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/hallucinations-ia.html" class="res-card" data-type="comprendre">
+        <div class="card-top"><span class="card-badge badge-comprendre">Comprendre l'IA</span></div>
+        <div class="card-title">Pourquoi l'IA hallucine — et comment le détecter</div>
+        <div class="card-desc">Comprendre les hallucinations de l'IA et les méthodes pour les détecter et les éviter dans votre usage quotidien.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/quel-modele-choisir.html" class="res-card" data-type="comprendre">
+        <div class="card-top"><span class="card-badge badge-comprendre">Comprendre l'IA</span></div>
+        <div class="card-title">Quel modèle choisir pour quelle tâche</div>
+        <div class="card-desc">Guide de sélection des modèles IA selon votre usage : GPT-4o, Claude 3.5, Gemini, Mistral. Quel modèle pour quelle tâche en 2026.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/chatgpt-vs-gemini-vs-claude.html" class="res-card" data-type="comprendre">
+        <div class="card-top"><span class="card-badge badge-comprendre">Comprendre l'IA</span></div>
+        <div class="card-title">ChatGPT vs Gemini vs Claude : lequel choisir en 2026</div>
+        <div class="card-desc">Comparaison objective des trois grands modèles IA. Forces, faiblesses, cas d'usage idéaux — pour choisir sans se tromper.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/memoire-ia.html" class="res-card" data-type="comprendre">
+        <div class="card-top"><span class="card-badge badge-comprendre">Comprendre l'IA</span></div>
+        <div class="card-title">Bien gérer la mémoire de ton IA</div>
+        <div class="card-desc">Comment configurer et exploiter la mémoire de votre IA pour des conversations plus cohérentes et des résultats plus personnalisés.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/double-check-ia-web.html" class="res-card" data-type="comprendre">
+        <div class="card-top"><span class="card-badge badge-comprendre">Comprendre l'IA</span></div>
+        <div class="card-title">Combiner IA et recherche web : la méthode du double-check</div>
+        <div class="card-desc">La méthode pour vérifier les réponses IA avec une recherche web ciblée. Fiabilité maximale sans perdre en productivité.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/reasoning-mode.html" class="res-card" data-type="comprendre">
+        <div class="card-top"><span class="card-badge badge-comprendre">Comprendre l'IA</span></div>
+        <div class="card-title">Le Reasoning mode : quand l'activer, quand l'éviter</div>
+        <div class="card-desc">Le mode raisonnement des LLMs expliqué : quand il booste vraiment vos résultats et quand il gaspille vos tokens.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/5-signes-trop-dependant-ia.html" class="res-card" data-type="comprendre">
+        <div class="card-top"><span class="card-badge badge-comprendre">Comprendre l'IA</span></div>
+        <div class="card-title">Les 5 signes que tu deviens trop dépendant à l'IA</div>
+        <div class="card-desc">Reconnaître les signaux d'alarme d'une dépendance excessive à l'IA et comment maintenir un usage sain et efficace.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/7-cas-jamais-confiance.html" class="res-card" data-type="comprendre">
+        <div class="card-top"><span class="card-badge badge-comprendre">Comprendre l'IA</span></div>
+        <div class="card-title">Les 7 cas où ne jamais faire confiance à l'IA seule</div>
+        <div class="card-desc">Les situations critiques où l'IA ne doit jamais avoir le dernier mot. Un guide essentiel pour un usage responsable.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/quand-ia-veut-plaire.html" class="res-card" data-type="comprendre">
+        <div class="card-top"><span class="card-badge badge-comprendre">Comprendre l'IA</span></div>
+        <div class="card-title">Quand l'IA te dit ce que tu veux entendre</div>
+        <div class="card-desc">Comprendre le biais de complaisance de l'IA et comment le contrecarrer pour obtenir des réponses honnêtes et utiles.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/verifier-sources.html" class="res-card" data-type="comprendre">
+        <div class="card-top"><span class="card-badge badge-comprendre">Comprendre l'IA</span></div>
+        <div class="card-title">Vérifier les sources que l'IA cite</div>
+        <div class="card-desc">Méthode pratique pour vérifier rapidement les sources citées par l'IA. Ne jamais prendre une référence pour acquise.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/outils-ia-gratuits-2026.html" class="res-card" data-type="comprendre">
+        <div class="card-top"><span class="card-badge badge-comprendre">Comprendre l'IA</span></div>
+        <div class="card-title">9 outils IA gratuits qui valent vraiment le coup en 2026</div>
+        <div class="card-desc">Sélection des meilleurs outils IA entièrement gratuits en 2026. Testés, validés, avec les cas d'usage concrets pour chacun.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/configurer-claude.html" class="res-card" data-type="comprendre">
+        <div class="card-top"><span class="card-badge badge-comprendre">Comprendre l'IA</span></div>
+        <div class="card-title">Configurer Claude avec ton contexte</div>
+        <div class="card-desc">Comment paramétrer Claude pour qu'il connaisse votre contexte et produise des réponses personnalisées dès le premier message.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/navigateurs-ia.html" class="res-card" data-type="comprendre">
+        <div class="card-top"><span class="card-badge badge-comprendre">Comprendre l'IA</span></div>
+        <div class="card-title">Navigateurs IA en 2026 : Atlas, Comet, Claude in Chrome, Dia</div>
+        <div class="card-desc">Tour d'horizon des nouveaux navigateurs intégrant l'IA nativement. Ce qu'ils apportent vraiment et pour quel profil d'utilisateur.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/piege-idees-ia.html" class="res-card" data-type="comprendre">
+        <div class="card-top"><span class="card-badge badge-comprendre">Comprendre l'IA</span></div>
+        <div class="card-title">Le piège des idées générées par IA en 2026</div>
+        <div class="card-desc">Pourquoi les idées générées par IA peuvent vous ralentir plutôt que vous aider, et comment éviter ce piège courant.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <!-- === MIEUX PROMPTER === -->
+      <a href="ressources/perspective-shifting.html" class="res-card" data-type="prompter">
+        <div class="card-top"><span class="card-badge badge-prompter">Mieux prompter</span></div>
+        <div class="card-title">Le Perspective Shifting : changer d'angle sans recommencer</div>
+        <div class="card-desc">Technique avancée pour explorer plusieurs angles d'un même sujet sans relancer une conversation depuis zéro.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/donner-du-contexte.html" class="res-card" data-type="prompter">
+        <div class="card-top"><span class="card-badge badge-prompter">Mieux prompter</span></div>
+        <div class="card-title">Comment donner du contexte : la compétence n°1</div>
+        <div class="card-desc">La compétence la plus importante du prompting. Comment fournir le bon contexte pour des réponses précises et pertinentes.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/anatomie-prompt-qui-marche.html" class="res-card" data-type="prompter">
+        <div class="card-top"><span class="card-badge badge-prompter">Mieux prompter</span></div>
+        <div class="card-title">L'anatomie d'un prompt qui marche</div>
+        <div class="card-desc">Décortication d'un prompt efficace : rôle, contexte, tâche, format, exemples. Les 5 composants d'un prompt qui donne de vrais résultats.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/regle-or-entree-vague.html" class="res-card" data-type="prompter">
+        <div class="card-top"><span class="card-badge badge-prompter">Mieux prompter</span></div>
+        <div class="card-title">La règle d'or : entrée vague = sortie vague</div>
+        <div class="card-desc">Comprendre pourquoi la qualité de votre prompt détermine directement la qualité de la réponse. Avec exemples concrets.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/erreurs-de-prompt.html" class="res-card" data-type="prompter">
+        <div class="card-top"><span class="card-badge badge-prompter">Mieux prompter</span></div>
+        <div class="card-title">Les 7 erreurs de prompt qui plombent tes résultats</div>
+        <div class="card-desc">Les erreurs de prompting les plus fréquentes et comment les corriger pour obtenir des réponses de bien meilleure qualité.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/12-mots-cles-qui-changent-tout.html" class="res-card" data-type="prompter">
+        <div class="card-top"><span class="card-badge badge-prompter">Mieux prompter</span></div>
+        <div class="card-title">Les 12 mots-clés qui changent la qualité d'une réponse</div>
+        <div class="card-desc">12 instructions précises à intégrer dans vos prompts pour transformer immédiatement la qualité des réponses de l'IA.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/ask-me-questions-first.html" class="res-card" data-type="prompter">
+        <div class="card-top"><span class="card-badge badge-prompter">Mieux prompter</span></div>
+        <div class="card-title">« Ask Me Questions First » : la technique du diagnostic</div>
+        <div class="card-desc">Forcer l'IA à poser des questions avant d'agir. La technique qui garantit des résultats alignés avec vos vrais besoins.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/chain-of-thought.html" class="res-card" data-type="prompter">
+        <div class="card-top"><span class="card-badge badge-prompter">Mieux prompter</span></div>
+        <div class="card-title">Chain of Thought : forcer l'IA à raisonner étape par étape</div>
+        <div class="card-desc">La technique Chain of Thought pour obtenir des raisonnements structurés et des réponses plus fiables sur les sujets complexes.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/bibliotheque-prompts.html" class="res-card" data-type="prompter">
+        <div class="card-top"><span class="card-badge badge-prompter">Mieux prompter</span></div>
+        <div class="card-title">Construire ta bibliothèque de prompts réutilisables</div>
+        <div class="card-desc">Créer et organiser sa collection de prompts personnels. Un actif qui se bonifie avec le temps et booste la productivité.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/few-shot-prompting.html" class="res-card" data-type="prompter">
+        <div class="card-top"><span class="card-badge badge-prompter">Mieux prompter</span></div>
+        <div class="card-title">Few-Shot Prompting : montrer pour obtenir le bon format</div>
+        <div class="card-desc">La technique du few-shot prompting pour formater parfaitement les réponses de l'IA en lui montrant des exemples.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/art-iterer.html" class="res-card" data-type="prompter">
+        <div class="card-top"><span class="card-badge badge-prompter">Mieux prompter</span></div>
+        <div class="card-title">L'art d'itérer : ne jamais accepter la première réponse</div>
+        <div class="card-desc">Méthode pour affiner progressivement les réponses de l'IA. Pourquoi la première réponse n'est presque jamais la meilleure.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/framework-crispe.html" class="res-card" data-type="prompter">
+        <div class="card-top"><span class="card-badge badge-prompter">Mieux prompter</span></div>
+        <div class="card-title">Le framework CRISPE : pour les analyses nuancées</div>
+        <div class="card-desc">Le framework CRISPE pour construire des prompts d'analyse approfondis. Contexte, Rôle, Instructions, Spécifications, Personnalité, Expérimentation.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/framework-ptcf-formule.html" class="res-card" data-type="prompter">
+        <div class="card-top"><span class="card-badge badge-prompter">Mieux prompter</span></div>
+        <div class="card-title">Le framework PTCF : la formule en 4 lignes</div>
+        <div class="card-desc">La formule de prompt en 4 éléments : Persona, Tâche, Contexte, Format. Simple, puissante, applicable à 90% des situations.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/framework-risen.html" class="res-card" data-type="prompter">
+        <div class="card-top"><span class="card-badge badge-prompter">Mieux prompter</span></div>
+        <div class="card-title">Le framework RISEN : prompts longs et structurés</div>
+        <div class="card-desc">RISEN pour les prompts complexes et longs. Rôle, Instructions, Étapes, Entrées, Narration — la structure pour les tâches ambitieuses.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/meta-prompting.html" class="res-card" data-type="prompter">
+        <div class="card-top"><span class="card-badge badge-prompter">Mieux prompter</span></div>
+        <div class="card-title">Le méta-prompting : demander à l'IA d'écrire ton prompt</div>
+        <div class="card-desc">Utiliser l'IA pour créer de meilleurs prompts. La technique récursive qui démultiplie la qualité de vos interactions.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/prompt-anti-hallucination.html" class="res-card" data-type="prompter">
+        <div class="card-top"><span class="card-badge badge-prompter">Mieux prompter</span></div>
+        <div class="card-title">Le prompt anti-hallucination : les 4 phrases qui changent tout</div>
+        <div class="card-desc">4 instructions précises à ajouter à vos prompts pour réduire drastiquement les inventions de l'IA. Testées et validées.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/balises-xml.html" class="res-card" data-type="prompter">
+        <div class="card-top"><span class="card-badge badge-prompter">Mieux prompter</span></div>
+        <div class="card-title">Les balises XML : structurer un prompt long sans confusion</div>
+        <div class="card-desc">Comment utiliser les balises XML pour organiser des prompts complexes et éviter les ambiguïtés dans les instructions longues.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/instructions-negatives.html" class="res-card" data-type="prompter">
+        <div class="card-top"><span class="card-badge badge-prompter">Mieux prompter</span></div>
+        <div class="card-title">Les instructions négatives : ce que l'IA ne doit PAS faire</div>
+        <div class="card-desc">Le pouvoir des contraintes négatives dans un prompt. Dire à l'IA ce qu'elle ne doit pas faire est souvent plus efficace que l'inverse.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/commandes-rapides-chatgpt.html" class="res-card" data-type="prompter">
+        <div class="card-top"><span class="card-badge badge-prompter">Mieux prompter</span></div>
+        <div class="card-title">Commandes rapides ChatGPT — la liste complète</div>
+        <div class="card-desc">Toutes les commandes et raccourcis ChatGPT pour aller plus vite. La référence à garder sous la main.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/raccourcis-claude.html" class="res-card" data-type="prompter">
+        <div class="card-top"><span class="card-badge badge-prompter">Mieux prompter</span></div>
+        <div class="card-title">Commandes rapides Claude — la liste complète</div>
+        <div class="card-desc">Tous les raccourcis et commandes spécifiques à Claude pour optimiser votre workflow et gagner du temps au quotidien.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/generateur-de-prompts.html" class="res-card" data-type="prompter">
+        <div class="card-top"><span class="card-badge badge-prompter">Mieux prompter</span></div>
+        <div class="card-title">Créer ton générateur de prompts automatique</div>
+        <div class="card-desc">Construire son propre générateur de prompts avec ChatGPT ou Claude. Une fois créé, vos prompts s'écrivent presque seuls.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <!-- === GAGNER DU TEMPS === -->
+      <a href="ressources/systeme-10h-semaine.html" class="res-card" data-type="temps">
+        <div class="card-top"><span class="card-badge badge-temps">Gagner du temps</span></div>
+        <div class="card-title">Le système qui te fait récupérer 10 heures par semaine</div>
+        <div class="card-desc">Le système complet pour automatiser les tâches répétitives avec l'IA et récupérer 10h chaque semaine. Méthode éprouvée.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/boite-mail-intelligente.html" class="res-card" data-type="temps">
+        <div class="card-top"><span class="card-badge badge-temps">Gagner du temps</span></div>
+        <div class="card-title">Traiter ta boîte mail intelligemment</div>
+        <div class="card-desc">Gérer sa boîte mail avec l'IA : tri automatique, rédaction de réponses, priorisation. Zéro inbox anxiety.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/preparer-reunion-5-minutes.html" class="res-card" data-type="temps">
+        <div class="card-top"><span class="card-badge badge-temps">Gagner du temps</span></div>
+        <div class="card-title">Préparer une réunion en 5 minutes</div>
+        <div class="card-desc">La méthode pour préparer n'importe quelle réunion en 5 minutes avec l'IA. Ordre du jour, questions, documentation — en un prompt.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/transformer-notes-document-structure.html" class="res-card" data-type="temps">
+        <div class="card-top"><span class="card-badge badge-temps">Gagner du temps</span></div>
+        <div class="card-title">Transformer notes brutes en document structuré</div>
+        <div class="card-desc">Convertir des notes brouillon en documents professionnels structurés en quelques secondes. Compte-rendus, rapports, synthèses.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/compte-rendu-reunion-ia.html" class="res-card" data-type="temps">
+        <div class="card-top"><span class="card-badge badge-temps">Gagner du temps</span></div>
+        <div class="card-title">Le compte-rendu de réunion en quelques minutes</div>
+        <div class="card-desc">Générer des comptes-rendus de réunion professionnels en quelques minutes avec l'IA. Actions, décisions, suivis automatisés.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/analyser-document-pro-long.html" class="res-card" data-type="temps">
+        <div class="card-top"><span class="card-badge badge-temps">Gagner du temps</span></div>
+        <div class="card-title">Analyser un document pro long en 15 minutes avec l'IA</div>
+        <div class="card-desc">Méthode pour analyser rapidement des documents longs (contrats, rapports, études) avec l'IA. Extraction des points clés en 15 min.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/gemini-deep-research.html" class="res-card" data-type="temps">
+        <div class="card-top"><span class="card-badge badge-temps">Gagner du temps</span></div>
+        <div class="card-title">Gemini Deep Research : un rapport complet en minutes</div>
+        <div class="card-desc">Utiliser Gemini Deep Research pour générer des rapports de recherche approfondis en quelques minutes. Guide pratique.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/excel-sheets-sans-expertise.html" class="res-card" data-type="temps">
+        <div class="card-top"><span class="card-badge badge-temps">Gagner du temps</span></div>
+        <div class="card-title">Excel et Sheets : formules et analyses sans expertise</div>
+        <div class="card-desc">Maîtriser Excel et Google Sheets avec l'IA sans être expert. Formules complexes, tableaux croisés, analyses — expliqués et générés.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/preparer-decision-projet.html" class="res-card" data-type="temps">
+        <div class="card-top"><span class="card-badge badge-temps">Gagner du temps</span></div>
+        <div class="card-title">Préparer une décision ou un projet avec l'IA</div>
+        <div class="card-desc">Structurer une prise de décision complexe ou le lancement d'un projet avec l'IA comme copilote stratégique.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/conversation-message-difficile.html" class="res-card" data-type="temps">
+        <div class="card-top"><span class="card-badge badge-temps">Gagner du temps</span></div>
+        <div class="card-title">Préparer une conversation ou un message difficile</div>
+        <div class="card-desc">L'IA pour préparer les conversations difficiles : feedbacks, négociations, conflits. Trouver les bons mots avant le moment critique.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/comprendre-courrier-administratif-juridique.html" class="res-card" data-type="temps">
+        <div class="card-top"><span class="card-badge badge-temps">Gagner du temps</span></div>
+        <div class="card-title">Comprendre un courrier administratif ou juridique</div>
+        <div class="card-desc">Décrypter les courriers administratifs et juridiques complexes avec l'IA. Fini le jargon incompréhensible.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/construire-presentation-1-heure.html" class="res-card" data-type="temps">
+        <div class="card-top"><span class="card-badge badge-temps">Gagner du temps</span></div>
+        <div class="card-title">Construire une présentation en 1 heure avec l'IA</div>
+        <div class="card-desc">Créer une présentation professionnelle complète en 1 heure avec l'IA. Structure, contenu, visuels — méthode pas à pas.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/decrocher-job-ia.html" class="res-card" data-type="temps">
+        <div class="card-top"><span class="card-badge badge-temps">Gagner du temps</span></div>
+        <div class="card-title">Décrocher ton job avec l'IA : CV, entretien, négociation</div>
+        <div class="card-desc">Utiliser l'IA à chaque étape de la recherche d'emploi : CV optimisé, préparation entretien, négociation salariale.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/cv-passer-ats-ia.html" class="res-card" data-type="temps">
+        <div class="card-top"><span class="card-badge badge-temps">Gagner du temps</span></div>
+        <div class="card-title">Améliorer son CV avec l'IA pour passer les logiciels ATS</div>
+        <div class="card-desc">Optimiser son CV avec l'IA pour passer les filtres automatiques ATS. Les mots-clés qui font la différence.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/cv-impossible-a-rejeter.html" class="res-card" data-type="temps">
+        <div class="card-top"><span class="card-badge badge-temps">Gagner du temps</span></div>
+        <div class="card-title">Comment rendre ton CV impossible à rejeter grâce à Claude</div>
+        <div class="card-desc">La méthode Claude pour créer un CV qui retient l'attention des recruteurs et passe tous les filtres automatiques.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/copilot-workspace-ai.html" class="res-card" data-type="temps">
+        <div class="card-top"><span class="card-badge badge-temps">Gagner du temps</span></div>
+        <div class="card-title">Copilot vs Workspace Gemini : l'IA déjà dans tes apps</div>
+        <div class="card-desc">Comparatif des assistants IA intégrés aux suites Microsoft 365 et Google Workspace. Lequel vaut vraiment son prix en 2026.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <!-- === CRÉER DU CONTENU === -->
+      <a href="ressources/skill-humanizer-claude.html" class="res-card" data-type="contenu">
+        <div class="card-top"><span class="card-badge badge-contenu">Créer du contenu</span></div>
+        <div class="card-title">Installer le skill Humanizer dans Claude</div>
+        <div class="card-desc">Le skill Humanizer pour que vos textes IA sonnent naturel et humain. Installation et configuration complète.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/prompt-image-anatomie-brief.html" class="res-card" data-type="contenu">
+        <div class="card-top"><span class="card-badge badge-contenu">Créer du contenu</span></div>
+        <div class="card-title">Le prompt image qui marche : anatomie d'un bon brief visuel</div>
+        <div class="card-desc">Décomposition d'un prompt image efficace. Sujet, style, composition, lumière, format — la structure qui produit des résultats.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/cloner-style-ecriture.html" class="res-card" data-type="contenu">
+        <div class="card-top"><span class="card-badge badge-contenu">Créer du contenu</span></div>
+        <div class="card-title">Cloner ton style d'écriture en 3 prompts</div>
+        <div class="card-desc">Capturer et reproduire son style d'écriture unique avec l'IA en 3 prompts. Pour une voix cohérente sur tous vos contenus.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/cloner-style-visuel-marque.html" class="res-card" data-type="contenu">
+        <div class="card-top"><span class="card-badge badge-contenu">Créer du contenu</span></div>
+        <div class="card-title">Cloner un style visuel cohérent pour ta marque</div>
+        <div class="card-desc">Créer une identité visuelle cohérente avec Midjourney --sref. Style de référence, cohérence entre images, charte visuelle IA.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/logo-identite-visuelle-ia.html" class="res-card" data-type="contenu">
+        <div class="card-top"><span class="card-badge badge-contenu">Créer du contenu</span></div>
+        <div class="card-title">Créer un logo et une identité visuelle avec l'IA</div>
+        <div class="card-desc">Guide pour créer une identité visuelle complète avec les outils IA. Logo, couleurs, typographie — sans designer ni budget.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/ia-ecrire-comme-humain.html" class="res-card" data-type="contenu">
+        <div class="card-top"><span class="card-badge badge-contenu">Créer du contenu</span></div>
+        <div class="card-title">Faire écrire l'IA comme un humain (et pas comme un robot)</div>
+        <div class="card-desc">Techniques pour obtenir des textes IA naturels, sans les marqueurs typiques du style robot. La checklist des ajustements qui font la différence.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/hooks-attention.html" class="res-card" data-type="contenu">
+        <div class="card-top"><span class="card-badge badge-contenu">Créer du contenu</span></div>
+        <div class="card-title">Les hooks qui retiennent l'attention</div>
+        <div class="card-desc">Les formules de hooks qui accrochent l'attention sur les réseaux sociaux. Générés avec l'IA, adaptés à votre audience.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/posts-carrousels-reseaux-ia.html" class="res-card" data-type="contenu">
+        <div class="card-top"><span class="card-badge badge-contenu">Créer du contenu</span></div>
+        <div class="card-title">Créer des posts et carrousels réseaux sociaux avec l'IA</div>
+        <div class="card-desc">Produire des posts et carrousels engageants pour LinkedIn, Instagram, Twitter avec l'IA. Workflow complet de création.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/modifier-image-existante.html" class="res-card" data-type="contenu">
+        <div class="card-top"><span class="card-badge badge-contenu">Créer du contenu</span></div>
+        <div class="card-title">Modifier une image existante : la vraie révolution 2026</div>
+        <div class="card-desc">Les nouvelles capacités de modification d'images IA en 2026. Retouche, recadrage, extension, changement de style — ce qui est possible maintenant.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/photos-profil-pro-ia.html" class="res-card" data-type="contenu">
+        <div class="card-top"><span class="card-badge badge-contenu">Créer du contenu</span></div>
+        <div class="card-title">Photos de profil pro avec l'IA (LinkedIn, CV, site)</div>
+        <div class="card-desc">Créer des photos de profil professionnelles avec l'IA. Les outils, les prompts et les réglages pour un résultat convaincant.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/scripts-video-podcast.html" class="res-card" data-type="contenu">
+        <div class="card-top"><span class="card-badge badge-contenu">Créer du contenu</span></div>
+        <div class="card-title">Scripts pour vidéo et podcast avec l'IA</div>
+        <div class="card-desc">Écrire des scripts de vidéo YouTube et d'épisodes podcast avec l'IA. Structure, accroche, CTA — tout généré en quelques minutes.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/transformer-video-10-contenus.html" class="res-card" data-type="contenu">
+        <div class="card-top"><span class="card-badge badge-contenu">Créer du contenu</span></div>
+        <div class="card-title">Transformer une vidéo en 10 contenus</div>
+        <div class="card-desc">Extraire 10 formats de contenu différents d'une seule vidéo avec l'IA. Newsletter, posts, threads, résumés — zéro travail supplémentaire.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/videos-courtes-ia-2026.html" class="res-card" data-type="contenu">
+        <div class="card-top"><span class="card-badge badge-contenu">Créer du contenu</span></div>
+        <div class="card-title">Vidéos courtes IA en 2026 : Veo 3.1, Runway, Kling</div>
+        <div class="card-desc">Tour d'horizon des meilleurs générateurs de vidéos IA courtes en 2026. Comparatif, cas d'usage et prompts qui fonctionnent.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/article-long-qui-tient-debout.html" class="res-card" data-type="contenu">
+        <div class="card-top"><span class="card-badge badge-contenu">Créer du contenu</span></div>
+        <div class="card-title">Écrire un article long qui tient debout</div>
+        <div class="card-desc">Rédiger des articles longs et cohérents avec l'IA. Structure, recherches, transitions — la méthode pour un contenu solide et lisible.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/systeme-editorial-content.html" class="res-card" data-type="contenu">
+        <div class="card-top"><span class="card-badge badge-contenu">Créer du contenu</span></div>
+        <div class="card-title">Créer du contenu régulier sans s'épuiser</div>
+        <div class="card-desc">Le système éditorial IA pour créer du contenu régulier sans burnout. Planification, production, publication — un flux durable.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <!-- === AU QUOTIDIEN === -->
+      <a href="ressources/tuteur-personnel-ia.html" class="res-card" data-type="quotidien">
+        <div class="card-top"><span class="card-badge badge-quotidien">Au quotidien</span></div>
+        <div class="card-title">Transformer ton IA en tuteur personnel</div>
+        <div class="card-desc">Configurer l'IA comme tuteur personnalisé adapté à votre niveau et vos objectifs. Apprendre n'importe quoi 5x plus vite.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/maitriser-nouveau-domaine.html" class="res-card" data-type="quotidien">
+        <div class="card-top"><span class="card-badge badge-quotidien">Au quotidien</span></div>
+        <div class="card-title">Maîtriser un nouveau domaine en 2h à 30j avec l'IA</div>
+        <div class="card-desc">La méthode pour acquérir les fondamentaux d'un nouveau domaine rapidement avec l'IA. Plan d'apprentissage sur mesure.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/lire-livre-dense-memoriser.html" class="res-card" data-type="quotidien">
+        <div class="card-top"><span class="card-badge badge-quotidien">Au quotidien</span></div>
+        <div class="card-title">Lire un livre dense et le mémoriser avec l'IA</div>
+        <div class="card-desc">Lire et retenir l'essentiel d'un livre dense avec l'IA comme partenaire de lecture. Résumés, flashcards, questions clés.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/reviser-examen-concours-ia.html" class="res-card" data-type="quotidien">
+        <div class="card-top"><span class="card-badge badge-quotidien">Au quotidien</span></div>
+        <div class="card-title">Réviser un examen ou un concours avec l'IA</div>
+        <div class="card-desc">Préparer efficacement examens et concours avec l'IA. QCM générés, points clés, simulations — la méthode qui maximise la rétention.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/notebooklm-guide.html" class="res-card" data-type="quotidien">
+        <div class="card-top"><span class="card-badge badge-quotidien">Au quotidien</span></div>
+        <div class="card-title">NotebookLM : ton assistant qui maîtrise tes documents</div>
+        <div class="card-desc">Guide complet de NotebookLM de Google. Charger vos documents, poser des questions, générer des synthèses — tout ce que cet outil permet.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/apprendre-langue-chatgpt.html" class="res-card" data-type="quotidien">
+        <div class="card-top"><span class="card-badge badge-quotidien">Au quotidien</span></div>
+        <div class="card-title">Apprendre une langue avec ChatGPT</div>
+        <div class="card-desc">Méthode pour apprendre ou progresser dans une langue étrangère avec ChatGPT. Conversation, correction, vocabulaire — un prof disponible 24h/24.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/apprendre-coder-de-zero-ia.html" class="res-card" data-type="quotidien">
+        <div class="card-top"><span class="card-badge badge-quotidien">Au quotidien</span></div>
+        <div class="card-title">Apprendre à coder de zéro avec l'IA</div>
+        <div class="card-desc">Guide pour débuter en programmation avec l'IA comme formateur. Python, JavaScript, no-code — la voie la plus rapide en 2026.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/enfants-ia-sans-danger.html" class="res-card" data-type="quotidien">
+        <div class="card-top"><span class="card-badge badge-quotidien">Au quotidien</span></div>
+        <div class="card-title">Apprendre à tes enfants à utiliser l'IA sans danger</div>
+        <div class="card-desc">Comment initier ses enfants à l'IA de façon sécurisée et éducative. Règles, outils adaptés, points de vigilance pour les parents.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/aider-enfants-devoirs.html" class="res-card" data-type="quotidien">
+        <div class="card-top"><span class="card-badge badge-quotidien">Au quotidien</span></div>
+        <div class="card-title">Aider tes enfants aux devoirs sans faire à leur place</div>
+        <div class="card-desc">Utiliser l'IA pour aider ses enfants dans leurs devoirs tout en préservant leur apprentissage. La bonne distance pour que ça fonctionne vraiment.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/reussir-reconversion-pro-ia.html" class="res-card" data-type="quotidien">
+        <div class="card-top"><span class="card-badge badge-quotidien">Au quotidien</span></div>
+        <div class="card-title">Réussir une reconversion pro avec l'IA</div>
+        <div class="card-desc">L'IA comme accélérateur de reconversion professionnelle. Bilan de compétences, formation, réseau, portfolio — la méthode complète.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/preparer-voyage-evenement.html" class="res-card" data-type="quotidien">
+        <div class="card-top"><span class="card-badge badge-quotidien">Au quotidien</span></div>
+        <div class="card-title">Préparer un voyage ou un événement personnel</div>
+        <div class="card-desc">Organiser un voyage ou événement de A à Z avec l'IA. Itinéraire, budget, liste de courses, plan B — tout en quelques prompts.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/preparer-visite-medicale.html" class="res-card" data-type="quotidien">
+        <div class="card-top"><span class="card-badge badge-quotidien">Au quotidien</span></div>
+        <div class="card-title">L'IA pour mieux préparer ta visite médicale</div>
+        <div class="card-desc">Préparer ses consultations médicales avec l'IA : liste de symptômes, questions à poser, compréhension des ordonnances.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/comparer-deux-produits.html" class="res-card" data-type="quotidien">
+        <div class="card-top"><span class="card-badge badge-quotidien">Au quotidien</span></div>
+        <div class="card-title">Comparer deux produits avant un achat important</div>
+        <div class="card-desc">Utiliser l'IA pour comparer deux produits objectivement avant un achat. Grille de critères, analyse, recommandation personnalisée.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/cuisiner-avec-frigo.html" class="res-card" data-type="quotidien">
+        <div class="card-top"><span class="card-badge badge-quotidien">Au quotidien</span></div>
+        <div class="card-title">Cuisiner avec ce qu'il y a dans le frigo</div>
+        <div class="card-desc">L'IA comme chef personnel qui invente des recettes avec les ingrédients disponibles. Zéro gaspillage, 100% créativité.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/reamenager-piece-ia.html" class="res-card" data-type="quotidien">
+        <div class="card-top"><span class="card-badge badge-quotidien">Au quotidien</span></div>
+        <div class="card-title">Réaménager une pièce avec l'IA (méthode + outils 2026)</div>
+        <div class="card-desc">Visualiser et planifier le réaménagement d'une pièce avec l'IA. Les meilleurs outils de décoration IA en 2026 testés.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/finances-perso-ia.html" class="res-card" data-type="quotidien">
+        <div class="card-top"><span class="card-badge badge-quotidien">Au quotidien</span></div>
+        <div class="card-title">Gérer ton budget et tes finances perso avec l'IA</div>
+        <div class="card-desc">L'IA pour analyser ses dépenses, créer un budget et optimiser ses finances personnelles. Simple, sans jugement, efficace.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <!-- === AUTOMATISER & AGENTS === -->
+      <a href="ressources/comprendre-mcp.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">MCP : connecter ton IA à tes outils</div>
+        <div class="card-desc">Le Model Context Protocol expliqué simplement. Comment connecter votre IA à vos outils, apps et services en 2026.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/cout-reel-agents.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">Le coût réel des agents IA en 2026 : le piège des tokens</div>
+        <div class="card-desc">Comprendre et anticiper les coûts réels des agents IA. Le piège des tokens cachés et comment optimiser sa facture.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/piege-sur-automatisation.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">Le piège du sur-automatisation : trop d'auto = chaos</div>
+        <div class="card-desc">Pourquoi trop automatiser peut nuire à votre productivité. Les signes du sur-automatisation et comment rétablir l'équilibre.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/securite-connecteurs.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">Sécurité des connecteurs IA : ce que personne ne dit</div>
+        <div class="card-desc">Les risques de sécurité liés aux connecteurs et intégrations IA en 2026. Ce qu'il faut vérifier avant de connecter vos outils.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/custom-instructions.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">Configurer les Custom Instructions : tes règles permanentes</div>
+        <div class="card-desc">Paramétrer les instructions permanentes de votre IA pour qu'elle vous connaisse dès la première seconde de chaque conversation.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/maitriser-projets.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">Maîtriser les Projets : workspaces dédiés sans coder</div>
+        <div class="card-desc">Utiliser les Projets IA comme espaces de travail dédiés par contexte. Configuration, organisation, bonnes pratiques.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/fichiers-reference.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">Donner des documents de référence à ton IA</div>
+        <div class="card-desc">Comment alimenter votre IA avec vos documents internes pour des réponses contextualisées et précises à votre situation.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/construire-premier-custom-gpt.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">Construire ton premier Custom GPT en 30 minutes</div>
+        <div class="card-desc">Tutoriel complet pour créer son premier Custom GPT. Configuration, instructions système, actions — tout ce qu'il faut savoir.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/custom-gpts-projects-gems.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">Custom GPTs, Claude Projects, Gemini Gems : quel format choisir</div>
+        <div class="card-desc">Comparatif des assistants personnalisés en 2026. Custom GPT vs Claude Project vs Gemini Gem — lequel pour quel usage.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/gemini-gems.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">Gemini Gems : créer ton assistant Gemini personnalisé</div>
+        <div class="card-desc">Guide pratique pour créer et configurer un Gemini Gem. Instructions, connaissances, comportements — le tutoriel complet.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/zapier-make-n8n.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">Zapier, Make, n8n en 2026 : choisir à l'ère MCP</div>
+        <div class="card-desc">Comparatif des plateformes d'automatisation en 2026. Zapier vs Make vs n8n — lequel choisir selon votre profil et vos besoins.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/10-automatisations-ia.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">10 automatisations IA qui changent vraiment la vie</div>
+        <div class="card-desc">Les 10 automatisations IA avec le meilleur ROI en 2026. Exemples concrets, outils, et estimations de temps gagné honnêtes.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/comprendre-agents-ia.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">C'est quoi un agent IA (et ce qui le distingue)</div>
+        <div class="card-desc">La définition claire d'un agent IA et ce qui le différencie d'un simple chatbot. Avec exemples concrets et cas d'usage réels.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/anatomie-assistant-ia.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">Anatomie d'un assistant IA qui marche vraiment</div>
+        <div class="card-desc">Les composants d'un assistant IA efficace : mémoire, contexte, outils, instructions. Comment assembler les briques pour un résultat professionnel.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/anatomie-automatisation-ia.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">Anatomie d'une automatisation IA : déclencheur, IA, action</div>
+        <div class="card-desc">Les 3 composants de toute automatisation IA : le déclencheur, la décision IA, l'action. Comment les assembler pour créer des workflows puissants.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/bons-mauvais-cas-usage.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">Ce qu'il faut (et ne faut pas) automatiser</div>
+        <div class="card-desc">Guide pour distinguer les tâches à automatiser de celles qui ne le doivent pas. Critères, exemples, erreurs à éviter.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/chatgpt-agent.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">ChatGPT Agent en 2026 : ce qu'il fait vraiment</div>
+        <div class="card-desc">Tour d'horizon des capacités réelles de ChatGPT en mode agent en 2026. Ce qu'il fait bien, ses limites, et comment l'exploiter.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/connecter-calendar-ia.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">Connecter ton IA à Calendar, Slack, Teams et Discord</div>
+        <div class="card-desc">Guide pour intégrer l'IA à vos outils de collaboration en 2026. Configuration, automatisations utiles, bonnes pratiques.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/connecter-drive-notion.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">Connecter ton IA à Drive et Notion en 2026</div>
+        <div class="card-desc">Intégrer l'IA à Google Drive et Notion pour traiter automatiquement vos documents et bases de connaissance.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/connecter-gmail-ia.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">Connecter ton IA à Gmail : lire et écrire intelligemment</div>
+        <div class="card-desc">Connecter l'IA à Gmail pour trier, répondre et gérer sa boîte mail intelligemment. Configuration et automatisations pratiques.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/construire-premiere-automatisation.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">Construire ta première automatisation IA en 30 min</div>
+        <div class="card-desc">Tutoriel pas à pas pour créer sa première automatisation IA avec Zapier, Make ou n8n. De zéro à un workflow fonctionnel en 30 minutes.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/knowledge-files-assistant.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">Knowledge Files : nourrir ton assistant IA avec tes docs</div>
+        <div class="card-desc">Alimenter son assistant IA avec ses propres documents. Formats acceptés, organisation, limites et bonnes pratiques.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/human-in-the-loop.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">Le human-in-the-loop : quand garder l'humain dans la boucle</div>
+        <div class="card-desc">Savoir quand conserver un contrôle humain dans une automatisation IA. Critères, exemples et points de validation indispensables.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/agents-codeurs.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">Les agents codeurs en 2026 : Claude Code, Devin, Cursor Agent</div>
+        <div class="card-desc">Comparatif des agents IA qui codent en autonomie en 2026. Claude Code, Devin, Cursor Agent — forces, limites, cas d'usage.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/maintenir-automatisations.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">Maintenir tes automatisations IA : ops, monitoring, dette technique</div>
+        <div class="card-desc">Tout ce qu'il faut savoir pour maintenir ses automatisations IA dans le temps. Monitoring, alertes, dette technique — guide opérationnel.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/partager-assistant-equipe.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">Partager ton assistant IA avec ton équipe et le sécuriser</div>
+        <div class="card-desc">Déployer un assistant IA pour toute une équipe. Accès, permissions, sécurité des données — le guide pour une adoption réussie.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/tester-agent-ia.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">Tester un agent IA : la méthode avant de faire confiance</div>
+        <div class="card-desc">Comment tester rigoureusement un agent IA avant de lui faire confiance. Scénarios, edge cases, critères de validation.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/tester-debugger-assistant.html" class="res-card" data-type="agents">
+        <div class="card-top"><span class="card-badge badge-agents">Automatiser</span></div>
+        <div class="card-title">Tester, débugger et maintenir ton assistant IA dans le temps</div>
+        <div class="card-desc">Guide complet pour tester et maintenir un assistant IA en production. Debugging, mise à jour, optimisation continue.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <!-- === LANCER UN BUSINESS === -->
+      <a href="ressources/opportunite-revenu-claude.html" class="res-card" data-type="business">
+        <div class="card-top"><span class="card-badge badge-business">Lancer un business</span></div>
+        <div class="card-title">Trouver son opportunité de revenu avec Claude — 90 jours</div>
+        <div class="card-desc">Plan d'action sur 90 jours pour identifier et lancer son opportunité de revenu avec Claude comme copilote stratégique.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/newsletter-sujet-envoi.html" class="res-card" data-type="business">
+        <div class="card-top"><span class="card-badge badge-business">Lancer un business</span></div>
+        <div class="card-title">Newsletter du sujet à l'envoi avec l'IA</div>
+        <div class="card-desc">Créer et envoyer une newsletter de A à Z avec l'IA. Sujet, rédaction, mise en page, optimisation — le workflow complet.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/format-produit-numerique.html" class="res-card" data-type="business">
+        <div class="card-top"><span class="card-badge badge-business">Lancer un business</span></div>
+        <div class="card-title">Quel format pour ton produit numérique</div>
+        <div class="card-desc">Choisir le bon format pour son produit numérique. Ebook, formation, template, SaaS, membership — comparatif et critères de choix.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/choisir-plateforme-principale.html" class="res-card" data-type="business">
+        <div class="card-top"><span class="card-badge badge-business">Lancer un business</span></div>
+        <div class="card-title">Choisir ta plateforme principale 2026 : LinkedIn, X, YouTube…</div>
+        <div class="card-desc">Sélectionner la bonne plateforme de distribution pour son contenu en 2026. Critères, profils types, et stratégie par canal.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/statut-juridique-freelance.html" class="res-card" data-type="business">
+        <div class="card-top"><span class="card-badge badge-business">Lancer un business</span></div>
+        <div class="card-title">Choisir ton statut juridique freelance en 2026</div>
+        <div class="card-desc">Guide complet des statuts juridiques pour freelances en 2026. Auto-entrepreneur, SASU, EURL — avantages, inconvénients, comment choisir.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/freelance-ou-salariat.html" class="res-card" data-type="business">
+        <div class="card-top"><span class="card-badge badge-business">Lancer un business</span></div>
+        <div class="card-title">Freelance ou salarié : comment choisir</div>
+        <div class="card-desc">La vraie comparaison freelance vs salarié en 2026. Revenus, liberté, sécurité, fiscal — les chiffres honnêtes pour décider.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/trous-marche-ia.html" class="res-card" data-type="business">
+        <div class="card-top"><span class="card-badge badge-business">Lancer un business</span></div>
+        <div class="card-title">Trouver des trous de marché avec l'IA en 2026</div>
+        <div class="card-desc">La méthode rigoureuse pour identifier des opportunités de marché sous-exploitées avec l'IA. Recherche, validation, positionnement.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/premiers-clients-freelance.html" class="res-card" data-type="business">
+        <div class="card-top"><span class="card-badge badge-business">Lancer un business</span></div>
+        <div class="card-title">Trouver tes premiers clients sans réseau en 2026</div>
+        <div class="card-desc">Trouver ses premiers clients freelance quand on n'a pas de réseau. Les canaux qui fonctionnent vraiment, les messages qui convertissent.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/seo-trouve-sur-google-ia.html" class="res-card" data-type="business">
+        <div class="card-top"><span class="card-badge badge-business">Lancer un business</span></div>
+        <div class="card-title">SEO : être trouvé sur Google avec l'IA</div>
+        <div class="card-desc">Optimiser son référencement Google avec l'IA en 2026. Recherche de mots-clés, contenu optimisé, stratégie SEO accessible à tous.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/analyser-concurrents-avatar.html" class="res-card" data-type="business">
+        <div class="card-top"><span class="card-badge badge-business">Lancer un business</span></div>
+        <div class="card-title">Étudier tes concurrents et cerner ton client idéal</div>
+        <div class="card-desc">Analyser la concurrence et définir son avatar client idéal avec l'IA. Méthode et prompts pour une étude de marché complète.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/closing-freelance.html" class="res-card" data-type="business">
+        <div class="card-top"><span class="card-badge badge-business">Lancer un business</span></div>
+        <div class="card-title">Closer en freelance : call de découverte + proposition</div>
+        <div class="card-desc">Maîtriser le closing freelance en 2026. Structure du call de découverte, rédaction de proposition commerciale, technique de closing.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/construire-produit-30-jours.html" class="res-card" data-type="business">
+        <div class="card-top"><span class="card-badge badge-business">Lancer un business</span></div>
+        <div class="card-title">Construire ton produit numérique en 30 jours sans coder</div>
+        <div class="card-desc">Plan en 30 jours pour créer et lancer un produit numérique sans compétences techniques. Outil IA + no-code + stratégie.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/mini-saas-no-code.html" class="res-card" data-type="business">
+        <div class="card-top"><span class="card-badge badge-business">Lancer un business</span></div>
+        <div class="card-title">Construire un mini-SaaS no-code avec l'IA en 2026</div>
+        <div class="card-desc">Créer un SaaS simple sans coder avec les outils IA et no-code. Bubble, Glide, Softr — les meilleures combinaisons en 2026.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/offre-commerciale-freelance.html" class="res-card" data-type="business">
+        <div class="card-top"><span class="card-badge badge-business">Lancer un business</span></div>
+        <div class="card-title">Construire une offre que les clients achètent</div>
+        <div class="card-desc">Créer une offre freelance irrésistible. Positionnement, promesse, prix, présentation — les éléments d'une offre qui vend.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/tarifs-freelance-valeur.html" class="res-card" data-type="business">
+        <div class="card-top"><span class="card-badge badge-business">Lancer un business</span></div>
+        <div class="card-title">Facturer ta valeur, pas ton temps</div>
+        <div class="card-desc">Passer de la facturation au temps à la facturation à la valeur. Méthode, argumentaire, repositionnement tarifaire progressif.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/newsletter-actif-numerique.html" class="res-card" data-type="business">
+        <div class="card-top"><span class="card-badge badge-business">Lancer un business</span></div>
+        <div class="card-title">La newsletter en 2026 : ton actif numérique #1</div>
+        <div class="card-desc">Pourquoi la newsletter reste l'actif numérique le plus solide en 2026. Comment la lancer, la développer et la monétiser.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/page-vente-produit-numerique.html" class="res-card" data-type="business">
+        <div class="card-top"><span class="card-badge badge-business">Lancer un business</span></div>
+        <div class="card-title">La page de vente qui convertit vraiment en 2026</div>
+        <div class="card-desc">Structure d'une page de vente qui convertit en 2026. Les sections indispensables, les erreurs à éviter, avec exemples annotés.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/lancement-produit-numerique.html" class="res-card" data-type="business">
+        <div class="card-top"><span class="card-badge badge-business">Lancer un business</span></div>
+        <div class="card-title">Lancement produit numérique : préventes, séquence email, jour J</div>
+        <div class="card-desc">Orchestrer un lancement produit numérique réussi. Préventes, séquence d'emails, countdown — le plan complet semaine par semaine.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/personal-branding-sans-cringe.html" class="res-card" data-type="business">
+        <div class="card-top"><span class="card-badge badge-business">Lancer un business</span></div>
+        <div class="card-title">Le personal branding sans devenir cringe</div>
+        <div class="card-desc">Construire son personal branding en 2026 sans tomber dans les travers du marketing personnel. Voix unique, authenticité, anti-IA.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/revenus-recurrents-produit.html" class="res-card" data-type="business">
+        <div class="card-top"><span class="card-badge badge-business">Lancer un business</span></div>
+        <div class="card-title">Les revenus récurrents 2026 : abonnements, communautés, mentorat</div>
+        <div class="card-desc">Construire des revenus récurrents stables en 2026. Les 3 modèles qui fonctionnent : abonnement, communauté payante, mentorat.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/monetiser-sans-bruler-confiance.html" class="res-card" data-type="business">
+        <div class="card-top"><span class="card-badge badge-business">Lancer un business</span></div>
+        <div class="card-title">Monétiser ton audience sans brûler la confiance</div>
+        <div class="card-desc">5 modèles pour monétiser son audience en 2026 sans la détruire. Les bonnes pratiques et les erreurs qui brisent la relation.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/pricing-produit-numerique.html" class="res-card" data-type="business">
+        <div class="card-top"><span class="card-badge badge-business">Lancer un business</span></div>
+        <div class="card-title">Fixer le juste prix de ton produit</div>
+        <div class="card-desc">Stratégie de pricing pour produits numériques. Les méthodes pour fixer un prix qui valorise votre travail et que les clients acceptent.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/tester-idee-7-jours.html" class="res-card" data-type="business">
+        <div class="card-top"><span class="card-badge badge-business">Lancer un business</span></div>
+        <div class="card-title">Tester ton idée en 7 jours sans coder en 2026</div>
+        <div class="card-desc">Valider une idée de business en 7 jours sans coder. Landing page, test marché, premières ventes — le sprint de validation minimum.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/etude-marche-ia.html" class="res-card" data-type="business">
+        <div class="card-top"><span class="card-badge badge-business">Lancer un business</span></div>
+        <div class="card-title">Étude de marché IA-augmentée en 1 journée</div>
+        <div class="card-desc">Réaliser une étude de marché complète en une journée avec l'IA. Méthode, outils, analyse — sans cabinet conseil et sans budget.</div>
+        <div class="card-cta">Lire l'article →</div>
+      </a>
+
+      <a href="ressources/face-cachee-metier-createur.html" class="res-card" data-type="business">
+        <div class="card-top"><span class="card-badge badge-business">Lancer un business</span></div>
+        <div class="card-title">★ La face cachée du métier de créateur 2026</div>
+        <div class="card-desc">Les 7 dimensions cachées du métier de créateur en 2026 que personne ne montre. La vraie réalité avant de se lancer.</div>
+        <div class="card-cta">Lire l'article →</div>
       </a>
 
     </div>
@@ -507,6 +1537,10 @@
           card.style.display = 'none';
         }
       });
+
+      // Update count
+      const visible = [...cards].filter(c => c.style.display !== 'none');
+      document.title = visible.length + ' ressources – AutomationBoost';
     });
   });
 </script>

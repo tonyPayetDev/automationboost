@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ce qu'il ne faut jamais dire à une IA. – AutomationBoost</title>
+  <meta name="description" content="confidentialité ia, sécurité données ia, ne jamais partager chatgpt, données personnelles ia, anonymiser prompt, vie privée ia 2026" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Ce qu'il ne faut jamais dire à une IA.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#818cf8;">Comprendre l'IA</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Ce qu'il ne faut jamais dire à une IA.</h1>
+    <p class="lede">Une IA inspire confiance — c'est justement le piège. Tes conversations ne sont pas aussi privées que tu le crois. Voici ce qu'il ne faut jamais y saisir, comment tes données sont vraiment utilisées, et les réflexes simples pour rester protégé.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">L'IA simule si bien la compréhension qu'elle crée une fausse impression de confidentialité. C'est exactement là qu'est le danger : on se confie, on colle un document de travail, on tape de vrais noms.</p>
+
+    <p>Voici ce qu'il advient réellement de tes données, et les réflexes pour protéger ce qui doit l'être.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Ce qui se passe vraiment <em>avec tes conversations</em>.</h2>
+
+  <div class="container reading">
+    <p>Selon l'outil et tes réglages, tes conversations peuvent être conservées et, dans certains cas, utilisées pour entraîner les modèles. Ce n'est pas un humain qui te lit en direct, mais ce que tu saisis n'est pas non plus aussi privé qu'une note personnelle.</p>
+
+    <p>Comprendre ça permet de doser ce que tu confies. Voici les règles concrètes.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 5</span>Ce qu'il ne faut <em>jamais saisir</em>.</h2>
+
+  <div class="container reading">
+    <p>Voici la liste à garder en tête. Aucune de ces informations n'a sa place dans un prompt sur un outil grand public.</p>
+
+    <p><strong>Tes identifiants personnels sensibles :</strong> numéro de sécurité sociale, passeport, pièce d'identité, adresse complète.</p>
+
+    <p><strong>Tout ce qui touche à l'argent :</strong> coordonnées bancaires, IBAN, numéros de carte, mots de passe, codes d'accès.</p>
+
+    <p><strong>Les secrets professionnels :</strong> mémos internes, listes de clients, code propriétaire, chiffres confidentiels de ton entreprise.</p>
+
+    <p><strong>Les données d'autrui :</strong> informations médicales, juridiques ou personnelles concernant d'autres personnes (clients, patients, collègues, famille). Ce ne sont pas tes données à partager.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">La règle d'or, en une phrase</div>
+    <p>Si tu ne le posterais pas publiquement sur internet, réfléchis à deux fois avant de le taper dans une IA. En cas de doute, <em>anonymise</em> ou abstiens-toi.</p>
+  </div>
+
+  <!-- ============== 3 ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 5</span>Le réflexe qui change tout : <em>anonymiser</em>.</h2>
+
+  <div class="container reading">
+    <p>La plupart du temps, tu n'as pas besoin des vraies données pour obtenir une bonne réponse. C'est le réflexe le plus puissant et le plus simple.</p>
+
+    <p>Tu veux que l'IA t'aide à répondre à un client mécontent ? Remplace son nom et celui de ta société par <em>« le client »</em> et <em>« mon entreprise »</em>. Tu veux analyser tes dépenses ? Garde les montants et les libellés, retire ton nom et ton numéro de compte. La qualité de la réponse est identique — et tes données restent protégées.</p>
+
+    <p>Caviarder (masquer) les éléments nominatifs ou confidentiels avant d'envoyer : ça prend trois secondes et ça élimine l'essentiel du risque.</p>
+  </div>
+
+  <!-- ============== 4 ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 5</span>Les <em>réglages</em> qui te protègent.</h2>
+
+  <div class="container reading">
+    <p>Au-delà de l'anonymisation, quelques options réduisent l'exposition de tes données. Les noms varient selon l'outil, mais le principe est partout le même.</p>
+
+    <p><strong>Désactiver l'entraînement.</strong> La plupart des IA proposent, dans les réglages de données, une option pour empêcher tes futures conversations de servir à entraîner le modèle. Cherche quelque chose comme « améliorer le modèle » dans les paramètres, et désactive-le. (Attention : ça ne s'applique souvent qu'au futur, pas aux conversations passées.)</p>
+
+    <p><strong>Le mode temporaire.</strong> Pour une conversation ponctuelle sensible, beaucoup d'outils offrent un « chat temporaire » qui n'est pas conservé dans ton historique. Pratique pour une question qu'on ne veut pas voir enregistrée.</p>
+
+    <p><strong>Attention au partage de liens.</strong> Partager le lien d'une conversation peut la rendre accessible plus largement que tu ne le crois. C'est précisément ce qui a causé l'indexation de milliers de chats dans Google en 2025. Ne partage un lien que si tu assumes son contenu.</p>
+  </div>
+
+  <!-- ============== 5 ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 5 / 5</span>Le cas <em>professionnel</em> : un cran au-dessus.</h2>
+
+  <div class="container reading">
+    <p>En entreprise, les enjeux montent. Une donnée client ou un document interne collé dans une IA personnelle, c'est un risque réel — juridique, contractuel, et parfois réglementaire.</p>
+
+    <p><strong>Les métiers à secret professionnel</strong> (santé, droit, finance, RH) ne doivent jamais saisir de données de clients ou de patients dans un outil grand public. Cela peut violer le secret médical, le secret professionnel de l'avocat, ou des réglementations comme le RGPD.</p>
+
+    <p><strong>La bonne solution en contexte pro</strong> est un déploiement Entreprise (Claude Enterprise, ChatGPT Enterprise, Gemini for Workspace). Ces versions garantissent que tes données ne servent pas à entraîner les modèles et offrent des contrôles adaptés. Si ton organisation t'en fournit un, utilise-le ; sinon, renseigne-toi sur sa politique avant de coller quoi que ce soit d'interne.</p>
+
+    <p>À noter : par défaut, <a href="guide-claude-debutant-2026.html">Claude</a> est souvent cité comme l'un des plus protecteurs de la vie privée, mais toutes les offres Entreprise bien configurées offrent des garanties comparables.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ce qu'il faut retenir avant tout</div>
+    <p>Tu n'as pas à arrêter d'utiliser l'IA — juste à garder le contrôle de ce que tu lui donnes. L'anonymisation systématique et la règle d'or (« le posterais-je publiquement ? ») couvrent à elles seules 90 % des situations.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 réflexes de confidentialité.</h3>
+    <ol class="recap-points">
+      <li>Pars du principe qu'aucune conversation avec une IA grand public n'est totalement privée : stockée, parfois relue, peut entraîner le modèle.</li>
+      <li>Ne saisis jamais : identifiants sensibles, données bancaires, secrets pro, ni données personnelles d'autrui.</li>
+      <li>Le réflexe roi : anonymise. « Le client », « mon entreprise », montants sans le nom. La réponse est aussi bonne.</li>
+      <li>Active les réglages utiles : désactiver l'entraînement, mode temporaire pour le sensible, prudence avec le partage de liens.</li>
+      <li>En contexte pro, jamais de données clients/patients dans un outil grand public. Utilise une offre Entreprise ou abstiens-toi.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+
+
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="premiers-pas-ia.html">
+        <div class="next-link-label">— Article connexe</div>
+        <div class="next-link-title">C'est quoi une IA, expliqué simplement</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-1.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Découvrir l'IA · Niveau I</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

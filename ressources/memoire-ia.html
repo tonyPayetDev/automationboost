@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bien gérer la mémoire de ton IA. – AutomationBoost</title>
+  <meta name="description" content="Activer, couper, contrôler ce que l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Bien gérer la mémoire de ton IA.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#818cf8;">Comprendre l'IA</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Bien gérer la mémoire de ton IA.</h1>
+    <p class="lede">Activer, désactiver, contrôler ce que l'IA retient sur toi entre les conversations. Le réglage le plus mal compris en 2026 : promesse, limites réelles, bonnes pratiques.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">La fonction Memory ne fait pas ce que tu crois — et ce qu'elle fait vraiment mérite d'être contrôlé. Les trois grandes IA retiennent désormais des choses sur toi entre les conversations.</p>
+
+    <p>L'idée est séduisante, mais sans surveillance elle peut te desservir. Voici comment elle fonctionne réellement, et comment la piloter à ton avantage.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Memory vs <em>Custom Instructions</em>.</h2>
+
+  <div class="container reading">
+    <p>À ne pas confondre : les Custom Instructions sont des règles <strong>que tu poses</strong> et qui valent pour toutes tes conversations. La Memory, elle, est ce que l'IA <strong>décide de retenir</strong> au fil des échanges — de façon parfois opaque. Les deux se complètent mais n'ont pas le même rôle.</p>
+
+    <p>Comprendre cette distinction est la clé pour reprendre le contrôle. Voici comment.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 6</span>Comment c'est implémenté <em>en 2026</em>.</h2>
+
+  <div class="container reading">
+    <p>Les trois principales plateformes ont chacune leur approche. Les différences sont importantes et te concernent directement selon l'outil que tu utilises.</p>
+  </div>
+
+  <div class="platform-card">
+    <div class="platform-tag">— PLATEFORME 1</div>
+    <div class="platform-name"><em>ChatGPT</em> Memory</div>
+    <div class="platform-feature">La plus mature · Disponible sur Plus, Pro, Team et Enterprise · ~$20/mois</div>
+    <div class="platform-path">
+      <span class="label">— Chemin d'accès</span>
+      Settings → Personalization → Memory → Manage
+    </div>
+    <div class="platform-strengths"><strong>— Points forts</strong>L'IA extrait automatiquement les informations utiles de tes conversations (métier, préférences, projets, style). Tu peux voir la liste complète des entrées mémorisées, les éditer ou les supprimer une par une. Première fonctionnalité Memory du marché — la plus mature et la plus utilisée.</div>
+    <div class="platform-limits"><strong>— Limites réelles</strong>Logique d'extraction opaque (tu ne sais pas pourquoi telle info a été retenue plutôt qu'une autre). Pas d'export — la mémoire est verrouillée dans ChatGPT. Les entrées obsolètes persistent jusqu'à ce que tu les supprimes manuellement. <strong>Important : supprimer une conversation ne supprime pas les souvenirs qu'elle a générés</strong> — il faut les supprimer séparément depuis le panneau Memory.</div>
+  </div>
+
+  <div class="platform-card">
+    <div class="platform-tag">— PLATEFORME 2</div>
+    <div class="platform-name"><em>Claude</em> Memory</div>
+    <div class="platform-feature">Lancée en mars 2026 · Disponible aussi pour les utilisateurs gratuits</div>
+    <div class="platform-path">
+      <span class="label">— Chemin d'accès</span>
+      Settings → Profile → Memory → Generate memory from chat history
+    </div>
+    <div class="platform-strengths"><strong>— Points forts</strong>Format de mémoire structuré et lisible (présentée comme un texte narratif cohérent, plus facile à comprendre que les listes éparses des concurrents). Permet d'<strong>importer la mémoire depuis ChatGPT ou Gemini</strong> via un prompt d'export — utile si tu changes de plateforme. Disponible gratuitement, ce qui est rare pour ce type de fonctionnalité.</div>
+    <div class="platform-limits"><strong>— Limites réelles</strong>Extraction automatique plus conservatrice que ChatGPT — peut rater des informations importantes qu'il aurait fallu mémoriser. Capacité de stockage plus petite (la mémoire peut se remplir plus vite). L'import de mémoire transfère seulement des résumés, pas le contexte complet de tes anciennes conversations.</div>
+  </div>
+
+  <div class="platform-card">
+    <div class="platform-tag">— PLATEFORME 3</div>
+    <div class="platform-name"><em>Gemini</em> Memory <span style="font-size: 16px; color: var(--mute);">(anciennement « Saved Info »)</span></div>
+    <div class="platform-feature">La plus récente · Priorité aux utilisateurs Google AI Plus/Pro/Ultra · Roll-out progressif</div>
+    <div class="platform-path">
+      <span class="label">— Chemin d'accès</span>
+      Settings → Personal Intelligence → Memory
+    </div>
+    <div class="platform-strengths"><strong>— Points forts</strong>Intégration native avec ton compte Google — peut puiser dans Gmail, Calendar, Drive (avec ton autorisation explicite). Permet aussi d'importer la mémoire depuis ChatGPT et Claude. Tu peux corriger Gemini directement dans le chat (<em>« non, ce n'est plus mon métier, j'ai changé »</em>), il met à jour la Memory en conséquence.</div>
+    <div class="platform-limits"><strong>— Limites réelles</strong>Format fragmenté (entrées isolées sans relations visibles entre elles, contrairement à Claude qui propose un texte narratif). Disponibilité progressive — tous les utilisateurs n'y ont pas encore accès. Prérequis : compte Google personnel (pas Workspace), 18 ans minimum, et activité Google activée.</div>
+  </div>
+
+  <!-- ============== 3. ACTIVER OU PAS ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 6</span>Faut-il <em>activer la Memory</em> ?</h2>
+
+  <div class="container reading">
+    <p>La Memory est activée par défaut sur ChatGPT et Gemini. Sur Claude, elle nécessite une action de ta part. La vraie question n'est pas « comment l'activer » — c'est « est-ce que tu dois la garder activée ? ».</p>
+  </div>
+
+  <h3 class="reading">Activer la Memory : les 3 cas où c'est clairement utile</h3>
+
+  <div class="container reading">
+    <p><strong>Tu utilises l'IA tous les jours pour des sujets cohérents.</strong> Travail, projets de longue haleine, contextes professionnels stables. Dans ces cas, la mémoire automatique économise du temps et progresse en pertinence au fil des semaines.</p>
+
+    <p><strong>Tu changes souvent de conversation pour des sujets liés.</strong> Au lieu de redonner ton contexte à chaque nouveau chat, la Memory transporte automatiquement les éléments-clés. Particulièrement utile pour les freelances et consultants qui jonglent entre plusieurs sujets.</p>
+
+    <p><strong>Tu n'as pas envie d'écrire des Custom Instructions exhaustives.</strong> La Memory est une alternative plus naturelle : tu parles à l'IA, elle apprend. C'est moins propre mais plus facile à mettre en place pour les utilisateurs qui n'aiment pas configurer.</p>
+  </div>
+
+  <h3 class="reading">Désactiver la Memory : les 3 cas où c'est plus sage</h3>
+
+  <div class="container reading">
+    <p><strong>Tu travailles sur des sujets confidentiels.</strong> Données client, projets stratégiques, négociations en cours, sujets juridiques sensibles. Tu ne veux pas que ces informations soient stockées en dehors de la conversation où elles apparaissent.</p>
+
+    <p><strong>Tu utilises l'IA pour des sujets très divers et indépendants.</strong> Si tu fais 30 sujets sans rapport entre eux dans le mois, la Memory accumule du bazar inutile sans rien apporter. Mieux vaut la désactiver et utiliser des <a href="niveau-2-bien-configurer.html">Projects ou Custom GPTs</a> par sujet (article 3.6).</p>
+
+    <p><strong>Tu fais aussi des usages personnels mélangés à des usages professionnels.</strong> La Memory ne fait pas la différence — elle peut ressortir une info perso dans un contexte pro, ou inversement. Si tu mélanges les usages, désactive ou utilise deux comptes séparés.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>Si tu hésites, <strong>commence avec la Memory désactivée</strong>. Tu peux toujours l'activer plus tard quand tu sauras précisément ce que tu en attends. L'inverse est plus pénible : si tu actives sans réfléchir, tu te retrouves dans 6 mois avec des dizaines d'entrées dont tu ne te souviens plus pourquoi elles sont là.</p>
+  </div>
+
+  <!-- ============== 4. BONNES PRATIQUES ============== -->
+  <h2 class="reading"><span class="h2-num">— 4 / 6</span>4 <em>bonnes pratiques</em> si tu l'actives.</h2>
+
+  <div class="practice">
+    <div class="practice-num">— PRATIQUE 1</div>
+    <div class="practice-title">Audit mensuel obligatoire</div>
+    <div class="practice-text">Une fois par mois, ouvre le panneau Memory et lis toutes les entrées. <strong>Supprime ce qui est obsolète</strong> (anciens projets terminés, préférences que tu as fait évoluer, infos personnelles dépassées). Cet audit prend 5-10 minutes et empêche l'accumulation de cruft. Sans audit, ta Memory devient au bout d'un an un fouillis qui dégrade plutôt qu'aide.</div>
+  </div>
+
+  <div class="practice">
+    <div class="practice-num">— PRATIQUE 2</div>
+    <div class="practice-title">Utilise « N'enregistre pas » pour les sujets sensibles</div>
+    <div class="practice-text">Sur ChatGPT et Gemini, tu peux dire explicitement à l'IA <strong>« n'enregistre rien de cette conversation dans la Memory »</strong>. L'IA respecte cette consigne (à vérifier ensuite dans le panneau Memory). À utiliser systématiquement quand tu abordes un sujet confidentiel ponctuel sans vouloir désactiver la Memory entièrement.</div>
+  </div>
+
+  <div class="practice">
+    <div class="practice-num">— PRATIQUE 3</div>
+    <div class="practice-title">Vérifie ce qui est mémorisé après les changements de vie</div>
+    <div class="practice-text">Tu changes de poste, de secteur, de ville, de situation familiale. La Memory ne se met pas à jour automatiquement avec tes nouvelles réalités — elle garde l'ancienne version de toi en parallèle de la nouvelle. <strong>Après tout changement de vie significatif, fais un nettoyage complet de la Memory</strong> et redémarre sur des bases propres.</div>
+  </div>
+
+  <div class="practice">
+    <div class="practice-num">— PRATIQUE 4</div>
+    <div class="practice-title">Sépare les comptes pro / perso si tu le peux</div>
+    <div class="practice-text">Si tu utilises l'IA pour le travail ET pour des usages personnels (santé, relations, projets perso), <strong>envisage deux comptes différents</strong> avec deux Memories indépendantes. Ça t'évite les contaminations entre contextes (l'IA qui te ressort tes préoccupations personnelles dans un contexte pro). Le coût de deux abonnements est marginal face au confort de séparation.</div>
+  </div>
+
+  <!-- ============== 5. SUPPRIMER ============== -->
+  <h2 class="reading"><span class="h2-num">— 5 / 6</span>Comment <em>supprimer</em> proprement.</h2>
+
+  <div class="container reading">
+    <p>Trois niveaux de suppression à connaître, du plus ciblé au plus radical.</p>
+  </div>
+
+  <h3 class="reading">Niveau 1 : supprimer une entrée précise</h3>
+
+  <div class="container reading">
+    <p>Tu vois dans le panneau Memory une entrée qui ne devrait plus être là (un ancien projet terminé, une préférence que tu as fait évoluer). Tu cliques sur l'icône poubelle à côté de l'entrée. C'est immédiat. C'est ce que tu dois faire dans 90 % des cas — tu cibles ce qui est obsolète sans toucher au reste.</p>
+  </div>
+
+  <h3 class="reading">Niveau 2 : effacer toute la Memory</h3>
+
+  <div class="container reading">
+    <p>Si tu fais un changement de vie majeur, ou si la Memory est devenue trop encombrée pour faire un nettoyage entrée par entrée, tu peux tout effacer d'un coup. Le bouton <em>« Clear all memories »</em> existe sur les trois plateformes. Tu repars d'une page blanche et la Memory recommencera à apprendre à partir de tes prochaines conversations.</p>
+  </div>
+
+  <h3 class="reading">Niveau 3 : désactiver complètement la fonction</h3>
+
+  <div class="container reading">
+    <p>Si tu décides que la Memory ne t'apporte rien (ou pas assez pour justifier la complexité), tu peux la désactiver entièrement. Sur tous les outils, c'est un toggle dans les paramètres. Tu peux la réactiver plus tard sans perdre ce qui était stocké (les entrées sont conservées mais inactives), ou perdre tout selon les outils — vérifie selon ta plateforme.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Important sur ChatGPT</div>
+    <p>Sur ChatGPT, <strong>supprimer une conversation ne supprime pas les souvenirs qu'elle a générés</strong>. C'est explicitement écrit dans la documentation officielle d'OpenAI. Si tu veux supprimer à la fois une conversation et tout ce qu'elle a appris à l'IA, tu dois faire les deux opérations séparément : effacer la conversation, puis aller dans le panneau Memory pour effacer les entrées qui en sont issues.</p>
+  </div>
+
+  <!-- ============== 6. CONFIDENTIALITÉ ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 6 / 6</span>Le <em>vrai sujet</em> : la confidentialité.</h2>
+
+  <div class="container reading">
+    <p>Activer la Memory, c'est confier à l'éditeur de l'IA des informations sur toi qui s'accumulent. Trois questions à te poser avant de cocher la case.</p>
+  </div>
+
+  <h3 class="reading">Question 1 : qui peut voir ces données ?</h3>
+
+  <div class="container reading">
+    <p>En théorie, ta Memory est privée et liée à ton compte. En pratique, les éditeurs y ont techniquement accès (pour des raisons de sécurité, de débogage, ou en cas de procédure légale). Selon les juridictions, ces données peuvent aussi être réquisitionnées par des autorités.</p>
+
+    <p>Ce n'est pas un problème pour la majorité des usages. Ça en devient un si tu travailles sur des sujets sensibles (procédures judiciaires en cours, données de santé personnelles, secrets industriels). Pour ces cas, la Memory n'est pas le bon outil — elle conserve trop, et tu n'as pas la garantie que la suppression est totale.</p>
+  </div>
+
+  <h3 class="reading">Question 2 : ces données peuvent-elles entraîner les modèles ?</h3>
+
+  <div class="container reading">
+    <p>C'est l'angle mort le plus important. Sur les plans grand public (gratuit, Plus, Pro), <strong>tes conversations peuvent être utilisées pour entraîner les futures versions du modèle</strong>, sauf si tu décoches explicitement cette option dans les paramètres. Cette option existe — vérifie qu'elle est désactivée si tu ne veux pas que tes conversations alimentent les futurs modèles.</p>
+
+    <p>Sur les plans Enterprise (ChatGPT Enterprise, Claude Enterprise, Gemini for Workspace), les données ne sont jamais utilisées pour l'entraînement par défaut. C'est une des raisons principales pour lesquelles les entreprises optent pour ces plans malgré le coût supérieur.</p>
+  </div>
+
+  <h3 class="reading">Question 3 : que se passe-t-il si tu fermes ton compte ?</h3>
+
+  <div class="container reading">
+    <p>Selon les conditions générales des trois éditeurs (avril 2026), la fermeture de compte entraîne la suppression des données dans des délais variables — de 30 jours à 6 mois selon la plateforme et la juridiction. Pendant ce délai, les données peuvent encore exister sur les serveurs en backup.</p>
+
+    <p>Si tu utilises la Memory pour des données sensibles, garde en tête que la suppression n'est jamais instantanée et jamais totalement vérifiable. La meilleure protection reste de ne pas mettre dans la Memory ce que tu ne voudrais pas qu'on lise dans 6 mois.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ce que tu vas voir dans le prochain article</div>
+    <p>Tu sais maintenant choisir ton modèle, configurer tes Custom Instructions et gérer ta Memory. Le prochain article passe au sujet suivant : <strong>travailler avec des fichiers de référence</strong>. Comment uploader des PDFs, docs Word, tableurs, données CSV — ce qui marche, ce qui ne marche pas, les limites par outil et par modèle en 2026.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur la Memory de l'IA.</h3>
+    <ol class="recap-points">
+      <li>Memory ≠ Custom Instructions. Les Custom Instructions = ce que tu écris explicitement. La Memory = ce que l'IA retient automatiquement de tes conversations.</li>
+      <li>Disponible sur les 3 plateformes en 2026 : ChatGPT (la plus mature, plans payants), Claude (lancée mars 2026, gratuit aussi, importable), Gemini (intégration Google, accès progressif).</li>
+      <li>Active la Memory si ton usage est cohérent et que tu y reviens souvent. Désactive-la pour les sujets confidentiels, les usages très divers, ou les mélanges pro/perso.</li>
+      <li>Audit mensuel obligatoire si tu actives. Sans nettoyage régulier, la Memory devient un fouillis qui dégrade tes réponses au lieu d'aider.</li>
+      <li>Sur ChatGPT, supprimer une conversation ne supprime pas les souvenirs qu'elle a générés. Pour effacer une trace complète, il faut le faire dans les deux endroits séparément.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a href="#" class="next-link">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">Travailler avec des fichiers de référence</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-2-bien-configurer.html">
+        <div class="next-link-label">— Retour à la rubrique</div>
+        <div class="next-link-title">Bien configurer ton IA · Niveau II</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Construire ta première automatisation. – AutomationBoost</title>
+  <meta name="description" content="Le tutoriel pas-à-pas pour construire ta première automatisation IA en 30 minutes : un scénario complet, du déclencheur à l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Construire ta première automatisation.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#eab308;">Automatiser & agents</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Construire ta première automatisation.</h1>
+    <p class="lede">Le tutoriel pas-à-pas méthodologique pour construire ta première automatisation IA en 30 min. Un scénario complet en direct : mail entrant → résumé IA → notification Slack. La méthode universelle reproductible sur Zapier, Make ou n8n. Choix du bon outil 2026, étapes détaillées, troubleshooting, premiers tests.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tu connais la structure déclencheur → IA → action et tu as validé ton cas d'usage. Place à la construction. Cet article est le pont entre la théorie et l'automatisation qui tourne vraiment : en 30 minutes, tu auras une première automatisation fonctionnelle qui te servira de modèle pour toutes les suivantes.</p>
+
+    <p>Le scénario qu'on va monter : un mail entrant → un résumé IA en 3 lignes → une notification dans Slack. Il combine les trois composants universels, donc tu pourras le décliner à l'infini ensuite. On y va pas à pas.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Choisir le <em>bon outil</em>.</h2>
+
+  <div class="container reading">
+    <p>Avant de cliquer le moindre bouton, tranche entre les 3 plateformes dominantes en 2026. Le mauvais choix ici te fait perdre 1-2 mois plus tard quand tu réalises que l'outil ne match pas tes besoins. Cf <a href="zapier-make-n8n.html">article 2.6</a> pour le comparatif détaillé — voici la version <em>« pour ta première automatisation »</em>.</p>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Choix 1 — <em>Zapier</em> · pour démarrer le plus vite</div>
+    <div class="tool-text"><strong>Pour qui :</strong> non-tech, première automatisation, &lt; 10 automations simples envisagées, tu veux que ça marche en 20 min sans chercher.<br><br>
+<strong>Forces :</strong> 8 000+ intégrations (le plus gros écosystème), interface la plus intuitive, version gratuite 100 tâches/mois suffit pour tester. <strong>Zapier Copilot</strong> (2026) génère des Zaps depuis description en langage naturel. AI by Zapier intégré (utilise OpenAI/Claude sans clé API requise pour démarrer).<br><br>
+<strong>Faiblesses :</strong> tarif à la tâche qui explose au volume (Zapier vient de paused new signups Pro/Pro+ le 20 avril 2026 — vérifie disponibilité). Logique avancée limitée. <strong>Trustpilot rating 1,4/5</strong> (71 % one-star) en 2026 — fiabilité déclinante, outage all-day du 20 octobre 2025 documenté.<br><br>
+<strong>Prix :</strong> Gratuit jusqu'à 100 tâches/mois, Pro 19,99 $/mois (750 tâches). <strong>Recommandation :</strong> pour ta première automatisation tutorial, Zapier reste un bon choix si tu veux la voie la plus rapide.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Choix 2 — <em>Make</em> · le meilleur rapport prix/puissance</div>
+    <div class="tool-text"><strong>Pour qui :</strong> tu penses construire 5-15 automatisations à terme, tu apprécies le visuel (éditeur visuel de scénarios), tu veux du ratio prix/puissance.<br><br>
+<strong>Forces :</strong> meilleure interface visuelle des 3 (le plus soigné pour raisonner en schéma), 1 500+ intégrations, modules IA + intégration OpenRouter (route entre GPT, Claude, Gemini en cours d'automatisation). <strong>Version gratuite 1 000 opérations/mois</strong> = 13x meilleur ratio que Zapier au même prix. La logique conditionnelle et la gestion d'erreurs sont vraiment bonnes.<br><br>
+<strong>Faiblesses :</strong> le créateur d'agents IA encore en test, courbe d'apprentissage légèrement plus raide que Zapier (1-2h pour maîtriser l'interface), moins d'intégrations que Zapier sur les applis de niche.<br><br>
+<strong>Prix :</strong> Gratuit jusqu'à 1 000 opérations/mois, Core 9 $/mois (10 000 opérations). <strong>Recommandation :</strong> mon choix par défaut pour quelqu'un qui sait qu'il va automatiser plusieurs automatisations et veut un ratio coût/puissance solide.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Choix 3 — <em>n8n</em> · pour la profondeur technique</div>
+    <div class="tool-text"><strong>Pour qui :</strong> tu prévois &gt; 10 automatisations, tu veux self-hosting (confidentialité des données), tu envisages des automatisations agents IA, ton volume va dépasser 5 000 exécutions/mois rapidement.<br><br>
+<strong>Forces :</strong> <strong>ouvert + auto-hébergeable</strong>, 70+ briques IA natives + intégration LangChain mature, 400+ briques créées par la communauté en 2026. une brique « agent IA » centrale qui place un LLM au centre du automatisation (architecture <em>« à base d'agents »</em> native). 1 400+ intégrations. <strong>Coût imbattable à grande échelle</strong> : 100K opérations/mois = 50 $ self-hosted vs 599 $+ Zapier.<br><br>
+<strong>Faiblesses :</strong> installation 30-60 min sur cloud, 4-8h en auto-hébergement avec des connaissances Linux, plus technique d'apparence (mais meilleur pour grandir). 5-10h/mois maintenance si self-hosted.<br><br>
+<strong>Prix :</strong> n8n Cloud Starter 20 $/mois (2 500 exécutions, <strong>1 exécution = 1 automatisation complet, pas 1 par étape</strong> — 3-5x meilleur ratio que Zapier en pratique). Self-hosted = gratuit + serveur (5-20 $/mois VPS Hetzner). <strong>Recommandation :</strong> pour ta première automatisation, démarre sur n8n cloud (pas en auto-hébergement) si tu sais déjà que tu vas grossir.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Mon choix recommandé pour ce tutorial</div>
+    <p>Pour ton tout première automatisation, <strong>Make</strong> est mon recommandation par défaut : interface visuelle la plus claire pour comprendre la structure déclencheur → IA → action que tu as apprise dans <a href="anatomie-automatisation-ia.html">l'article 4.1</a>, version gratuite généreux (1 000 opérations/mois suffit pour 6 mois de test perso), et tu pourras facilement escalader à des automatisations plus complexes sans changer d'outil. <strong>Zapier</strong> reste valide si tu veux le démarrage le plus simple absolu. <strong>n8n</strong> si tu sais que tu vas grossir et que tu valorises le self-hosting. Le tutorial qui suit fonctionne sur les 3 — la méthode est universelle, seuls les noms des briques changent.</p>
+  </div>
+
+  <!-- ============== 2. PRÉPARER LES CREDENTIALS ============== -->
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Préparer les <em>accès</em>.</h2>
+
+  <div class="container reading">
+    <p>L'erreur n°1 documentée : plonger directement dans la construction sans préparer les comptes et accès. Tu construis 5 briques, tu cliques <em>« exécuter »</em>, tu as 3 erreurs OAuth, 1 API key manquante, 1 permission Gmail à activer. Tu perds 30 min en debugging. <strong>Préparation = 10 min, économie = 30 min plus tard.</strong></p>
+  </div>
+
+  <h3>Checklist avant de toucher l'outil</h3>
+
+  <div class="codeblock">
+    <div class="codeblock-label">— Préparation des accès · 10 min · à faire AVANT</div>
+    <div class="codeblock-content"><span class="comment"># 1. COMPTE PLATEFORME</span>
+   Make : signup sur make.com (version gratuite)
+   Zapier : signup sur zapier.com (version gratuite)
+   n8n : signup sur n8n.cloud (14j trial)
+
+<span class="comment"># 2. COMPTE GMAIL (ou autre boîte mail)</span>
+   Si Gmail : tu utiliseras OAuth lors de la connexion
+              dans la plateforme (3 clics, automatique)
+   Si Outlook/IMAP : prépare email + password applicatif
+                     (PAS le mdp principal — un app password)
+
+<span class="comment"># 3. COMPTE OPENAI ou ANTHROPIC pour l'étape IA</span>
+   <em>Option A</em> — plateforme gère l'IA pour toi
+       Zapier "AI by Zapier" : pas de clé requise
+       Make AI built-in : pas de clé requise
+   <em>Option B</em> — tes propres clés API (recommandé)
+       OpenAI : platform.openai.com → API keys → create
+       Anthropic : console.anthropic.com → API keys → create
+       Ajoute 5-10 $ de crédit pour démarrer
+       Stocke la clé dans un password manager
+
+<span class="comment"># 4. COMPTE SLACK (ou Discord/Teams au choix)</span>
+   Si tu as déjà Slack : nothing to do, OAuth lors de connexion
+   Si pas de Slack : inscription sur slack.com (gratuit)
+   Crée un channel dédié : #auto-mails-resumes
+   Note l'ID du channel (clic droit → copy channel ID)
+
+<span class="comment"># 5. PASSWORD MANAGER OUVERT</span>
+   1Password / Bitwarden / autre
+   Tu vas stocker : API keys, app passwords, channel IDs
+   <em>JAMAIS de accès dans le code ou les notes</em>
+   Cf article 2.8 sécurité connecteurs ★</div>
+  </div>
+
+  <h3>Le piège des permissions Gmail</h3>
+
+  <div class="container reading">
+    <p>Si tu connectes Gmail pour la première fois, Google va te demander de valider une longue liste de permissions OAuth. Active les permissions <em>« lecture des mails »</em> (obligatoire pour le déclencheur) et <em>« modification des labels »</em> (utile pour marquer les mails traités). <strong>Refuse</strong> les permissions qui dépassent ton besoin (envoi de mails au nom de toi, suppression). Principe du moindre privilège (cf <a href="securite-connecteurs.html">article 2.8 ★</a>).</p>
+
+    <p>Si tu utilises Gmail Workspace en entreprise, vérifie que ton admin a autorisé les apps tierces (Make / Zapier / n8n peuvent être bloqués par défaut sur certains tenants). 2 min de discussion avec ton IT évite 1h de debugging mystérieux.</p>
+  </div>
+
+  <!-- ============== 3. CONSTRUIRE LE WORKFLOW ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Construire l'<em>automatisation pas-à-pas</em>.</h2>
+
+  <div class="container reading">
+    <p>15 minutes effectives de construction. La méthode est universelle — je décris les briques en termes génériques, le nom exact varie selon Make/Zapier/n8n mais les concepts restent identiques.</p>
+  </div>
+
+  <h3>Étape 1 — Le déclencheur (3 min)</h3>
+
+  <div class="container reading">
+    <p>Crée une nouvelle automatisation (un scénario, un Zap selon la plateforme) (selon plateforme). Première node : <strong>Gmail déclencheur</strong>. Configure :</p>
+
+    <p><strong>Watch :</strong> <em>« New Email matching search »</em> (et non <em>« New Email »</em> tout court — sinon tu vas être déclenché par chaque mail, y compris spams). <strong>Search filter :</strong> <code>label:inbox -from:noreply -from:newsletter is:unread</code>. Ce filtre exclut les newsletters et notifications automatiques que tu ne veux pas résumer.</p>
+
+    <p><strong>Polling interval :</strong> 5 min (tu n'as pas besoin du temps réel pour un résumé). Sur Make, c'est <em>« scheduling »</em>. Sur Zapier, par défaut 15 min sur version gratuite (tu ne peux pas le changer en dessous). Sur n8n, configure manuellement.</p>
+
+    <p><strong>Test cette étape :</strong> envoie un mail test à ta propre adresse. Clique <em>« Run once »</em> ou <em>« Test »</em>. Tu dois voir le mail capturé avec les fields : sender, subject, body, date. Si rien : check tes filtres OAuth, check le filtre search.</p>
+  </div>
+
+  <h3>Étape 2 — L'étape IA (5 min)</h3>
+
+  <div class="container reading">
+    <p>Ajoute après le déclencheur un node <strong>OpenAI</strong> ou <strong>Anthropic</strong> ou <strong>AI by Zapier</strong> selon ta plateforme. Configure :</p>
+
+    <p><strong>Model :</strong> Claude Haiku 4.5 (Anthropic) ou GPT-4o-mini (OpenAI) — les deux sont fast et cheap, parfaits pour résumer des mails. <strong>Coût estimé :</strong> ~0,002-0,005 $ par mail résumé (cf <a href="cout-reel-agents.html">article 3.7 ★ sur le coût réel</a>).</p>
+
+    <p><strong>System prompt :</strong> écris-le dans le champ système.</p>
+  </div>
+
+  <div class="codeblock">
+    <div class="codeblock-label">— Instruction système · résumé du mail en 3 lignes</div>
+    <div class="codeblock-content">Tu es un assistant qui résume les mails entrants en 3 lignes max.
+
+<em>Format de sortie :</em>
+Ligne 1 : qui écrit et pourquoi (1 phrase courte)
+Ligne 2 : action requise (ou "info seulement" si rien)
+Ligne 3 : urgence (haute/moyenne/faible) + raison
+
+<em>Règles :</em>
+- Pas d'introduction du type "voici le résumé"
+- Pas de formules de politesse
+- Si pas d'action requise, dis-le explicitement
+- Reste neutre et factuel</div>
+  </div>
+
+  <div class="container reading">
+    <p><strong>User prompt :</strong> insère le contenu du mail en variable depuis le node déclencheur précédent.</p>
+  </div>
+
+  <div class="codeblock">
+    <div class="codeblock-label">— Message · insertion des variables</div>
+    <div class="codeblock-content">Résume ce mail :
+
+<em>Expéditeur :</em> {{1.from.address}}
+<em>Sujet :</em> {{1.subject}}
+<em>Corps :</em> {{1.text_plain}}
+
+<span class="comment"># {{1.xxx}} = syntaxe Make</span>
+<span class="comment"># {{déclencheur.xxx}} = syntaxe n8n</span>
+<span class="comment"># Sur Zapier : sélectionne via le picker visual</span></div>
+  </div>
+
+  <div class="container reading">
+    <p><strong>Temperature :</strong> 0.3 (output factuel, peu de créativité — c'est ce qu'on veut pour un résumé fidèle). <strong>Max tokens :</strong> 200 (suffit largement pour 3 lignes, évite la verbosité).</p>
+
+    <p><strong>Test cette étape :</strong> exécute le node sur le mail de test précédent. Tu dois voir un résumé en 3 lignes. Si l'output est verbeux ou hors format, ajuste le system prompt et re-test. <em>3-5 itérations sur le prompt sont normales</em> — ne te décourage pas. Cf <a href="anatomie-prompt-qui-marche.html">article du Niveau II sur l'anatomie d'un prompt</a> pour les techniques avancées.</p>
+  </div>
+
+  <h3>Étape 3 — L'action Slack (4 min)</h3>
+
+  <div class="container reading">
+    <p>Ajoute après le node IA un node <strong>Slack</strong> avec action <em>« Send message to channel »</em>. Configure :</p>
+
+    <p><strong>Channel :</strong> sélectionne <code>#auto-mails-resumes</code> (que tu as créé dans la prep). <strong>Message :</strong> compose avec les variables des briques précédentes.</p>
+  </div>
+
+  <div class="codeblock">
+    <div class="codeblock-label">— Message Slack · format propre</div>
+    <div class="codeblock-content">📬 Nouveau mail de *{{1.from.address}}*
+Sujet : _{{1.subject}}_
+
+{{2.choices[0].message.content}}
+
+🔗 <https://mail.google.com/mail/u/0/#inbox/{{1.message_id}}|Ouvrir le mail>
+
+<span class="comment"># {{1.xxx}} = déclencheur Gmail</span>
+<span class="comment"># {{2.xxx}} = node IA (output du résumé)</span>
+<span class="comment"># Le format Slack supporte le markdown léger</span>
+<span class="comment"># *bold*, _italic_, `code`, > quote, <url|texte></span></div>
+  </div>
+
+  <div class="container reading">
+    <p><strong>Username (optionnel) :</strong> <em>« Mail Bot »</em> ou <em>« Résumé Mail IA »</em>. Garde un nom clair pour reconnaître les notifs auto vs manuelles. <strong>Icon :</strong> émoji 📬 ou avatar dédié.</p>
+
+    <p><strong>Test cette étape :</strong> exécute le node. Vérifie sur Slack que la notification arrive avec le bon formatage. Si problème : check le channel ID, check les permissions du Slack OAuth (envoi messages dans channels).</p>
+  </div>
+
+  <h3>Étape 4 — Connecter et activer (3 min)</h3>
+
+  <div class="container reading">
+    <p>Connecte les 3 briques : Déclencheur Gmail → IA Anthropic/OpenAI → Action Slack. Sur Make c'est visuel (lignes entre modules), sur Zapier c'est séquentiel automatique, sur n8n tu drag des connexions.</p>
+
+    <p><strong>Sauvegarde l'automatisation.</strong> <strong>Active-le</strong> (toggle <em>« On »</em> en haut). Sur Make c'est <em>« Scénario actif »</em>. Sur Zapier c'est <em>« Turn on »</em>. Sur n8n c'est <em>« Active »</em>.</p>
+
+    <p>Maintenant : envoie-toi un mail test depuis une autre adresse. Attends 5-15 min (selon le interrogation régulière interval). Tu devrais recevoir le résumé sur Slack. <strong>Si oui : tu viens de construire ta première automation IA.</strong> Si non : section troubleshooting suivante.</p>
+  </div>
+
+  <p class="pull-quote">15 minutes de construction effective + 10 minutes de préparation + 5 minutes de tests = 30 minutes au total. Tu as une automatisation IA fonctionnel qui te servira de modèle pour 80 % des cas d'usage business.</p>
+
+  <!-- ============== 4. TESTER ET METTRE EN PROD ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Tester, débugger, <em>mettre en production</em>.</h2>
+
+  <div class="container reading">
+    <p>L'automation marche en test. Maintenant il faut la durcir avant de compter dessus quotidiennement. 4 étapes pour passer de <em>« ça marche pour 1 mail »</em> à <em>« ça marche pour les 50 mails/jour de la semaine prochaine »</em>.</p>
+  </div>
+
+  <h3>Test 1 — Les cas limites</h3>
+
+  <div class="container reading">
+    <p>Envoie-toi 5 mails très différents : un long mail business, un mail court, un mail avec attachement, un mail en anglais (si ton prompt est en français), un mail avec emojis et caractères spéciaux. Vérifie que l'automatisation gère chacun correctement. <strong>Patterns d'échec courants :</strong> mail trop long → tronqué dans le prompt → résumé incomplet. Mail en pure HTML → caractères parasites dans le résumé.</p>
+
+    <p><strong>Correction :</strong> dans le node IA, configure <em>max input tokens</em> à ~3 000. Pour les mails très longs, l'input sera tronqué — résumé reste utile. Pour le HTML, ajoute dans le system prompt : <em>« ignore les balises HTML, concentre-toi sur le contenu textuel »</em>.</p>
+  </div>
+
+  <h3>Test 2 — Volume et coût</h3>
+
+  <div class="container reading">
+    <p>Calcule ton coût mensuel anticipé. Si tu reçois ~30 mails/jour qui matchent ton filtre × 30 jours = 900 exécutions/mois. <strong>Sur Make Core 9 $/mois</strong> (10 000 opérations) : tu utilises 9 % du quota → OK. <strong>Sur Zapier Pro 19,99 $</strong> (750 tâches) : tu dépasses (chaque exécution = 3 tâches pour Déclencheur + IA + Slack = 2 700 tâches/mois) → tu dois passer Pro+ ou changer d'outil.</p>
+
+    <p><strong>Coût IA :</strong> 900 mails × 0,003 $ moyen Haiku 4.5 = ~2,70 $/mois. Très accessible. Mais surveille : si ton volume monte à 5 000 mails/mois, tu passes à 15 $/mois IA seulement. Active les <strong>plafond de dépenses</strong> dans ton compte API (cf <a href="cout-reel-agents.html">article 3.7 ★</a>) — protège contre une dérive imprévue.</p>
+  </div>
+
+  <h3>Test 3 — Gestion d'erreurs</h3>
+
+  <div class="container reading">
+    <p>Que se passe-t-il si Gmail est inaccessible ? Si l'API OpenAI/Anthropic plante ? Si Slack rate-limite ? Sans gestion d'erreurs, ton automatisation s'arrête silencieusement et tu rates des mails.</p>
+
+    <p><strong>Sur Make :</strong> ajoute un <em>« Error handler »</em> sur le node IA (path alternatif si erreur). Sur n8n : utilise <em>« Continue on Fail »</em> + branche d'erreur. Sur Zapier : c'est plus limité, configure au moins une <em>« Filter »</em> pour skip les mails problématiques.</p>
+
+    <p><strong>Pattern recommandé :</strong> en cas d'erreur, envoie une notif Slack alternative : <em>« ⚠️ Erreur sur le résumé du mail XYZ — vérifie manuellement »</em>. Tu rates pas le mail, tu sais juste que l'auto a planté pour celui-là.</p>
+  </div>
+
+  <h3>Test 4 — Un minimum de suivi</h3>
+
+  <div class="container reading">
+    <p>Active les logs natifs de ta plateforme. Sur Make : execution history (visible directement). Sur n8n : journal d'exécution + onglet des exécutions. Sur Zapier : historique des tâches. <strong>Configure une alerte simple :</strong> si l'automatisation échoue 3 fois de suite, envoie un mail à toi-même.</p>
+
+    <p>Cette suivi est ce qui transforme ton automatisation démo en automatisation de production. Sans elle, tu sauras pas si ça plante, jusqu'au jour où tu remarques que tu n'as plus de notifs Slack depuis 3 jours. Cf <a href="tester-agent-ia.html">article 3.5 sur la routine de monitoring</a>.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Checklist avant de compter sur cette automatisation quotidiennement</div>
+    <p><strong>(1)</strong> Testé sur 5 cas limite (long, court, HTML, langue étrangère, attachement). <strong>(2)</strong> Coût mensuel estimé et sous ton budget cap. <strong>(3)</strong> Gestion d'erreurs configurée (au minimum notif d'échec). <strong>(4)</strong> Logs natifs activés et accessibles. <strong>(5)</strong> Spend limits hard configurés sur tes APIs OpenAI/Anthropic. <strong>(6)</strong> Lu et appliqué les principes de <a href="human-in-the-loop.html">l'article 3.6 sur le HITL</a> — ton automatisation lit Gmail mais n'écrit nulle part en dehors de Slack interne, donc faible blast radius. Si tu coches les 6, tu peux activer en confiance.</p>
+  </div>
+
+  <h3>Adapter à 80 % des autres cas</h3>
+
+  <div class="container reading">
+    <p>Le pattern Déclencheur → IA → Action que tu viens de construire couvre une large palette de cas business. Quelques variations directes que tu peux construire en 15-20 min supplémentaires en réutilisant ton automatisation :</p>
+
+    <p><strong>Variante 1 — Routing leads commerciaux :</strong> Déclencheur Typeform/HubSpot (nouveau lead) → IA score le lead (qualifié/non) → Action mail personnalisé si qualifié, ajout CRM si pas. <strong>Variante 2 — Veille concurrence :</strong> Déclencheur RSS schedule (toutes les 4h) → IA filtre les news pertinentes → Action notif Slack. <strong>Variante 3 — Recap quotidien :</strong> Déclencheur cron (18h tous les jours) → IA agrège tes mails/calendrier/tâches du jour → Action mail récap. <strong>Variante 4 — Triage tickets support :</strong> Déclencheur Zendesk new ticket → IA classifie urgent/tech/commercial → Action route vers le bon channel Slack équipe.</p>
+
+    <p>L'article suivant (<a href="niveau-4-batir-automatisations.html">4.4 sur les 10 automatisations qui changent la vie</a>) détaillera 10 cas testés avec ROI honnête. Mais déjà avec ce que tu viens d'apprendre, tu peux construire la majorité de ce dont tu as besoin.</p>
+  </div>
+
+  <!-- ============== PIÈGES ============== -->
+  <h2 class="reading"><span class="h2-num">— Bonus</span>5 <em>pièges</em> classiques.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>plonger sans préparer les accès</em></div>
+    <div class="pitfall-text">Tu plonges dans Make et tu construis 5 briques. Au moment de tester, tu te rends compte que ton OpenAI n'a pas de crédit, ton Slack OAuth n'a pas la bonne permission, ton Gmail nécessite un app password. Tu perds 30 min à debugger en parallèle, à revenir en arrière. <strong>Correction :</strong> les 10 min de préparation accès (checklist du paragraphe 2) économisent 30 min de debugging mid-build. Suis l'ordre : d'abord les comptes, ensuite les API keys, ensuite les OAuth, ensuite seulement la construction. Discipline ennuyeuse mais payante.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : <em>tester avec un seul mail</em></div>
+    <div class="pitfall-text">Tu testes l'automatisation avec un seul mail simple. Ça marche. Tu actives en production. Le lendemain, premier mail HTML lourd → résumé incompréhensible. Premier mail très long → tronqué bizarrement. Premier mail en anglais quand ton prompt est en français → résumé en franglais. <strong>Correction :</strong> les 5 cas limite du Test 1 sont obligatoires avant production. 5 min d'effort, évite des semaines de qualité dégradée. <em>« LLMs are non-deterministic »</em> (cf <a href="tester-agent-ia.html">article 3.5</a>) — un cas qui marche n'est pas une preuve.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>oublier de filtrer le déclencheur</em></div>
+    <div class="pitfall-text">Tu configures le déclencheur Gmail sur <em>« any new email »</em> sans filtre. Tu reçois 200 mails/jour (newsletters, notifications, spams qui passent les filtres). Ton automatisation s'exécute 200 fois → tu épuises ton version gratuite en 2-3 jours, ton API OpenAI te coûte 30 €/mois pour résumer des newsletters. <strong>Correction :</strong> filter strict dès le départ. <code>label:inbox -from:noreply -from:newsletter is:unread</code> élimine 80 % du bruit. Affine sur 1 semaine d'observation. Mieux vaut sous-filtrer initialement et ajouter, que sur-filtrer et perdre des vrais mails. Le coût d'erreur d'un filtre trop large est mesurable (factures qui explosent), celui d'un filtre trop strict ne l'est pas (mails ratés silencieusement).</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>ne pas tester le coût avant d'activer</em></div>
+    <div class="pitfall-text">Tu actives sans calculer le coût mensuel attendu. 2 semaines plus tard, ta facture OpenAI affiche 80 $. Tu ne comprends pas pourquoi. Tu réalises que ton volume réel était 3x supérieur à ton estimation. Sur Cursor en mars 2026, un cas équipe a depleted 7 000 $ d'abonnement annuel en une journée à cause de billing opaque (cf <a href="cout-reel-agents.html">article 3.7 ★</a>). <strong>Correction :</strong> avant d'activer, calcule volume × coût unitaire × 30 jours. Active les <strong>plafond de dépenses hard</strong> sur OpenAI/Anthropic (settings → usage limits) à 2x ton estimation pour avoir de la marge sans risquer la dérive. Si tu hits le cap : signal qu'il faut investiguer, pas relever aveuglément.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : <em>« je l'active et j'oublie »</em></div>
+    <div class="pitfall-text">Tu actives l'automatisation et tu l'oublies. 6 mois plus tard, tu réalises que les 3 derniers jours il n'a pas tourné — un changement d'API Gmail OAuth a invalidé ton credential et tu n'as pas vu la notif. <strong>Cas documenté Go Rogue Ops 2026 :</strong> client a investi 8 500 $ avec un freelance, 12 Zaps Google Sheets, tout cassé en une nuit après changement Google API auth. 9h de réparation rush à 200 $/h. <strong>Correction :</strong> <em>« automation requires ongoing care »</em>. Routine minimum : check rapide hebdomadaire (5 min) que l'automatisation tourne, review mensuelle (15 min) des executions et des erreurs, audit trimestriel des accès et permissions. Cf <a href="tester-agent-ia.html">article 3.5 routine de monitoring</a>.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>Ce première automatisation est ton <em>squelette de référence</em>. Une fois maîtrisé, tu peux en construire un nouveau en 15-20 minutes (sans la prep), un avancé en 45-60 min. La courbe d'apprentissage est rapide après le premier. <strong>Mon conseil pratique :</strong> construis cette automatisation exactement comme décrit cette semaine, même si tu sais que tu peux faire mieux ou plus complexe. La discipline du <em>« construire d'abord, optimiser ensuite »</em> évite la paralysie analytique. Une fois fonctionnel, tu sauras concrètement ce qui marche et ce qui pourrait être amélioré sur <em>ton</em> setup. <strong>Suite logique :</strong> <a href="niveau-4-batir-automatisations.html">article 4.4 sur les 10 automations qui changent la vie</a> — 10 cas testés avec ROI honnête, applicables avec la méthode que tu viens d'apprendre.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Tu as construit ta première automatisation. Pour aller plus loin : <a href="niveau-4-batir-automatisations.html">article 4.4 sur les 10 automatisations testées</a> (les cas concrets à construire avec la même méthode). <a href="anatomie-automatisation-ia.html">Article 4.1 sur l'anatomie</a> (la structure déclencheur → IA → action que tu viens d'incarner). <a href="bons-mauvais-cas-usage.html">Article 4.2 sur la grille de décision</a> (ne lance pas le suivant avant d'avoir scoré le cas). <a href="zapier-make-n8n.html">Article 2.6 sur Zapier/Make/n8n</a> (le comparatif détaillé pour scaler ton choix). <a href="cout-reel-agents.html">Article 3.7 ★ sur le coût réel</a> (anticiper et limiter la facture token). <a href="securite-connecteurs.html">Article 2.8 ★ sur la sécurité connecteurs</a> (gestion des accès propre dans la durée). <a href="human-in-the-loop.html">Article 3.6 sur le HITL</a> (calibrer la supervision quand tu ajouteras des actions externes critiques). Pour le panorama complet : <a href="niveau-4-batir-automatisations.html">la rubrique R4</a>.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur la construction de ta première automatisation.</h3>
+    <ol class="recap-points">
+      <li>Choix d'outil 2026 : <strong>Zapier</strong> pour démarrage le plus rapide (8 000+ intégrations, mais Trustpilot 1,4/5 + new signups Pro paused 20 avril 2026), <strong>Make</strong> pour rapport idéal prix/puissance (gratuit jusqu'à 1 000 opérations/mois = 13 fois le ratio de Zapier, recommandé par défaut), <strong>n8n</strong> pour profondeur technique et scale (1 exec = 1 automatisation complet, 70+ briques IA natives, self-hosting gratuit). Tutorial fonctionne identiquement sur les 3.</li>
+      <li>Préparation accès = 10 min avant build, économise 30 min de debugging plus tard. Checklist : compte plateforme, compte Gmail (OAuth ou app password), compte OpenAI/Anthropic (5-10 $ crédit + clé API), compte Slack (channel dédié + OAuth), password manager ouvert. Principe du moindre privilège sur les permissions Gmail (lecture + labels OK, envoi/suppression refus). Cf <a href="securite-connecteurs.html">article 2.8 ★</a>.</li>
+      <li>Construction 15 min : <strong>Déclencheur Gmail</strong> avec filtre <code>label:inbox -from:noreply is:unread</code> (interrogation régulière 5-15 min selon version gratuite), <strong>Étape IA</strong> avec Haiku 4.5 ou GPT-4o-mini + system prompt structuré 3 lignes (qui/action/urgence) + temperature 0.3 + max tokens 200, <strong>Action Slack</strong> avec message formaté markdown léger + lien vers mail. Coût ~0,003 $/mail = 2-3 $/mois pour 1 000 mails.</li>
+      <li>Tests obligatoires avant production : 5 cas limite (long, court, HTML, langue étrangère, attachement), calcul coût mensuel anticipé avec plafond de dépenses hard configurés, gestion d'erreurs (notif d'échec alternative), suivi minimale (logs + alerte sur 3 échecs consécutifs). Le test sur un seul cas qui marche n'est pas une preuve — LLMs sont non-déterministes.</li>
+      <li>5 pièges à éviter : plonger sans préparer accès (10 min prep économisent 30 min build), tester avec un seul mail (5 cas limite obligatoires), oublier de filtrer le déclencheur (filter strict dès départ — <code>any new email</code> = 200 exec/jour vs 30), ne pas tester le coût avant d'activer (plafond de dépenses hard à 2x estimation), <em>« je l'active et j'oublie »</em> (5 min check hebdo + 15 min review mensuelle minimum). Cas documenté : 8 500 $ Zaps cassés en une nuit par changement API Google.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="niveau-4-batir-automatisations.html">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">4.4 · 10 automatisations IA qui changent la vie</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-4-batir-automatisations.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Bâtir des automatisations · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

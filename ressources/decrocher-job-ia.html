@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Décrocher ton job avec l'IA. – AutomationBoost</title>
+  <meta name="description" content="97 % des employeurs utilisent un filtre automatique et le taux d" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Décrocher ton job avec l'IA.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#f97316;">Gagner du temps au travail</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Décrocher ton job avec l'IA.</h1>
+    <p class="lede">97 % des employeurs utilisent un ATS, le taux d'entretien est tombé de 15 % à 3 % en 8 ans, 90 % des recruteurs détectent un CV 100 % ChatGPT. La méthode pour utiliser l'IA à chaque étape — sans tomber dans les pièges du contenu IA générique qui te fait recaler immédiatement.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tu envoies 50 candidatures avec un CV et une lettre générés par ChatGPT. Zéro réponse. Tu blâmes le marché. Le marché n'y est pour rien — tes 50 candidatures ressemblent aux 200 autres que reçoit chaque recruteur, toutes au même moule, toutes filtrées au tri.</p>
+
+    <p>Le recrutement a changé : la quasi-totalité des employeurs filtrent les candidatures via des logiciels (ATS), et beaucoup de bons profils sont écartés à tort pour un simple problème de format. Voici comment utiliser l'IA pour sortir du lot, pas pour te fondre dedans.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi « écris-moi un CV » <em>est le pire prompt</em>.</h2>
+
+  <div class="container reading">
+    <p>Un CV généré d'un trait cumule quatre défauts qui expliquent ton absence de réponses : des tournures IA détectables (« forte appétence pour l'innovation »…), un format illisible par les logiciels de tri (colonnes, icônes, images), aucune adaptation au poste précis, et aucune preuve chiffrée. Tu ressembles à la moitié des CV reçus ce jour-là.</p>
+
+    <p>La méthode qui suit prend le problème à l'envers : un CV qui passe les filtres automatiques <em>et</em> donne envie à un humain.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>La <em>méthode 5 phases</em>.</h2>
+
+  <div class="container reading">
+    <p>Le protocole complet du CV au job offer. Compte 8-20 heures sur 6-12 semaines selon ton niveau de seniorité et le marché. Chaque phase a son rôle, aucune ne peut être sautée. Le secret est dans la séquence : tu construis chaque phase sur la précédente, sans précipitation.</p>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 1 / 5 · CV ATS-COMPATIBLE</div>
+    <div class="phase-name">Construire le <em>CV maître</em> qui passe les filtres</div>
+    <div class="phase-purpose">Avant de postuler, tu construis un CV maître au format ATS-friendly que tu adapteras pour chaque offre. Format : 1 page (2 max si +10 ans d'expérience), 1 colonne unique, police standard (Arial, Calibri, Garamond), pas d'icônes décoratives, pas de tableaux, pas d'images. Les chiffres sont OBLIGATOIRES sur 70 % des bullets.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>Je veux construire un CV ATS-compatible. Voici mon profil brut :
+
+<strong>Expériences professionnelles</strong>
+[Pour chacune des 4-6 dernières expériences :]
+— Intitulé du poste, employeur, dates, secteur
+— 3-5 missions principales
+— <strong>3 réalisations chiffrées</strong> (chiffres précis, pas approximatifs) : « j'ai augmenté X de Y % » / « gestion d'un budget de Z € » / « équipe de N personnes »
+
+<strong>Formation :</strong> diplômes avec dates et établissements
+
+<strong>Compétences :</strong> hard skills (outils, langages, certifications) ET soft skills concrètes
+
+<strong>Aide-moi à construire :</strong>
+
+1. <strong>Un titre professionnel</strong> en 5-8 mots qui résume mon expertise (« Chef de projet digital · 7 ans · e-commerce »)
+
+2. <strong>Un Value Proposition Summary</strong> de 3 lignes (et pas un « objectif » obsolète) : ce que j'apporte concrètement au recruteur, pas ce que je cherche
+
+3. <strong>Pour chaque expérience</strong>, transformer mes missions en bullets formatés <strong>X-Y-Z</strong> :
+   — X = action verbale forte (Optimisé / Lancé / Restructuré / Négocié)
+   — Y = résultat chiffré
+   — Z = méthode/contexte
+   Exemple : <em>« Optimisé le tunnel d'acquisition (X), réduisant le CAC de 34 % en 6 mois (Y), via A/B testing et refonte page de ventes (Z) »</em>
+
+4. <strong>Compétences avec preuves</strong> : pas de barre de niveau (illisible ATS et inutile), juste « Python (3 ans, projets X et Y) ».
+
+<strong>Règles strictes :</strong>
+— <strong>Aucune formule creuse interdite :</strong> « excellent communicant », « capable d'évoluer dans des environnements complexes », « forte appétence pour », « esprit d'équipe », « rigoureux et autonome ». Ces formules signalent IA et ennuient le recruteur.
+— <strong>Pas d'invention.</strong> Si je ne t'ai pas donné un chiffre, ne l'invente pas. Marque « [chiffre à compléter] » et je le rajouterai.
+— <strong>Format ATS strict :</strong> 1 colonne, sans tableau, sans icône, sans en-tête/pied-de-page (les ATS les coupent).</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 2 / 5 · CIBLAGE PAR OFFRE</div>
+    <div class="phase-name"><em>Adapter</em> le CV maître à chaque offre précise</div>
+    <div class="phase-purpose">Le CV maître posé, tu l'adaptes à chaque offre. Les ATS modernes (ATS 2.0) font de la sémantique, mais ils restent fortement biaisés vers le matching de mots-clés exacts. Cette phase prend 15-20 minutes par candidature mais fait passer ton taux de matching de 60 % à 85-90 %.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser pour chaque offre</span>Voici l'offre d'emploi à laquelle je postule :
+
+[colle l'offre complète, paragraphe par paragraphe]
+
+Et voici mon CV maître :
+
+[colle ton CV maître phase 1]
+
+<strong>Aide-moi à adapter le CV à cette offre précise :</strong>
+
+1. <strong>Extraction des mots-clés essentiels de l'offre</strong>
+   — Liste les 8-15 mots-clés les plus importants (compétences techniques précises, outils nommés, méthodologies, langues, certifications)
+   — Indique ceux qui apparaissent ≥ 3 fois dans l'offre (ce sont les essentiels filtres ATS)
+
+2. <strong>Match analysis</strong>
+   — Lesquels de ces mots-clés sont DÉJÀ dans mon CV maître ?
+   — Lesquels devraient y être (parce que je les maîtrise mais ne les ai pas mis) ?
+   — Lesquels MANQUENT vraiment (compétence que je n'ai pas) ? Note : tu ne dois pas me suggérer de mentir — juste de vérifier si je n'ai pas oublié de mentionner quelque chose.
+
+3. <strong>Réécriture ciblée</strong>
+   — Réécris mes bullets pour intégrer naturellement les mots-clés essentiels manquants
+   — Réordonne les expériences pour mettre en avant celle qui colle le plus à l'offre
+   — Adapte le titre professionnel et le Value Proposition Summary à l'offre
+
+4. <strong>Score de match estimé</strong>
+   — Avant adaptation : X %
+   — Après adaptation : Y %
+   — Quels mots-clés essentiels manquent encore (et que je devrais ajouter si je les maîtrise réellement)
+
+<strong>Règle stricte :</strong> ne me fais pas inventer de compétences. L'objectif est d'optimiser la formulation et l'ordre — pas de mentir. Un faux match-95 % qui se heurte au mur en entretien technique est pire qu'un vrai match-75 % qui aboutit.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 3 / 5 · LETTRE DE MOTIVATION</div>
+    <div class="phase-name">Une lettre courte qui <em>ne sonne pas IA</em></div>
+    <div class="phase-purpose">La lettre de motivation a évolué. Recruteurs en 2026 lui consacrent en moyenne 17 secondes. Une lettre standard d'une page ennuie. Une lettre de 3-4 paragraphes ciblés et personnels marche encore — mais elle doit éviter les marqueurs ChatGPT que tout le monde reconnaît.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>Voici l'offre : [colle l'offre]
+Voici mon CV adapté : [colle CV phase 2]
+Voici 3 informations personnelles importantes :
+1. <strong>Pourquoi cette entreprise précisément</strong> (pas une généralité — un fait concret : un produit que tu utilises, un projet récent que tu as suivi, une personne que tu connais qui y travaille, une valeur précise qui résonne)
+2. <strong>Le pont entre ton parcours et leur besoin</strong> (la chose précise qui te rend pertinent — pas tes 10 forces génériques, l'élément spécifique)
+3. <strong>Ce que tu apporterais en 6-12 premiers mois</strong> (pas une promesse vague, une intention précise et réaliste)
+
+Écris-moi une lettre de motivation en français, structure stricte :
+
+<strong>§1 (3-4 lignes)</strong> — Accroche concrète sur l'entreprise. Pas « C'est avec un grand intérêt que je me permets ». Pas « Votre entreprise, leader dans son secteur ». Une phrase précise qui montre que je connais vraiment l'entreprise.
+
+<strong>§2 (4-5 lignes)</strong> — Le pont. <em>Voici précisément en quoi mon parcours répond à votre besoin.</em> 1-2 expériences concrètes avec chiffres, articulées au besoin de l'offre. Pas de listing exhaustif — la concentration paie.
+
+<strong>§3 (3-4 lignes)</strong> — La projection. Ce que j'apporte en arrivant : une vision concrète des premiers mois, pas une promesse vague.
+
+<strong>§4 (1-2 lignes)</strong> — Conclusion + appel à un échange.
+
+<strong>Règles strictes :</strong>
+— <strong>Mots interdits :</strong> « passionné », « dynamique », « rigoureux », « excellent communicant », « capable d'évoluer », « forte appétence », « esprit d'équipe », « par ailleurs », « en outre », « il est important de noter »
+— <strong>Maximum 220 mots total</strong>
+— <strong>Pas d'emoji, pas de gras, pas de soulignement</strong>
+— <strong>Le ton doit être direct, factuel, légèrement chaleureux</strong> — pas commercial, pas servile
+
+À la fin, donne-moi <strong>3 versions du §1</strong> (l'accroche), pour que je choisisse celle qui sonne le moins « IA » et le plus moi.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 4 / 5 · PRÉPARATION ENTRETIEN</div>
+    <div class="phase-name"><em>Simuler</em> l'entretien avant de le passer</div>
+    <div class="phase-purpose">Tu as l'entretien. C'est précisément là que l'IA est la plus utile et la moins risquée — elle ne parle pas à ta place, mais elle te prépare comme un coach 1:1 disponible 24/7. Compte 4-8 heures de prépa étalées sur 3-7 jours avant l'entretien.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>J'ai un entretien dans <span class="placeholder">[X jours]</span> pour le poste suivant :
+
+[colle l'offre complète]
+[colle ton CV adapté]
+[colle ce que tu sais de l'entreprise : taille, secteur, actualité récente, stade — startup/scale-up/grande entreprise]
+
+<strong>Configure-toi en mode coach d'entretien</strong>. Aide-moi sur 4 axes :
+
+<strong>AXE 1 — Recherche entreprise approfondie</strong>
+Recherche sur le web (active la recherche web) et donne-moi :
+— Les 3 actualités récentes (6 derniers mois) à connaître absolument
+— Les concurrents directs et leur positionnement
+— Les défis stratégiques actuels probables (en lien avec le poste à pourvoir)
+— Ce qu'on dit de l'entreprise sur Glassdoor / Indeed Reviews / LinkedIn (signaux faibles utiles)
+
+<strong>AXE 2 — Questions probables</strong>
+Génère <strong>20 questions</strong> que je suis susceptible de recevoir, classées par catégorie :
+— 5 questions sur le parcours (« parlez-moi de vous », « pourquoi ce changement »)
+— 5 questions techniques sur le métier (compétences clés de l'offre)
+— 5 questions comportementales (STAR : Situation-Tâche-Action-Résultat)
+— 3 questions sur l'entreprise et le poste (« pourquoi nous », « pourquoi ce poste »)
+— 2 questions piège classiques (« vos défauts », « où dans 5 ans »)
+
+<strong>AXE 3 — Mes 5 questions à poser</strong>
+Suggère-moi 5 questions intelligentes à poser à mon interlocuteur en fin d'entretien — qui montrent que j'ai réfléchi et qui me donnent des infos utiles. Évite les questions clichées (« quelle est l'ambiance ? »).
+
+<strong>AXE 4 — Simulation</strong>
+Joue le rôle du recruteur. Pose-moi 5 questions de la liste, une par une. Après chacune de mes réponses :
+— Note la réponse sur 10 selon : pertinence, concision (max 90 secondes), preuve concrète (chiffres, exemples), authenticité
+— Donne 2 améliorations concrètes
+— Reformule la version améliorée
+
+À la fin, donne-moi <strong>les 3 risques majeurs</strong> de mon entretien (sujets où je suis fragile) et comment les anticiper.</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-num">— PHASE 5 / 5 · NÉGOCIATION SALARIALE</div>
+    <div class="phase-name">Négocier <em>sans casser</em> la relation</div>
+    <div class="phase-purpose">L'offre arrive. La majorité des candidats l'acceptent telle quelle par soulagement et peur de « casser l'effet ». Erreur statistique : <strong>87 % des candidats qui négocient obtiennent au moins un ajustement</strong>, et l'ajustement médian est de 5-15 % du salaire. Sur 30 ans de carrière, ne pas négocier coûte typiquement 200 000-500 000 €. L'IA est précieuse pour cette phase à condition de l'utiliser pour préparer, pas pour décider.</div>
+    <div class="phase-prompt"><span class="phase-prompt-label">— Prompt à utiliser</span>J'ai reçu une offre. Voici les paramètres :
+
+— Poste : <span class="placeholder">[titre exact]</span>
+— Salaire fixe proposé : <span class="placeholder">[X €]</span>
+— Variable / bonus : <span class="placeholder">[Y € ou Y % avec conditions]</span>
+— Avantages chiffrables : <span class="placeholder">[ticket resto, mutuelle, télétravail, RTT, formation, prime de vacances...]</span>
+— Mon salaire actuel : <span class="placeholder">[Z €]</span>
+— Mon expérience pour ce poste : <span class="placeholder">[X années]</span>
+— Localisation : <span class="placeholder">[ville]</span>
+— Secteur et taille entreprise : <span class="placeholder">[précis]</span>
+
+<strong>Aide-moi à structurer ma négociation :</strong>
+
+<strong>1. Benchmark marché</strong> (active la recherche web)
+Recherche les fourchettes salariales actuelles 2026 pour ce poste, dans cette localisation, ce secteur, ce niveau d'expérience. Sources fiables : Glassdoor France, Hellowork, Apec, Robert Half Salary Guide, Studies of Page Group.
+Donne-moi : médiane / 25e percentile / 75e percentile / 90e percentile.
+
+<strong>2. Position de mon offre dans le marché</strong>
+Mon offre est-elle dans la médiane, en-dessous, au-dessus ? De combien ?
+
+<strong>3. Levier de négociation réaliste</strong>
+Compte tenu de mon profil et de mon offre actuelle, quel est l'écart négociable réaliste (en %) ?
+— Faible levier (offre déjà au 75e percentile) : viser +3-5 %
+— Levier moyen (offre à la médiane) : viser +5-10 %
+— Fort levier (offre sous la médiane et profil rare) : viser +10-20 %
+
+<strong>4. Stratégie de négociation</strong>
+— Quel premier chiffre demander (sans dire la médiane connue par tous) ?
+— Quels arguments factuels mobiliser ? (3 max, les meilleurs)
+— Quels avantages non-salariaux négocier en parallèle ou en compensation (formation, télétravail jours sup, prime de signing, jours de congés en plus, voiture, prise de fonction décalée) ?
+
+<strong>5. Script de l'échange</strong>
+Rédige une version-type d'email ET de discours téléphone de négociation. Ton ferme mais courtois — pas servile, pas agressif. Tu reconnais l'offre, tu donnes ton chiffre cible, tu justifies brièvement, tu ouvres la discussion.
+
+<strong>6. Plan B si ça ne marche pas</strong>
+— Si l'employeur refuse toute hausse de fixe : que demander en alternative ?
+— Quel seuil minimum me ferait refuser l'offre (mon BATNA) ?
+
+<strong>Règle absolue :</strong> tu m'aides à préparer, je décide. Pas de pression « tu dois absolument viser X » — tu m'éclaires sur les options et les conséquences, je tranche en fonction de ma situation perso (besoin financier, rapport de force, attachement au poste).</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">L'astuce du mentor</div>
+    <p>La discipline qui distingue les candidats qui décrochent leur job des candidats qui s'épuisent en candidatures massives : <strong>moins de candidatures, mieux ciblées</strong>. Statistiquement, 10 candidatures personnalisées avec la méthode 5 phases produisent en moyenne 2-3 entretiens. 50 candidatures « envoie-massif-ChatGPT » produisent en moyenne 0-1 entretien. Pour le même temps total. Tu acceptes mentalement de candidater <strong>5 fois moins</strong> si tu candidates 10 fois mieux. La majorité des candidats refuse cette discipline parce que candidater massivement donne le sentiment d'agir. Mais le sentiment d'agir n'est pas le résultat d'agir. <strong>Bonus :</strong> tiens un tableau de tes candidatures avec date / poste / score de match / suite donnée. Tu apprendras plus vite ce qui fonctionne pour toi en revoyant ces 10 lignes après 1 mois.</p>
+  </div>
+
+  <!-- ============== 3. PIÈGES ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Les <em>5 pièges</em> qui te font recaler.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : envoyer un <em>CV 100 % ChatGPT</em></div>
+    <div class="pitfall-text">90 % des recruteurs disent détecter en quelques secondes un CV/lettre 100 % ChatGPT. Les marqueurs sont systémiques : adjectifs creux (« passionné, dynamique, rigoureux »), structures parallèles trop régulières, formulations sans aspérité. Les CV qui décrochent un entretien en 2026 ont <em>de l'aspérité</em> : un détail concret ou une formulation personnelle qui distingue. <strong>Discipline :</strong> après chaque génération IA, relis et trouve les 3 phrases les plus génériques — réécris-les avec une formulation à toi, même imparfaite. C'est ce 10 % d'imperfection humaine qui fait la différence avec les 80 % de CV trop lisses qui partent à la corbeille.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : <em>postuler à tout</em></div>
+    <div class="pitfall-text">L'IA t'a tellement facilité la candidature que tu te dis « tant qu'à faire, je postule à 200 offres ». Erreur statistique majeure. Les ATS modernes croisent les candidatures du même candidat — tes 200 candidatures sur des postes incohérents te marquent comme « profil flou ». Les recruteurs Tier-1 (les plus connectés) discutent entre eux et reconnaissent les CV récurrents. <strong>Règle :</strong> max 5-8 candidatures simultanées sur des postes vraiment alignés. Si tu cherches dans 3 secteurs différents (par exemple, reconversion en cours), prépare 3 CV maîtres distincts et postule cohéremment dans chacun.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>mentir</em> sous prétexte que l'IA a écrit pour toi</div>
+    <div class="pitfall-text">L'IA peut générer un CV qui te survalorise — années inventées, missions exagérées, certifications qu'on n'a pas. Le piège : tu te dis que « ce n'est pas vraiment toi » qui ment puisque c'est l'IA qui a écrit. <strong>Le mensonge est juridiquement le tien</strong> dès que tu envoies. Les ATS modernes croisent avec LinkedIn et bases de données externes. Les entretiens techniques en 2026 démasquent rapidement les compétences sur-vendues. <strong>Les conséquences :</strong> rupture de période d'essai immédiate (sans indemnité), inscription sur listes noires sectorielles, dans certains métiers (finance, médical, juridique) sanctions ordinales. La règle est simple : l'IA optimise la formulation de tes vrais atouts. Elle n'invente jamais de faux atouts.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>utiliser l'IA pendant l'entretien</em></div>
+    <div class="pitfall-text">Le piège qui s'amplifie avec les entretiens visio. Tu installes un overlay qui te suggère des réponses en temps réel pendant que l'interlocuteur parle. <strong>Cette pratique est détectée dans 70-80 % des cas</strong> par des recruteurs expérimentés (regard qui dérive, latence de réponse, vocabulaire incohérent avec ton profil). Et au-delà de la détection, c'est éthiquement problématique — tu prends un poste en faisant passer l'IA pour toi, tu seras incapable de tenir une fois en poste. <strong>Règle stricte :</strong> l'IA prépare avant l'entretien (phase 4). Pendant l'entretien, c'est toi seul. Si tu es incapable de tenir l'entretien sans IA, tu n'es pas prêt pour le poste — refais des simulations en phase 4 jusqu'à pouvoir tenir 30 minutes seul·e sur les questions probables.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : <em>négocier sans avoir l'offre par écrit</em></div>
+    <div class="pitfall-text">Le piège classique côté négociation. L'employeur t'annonce un salaire à l'oral en fin d'entretien. Tu acceptes ou tu commences à négocier sur place, prit·e de court. <strong>Discipline absolue :</strong> ne JAMAIS négocier sur place. Tu remercies, tu demandes une formalisation écrite (« pourriez-vous me confirmer ces éléments par mail pour que je puisse réfléchir sereinement ? »), tu prends 24-72 h de réflexion, tu prépares ta négo avec la phase 5, tu négocies par écrit ou en visio dédiée. <strong>Bonus :</strong> ce délai de 24-72h te protège aussi des offres « trop belles » qui cachent des conditions floues — tu auras le temps de relire, de poser les questions, de découvrir les éléments non dits.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>La recherche d'emploi est devenue en 2026 l'un des cas d'usage IA les plus paradoxaux. La technologie qui devrait t'aider à décrocher plus vite produit massivement l'effet inverse — sauf si tu suis une discipline précise. La règle structurante : <strong>l'IA t'aide à structurer, à formuler, à préparer. Elle ne se substitue jamais à ta voix, à ton expérience, à ta présence en entretien</strong>. Le candidat qui respecte cette frontière a un avantage net en 2026 — précisément parce que la majorité de ses concurrents ne la respecte pas. Sur 50 candidats, 40 envoient du ChatGPT brut, 8 utilisent l'IA correctement, 2 candidatent sans IA du tout (souvent des seniors qui ne s'y sont pas mis). Les 8 qui utilisent l'IA correctement obtiennent 80 % des entretiens. C'est dans ces 8-là que tu veux être.</p>
+  </div>
+
+  <!-- ============== 4. CONNEXES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Articles <em>connexes</em> et ressources.</h2>
+
+  <div class="container reading">
+    <p><strong>Sur ce site :</strong> <a href="reussir-reconversion-pro-ia.html">l'article-pilier 1.5 sur la reconversion pro</a> (méthode complète si tu changes complètement de métier — la phase 5 sur le plan d'apprentissage est l'amont de la phase 1 ici), <a href="ia-ecrire-comme-humain.html">les marqueurs IA à éliminer</a> (essentiel pour les phases 1-3), <a href="cloner-style-ecriture.html">cloner ton style d'écriture</a> (utile pour la lettre de motivation et les emails de candidature), <a href="quand-ia-veut-plaire.html">quand l'IA veut plaire</a> (cœur du problème dans la phase 4 simulation — l'IA peut t'évaluer trop favorablement), <a href="hallucinations-ia.html">les hallucinations IA</a> (essentiel pour les benchmarks salariaux phase 5 — vérifier les chiffres).</p>
+
+    <p><strong>Outils français de référence :</strong> <em>Mon CV Parfait</em> (CV ATS-friendly templates), <em>Jobscan</em> (vérification match CV/offre), <em>Hellowork / Apec / Cadremploi</em> (offres + benchmarks salariaux fiables), <em>Glassdoor France</em> (avis entreprises + fourchettes salaires), <em>LinkedIn Recruiter Lite</em> (visibilité aux recruteurs, gratuit en partie), <em>France Travail</em> (ex-Pôle Emploi, accompagnement gratuit incluant ateliers CV / entretien).</p>
+
+    <p><strong>Ressources humaines à activer :</strong> coach emploi via dispositif <em>Mon Soutien Emploi</em> (souvent gratuit ou financé), Conseiller France Travail (gratuit, prend rdv même si pas inscrit comme demandeur d'emploi), associations type <em>Solidarités Nouvelles face au Chômage (SNC)</em> (accompagnement bénévole gratuit), <em>cabinets d'outplacement</em> si licenciement économique (pris en charge par l'ex-employeur), Conseiller en Évolution Professionnelle (CEP, gratuit, pour profil de reconversion).</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur décrocher ton job avec l'IA.</h3>
+    <ol class="recap-points">
+      <li>Marché 2026 : 97 % des employeurs utilisent un ATS, taux d'entretien tombé de 15 % à 3 % en 8 ans (1/33 candidatures), 90 % des recruteurs détectent un CV 100 % ChatGPT, 75 % des CV qualifiés sont écartés à tort par formatage non-ATS. La frontière entre l'IA qui aide et l'IA qui pénalise se joue dans les détails.</li>
+      <li>« Écris-moi un CV » est le pire prompt : 4 défauts (tournures IA détectables, format non-ATS, aucune preuve chiffrée, pas de ciblage). La méthode utilise l'IA <em>autour</em> de ta vraie expérience — jamais à sa place. Tu fournis les faits + chiffres, l'IA fait le travail mécanique de formulation et structure.</li>
+      <li>Méthode 5 phases : (1) CV maître ATS-compatible avec bullets X-Y-Z et chiffres obligatoires, (2) ciblage par offre via match keywords (15-20 min par candidature), (3) lettre 220 mots max sans marqueurs IA, (4) prépa entretien sur 4 axes (recherche entreprise + 20 questions probables + 5 questions à poser + simulation notée), (5) négociation salariale toujours après réception offre écrite + benchmark 25e/médiane/75e/90e percentile + plan B.</li>
+      <li>5 pièges qui font recaler : envoyer du 100 % ChatGPT, postuler massivement (max 5-8 simultanées sur postes alignés), mentir via l'IA (juridiquement c'est ton mensonge — détection ATS + entretiens techniques), utiliser l'IA pendant l'entretien (détectée 70-80 % du temps + éthique), négocier sans offre écrite (toujours 24-72h de réflexion + benchmark préparé).</li>
+      <li>Discipline rentable : moins de candidatures, mieux ciblées. 10 candidatures personnalisées avec méthode 5 phases produisent 2-3 entretiens en moyenne ; 50 candidatures « envoi massif ChatGPT » produisent 0-1 entretien. Pour le même temps total. La majorité des candidats refuse cette discipline parce que candidater massivement donne le sentiment d'agir — qui n'est pas le résultat d'agir.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="reussir-reconversion-pro-ia.html">
+        <div class="next-link-label">— Article-pilier complémentaire</div>
+        <div class="next-link-title">Réussir une reconversion pro avec l'IA</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-3-apprendre-plus-vite.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Apprendre plus vite · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Freelance ou salarié : comment choisir. – AutomationBoost</title>
+  <meta name="description" content="La grille de décision honnête entre freelance et salariat : avantages réels, inconvénients souvent minimisés, et comment choisir selon ta situation." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Freelance ou salarié : comment choisir.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#f43f5e;">Lancer un business</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Freelance ou salarié : comment choisir.</h1>
+    <p class="lede">La grille de décision honnête. Avantages réels du freelance, inconvénients minimisés par la com freelance, transition pro propre depuis le salariat. Pas un manifeste pour le freelancing — certains profils sont mieux en CDI. Données 2026 vérifiées.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Ton idée est validée. Première décision concrète : freelance, salariat, ou un mix ? Le sujet est saturé de contenu — mais l'essentiel est produit par des freelances qui vendent du freelancing, donc biaisé par construction.</p>
+
+    <p>Cet article tient l'angle inverse : certains profils sont objectivement mieux en CDI. Tout le monde n'est pas fait pour gérer son acquisition, sa trésorerie et sa solitude professionnelle. Voici une comparaison honnête pour savoir ce qui te correspond vraiment.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>La comparaison chiffrée <em>honnête</em>.</h2>
+
+  <div class="container reading">
+    <p>La majorité des comparatifs comparent le brut freelance au net salarié, ou ignorent la protection sociale. Voici la comparaison apples-to-apples, sur 90 000 € de coût employeur annuel équivalent.</p>
+  </div>
+
+  <div class="codeblock">
+    <div class="codeblock-label">— Comparaison annuelle 2026 sur base 90 000 € coût employeur</div>
+    <div class="codeblock-content"><span class="comment"># Hypothèse : ton expertise vaut 90 000 €/an coût total
+# Côté salarié = ce que ton employeur paie globalement
+# Côté freelance = ton CA brut équivalent</span>
+
+<em>SCÉNARIO SALARIÉ CDI</em>  (Coût employeur : 90 000 €)
+   Salaire brut annuel       : 65 000 €
+   Charges patronales (~38 %): 25 000 €
+   ──────────────────────────────────────
+   Net avant impôt           : 50 000 €
+   Impôt sur revenu (~15 %)  : 7 500 €
+   <em>Net dans la poche</em>          : <em>42 500 €/an</em> (~3 540 €/mois)
+
+   <em>+ AVANTAGES INVISIBLES :</em>
+   - Congés payés 5 sem.     : ~5 000 € (équivalent)
+   - Mutuelle entreprise     : ~600 €/an
+   - Tickets restau (~50 %)  : ~700 €/an
+   - Prévoyance/IJ           : couverture complète
+   - Chômage en cas de perte : ~57 % salaire 24 mois max
+   - Retraite                : pleine cotisation régime général
+   <em>Valeur totale incluse</em>      : <em>~48 800 €/an</em>
+
+<em>SCÉNARIO FREELANCE MICRO-ENTREPRISE</em>  (CA : 90 000 €)
+   <em>Limite</em> : si tu dépasses 77 700 €, bascule réel obligatoire
+   Donc on prend 77 000 € (rester sous plafond)
+   CA encaissé              : 77 000 €
+   Charges sociales (22 %)  : 16 940 €
+   Frais pro (matos, coworking, déplacements) : ~5 000 €
+   ──────────────────────────────────────
+   Net avant impôt          : 55 060 €
+   Versement libératoire 2,2 % BNC : 1 694 €
+   <em>Net dans la poche</em>         : <em>~53 366 €/an</em> (~4 447 €/mois)
+
+   <em>– PROTECTION RÉDUITE :</em>
+   - Congés     : zéro (à provisionner toi-même)
+   - Chômage    : ATI 800 €/mois × 6 mois max (conditions strictes)
+   - Retraite   : -30 à -50 % vs salarié à revenu équivalent
+   - IJ maladie : calcul sur bénéfice imposable, faibles
+   - Mutuelle   : à ta charge (~80-200 €/mois)
+   <em>Valeur ajustée protection</em> : <em>~48 366 €/an</em>
+
+<em>SCÉNARIO PORTAGE SALARIAL</em>  (CA : 90 000 €)
+   CA facturé              : 90 000 €
+   Frais gestion (8 %)     : 7 200 €
+   Salaire brut + charges  : 82 800 €
+   Charges totales (~50 %) : 41 400 €
+   ──────────────────────────────────────
+   <em>Net dans la poche</em>        : <em>~41 400 €/an</em> (~3 450 €/mois)
+   <em>+ Chômage + retraite + IJ + mutuelle = inclus régime salarié</em>
+
+<em>L'ÉCART RÉEL</em> :
+- Freelance micro vs CDI = +5 000 €/an net en moyenne
+- Mais protection -30 % en valeur ajustée
+- Soit véritable écart effectif : +5 000 à +8 000 €/an
+  (Wise Business 2026 confirme cet ordre de grandeur)</div>
+  </div>
+
+  <h3>Lecture honnête de cet écart</h3>
+
+  <div class="container reading">
+    <p>5-8 K€/an supplémentaires en freelance, c'est <em>réel</em> — mais c'est aussi <em>modeste</em>. Tu ne deviens pas <em>« riche »</em> en passant freelance. Tu gagnes une marge limitée pour beaucoup plus de complexité (admin, acquisition, trésorerie, solitude).</p>
+
+    <p><strong>Quand l'écart devient significatif :</strong> avec un TJM &gt; 600 € et un volume de jours élevés (220+ jours facturés/an), tu peux atteindre 80-100 K€ net réellement. À ces niveaux, le freelance devient nettement plus rentable que le salariat équivalent. Mais ces TJM/volumes correspondent à des profils <em>seniors</em> avec 5-10 ans d'expertise dans un domaine porteur (IA, cloud, cybersécurité, finance) et un réseau commercial établi.</p>
+
+    <p><strong>Quand le salariat reste gagnant :</strong> juniors (TJM marché &lt; 300 €), profils avec santé fragile (besoin de protection sociale forte), profils en début de famille (besoin de stabilité de revenus), profils peu autonomes sur l'acquisition commerciale. Pour ces situations, le CDI reste objectivement plus avantageux — pas seulement en confort, mais en valeur économique totale.</p>
+  </div>
+
+  <p class="pull-quote">L'écart freelance vs salariat n'est pas <em>« tu doubles ton revenu »</em>. C'est plutôt 5-8 K€/an pour les profils intermédiaires, qui se monétise réellement seulement après 2-3 ans de pratique consolidée. La com freelance dominante exagère systématiquement cet écart.</p>
+
+  <!-- ============== 2. LES 4 QUESTIONS STRUCTURANTES ============== -->
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Les 4 <em>questions structurantes</em>.</h2>
+
+  <div class="container reading">
+    <p>Ne te demande pas <em>« tu veux la liberté ? »</em> (qui dit non ?). Ne te demande pas <em>« tu veux mieux gagner ? »</em> (qui dit non ?). Ces questions sont des biais de validation. Voici les 4 vraies questions qui structurent une décision lucide.</p>
+  </div>
+
+  <h3>Question 1 — Es-tu autonome sur l'acquisition commerciale ?</h3>
+
+  <div class="container reading">
+    <p>Pas <em>« est-ce que tu pourrais »</em>. Mais : <em>« quand tu n'avais pas mission, tu en as trouvé une comment, en combien de temps, par quels canaux ? »</em>. Si tu réponds <em>« je n'ai jamais eu à le faire »</em>, c'est un signal. Le freelancing, c'est 30-50 % de ton temps consacré à la prospection commerciale les 2 premières années. Si tu détestes ou ne sais pas vendre, le freelance pur va t'épuiser.</p>
+
+    <p><strong>Test pratique :</strong> avant de quitter ton CDI, fais 5 demandes de mission auprès d'un réseau extérieur à ton entreprise actuelle (LinkedIn prospection à froid, plateformes Malt/Comet, anciens collègues). Combien de RDV obtiens-tu en 2 semaines ? Si zéro ou un, ton acquisition n'est pas validée. Reste salarié pendant que tu construis ce muscle.</p>
+  </div>
+
+  <h3>Question 2 — Combien de mois de trésorerie restante as-tu en cash ?</h3>
+
+  <div class="container reading">
+    <p>Le freelance n'a pas de salaire garanti. Tu peux avoir 3 mois sans mission. <strong>Sans 6-12 mois de trésorerie restante personnel</strong> (cash sur compte couvrant tes charges fixes), tu vas accepter des missions sous-payées par panique. Tu vas casser tes prix. Tu vas saboter ta proposition de valeur dès le départ.</p>
+
+    <p><strong>Calcul concret :</strong> charges fixes mensuelles (loyer, alimentation, transport, charges incompressibles) × 12 = ton trésorerie restante cible. Pour la majorité, c'est 25-50 K€ liquidités à avoir avant de quitter. Si tu n'as pas ça, deux options : (1) reste salarié et économise. (2) bascule en portage salarial qui donne droit à l'ARE en sortie de mission — plus sûr financièrement.</p>
+  </div>
+
+  <h3>Question 3 — Acceptes-tu la solitude pro structurelle ?</h3>
+
+  <div class="container reading">
+    <p>Le freelance solo passe 80 % de son temps seul devant son écran. Pas d'équipe avec qui débriefer une décision, pas de collègues à qui demander un avis rapide, pas de manager qui te dit <em>« tu fais bien »</em> ou <em>« corrige ça »</em>. Cette solitude est tolérée par certains profils (introvertis, très autonomes) et destructrice pour d'autres (extravertis, dépendants du collectif pour leur énergie).</p>
+
+    <p><strong>Test rapide :</strong> rappelle-toi le confinement 2020. Tu travaillais bien seul ou tu te sentais vidé après 2 semaines ? Si tu te sentais vidé, le freelance pur va te coûter cher en santé mentale. Mitigations possibles : coworking quotidien, communautés freelance (Indie Hackers, communautés Slack/Discord par secteur), missions en équipe (collectifs freelance type SuperWe, Crew). Mais ces mitigations sont des compensations partielles — pas un substitut au cadre du salariat.</p>
+  </div>
+
+  <h3>Question 4 — Quelle est ton aversion administrative réelle ?</h3>
+
+  <div class="container reading">
+    <p>Freelance = 4-8 heures/mois d'admin minimum (factures, URSSAF, comptabilité, gestion bancaire pro, déclarations TVA si tu y es soumis). Pour beaucoup de profils techniques, c'est tolérable. Pour d'autres, c'est insupportable et ronge la motivation.</p>
+
+    <p><strong>Test :</strong> est-ce que tu fais ta déclaration d'impôts toi-même ou tu paies un comptable ? Est-ce que tu remplis ton document Urssaf rapidement ou tu procrastines pendant des semaines ? Si admin t'épuise, plusieurs options : (1) portage salarial (admin déléguée 8 % CA), (2) expert-comptable freelance (~80-150 €/mois pour micro), (3) outils 2026 type Indy, Tiime, Shine qui automatisent 80 % des tâches admin. Mais aucune ne t'évite 100 % du sujet.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Le test honnête en 4 questions</div>
+    <p>Réponds à chacune des 4 questions avec une note sur 10. <strong>Si total &lt; 24/40 :</strong> reste salarié, ou bascule en <em>portage salarial</em> qui combine sécurité salariat + flexibilité freelance. <strong>Si 24-32/40 :</strong> teste le freelance en parallèle d'un CDI (légal sauf clause exclusivité), construis ton réseau et ton trésorerie restante pendant 6-12 mois avant de quitter. <strong>Si &gt; 32/40 :</strong> tu as les bases, prépare une transition propre via rupture conventionnelle. <em>Le freelance n'est pas un upgrade automatique du salariat. C'est un choix de mode de vie qui convient à certains profils et détruit d'autres profils. Sois honnête sur le tien.</em></p>
+  </div>
+
+  <!-- ============== 3. PROFILS QUI RÉUSSISSENT VS QUI VÉGÈTENT ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Qui réussit · qui <em>végète</em>.</h2>
+
+  <div class="container reading">
+    <p>Patterns observés sur 1,5 M freelances français. Pas tous réussissent — la majorité plafonne à 30-50 K€/an, certains régressent par rapport à leur ancien CDI. Voici les profils qui marchent, et ceux qui galèrent.</p>
+  </div>
+
+  <h3>Profils qui réussissent (revenu net &gt; CDI équivalent en 18-24 mois)</h3>
+
+  <div class="tool-card">
+    <div class="tool-name">Profil 1 — <em>Senior expert dans un domaine porteur</em></div>
+    <div class="tool-text"><strong>Caractéristiques :</strong> 5-10 ans d'expertise spécifique (IA, cloud, cybersécurité, data engineering, product management, finance corporate, droit fiscal). Domaine où la demande dépasse l'offre. <strong>TJM accessible :</strong> 600-1200 €. <strong>Volume :</strong> 180-220 jours facturés/an. <strong>CA cible an 2 :</strong> 120-200 K€. <strong>Net :</strong> 80-130 K€.<br><br>
+<strong>Pourquoi ça marche :</strong> les grands comptes ont besoin de cette expertise sur des projets ponctuels. Tu factures la rareté de ta compétence, pas tes heures. Réseau LinkedIn solide (5-10 K connections), 3-5 missions par an suffisent.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Profil 2 — <em>Communicant·e qui a construit son audience</em></div>
+    <div class="tool-text"><strong>Caractéristiques :</strong> 10-50 K followers LinkedIn ou Twitter sur une niche pro précise. Ton expertise est <em>visible</em>. Tu attires les missions par entrant, pas par prospection. <strong>TJM accessible :</strong> 500-800 €. <strong>Volume :</strong> variable selon part contenu/mission. <strong>CA cible an 2 :</strong> 80-150 K€.<br><br>
+<strong>Pourquoi ça marche :</strong> ton coût d'acquisition est ~zéro. Les prospects te trouvent. Tu peux mixer freelance + sponsorings + produits numériques (cf <a href="niveau-6-trouver-idee.html">future rubrique R3 sur les produits numériques</a>). Vrai modèle créateur.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Profil 3 — <em>Spécialiste niche avec clients récurrents</em></div>
+    <div class="tool-text"><strong>Caractéristiques :</strong> tu sers une niche très précise (ex : SEO pour cabinets dentaires, comptabilité pour artisans BTP, growth pour SaaS B2B early stage). Pas de glamour mais demande stable et tu deviens <em>la référence</em> dans ta niche. <strong>TJM accessible :</strong> 400-700 €. <strong>Volume :</strong> 200+ jours via 5-10 clients récurrents. <strong>CA cible an 2 :</strong> 80-130 K€.<br><br>
+<strong>Pourquoi ça marche :</strong> tes clients ne shoppent plus, ils renouvellent. Acquisition ~zéro après les 6 premiers mois. Modèle stable, peu glamorisé donc peu concurrencé.</div>
+  </div>
+
+  <h3>Profils qui végètent (revenu &lt; CDI équivalent ou qui galèrent)</h3>
+
+  <div class="tool-card">
+    <div class="tool-name">Anti-profil 1 — <em>Le « généraliste digital »</em></div>
+    <div class="tool-text"><strong>Caractéristiques :</strong> tu fais du <em>« digital »</em> sans spécialisation forte (un peu de SEO, un peu de copywriting, un peu de gestion projet, un peu de community management). <strong>TJM marché :</strong> 250-400 € — concurrencé par des milliers de profils similaires. <strong>CA atteint typiquement :</strong> 25-45 K€/an, soit moins qu'un CDI équivalent.<br><br>
+<strong>Pourquoi ça galère :</strong> aucune barrière à l'entrée, prix tirés vers le bas, jamais positionné comme <em>la référence</em>. Tu es interchangeable. <strong>Solution :</strong> spécialise-toi sur une niche en 6 mois (cf <a href="matrice-competences-marche.html">article 1.1 sur la matrice compétences × marché</a>) ou retourne en CDI où ce profil est correctement payé.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Anti-profil 2 — <em>Le « junior qui s'est lancé trop tôt »</em></div>
+    <div class="tool-text"><strong>Caractéristiques :</strong> 0-3 ans d'expérience, lancement freelance par envie de liberté ou rupture avec un job qu'on supporte plus. <strong>TJM marché :</strong> 200-350 €. <strong>CA atteint :</strong> 20-40 K€/an. <strong>Inconvénient majeur :</strong> tu n'as pas la profondeur d'expertise pour facturer cher, et tu n'apprends plus aussi vite qu'en équipe sénior.<br><br>
+<strong>Pourquoi ça galère :</strong> tu confonds <em>« je veux fuir mon job »</em> et <em>« je veux être freelance »</em>. <strong>Solution :</strong> 2-3 ans en CDI dans une boîte qui te forme, puis lance-toi avec une expertise vendable. Le freelance prématuré coûte 5-10 ans de carrière sur le long terme.</div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Anti-profil 3 — <em>Le « technique pur qui déteste vendre »</em></div>
+    <div class="tool-text"><strong>Caractéristiques :</strong> excellent dans son métier, mais paralysé devant un email de prospection. Phobie sociale du commercial. <strong>TJM technique :</strong> potentiellement 600-900 €. <strong>TJM réel atteint :</strong> 350-500 € parce que tu acceptes les missions qui te tombent dessus, jamais celles que tu négocies.<br><br>
+<strong>Pourquoi ça galère :</strong> tes compétences valent plus que ce que tu factures. Tu laisses argent sur la table à chaque mission. <strong>Solution :</strong> portage salarial avec apporteur d'affaires, ou collectif freelance qui mutualise la prospection (SuperWe, Crew, Free.fr). Ou retour en CDI senior bien payé sans souci commercial.</div>
+  </div>
+
+  <p class="pull-quote">Le freelance qui réussit n'est pas le plus talentueux ou le plus motivé. C'est celui qui a une expertise rare, un canal d'acquisition et la tolérance à la solitude pro. Trois conditions cumulatives, pas alternatives.</p>
+
+  <!-- ============== 4. LA TRANSITION PROPRE ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>La transition <em>propre</em> depuis le salariat.</h2>
+
+  <div class="container reading">
+    <p>Tu as décidé de basculer. Mauvaise nouvelle : la majorité des transitions sont mal séquencées et te font perdre des dizaines de milliers d'euros en droits non-utilisés. Voici la séquence correcte 2026.</p>
+  </div>
+
+  <h3>Étape 1 — Avant de démissionner : valider l'acquisition</h3>
+
+  <div class="container reading">
+    <p>Pendant que tu es encore salarié (CDI), tu as <strong>légalement le droit de cumuler avec une micro-entreprise</strong>, sauf si ton contrat contient une clause d'exclusivité. Vérifie ton contrat. Si pas d'exclusivité, monte ta micro <em>maintenant</em> et fais 2-3 missions tests le soir/weekend.</p>
+
+    <p><strong>L'utilité :</strong> tu valides que tu peux trouver des clients par toi-même, à ton tarif. Tu construis 2-3 références et 2-3 témoignages avant de quitter ton CDI. Tu démarres ton activité full-time avec déjà 6-12 K€ de CA cumulé et 3-5 prospects en tunnel. <strong>Le pire scénario à éviter :</strong> démissionner sans aucune validation, te retrouver à 0 € de CA pendant 6 mois, paniquer, accepter des missions sous-payées qui te bloquent la suite.</p>
+
+    <p><strong>Réforme à connaître :</strong> pour les créations de micro à compter du 1<sup>er</sup> juillet 2026, le taux réduit ACRE passe de 50 % à 75 % du taux normal — économie réduite. Si tu hésites à te lancer, créer ta micro <em>avant</em> cette date conserve l'avantage actuel (Salerya 2026).</p>
+  </div>
+
+  <h3>Étape 2 — Choisir le mode de sortie : rupture conventionnelle vs démission</h3>
+
+  <div class="codeblock">
+    <div class="codeblock-label">— Modes de sortie comparés · 2026</div>
+    <div class="codeblock-content"><em>OPTION 1 — RUPTURE CONVENTIONNELLE</em>  (recommandée)
+   - Accord mutuel employeur ↔ salarié, signature commune
+   - Indemnité minimum légale (1/4 mois × ancienneté)
+   - <em>+ DROIT À L'ARE GARANTI</em> (~57 % salaire brut, 24 mois max)
+   - Délai homologation : ~6 semaines
+   - Aucun risque de refus France Travail
+   <em>Stratégie</em> : négocie 6-9 mois avant. Argument employeur :
+   transition propre, transfert de savoir, conditions amiables.
+   <em>Bonus négo possible</em> : 2-6 mois de salaire en plus de
+   l'indemnité légale (selon ancienneté + pouvoir de négo).
+
+<em>OPTION 2 — DÉMISSION LÉGITIME POUR PROJET ENTREPRISE</em>
+   - Démission classique mais reconnue <em>« légitime »</em>
+   - <em>Pré-condition</em> : projet validé en amont par CPIR
+     (Commission Paritaire Interprofessionnelle Régionale)
+   - Procédure : Conseil en Évolution Professionnelle (gratuit)
+     puis dossier validation projet (3-6 mois)
+   - <em>Si validé</em> : ARE garantie comme rupture conv
+   - <em>Si refusé</em> : démission classique = zéro ARE
+   <em>Stratégie</em> : à utiliser si rupture conv impossible (refus
+   employeur). Mais procédure lourde et risque de refus.
+
+<em>OPTION 3 — DÉMISSION CLASSIQUE</em>
+   - Aucune ARE
+   - Aucune indemnité
+   - Sortie immédiate (préavis 1-3 mois selon poste)
+   <em>Quand l'utiliser</em> : seulement si tu as déjà 12+ mois
+   de trésorerie restante cash, et que ton freelance pre-validé tourne à
+   3-5 K€/mois minimum. Sinon = piège financier.
+
+<em>OPTION 4 — ARCE (alternative à l'ARE mensuelle)</em>
+   - Si tu as droit ARE (rupture conv ou démission légitime)
+   - Choix : 60 % de tes droits versés en 2 fois (capital)
+   - Reste 40 % perdu mais cash immédiat ~15-30 K€
+   <em>Stratégie</em> : utile pour investir dans matériel, formation,
+   voyage de positionnement, ou simplement trésorerie restante sereinité.
+   <em>Versus ARE mensuelle</em> : ARE mensuelle peut être maintenue
+   en partie en cumul avec revenus freelance (cf Étape 4).</div>
+  </div>
+
+  <h3>Étape 3 — Optimiser le cumul ARE × revenus freelance</h3>
+
+  <div class="container reading">
+    <p>Méconnu : <strong>tu peux cumuler une partie de tes ARE avec tes premiers revenus freelance</strong>. Le calcul est complexe et dépend du nombre de jours travaillés dans le mois et du CA déclaré (Free-Work 2026). En portage salarial, le cumul est plus simple et plus généreux qu'en micro-entreprise.</p>
+
+    <p><strong>Pratique :</strong> les premiers mois, tu factures peu mais tu touches l'ARE. Au fur et à mesure que ton CA augmente, l'ARE diminue progressivement. Tu peux ainsi étaler tes droits sur 24-36 mois au lieu de 12-24, et lisser ton revenu mensuel pendant la phase de démarrage. France Travail dispose de simulateurs officiels pour modéliser ton cas précis.</p>
+
+    <p><strong>Erreur classique :</strong> renoncer à l'ARE par méconnaissance ou par fierté <em>« je veux pas vivre sur les aides »</em>. Tu as cotisé pour ces droits pendant ton CDI — c'est ton argent. Les utiliser pour amortir ta phase de démarrage est rationnel et légal. Refuser, c'est s'auto-pénaliser de 15-30 K€ qui te reviennent légitimement.</p>
+  </div>
+
+  <h3>Étape 4 — Statut juridique : démarrer micro, basculer plus tard</h3>
+
+  <div class="container reading">
+    <p>Pour 80 % des cas, démarre en <strong>micro-entreprise</strong> : création en 20 minutes en ligne, charges 22 % CA, comptabilité allégée, plafond 77 700 € prestations services / 188 700 € commerce. Suffisant pour les 12-18 premiers mois.</p>
+
+    <p><strong>Bascule en EURL ou SASU à partir de 50-70 K€ de bénéfice annuel</strong> ou si tes frais réels (matériel, coworking, déplacements, sous-traitance, licences) dépassent 34 % de ton CA (l'abattement forfaitaire micro). Cf article 2.2 sur le choix du statut juridique pour les détails.</p>
+
+    <p><strong>Alternative légère :</strong> portage salarial (dès le début si tu veux protection complète + simplicité admin), CAE (Coopérative d'Activité et d'Emploi) si tu cherches une mutualisation des services. Ces options te donnent statut de salarié avec autonomie de freelance — coûteuses en frais (5-10 % CA) mais sécurisantes.</p>
+  </div>
+
+  <!-- ============== PIÈGES ============== -->
+  <h2 class="reading"><span class="h2-num">— Bonus</span>5 <em>pièges</em> classiques.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>quitter sans valider l'acquisition</em></div>
+    <div class="pitfall-text">Tu décides de devenir freelance. Tu démissionnes. Tu commences ton activité avec zéro client en tunnel. 2 mois plus tard, panique cash. Tu acceptes la première mission qui se présente, sous-payée. Tu te positionnes mal pour 12 mois. <strong>Correction :</strong> avant de quitter ton CDI, monte ta micro <em>maintenant</em> (sauf clause exclusivité), fais 2-3 missions le soir/weekend, valide que ton expertise se vend à ton tarif cible. Démissionne seulement avec 3-5 prospects chauds en tunnel. Si tu ne peux pas trouver de clients en cumul CDI+freelance, tu n'en trouveras pas non plus en freelance pur (les contraintes de temps ne sont pas le vrai bottleneck — c'est l'acquisition).</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : <em>démissionner classiquement et perdre l'ARE</em></div>
+    <div class="pitfall-text">Tu démissionnes sans avoir négocié de rupture conventionnelle. Tu perds 24 mois de droits ARE (~30-60 K€ selon ton salaire). Erreur très coûteuse, fréquente chez les salariés qui veulent <em>« partir vite »</em> ou qui ont des relations tendues avec leur manager. <strong>Correction :</strong> 90 % des employeurs acceptent la rupture conventionnelle si présentée correctement (transition propre, transfert savoir, gain de flexibilité pour eux). Négocie 4-6 mois avant ton départ souhaité. Si refus catégorique : explore la démission légitime via CPIR (procédure 3-6 mois). En tout dernier recours : démission classique. Mais considère 30-60 K€ comme le prix réel de ne pas avoir su négocier.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>croire la com freelance « libre, riche, heureux »</em></div>
+    <div class="pitfall-text">Instagram, LinkedIn, YouTube saturés de freelances qui posent à Bali avec leur MacBook. Tu pars freelance avec ces images en tête. Réalité : 80 % de ton temps en France devant un écran avec des deadlines clients, comptabilité Urssaf, prospection LinkedIn pénible, réveils sans manager mais avec deadlines clients. <strong>Correction :</strong> parle à 5 freelances <em>réels</em> (pas ceux qui vendent du freelancing) avant de quitter. Demande-leur leur revenu net annuel exact, leurs heures effectives travaillées, leur niveau de stress, leurs périodes sans mission. Tu auras une image bien plus contrastée que celle des Reels. Le freelance fonctionne pour certains profils — pas pour tous.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>ignorer la protection sociale jusqu'à un pépin</em></div>
+    <div class="pitfall-text">Tu pars freelance, tu te dis <em>« la santé c'est pas un sujet, j'ai 30 ans, je vais bien »</em>. 18 mois plus tard, accident vélo, 3 mois d'arrêt. Tu touches ~30 €/jour d'IJ (calcul sur bénéfice imposable des années précédentes — pénalisant les premières années). Tu n'as pas pris de prévoyance. Tu perds 9-12 K€ sur la période. Ton trésorerie restante s'effondre. <strong>Correction :</strong> dès le début, prends une <em>prévoyance maintien de revenus</em> (~50-150 €/mois selon profil), une <em>mutuelle santé renforcée</em>, et provisione 10 % de chaque facturation pour ton fonds personnel d'urgence. Si tu ne veux pas gérer ces sujets, le portage salarial te les inclut nativement. Sinon, c'est ta responsabilité — pas <em>« si »</em> tu en auras besoin, mais <em>« quand »</em>.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 5 : <em>casser tes prix par peur de perdre la mission</em></div>
+    <div class="pitfall-text">Premier client te dit <em>« c'est trop cher »</em>. Tu paniques. Tu baisses ton TJM de 20-30 %. Tu acceptes. 6 mois plus tard, ce client te référence ses partenaires <em>au tarif cassé</em>. Tu es bloqué à ce niveau pour 12-18 mois. <strong>Correction :</strong> ton TJM affiché est ton TJM. Si trop cher pour un prospect, c'est qu'il n'est pas ton ICP — pas que ton prix est faux. Cas pratique 2026 : un freelance senior data engineering qui démarre à 800 €/jour fera 3 missions/mois à 800 € (12 K€ CA). Le même qui démarre à 500 € fera 4 missions à 500 € (10 K€ CA) <em>et</em> sera identifié comme entry-level pendant 18 mois. Le bon prix dès le début protège ta trajectoire de revenus 2-3 ans en avance. Cf <a href="niveau-6-trouver-idee.html">future article 2.4 sur le pricing valeur vs jour-homme</a>.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>L'erreur la plus chère que je vois en mentorat : des salariés qui partent freelance par <em>frustration de leur job actuel</em>, pas par <em>traction sur leur activité freelance</em>. Ils confondent <em>fuir</em> et <em>aller vers</em>. 12-18 mois plus tard, ils sont au mieux dans la même galère qu'avant (admin en plus), au pire dans une situation financière dégradée. <strong>Mon process strict :</strong> (1) avant de quitter, valide 3 mois consécutifs de revenus freelance &gt; 70 % de ton salaire en cumul CDI+freelance (légal sauf exclusivité). (2) Constitue 6-12 mois de trésorerie restante cash personnel. (3) Négocie une rupture conventionnelle (jamais démissionner sans explorer cette voie). (4) Optimise le cumul ARE × revenus freelance pendant 12-24 mois. (5) Bascule statut juridique (micro → EURL/SASU) seulement à partir de 50-70 K€ bénéfice annuel. <strong>Le freelance n'est pas une vocation ni une libération.</strong> C'est un mode d'organisation économique qui convient à certains profils dans certaines phases de vie. Pour d'autres profils ou phases, le CDI est objectivement plus avantageux. Choisis avec lucidité, pas avec idéologie. <strong>Suite logique :</strong> <a href="niveau-6-trouver-idee.html">article 2.2 sur le choix du statut juridique</a> — auto-entrepreneur, EI, EURL, SASU, portage : la décision technique après la décision philosophique.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Tu as la décision freelance/salariat clarifiée. Pour aller plus loin : <a href="matrice-competences-marche.html">article 1.1 sur la matrice compétences × marché</a> (avant de te lancer, valide que ton expertise se vend), <a href="trous-marche-ia.html">1.2 sur les trous de marché</a>, <a href="etude-marche-ia.html">1.3 étude de marché</a>, <a href="analyser-concurrents-avatar.html">1.4 concurrents et avatar</a>, <a href="tester-idee-7-jours.html">1.5 tester ton offre en 7 jours</a>, <a href="abandonner-vs-perseverer.html">1.6 pivot ou persist</a>, <a href="piege-idees-ia.html">1.7 piège des idées générées par IA</a>. Pour les outils IA en phase exécution freelance : <a href="guide-claude-debutant-2026.html">Claude</a> (rédaction propositions commerciales), <a href="guide-chatgpt-debutant-2026.html">ChatGPT</a> (admin et automatisations), <a href="outils-ia.html">le panorama Niveau V des 81 outils</a>. Pour la suite : <a href="niveau-6-freelance-conseil.html">la rubrique R2 complète sur le lancement freelance/conseil</a>.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur freelance vs salariat.</h3>
+    <ol class="recap-points">
+      <li>Comparaison chiffrée 2026 honnête : freelance micro à TJM 500 €/jour × 18 j/mois = ~5 500 € net/mois. Salarié CDI <em>« équivalent »</em> = ~2 800 € net/mois. <strong>Mais</strong> le salarié a +30 % de valeur invisible (congés payés, chômage 24 mois ARE 57 % salaire, mutuelle, prévoyance, retraite pleine). <strong>Écart réel après protection sociale : 5-8 K€/an</strong> seulement (Wise Business 2026). Pas <em>« tu doubles ton revenu »</em>. Modèle freelance devient nettement plus rentable seulement à partir de TJM 600 €+ et 220 jours facturés/an. <strong>Marché 2026 :</strong> 1,5 M freelances en France (+15 % vs 2025), TJM médian 450 €/jour, +40 % missions IT.</li>
+      <li>4 questions structurantes à te poser avant de trancher (pas <em>« tu veux la liberté »</em>) : <strong>(1) autonomie acquisition commerciale</strong> — test : 5 demandes mission cold sur 2 sem, 0-1 RDV = signal d'alarme, <strong>(2) trésorerie restante cash</strong> — 6-12 mois charges fixes minimum (25-50 K€) avant de quitter, <strong>(3) tolérance solitude pro</strong> — 80 % du temps seul, test souvenir confinement 2020, <strong>(4) aversion administrative</strong> — 4-8h/mois admin minimum, mitigeable par portage/expert-comptable/outils Indy/Tiime/Shine. Note sur 40 — &lt; 24 = reste salarié, 24-32 = test cumul CDI+freelance, &gt; 32 = transition propre.</li>
+      <li>Profils qui réussissent en freelance (revenu &gt; CDI équivalent en 18-24 mois) : <strong>(1) senior expert domaine porteur</strong> (5-10 ans expertise, IA/cloud/cyber/data, TJM 600-1200 €, 80-130 K€ net), <strong>(2) communicant·e avec audience</strong> (10-50 K followers LinkedIn niche pro, entrant &gt; sortant, modèle créateur), <strong>(3) spécialiste niche clients récurrents</strong> (SEO dentistes, compta artisans, growth SaaS, 5-10 clients récurrents, acquisition zéro après mois 6). <strong>Anti-profils qui végètent :</strong> généraliste digital sans spécialisation (TJM 250-400 €, 25-45 K€/an), junior parti trop tôt (0-3 ans XP, fuit job au lieu d'aller vers), technique pur qui déteste vendre (laisse argent sur table). Trois conditions cumulatives nécessaires : expertise rare × canal acquisition × tolérance solitude.</li>
+      <li>Transition propre depuis salariat — séquence 2026 : <strong>Étape 1 :</strong> AVANT de démissionner, monte ta micro (sauf exclusivité) et fais 2-3 missions cumul CDI+freelance pour valider acquisition. <strong>Étape 2 :</strong> rupture conventionnelle (ARE 24 mois 57 % salaire garanti) &gt; démission légitime CPIR (lourd) &gt; démission classique (perte 30-60 K€). Négocie 4-6 mois avant. <strong>Étape 3 :</strong> optimise cumul ARE × revenus freelance (étalement sur 24-36 mois). <strong>Étape 4 :</strong> démarre micro-entreprise (jusqu'à 77 700 € services), bascule EURL/SASU à 50-70 K€ bénéfice annuel ou si frais réels &gt; 34 % CA. <strong>Réforme critique :</strong> ACRE passe de 50 % à 75 % du taux normal au 1<sup>er</sup> juillet 2026 — créer micro avant cette date conserve avantage actuel.</li>
+      <li>5 pièges à éviter : <strong>(1)</strong> quitter sans valider l'acquisition (panique cash → prix cassés → trajectoire bloquée 12-18 mois), <strong>(2)</strong> démissionner classiquement sans rupture conventionnelle (perte 30-60 K€ ARE), <strong>(3)</strong> croire la com freelance Bali/MacBook (parle à 5 freelances réels avant de quitter), <strong>(4)</strong> ignorer la protection sociale (prévoyance + mutuelle + fonds urgence dès jour 1, ou portage salarial), <strong>(5)</strong> casser tes prix par peur (positionnement entry-level pour 12-18 mois). <strong>Le freelance n'est ni vocation ni libération — c'est un mode d'organisation économique adapté à certains profils dans certaines phases de vie.</strong> Choisis avec lucidité, pas idéologie.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="niveau-6-trouver-idee.html">
+        <div class="next-link-label">— Article suivant</div>
+        <div class="next-link-title">2.2 · Choisir ton statut juridique : auto-entrepreneur, EI, SASU</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-6-freelance-conseil.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Freelance et conseil · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>

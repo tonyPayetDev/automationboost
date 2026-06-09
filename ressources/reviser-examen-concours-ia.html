@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Réviser un examen ou un concours efficacement. – AutomationBoost</title>
+  <meta name="description" content="Rappel actif, répétition espacée, technique Feynman : la science cognitive de la mémorisation, rendue accessible avec l" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Réviser un examen ou un concours efficacement.
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Article</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#22d3ee;">Au quotidien</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Multi-outils</span>
+    </div>
+    <h1 class="page-title">Réviser un examen ou un concours efficacement.</h1>
+    <p class="lede">Rappel actif, répétition espacée, technique Feynman : la science cognitive accessible aux étudiants depuis 50 ans, mais jamais appliquée. L'IA rend ces 3 méthodes opérationnelles pour la première fois. Plan complet du J-30 au jour J.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+  <div class="zone-title"><span class="zt-label">Introduction</span></div>
+<!-- INTRO -->
+  <div class="container reading">
+    <p class="lede">Tu relis tes cours, tu surlignes, tu refais des fiches. Tu travailles dur, pour des résultats moyens. C'est normal : tu utilises les méthodes les moins efficaces, identifiées comme telles depuis des décennies par les sciences cognitives.</p>
+
+    <p>L'écart entre ce qu'on sait sur l'apprentissage et ce que les étudiants pratiquent est énorme. Voici comment l'IA te fait basculer vers les méthodes qui marchent vraiment.</p>
+  </div>
+
+  <h2 class="reading"><span class="h2-num">— 1 / 4</span>Pourquoi relire <em>ne marche pas</em>.</h2>
+
+  <div class="container reading">
+    <p>Relire te donne une <strong>illusion</strong> de savoir : tu reconnais le texte, donc ton cerveau t'envoie le signal « je connais ça ». Mais reconnaître n'est pas savoir restituer. Le jour de l'examen, où il faut produire sans le cours sous les yeux, l'illusion s'effondre.</p>
+
+    <p>Les méthodes qui marchent reposent sur l'effort de récupération. Voici comment les mettre en place avec l'IA.</p>
+  </div>
+
+  </div><!-- /zone-intro -->
+<div class="zone zone-coeur">
+  <div class="zone-title"><span class="zt-label">Le cœur du sujet</span><span class="zt-sub">appliquer &amp; déployer</span></div>
+<h2 class="reading"><span class="h2-num">— 2 / 4</span>Les <em>3 méthodes</em> validées par la science.</h2>
+
+  <div class="container reading">
+    <p>Voici les trois méthodes-piliers à intégrer. Tu peux les utiliser indépendamment, mais l'effet maximum vient de la combinaison. Pour chacune : la science derrière (en 2 lignes), et le prompt précis pour la pratiquer avec l'IA.</p>
+  </div>
+
+  <div class="method-card">
+    <div class="method-num">— MÉTHODE 1 / 3 · LE LEVIER LE PLUS PUISSANT</div>
+    <div class="method-name">L'<em>rappel actif</em></div>
+    <div class="method-science"><strong>Science :</strong> Roediger & Karpicke 2006, méta-analyse Dunlosky 2013 (utility rating: high). Récupérer une information de mémoire renforce la trace 2 à 3 fois plus que la relecture, à temps égal. C'est l'effet le plus documenté en sciences cognitives appliquées à l'apprentissage.</div>
+    <div class="method-prompt"><span class="method-prompt-label">— Prompt à utiliser</span>Je révise <span class="placeholder">[matière/sujet/chapitre]</span> pour mon examen <span class="placeholder">[type d'examen et date]</span>.
+
+Voici mon cours / mes notes / le chapitre :
+
+<span class="placeholder">[colle le contenu, ou liste les concepts clés]</span>
+
+<strong>Mode rappel actif :</strong>
+
+1. Génère-moi <strong>15 questions</strong> sur ce contenu, qui couvrent tous les concepts importants. Mélange les types : définitions, applications, comparaisons, cas concrets.
+
+2. Pose-moi la question 1 et attends ma réponse. <strong>Ne donne pas la réponse avant que je réponde.</strong>
+
+3. Quand je réponds, évalue ma réponse en 3 niveaux : juste / partiellement juste / faux. Pour les réponses partielles ou fausses, donne la bonne réponse en expliquant pourquoi ma réponse était incomplète.
+
+4. Passe à la question 2. Et ainsi de suite jusqu'à 15.
+
+5. À la fin, fais-moi un bilan : sur quels concepts je suis solide, lesquels demandent du travail. Regroupe les concepts à retravailler.
+
+Reste exigeant — ne valide pas une réponse approximative comme correcte.</div>
+  </div>
+
+  <div class="method-card">
+    <div class="method-num">— MÉTHODE 2 / 3 · LA PLUS NÉGLIGÉE</div>
+    <div class="method-name">La <em>répétition espacée</em></div>
+    <div class="method-science"><strong>Science :</strong> Ebbinghaus 1885 (courbe de l'oubli), Cepeda 2008 (espacement optimal). Réviser à intervalles croissants (J+1, J+3, J+7, J+14, J+30) verrouille la mémoire long terme avec 3-4× moins de temps total qu'une révision massée. Algorithmes utilisés par Anki et Duolingo depuis 20 ans.</div>
+    <div class="method-prompt"><span class="method-prompt-label">— Prompt à utiliser</span>Je viens d'apprendre <span class="placeholder">[concept/chapitre/sujet]</span>.
+
+Aide-moi à mettre en place une répétition espacée :
+
+1. <strong>Génère 5 questions de récupération</strong> (réponse courte) sur ce que je viens d'apprendre.
+
+2. <strong>Donne-moi le calendrier de révision</strong> avec les 5 dates :
+   - J+1 (demain)
+   - J+3
+   - J+7
+   - J+14
+   - J+30
+
+3. À chacune de ces dates, je viendrai te dire « on est à J+X sur [sujet] ». Tu me reposes alors les 5 questions, sans la réponse. Je réponds, tu corriges.
+
+4. <strong>Si je réponds bien aux 5 questions</strong>, on garde le calendrier prévu. <strong>Si je rate plus de 2 sur 5</strong>, on ramène l'intervalle suivant à la moitié (J+30 devient J+15, etc.). C'est la règle de l'algorithme adaptatif.
+
+5. Tiens à jour pour moi <strong>la liste des sujets en révision active</strong> avec leur prochaine date.
+
+Note : créé un <a href="maitriser-projets.html" style='color: var(--accent-warm);'>Projet ChatGPT/Claude dédié « Révisions »</a> pour conserver l'historique entre sessions.</div>
+  </div>
+
+  <div class="method-card">
+    <div class="method-num">— MÉTHODE 3 / 3 · LA PLUS PROFONDE</div>
+    <div class="method-name">La technique <em>Feynman</em></div>
+    <div class="method-science"><strong>Science :</strong> Concept popularisé par Richard Feynman, validé par les recherches sur le « self-explanation effect » (Chi 1994, méta-analyse Bisra 2018). Expliquer un concept à un débutant force ton cerveau à identifier exactement les zones où tu n'as pas vraiment compris. La meilleure protection contre les illusions de compréhension.</div>
+    <div class="method-prompt"><span class="method-prompt-label">— Prompt à utiliser</span>Je vais t'expliquer <span class="placeholder">[concept]</span> comme si tu étais un élève de collège qui n'y connaît rien.
+
+<span class="placeholder">[explique le concept avec tes propres mots, exemples, analogies]</span>
+
+Maintenant, joue ton rôle d'élève qui ne comprend pas. Pour chaque imprécision, jargon non expliqué, ou raccourci dans mon explication :
+
+1. <strong>Pose-moi une question naïve</strong> qui pointe le problème (« attends, c'est quoi exactement X ? » ; « pourquoi ce serait vrai et pas l'inverse ? » ; « comment tu sais que ça marche dans ce cas ? »)
+
+2. <strong>N'accepte pas une réponse vague.</strong> Si je dis « parce que c'est comme ça », redemande pourquoi.
+
+3. À la fin, <strong>identifie les 3 zones</strong> où mon explication a craqué — c'est précisément là que je n'ai pas vraiment compris.
+
+4. <strong>Donne-moi 3 questions</strong> que je devrais pouvoir traiter pour vraiment maîtriser le concept. Je vais les travailler avant de revenir.
+
+Sois exigeant. Si je triche en utilisant des mots savants pour cacher des trous, démasque-le.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Comment combiner les 3 méthodes</div>
+    <p>L'effet maximum vient de la combinaison séquentielle, pas de l'utilisation isolée. <strong>Cycle type pour 1 chapitre :</strong> (1) tu lis le cours une fois normalement, (2) tu fais l'rappel actif (méthode 1) le jour-même pour vérifier ce que tu retiens, (3) tu fais la technique Feynman (méthode 3) sur les 3-5 concepts les plus importants du chapitre, (4) tu lances la répétition espacée (méthode 2) sur les questions générées. Tu reviens ensuite uniquement quand l'IA te le dit selon le calendrier J+1/J+3/J+7/J+14/J+30. <strong>Ce cycle complet prend environ 2-3 heures par chapitre, étalées sur 30 jours.</strong> Comparé aux 5-10 heures de relecture passive qu'un étudiant moyen y consacre, le gain est massif — temps divisé par 2 à 3, rétention multipliée par 2 à 4.</p>
+  </div>
+
+  <!-- ============== 3. PLAN J-30 ============== -->
+  <h2 class="reading"><span class="h2-num">— 3 / 4</span>Le plan complet du <em>J-30</em> au jour J.</h2>
+
+  <div class="container reading">
+    <p>Voici le plan séquencé pour un examen ou concours important à 30 jours. Adapte selon ton délai réel — si tu as 15 jours, double les rythmes ; si tu as 60 jours, tu peux respirer et viser une compréhension plus profonde. Le minimum vital pour que la méthode fonctionne reste 10 jours.</p>
+  </div>
+
+  <div class="phase">
+    <div class="phase-label">— J-30 à J-21 · 10 jours</div>
+    <div class="phase-name-small">Phase <em>cartographie</em> : couvrir tout le programme</div>
+    <div class="phase-text">Tu fais un passage exhaustif sur tout le programme. Pour chaque chapitre : lecture du cours + rappel actif (méthode 1, 15 questions). Pas encore de Feynman ni de répétition espacée. <strong>Objectif : avoir une vue d'ensemble et identifier précisément tes points faibles.</strong> À la fin de cette phase, tu disposes d'une liste claire des chapitres maîtrisés (~70%+ aux questions) et des chapitres à problème (<70%). Compte 1h par chapitre en moyenne. Le piège est de t'enliser sur les premiers chapitres en pensant que tu auras le temps — passe au suivant même si imparfait.</div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-label">— J-20 à J-11 · 10 jours</div>
+    <div class="phase-name-small">Phase <em>profondeur</em> : Feynman sur les zones faibles</div>
+    <div class="phase-text">Tu travailles spécifiquement les chapitres et concepts identifiés faibles en phase 1. Pour chacun : technique Feynman (méthode 3) en profondeur, suivi d'un nouveau cycle d'rappel actif sur les questions identifiées. <strong>En parallèle, tu lances la répétition espacée (méthode 2) sur tous les chapitres déjà vus en phase 1</strong> — quelques minutes par jour pour ne pas oublier. La discipline du calendrier J+1/J+3/J+7 commence ici. À la fin de cette phase, idéalement, tu n'as plus de zone vraiment faible — tout est au moins 70%.</div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-label">— J-10 à J-3 · 8 jours</div>
+    <div class="phase-name-small">Phase <em>intégration</em> : sujets complets et conditions réelles</div>
+    <div class="phase-text">Tu passes du chapitre par chapitre à des <strong>sujets complets</strong> de l'examen visé (annales, simulations). L'IA t'aide à corriger en mode examinateur exigeant — voir le prompt sujet ci-après. Tu maintiens la répétition espacée en arrière-plan. <strong>Objectif :</strong> faire 2-3 sujets complets en conditions réelles (temps, sans aide), puis débrief approfondi avec l'IA sur ce qui a craqué. Très différent de réviser des fiches — c'est ici que tu mesures ta vraie performance.</div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-label">— J-2 à J-1 · 2 jours</div>
+    <div class="phase-name-small">Phase <em>consolidation légère</em> : pas de nouveauté</div>
+    <div class="phase-text">L'erreur classique est de paniquer et de tenter d'apprendre du nouveau dans les 48h finales. <strong>C'est contre-productif sur tous les plans.</strong> Apprendre du nouveau à J-1 ne se verrouille pas en mémoire long terme à temps, et perturbe la consolidation des choses déjà apprises (inhibition rétroactive). À ces dates : révision rapide des fiches récap, sommeil prioritaire (8h non négociables — la consolidation mnésique se fait essentiellement la nuit), pas d'IA après 18h le jour J-1.</div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-label">— Jour J</div>
+    <div class="phase-name-small">Pas d'IA, juste ton cerveau</div>
+    <div class="phase-text">Le matin, pas de révision panique, pas de consultation IA. Petit-déjeuner correct, arrivée en avance, respiration. Pendant l'examen, ton cerveau a besoin de toute son énergie — pas de bachotage de dernière minute qui consommerait inutilement de la mémoire de travail. <strong>Ce que tu sais ce matin est ce que tu sauras pour l'épreuve.</strong> Tout effort supplémentaire est gaspillé ou contre-productif. Cette discipline est plus difficile qu'il n'y paraît, mais c'est elle qui distingue les performances calmes des performances paniques.</div>
+  </div>
+
+  <h3 class="reading">Le prompt « sujet complet » pour la phase J-10</h3>
+
+  <div class="method-card">
+    <div class="method-num">— PROMPT BONUS · SIMULATION D'EXAMEN</div>
+    <div class="method-name">Faire <em>corriger un sujet</em> en mode examinateur</div>
+    <div class="method-prompt"><span class="method-prompt-label">— Prompt à utiliser</span>Je viens de traiter en conditions réelles ce sujet d'examen <span class="placeholder">[type : QCM / dissertation / problème / oral]</span> de <span class="placeholder">[matière]</span>.
+
+<strong>L'énoncé :</strong>
+<span class="placeholder">[colle le sujet]</span>
+
+<strong>Ma copie :</strong>
+<span class="placeholder">[colle ta réponse complète]</span>
+
+Joue le rôle d'un examinateur exigeant pour ce concours/examen.
+
+1. <strong>Donne-moi une note sur 20</strong>, justifiée selon les critères probables de notation pour ce type d'épreuve.
+
+2. <strong>Identifie les 3 erreurs les plus pénalisantes</strong> de ma copie (erreurs factuelles, méthodologiques, ou structurelles) avec leur impact sur la note.
+
+3. <strong>Identifie les 3 manques structurels</strong> que tout examinateur attendrait et qui ne sont pas dans ma copie (concepts non mobilisés, exemples manquants, nuances absentes).
+
+4. <strong>Identifie les 2-3 points forts</strong> que je dois conserver pour le jour J.
+
+5. <strong>Donne-moi un plan d'action concret</strong> pour les 5 prochaines révisions sur ce type d'épreuve.
+
+Sois rigoureux. Ne me note pas généreusement pour ne pas me décourager — j'ai besoin de la vérité, même dure, pour progresser.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Adaptation selon le type d'épreuve</div>
+    <p>Le plan reste identique, mais l'accent change selon l'épreuve. <strong>QCM :</strong> charge maximale sur rappel actif (méthode 1) — c'est exactement la compétence testée. <strong>Dissertation :</strong> charge maximale sur Feynman (méthode 3) — la qualité d'explication structure la copie. <strong>Oral :</strong> ajoute des sessions de simulation orale à voix haute avec l'IA en mode jury (mode vocal de ChatGPT idéal pour ça). <strong>Épreuve technique (math, physique, code) :</strong> charge maximale sur les sujets complets (phase J-10) — la compétence se construit par répétition de problèmes complets, pas par révision de cours seule.</p>
+  </div>
+
+  <!-- ============== 4. PIÈGES ============== -->
+  </div><!-- /zone-coeur -->
+<div class="zone zone-conclusion">
+  <div class="zone-title"><span class="zt-label">Conclusion</span></div>
+<h2 class="reading"><span class="h2-num">— 4 / 4</span>Les <em>4 pièges</em> qui sabotent même les bonnes méthodes.</h2>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 1 : <em>laisser l'IA</em> te valider trop vite</div>
+    <div class="pitfall-text">L'IA a une tendance documentée à la sycophancy — elle valide tes réponses approximatives comme correctes parce qu'elle veut te faire plaisir. <strong>C'est désastreux en révision.</strong> Si tu réponds vaguement et que l'IA dit « oui c'est ça en gros », tu repars en pensant savoir, et tu rates au jour J. Ajoute systématiquement à tous tes prompts de révision : <em>« Sois sévère. Une réponse partiellement juste est une réponse fausse pour un correcteur d'examen. Ne valide jamais une réponse approximative. »</em>. Voir <a href="quand-ia-veut-plaire.html">l'article sur la sycophancy</a>.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 2 : faire générer <em>des fiches</em> par l'IA et les relire</div>
+    <div class="pitfall-text">Le piège classique du débutant en méthode IA. Tu demandes à ChatGPT « fais-moi une fiche sur X », tu obtiens une belle fiche, tu la relis 3 fois. <strong>Tu retombes exactement dans la relecture passive que cet article dénonce</strong> — l'IA t'a juste fait gagner du temps de fabrication, pas de l'apprentissage. Les fiches IA peuvent compléter ton dispositif (utiles pour le côté visuel), mais elles ne remplacent jamais l'rappel actif. Si tu n'utilises l'IA que pour générer des fiches, tu perds l'essentiel de la méthode.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 3 : <em>vérifier les faits</em> seulement après l'examen</div>
+    <div class="pitfall-text">L'IA hallucine — particulièrement sur les détails factuels précis (dates exactes, formulations légales, valeurs numériques rares). Si tu apprends une fausse information depuis l'IA et que tu la mémorises avec l'rappel actif, tu vas l'écrire sur ta copie d'examen avec assurance. Catastrophe garantie. <strong>Règle non négociable :</strong> sur les matières factuellement précises (droit, médecine, histoire, formules scientifiques), vérifie systématiquement les éléments produits par l'IA contre ton manuel ou des sources officielles avant de les apprendre. Voir <a href="hallucinations-ia.html">l'article sur les hallucinations</a> et <a href="double-check-ia-web.html">la méthode du double-check</a>.</div>
+  </div>
+
+  <div class="pitfall">
+    <div class="pitfall-name">Piège 4 : <em>négliger le sommeil</em> en pensant rattraper avec l'IA</div>
+    <div class="pitfall-text">Aucune méthode IA ne compense un déficit de sommeil pendant les révisions. <strong>La consolidation mnésique se fait pendant le sommeil profond — pas pendant les sessions d'étude</strong>. Une étude Walker (UC Berkeley) montre qu'une nuit de moins de 6 heures réduit la rétention de l'apprentissage de la veille de 40%. Si tu fais 4h d'rappel actif en sacrifiant 2h de sommeil, tu perds plus que tu ne gagnes. La discipline du sommeil est <strong>la moitié invisible</strong> de toute méthode de révision sérieuse, et celle qui distingue les étudiants qui réussissent des étudiants qui s'épuisent.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ma règle de mentor</div>
+    <p>L'IA pour la révision est probablement <strong>l'usage le plus rentable de l'IA pour un étudiant</strong>, dépassant largement ce que la majorité des contenus IA propose pour les étudiants (résumer un cours, générer une fiche, rédiger un devoir — toutes pratiques contre-productives ou éthiquement problématiques). Mais le gain réel est conditionné à la rigueur de méthode. Une étude IA bien menée bat 3 fois la méthode classique. Une étude IA mal menée (générer des fiches, demander la solution, copier-coller) est <em>pire</em> que la méthode classique parce qu'elle te donne l'illusion d'apprendre. <strong>La frontière passe précisément par les 3 méthodes décrites ici (rappel actif, espacement, Feynman)</strong>. Sans elles, l'IA est un piège. Avec elles, c'est l'avantage le plus grand qu'un étudiant ait jamais eu.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Articles connexes</div>
+    <p>Pour aller plus loin : <a href="tuteur-personnel-ia.html">la méthode-mère du tuteur personnel IA</a> dont cet article est l'application aux examens, <a href="apprendre-coder-de-zero-ia.html">apprendre à coder de zéro</a> (même protocole, application différente), <a href="maitriser-projets.html">les Projets ChatGPT/Claude</a> pour conserver l'historique de tes révisions sur la durée, <a href="hallucinations-ia.html">les hallucinations</a> et <a href="quand-ia-veut-plaire.html">la sycophancy</a> (les deux pièges critiques en révision), <a href="custom-instructions.html">les Custom Instructions</a> pour automatiser le cadrage examinateur exigeant.</p>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <div class="recap-label">— L'essentiel à retenir —</div>
+    <h3>5 points sur la révision avec l'IA.</h3>
+    <ol class="recap-points">
+      <li>Les méthodes les plus utilisées (relecture, surlignage, recopiage) sont les moins efficaces selon la méta-analyse Dunlosky 2013. Les méthodes les plus efficaces (rappel actif, répétition espacée, Feynman) étaient impraticables sans tuteur — l'IA en 2026 lève cette barrière.</li>
+      <li>Rappel actif (méthode 1) : 15 questions générées par l'IA, tu réponds avant de voir la correction, l'IA évalue exigeantement. Effet : rétention 2-3× supérieure à la relecture pour le même temps.</li>
+      <li>Répétition espacée (méthode 2) : calendrier J+1/J+3/J+7/J+14/J+30 maintenu par l'IA dans un Projet dédié. Effet : verrouillage en mémoire long terme avec 3-4× moins de temps total qu'une révision massée.</li>
+      <li>Technique Feynman (méthode 3) : tu expliques un concept à l'IA qui joue l'élève qui ne comprend rien. Elle pointe les zones où ton explication craque — précisément là où tu n'as pas vraiment compris. Protection contre les illusions de compréhension.</li>
+      <li>Plan J-30 au jour J : J-30 à J-21 cartographie + rappel actif sur tout le programme · J-20 à J-11 Feynman sur zones faibles + espacement · J-10 à J-3 sujets complets en conditions réelles · J-2 à J-1 consolidation légère, pas de nouveauté · Jour J pas d'IA, ton cerveau a besoin de son énergie. 4 pièges : sycophancy de l'IA, génération de fiches relues passivement, hallucinations sur faits précis, négliger le sommeil.</li>
+    </ol>
+  </div>
+
+  <!-- NEXT LINKS -->
+  <div class="container">
+    <div class="next-links">
+      <a class='next-link' href="tuteur-personnel-ia.html">
+        <div class="next-link-label">— Méthode-mère</div>
+        <div class="next-link-title">Transformer ton IA en tuteur personnel</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+      <a class='next-link' href="niveau-3-apprendre-plus-vite.html">
+        <div class="next-link-label">— Voir tous les articles</div>
+        <div class="next-link-title">Apprendre plus vite · Rubrique complète</div>
+        <span class="next-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /zone-conclusion -->
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>
