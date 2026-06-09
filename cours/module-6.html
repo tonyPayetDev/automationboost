@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 6 – Plan 100€/jour | AutomationBoost</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .cours-page { padding:120px 0 80px }
+    .cours-inner { max-width:760px }
+    .mod-eyebrow { display:flex;align-items:center;gap:12px;margin-bottom:24px }
+    .mod-badge { background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.2);color:#eab308;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;font-family:'Orbitron',sans-serif }
+    .mod-progress-chip { font-size:12px;color:#71717a }
+    .mod-title { font-family:'Orbitron',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;margin-bottom:16px;line-height:1.2 }
+    .mod-intro { font-size:1.1rem;color:#a1a1aa;line-height:1.9;margin-bottom:40px;border-left:3px solid #eab308;padding-left:20px }
+    .section-h2 { font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:700;color:#e4e4e7;margin:44px 0 16px }
+    .section-h3 { font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;color:#eab308;margin:28px 0 10px }
+    p { color:#a1a1aa;line-height:1.9;margin-bottom:16px }
+    ul, ol { color:#a1a1aa;line-height:1.9;padding-left:20px;margin-bottom:16px }
+    li { margin-bottom:8px }
+    strong { color:#e4e4e7 }
+    .week-block { background:#0d0d0d;border:1px solid #1a1a1a;border-radius:12px;padding:24px;margin:16px 0 }
+    .week-header { display:flex;justify-content:space-between;align-items:center;margin-bottom:14px }
+    .week-title { font-family:'Orbitron',sans-serif;font-size:.9rem;font-weight:700;color:#eab308 }
+    .week-goal { font-size:12px;color:#4ade80;font-weight:600 }
+    .week-block ul { margin:0 }
+    .case-card { background:#0d0d0d;border:1px solid rgba(234,179,8,0.15);border-radius:12px;padding:24px;margin:16px 0 }
+    .case-header { display:flex;gap:12px;align-items:flex-start;margin-bottom:10px }
+    .case-avatar { width:40px;height:40px;border-radius:10px;background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0 }
+    .case-name { font-weight:700;color:#e4e4e7;font-size:14px }
+    .case-type { font-size:12px;color:#71717a }
+    .case-result { font-size:14px;color:#a1a1aa;line-height:1.7;margin-bottom:10px }
+    .case-num { font-size:13px;font-weight:700;color:#4ade80}
+    .mistake-card { background:#0d0d0d;border:1px solid #1a1a1a;border-left:3px solid #ef4444;border-radius:8px;padding:16px;margin:12px 0 }
+    .mistake-title { font-size:14px;font-weight:700;color:#f87171;margin-bottom:4px }
+    .mistake-fix { font-size:13px;color:#71717a }
+    .calculator { background:rgba(234,179,8,0.05);border:1px solid rgba(234,179,8,0.2);border-radius:12px;padding:28px;margin:20px 0 }
+    .calc-title { font-family:'Orbitron',sans-serif;font-size:.9rem;font-weight:700;color:#eab308;margin-bottom:20px }
+    .calc-row { display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #1a1a1a;font-size:14px }
+    .calc-row:last-child { border-bottom:none;font-weight:700;color:#eab308 }
+    .calc-label { color:#a1a1aa }
+    .calc-val { color:#e4e4e7;font-weight:600 }
+    .celebration { background:linear-gradient(135deg,rgba(234,179,8,0.1),rgba(234,179,8,0.05));border:1px solid rgba(234,179,8,0.3);border-radius:16px;padding:40px;text-align:center;margin:48px 0 }
+    .cel-icon { font-size:56px;margin-bottom:16px }
+    .cel-title { font-family:'Orbitron',sans-serif;font-size:1.3rem;font-weight:900;color:#eab308;margin-bottom:8px }
+    .cel-text { font-size:15px;color:#a1a1aa;line-height:1.8;max-width:480px;margin:0 auto }
+    .exercise-box { background:rgba(234,179,8,0.05);border:2px solid rgba(234,179,8,0.3);border-radius:12px;padding:32px;margin:48px 0 0 }
+    .exercise-title { font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:700;color:#eab308;margin-bottom:8px }
+    .exercise-desc { font-size:15px;color:#a1a1aa;line-height:1.8;margin-bottom:24px }
+    .exercise-steps { background:#0d0d0d;border-radius:8px;padding:20px;margin-bottom:24px }
+    .exercise-steps li { color:#a1a1aa;margin-bottom:10px }
+    .btn-complete { background:linear-gradient(135deg,#eab308,#f97316);color:#000;font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;padding:18px 32px;border:none;border-radius:8px;cursor:pointer;width:100%;transition:all .2s;font-size:15px }
+    .btn-complete:hover { transform:translateY(-2px);box-shadow:0 8px 32px rgba(234,179,8,0.4) }
+    .btn-complete:disabled { background:#71717a;cursor:not-allowed;transform:none;box-shadow:none }
+    .nav-footer { display:flex;justify-content:space-between;align-items:center;margin-top:48px;padding-top:32px;border-top:1px solid #1a1a1a }
+    .nav-back-link { color:#71717a;font-size:14px;text-decoration:none }
+    .nav-back-link:hover { color:#eab308 }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px">
+      <a href="index.html" style="color:#71717a;font-size:14px;text-decoration:none;font-family:'Rajdhani',sans-serif">← Tableau de bord</a>
+      <span style="font-size:13px;color:#eab308;font-weight:700" id="level-chip"></span>
+    </div>
+  </div>
+</nav>
+
+<section class="cours-page">
+  <div class="container">
+    <div class="cours-inner">
+      <div class="mod-eyebrow">
+        <span class="mod-badge">Module 6 / 6 — FINAL</span>
+        <span class="mod-progress-chip" id="progress-chip">Chargement…</span>
+      </div>
+
+      <h1 class="mod-title">👑 Plan 100€/jour</h1>
+      <p class="mod-intro">Tu as les outils, l'offre, les clients, les automatisations et un produit. Il ne manque plus qu'un plan clair pour assembler tout ça. Dans ce module final, tu vas créer ta roadmap personnalisée pour atteindre 100€/jour avec l'IA.</p>
+
+      <h2 class="section-h2">La mécanique des 100€/jour</h2>
+      <p>100€/jour = 3 000€/mois. C'est accessible avec l'une de ces combinaisons :</p>
+
+      <div class="calculator">
+        <div class="calc-title">Combinaison 1 — Services uniquement</div>
+        <div class="calc-row"><span class="calc-label">1 client récurrent (maintenance automatisations)</span><span class="calc-val">800€/mois</span></div>
+        <div class="calc-row"><span class="calc-label">1 projet ponctuel par mois (audit IA ou setup n8n)</span><span class="calc-val">800€/mois</span></div>
+        <div class="calc-row"><span class="calc-label">2 petites missions (rédaction IA, formation)</span><span class="calc-val">600€/mois</span></div>
+        <div class="calc-row"><span class="calc-label" style="color:#eab308">Total</span><span class="calc-val" style="color:#eab308">2 200€/mois</span></div>
+      </div>
+
+      <div class="calculator">
+        <div class="calc-title">Combinaison 2 — Hybride Services + Passif</div>
+        <div class="calc-row"><span class="calc-label">1 client récurrent</span><span class="calc-val">800€/mois</span></div>
+        <div class="calc-row"><span class="calc-label">Pack de prompts × 30 ventes à 19€</span><span class="calc-val">570€/mois</span></div>
+        <div class="calc-row"><span class="calc-label">Template Notion × 15 ventes à 39€</span><span class="calc-val">585€/mois</span></div>
+        <div class="calc-row"><span class="calc-label">Mini-formation × 5 ventes à 49€</span><span class="calc-val">245€/mois</span></div>
+        <div class="calc-row"><span class="calc-label" style="color:#eab308">Total</span><span class="calc-val" style="color:#eab308">2 200€/mois</span></div>
+      </div>
+
+      <h2 class="section-h2">Roadmap 30 jours</h2>
+
+      <div class="week-block">
+        <div class="week-header"><div class="week-title">Semaine 1 — Foundation</div><div class="week-goal">Objectif : setup complet</div></div>
+        <ul>
+          <li>Optimiser son profil LinkedIn + Malt avec l'offre service IA</li>
+          <li>Créer son premier produit digital et le publier sur Gumroad</li>
+          <li>Configurer n8n avec son premier workflow personnel</li>
+          <li>Identifier 20 prospects dans sa cible</li>
+        </ul>
+      </div>
+
+      <div class="week-block">
+        <div class="week-header"><div class="week-title">Semaine 2 — Prospection active</div><div class="week-goal">Objectif : 3 appels qualifiés</div></div>
+        <ul>
+          <li>Envoyer 10 messages de prospection LinkedIn/jour</li>
+          <li>Poster 3 contenus LinkedIn (cas concret, résultat chiffré)</li>
+          <li>Répondre à toutes les demandes Malt dans l'heure</li>
+          <li>Partager son produit Gumroad dans 2 communautés ciblées</li>
+        </ul>
+      </div>
+
+      <div class="week-block">
+        <div class="week-header"><div class="week-title">Semaine 3 — Conversion</div><div class="week-goal">Objectif : 1er client signé</div></div>
+        <ul>
+          <li>Réaliser les appels de découverte des prospects chauds</li>
+          <li>Envoyer ses premiers devis avec la méthode "valeur"</li>
+          <li>Relancer les prospects qui n'ont pas répondu (3 fois max)</li>
+          <li>Créer un 2e produit digital si le premier se vend</li>
+        </ul>
+      </div>
+
+      <div class="week-block">
+        <div class="week-header"><div class="week-title">Semaine 4 — Scale</div><div class="week-goal">Objectif : récurrence</div></div>
+        <ul>
+          <li>Livrer le premier client avec excellence (il va en parler)</li>
+          <li>Demander un avis et une recommandation à chaque client satisfait</li>
+          <li>Proposer un contrat de maintenance mensuel à chaque projet ponctuel</li>
+          <li>Analyser ce qui a marché / pas marché et itérer</li>
+        </ul>
+      </div>
+
+      <h2 class="section-h2">Cas pratiques — Ils l'ont fait</h2>
+
+      <div class="case-card">
+        <div class="case-header"><div class="case-avatar">👨‍💻</div><div><div class="case-name">Antoine, 26 ans</div><div class="case-type">Ancien développeur web</div></div></div>
+        <div class="case-result">A quitté son CDI pour proposer des automatisations n8n aux e-commerçants. Ses 3 premiers clients en 5 semaines, tous via LinkedIn. Aujourd'hui : 4 clients récurrents + templates Notion.</div>
+        <div class="case-num">→ 3 200€/mois après 3 mois</div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-header"><div class="case-avatar">👩‍💼</div><div><div class="case-name">Camille, 34 ans</div><div class="case-type">Ancienne chargée de comm</div></div></div>
+        <div class="case-result">A créé un pack de 50 prompts LinkedIn pour les RH. 200€ de ventes le premier mois. Puis une mini-formation vidéo qui tourne à 400-600€/mois. Parallèle à son CDI.</div>
+        <div class="case-num">→ 800€/mois passif en 6 mois</div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-header"><div class="case-avatar">🧑‍🔧</div><div><div class="case-name">Mehdi, 29 ans</div><div class="case-type">Freelance depuis 0</div></div></div>
+        <div class="case-result">Aucune expérience pro en IA. A commencé par des audits IA à 400€ pour des artisans locaux. A construit son portfolio en 2 mois. Maintenant spécialisé PME industrielles.</div>
+        <div class="case-num">→ 2 800€/mois après 4 mois</div>
+      </div>
+
+      <h2 class="section-h2">Les 5 erreurs qui bloquent tout le monde</h2>
+
+      <div class="mistake-card"><div class="mistake-title">❌ Attendre d'être "prêt"</div><div class="mistake-fix">Fix : Tu ne seras jamais prêt. Lance avec ce que tu sais. Tu apprendras 10x plus vite avec un vrai client qu'avec des tutoriels.</div></div>
+      <div class="mistake-card"><div class="mistake-title">❌ Tarifs trop bas par peur du refus</div><div class="mistake-fix">Fix : Un client qui achète à 50€ n'aurait peut-être pas hésité à 300€. Teste des tarifs plus élevés — tu seras surpris.</div></div>
+      <div class="mistake-card"><div class="mistake-title">❌ Vouloir toucher à tout</div><div class="mistake-fix">Fix : Choisis 1 service + 1 cible. Maîtrise ça parfaitement avant de diversifier. La niche fait les experts qui se font recommander.</div></div>
+      <div class="mistake-card"><div class="mistake-title">❌ Prospecter sans système</div><div class="mistake-fix">Fix : La prospection doit être rituelle. 10 messages par jour, tous les jours, peu importe l'humeur. C'est mathématique.</div></div>
+      <div class="mistake-card"><div class="mistake-title">❌ Livrer la prestation, pas la valeur</div><div class="mistake-fix">Fix : Quantifie toujours le résultat pour ton client. "J'ai automatisé tes emails" ne suffit pas. "Tu économises 4h/semaine soit 2 080€ de valeur annuelle" — ça justifie de te recommander.</div></div>
+
+      <!-- EXERCICE FINAL -->
+      <div class="exercise-box">
+        <div class="exercise-title">👑 Exercice final — Ton plan d'action 30 jours</div>
+        <p class="exercise-desc">Le dernier exercice. Le plus important. Rédige <strong>ton plan personnalisé</strong> — pas une copie de la roadmap, une version adaptée à ta situation.</p>
+        <div class="exercise-steps">
+          <ol>
+            <li>Utilise Claude avec ce prompt : <em>"Je veux générer 3 000€/mois avec l'IA en freelance. Mon profil : [ton background]. Mon service choisi : [service]. Ma cible : [cible]. Crée-moi un plan d'action semaine par semaine sur 30 jours, très concret, avec des actions quotidiennes."</em></li>
+            <li>Adapte le plan à ta situation réelle (tes contraintes de temps, ta localisation, ton réseau)</li>
+            <li>Mets-le dans Notion ou un Google Doc — avec des cases à cocher pour chaque semaine</li>
+            <li>Lance la Semaine 1 aujourd'hui — pas demain</li>
+          </ol>
+        </div>
+        <button class="btn-complete" id="btn-complete" onclick="completeModule()">
+          👑 J'ai mon plan — Terminer la formation
+        </button>
+      </div>
+
+      <div class="nav-footer">
+        <a href="module-5.html" class="nav-back-link">← Module 5</a>
+        <span style="font-size:13px;color:#71717a">Module 6/6 · 👑 IA Master · +100 XP</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../assets/js/cours.js"></script>
+<script>
+AB.requireAccess('../');
+if (!AB.isModuleUnlocked(6)) { window.location.href = 'index.html'; }
+
+const lvl = AB.getCurrentLevel();
+document.getElementById('level-chip').textContent = lvl.badge + ' ' + lvl.xp + ' XP';
+document.getElementById('progress-chip').textContent = AB.getCompletedCount() + '/6 complétés';
+
+const btn = document.getElementById('btn-complete');
+if (AB.isModuleDone(6)) { btn.textContent = '👑 Formation complétée — Tu es IA Master !'; btn.disabled = true; }
+function completeModule() { AB.completeModule(6); }
+
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+</script>
+</body>
+</html>

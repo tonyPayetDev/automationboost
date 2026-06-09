@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formation IA – Gagner de l'argent avec l'IA | AutomationBoost</title>
+  <meta name="description" content="Formation complète et gamifiée : 6 modules pour générer tes premiers revenus avec l'IA. Méthodes concrètes, exercices pratiques, accès à vie. 29,90€." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .hero-form { padding: 140px 0 80px; text-align: center; }
+    .hero-eyebrow { display:inline-flex;align-items:center;gap:8px;background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.3);color:#eab308;font-size:11px;font-weight:700;padding:6px 16px;border-radius:100px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:28px }
+    .hero-title { font-family:'Orbitron',sans-serif;font-size:clamp(2rem,5vw,3.4rem);font-weight:900;line-height:1.1;margin-bottom:24px }
+    .hero-title span { color:#eab308 }
+    .hero-sub { font-size:1.15rem;color:#a1a1aa;max-width:600px;margin:0 auto 48px;line-height:1.8 }
+    .price-box { display:inline-flex;flex-direction:column;align-items:center;background:#0d0d0d;border:1px solid rgba(234,179,8,0.3);border-radius:16px;padding:36px 48px;margin-bottom:16px }
+    .price-old { font-size:18px;color:#71717a;text-decoration:line-through;margin-bottom:4px }
+    .price-new { font-family:'Orbitron',sans-serif;font-size:3rem;font-weight:900;color:#eab308;margin-bottom:4px }
+    .price-label { font-size:13px;color:#71717a;margin-bottom:24px }
+    .btn-buy { display:inline-flex;align-items:center;gap:10px;background:#eab308;color:#000;font-family:'Orbitron',sans-serif;font-size:14px;font-weight:700;padding:18px 40px;border-radius:8px;text-decoration:none;transition:all .2s;letter-spacing:.04em }
+    .btn-buy:hover { background:#ca8a04;transform:translateY(-2px);box-shadow:0 8px 32px rgba(234,179,8,0.4) }
+    .btn-buy-sub { font-size:12px;color:#71717a;margin-top:12px }
+    .modules-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin:60px 0 }
+    .module-card { background:#0d0d0d;border:1px solid #1a1a1a;border-radius:12px;padding:28px;display:flex;gap:16px;align-items:flex-start;transition:border-color .2s }
+    .module-card:hover { border-color:rgba(234,179,8,0.3) }
+    .module-num { font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;color:#eab308;background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.2);padding:4px 10px;border-radius:4px;white-space:nowrap;flex-shrink:0;margin-top:2px }
+    .module-info h3 { font-family:'Orbitron',sans-serif;font-size:.95rem;font-weight:700;color:#e4e4e7;margin-bottom:6px }
+    .module-info p { font-size:14px;color:#71717a;line-height:1.6 }
+    .module-badge { display:flex;align-items:center;gap:6px;margin-top:10px;font-size:12px;color:#a1a1aa }
+    .module-badge span { color:#eab308 }
+    .garanties { display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin:48px 0 }
+    .garantie { display:flex;align-items:center;gap:8px;background:#0d0d0d;border:1px solid #1a1a1a;border-radius:8px;padding:12px 20px;font-size:14px;color:#a1a1aa }
+    .faq-item { border-bottom:1px solid #1a1a1a;padding:24px 0 }
+    .faq-q { font-size:16px;font-weight:600;color:#e4e4e7;cursor:pointer;display:flex;justify-content:space-between;align-items:center }
+    .faq-a { font-size:14px;color:#71717a;line-height:1.8;margin-top:12px;display:none }
+    .faq-item.open .faq-a { display:block }
+    .faq-item.open .faq-arrow { transform:rotate(180deg) }
+    .faq-arrow { transition:transform .2s }
+    .section-title { font-family:'Orbitron',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin-bottom:16px;text-align:center }
+    .section-sub { text-align:center;color:#71717a;margin-bottom:48px;max-width:560px;margin-left:auto;margin-right:auto }
+    .testimonials { display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin:40px 0 }
+    .testi { background:#0d0d0d;border:1px solid #1a1a1a;border-radius:12px;padding:24px }
+    .testi-stars { color:#eab308;font-size:14px;margin-bottom:12px }
+    .testi-text { font-size:14px;color:#a1a1aa;line-height:1.8;margin-bottom:16px }
+    .testi-author { font-size:13px;font-weight:600;color:#e4e4e7 }
+    .testi-role { font-size:12px;color:#71717a }
+    .sticky-cta { position:fixed;bottom:24px;right:24px;z-index:100 }
+    .sticky-btn { display:flex;align-items:center;gap:8px;background:#eab308;color:#000;font-family:'Orbitron',sans-serif;font-size:12px;font-weight:700;padding:14px 24px;border-radius:100px;text-decoration:none;box-shadow:0 4px 24px rgba(234,179,8,0.5);transition:all .2s }
+    .sticky-btn:hover { transform:translateY(-2px);box-shadow:0 8px 32px rgba(234,179,8,0.6) }
+    .gamif-section { background:#0d0d0d;border:1px solid rgba(234,179,8,0.15);border-radius:16px;padding:48px;margin:60px 0 }
+    .levels-row { display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:32px }
+    .level-chip { display:flex;flex-direction:column;align-items:center;gap:4px;background:#111;border:1px solid #1a1a1a;border-radius:10px;padding:16px 20px;min-width:100px;transition:border-color .2s }
+    .level-chip:hover { border-color:rgba(234,179,8,0.3) }
+    .level-icon { font-size:24px }
+    .level-name { font-size:11px;font-weight:700;color:#eab308;text-align:center }
+    .level-xp { font-size:10px;color:#71717a }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px">
+      <a href="ressources.html" style="color:#71717a;font-size:14px;text-decoration:none;font-family:'Rajdhani',sans-serif">Ressources</a>
+      <a href="#acheter" class="btn-buy" style="padding:10px 20px;font-size:12px">Rejoindre la formation</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-form">
+  <div class="container">
+    <div class="hero-eyebrow">⚡ Formation gamifiée · Accès à vie</div>
+    <h1 class="hero-title">Gagne de l'argent<br/>avec <span>l'Intelligence Artificielle</span></h1>
+    <p class="hero-sub">6 modules progressifs, des exercices pratiques à compléter pour débloquer la suite, et une méthode concrète pour générer tes premiers revenus avec l'IA.</p>
+
+    <div id="acheter">
+      <div class="price-box">
+        <div class="price-old">97€</div>
+        <div class="price-new">29,90€</div>
+        <div class="price-label">paiement unique · accès à vie</div>
+        <a href="https://buy.stripe.com/REMPLACE_PAR_TON_LIEN_STRIPE" class="btn-buy" target="_blank">
+          ⚡ Accéder à la formation
+        </a>
+      </div>
+      <div class="btn-buy-sub">🔒 Paiement sécurisé · Accès instantané par email</div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section style="padding:80px 0">
+  <div class="container">
+    <h2 class="section-title">6 modules pour passer<br/>de zéro à tes premiers revenus IA</h2>
+    <p class="section-sub">Chaque module se termine par un exercice concret. Complète-le pour débloquer le suivant — et gagner de l'XP.</p>
+    <div class="modules-grid">
+      <div class="module-card">
+        <div class="module-num">01</div>
+        <div class="module-info">
+          <h3>Ton arsenal IA</h3>
+          <p>Les outils gratuits essentiels, comment les combiner, les 3 prompts qui changent tout.</p>
+          <div class="module-badge">⚔️ <span>Badge : Arsenal Déployé</span> · +100 XP</div>
+        </div>
+      </div>
+      <div class="module-card">
+        <div class="module-num">02</div>
+        <div class="module-info">
+          <h3>Vendre des services IA</h3>
+          <p>Les 5 services les plus demandés, comment pitcher à un client, tarifer de 50€ à 150€/h.</p>
+          <div class="module-badge">💼 <span>Badge : Premier Service</span> · +100 XP</div>
+        </div>
+      </div>
+      <div class="module-card">
+        <div class="module-num">03</div>
+        <div class="module-info">
+          <h3>Trouver tes premiers clients</h3>
+          <p>Malt, LinkedIn, Upwork — stratégie par plateforme. Scripts de prospection testés.</p>
+          <div class="module-badge">🤝 <span>Badge : Client Débloqué</span> · +100 XP</div>
+        </div>
+      </div>
+      <div class="module-card">
+        <div class="module-num">04</div>
+        <div class="module-info">
+          <h3>Automatiser pour scaler</h3>
+          <p>n8n, Make, Zapier — construire des workflows qui tournent sans toi et facture 3x plus.</p>
+          <div class="module-badge">🤖 <span>Badge : Automatiseur</span> · +100 XP</div>
+        </div>
+      </div>
+      <div class="module-card">
+        <div class="module-num">05</div>
+        <div class="module-info">
+          <h3>Revenus passifs avec l'IA</h3>
+          <p>Créer des templates, prompts et mini-formations à vendre sur Gumroad ou Podia.</p>
+          <div class="module-badge">💰 <span>Badge : Créateur Passif</span> · +100 XP</div>
+        </div>
+      </div>
+      <div class="module-card">
+        <div class="module-num">06</div>
+        <div class="module-info">
+          <h3>Plan 100€/jour</h3>
+          <p>Roadmap 30 jours personnalisée, cas pratiques, les erreurs à éviter absolument.</p>
+          <div class="module-badge">👑 <span>Badge : IA Master</span> · +100 XP</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GAMIFICATION -->
+<section style="padding:0 0 80px">
+  <div class="container">
+    <div class="gamif-section">
+      <h2 class="section-title" style="margin-bottom:8px">Un système de progression<br/>qui te pousse à avancer</h2>
+      <p class="section-sub">Complète chaque exercice → débloque le module suivant → monte en niveau</p>
+      <div class="levels-row">
+        <div class="level-chip"><span class="level-icon">🌱</span><span class="level-name">Débutant</span><span class="level-xp">0 XP</span></div>
+        <div class="level-chip"><span class="level-icon">⚡</span><span class="level-name">IA Starter</span><span class="level-xp">100 XP</span></div>
+        <div class="level-chip"><span class="level-icon">🔧</span><span class="level-name">IA Apprenti</span><span class="level-xp">200 XP</span></div>
+        <div class="level-chip"><span class="level-icon">🚀</span><span class="level-name">IA Practitioner</span><span class="level-xp">300 XP</span></div>
+        <div class="level-chip"><span class="level-icon">🏗️</span><span class="level-name">IA Builder</span><span class="level-xp">400 XP</span></div>
+        <div class="level-chip"><span class="level-icon">🎯</span><span class="level-name">IA Architect</span><span class="level-xp">500 XP</span></div>
+        <div class="level-chip" style="border-color:rgba(234,179,8,0.4)"><span class="level-icon">👑</span><span class="level-name" style="color:#eab308">IA Master</span><span class="level-xp">600 XP</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section style="padding:0 0 80px">
+  <div class="container">
+    <h2 class="section-title">Ce que ça change concrètement</h2>
+    <p class="section-sub">Ils ont appliqué la méthode. Voici leurs résultats.</p>
+    <div class="testimonials">
+      <div class="testi">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"J'ai trouvé mon premier client en 3 semaines après le module 3. Le script de prospection LinkedIn m'a changé la vie."</p>
+        <div class="testi-author">Marie L.</div>
+        <div class="testi-role">Freelance rédaction IA · Lyon</div>
+      </div>
+      <div class="testi">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Le module 4 sur n8n m'a permis de vendre une automatisation à 800€ à une PME locale. ROI de la formation en 1 semaine."</p>
+        <div class="testi-author">Thomas R.</div>
+        <div class="testi-role">Consultant automatisation · Paris</div>
+      </div>
+      <div class="testi">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Le système de modules à débloquer m'a forcé à vraiment pratiquer. J'ai créé mon premier template Notion IA vendu 19€."</p>
+        <div class="testi-author">Sarah M.</div>
+        <div class="testi-role">Créatrice de contenu · Bordeaux</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GARANTIES -->
+<section style="padding:0 0 80px">
+  <div class="container">
+    <div class="garanties">
+      <div class="garantie">✅ Accès à vie aux mises à jour</div>
+      <div class="garantie">🔒 Paiement sécurisé Stripe</div>
+      <div class="garantie">⚡ Accès instantané par email</div>
+      <div class="garantie">🎯 Méthodes applicables immédiatement</div>
+      <div class="garantie">💰 Satisfait ou remboursé 14 jours</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="padding:0 0 80px">
+  <div class="container" style="max-width:720px">
+    <h2 class="section-title">Questions fréquentes</h2>
+    <div style="margin-top:32px">
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Dois-je avoir des compétences techniques ? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Non. La formation est conçue pour les débutants. Le module 1 te donne tout ce qu'il faut pour démarrer, même si tu n'as jamais touché à l'IA.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Comment fonctionne le système de modules ? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Chaque module se termine par un exercice pratique. Une fois complété, le module suivant se déverrouille automatiquement. Tu ne peux pas sauter d'étapes — c'est ce qui garantit que tu appliques vraiment.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">En combien de temps je peux avoir mes premiers revenus ? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Les plus rapides ont leur premier client en 2-3 semaines. Ça dépend du temps que tu y passes. Avec 1h/jour, tu peux finir les 6 modules en 10-15 jours et commencer à prospecter immédiatement.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Comment j'accède à la formation après paiement ? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Dès que ton paiement est confirmé, tu reçois un email avec un lien d'accès unique. Un clic et tu es dans la formation. Aucun compte à créer.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Y a-t-il un remboursement possible ? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Oui, satisfait ou remboursé pendant 14 jours. Si tu n'es pas convaincu par la qualité du contenu, envoie un email et on rembourse sans question.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section style="padding:0 0 120px;text-align:center">
+  <div class="container">
+    <h2 class="section-title">Prêt à générer tes premiers<br/>revenus avec l'IA ?</h2>
+    <p class="section-sub">Rejoins la formation et commence dès aujourd'hui. Accès instantané.</p>
+    <div class="price-box" style="margin:0 auto 16px">
+      <div class="price-old">97€</div>
+      <div class="price-new">29,90€</div>
+      <div class="price-label">paiement unique · accès à vie</div>
+      <a href="https://buy.stripe.com/REMPLACE_PAR_TON_LIEN_STRIPE" class="btn-buy" target="_blank">
+        ⚡ Accéder à la formation maintenant
+      </a>
+    </div>
+    <div class="btn-buy-sub">🔒 Paiement sécurisé · Accès par email dans la minute</div>
+  </div>
+</section>
+
+<!-- STICKY CTA -->
+<div class="sticky-cta">
+  <a href="#acheter" class="sticky-btn">⚡ Rejoindre — 29,90€</a>
+</div>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+</script>
+</body>
+</html>

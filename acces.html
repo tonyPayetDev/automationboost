@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accès à la formation – AutomationBoost</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .access-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 80px 20px; }
+    .access-box { background:#0d0d0d;border:1px solid rgba(234,179,8,0.2);border-radius:16px;padding:48px;max-width:440px;width:100%;text-align:center }
+    .access-icon { font-size:48px;margin-bottom:20px }
+    .access-title { font-family:'Orbitron',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:8px }
+    .access-sub { font-size:14px;color:#71717a;margin-bottom:32px;line-height:1.7 }
+    .spinner { display:inline-block;width:32px;height:32px;border:3px solid rgba(234,179,8,0.2);border-top-color:#eab308;border-radius:50%;animation:spin .7s linear infinite }
+    @keyframes spin { to { transform:rotate(360deg) } }
+    .state { display:none }
+    .state.active { display:block }
+    .error-box { background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:8px;padding:16px;margin-top:16px;font-size:14px;color:#f87171 }
+    .btn-retry { display:inline-flex;align-items:center;gap:8px;background:#eab308;color:#000;font-family:'Orbitron',sans-serif;font-size:12px;font-weight:700;padding:12px 24px;border:none;border-radius:8px;cursor:pointer;margin-top:20px;text-decoration:none }
+    .already-box { background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:8px;padding:16px;margin-top:16px;font-size:14px;color:#4ade80 }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+  </div>
+</nav>
+
+<div class="access-page">
+  <div class="access-box">
+
+    <!-- État : déjà connecté -->
+    <div class="state" id="state-already">
+      <div class="access-icon">✅</div>
+      <h1 class="access-title">Déjà connecté</h1>
+      <div class="already-box">Tu as déjà accès à la formation.</div>
+      <a href="cours/index.html" class="btn-retry" style="margin-top:20px;display:inline-flex">→ Accéder à la formation</a>
+    </div>
+
+    <!-- État : validation en cours -->
+    <div class="state" id="state-loading">
+      <div class="spinner" style="margin:0 auto 24px"></div>
+      <h1 class="access-title">Vérification en cours…</h1>
+      <p class="access-sub">On confirme ton accès auprès du serveur. Ça prend quelques secondes.</p>
+    </div>
+
+    <!-- État : succès -->
+    <div class="state" id="state-success">
+      <div class="access-icon">🎉</div>
+      <h1 class="access-title">Accès confirmé !</h1>
+      <p class="access-sub">Bienvenue dans la formation. Tu vas être redirigé vers le tableau de bord dans 3 secondes…</p>
+    </div>
+
+    <!-- État : erreur token -->
+    <div class="state" id="state-error">
+      <div class="access-icon">🔒</div>
+      <h1 class="access-title">Lien invalide</h1>
+      <p class="access-sub">Ce lien d'accès est invalide ou a déjà été utilisé.</p>
+      <div class="error-box">Si tu penses que c'est une erreur, réponds à l'email que tu as reçu et on arrange ça.</div>
+      <a href="formation.html" class="btn-retry">← Retour à la formation</a>
+    </div>
+
+    <!-- État : pas de token -->
+    <div class="state" id="state-no-token">
+      <div class="access-icon">🔒</div>
+      <h1 class="access-title">Accès réservé</h1>
+      <p class="access-sub">Cette formation est accessible uniquement après paiement. Tu reçois ton lien d'accès par email dès que ton paiement est confirmé.</p>
+      <a href="formation.html" class="btn-retry">⚡ Rejoindre la formation — 29,90€</a>
+    </div>
+
+  </div>
+</div>
+
+<script src="assets/js/cours.js"></script>
+<script>
+(async function() {
+  function show(id) {
+    document.querySelectorAll('.state').forEach(el => el.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  // Déjà connecté ?
+  if (AB.hasAccess()) {
+    show('state-already');
+    return;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get('token');
+
+  if (!token) {
+    show('state-no-token');
+    return;
+  }
+
+  show('state-loading');
+
+  const result = await AB.validateToken(token);
+
+  if (result && result.valid) {
+    AB.grantAccess(token, result.email || '');
+    show('state-success');
+    setTimeout(() => { window.location.href = 'cours/index.html'; }, 2500);
+  } else {
+    show('state-error');
+  }
+})();
+
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+</script>
+</body>
+</html>

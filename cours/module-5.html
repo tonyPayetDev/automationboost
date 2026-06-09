@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 5 – Revenus passifs avec l'IA | AutomationBoost</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .cours-page { padding:120px 0 80px }
+    .cours-inner { max-width:760px }
+    .mod-eyebrow { display:flex;align-items:center;gap:12px;margin-bottom:24px }
+    .mod-badge { background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.2);color:#eab308;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;font-family:'Orbitron',sans-serif }
+    .mod-progress-chip { font-size:12px;color:#71717a }
+    .mod-title { font-family:'Orbitron',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;margin-bottom:16px;line-height:1.2 }
+    .mod-intro { font-size:1.1rem;color:#a1a1aa;line-height:1.9;margin-bottom:40px;border-left:3px solid #eab308;padding-left:20px }
+    .section-h2 { font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:700;color:#e4e4e7;margin:44px 0 16px }
+    .section-h3 { font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;color:#eab308;margin:28px 0 10px }
+    p { color:#a1a1aa;line-height:1.9;margin-bottom:16px }
+    ul, ol { color:#a1a1aa;line-height:1.9;padding-left:20px;margin-bottom:16px }
+    li { margin-bottom:6px }
+    strong { color:#e4e4e7 }
+    .product-card { background:#0d0d0d;border:1px solid #1a1a1a;border-radius:12px;padding:24px;margin:16px 0 }
+    .product-header { display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px }
+    .product-name { font-weight:700;color:#e4e4e7 }
+    .product-price { font-family:'Orbitron',sans-serif;font-size:.85rem;font-weight:700;color:#eab308 }
+    .product-desc { font-size:14px;color:#71717a;line-height:1.7;margin-bottom:10px }
+    .product-time { font-size:12px;color:#a1a1aa }
+    .product-time span { color:#4ade80 }
+    .platform-mini { display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 }
+    .plat-chip { background:#111;border:1px solid #1a1a1a;border-radius:8px;padding:10px 16px;font-size:13px;color:#a1a1aa }
+    .plat-chip strong { color:#eab308 }
+    .timeline { position:relative;padding-left:24px;margin:20px 0 }
+    .timeline::before { content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#eab308,#1a1a1a) }
+    .tl-item { position:relative;margin-bottom:24px;padding-left:16px }
+    .tl-item::before { content:'';position:absolute;left:-22px;top:6px;width:10px;height:10px;border-radius:50%;background:#eab308 }
+    .tl-title { font-weight:700;color:#e4e4e7;margin-bottom:4px }
+    .tl-desc { font-size:14px;color:#71717a }
+    .tip-box { background:#0d0d0d;border:1px solid #1a1a1a;border-left:3px solid #eab308;border-radius:8px;padding:20px;margin:24px 0 }
+    .tip-label { font-size:11px;font-weight:700;color:#eab308;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px }
+    .exercise-box { background:rgba(234,179,8,0.05);border:2px solid rgba(234,179,8,0.3);border-radius:12px;padding:32px;margin:48px 0 0 }
+    .exercise-title { font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:700;color:#eab308;margin-bottom:8px }
+    .exercise-desc { font-size:15px;color:#a1a1aa;line-height:1.8;margin-bottom:24px }
+    .exercise-steps { background:#0d0d0d;border-radius:8px;padding:20px;margin-bottom:24px }
+    .exercise-steps li { color:#a1a1aa;margin-bottom:10px }
+    .btn-complete { background:#eab308;color:#000;font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;padding:16px 32px;border:none;border-radius:8px;cursor:pointer;width:100%;transition:all .2s }
+    .btn-complete:hover { background:#ca8a04 }
+    .btn-complete:disabled { background:#71717a;cursor:not-allowed }
+    .nav-footer { display:flex;justify-content:space-between;align-items:center;margin-top:48px;padding-top:32px;border-top:1px solid #1a1a1a }
+    .nav-back-link { color:#71717a;font-size:14px;text-decoration:none }
+    .nav-back-link:hover { color:#eab308 }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px">
+      <a href="index.html" style="color:#71717a;font-size:14px;text-decoration:none;font-family:'Rajdhani',sans-serif">← Tableau de bord</a>
+      <span style="font-size:13px;color:#eab308;font-weight:700" id="level-chip"></span>
+    </div>
+  </div>
+</nav>
+
+<section class="cours-page">
+  <div class="container">
+    <div class="cours-inner">
+      <div class="mod-eyebrow">
+        <span class="mod-badge">Module 5 / 6</span>
+        <span class="mod-progress-chip" id="progress-chip">Chargement…</span>
+      </div>
+
+      <h1 class="mod-title">💰 Revenus passifs avec l'IA</h1>
+      <p class="mod-intro">Les services freelance te paient quand tu travailles. Les produits digitaux te paient pendant que tu dors. Dans ce module, tu vas créer ton premier produit vendable avec l'IA — en moins d'une journée de travail.</p>
+
+      <h2 class="section-h2">Les 4 types de produits digitaux IA</h2>
+
+      <div class="product-card">
+        <div class="product-header"><div class="product-name">📋 Pack de prompts spécialisés</div><div class="product-price">9€ – 49€</div></div>
+        <div class="product-desc">Collection de 20-50 prompts optimisés pour un usage spécifique : rédaction commerciale, analyse financière, management, marketing... Les gens paient pour ne pas avoir à les tester eux-mêmes.</div>
+        <div class="product-time">Temps de création : <span>2-4h</span> · Potentiel mensuel : 200-2000€</div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-header"><div class="product-name">🗂️ Template Notion avec IA intégrée</div><div class="product-price">19€ – 79€</div></div>
+        <div class="product-desc">Un espace de travail Notion clé-en-main avec des prompts Claude/ChatGPT intégrés dans les pages. Exemples : "CRM freelance avec IA", "Gestion de projet IA", "Newsletter factory".</div>
+        <div class="product-time">Temps de création : <span>4-8h</span> · Potentiel mensuel : 500-5000€</div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-header"><div class="product-name">🎓 Mini-formation vidéo (30-60 min)</div><div class="product-price">29€ – 99€</div></div>
+        <div class="product-desc">Une formation courte et dense sur un sujet très précis : "Automatiser ses emails avec n8n en 2h", "Créer un chatbot pour son site en 1 journée". La précision vend mieux que la largeur.</div>
+        <div class="product-time">Temps de création : <span>1-3 jours</span> · Potentiel mensuel : 1000-10000€</div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-header"><div class="product-name">⚡ Workflow n8n prêt à l'emploi</div><div class="product-price">29€ – 149€</div></div>
+        <div class="product-desc">Exporter un workflow n8n que tu as créé et le vendre comme template. L'acheteur importe et adapte. Idéal pour les workflows que tu répètes souvent chez différents clients.</div>
+        <div class="product-time">Temps de création : <span>2-4h</span> · Potentiel mensuel : 300-3000€</div>
+      </div>
+
+      <h2 class="section-h2">Où vendre tes produits digitaux</h2>
+      <div class="platform-mini">
+        <div class="plat-chip"><strong>Gumroad</strong> — Le plus simple, 0% de frais fixes</div>
+        <div class="plat-chip"><strong>Lemon Squeezy</strong> — Moderne, bonne UX pour l'acheteur</div>
+        <div class="plat-chip"><strong>Podia</strong> — Pour les formations avec membres</div>
+        <div class="plat-chip"><strong>Notion Templates</strong> — Marketplace native Notion</div>
+        <div class="plat-chip"><strong>Ton propre site</strong> — Stripe direct + contrôle total</div>
+      </div>
+
+      <h2 class="section-h2">Comment créer en 1 journée</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-title">Matin — Décide du produit (1h)</div><div class="tl-desc">Choisis un sujet que tu maîtrises + qui a une audience qui paie. Valide avec une recherche rapide sur Gumroad/Lemon Squeezy.</div></div>
+        <div class="tl-item"><div class="tl-title">Matin — Crée avec l'IA (2-3h)</div><div class="tl-desc">Utilise Claude pour générer le contenu. Pour les prompts : "Génère 30 prompts professionnels pour [usage]". Pour les templates : construis dans Notion.</div></div>
+        <div class="tl-item"><div class="tl-title">Après-midi — Packaging (1h)</div><div class="tl-desc">Une belle page de vente (Gumroad ou ton site). Un nom précis et un sous-titre qui décrit le résultat. 3-5 points clés.</div></div>
+        <div class="tl-item"><div class="tl-title">Après-midi — Publication (30 min)</div><div class="tl-desc">Mets en ligne, partage sur LinkedIn avec un post "J'ai créé ça en une journée". Les premières ventes viennent souvent de ton réseau.</div></div>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">💡 Le secret des meilleurs vendeurs</div>
+        <p>Le titre fait 80% des ventes. "Pack de prompts IA" ne vend pas. "47 prompts pour rédiger tes posts LinkedIn 10x plus vite" vend. Sois ultra-précis sur le résultat et le gain de temps.</p>
+      </div>
+
+      <!-- EXERCICE -->
+      <div class="exercise-box">
+        <div class="exercise-title">💰 Exercice — Crée et publie ton premier produit</div>
+        <p class="exercise-desc">Aujourd'hui, tu vas créer et mettre en vente ton premier produit digital. Même si personne ne l'achète tout de suite — l'essentiel c'est de publier.</p>
+        <div class="exercise-steps">
+          <ol>
+            <li>Choisis un type de produit parmi les 4 ci-dessus (le pack de prompts est le plus rapide)</li>
+            <li>Utilise Claude pour générer le contenu sur un sujet que tu maîtrises</li>
+            <li>Crée une page de vente sur <strong>Gumroad</strong> (compte gratuit, 5 min) avec un prix entre 9€ et 29€</li>
+            <li>Partage le lien sur LinkedIn avec un post expliquant ce que tu as créé et pourquoi</li>
+          </ol>
+        </div>
+        <button class="btn-complete" id="btn-complete" onclick="completeModule()">
+          ✓ J'ai publié mon produit — Débloquer le Module 6
+        </button>
+      </div>
+
+      <div class="nav-footer">
+        <a href="module-4.html" class="nav-back-link">← Module 4</a>
+        <span style="font-size:13px;color:#71717a">Module 5/6 · 💰 Créateur Passif · +100 XP</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../assets/js/cours.js"></script>
+<script>
+AB.requireAccess('../');
+if (!AB.isModuleUnlocked(5)) { window.location.href = 'index.html'; }
+
+const lvl = AB.getCurrentLevel();
+document.getElementById('level-chip').textContent = lvl.badge + ' ' + lvl.xp + ' XP';
+document.getElementById('progress-chip').textContent = AB.getCompletedCount() + '/6 complétés';
+
+const btn = document.getElementById('btn-complete');
+if (AB.isModuleDone(5)) { btn.textContent = '✓ Module complété'; btn.disabled = true; }
+function completeModule() { AB.completeModule(5); }
+
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+</script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 3 – Trouver tes premiers clients | AutomationBoost</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .cours-page { padding:120px 0 80px }
+    .cours-inner { max-width:760px }
+    .mod-eyebrow { display:flex;align-items:center;gap:12px;margin-bottom:24px }
+    .mod-badge { background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.2);color:#eab308;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;font-family:'Orbitron',sans-serif }
+    .mod-progress-chip { font-size:12px;color:#71717a }
+    .mod-title { font-family:'Orbitron',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;margin-bottom:16px;line-height:1.2 }
+    .mod-intro { font-size:1.1rem;color:#a1a1aa;line-height:1.9;margin-bottom:40px;border-left:3px solid #eab308;padding-left:20px }
+    .section-h2 { font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:700;color:#e4e4e7;margin:44px 0 16px }
+    .section-h3 { font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;color:#eab308;margin:28px 0 10px }
+    p { color:#a1a1aa;line-height:1.9;margin-bottom:16px }
+    ul, ol { color:#a1a1aa;line-height:1.9;padding-left:20px;margin-bottom:16px }
+    li { margin-bottom:6px }
+    strong { color:#e4e4e7 }
+    .platform-card { background:#0d0d0d;border:1px solid #1a1a1a;border-radius:12px;padding:24px;margin:16px 0 }
+    .platform-header { display:flex;justify-content:space-between;align-items:center;margin-bottom:10px }
+    .platform-name { font-weight:700;color:#e4e4e7;font-size:1rem }
+    .platform-score { font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;background:rgba(234,179,8,0.1);color:#eab308;border:1px solid rgba(234,179,8,0.2) }
+    .platform-desc { font-size:14px;color:#71717a;line-height:1.7;margin-bottom:10px }
+    .platform-tips { font-size:13px;color:#a1a1aa }
+    .platform-tips li { margin-bottom:6px }
+    .script-box { background:#050505;border:1px solid rgba(234,179,8,0.2);border-radius:8px;padding:24px;margin:16px 0;font-size:14px;color:#a1a1aa;line-height:1.8 }
+    .script-label { font-size:11px;font-weight:700;color:#eab308;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px }
+    .script-box em { color:#eab308;font-style:normal }
+    .tip-box { background:#0d0d0d;border:1px solid #1a1a1a;border-left:3px solid #eab308;border-radius:8px;padding:20px;margin:24px 0 }
+    .tip-label { font-size:11px;font-weight:700;color:#eab308;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px }
+    .exercise-box { background:rgba(234,179,8,0.05);border:2px solid rgba(234,179,8,0.3);border-radius:12px;padding:32px;margin:48px 0 0 }
+    .exercise-title { font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:700;color:#eab308;margin-bottom:8px }
+    .exercise-desc { font-size:15px;color:#a1a1aa;line-height:1.8;margin-bottom:24px }
+    .exercise-steps { background:#0d0d0d;border-radius:8px;padding:20px;margin-bottom:24px }
+    .exercise-steps li { color:#a1a1aa;margin-bottom:10px }
+    .btn-complete { background:#eab308;color:#000;font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;padding:16px 32px;border:none;border-radius:8px;cursor:pointer;width:100%;transition:all .2s }
+    .btn-complete:hover { background:#ca8a04 }
+    .btn-complete:disabled { background:#71717a;cursor:not-allowed }
+    .nav-footer { display:flex;justify-content:space-between;align-items:center;margin-top:48px;padding-top:32px;border-top:1px solid #1a1a1a }
+    .nav-back-link { color:#71717a;font-size:14px;text-decoration:none }
+    .nav-back-link:hover { color:#eab308 }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px">
+      <a href="index.html" style="color:#71717a;font-size:14px;text-decoration:none;font-family:'Rajdhani',sans-serif">← Tableau de bord</a>
+      <span style="font-size:13px;color:#eab308;font-weight:700" id="level-chip"></span>
+    </div>
+  </div>
+</nav>
+
+<section class="cours-page">
+  <div class="container">
+    <div class="cours-inner">
+      <div class="mod-eyebrow">
+        <span class="mod-badge">Module 3 / 6</span>
+        <span class="mod-progress-chip" id="progress-chip">Chargement…</span>
+      </div>
+
+      <h1 class="mod-title">🤝 Trouver tes premiers clients</h1>
+      <p class="mod-intro">Tu as ton offre. Maintenant il faut la mettre devant des gens qui ont envie de payer pour ça. Dans ce module : où chercher, quoi dire, et comment convertir une conversation en contrat.</p>
+
+      <h2 class="section-h2">Les 3 meilleures plateformes pour débuter</h2>
+
+      <div class="platform-card">
+        <div class="platform-header"><div class="platform-name">🔗 LinkedIn</div><div class="platform-score">⭐ Meilleur ROI</div></div>
+        <div class="platform-desc">LinkedIn est la plateforme idéale pour les services IA B2B. Les décideurs y sont présents et cherchent activement des solutions. Le taux de réponse à la prospection est bien plus élevé qu'ailleurs.</div>
+        <ul class="platform-tips">
+          <li>Optimise ton profil pour apparaître dans les recherches "IA", "automatisation", "consultant IA"</li>
+          <li>Poste 3x/semaine sur des cas concrets d'utilisation de l'IA (pas de théorie)</li>
+          <li>Connecte-toi avec 10 prospects par jour + message personnalisé dans les 24h</li>
+          <li>Utilise la recherche avancée : titre "Directeur", "CEO", "Responsable Operations" + secteur cible</li>
+        </ul>
+      </div>
+
+      <div class="platform-card">
+        <div class="platform-header"><div class="platform-name">🟣 Malt</div><div class="platform-score">⭐ Meilleur pour débuter</div></div>
+        <div class="platform-desc">Malt est la marketplace freelance de référence en France. Les clients viennent à toi si ton profil est bien rempli. Idéal pour les premiers contrats sans prospection active.</div>
+        <ul class="platform-tips">
+          <li>Catégorie : "Intelligence Artificielle" ou "Automatisation des processus"</li>
+          <li>Portfolio : crée 2-3 projets fictifs (ou perso) bien présentés pour montrer tes compétences</li>
+          <li>Les premiers avis sont clés — propose un tarif réduit à tes 2-3 premiers clients contre un avis</li>
+          <li>Répondre dans l'heure aux demandes — l'algorithme Malt favorise les réactifs</li>
+        </ul>
+      </div>
+
+      <div class="platform-card">
+        <div class="platform-header"><div class="platform-name">🌍 Upwork</div><div class="platform-score">⭐ Marché international</div></div>
+        <div class="platform-desc">Si tu maîtrises l'anglais, Upwork te donne accès à un marché mondial. Les tarifs en USD peuvent être plus élevés qu'en France pour les mêmes services.</div>
+        <ul class="platform-tips">
+          <li>Commence avec des petits projets (50-200$) pour accumuler des avis rapidement</li>
+          <li>Niche précise dans ta bio — "n8n automation specialist" bat "consultant IA" sur Upwork</li>
+          <li>Personnalise chaque proposition — pas de templates génériques</li>
+        </ul>
+      </div>
+
+      <h2 class="section-h2">Script de prospection LinkedIn</h2>
+      <p>Ce script a un taux de réponse de 30-40% quand il est bien personnalisé :</p>
+
+      <div class="script-box">
+        <div class="script-label">Message de connexion (300 caractères max)</div>
+Bonjour <em>[Prénom]</em>, j'ai vu que tu es <em>[poste]</em> chez <em>[entreprise]</em>.
+Je travaille sur des solutions IA pour <em>[secteur]</em> — notamment pour
+<em>[problème spécifique à leur secteur]</em>. Tu serais dispo 15 min
+pour que je partage ce que j'ai vu fonctionner ?
+      </div>
+
+      <div class="script-box">
+        <div class="script-label">Message de suivi (après connexion acceptée)</div>
+Merci pour la connexion <em>[Prénom]</em> !
+
+Pour être direct : j'aide les <em>[type d'entreprise]</em> à
+<em>[résultat concret]</em> avec l'IA — typiquement <em>[exemple simple]</em>.
+
+Pas de démo ni de présentation — juste un échange rapide pour
+voir si ça pourrait t'apporter de la valeur.
+
+Tu aurais 15 min cette semaine ou la semaine prochaine ?
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">💡 La règle des 5%</div>
+        <p>Sur 100 messages envoyés, 30-40 répondront, 10-15 accepteront un appel, 5 deviendront des clients potentiels, 1-2 signeront. C'est mathématique. Ne prends pas les refus personnellement — c'est juste un jeu de nombres.</p>
+      </div>
+
+      <h2 class="section-h2">Convertir un appel en contrat</h2>
+      <p>L'objectif d'un premier appel n'est pas de vendre — c'est de comprendre le problème et de qualifier si tu peux aider. Structure :</p>
+      <ol>
+        <li><strong>5 min</strong> — Présentation rapide, contexte de leur entreprise</li>
+        <li><strong>10 min</strong> — Questions sur LEUR problème (pas sur toi) : "Qu'est-ce qui vous prend le plus de temps ? Où perdez-vous le plus d'argent ?"</li>
+        <li><strong>10 min</strong> — Tu présentes comment tu pourrais résoudre ça précisément</li>
+        <li><strong>5 min</strong> — Proposition concrète avec budget indicatif</li>
+        <li><strong>Closing</strong> — "Est-ce que ça fait sens de préparer un devis ?"</li>
+      </ol>
+
+      <!-- EXERCICE -->
+      <div class="exercise-box">
+        <div class="exercise-title">🤝 Exercice — Envoie 5 messages de prospection</div>
+        <p class="exercise-desc">Le seul moyen de trouver des clients est de tendre la main. Cet exercice est inconfortable — c'est voulu.</p>
+        <div class="exercise-steps">
+          <ol>
+            <li>Utilise Claude pour <strong>personnaliser le script</strong> ci-dessus à ton service et ta cible</li>
+            <li>Identifie <strong>5 prospects sur LinkedIn</strong> (CEO, Directeur, Responsable dans ton secteur cible)</li>
+            <li>Envoie les <strong>5 demandes de connexion</strong> avec le message personnalisé</li>
+            <li>Note dans un tableau : nom, entreprise, date d'envoi, réponse reçue</li>
+          </ol>
+        </div>
+        <button class="btn-complete" id="btn-complete" onclick="completeModule()">
+          ✓ J'ai envoyé mes 5 messages — Débloquer le Module 4
+        </button>
+      </div>
+
+      <div class="nav-footer">
+        <a href="module-2.html" class="nav-back-link">← Module 2</a>
+        <span style="font-size:13px;color:#71717a">Module 3/6 · 🤝 Client Débloqué · +100 XP</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../assets/js/cours.js"></script>
+<script>
+AB.requireAccess('../');
+if (!AB.isModuleUnlocked(3)) { window.location.href = 'index.html'; }
+
+const lvl = AB.getCurrentLevel();
+document.getElementById('level-chip').textContent = lvl.badge + ' ' + lvl.xp + ' XP';
+document.getElementById('progress-chip').textContent = AB.getCompletedCount() + '/6 complétés';
+
+const btn = document.getElementById('btn-complete');
+if (AB.isModuleDone(3)) { btn.textContent = '✓ Module complété'; btn.disabled = true; }
+function completeModule() { AB.completeModule(3); }
+
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+</script>
+</body>
+</html>

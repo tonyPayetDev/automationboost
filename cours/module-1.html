@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 1 – Ton arsenal IA | AutomationBoost</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .cours-page { padding:120px 0 80px }
+    .cours-inner { max-width:760px }
+    .mod-eyebrow { display:flex;align-items:center;gap:12px;margin-bottom:24px }
+    .mod-badge { background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.2);color:#eab308;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;font-family:'Orbitron',sans-serif }
+    .mod-progress-chip { font-size:12px;color:#71717a }
+    .mod-title { font-family:'Orbitron',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;margin-bottom:16px;line-height:1.2 }
+    .mod-intro { font-size:1.1rem;color:#a1a1aa;line-height:1.9;margin-bottom:40px;border-left:3px solid #eab308;padding-left:20px }
+    .section-h2 { font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:700;color:#e4e4e7;margin:44px 0 16px }
+    .section-h3 { font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;color:#eab308;margin:28px 0 10px }
+    p { color:#a1a1aa;line-height:1.9;margin-bottom:16px }
+    ul, ol { color:#a1a1aa;line-height:1.9;padding-left:20px;margin-bottom:16px }
+    li { margin-bottom:6px }
+    strong { color:#e4e4e7 }
+    .tool-card { background:#0d0d0d;border:1px solid #1a1a1a;border-radius:10px;padding:20px;margin:12px 0;display:flex;gap:16px;align-items:flex-start }
+    .tool-icon { font-size:28px;flex-shrink:0 }
+    .tool-name { font-weight:700;color:#e4e4e7;margin-bottom:4px }
+    .tool-desc { font-size:14px;color:#71717a }
+    .tool-tag { display:inline-block;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);color:#4ade80;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-left:8px;text-transform:uppercase }
+    .prompt-box { background:#050505;border:1px solid rgba(234,179,8,0.2);border-radius:8px;padding:20px;margin:16px 0;font-family:monospace;font-size:14px;color:#a3e635;line-height:1.7 }
+    .prompt-label { font-size:11px;font-weight:700;color:#eab308;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px }
+    .tip-box { background:#0d0d0d;border:1px solid #1a1a1a;border-left:3px solid #eab308;border-radius:8px;padding:20px;margin:24px 0 }
+    .tip-label { font-size:11px;font-weight:700;color:#eab308;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px }
+    .exercise-box { background:rgba(234,179,8,0.05);border:2px solid rgba(234,179,8,0.3);border-radius:12px;padding:32px;margin:48px 0 0 }
+    .exercise-title { font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:700;color:#eab308;margin-bottom:8px }
+    .exercise-desc { font-size:15px;color:#a1a1aa;line-height:1.8;margin-bottom:24px }
+    .exercise-steps { background:#0d0d0d;border-radius:8px;padding:20px;margin-bottom:24px }
+    .exercise-steps li { color:#a1a1aa;margin-bottom:10px }
+    .btn-complete { background:#eab308;color:#000;font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;padding:16px 32px;border:none;border-radius:8px;cursor:pointer;width:100%;transition:all .2s }
+    .btn-complete:hover { background:#ca8a04;transform:translateY(-1px) }
+    .btn-complete:disabled { background:#71717a;cursor:not-allowed;transform:none }
+    .nav-footer { display:flex;justify-content:space-between;align-items:center;margin-top:48px;padding-top:32px;border-top:1px solid #1a1a1a }
+    .nav-back-link { color:#71717a;font-size:14px;text-decoration:none;display:flex;align-items:center;gap:6px }
+    .nav-back-link:hover { color:#eab308 }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px">
+      <a href="index.html" style="color:#71717a;font-size:14px;text-decoration:none;font-family:'Rajdhani',sans-serif">← Tableau de bord</a>
+      <span style="font-size:13px;color:#eab308;font-weight:700" id="level-chip"></span>
+    </div>
+  </div>
+</nav>
+
+<section class="cours-page">
+  <div class="container">
+    <div class="cours-inner">
+      <div class="mod-eyebrow">
+        <span class="mod-badge">Module 1 / 6</span>
+        <span class="mod-progress-chip" id="progress-chip">Chargement…</span>
+      </div>
+
+      <h1 class="mod-title">⚔️ Ton arsenal IA</h1>
+      <p class="mod-intro">Avant de gagner de l'argent avec l'IA, il faut avoir les bons outils et savoir s'en servir. Dans ce module, tu vas construire ton setup de travail optimal — gratuit à 95%.</p>
+
+      <h2 class="section-h2">Les outils essentiels</h2>
+      <p>Tu n'as pas besoin d'acheter 15 abonnements. Ces 4 outils couvrent 90% des cas d'usage professionnels :</p>
+
+      <div class="tool-card">
+        <div class="tool-icon">🧠</div>
+        <div><div class="tool-name">Claude (Anthropic) <span class="tool-tag">Gratuit</span></div><div class="tool-desc">Le meilleur modèle pour l'analyse, la rédaction longue et le code. L'interface gratuite est largement suffisante pour commencer. C'est ton outil principal.</div></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">🔍</div>
+        <div><div class="tool-name">Perplexity <span class="tool-tag">Gratuit</span></div><div class="tool-desc">Recherche augmentée par IA. Remplace Google pour la recherche pro — sources citées, réponses synthétisées. Indispensable pour les études de marché rapides.</div></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">⚡</div>
+        <div><div class="tool-name">n8n <span class="tool-tag">Gratuit / Open source</span></div><div class="tool-desc">L'outil d'automatisation no-code. Tu vas l'utiliser pour créer des workflows pour toi et tes clients. Hébergeable gratuitement ou via leur cloud.</div></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">📝</div>
+        <div><div class="tool-name">Notion <span class="tool-tag">Freemium</span></div><div class="tool-desc">Base de données + wiki + gestion de projet. Idéal pour livrer des espaces de travail IA à tes clients et créer des templates à vendre.</div></div>
+      </div>
+
+      <h2 class="section-h2">Les 3 prompts qui changent tout</h2>
+      <p>La majorité des gens utilisent l'IA comme un moteur de recherche. Ces 3 structures de prompt te donnent des résultats de consultant senior :</p>
+
+      <h3 class="section-h3">1. Le prompt Persona + Contexte + Tâche</h3>
+      <div class="prompt-box">
+        <div class="prompt-label">Structure</div>
+Tu es [RÔLE EXPERT]. Contexte : [SITUATION PRÉCISE].
+Ta mission : [TÂCHE CLAIRE avec format de sortie attendu].
+Contraintes : [LIMITES À RESPECTER].
+      </div>
+      <div class="prompt-box">
+        <div class="prompt-label">Exemple concret</div>
+Tu es un consultant en productivité pour PME.
+Contexte : mon client dirige une équipe de 8 personnes,
+perd 3h/semaine en réunions inutiles.
+Ta mission : propose 5 actions concrètes pour réduire ce temps
+de 50% en 30 jours. Format : liste numérotée avec 1 action
+par ligne + temps d'implémentation.
+      </div>
+
+      <h3 class="section-h3">2. Le prompt Itératif</h3>
+      <p>Ne cherche pas la perfection au premier prompt. Itère :</p>
+      <div class="prompt-box">
+        <div class="prompt-label">Pattern</div>
+[Prompt initial] → Réponds à ça → "Maintenant, reformule
+mais [modification précise]" → "Garde le fond, rends ça
+plus [court/percutant/adapté à X]"
+      </div>
+
+      <h3 class="section-h3">3. Le prompt Extraction d'expertise</h3>
+      <p>Pour générer du contenu ou des analyses de valeur que tu peux livrer à des clients :</p>
+      <div class="prompt-box">
+        <div class="prompt-label">Structure</div>
+Analyse [SUJET] du point de vue d'un expert en [DOMAINE].
+Identifie : 1) les 3 problèmes principaux, 2) les causes racines,
+3) les solutions concrètes avec ROI estimé.
+Public cible : [QUI VA LIRE ÇA].
+Niveau de technicité : [DÉBUTANT/INTERMÉDIAIRE/EXPERT].
+      </div>
+
+      <h2 class="section-h2">Setup ton workflow quotidien</h2>
+      <p>Un pro de l'IA travaille avec un workflow — pas session par session. Voici le setup minimaliste qui fonctionne :</p>
+      <ul>
+        <li><strong>Claude</strong> ouvert en onglet permanent pour toute tâche cognitive (rédaction, analyse, idéation)</li>
+        <li><strong>Perplexity</strong> pour toute recherche qui nécessite des sources actuelles</li>
+        <li><strong>Un fichier "prompts sauvegardés"</strong> dans Notion — tes meilleurs prompts classés par usage</li>
+        <li><strong>n8n en arrière-plan</strong> pour les automatisations qui tournent seules</li>
+      </ul>
+
+      <div class="tip-box">
+        <div class="tip-label">💡 Le secret des pros</div>
+        <p>Les meilleurs freelancers IA ne cherchent pas les derniers outils — ils maîtrisent parfaitement 3-4 outils et les combinent. La profondeur bat la largeur.</p>
+      </div>
+
+      <!-- EXERCICE -->
+      <div class="exercise-box" id="exercise">
+        <div class="exercise-title">⚔️ Exercice — Crée ton premier workflow</div>
+        <p class="exercise-desc">Pour compléter ce module et débloquer le suivant, réalise cet exercice et coche la case quand c'est fait.</p>
+        <div class="exercise-steps">
+          <ol>
+            <li>Crée un compte gratuit sur <strong>Claude.ai</strong> si ce n'est pas déjà fait</li>
+            <li>Utilise le <strong>prompt Persona + Contexte + Tâche</strong> pour analyser un problème de ton secteur ou d'un potentiel client</li>
+            <li>Sauvegarde ce prompt dans un fichier Notion ou Google Doc — c'est ton premier "template de prompt"</li>
+            <li>Crée un compte n8n.io (gratuit) et regarde le tutoriel d'introduction (15 min)</li>
+          </ol>
+        </div>
+        <button class="btn-complete" id="btn-complete" onclick="completeModule()">
+          ✓ J'ai complété l'exercice — Débloquer le Module 2
+        </button>
+      </div>
+
+      <div class="nav-footer">
+        <a href="index.html" class="nav-back-link">← Tableau de bord</a>
+        <span style="font-size:13px;color:#71717a">Module 1/6 · ⚔️ Arsenal Déployé · +100 XP</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../assets/js/cours.js"></script>
+<script>
+AB.requireAccess('../');
+
+const lvl = AB.getCurrentLevel();
+document.getElementById('level-chip').textContent = lvl.badge + ' ' + lvl.xp + ' XP';
+document.getElementById('progress-chip').textContent = AB.getCompletedCount() + '/6 complétés';
+
+const btn = document.getElementById('btn-complete');
+if (AB.isModuleDone(1)) {
+  btn.textContent = '✓ Module complété';
+  btn.disabled = true;
+}
+
+function completeModule() {
+  AB.completeModule(1);
+}
+
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+</script>
+</body>
+</html>
