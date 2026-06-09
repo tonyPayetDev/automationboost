@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutomatisationBoost — Automatise ta vie. Récupère ton énergie.</title>
+  <meta name="description" content="Stop aux tâches répétitives. Automatisation IA sur-mesure livrée en 48h pour PME, freelances et auto-entrepreneurs. Récupère 10 à 15h par semaine." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/landing.css" />
+</head>
+<body>
+
+<!-- ══ NAVBAR ════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">⚡</div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <a href="#formulaire" class="nav-cta">Démarrer →</a>
+  </div>
+</nav>
+
+<!-- ══ HERO ══════════════════════════════════════════ -->
+<section class="lp-hero">
+  <div class="lp-hero-inner">
+    <div class="lp-hero-badge">Automatisation IA · Livraison 48h ⚡</div>
+    <h1 class="lp-hero-title">
+      Automatise ta vie.<br>
+      <span class="accent">Récupère ton énergie.</span>
+    </h1>
+    <p class="lp-hero-subtitle">
+      Stop aux tâches répétitives. Je te livre une automatisation IA sur-mesure en 48h —
+      pour que tu te concentres sur ce qui compte vraiment.
+    </p>
+    <a href="#profil" class="lp-hero-cta">Choisir mon profil →</a>
+  </div>
+</section>
+
+<!-- ══ PAIN POINTS ════════════════════════════════════ -->
+<div style="padding: 0 20px 80px; position: relative; z-index: 1;">
+  <p style="font-family:'Orbitron',sans-serif;font-size:0.75rem;letter-spacing:3px;color:var(--text-muted);text-transform:uppercase;text-align:center;margin-bottom:40px;">
+    Tu te reconnais dans l'une de ces situations ?
+  </p>
+  <div class="lp-pain">
+    <ul class="lp-pain-list">
+      <li>Tu passes des heures sur des tâches qui pourraient tourner seules</li>
+      <li>Tu sais que l'automatisation existe — mais tu n'as jamais eu le temps de t'y mettre</li>
+      <li>Ton business avance, mais trop lentement par rapport à l'énergie que tu y mets</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══ SÉLECTEUR DE PROFIL ════════════════════════════ -->
+<section id="profil" style="padding: 0 20px 60px; position: relative; z-index: 1;">
+  <p class="lp-section-title" style="margin-bottom:16px;">Quel est ton profil ?</p>
+  <p style="text-align:center;color:var(--text-muted);font-size:0.95rem;margin-bottom:40px;">
+    Clique sur ta situation pour voir ce que l'automatisation change concrètement pour toi.
+  </p>
+  <div class="lp-profiles">
+
+    <div class="profile-card" data-profile="pme" role="button" tabindex="0" aria-pressed="false">
+      <span class="profile-card-icon">🏢</span>
+      <div class="profile-card-name">PME</div>
+      <div class="profile-card-sub">J'ai une équipe</div>
+    </div>
+
+    <div class="profile-card" data-profile="freelance" role="button" tabindex="0" aria-pressed="false">
+      <span class="profile-card-icon">💻</span>
+      <div class="profile-card-name">Freelance</div>
+      <div class="profile-card-sub">Je travaille seul</div>
+    </div>
+
+    <div class="profile-card" data-profile="autoentrepreneur" role="button" tabindex="0" aria-pressed="false">
+      <span class="profile-card-icon">⚡</span>
+      <div class="profile-card-name">Auto-entrepreneur</div>
+      <div class="profile-card-sub">Je lance mon activité</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ BLOC DYNAMIQUE ════════════════════════════════ -->
+<section style="padding: 0 20px 80px;">
+  <div id="dynamic-block" class="hidden">
+    <h2 class="dynamic-title" id="dynamic-title"></h2>
+    <ul class="dynamic-examples" id="dynamic-examples"></ul>
+    <span class="dynamic-benefit" id="dynamic-benefit"></span>
+  </div>
+</section>
+
+<!-- ══ FORMULAIRE ════════════════════════════════════ -->
+<section id="formulaire" style="padding: 0 20px 100px;">
+  <p class="lp-section-title">Démarrer mon diagnostic</p>
+  <div class="lp-form-wrap">
+
+    <div id="form-success" class="hidden">
+      <div class="success-icon">✅</div>
+      <p class="success-title">Message reçu !</p>
+      <p class="success-text">Je reviens vers toi dans les 24h avec un plan d'action personnalisé.</p>
+    </div>
+
+    <form id="lead-form" novalidate>
+      <p class="lp-form-title">Prêt à récupérer ton temps ?</p>
+      <p class="lp-form-subtitle">Dis-moi où tu en es — je te réponds sous 24h avec un plan concret.</p>
+
+      <div class="lp-form-group">
+        <label for="prenom">Prénom</label>
+        <input type="text" id="prenom" name="prenom" placeholder="Ton prénom" required autocomplete="given-name" />
+      </div>
+
+      <div class="lp-form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="ton@email.com" required autocomplete="email" />
+      </div>
+
+      <div class="lp-form-group">
+        <label for="message">Ta situation <span style="color:var(--text-muted);font-weight:400;">(optionnel)</span></label>
+        <textarea id="message" name="message" placeholder="Décris ta situation en quelques mots… Qu'est-ce qui te prend le plus de temps ?"></textarea>
+      </div>
+
+      <!-- Champs cachés : profil + UTM -->
+      <input type="hidden" name="profil" value="" />
+      <input type="hidden" name="utm_source" value="" />
+      <input type="hidden" name="utm_campaign" value="" />
+      <input type="hidden" name="utm_medium" value="" />
+
+      <button type="submit" class="lp-form-submit">
+        Démarrer mon diagnostic gratuit →
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════════ -->
+<footer class="lp-footer">
+  <nav class="lp-footer-links" aria-label="Liens légaux">
+    <a href="index.html">Accueil</a>
+    <a href="#">Mentions légales</a>
+    <a href="#">Politique de confidentialité</a>
+    <a href="#">CGV</a>
+  </nav>
+  <p class="lp-footer-copy">© 2026 AutomatisationBoost — Tony Payet · tony.payet.professionnel@gmail.com</p>
+</footer>
+
+<!-- ══ JAVASCRIPT ═════════════════════════════════════ -->
+<script>
+// ── CONFIG ──────────────────────────────────────────────
+const N8N_WEBHOOK_URL = 'https://VOTRE_N8N_URL/webhook/landing-profil';
+
+// ── DONNÉES PAR PROFIL ──────────────────────────────────
+const PROFILE_DATA = {
+  pme: {
+    title: 'Automatise ce qui freine ta croissance',
+    examples: [
+      'Devis générés automatiquement',
+      'Relances clients sans effort',
+      'Rapports hebdo auto-envoyés'
+    ],
+    benefit: "Économise 15h/semaine sur l'admin"
+  },
+  freelance: {
+    title: "Concentre-toi sur tes missions, pas l'admin",
+    examples: [
+      'Onboarding client automatique',
+      'Facturation sans y penser',
+      'Contenu publié pendant que tu dors'
+    ],
+    benefit: 'Récupère 10h/semaine pour des missions qui paient'
+  },
+  autoentrepreneur: {
+    title: 'Lance-toi sans te noyer dans les outils',
+    examples: [
+      'Réponses aux prospects 24/7',
+      'Gestion des commandes en pilote auto',
+      'CRM qui se remplit tout seul'
+    ],
+    benefit: 'Gère tout seul sans y passer tes nuits'
+  }
+};
+
+// ── SÉLECTEUR DE PROFIL ─────────────────────────────────
+const profileCards = document.querySelectorAll('.profile-card');
+const dynamicBlock = document.getElementById('dynamic-block');
+
+profileCards.forEach(card => {
+  card.addEventListener('click', () => activateProfile(card.dataset.profile));
+  card.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      activateProfile(card.dataset.profile);
+    }
+  });
+});
+
+function activateProfile(profile) {
+  profileCards.forEach(c => {
+    c.classList.remove('active');
+    c.setAttribute('aria-pressed', 'false');
+  });
+  const activeCard = document.querySelector(`[data-profile="${profile}"]`);
+  activeCard.classList.add('active');
+  activeCard.setAttribute('aria-pressed', 'true');
+
+  document.querySelector('[name="profil"]').value = profile;
+
+  renderDynamicBlock(profile);
+}
+
+function renderDynamicBlock(profile) {
+  const data = PROFILE_DATA[profile];
+
+  document.getElementById('dynamic-title').textContent = data.title;
+  document.getElementById('dynamic-examples').innerHTML =
+    data.examples.map(ex => `<li>⚡ ${ex}</li>`).join('');
+  document.getElementById('dynamic-benefit').textContent = data.benefit;
+
+  dynamicBlock.classList.remove('hidden', 'visible');
+  void dynamicBlock.offsetWidth; // force reflow pour rejouer l'animation
+  dynamicBlock.classList.add('visible');
+
+  setTimeout(() => {
+    dynamicBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, 100);
+}
+
+// ── CAPTURE UTM ─────────────────────────────────────────
+const urlParams = new URLSearchParams(window.location.search);
+['utm_source', 'utm_campaign', 'utm_medium'].forEach(key => {
+  const field = document.querySelector(`[name="${key}"]`);
+  if (field) field.value = urlParams.get(key) || '';
+});
+
+// ── SOUMISSION FORMULAIRE ───────────────────────────────
+document.getElementById('lead-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const btn = this.querySelector('button[type="submit"]');
+  const originalText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Envoi en cours…';
+
+  const payload = Object.fromEntries(new FormData(this));
+
+  try {
+    await fetch(N8N_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    this.style.display = 'none';
+    document.getElementById('form-success').classList.remove('hidden');
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = originalText;
+    alert('Une erreur est survenue. Réessaie dans quelques instants ou contacte-moi directement.');
+  }
+});
+
+// ── NAVBAR SCROLL ────────────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').style.background =
+    window.scrollY > 50 ? 'rgba(5,5,5,0.97)' : 'transparent';
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,412 @@
+/* landing.css — Styles spécifiques à la landing page profil */
+
+/* ── SECTION BASE ──────────────────────────────────── */
+.lp-section {
+  position: relative;
+  z-index: 1;
+  padding: 80px 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.lp-section-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/* ── HERO ──────────────────────────────────────────── */
+.lp-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 20px 80px;
+  position: relative;
+  z-index: 1;
+}
+
+.lp-hero-inner {
+  max-width: 760px;
+}
+
+.lp-hero-badge {
+  display: inline-block;
+  background: var(--gold-glow);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  border-radius: 20px;
+  margin-bottom: 28px;
+}
+
+.lp-hero-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  color: var(--text);
+}
+
+.lp-hero-title .accent {
+  color: var(--gold);
+  text-shadow: var(--shadow-gold);
+}
+
+.lp-hero-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: var(--text-light);
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto 40px;
+}
+
+.lp-hero-cta {
+  display: inline-block;
+  background: var(--gold);
+  color: #000;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 16px 40px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: box-shadow 0.3s, transform 0.2s;
+}
+
+.lp-hero-cta:hover {
+  box-shadow: var(--shadow-gold);
+  transform: translateY(-2px);
+}
+
+/* ── PAIN POINTS ────────────────────────────────────── */
+.lp-pain {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 60px 40px;
+  margin: 0 auto;
+  max-width: 760px;
+  position: relative;
+  z-index: 1;
+}
+
+.lp-pain-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.lp-pain-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  font-size: 1.1rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.lp-pain-list li::before {
+  content: '✗';
+  color: var(--red);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ── PROFILE SELECTOR ───────────────────────────────── */
+.lp-profiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 760px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.profile-card {
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s, transform 0.2s, box-shadow 0.25s;
+  user-select: none;
+}
+
+.profile-card:hover {
+  border-color: var(--gold-dark);
+  background: var(--bg-card-2);
+  transform: translateY(-3px);
+}
+
+.profile-card.active {
+  border-color: var(--gold);
+  background: var(--gold-glow);
+  box-shadow: 0 0 24px rgba(234,179,8,0.2);
+}
+
+.profile-card-icon {
+  font-size: 2.4rem;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.profile-card-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.profile-card.active .profile-card-name {
+  color: var(--gold);
+}
+
+.profile-card-sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* ── DYNAMIC BLOCK ──────────────────────────────────── */
+#dynamic-block {
+  max-width: 760px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  border: 1px solid var(--gold);
+  border-radius: var(--radius-lg);
+  padding: 48px 40px;
+  position: relative;
+  z-index: 1;
+}
+
+#dynamic-block.hidden {
+  display: none;
+}
+
+#dynamic-block.visible {
+  display: block;
+  animation: fadeSlideIn 0.4s ease forwards;
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.dynamic-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 28px;
+}
+
+.dynamic-examples {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.dynamic-examples li {
+  font-size: 1.05rem;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dynamic-benefit {
+  display: inline-block;
+  background: var(--gold);
+  color: #000;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 10px 22px;
+  border-radius: 30px;
+  text-transform: uppercase;
+}
+
+/* ── FORM ────────────────────────────────────────────── */
+.lp-form-wrap {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 48px 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.lp-form-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.2rem, 3vw, 1.7rem);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.lp-form-subtitle {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 32px;
+}
+
+.lp-form-group {
+  margin-bottom: 20px;
+}
+
+.lp-form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.lp-form-group input,
+.lp-form-group textarea {
+  width: 100%;
+  background: var(--bg-card-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  padding: 12px 16px;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.lp-form-group input:focus,
+.lp-form-group textarea:focus {
+  border-color: var(--gold);
+}
+
+.lp-form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.lp-form-submit {
+  width: 100%;
+  background: var(--gold);
+  color: #000;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 16px 32px;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: box-shadow 0.3s, transform 0.2s, opacity 0.2s;
+  margin-top: 8px;
+}
+
+.lp-form-submit:hover:not(:disabled) {
+  box-shadow: var(--shadow-gold);
+  transform: translateY(-2px);
+}
+
+.lp-form-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── SUCCESS ─────────────────────────────────────────── */
+#form-success {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+#form-success.hidden { display: none; }
+
+.success-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.success-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.3rem;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+
+.success-text {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* ── FOOTER ──────────────────────────────────────────── */
+.lp-footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.lp-footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.lp-footer-links a {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.lp-footer-links a:hover { color: var(--gold); }
+
+.lp-footer-copy {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+@media (max-width: 640px) {
+  .lp-profiles {
+    grid-template-columns: 1fr;
+  }
+
+  .lp-pain,
+  #dynamic-block,
+  .lp-form-wrap {
+    padding: 36px 24px;
+  }
+}
