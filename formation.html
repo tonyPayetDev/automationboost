@@ -53,7 +53,20 @@
     .level-chip:hover { border-color:rgba(234,179,8,0.3) }
     .level-icon { font-size:24px }
     .level-name { font-size:11px;font-weight:700;color:#eab308;text-align:center }
-    .level-xp { font-size:10px;color:#71717a }
+    .level-xp { font-size:11px;color:#71717a }
+    @media (max-width: 768px) {
+      .sticky-cta { bottom:16px;right:12px }
+      .sticky-btn { font-size:11px;padding:12px 18px }
+      .gamif-section { padding:28px 20px }
+    }
+    @media (max-width: 640px) {
+      .nav-btn-formation { display:none }
+      .price-box { padding:24px 20px;width:100%;box-sizing:border-box }
+      .btn-buy { padding:14px 24px;font-size:13px;width:100%;justify-content:center;box-sizing:border-box }
+      .module-card { padding:18px 14px }
+      .modules-grid { grid-template-columns:1fr }
+      .sticky-cta { display:none }
+    }
   </style>
 </head>
 <body>
@@ -62,7 +75,7 @@
     <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
     <div style="display:flex;align-items:center;gap:16px">
       <a href="ressources.html" style="color:#71717a;font-size:14px;text-decoration:none;font-family:'Rajdhani',sans-serif">Ressources</a>
-      <a href="#acheter" class="btn-buy" style="padding:10px 20px;font-size:12px">Rejoindre la formation</a>
+      <a href="#acheter" class="btn-buy nav-btn-formation" style="padding:10px 20px;font-size:12px">Rejoindre la formation</a>
     </div>
   </div>
 </nav>

@@ -1292,6 +1292,10 @@ footer {
 
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
+  /* Navbar : masquer les boutons secondaires sur mobile */
+  .nav-cta { display: none; }
+  .nav-formation { font-size: 12px !important; padding: 5px 10px !important; }
+
   section { padding: 60px 0; }
 
   .hero-stats { gap: 24px; }
@@ -1316,6 +1320,13 @@ footer {
 @media (max-width: 640px) {
   .hero-cta-group { flex-direction: column; }
   .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+
+  /* Navbar : réduire les liens restants sur très petit écran */
+  .nav-inner { padding: 0 14px; gap: 8px; }
+  .logo-text { font-size: 14px; }
+  .logo-icon { width: 30px; height: 30px; font-size: 15px; }
+  .nav-inner > div a { font-size: 12px; padding: 4px 8px; }
+  .nav-formation { font-size: 11px !important; padding: 4px 8px !important; }
 }
 
 /* --- ANIMATIONS --- */
