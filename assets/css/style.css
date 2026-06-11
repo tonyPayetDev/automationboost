@@ -1329,6 +1329,10 @@ footer {
   .nav-formation { font-size: 11px !important; padding: 4px 8px !important; }
 }
 
+@media (max-width: 360px) {
+  .nav-formation { display: none; }
+}
+
 /* --- ANIMATIONS --- */
 .fade-in {
   opacity: 0;
