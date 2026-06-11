@@ -3,7 +3,7 @@
    Palette : Cyberpunk Noir/Or
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 /* --- RESET & BASE --- */
 *, *::before, *::after {
@@ -36,10 +36,11 @@ html { scroll-behavior: smooth; }
 body {
   background-color: var(--bg-dark);
   color: var(--text);
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Inter', 'Rajdhani', sans-serif;
   font-size: 17px;
-  line-height: 1.7;
+  line-height: 1.75;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* Grille cyberpunk en arrière-plan */
@@ -79,15 +80,28 @@ body::after {
 /* --- TYPOGRAPHY --- */
 h1, h2, h3, h4 {
   font-family: 'Orbitron', sans-serif;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
 }
 
-h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; }
-h2 { font-size: clamp(1.6rem, 4vw, 2.5rem); font-weight: 700; }
-h3 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-weight: 600; }
+h1 { font-size: clamp(2.2rem, 5.5vw, 4rem); font-weight: 900; }
+h2 { font-size: clamp(1.7rem, 4vw, 2.8rem); font-weight: 700; }
+h3 { font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-weight: 600; }
 
-p { color: var(--text-light); }
+p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-light);
+}
+
+.section-subtitle, .hero-subtitle, .lede {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: 1.75;
+  font-weight: 400;
+  color: var(--text-light);
+}
 
 .gold { color: var(--gold); }
 .highlight { color: var(--gold); font-weight: 700; }
@@ -1407,43 +1421,48 @@ footer {
 .mobile-menu {
   display: none;
   position: fixed;
-  top: 69px;
+  top: 70px;
   left: 0;
   right: 0;
-  z-index: 999;
+  z-index: 9999;
   background: rgba(5,5,5,0.97);
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid rgba(234,179,8,0.15);
-  overflow: hidden;
-  /* Fade + slide vertical */
-  max-height: 0;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(234,179,8,0.18);
+  /* Fade + slide vertical — état fermé */
+  visibility: hidden;
   opacity: 0;
-  transform: translateY(-8px);
-  transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1),
-              opacity 0.3s ease,
-              transform 0.3s ease;
+  transform: translateY(-14px);
+  transition: opacity 0.28s ease,
+              transform 0.28s cubic-bezier(0.4,0,0.2,1),
+              visibility 0s linear 0.28s;
 }
 .mobile-menu.open {
-  max-height: 400px;
+  visibility: visible;
   opacity: 1;
   transform: translateY(0);
+  transition: opacity 0.28s ease,
+              transform 0.28s cubic-bezier(0.4,0,0.2,1),
+              visibility 0s linear 0s;
 }
 .mobile-menu-inner {
   display: flex;
   flex-direction: column;
-  padding: 12px 20px 20px;
-  gap: 4px;
+  padding: 16px 20px 24px;
+  gap: 2px;
 }
 .mob-link {
-  display: block;
-  padding: 13px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
   color: var(--text-light);
   text-decoration: none;
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  border-radius: 10px;
   border: 1px solid transparent;
   transition: all 0.18s;
 }
@@ -1456,8 +1475,12 @@ footer {
   color: var(--gold);
   background: rgba(234,179,8,0.07);
   border-color: rgba(234,179,8,0.15);
+  font-weight: 600;
 }
 .mob-link--gold:hover { background: rgba(234,179,8,0.14); }
+
+/* Séparateur entre liens */
+.mob-link + .mob-link { border-top: none; }
 
 @media (max-width: 768px) {
   .nav-burger { display: flex; }
