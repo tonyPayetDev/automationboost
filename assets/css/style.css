@@ -1347,45 +1347,130 @@ footer {
   .nav-formation { display: none; }
 }
 
-/* ===== RESPONSIVE MOBILE — GRILLES & SECTIONS ===== */
+/* ===== RESPONSIVE MOBILE — GRILLES, SLIDERS & SECTIONS ===== */
 @media (max-width: 640px) {
-  /* Hero : masquer le mockup, inutile sur petit écran */
+
+  /* Hero : masquer le mockup */
   .hero-visual { display: none; }
 
-  /* Toutes les sections : padding réduit */
-  section { padding: 48px 0 !important; }
+  /* Sections : padding réduit */
+  section { padding: 44px 0 !important; }
 
-  /* Problem : 2 colonnes compactes */
-  .problem-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-  .problem-card { padding: 16px 12px; }
-  .problem-card h3 { font-size: 0.85rem; }
-  .problem-card p { font-size: 0.78rem; }
+  /* Problem : 2 colonnes */
+  .problem-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .problem-card { padding: 14px 10px; }
+  .problem-card h3 { font-size: 0.82rem; }
+  .problem-card p { font-size: 0.76rem; }
 
-  /* Features : 2 colonnes compactes */
-  .features-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-  .feature-card { padding: 18px 12px; }
-  .feature-card h3 { font-size: 0.85rem; }
-  .feature-card p { font-size: 0.78rem; }
+  /* ── FEATURES SLIDER ── */
+  .features-grid {
+    display: flex !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 12px;
+    padding: 4px 20px 20px;
+    margin: 0 -24px;
+    scrollbar-width: none;
+  }
+  .features-grid::-webkit-scrollbar { display: none; }
+  .feature-card {
+    flex: 0 0 78vw;
+    max-width: 78vw;
+    min-width: 0;
+    scroll-snap-align: start;
+    padding: 20px 16px;
+  }
+  .feature-card h3 { font-size: 0.9rem; }
+  .feature-card p { font-size: 0.8rem; }
 
-  /* Testimonials : 1 colonne */
-  .testi-grid { grid-template-columns: 1fr; }
-  .testi-card { padding: 20px 16px; }
+  /* ── TESTIMONIALS SLIDER ── */
+  .testi-grid {
+    display: flex !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 12px;
+    padding: 4px 20px 20px;
+    margin: 0 -24px;
+    scrollbar-width: none;
+  }
+  .testi-grid::-webkit-scrollbar { display: none; }
+  .testi-card {
+    flex: 0 0 84vw;
+    max-width: 84vw;
+    min-width: 0;
+    scroll-snap-align: start;
+    padding: 20px 16px;
+  }
 
-  /* Pricing : 1 colonne, card réduite */
-  .pricing-grid { grid-template-columns: 1fr !important; }
-  .pricing-card { padding: 24px 18px; }
+  /* ── PRICING SLIDER ── */
+  .pricing-grid {
+    display: flex !important;
+    grid-template-columns: unset !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 14px;
+    padding: 4px 20px 20px;
+    margin: 0 -24px;
+    scrollbar-width: none;
+  }
+  .pricing-grid::-webkit-scrollbar { display: none; }
+  .pricing-card {
+    flex: 0 0 82vw !important;
+    max-width: 82vw;
+    min-width: 0;
+    scroll-snap-align: start;
+    padding: 24px 18px;
+    transform: none !important;
+  }
+  .pricing-card.featured { transform: none !important; }
 
-  /* How-it-works steps */
-  .steps-container { gap: 16px; }
+  /* Indicateur swipe sous les sliders */
+  #features .section-header::after,
+  #testimonials .section-header::after,
+  #pricing .section-header::after {
+    content: '← glisse →';
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    margin-top: 6px;
+    text-align: center;
+  }
 
-  /* Demo grid déjà 1 col, on réduit le padding */
-  .demo-grid { gap: 16px; }
+  /* ── STEPS COMPACTS ── */
+  .steps-container { gap: 8px; }
+  .step-item {
+    flex-direction: row !important;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 0;
+  }
+  .step-number { width: 36px !important; height: 36px !important; font-size: 0.78rem !important; flex-shrink: 0; }
+  .step-content { padding: 12px 14px; }
+  .step-content h3 { font-size: 0.9rem; margin-bottom: 4px; }
+  .step-content p { font-size: 0.78rem; }
 
-  /* Urgency / final-cta : centrer */
+  /* ── DEMO COMPACT ── */
+  .demo-grid { gap: 20px !important; }
+  .demo-screen { max-height: 300px; overflow: hidden; }
+  .demo-screen::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 60px;
+    background: linear-gradient(transparent, #080808);
+    pointer-events: none;
+  }
+  .demo-screen { position: relative; }
+
+  /* ── AUTRES ── */
   .urgency-box, .final-cta-box { padding: 32px 18px; }
-
-  /* Footer */
   .footer-inner { gap: 20px; }
+  .hero-cta-group { flex-direction: column; }
+  .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
 }
 
 /* --- HAMBURGER MENU MOBILE --- */
