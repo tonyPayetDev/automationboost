@@ -23,13 +23,26 @@
       <div class="logo-icon">⚡</div>
       <span class="logo-text">Automation<span>Boost</span></span>
     </a>
-    <div style="display:flex;align-items:center;gap:16px;">
+    <div class="nav-desktop" style="display:flex;align-items:center;gap:16px;">
       <a href="ressources.html" style="color:var(--text-muted);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">Ressources</a>
       <a href="formation.html" class="nav-formation" style="color:var(--gold);font-size:14px;font-weight:700;text-decoration:none;font-family:'Rajdhani',sans-serif;background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.25);padding:6px 14px;border-radius:6px;">⚡ Formation 29,90€</a>
       <a href="#pricing" class="nav-cta">Commencer →</a>
     </div>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- Menu mobile -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="ressources.html" class="mob-link">📚 Ressources</a>
+    <a href="formation.html" class="mob-link mob-link--gold">⚡ Formation 29,90€</a>
+    <a href="#pricing" class="mob-link" onclick="closeMobileMenu()">🚀 Commencer</a>
+    <a href="mailto:tony.payet.professionnel@gmail.com" class="mob-link">✉ Contact</a>
+  </nav>
+</div>
 
 <!-- ============ HERO ============ -->
 <section id="hero">
@@ -735,5 +748,35 @@
 </footer>
 
 <script src="assets/js/main.js"></script>
+<script>
+  const burger = document.getElementById('navBurger');
+  const menu   = document.getElementById('mobileMenu');
+
+  function closeMobileMenu() {
+    burger.classList.remove('open');
+    menu.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    menu.setAttribute('aria-hidden', 'true');
+  }
+
+  burger.addEventListener('click', () => {
+    const isOpen = menu.classList.contains('open');
+    if (isOpen) { closeMobileMenu(); }
+    else {
+      burger.classList.add('open');
+      menu.classList.add('open');
+      burger.setAttribute('aria-expanded', 'true');
+      menu.setAttribute('aria-hidden', 'false');
+    }
+  });
+
+  // Fermer au clic en dehors
+  document.addEventListener('click', (e) => {
+    if (!burger.contains(e.target) && !menu.contains(e.target)) closeMobileMenu();
+  });
+
+  // Fermer à l'ouverture d'un lien ancre
+  menu.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', closeMobileMenu));
+</script>
 </body>
 </html>
