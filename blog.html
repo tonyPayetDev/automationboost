@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog IA & Automatisation – AutomationBoost</title>
+  <meta name="description" content="Veille IA et automatisation pour entrepreneurs et PME. Articles publiés tous les 2 jours sur les derniers outils, modèles et stratégies pour gagner du temps avec l'IA." />
+  <link rel="canonical" href="https://automatisationboost.com/blog" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+  <style>
+    .blog-hero { padding: 140px 0 60px; text-align: center; position: relative; z-index: 1; }
+    .blog-hero-badge { display:inline-flex;align-items:center;gap:8px;background:var(--gold-glow);border:1px solid rgba(234,179,8,0.3);color:var(--gold);font-size:13px;font-weight:600;padding:6px 16px;border-radius:99px;margin-bottom:24px;letter-spacing:.05em;text-transform:uppercase; }
+    .blog-hero h1 { font-size:clamp(2rem,5vw,3rem);margin-bottom:16px; }
+    .blog-hero h1 span { color:var(--gold); }
+    .blog-hero p { font-size:1.1rem;color:var(--text-light);max-width:540px;margin:0 auto 32px; }
+    .blog-stats { display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-bottom:8px; }
+    .blog-stat { display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-muted); }
+    .blog-stat span { color:var(--gold);font-weight:700; }
+
+    /* FILTRES */
+    .filters { display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:48px;position:relative;z-index:1; }
+    .filter-btn { background:var(--bg-card);border:1px solid var(--border);color:var(--text-muted);padding:8px 20px;border-radius:99px;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s; }
+    .filter-btn:hover,.filter-btn.active { background:rgba(234,179,8,0.12);border-color:rgba(234,179,8,0.4);color:var(--gold); }
+
+    /* GRILLE */
+    .blog-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;position:relative;z-index:1; }
+    .blog-card { display:flex;flex-direction:column;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;text-decoration:none;transition:border-color .25s,transform .25s;position:relative;overflow:hidden; }
+    .blog-card:hover { border-color:rgba(234,179,8,0.4);transform:translateY(-3px); }
+    .blog-card::before { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);transform:scaleX(0);transform-origin:left;transition:transform .3s; }
+    .blog-card:hover::before { transform:scaleX(1); }
+    .bc-cat { font-size:10px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;font-family:'Orbitron',sans-serif; }
+    .bc-title { font-size:1.05rem;font-family:'Orbitron',sans-serif;font-weight:700;color:var(--text);line-height:1.35;margin-bottom:12px; }
+    .bc-desc { font-size:13px;color:var(--text-muted);line-height:1.6;flex:1;margin-bottom:20px; }
+    .bc-meta { display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text-muted);border-top:1px solid var(--border);padding-top:16px;margin-top:auto; }
+    .bc-read { color:var(--gold);font-weight:600;font-family:'Rajdhani',sans-serif;font-size:13px; }
+
+    /* FEATURED */
+    .blog-card.featured { grid-column: 1 / -1; flex-direction:row;gap:32px;padding:36px;border-color:rgba(234,179,8,0.2); }
+    .blog-card.featured .bc-content { flex:1; }
+    .blog-card.featured .bc-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:10px;font-weight:700;padding:3px 10px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px; }
+    .blog-card.featured .bc-title { font-size:1.4rem; }
+    .blog-card.featured .bc-desc { font-size:14px; }
+    @media(max-width:768px){.blog-card.featured{flex-direction:column;}}
+
+    /* CTA */
+    .blog-cta { text-align:center;padding:60px 0;border-top:1px solid var(--border);margin-top:60px; }
+    .blog-cta h2 { font-size:1.5rem;margin-bottom:12px; }
+    .blog-cta p { color:var(--text-light);max-width:500px;margin:0 auto 28px;font-size:15px; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div class="nav-desktop">
+      <a href="ressources.html">Ressources</a>
+      <a href="blog.html" style="color:var(--gold)">Blog</a>
+      <a href="formation.html">Formation</a>
+      <a href="index.html#pricing" class="nav-cta">Commencer</a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <nav class="mobile-menu-inner">
+    <a href="ressources.html" class="mob-link">📚 Ressources</a>
+    <a href="blog.html" class="mob-link">✍️ Blog</a>
+    <a href="formation.html" class="mob-link mob-link--gold">⚡ Formation 29,90€</a>
+    <a href="index.html#pricing" class="mob-link">🚀 Commencer</a>
+  </nav>
+</div>
+
+<section class="blog-hero">
+  <div class="blog-hero-badge">✍️ Veille IA &amp; Automatisation</div>
+  <h1>Le blog <span>AutomationBoost</span></h1>
+  <p>Actualité IA, nouveaux outils et stratégies concrètes pour entrepreneurs et PME. Un article tous les 2 jours.</p>
+  <div class="blog-stats">
+    <div class="blog-stat">📝 <span id="article-count">1</span> article publié</div>
+    <div class="blog-stat">🔄 Mis à jour <span>toutes les 48h</span></div>
+    <div class="blog-stat">🎯 Pour <span>entrepreneurs &amp; PME</span></div>
+  </div>
+</section>
+
+<div class="container" style="position:relative;z-index:1;">
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all">Tous</button>
+    <button class="filter-btn" data-filter="modeles-ia">Modèles IA</button>
+    <button class="filter-btn" data-filter="automatisation">Automatisation</button>
+    <button class="filter-btn" data-filter="agents-ia">Agents IA</button>
+    <button class="filter-btn" data-filter="outils">Outils &amp; Apps</button>
+    <button class="filter-btn" data-filter="strategie">Stratégie</button>
+  </div>
+
+  <div class="blog-grid" id="blogGrid">
+
+    <!-- ARTICLE 1 — FEATURED -->
+    <a href="blog/n8n-2-agents-ia-pme-automatisation-2026.html" class="blog-card featured" data-type="automatisation agents-ia" data-date="2026-06-11">
+      <div class="bc-content">
+        <span class="bc-badge">⭐ À la une</span>
+        <div class="bc-cat">Automatisation · Agents IA</div>
+        <div class="bc-title">n8n 2.0 &amp; agents IA : comment automatiser votre PME sans coder en 2026</div>
+        <div class="bc-desc">n8n 2.0 intègre 70 nœuds IA natifs et permet de créer des agents autonomes capables de raisonner et d'exécuter des tâches métier complètes. On vous explique comment en tirer parti concrètement.</div>
+        <div class="bc-meta">
+          <span>📅 11 juin 2026 · Tony Payet</span>
+          <span class="bc-read">8 min →</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="blog-cta">
+    <h2>Vous voulez implémenter l'IA dans votre business ?</h2>
+    <p>Je vous aide à mettre en place des automatisations sur-mesure adaptées à votre activité — résultats en 48h.</p>
+    <a href="https://tony.automatisationboost.com/#contact" class="btn-gold">Parler à Tony →</a>
+  </div>
+</div>
+
+<footer style="padding:40px 0;border-top:1px solid var(--border);text-align:center;">
+  <div class="container">
+    <p style="color:var(--text-muted);font-size:13px;">© 2026 AutomationBoost — <a href="/" style="color:var(--gold)">Accueil</a> · <a href="/ressources.html" style="color:var(--gold)">Ressources</a> · <a href="/blog.html" style="color:var(--gold)">Blog</a></p>
+  </div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 20); });
+
+  const burger = document.getElementById('navBurger');
+  const menu = document.getElementById('mobileMenu');
+  if (burger && menu) {
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+  }
+
+  // Filtres
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      document.querySelectorAll('.blog-card').forEach(card => {
+        card.style.display = (f === 'all' || card.dataset.type?.includes(f)) ? '' : 'none';
+      });
+    });
+  });
+</script>
+</body>
+</html>
