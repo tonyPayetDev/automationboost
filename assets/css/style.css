@@ -189,6 +189,20 @@ nav.scrolled {
   overflow: hidden;
 }
 
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
 .hero-glow {
   position: absolute;
   top: 20%;
