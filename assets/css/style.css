@@ -1333,6 +1333,47 @@ footer {
   .nav-formation { display: none; }
 }
 
+/* ===== RESPONSIVE MOBILE — GRILLES & SECTIONS ===== */
+@media (max-width: 640px) {
+  /* Hero : masquer le mockup, inutile sur petit écran */
+  .hero-visual { display: none; }
+
+  /* Toutes les sections : padding réduit */
+  section { padding: 48px 0 !important; }
+
+  /* Problem : 2 colonnes compactes */
+  .problem-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .problem-card { padding: 16px 12px; }
+  .problem-card h3 { font-size: 0.85rem; }
+  .problem-card p { font-size: 0.78rem; }
+
+  /* Features : 2 colonnes compactes */
+  .features-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .feature-card { padding: 18px 12px; }
+  .feature-card h3 { font-size: 0.85rem; }
+  .feature-card p { font-size: 0.78rem; }
+
+  /* Testimonials : 1 colonne */
+  .testi-grid { grid-template-columns: 1fr; }
+  .testi-card { padding: 20px 16px; }
+
+  /* Pricing : 1 colonne, card réduite */
+  .pricing-grid { grid-template-columns: 1fr !important; }
+  .pricing-card { padding: 24px 18px; }
+
+  /* How-it-works steps */
+  .steps-container { gap: 16px; }
+
+  /* Demo grid déjà 1 col, on réduit le padding */
+  .demo-grid { gap: 16px; }
+
+  /* Urgency / final-cta : centrer */
+  .urgency-box, .final-cta-box { padding: 32px 18px; }
+
+  /* Footer */
+  .footer-inner { gap: 20px; }
+}
+
 /* --- ANIMATIONS --- */
 .fade-in {
   opacity: 0;

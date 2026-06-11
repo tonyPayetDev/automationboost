@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workflows n8n — AutomationBoost</title>
+<meta name="description" content="12 workflows n8n testés en production. 5 gratuits, 7 payants. Automatisation restaurant, vidéo IA, lead generation, agents IA. Importables en 1 clic." />
+<link rel="canonical" href="https://automatisationboost.com/humian" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23eab308'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='18' font-family='Arial' fill='%23000'>⚡</text></svg>" />
+<style>
+  :root {
+    --bg: #0A0A0F;
+    --surface: #12121A;
+    --surface2: #1A1A25;
+    --border: rgba(255,255,255,0.07);
+    --border-hover: rgba(255,255,255,0.14);
+    --text: #F0EEF8;
+    --text-muted: rgba(240,238,248,0.5);
+    --text-dim: rgba(240,238,248,0.28);
+    --accent: #7C5CFC;
+    --accent2: #00D4A8;
+    --gold: #F0B429;
+    --free-color: #00D4A8;
+    --red: #FF5C5C;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,15,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.6rem 1.5rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+  .logo-icon { background: #eab308; width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+  .logo em { color: var(--accent); font-style: normal; }
+  .nav-home { color: var(--text-muted); font-size: 13px; text-decoration: none; border: 1px solid var(--border); padding: 4px 12px; border-radius: 100px; transition: all .2s; }
+  .nav-home:hover { color: var(--text); border-color: var(--border-hover); }
+  .nav-filters { display: flex; gap: 5px; flex-wrap: wrap; }
+  .filter-btn {
+    background: none; border: 1px solid var(--border); color: var(--text-muted);
+    padding: 4px 13px; border-radius: 100px; font-size: 0.75rem; font-family: 'DM Sans', sans-serif;
+    cursor: pointer; transition: all 0.2s; white-space: nowrap;
+  }
+  .filter-btn:hover { border-color: var(--border-hover); color: var(--text); }
+  .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  .hero { padding: 5rem 2rem 2.5rem; text-align: center; max-width: 680px; margin: 0 auto; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(124,92,252,0.1); border: 1px solid rgba(124,92,252,0.25); color: #A48BFC;
+    font-size: 0.72rem; padding: 4px 14px; border-radius: 100px; margin-bottom: 1.5rem;
+    letter-spacing: 0.07em; text-transform: uppercase;
+  }
+  h1 { font-family: 'Syne', sans-serif; font-size: clamp(1.9rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 1rem; }
+  h1 em { color: var(--accent); font-style: normal; }
+  .hero-sub { color: var(--text-muted); font-size: 1rem; max-width: 500px; margin: 0 auto 2rem; }
+  .hero-stats { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
+  .hero-stat { text-align: center; }
+  .hero-stat strong { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 700; display: block; }
+  .hero-stat span { font-size: 0.75rem; color: var(--text-muted); }
+
+  .trust-bar {
+    max-width: 900px; margin: 0 auto 1rem; padding: 0 1.5rem;
+    display: flex; gap: 0; border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+  }
+  .trust-item {
+    flex: 1; padding: 1rem 1.2rem; text-align: center;
+    border-right: 1px solid var(--border); background: var(--surface);
+  }
+  .trust-item:last-child { border-right: none; }
+  .trust-item strong { display: block; font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--accent2); }
+  .trust-item span { font-size: 0.72rem; color: var(--text-dim); }
+
+  .section { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem 3.5rem; }
+  .section-header { margin-bottom: 1.5rem; }
+  .section-label {
+    font-family: 'Syne', sans-serif; font-size: 0.68rem; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--text-dim);
+    display: flex; align-items: center; gap: 10px; margin-bottom: 6px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .section-tagline { font-size: 0.85rem; color: var(--text-muted); font-style: italic; }
+
+  .grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+  }
+
+  .card {
+    background: var(--surface); padding: 1.4rem; transition: background 0.2s;
+    display: flex; flex-direction: column; gap: 8px; position: relative;
+  }
+  .card:hover { background: var(--surface2); }
+  .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+  .card-icon { font-size: 1.4rem; line-height: 1; flex-shrink: 0; }
+  .badges { display: flex; gap: 5px; flex-wrap: wrap; margin-left: auto; }
+  .badge {
+    font-size: 0.65rem; font-weight: 500; padding: 2px 8px; border-radius: 100px;
+    text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap;
+  }
+  .badge-free    { background: rgba(0,212,168,0.1);  color: #00D4A8; border: 1px solid rgba(0,212,168,0.2); }
+  .badge-paid    { background: rgba(124,92,252,0.1); color: #A48BFC; border: 1px solid rgba(124,92,252,0.2); }
+  .badge-premium { background: rgba(240,180,41,0.1); color: var(--gold); border: 1px solid rgba(240,180,41,0.2); }
+  .badge-nodes   { background: rgba(255,255,255,0.04); color: var(--text-dim); border: 1px solid var(--border); }
+
+  .pain-line {
+    font-size: 0.75rem; color: var(--red); opacity: 0.8;
+    background: rgba(255,92,92,0.06); border: 1px solid rgba(255,92,92,0.12);
+    border-radius: 6px; padding: 5px 9px; display: flex; align-items: center; gap: 5px;
+  }
+  .card-name { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 600; line-height: 1.3; }
+  .card-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; flex: 1; }
+
+  .card-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin: 2px 0; }
+  .stat-pill {
+    background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+    border-radius: 8px; padding: 6px 8px; text-align: center;
+  }
+  .stat-pill strong { display: block; font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; }
+  .stat-pill span { font-size: 0.6rem; color: var(--text-dim); line-height: 1.2; display: block; margin-top: 1px; }
+  .stat-time strong  { color: var(--accent2); }
+  .stat-roi  strong  { color: var(--gold); }
+  .stat-tasks strong { color: var(--accent); }
+
+  .card-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+  .tag { font-size: 0.67rem; color: var(--text-dim); background: rgba(255,255,255,0.03); border: 1px solid var(--border); padding: 2px 7px; border-radius: 100px; }
+
+  .card-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 2px; }
+  .card-importable { font-size: 0.7rem; color: var(--text-dim); }
+  .price { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; }
+  .price-free    { color: var(--free-color); }
+  .price-paid    { color: var(--accent); }
+  .price-premium { color: var(--gold); }
+
+  .btn-buy {
+    display: block; width: 100%; padding: 9px; border-radius: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 500;
+    cursor: pointer; border: none; text-align: center; transition: all 0.18s; margin-top: 2px;
+  }
+  .btn-free    { background: rgba(0,212,168,0.1); color: var(--free-color); border: 1px solid rgba(0,212,168,0.2); }
+  .btn-free:hover { background: rgba(0,212,168,0.18); }
+  .btn-paid    { background: var(--accent); color: #fff; }
+  .btn-paid:hover { background: #6B4AEB; }
+  .btn-premium { background: linear-gradient(135deg, #F0B429 0%, #C87400 100%); color: #180E00; font-weight: 600; }
+  .btn-premium:hover { filter: brightness(1.08); }
+
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 500;
+    background: rgba(0,0,0,0.75); backdrop-filter: blur(10px);
+    align-items: center; justify-content: center; padding: 1.5rem;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--surface); border: 1px solid var(--border-hover);
+    border-radius: 20px; padding: 2rem; max-width: 500px; width: 100%; position: relative;
+    max-height: 90vh; overflow-y: auto;
+  }
+  .modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: var(--text-muted); font-size: 1.3rem; cursor: pointer; }
+  .modal h2 { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.4rem; }
+  .modal-tagline { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem; font-style: italic; }
+  .modal-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin: 1rem 0; }
+  .modal-stat { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 10px; text-align: center; }
+  .modal-stat strong { display: block; font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; }
+  .modal-stat span { font-size: 0.62rem; color: var(--text-dim); }
+  .modal-price { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; margin: 1rem 0 0.3rem; }
+  .modal-vs-freelance { font-size: 0.75rem; color: var(--text-dim); margin-bottom: 1rem; }
+  .modal-vs-freelance s { color: var(--red); opacity: 0.7; }
+  .modal-includes { margin-bottom: 1.2rem; }
+  .modal-includes-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-dim); margin-bottom: 8px; }
+  .modal-includes ul { list-style: none; }
+  .modal-includes li { font-size: 0.83rem; color: var(--text-muted); padding: 5px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; align-items: flex-start; }
+  .modal-includes li::before { content: '✓'; color: var(--accent2); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .btn-modal-cta {
+    display: block; width: 100%; padding: 13px; border-radius: 10px;
+    font-family: 'Syne', sans-serif; font-size: 0.92rem; font-weight: 700;
+    background: var(--accent); color: #fff; border: none; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-modal-cta:hover { background: #6B4AEB; }
+  .btn-modal-cta.free-cta { background: var(--free-color); color: #001A13; }
+  .btn-modal-cta.free-cta:hover { filter: brightness(0.92); }
+  .btn-modal-cta.premium-cta { background: linear-gradient(135deg, #F0B429, #C87400); color: #180E00; }
+  .modal-footer-note { text-align: center; font-size: 0.7rem; color: var(--text-dim); margin-top: 0.75rem; }
+
+  footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; color: var(--text-dim); font-size: 0.76rem; }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 640px) {
+    .trust-bar { flex-direction: column; }
+    .trust-item { border-right: none; border-bottom: 1px solid var(--border); }
+    .trust-item:last-child { border-bottom: none; }
+    .grid { grid-template-columns: 1fr; }
+    .nav-filters { display: none; }
+    .hero { padding: 3rem 1.5rem 1.5rem; }
+    h1 { font-size: 1.7rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo"><div class="logo-icon">⚡</div>Automation<em>Boost</em></a>
+  <div class="nav-filters">
+    <button class="filter-btn active" data-filter="all">Tous</button>
+    <button class="filter-btn" data-filter="free">🆓 Gratuits</button>
+    <button class="filter-btn" data-filter="paid">⚡ Payants</button>
+    <button class="filter-btn" data-filter="premium">🔥 Premium</button>
+    <button class="filter-btn" data-filter="restaurant">🍽️ Restaurant</button>
+    <button class="filter-btn" data-filter="video">🎬 Vidéo IA</button>
+    <button class="filter-btn" data-filter="social">📱 Social Media</button>
+    <button class="filter-btn" data-filter="agent">🤖 Agent IA</button>
+    <button class="filter-btn" data-filter="lead">🎯 Lead</button>
+  </div>
+  <a href="/" class="nav-home">← Accueil</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">✦ Workflows n8n — AutomationBoost · La Réunion</div>
+  <h1>Arrête de perdre du temps.<br>Lance des workflows <em>qui travaillent pour toi.</em></h1>
+  <p class="hero-sub">Testés en production. Importables en 1 clic. Chaque workflow remplace des heures de travail manuel — dès aujourd'hui.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><strong>208</strong><span>workflows créés</span></div>
+    <div class="hero-stat"><strong>+1 200h</strong><span>économisées estimées</span></div>
+    <div class="hero-stat"><strong>12</strong><span>en vente</span></div>
+    <div class="hero-stat"><strong>5</strong><span>100% gratuits</span></div>
+  </div>
+</div>
+
+<div class="trust-bar">
+  <div class="trust-item"><strong>⚡ 8 min</strong><span>Pour déployer une démo client live</span></div>
+  <div class="trust-item"><strong>🤖 100%</strong><span>Automatisé, zéro intervention manuelle</span></div>
+  <div class="trust-item"><strong>💶 -95%</strong><span>Vs faire développer sur mesure</span></div>
+  <div class="trust-item"><strong>🔁 Prod-ready</strong><span>Validés en conditions réelles</span></div>
+</div>
+
+<div class="section">
+  <div class="section-header">
+    <div class="section-label">✦ Gratuits — prends, installe, performe</div>
+    <div class="section-tagline">5 workflows offerts pour tester la puissance de l'automatisation n8n</div>
+  </div>
+  <div class="grid" id="grid-free"></div>
+</div>
+
+<div class="section">
+  <div class="section-header">
+    <div class="section-label">⚡ Payants — ROI dès la première semaine</div>
+    <div class="section-tagline">Chaque workflow te fait économiser plusieurs heures par semaine. Amorti en quelques jours.</div>
+  </div>
+  <div class="grid" id="grid-paid"></div>
+</div>
+
+<div class="section">
+  <div class="section-header">
+    <div class="section-label">🔥 Premium — armes de compétition massives</div>
+    <div class="section-tagline">Des pipelines complets qui automatisent des processus entiers. Réservés aux sérieux.</div>
+  </div>
+  <div class="grid" id="grid-premium"></div>
+</div>
+
+<footer>
+  Construit par <a href="/">AutomationBoost</a> · Tony Payet · La Réunion · <a href="/">automatisationboost.com</a>
+</footer>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+const workflows = [
+  {id:'free1',tier:'free',cat:'video',emoji:'🎬',name:'Combine Vidéo + Caption + Voix + Texte',pain:'Tu passes 2h à monter une vidéo à la main ? Ce workflow le fait en 3 min.',desc:'Fusionne plusieurs vidéos, ajoute des sous-titres auto via Whisper, une voix off et un overlay texte. Basé sur FFmpeg API. Idéal pour des reels viraux produits en série.',timeSaved:'2h / vidéo',roi:'Gratuit',tasks:'5 tâches auto',timeDetail:'2 heures de montage manuel remplacées',roiDetail:'Gratuit — valeur freelance estimée 150€',tasksDetail:'Fusion, sous-titres, voix, overlay, export',nodes:40,tags:['viral','FFmpeg','Whisper','TikTok'],price:0,vsFreelance:null,includes:['Fusion multi-segments vidéo','Sous-titres auto Whisper','Voix off générée par IA','Overlay texte dynamique','Compatible TikTok / Reels','Documentation incluse']},
+  {id:'free2',tier:'free',cat:'lead',emoji:'🎯',name:'Lead Generation & Cold Email Automation',pain:'Tu prospectes encore à la main, un email à la fois ? Stop.',desc:'Génère des leads, envoie des emails froids personnalisés via Brevo/SMTP, suit les ouvertures automatiquement. Parfait pour tester une niche sans effort.',timeSaved:'3h / semaine',roi:'Gratuit',tasks:'4 tâches auto',timeDetail:'3 heures de prospection manuelle par semaine',roiDetail:'Gratuit — valeur agence 200€/mois',tasksDetail:'Extraction, personnalisation, envoi, suivi',nodes:16,tags:['cold email','Brevo','lead','SMTP'],price:0,vsFreelance:null,includes:['Extraction leads ciblés','Email 100% personnalisé par IA','Suivi ouvertures automatique','Relance conditionnelle','Documentation incluse']},
+  {id:'free3',tier:'free',cat:'social',emoji:'📱',name:'TikTok → YouTube & Instagram (Republication auto)',pain:'Tu postes manuellement sur 3 plateformes ? Tu perds 1h par jour.',desc:'Récupère tes vidéos TikTok et les republie automatiquement sur YouTube et Instagram selon un planning. 130 nœuds éprouvés en production réelle.',timeSaved:'1h / jour',roi:'Gratuit',tasks:'6 tâches auto',timeDetail:'1 heure de republication manuelle quotidienne',roiDetail:'Gratuit — valeur community manager 500€/mois',tasksDetail:'Récupération, conversion, publication, planification, gestion erreurs, logs',nodes:130,tags:['cross-posting','Blotato','YouTube','Instagram'],price:0,vsFreelance:null,includes:['Republication TikTok → YouTube + Instagram','Gestion erreurs IA intégrée','Planification automatique','Logs Supabase','Documentation incluse']},
+  {id:'free4',tier:'free',cat:'agent',emoji:'🤖',name:'Telegram Agent IA',pain:'Tu réponds toi-même à toutes les questions de tes clients ?',desc:'Un agent IA complet sur Telegram. Répond aux questions, exécute des tâches, mémorise le contexte. Base solide pour un chatbot métier personnalisé.',timeSaved:'2h / jour',roi:'Gratuit',tasks:'3 tâches auto',timeDetail:'2 heures de support / réponses quotidiennes',roiDetail:'Gratuit — valeur chatbot SaaS 50€/mois',tasksDetail:'Réception, traitement IA, réponse contextualisée',nodes:20,tags:['Telegram','agent IA','chatbot'],price:0,vsFreelance:null,includes:['Agent conversationnel Telegram','Mémoire de contexte','Facilement customisable','Compatible Claude / GPT-4','Documentation incluse']},
+  {id:'free5',tier:'free',cat:'content',emoji:'📝',name:'Article de Blog Auto — SEO',pain:'Écrire un article SEO prend 4h. Ce workflow le fait en 2 minutes.',desc:"Génère des articles de blog optimisés SEO à partir d'un mot-clé. Structure H1/H2/H3, méta-description, call-to-action, densité de mots-clés inclus.",timeSaved:'4h / article',roi:'Gratuit',tasks:'4 tâches auto',timeDetail:'4 heures de rédaction SEO manuelle',roiDetail:"Gratuit — valeur rédacteur SEO 80€/article",tasksDetail:'Recherche, structure, rédaction, optimisation',nodes:15,tags:['SEO','contenu','blog','Claude'],price:0,vsFreelance:null,includes:['Article complet H1/H2/H3','Méta-description optimisée','Intégration mot-clé naturelle','Call-to-action adapté','Documentation incluse']},
+  {id:'paid1',tier:'paid',cat:'restaurant',emoji:'🍽️',name:'C31 — Machine à Vendre pour Restaurants',pain:"Tu prospectes des restaurants mais ils ne visualisent pas ce que tu peux faire pour eux.",desc:"Clone le site d'un prospect restaurant, déploie une démo live personnalisée sur Coolify en 8 minutes, envoie un email de prospection avec la démo en lien. Ton meilleur outil de closing B2B.",timeSaved:'4h / prospect',roi:'1 client = +500€/mois',tasks:'8 tâches auto',timeDetail:'4 heures de démo manuelle par prospect',roiDetail:'1 client signé à 500€ = workflow remboursé en 0,2 jours',tasksDetail:'Clonage, personnalisation IA, déploiement, envoi email, suivi, relance WhatsApp, logs, dashboard',nodes:63,tags:['prospection','Coolify','restaurant','B2B','Claude'],price:97,vsFreelance:2400,includes:['Clonage automatique du site prospect','Personnalisation IA du contenu','Déploiement Coolify via API','Email personnalisé envoyé auto','Suivi WhatsApp intégré','Dashboard tracking démos','1 session onboarding incluse (45 min)']},
+  {id:'paid2',tier:'paid',cat:'restaurant',emoji:'🍽️',name:'MenuAuto — Génération & Publication Instagram',pain:'Ton client restaurant paye un community manager 400€/mois pour 3 posts par semaine ?',desc:"Menu PDF ou texte → visuels Instagram générés par IA → publication automatique selon un planning. Tu livres un service à 200€/mois avec zéro travail manuel une fois configuré.",timeSaved:'3h / semaine',roi:'Marge nette : 150€/mois/client',tasks:'5 tâches auto',timeDetail:'3 heures de création contenu par semaine',roiDetail:'Revente service à 200€/mois · Coût réel < 5€/mois',tasksDetail:'Lecture menu, génération visuel, rédaction légende, planification, publication',nodes:36,tags:['Instagram','menu','IA','Blotato'],price:47,vsFreelance:800,includes:['Génération visuel IA depuis menu texte/PDF','Légende rédigée par IA (ton de marque)','Publication automatique Instagram','Planning hebdomadaire configurable','Docs vidéo incluse (15 min)']},
+  {id:'paid3',tier:'paid',cat:'lead',emoji:'🎯',name:'Séquence Lead Resto — 12h Automatisée',pain:"Tu as 376 leads et tu n'as pas le temps de tous les contacter manuellement.",desc:'Scrape les restaurants locaux, qualifie les leads par IA, envoie une séquence email + SMS sur 12h. Testé sur 376 leads à La Réunion. Taux de réponse mesuré.',timeSaved:'15h de prospection',roi:'376 leads contactés sans effort',tasks:'7 tâches auto',timeDetail:'15 heures de prospection téléphonique / email manuelle',roiDetail:'376 prospects contactés automatiquement en 12h',tasksDetail:'Scraping, nettoyage, qualification IA, email J0, SMS J0+6h, relance J1, logs Supabase',nodes:30,tags:['scraping','SMS','Brevo','séquence','Supabase'],price:67,vsFreelance:1500,includes:['Scraping Google Maps automatisé','Qualification IA par secteur','Email personnalisé J0','SMS de relance J0+6h','Dashboard Supabase intégré','Support 30 jours']},
+  {id:'paid4',tier:'paid',cat:'video',emoji:'🎬',name:'DBZ Fusion Viral Machine — 4 Frames',pain:'Créer une vidéo virale DBZ manuellement = 2h. Avec ce workflow = 4 minutes.',desc:'Pipeline complet : Nano Banana 2 génère les frames → Kie.ai anime → Blotato publie sur TikTok. 99 nœuds. Validé sur 100+ fusions en production. Conçu pour le volume.',timeSaved:'2h / vidéo',roi:'Volume × vues = monétisation',tasks:'6 tâches auto',timeDetail:'2 heures de création vidéo manuelle par contenu',roiDetail:'Produire 10 vidéos/jour sans effort humain',tasksDetail:'Génération prompt, image Nano Banana 2, animation Kie.ai, watermark, publication TikTok, log',nodes:99,tags:['DBZ','Kie.ai','TikTok','Blotato','viral'],price:77,vsFreelance:1800,includes:['Pipeline image → vidéo 100% automatisé','Kie.ai Nano Banana 2 intégré','Publication TikTok via Blotato','Logs Supabase par vidéo','Patterns validés sur 100+ contenus','Documentation technique complète']},
+  {id:'paid5',tier:'paid',cat:'social',emoji:'📱',name:'Clone Viral Reels with AI Avatar',pain:'Tu crées du contenu depuis zéro alors que des formats viraux existent déjà.',desc:"Analyse les reels viraux d'un concurrent, clone le format avec un avatar IA custom (voix clonée + visage chromakey), publie sur TikTok. Stratégie growth testée.",timeSaved:'3h / reel',roi:'Croissance organique accélérée',tasks:'7 tâches auto',timeDetail:'3 heures de production reel manuelle',roiDetail:"Coût d'un avatar creator : 0€ après setup",tasksDetail:'Analyse concurrent, extraction format, génération avatar, voice clone, chromakey, montage, publication',nodes:39,tags:['avatar','Kie.ai','voice clone','TikTok','growth'],price:87,vsFreelance:2000,includes:["Analyse automatique reels concurrents",'Avatar IA avec voice cloning','Chromakey overlay intégré','Publication TikTok auto','Docs vidéo incluse (20 min)']},
+  {id:'paid6',tier:'paid',cat:'agent',emoji:'🤖',name:'Agent Closer — Qualification & Proposition Auto',pain:"Tu passes 1h à rédiger une proposition commerciale pour chaque lead entrant ?",desc:"Agent IA qui reçoit un lead, analyse son profil, génère une proposition commerciale PDF complète et l'envoie par email. Du formulaire au devis sans toucher à quoi que ce soit.",timeSaved:'1h / lead',roi:'10 leads/semaine = +10h libérées',tasks:'5 tâches auto',timeDetail:'1 heure de qualification + rédaction proposition par lead',roiDetail:'10 leads traités auto par semaine = 10h récupérées',tasksDetail:'Réception lead, qualification IA, rédaction proposition, génération PDF, envoi email',nodes:21,tags:['closer','proposition','PDF','Notion','email'],price:57,vsFreelance:1200,includes:['Qualification lead par IA','Proposition commerciale générée par IA','Export PDF automatique','Envoi email instantané','Sync CRM Notion','Documentation incluse']},
+  {id:'prem1',tier:'premium',cat:'site',emoji:'🌐',name:'Auto Deploy Site via Git + Coolify — 128 nœuds',pain:"Tu démontes ton pitch parce que le prospect ne se projette pas sans voir quelque chose de concret.",desc:"Clone le site du prospect, génère un site personnalisé avec Claude Code, commit sur Git, déploie live via l'API Coolify. Une démo live en 8 minutes. Ton arme de closing n°1 pour le B2B local.",timeSaved:'6h / démo client',roi:'1 contrat = 500–2 000€',tasks:'10 tâches auto',timeDetail:'6 heures pour préparer et livrer une démo client manuellement',roiDetail:"1 contrat signé à 1 000€ = 5× le prix du workflow",tasksDetail:'Clonage, analyse IA, génération site, commit Git, déploiement Coolify, DNS, email, WhatsApp, tracking, dashboard',nodes:128,tags:['Coolify','Claude Code','Git','B2B','prospection'],price:197,vsFreelance:4500,includes:['Clonage + personnalisation IA complète','Génération de site Claude Code','Déploiement Coolify API automatique','Notification Slack + email prospect','Dashboard tracking toutes tes démos','1h de coaching incluse (onboarding)','Mises à jour garanties 6 mois']},
+  {id:'prem2',tier:'premium',cat:'video',emoji:'🎬',name:'Pipeline Vidéo Excel 100% Auto — 266 nœuds',pain:'Tu as des dizaines de contenus à produire mais tu manques d\'équipe et de temps.',desc:'Le mastodonte. Un fichier Excel comme source → génère automatiquement images IA, vidéos, sous-titres, voix off et publie sur toutes les plateformes. Testé en production sur des centaines de vidéos.',timeSaved:'20h / lot de 20 vidéos',roi:'Factory contenu à 0 coût humain',tasks:'12 tâches auto',timeDetail:'20 heures de production pour un lot de 20 vidéos',roiDetail:"Une équipe vidéo coûte 2 000€/mois · Ce pipeline = 247€ une fois",tasksDetail:'Ingestion Excel, prompt IA, image, vidéo, son, sous-titres, voix, montage, export, publication multi-plateforme, log, erreurs',nodes:266,tags:['Excel','batch','production','multi-plateforme'],price:247,vsFreelance:6000,includes:['Ingestion Excel multi-lignes (illimité)','Génération image IA en batch','Génération vidéo IA en batch','Sous-titres + voix auto par contenu','Publication multi-plateforme','Support dédié 60 jours','Mises à jour garanties 6 mois']},
+];
+
+function cardHTML(w) {
+  const tierBadge = w.tier==='free'?'<span class="badge badge-free">Gratuit</span>':w.tier==='premium'?'<span class="badge badge-premium">Premium</span>':'<span class="badge badge-paid">Payant</span>';
+  const priceClass = w.tier==='free'?'price-free':w.tier==='premium'?'price-premium':'price-paid';
+  const priceStr = w.price===0?'Gratuit':`${w.price} €`;
+  const btnClass = w.tier==='free'?'btn-free':w.tier==='premium'?'btn-premium':'btn-paid';
+  const btnLabel = w.price===0?'↓ Télécharger gratuitement':`Obtenir pour ${w.price} €`;
+  return `<div class="card" data-cats="${w.cat}" data-tier="${w.tier}">
+    <div class="card-top"><div class="card-icon">${w.emoji}</div><div class="badges">${tierBadge}<span class="badge badge-nodes">${w.nodes} nœuds</span></div></div>
+    <div class="pain-line">😤 ${w.pain}</div>
+    <div class="card-name">${w.name}</div>
+    <div class="card-desc">${w.desc}</div>
+    <div class="card-stats">
+      <div class="stat-pill stat-time"><strong>⏱ ${w.timeSaved}</strong><span>économisées</span></div>
+      <div class="stat-pill stat-roi"><strong>${w.roi}</strong><span>retour</span></div>
+      <div class="stat-pill stat-tasks"><strong>${w.tasks}</strong><span>automatisées</span></div>
+    </div>
+    <div class="card-tags">${w.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+    <div class="card-bottom"><span class="card-importable">↗ n8n importable</span><span class="price ${priceClass}">${priceStr}</span></div>
+    <button class="btn-buy ${btnClass}" onclick="openModal('${w.id}')">${btnLabel}</button>
+  </div>`;
+}
+
+function renderGrid() {
+  ['free','paid','premium'].forEach(tier => {
+    document.getElementById('grid-'+tier).innerHTML = workflows.filter(w=>w.tier===tier).map(cardHTML).join('');
+  });
+}
+
+function openModal(id) {
+  const w = workflows.find(x=>x.id===id);
+  if (!w) return;
+  const priceStr = w.price===0?'Gratuit':`${w.price} €`;
+  const btnClass = w.tier==='free'?'free-cta':w.tier==='premium'?'premium-cta':'';
+  const btnLabel = w.price===0?'↓ Télécharger le workflow gratuitement':`💳 Acheter maintenant — ${w.price} €`;
+  const accentColor = w.tier==='free'?'var(--free-color)':w.tier==='premium'?'var(--gold)':'var(--accent)';
+  const vsLine = w.vsFreelance?`<div class="modal-vs-freelance">vs faire développer sur mesure : <s>${w.vsFreelance.toLocaleString('fr-FR')} €</s> → <strong style="color:${accentColor}">${w.price} €</strong></div>`:'';
+  document.getElementById('modal-content').innerHTML = `
+    <div style="font-size:2rem;margin-bottom:.4rem">${w.emoji}</div>
+    <h2>${w.name}</h2>
+    <div class="modal-tagline">${w.pain}</div>
+    <div class="modal-stats">
+      <div class="modal-stat"><strong style="color:var(--accent2)">⏱ ${w.timeSaved}</strong><span>${w.timeDetail}</span></div>
+      <div class="modal-stat"><strong style="color:var(--gold)">${w.roi}</strong><span>${w.roiDetail}</span></div>
+      <div class="modal-stat"><strong style="color:var(--accent)">${w.tasks}</strong><span>${w.tasksDetail}</span></div>
+    </div>
+    <div class="modal-price" style="color:${accentColor}">${priceStr}</div>
+    ${vsLine}
+    <div class="modal-includes">
+      <div class="modal-includes-title">Ce qui est inclus</div>
+      <ul>${w.includes.map(i=>`<li>${i}</li>`).join('')}</ul>
+    </div>
+    <button class="btn-modal-cta ${btnClass}" onclick="handleBuy('${w.id}')">${btnLabel}</button>
+    ${w.price>0?`<div class="modal-footer-note">Paiement sécurisé via Stripe · Livraison JSON instantanée · Support inclus</div>`:''}
+  `;
+  document.getElementById('modal').classList.add('open');
+}
+
+function closeModal() { document.getElementById('modal').classList.remove('open'); }
+document.getElementById('modal').addEventListener('click', e=>{ if(e.target===document.getElementById('modal')) closeModal(); });
+
+function handleBuy(id) {
+  const w = workflows.find(x=>x.id===id);
+  if (!w) return;
+  if (w.price===0) {
+    alert('✅ Workflow gratuit !\n\nContacte Tony pour recevoir le fichier JSON :\n→ automatisationboost.com\n→ WhatsApp disponible sur le site');
+  } else {
+    alert(`🛒 ${w.name}\nPrix : ${w.price} €\n\n→ Paiement Stripe disponible sur demande.\nContacte Tony : automatisationboost.com`);
+  }
+  closeModal();
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.card').forEach(card=>{
+      if(f==='all') card.style.display='';
+      else if(['free','paid','premium'].includes(f)) card.style.display=card.dataset.tier===f?'':'none';
+      else card.style.display=card.dataset.cats===f?'':'none';
+    });
+    document.querySelectorAll('.section').forEach(sec=>{
+      const grid=sec.querySelector('.grid');
+      if(!grid) return;
+      const visible=[...grid.querySelectorAll('.card')].some(c=>c.style.display!=='none');
+      sec.style.display=visible?'':'none';
+    });
+  });
+});
+
+renderGrid();
+</script>
+</body>
+</html>
