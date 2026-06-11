@@ -747,6 +747,82 @@
   </div>
 </footer>
 
+<!-- ===== POPUP LEAD EMAIL ===== -->
+<div id="leadOverlay" style="
+  display:none; position:fixed; inset:0; z-index:99999;
+  background:rgba(0,0,0,0.82); backdrop-filter:blur(8px);
+  align-items:center; justify-content:center; padding:20px;
+">
+  <div id="leadBox" style="
+    background:#0d0d0d; border:1px solid rgba(234,179,8,0.35);
+    border-radius:16px; padding:40px 32px; max-width:440px; width:100%;
+    box-shadow:0 0 60px rgba(234,179,8,0.15), 0 0 0 1px rgba(234,179,8,0.08);
+    text-align:center; position:relative;
+    animation: popIn .35s cubic-bezier(0.4,0,0.2,1);
+  ">
+    <div style="font-size:2.2rem; margin-bottom:12px;">⚡</div>
+    <div style="
+      display:inline-block; background:rgba(234,179,8,0.1);
+      border:1px solid rgba(234,179,8,0.25); color:#eab308;
+      font-family:'Orbitron',sans-serif; font-size:10px; font-weight:700;
+      padding:4px 12px; border-radius:4px; letter-spacing:.1em;
+      text-transform:uppercase; margin-bottom:16px;
+    ">ACCÈS GRATUIT</div>
+    <h2 style="
+      font-family:'Orbitron',sans-serif; font-size:clamp(1.2rem,4vw,1.6rem);
+      font-weight:900; color:#e4e4e7; line-height:1.2;
+      letter-spacing:-0.03em; margin-bottom:10px;
+    ">Reçois nos workflows n8n<br><span style="color:#eab308;">offerts chaque semaine</span></h2>
+    <p style="
+      font-family:'Inter',sans-serif; font-size:.9rem; color:#71717a;
+      line-height:1.6; margin-bottom:24px;
+    ">Entre ton email pour accéder aux ressources gratuites et recevoir les nouveaux workflows en avant-première.</p>
+
+    <form id="leadForm" onsubmit="submitLead(event)">
+      <input
+        id="leadEmail" type="email" placeholder="ton@email.com"
+        required autocomplete="email"
+        style="
+          width:100%; background:#111; border:1px solid #2a2a2a;
+          border-radius:8px; padding:13px 16px; color:#e4e4e7;
+          font-family:'Inter',sans-serif; font-size:.95rem;
+          margin-bottom:10px; outline:none; box-sizing:border-box;
+          transition:border-color .2s;
+        "
+        onfocus="this.style.borderColor='rgba(234,179,8,0.5)'"
+        onblur="this.style.borderColor='#2a2a2a'"
+      />
+      <button type="submit" id="leadBtn" style="
+        width:100%; background:#eab308; color:#000;
+        font-family:'Orbitron',sans-serif; font-size:.85rem; font-weight:700;
+        padding:14px; border:none; border-radius:8px; cursor:pointer;
+        letter-spacing:.04em; text-transform:uppercase;
+        transition:all .2s; margin-bottom:12px;
+      "
+      onmouseover="this.style.background='#fff'"
+      onmouseout="this.style.background='#eab308'"
+      >🚀 Accéder gratuitement</button>
+    </form>
+
+    <div id="leadSuccess" style="display:none; padding:16px 0;">
+      <div style="font-size:2rem; margin-bottom:8px;">✅</div>
+      <p style="font-family:'Inter',sans-serif; color:#22c55e; font-weight:600; font-size:.95rem; margin:0;">
+        C'est parti ! Vérifie ta boîte mail.
+      </p>
+    </div>
+
+    <p style="font-size:.72rem; color:#3f3f46; font-family:'Inter',sans-serif; margin:0;">
+      Pas de spam. Désinscription en 1 clic.
+    </p>
+  </div>
+</div>
+<style>
+@keyframes popIn {
+  from { opacity:0; transform:scale(0.92) translateY(16px); }
+  to   { opacity:1; transform:scale(1) translateY(0); }
+}
+</style>
+
 <script src="assets/js/main.js"></script>
 <script>
   const burger = document.getElementById('navBurger');
@@ -777,6 +853,43 @@
 
   // Fermer à l'ouverture d'un lien ancre
   menu.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', closeMobileMenu));
+
+  // ===== POPUP LEAD =====
+  const WEBHOOK = 'https://n7n.automatisationboost.com/webhook/Form-lead-autoboost';
+  const overlay = document.getElementById('leadOverlay');
+
+  function showPopup() {
+    // Ne pas afficher si déjà soumis
+    if (localStorage.getItem('ab_lead_done')) return;
+    overlay.style.display = 'flex';
+  }
+
+  // Afficher après 5 secondes
+  setTimeout(showPopup, 5000);
+
+  async function submitLead(e) {
+    e.preventDefault();
+    const email = document.getElementById('leadEmail').value.trim();
+    const btn   = document.getElementById('leadBtn');
+
+    btn.disabled = true;
+    btn.textContent = 'Envoi…';
+    btn.style.opacity = '0.7';
+
+    try {
+      await fetch(WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source: 'popup-automationboost', date: new Date().toISOString() }),
+      });
+    } catch (_) {}
+
+    localStorage.setItem('ab_lead_done', '1');
+    document.getElementById('leadForm').style.display = 'none';
+    document.getElementById('leadSuccess').style.display = 'block';
+
+    setTimeout(() => { overlay.style.display = 'none'; }, 2200);
+  }
 </script>
 </body>
 </html>
