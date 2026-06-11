@@ -1350,11 +1350,18 @@ footer {
 /* ===== RESPONSIVE MOBILE — GRILLES, SLIDERS & SECTIONS ===== */
 @media (max-width: 640px) {
 
-  /* Hero : masquer le mockup */
+  /* Hero : masquer le mockup + supprimer min-height 100vh */
   .hero-visual { display: none; }
+  #hero { min-height: unset !important; padding: 90px 0 40px !important; }
 
   /* Sections : padding réduit */
   section { padding: 44px 0 !important; }
+
+  /* Marges section-desc et grilles trop généreux */
+  .section-desc { margin-bottom: 24px !important; font-size: 0.9rem !important; }
+  .problem-grid { margin-bottom: 20px !important; }
+  .solution-arrow { margin: 16px 0 !important; font-size: 1.6rem !important; }
+  .problem-icon { font-size: 1.4rem !important; margin-bottom: 8px !important; }
 
   /* Problem : 2 colonnes */
   .problem-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
