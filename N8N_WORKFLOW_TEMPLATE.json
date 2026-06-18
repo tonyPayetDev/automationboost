@@ -1,0 +1,105 @@
+{
+  "name": "Formation IA - Stripe Payment → Email Access",
+  "description": "Receive Stripe payment webhook, generate access token, send email with access link",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Webhook - Stripe Payment Confirmed",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [100, 250],
+      "webhookId": "stripe-payment-confirmed",
+      "description": "Listens for Stripe webhook: checkout.session.completed"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "{{ $json.type }}",
+              "operation": "equals",
+              "value2": "charge.succeeded"
+            }
+          ]
+        }
+      },
+      "name": "Filter - Valid Payment",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [300, 250]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Generate secure random token\nconst crypto = require('crypto');\nconst token = crypto.randomBytes(32).toString('hex');\nconst expiresAt = new Date(Date.now() + 48 * 60 * 60 * 1000); // 48 hours\n\nreturn [{\n  token: token,\n  email: items[0].json.data.object.billing_details?.email || '',\n  expiresAt: expiresAt.toISOString(),\n  amount: items[0].json.data.object.amount / 100, // Convert from cents\n  stripeSessionId: items[0].json.data.object.id\n}];"
+      },
+      "name": "Generate Access Token",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [500, 250]
+    },
+    {
+      "parameters": {
+        "fromEmail": "formation@automationboost.com",
+        "toEmail": "{{ $json.email }}",
+        "subject": "⚡ Accès à ta formation IA - AutomationBoost",
+        "emailType": "html",
+        "htmlEmail": "<html><body style=\"font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f5f5; padding: 20px;\">\n  <div style=\"max-width: 600px; margin: 0 auto; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);\">\n    \n    <!-- Header -->\n    <div style=\"background: linear-gradient(135deg, #eab308 0%, #f97316 100%); color: white; padding: 40px 20px; text-align: center;\">\n      <div style=\"font-size: 32px; margin-bottom: 10px;\">⚡</div>\n      <h1 style=\"margin: 0; font-size: 24px; font-weight: 700;\">Formation IA - Accès confirmé!</h1>\n    </div>\n    \n    <!-- Content -->\n    <div style=\"padding: 40px 30px; color: #1a1a1a; line-height: 1.6;\">\n      <p style=\"margin: 0 0 20px 0; font-size: 16px;\">Salut,</p>\n      \n      <p style=\"margin: 0 0 20px 0; font-size: 14px; color: #555;\">Merci pour ton achat! 🎉 Ton paiement de <strong>29,90€</strong> a été confirmé.</p>\n      \n      <p style=\"margin: 0 0 30px 0; font-size: 14px; color: #555;\">Clique sur le bouton ci-dessous pour accéder immédiatement à ta formation:</p>\n      \n      <!-- CTA Button -->\n      <div style=\"text-align: center; margin: 30px 0;\">\n        <a href=\"https://automationboost.com/acces.html?token={{ $json.token }}\" style=\"display: inline-block; background: linear-gradient(135deg, #eab308 0%, #f97316 100%); color: #000; text-decoration: none; padding: 16px 40px; border-radius: 8px; font-weight: 700; font-size: 16px; transition: transform 0.2s, box-shadow 0.2s;\">\n          🚀 Accéder à la formation\n        </a>\n      </div>\n      \n      <p style=\"margin: 0 0 20px 0; font-size: 12px; color: #999;\">Ou copie-colle ce lien dans ton navigateur:<br><code style=\"background: #f5f5f5; padding: 8px 12px; border-radius: 4px; font-family: monospace; font-size: 11px; word-break: break-all;\">https://automationboost.com/acces.html?token={{ $json.token }}</code></p>\n      \n      <hr style=\"border: none; border-top: 1px solid #eee; margin: 30px 0;\">\n      \n      <!-- Formation Details -->\n      <div style=\"background: #f9f9f9; border-left: 4px solid #eab308; padding: 20px; border-radius: 4px; margin: 20px 0;\">\n        <h3 style=\"margin: 0 0 10px 0; color: #eab308;\">Ce que tu vas apprendre:</h3>\n        <ul style=\"margin: 0; padding-left: 20px; color: #555; font-size: 13px;\">\n          <li>📚 Module 1: Ton arsenal IA (outils essentiels + 3 prompts clés)</li>\n          <li>💼 Module 2: Vendre des services IA (tarification 50€-150€/h)</li>\n          <li>🤝 Module 3: Trouver tes premiers clients (Malt, LinkedIn, Upwork)</li>\n          <li>🤖 Module 4: Automatiser pour scaler (n8n, Make, Zapier)</li>\n          <li>💰 Module 5: Revenus passifs (templates, prompts, mini-formations)</li>\n          <li>👑 Module 6: Plan 100€/jour (roadmap 30 jours + cas pratiques)</li>\n        </ul>\n      </div>\n      \n      <p style=\"margin: 0 0 20px 0; font-size: 13px; color: #666;\"><strong>Accès:</strong> À vie · Mises à jour incluses · Satisfait ou remboursé 14 jours</p>\n      \n      <hr style=\"border: none; border-top: 1px solid #eee; margin: 30px 0;\">\n      \n      <p style=\"margin: 0 0 10px 0; font-size: 13px; color: #666;\">Des questions? Réponds simplement à cet email, Tony te lira.</p>\n      \n      <p style=\"margin: 0; font-size: 13px; color: #999;\">À bientôt dans la formation! 🚀</p>\n    </div>\n    \n    <!-- Footer -->\n    <div style=\"background: #f5f5f5; padding: 20px 30px; text-align: center; border-top: 1px solid #eee;\">\n      <p style=\"margin: 0; font-size: 12px; color: #999;\">\n        AutomationBoost — Formation IA<br>\n        <a href=\"https://automationboost.com\" style=\"color: #eab308; text-decoration: none;\">automationboost.com</a>\n      </p>\n    </div>\n    \n  </div>\n</body></html>"
+      },
+      "name": "Send Email with Access Link",
+      "type": "n8n-nodes-base.sendGrid",
+      "typeVersion": 2,
+      "position": [700, 250],
+      "credentials": "sendgrid"
+    },
+    {
+      "parameters": {
+        "jsonKeyName": "token",
+        "jsonKeyValue": "{{ $json.token }}"
+      },
+      "name": "Store Token (Optional Database)",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 1,
+      "position": [900, 250],
+      "description": "Optional: Store token in database for validation"
+    },
+    {
+      "parameters": {
+        "responseCode": 200,
+        "responseData": "{\"success\": true, \"message\": \"Email sent successfully\"}"
+      },
+      "name": "Return Success",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1100, 150]
+    },
+    {
+      "parameters": {
+        "responseCode": 400,
+        "responseData": "{\"success\": false, \"error\": \"Invalid payment\"}"
+      },
+      "name": "Return Error",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [500, 400]
+    }
+  ],
+  "connections": {
+    "Webhook - Stripe Payment Confirmed": {
+      "main": [[{"node": "Filter - Valid Payment", "branch": 0}]]
+    },
+    "Filter - Valid Payment": {
+      "main": [[{"node": "Generate Access Token", "branch": 0}], [{"node": "Return Error", "branch": 0}]]
+    },
+    "Generate Access Token": {
+      "main": [[{"node": "Send Email with Access Link", "branch": 0}]]
+    },
+    "Send Email with Access Link": {
+      "main": [[{"node": "Store Token (Optional Database)", "branch": 0}]]
+    },
+    "Store Token (Optional Database)": {
+      "main": [[{"node": "Return Success", "branch": 0}]]
+    }
+  },
+  "notes": "Workflow to handle Stripe payments and send access emails for Formation IA training. Configure your SendGrid credentials before deploying."
+}
