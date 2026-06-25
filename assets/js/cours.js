@@ -4,7 +4,7 @@
 */
 
 const AB = {
-  N8N_VALIDATE_URL: 'https://YOUR_N8N_DOMAIN/webhook/validate-token',
+  N8N_VALIDATE_URL: 'https://n7n.automatisationboost.com/webhook/validate-token',
   ACCESS_KEY: 'ab_cours_access',
   PROGRESS_KEY: 'ab_cours_progress',
   TOTAL_MODULES: 6,
