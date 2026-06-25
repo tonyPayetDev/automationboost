@@ -7,210 +7,402 @@
   <meta name="description" content="Skills Claude Code premium : automatisation vidéo, déploiement, veille IA, n8n, HyperFrames. Des commandes slash prêtes à l'emploi pour décupler votre productivité." />
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+  <!-- Plus Jakarta Sans — inspiré de tony.automatisationboost.com -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <style>
-    /* ---- PAGE SKILLS ---- */
-    .skills-hero {
-      padding: 120px 20px 60px;
-      text-align: center;
-      position: relative;
-      z-index: 1;
+    /* ── Overrides de police ── */
+    h1, h2, h3 {
+      font-family: 'Plus Jakarta Sans', 'Orbitron', sans-serif;
     }
-    .skills-hero-badge {
-      display: inline-block;
-      background: rgba(234,179,8,0.12);
-      border: 1px solid rgba(234,179,8,0.35);
-      color: var(--gold);
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 6px 18px;
-      border-radius: 20px;
-      margin-bottom: 24px;
+
+    /* ── Noise texture (comme tony.ab.com) ── */
+    body::before {
+      background-size: 80px 80px;
     }
-    .skills-hero h1 { margin-bottom: 20px; }
-    .skills-hero p {
-      max-width: 640px;
-      margin: 0 auto 40px;
-      font-size: 1.1rem;
+
+    /* ──────────────── NAVBAR FIX ──────────────── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: transparent;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    #navbar.scrolled {
+      background: rgba(5,5,5,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 1px 0 rgba(234,179,8,0.15);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 70px;
+    }
+    .nav-desktop {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .nav-desktop a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
       color: var(--text-light);
+      text-decoration: none;
+      transition: color 0.2s;
+      letter-spacing: 0.01em;
     }
-    .skills-hero-stats {
-      display: flex;
-      gap: 32px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 16px;
-    }
-    .skills-hero-stat {
-      text-align: center;
-    }
-    .skills-hero-stat span {
-      display: block;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2rem;
-      font-weight: 900;
-      color: var(--gold);
-    }
-    .skills-hero-stat small {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
+    .nav-desktop a:hover { color: var(--gold); }
+    .nav-desktop a.active { color: var(--gold); }
 
-    /* ---- CATEGORIES ---- */
-    .skills-section {
-      padding: 60px 20px 80px;
+    /* ──────────────── HERO ──────────────── */
+    .sk-hero {
+      min-height: 52vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 130px 24px 70px;
+      text-align: center;
       position: relative;
       z-index: 1;
-    }
-    .skills-category {
-      margin-bottom: 64px;
-    }
-    .skills-category-header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 28px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--border);
-    }
-    .skills-category-icon {
-      width: 44px;
-      height: 44px;
-      background: rgba(234,179,8,0.1);
-      border: 1px solid rgba(234,179,8,0.25);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      flex-shrink: 0;
-    }
-    .skills-category-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-    .skills-category-count {
-      margin-left: auto;
-      background: rgba(234,179,8,0.08);
-      border: 1px solid rgba(234,179,8,0.2);
-      color: var(--gold);
-      font-size: 0.75rem;
-      font-family: 'Orbitron', sans-serif;
-      font-weight: 700;
-      padding: 3px 10px;
-      border-radius: 20px;
-    }
-
-    /* ---- SKILL CARDS ---- */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
-    }
-    .skill-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 24px;
-      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-      position: relative;
       overflow: hidden;
     }
-    .skill-card::before {
+    /* Glow orb background */
+    .sk-hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 500px;
+      background: radial-gradient(ellipse at center,
+        rgba(234,179,8,0.12) 0%,
+        rgba(234,179,8,0.04) 45%,
+        transparent 70%);
+      pointer-events: none;
+    }
+    .sk-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(234,179,8,0.1);
+      border: 1px solid rgba(234,179,8,0.3);
+      color: var(--gold);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+    .sk-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      box-shadow: 0 0 6px var(--gold);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+    .sk-hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .sk-hero h1 .highlight {
+      background: linear-gradient(135deg, #eab308 0%, #fde047 50%, #ca8a04 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .sk-hero p {
+      max-width: 560px;
+      margin: 0 auto 48px;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+    .sk-stats {
+      display: flex;
+      gap: 0;
+      justify-content: center;
+      flex-wrap: wrap;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.02);
+      overflow: hidden;
+    }
+    .sk-stat {
+      padding: 18px 36px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .sk-stat:last-child { border-right: none; }
+    .sk-stat-num {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--gold);
+      display: block;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .sk-stat-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ──────────────── SECTION ──────────────── */
+    .sk-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px 20px;
+    }
+    .sk-cat {
+      margin-bottom: 64px;
+    }
+    .sk-cat-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .sk-cat-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(234,179,8,0.3) 0%, transparent 100%);
+    }
+    .sk-cat-tag {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 18px;
+      background: rgba(234,179,8,0.06);
+      border: 1px solid rgba(234,179,8,0.2);
+      border-radius: 100px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      white-space: nowrap;
+    }
+    .sk-cat-icon { font-size: 1rem; }
+    .sk-cat-count {
+      background: rgba(234,179,8,0.15);
+      color: var(--gold);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 1px 7px;
+      border-radius: 20px;
+    }
+
+    /* ──────────────── CARDS ──────────────── */
+    .sk-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .sk-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    .sk-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.16,1,0.3,1),
+                  border-color 0.25s, box-shadow 0.25s;
+    }
+    .sk-card::after {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--gold) 50%, transparent 100%);
       opacity: 0;
-      transition: opacity 0.2s;
+      transition: opacity 0.25s;
     }
-    .skill-card:hover {
-      border-color: rgba(234,179,8,0.35);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 32px rgba(234,179,8,0.08);
+    .sk-card:hover {
+      border-color: rgba(234,179,8,0.3);
+      transform: translateY(-4px) !important;
+      box-shadow: 0 16px 48px rgba(234,179,8,0.08), 0 4px 16px rgba(0,0,0,0.4);
     }
-    .skill-card:hover::before { opacity: 1; }
+    .sk-card:hover::after { opacity: 1; }
 
-    .skill-card-header {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      margin-bottom: 14px;
+    /* Numéro de fond décoratif */
+    .sk-card-num {
+      position: absolute;
+      top: 16px; right: 20px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: rgba(234,179,8,0.04);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
     }
-    .skill-cmd {
+
+    .sk-cmd {
+      display: inline-block;
       font-family: 'Orbitron', monospace;
-      font-size: 0.8rem;
+      font-size: 0.72rem;
       font-weight: 700;
+      letter-spacing: 0.08em;
       color: var(--gold);
       background: rgba(234,179,8,0.08);
       border: 1px solid rgba(234,179,8,0.2);
-      padding: 4px 10px;
+      padding: 4px 12px;
       border-radius: 6px;
-      letter-spacing: 0.05em;
-      white-space: nowrap;
+      align-self: flex-start;
     }
-    .skill-card h3 {
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
+    .sk-card h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.05rem;
       font-weight: 700;
       color: var(--text);
-      margin: 0 0 8px;
-      line-height: 1.3;
-    }
-    .skill-card p {
-      font-size: 0.9rem;
-      line-height: 1.6;
-      color: var(--text-muted);
+      line-height: 1.35;
       margin: 0;
     }
-    .skill-tags {
+    .sk-card p {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text-muted);
+      margin: 0;
+      flex: 1;
+    }
+    .sk-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 14px;
+      margin-top: 4px;
     }
-    .skill-tag {
-      font-size: 0.72rem;
+    .sk-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--text-muted);
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
       padding: 2px 8px;
       border-radius: 4px;
     }
 
-    /* ---- CTA ---- */
-    .skills-cta {
-      background: linear-gradient(135deg, rgba(234,179,8,0.06) 0%, rgba(234,179,8,0.02) 100%);
-      border: 1px solid rgba(234,179,8,0.2);
-      border-radius: var(--radius-lg);
-      padding: 60px 40px;
+    /* ──────────────── CTA ──────────────── */
+    .sk-cta {
+      margin: 20px 24px 80px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      background: linear-gradient(135deg,
+        rgba(234,179,8,0.07) 0%,
+        rgba(234,179,8,0.02) 100%);
+      border: 1px solid rgba(234,179,8,0.18);
+      border-radius: 20px;
+      padding: 64px 40px;
       text-align: center;
-      margin: 0 20px 80px;
       position: relative;
-      z-index: 1;
+      overflow: hidden;
     }
-    .skills-cta h2 { margin-bottom: 16px; }
-    .skills-cta p { margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .sk-cta::before {
+      content: '';
+      position: absolute;
+      top: -40px; left: 50%;
+      transform: translateX(-50%);
+      width: 400px; height: 200px;
+      background: radial-gradient(ellipse,rgba(234,179,8,0.12) 0%,transparent 70%);
+      pointer-events: none;
+    }
+    .sk-cta h2 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800;
+      margin-bottom: 14px;
+      color: var(--text);
+    }
+    .sk-cta p {
+      max-width: 480px;
+      margin: 0 auto 36px;
+      font-size: 1rem;
+      color: var(--text-muted);
+    }
 
-    @media (max-width: 600px) {
-      .skills-grid { grid-template-columns: 1fr; }
-      .skills-cta { padding: 40px 20px; }
+    /* ──────────────── BTN ──────────────── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: #000;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 14px 32px;
+      border-radius: 10px;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: all 0.2s ease;
+    }
+    .btn-primary:hover {
+      background: #fde047;
+      box-shadow: 0 0 30px rgba(234,179,8,0.4), 0 8px 24px rgba(0,0,0,0.3);
+      transform: translateY(-2px);
+    }
+
+    /* ──────────────── RESPONSIVE ──────────────── */
+    @media (max-width: 900px) {
+      .sk-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+    }
+    @media (max-width: 640px) {
+      .sk-hero { padding: 110px 16px 50px; }
+      .sk-hero h1 { font-size: 2.2rem; }
+      .sk-stats { width: 100%; }
+      .sk-stat { padding: 14px 20px; }
+      .sk-stat-num { font-size: 1.4rem; }
+      .sk-grid { grid-template-columns: 1fr; }
+      .sk-section { padding: 40px 16px 10px; }
+      .sk-cta { padding: 44px 20px; margin: 0 16px 60px; }
+      .sk-cat-tag { font-size: 0.75rem; padding: 7px 14px; }
+    }
+    @media (max-width: 480px) {
+      .sk-stats { border-radius: 10px; }
+      .sk-stat { padding: 12px 16px; flex: 1; }
     }
   </style>
 </head>
 <body>
 
-<!-- ============ NAVBAR ============ -->
+<!-- ════════════ NAVBAR ════════════ -->
 <nav id="navbar">
   <div class="nav-inner">
     <a href="/" class="logo">
@@ -220,8 +412,8 @@
     <div class="nav-desktop">
       <a href="ressources.html">Ressources</a>
       <a href="blog.html">Blog IA</a>
-      <a href="skills.html" style="color:var(--gold);">Skills</a>
-      <a href="formation.html" class="nav-formation" style="color:var(--gold);background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.25);padding:6px 14px;border-radius:6px;">⚡ Formation 29,90€</a>
+      <a href="skills.html" class="active">Skills</a>
+      <a href="formation.html" style="color:var(--gold);background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.25);padding:6px 14px;border-radius:8px;font-size:0.85rem;font-weight:700;">⚡ Formation 29,90€</a>
       <a href="https://tony.automatisationboost.com/#contact" class="nav-cta">Contact →</a>
     </div>
     <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
@@ -241,144 +433,159 @@
   </nav>
 </div>
 
-<!-- ============ HERO ============ -->
-<div class="skills-hero">
-  <div class="skills-hero-badge">⚡ Claude Code Skills</div>
-  <h1>Des <span class="gold">Skills</span> qui automatisent<br>ce que vous répétez</h1>
-  <p>Commandes slash pour Claude Code — chaque skill est une séquence d'actions automatisées, prête à l'emploi en une ligne.</p>
-  <div class="skills-hero-stats">
-    <div class="skills-hero-stat"><span>10</span><small>Skills uniques</small></div>
-    <div class="skills-hero-stat"><span>100%</span><small>Automatisé</small></div>
-    <div class="skills-hero-stat"><span>0</span><small>Config requise</small></div>
+<!-- ════════════ HERO ════════════ -->
+<section class="sk-hero">
+  <div class="sk-badge">Claude Code Skills</div>
+  <h1>Ce que vous répétez,<br><span class="highlight">une commande le fait.</span></h1>
+  <p>Des skills Claude Code construits sur de vrais cas métier — chaque slash commande déclenche une séquence complète, du brief à la mise en ligne.</p>
+  <div class="sk-stats">
+    <div class="sk-stat">
+      <span class="sk-stat-num" data-count="10">10</span>
+      <span class="sk-stat-label">Skills actifs</span>
+    </div>
+    <div class="sk-stat">
+      <span class="sk-stat-num">100%</span>
+      <span class="sk-stat-label">Automatisé</span>
+    </div>
+    <div class="sk-stat">
+      <span class="sk-stat-num">0</span>
+      <span class="sk-stat-label">Config requise</span>
+    </div>
+    <div class="sk-stat">
+      <span class="sk-stat-num">48h</span>
+      <span class="sk-stat-label">Livraison</span>
+    </div>
   </div>
-</div>
+</section>
 
-<!-- ============ SKILLS ============ -->
-<div class="skills-section container">
+<!-- ════════════ SKILLS ════════════ -->
+<div class="sk-section">
 
   <!-- VIDÉO & AVATAR -->
-  <div class="skills-category">
-    <div class="skills-category-header">
-      <div class="skills-category-icon">🎬</div>
-      <div class="skills-category-title">Vidéo & Avatar</div>
-      <div class="skills-category-count">3 skills</div>
+  <div class="sk-cat">
+    <div class="sk-cat-header">
+      <div class="sk-cat-tag">
+        <span class="sk-cat-icon">🎬</span>
+        Vidéo & Avatar
+        <span class="sk-cat-count">3</span>
+      </div>
+      <div class="sk-cat-line"></div>
     </div>
-    <div class="skills-grid">
+    <div class="sk-grid">
 
-      <div class="skill-card">
-        <div class="skill-card-header">
-          <span class="skill-cmd">/avatar-reel</span>
-        </div>
+      <div class="sk-card">
+        <span class="sk-card-num">01</span>
+        <span class="sk-cmd">/avatar-reel</span>
         <h3>Reel TikTok / Instagram complet</h3>
-        <p>Génère une vidéo verticale 1080×1920 de bout en bout : motion graphic animé kinetic type + avatar parlant avec voice cloning. Donne juste un sujet, le pipeline n8n fait le reste.</p>
-        <div class="skill-tags">
-          <span class="skill-tag">HyperFrames</span>
-          <span class="skill-tag">n8n</span>
-          <span class="skill-tag">FFmpeg</span>
-          <span class="skill-tag">Voice Clone</span>
+        <p>Pipeline de bout en bout : motion graphic kinetic type 1080×1920 animé + avatar parlant avec voice cloning. Donnez un sujet — la vidéo sort en quelques minutes.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">HyperFrames</span>
+          <span class="sk-tag">n8n</span>
+          <span class="sk-tag">FFmpeg</span>
+          <span class="sk-tag">Voice Clone</span>
         </div>
       </div>
 
-      <div class="skill-card">
-        <div class="skill-card-header">
-          <span class="skill-cmd">/motion-graphics</span>
-        </div>
+      <div class="sk-card">
+        <span class="sk-card-num">02</span>
+        <span class="sk-cmd">/motion-graphics</span>
         <h3>Motion graphic court format</h3>
-        <p>Crée des animations courtes (jusqu'à 30s) : kinetic typography, stats animées, logo sting, social overlay. Rendu MP4 prêt à publier via HyperFrames + GSAP.</p>
-        <div class="skill-tags">
-          <span class="skill-tag">HyperFrames</span>
-          <span class="skill-tag">GSAP</span>
-          <span class="skill-tag">MP4</span>
+        <p>Animations courtes jusqu'à 30s : kinetic typography, stats animées, logo sting, social overlay. Rendu MP4 via HyperFrames + GSAP, prêt à publier.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">HyperFrames</span>
+          <span class="sk-tag">GSAP</span>
+          <span class="sk-tag">MP4</span>
         </div>
       </div>
 
-      <div class="skill-card">
-        <div class="skill-card-header">
-          <span class="skill-cmd">/youtube-script-capture</span>
-        </div>
+      <div class="sk-card">
+        <span class="sk-card-num">03</span>
+        <span class="sk-cmd">/youtube-script-capture</span>
         <h3>Extracteur YouTube</h3>
-        <p>Extrait le transcript complet et les captures d'écran clés d'une vidéo YouTube (Shorts inclus). Génère un markdown structuré avec les points essentiels.</p>
-        <div class="skill-tags">
-          <span class="skill-tag">yt-dlp</span>
-          <span class="skill-tag">FFmpeg</span>
-          <span class="skill-tag">Transcript</span>
+        <p>Extrait le transcript complet et les captures clés d'une vidéo YouTube (Shorts inclus). Génère un markdown structuré avec les points essentiels et les timestamps.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">yt-dlp</span>
+          <span class="sk-tag">FFmpeg</span>
+          <span class="sk-tag">Transcript</span>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- DÉPLOIEMENT & AUTOMATISATION -->
-  <div class="skills-category">
-    <div class="skills-category-header">
-      <div class="skills-category-icon">🚀</div>
-      <div class="skills-category-title">Déploiement & Automatisation</div>
-      <div class="skills-category-count">3 skills</div>
+  <!-- DÉPLOIEMENT -->
+  <div class="sk-cat">
+    <div class="sk-cat-header">
+      <div class="sk-cat-tag">
+        <span class="sk-cat-icon">🚀</span>
+        Déploiement & Automatisation
+        <span class="sk-cat-count">3</span>
+      </div>
+      <div class="sk-cat-line"></div>
     </div>
-    <div class="skills-grid">
+    <div class="sk-grid">
 
-      <div class="skill-card">
-        <div class="skill-card-header">
-          <span class="skill-cmd">/deploy-site</span>
-        </div>
+      <div class="sk-card">
+        <span class="sk-card-num">04</span>
+        <span class="sk-cmd">/deploy-site</span>
         <h3>Déploiement GitHub → Coolify</h3>
-        <p>Pousse un site statique sur GitHub, crée ou met à jour l'app sur Coolify, attend le statut "running" et vérifie le HTTP 200. Retourne l'URL en ligne en une commande.</p>
-        <div class="skill-tags">
-          <span class="skill-tag">GitHub</span>
-          <span class="skill-tag">Coolify</span>
-          <span class="skill-tag">Docker</span>
+        <p>Pousse un site statique sur GitHub, crée ou met à jour l'app Coolify, attend le statut running et vérifie le HTTP 200. L'URL en ligne en une seule commande.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">GitHub</span>
+          <span class="sk-tag">Coolify</span>
+          <span class="sk-tag">Docker</span>
         </div>
       </div>
 
-      <div class="skill-card">
-        <div class="skill-card-header">
-          <span class="skill-cmd">/playwright-skill</span>
-        </div>
+      <div class="sk-card">
+        <span class="sk-card-num">05</span>
+        <span class="sk-cmd">/playwright-skill</span>
         <h3>Automatisation navigateur</h3>
-        <p>Tests et automatisation Playwright complets : screenshots, validation UX, remplissage de formulaires, tests de login, vérification de liens. Détecte automatiquement le serveur dev.</p>
-        <div class="skill-tags">
-          <span class="skill-tag">Playwright</span>
-          <span class="skill-tag">Tests</span>
-          <span class="skill-tag">Screenshots</span>
+        <p>Tests Playwright complets : screenshots, validation UX, remplissage de formulaires, tests de login, vérification de liens. Détecte automatiquement le serveur dev.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">Playwright</span>
+          <span class="sk-tag">Tests</span>
+          <span class="sk-tag">Screenshots</span>
         </div>
       </div>
 
-      <div class="skill-card">
-        <div class="skill-card-header">
-          <span class="skill-cmd">/scrape-to-ressources</span>
-        </div>
+      <div class="sk-card">
+        <span class="sk-card-num">06</span>
+        <span class="sk-cmd">/scrape-to-ressources</span>
         <h3>Import de ressources externes</h3>
-        <p>Scrape la bibliothèque d'un site externe, convertit chaque page au format AutomationBoost (dark/gold), l'intègre dans ressources.html et déploie. Supprime toutes les références source.</p>
-        <div class="skill-tags">
-          <span class="skill-tag">Scraping</span>
-          <span class="skill-tag">HTML</span>
-          <span class="skill-tag">Auto-deploy</span>
+        <p>Scrape une bibliothèque d'un site externe, convertit chaque page au format AutomationBoost dark/gold, l'intègre dans ressources.html et déploie automatiquement.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">Scraping</span>
+          <span class="sk-tag">HTML</span>
+          <span class="sk-tag">Auto-deploy</span>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- VEILLE & CONTENU -->
-  <div class="skills-category">
-    <div class="skills-category-header">
-      <div class="skills-category-icon">📡</div>
-      <div class="skills-category-title">Veille & Contenu</div>
-      <div class="skills-category-count">1 skill</div>
+  <!-- VEILLE -->
+  <div class="sk-cat">
+    <div class="sk-cat-header">
+      <div class="sk-cat-tag">
+        <span class="sk-cat-icon">📡</span>
+        Veille & Contenu
+        <span class="sk-cat-count">1</span>
+      </div>
+      <div class="sk-cat-line"></div>
     </div>
-    <div class="skills-grid">
+    <div class="sk-grid">
 
-      <div class="skill-card">
-        <div class="skill-card-header">
-          <span class="skill-cmd">/veille-ia</span>
-        </div>
+      <div class="sk-card">
+        <span class="sk-card-num">07</span>
+        <span class="sk-cmd">/veille-ia</span>
         <h3>Veille IA → Article SEO publié</h3>
-        <p>Lance 3 recherches en parallèle sur l'actualité IA, sélectionne le sujet le plus fort, rédige un article SEO 1500-2000 mots en français et le publie directement sur le blog AutomationBoost.</p>
-        <div class="skill-tags">
-          <span class="skill-tag">WebSearch</span>
-          <span class="skill-tag">SEO</span>
-          <span class="skill-tag">Blog</span>
-          <span class="skill-tag">Auto-publish</span>
+        <p>Lance 3 recherches en parallèle sur l'actualité IA, sélectionne le sujet le plus fort, rédige un article SEO de 1500-2000 mots et le publie directement sur le blog.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">WebSearch</span>
+          <span class="sk-tag">SEO</span>
+          <span class="sk-tag">Blog</span>
+          <span class="sk-tag">Auto-publish</span>
         </div>
       </div>
 
@@ -386,76 +593,74 @@
   </div>
 
   <!-- N8N -->
-  <div class="skills-category">
-    <div class="skills-category-header">
-      <div class="skills-category-icon">⚙️</div>
-      <div class="skills-category-title">Suite n8n Expert</div>
-      <div class="skills-category-count">5 skills</div>
+  <div class="sk-cat">
+    <div class="sk-cat-header">
+      <div class="sk-cat-tag">
+        <span class="sk-cat-icon">⚙️</span>
+        Suite n8n Expert
+        <span class="sk-cat-count">5</span>
+      </div>
+      <div class="sk-cat-line"></div>
     </div>
-    <div class="skills-grid">
+    <div class="sk-grid">
 
-      <div class="skill-card">
-        <div class="skill-card-header">
-          <span class="skill-cmd">/n8n-mcp-tools-expert</span>
-        </div>
+      <div class="sk-card">
+        <span class="sk-card-num">08</span>
+        <span class="sk-cmd">/n8n-mcp-tools-expert</span>
         <h3>Expert outils MCP n8n</h3>
-        <p>Guide complet pour utiliser les outils n8n via MCP : recherche de nodes, validation de config, accès aux templates, gestion des workflows. Évite les erreurs de paramètres.</p>
-        <div class="skill-tags">
-          <span class="skill-tag">n8n</span>
-          <span class="skill-tag">MCP</span>
-          <span class="skill-tag">Workflows</span>
+        <p>Guide pour utiliser les outils n8n via MCP : recherche de nodes, validation de config, accès aux templates, gestion des workflows. Zéro erreur de paramètres.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">n8n</span>
+          <span class="sk-tag">MCP</span>
+          <span class="sk-tag">Workflows</span>
         </div>
       </div>
 
-      <div class="skill-card">
-        <div class="skill-card-header">
-          <span class="skill-cmd">/n8n-node-configuration</span>
-        </div>
+      <div class="sk-card">
+        <span class="sk-card-num">09</span>
+        <span class="sk-cmd">/n8n-node-configuration</span>
         <h3>Configuration de nodes n8n</h3>
-        <p>Référence précise pour configurer chaque node n8n : paramètres exacts, discriminateurs resource/operation, credentials. Zéro approximation sur les noms de champs.</p>
-        <div class="skill-tags">
-          <span class="skill-tag">n8n</span>
-          <span class="skill-tag">Nodes</span>
-          <span class="skill-tag">Config</span>
+        <p>Référence précise pour configurer chaque node n8n : paramètres exacts, discriminateurs resource/operation, credentials. Noms de champs exacts, pas d'approximations.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">n8n</span>
+          <span class="sk-tag">Nodes</span>
+          <span class="sk-tag">Config</span>
         </div>
       </div>
 
-      <div class="skill-card">
-        <div class="skill-card-header">
-          <span class="skill-cmd">/n8n-validation-expert</span>
-        </div>
+      <div class="sk-card">
+        <span class="sk-card-num">10</span>
+        <span class="sk-cmd">/n8n-validation-expert</span>
         <h3>Validation de workflows n8n</h3>
-        <p>Valide un workflow n8n avant déploiement : détecte les erreurs de structure, les nodes mal configurés, les connections manquantes. Renvoie une liste d'erreurs corrigibles.</p>
-        <div class="skill-tags">
-          <span class="skill-tag">n8n</span>
-          <span class="skill-tag">Validation</span>
-          <span class="skill-tag">Debug</span>
+        <p>Valide un workflow avant déploiement : détecte les erreurs de structure, nodes mal configurés, connections manquantes. Renvoie une liste d'erreurs corrigibles.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">n8n</span>
+          <span class="sk-tag">Validation</span>
+          <span class="sk-tag">Debug</span>
         </div>
       </div>
 
-      <div class="skill-card">
-        <div class="skill-card-header">
-          <span class="skill-cmd">/n8n-workflow-patterns</span>
-        </div>
+      <div class="sk-card">
+        <span class="sk-card-num">11</span>
+        <span class="sk-cmd">/n8n-workflow-patterns</span>
         <h3>Patterns de workflows n8n</h3>
         <p>Bibliothèque de patterns réutilisables : webhooks, boucles, gestion d'erreurs, sous-workflows, traitement en batch. Accélère la conception de workflows complexes.</p>
-        <div class="skill-tags">
-          <span class="skill-tag">n8n</span>
-          <span class="skill-tag">Patterns</span>
-          <span class="skill-tag">Architecture</span>
+        <div class="sk-tags">
+          <span class="sk-tag">n8n</span>
+          <span class="sk-tag">Patterns</span>
+          <span class="sk-tag">Architecture</span>
         </div>
       </div>
 
-      <div class="skill-card">
-        <div class="skill-card-header">
-          <span class="skill-cmd">/n8n-code-javascript</span>
-        </div>
+      <div class="sk-card">
+        <span class="sk-card-num">12</span>
+        <span class="sk-cmd">/n8n-code-javascript</span>
         <h3>Code JS dans n8n</h3>
-        <p>Rédige et débogue du code JavaScript dans les nodes Code de n8n : accès aux items, manipulation de données, appels API, gestion des erreurs. Syntaxe n8n-native.</p>
-        <div class="skill-tags">
-          <span class="skill-tag">n8n</span>
-          <span class="skill-tag">JavaScript</span>
-          <span class="skill-tag">Code Node</span>
+        <p>Rédige et débogue du JavaScript dans les nodes Code n8n : accès aux items, manipulation de données, appels API, gestion des erreurs. Syntaxe n8n-native exacte.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">n8n</span>
+          <span class="sk-tag">JavaScript</span>
+          <span class="sk-tag">Code Node</span>
         </div>
       </div>
 
@@ -464,32 +669,94 @@
 
 </div>
 
-<!-- ============ CTA ============ -->
-<div class="skills-cta container">
+<!-- ════════════ CTA ════════════ -->
+<div class="sk-cta">
   <h2>Un skill sur mesure ?</h2>
-  <p>Chaque skill est développé à partir d'un vrai besoin métier. Si vous avez un process répétitif, on peut le transformer en skill Claude Code.</p>
-  <a href="https://tony.automatisationboost.com/#contact" class="btn-primary">Discutons de votre projet →</a>
+  <p>Chaque skill est développé sur un vrai besoin métier. Si vous avez un process répétitif, on peut le transformer en commande slash Claude Code.</p>
+  <a href="https://tony.automatisationboost.com/#contact" class="btn-primary">
+    Discutons de votre projet →
+  </a>
 </div>
 
-<!-- ============ FOOTER ============ -->
-<footer style="text-align:center;padding:40px 20px;border-top:1px solid var(--border);color:var(--text-muted);font-size:0.85rem;position:relative;z-index:1;">
-  <p>© 2026 AutomationBoost · <a href="/" style="color:var(--gold);">Accueil</a> · <a href="ressources.html" style="color:var(--gold);">Ressources</a> · <a href="blog.html" style="color:var(--gold);">Blog</a></p>
+<!-- ════════════ FOOTER ════════════ -->
+<footer style="text-align:center;padding:36px 20px;border-top:1px solid var(--border);color:var(--text-muted);font-size:0.85rem;position:relative;z-index:1;">
+  <p>© 2026 AutomationBoost ·
+    <a href="/" style="color:var(--gold);text-decoration:none;">Accueil</a> ·
+    <a href="ressources.html" style="color:var(--gold);text-decoration:none;">Ressources</a> ·
+    <a href="blog.html" style="color:var(--gold);text-decoration:none;">Blog</a>
+  </p>
 </footer>
 
 <script>
-  // Navbar scroll
+  // ── Navbar scroll ──
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 50);
-  });
-  // Mobile menu
+  }, { passive: true });
+
+  // ── Burger menu ──
   const burger = document.getElementById('navBurger');
-  const menu = document.getElementById('mobileMenu');
-  burger?.addEventListener('click', () => {
-    const open = menu.classList.toggle('open');
-    burger.setAttribute('aria-expanded', open);
-    menu.setAttribute('aria-hidden', !open);
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  function closeMenu() {
+    burger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+  }
+
+  burger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.contains('open');
+    if (isOpen) {
+      closeMenu();
+    } else {
+      burger.classList.add('open');
+      mobileMenu.classList.add('open');
+      burger.setAttribute('aria-expanded', 'true');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+    }
   });
+
+  document.addEventListener('click', (e) => {
+    if (!burger.contains(e.target) && !mobileMenu.contains(e.target)) closeMenu();
+  });
+
+  // ── Cards scroll reveal avec stagger ──
+  const cards = document.querySelectorAll('.sk-card');
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        // Stagger par groupe de cards dans la même grille
+        const siblings = Array.from(entry.target.parentElement.children);
+        const idx = siblings.indexOf(entry.target);
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, idx * 80);
+        cardObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  cards.forEach(card => cardObserver.observe(card));
+
+  // ── Stats counter ──
+  const statNums = document.querySelectorAll('[data-count]');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseFloat(el.dataset.count);
+      let current = 0;
+      const step = target / 40;
+      const interval = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = Math.floor(current);
+        if (current >= target) clearInterval(interval);
+      }, 20);
+      counterObserver.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  statNums.forEach(el => counterObserver.observe(el));
 </script>
 </body>
 </html>
