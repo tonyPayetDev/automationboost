@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capturer une démo réelle avec Playwright + cookies de session – AutomationBoost</title>
+  <meta name="description" content="Apprenez à capturer une démo navigateur réelle avec Playwright et Xvfb : navigation authentifiée, gestion des cookies de session, scénarios interactifs pour automatisationboost.com." />
+  <meta property="og:title" content="Capturer une démo réelle avec Playwright + cookies de session – AutomationBoost" />
+  <meta property="og:description" content="Playwright + Xvfb : capturez une démo navigateur réelle avec navigation authentifiée et cookies de session persistants." />
+  <meta property="og:type" content="article" />
+  <link rel="canonical" href="https://automatisationboost.com/ressources/playwright-demo-capture-cookies-session" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size:13px;color:var(--text-muted);margin-bottom:32px; }
+    .breadcrumb a { color:var(--gold);text-decoration:none; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.6rem,3.5vw,2.5rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:32px;max-width:720px; }
+    .tools-list { display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px; }
+    .tool-tag { display:inline-block;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:var(--text-light);font-size:12px;padding:4px 12px;border-radius:20px; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-size:1rem;font-weight:700;color:var(--gold);margin:28px 0 12px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul,
+    .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+
+    /* Code blocks */
+    .code-wrap { position:relative;margin:24px 0 32px; }
+    .code-label { font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;opacity:.7; }
+    pre { background:rgba(0,0,0,0.5);border:1px solid rgba(234,179,8,0.15);border-radius:10px;padding:24px;overflow-x:auto;font-size:13px;line-height:1.7;color:#e2e8f0;font-family:'Fira Code','Courier New',monospace; }
+    pre .cm { color:#6b7280;font-style:italic; }
+    pre .kw { color:#f59e0b; }
+    pre .fn { color:#34d399; }
+    pre .str { color:#a78bfa; }
+    pre .nb { color:#60a5fa; }
+    pre .op { color:#e2e8f0; }
+    .copy-btn { position:absolute;top:36px;right:12px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.3);color:var(--gold);font-size:11px;font-weight:700;padding:4px 10px;border-radius:5px;cursor:pointer;transition:background .2s;font-family:'Rajdhani',sans-serif;letter-spacing:.04em; }
+    .copy-btn:hover { background:rgba(234,179,8,0.25); }
+
+    /* Steps */
+    .steps { counter-reset:step;list-style:none;padding:0;margin:0 0 32px; }
+    .steps li { counter-increment:step;display:flex;gap:16px;margin-bottom:24px;padding:20px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px; }
+    .steps li::before { content:counter(step);display:flex;align-items:center;justify-content:center;min-width:32px;height:32px;background:linear-gradient(135deg,#eab308,#ca8a04);color:#000;font-weight:900;font-size:14px;border-radius:50%;font-family:'Orbitron',sans-serif; }
+    .step-body { flex:1; }
+    .step-body strong { color:var(--text);display:block;margin-bottom:6px;font-size:15px; }
+    .step-body p { color:var(--text-muted);font-size:14px;line-height:1.7;margin:0; }
+
+    /* Alert boxes */
+    .tip-box, .warn-box { border-radius:10px;padding:20px 24px;margin:24px 0;max-width:720px; }
+    .tip-box { background:rgba(52,211,153,0.06);border:1px solid rgba(52,211,153,0.2); }
+    .tip-box strong { color:#34d399; }
+    .warn-box { background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2); }
+    .warn-box strong { color:#f87171; }
+    .tip-box p, .warn-box p { color:var(--text-muted);font-size:14px;line-height:1.7;margin:4px 0 0; }
+
+    /* Pipeline diagram */
+    .pipeline { display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:24px 0 32px;padding:20px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.08);border-radius:10px;max-width:720px; }
+    .pipe-step { display:flex;flex-direction:column;align-items:center;gap:4px;min-width:90px; }
+    .pipe-icon { font-size:22px; }
+    .pipe-name { font-size:11px;font-weight:700;color:var(--text-muted);text-align:center;letter-spacing:.04em; }
+    .pipe-arr { color:var(--gold);font-size:18px;font-weight:700; }
+
+    /* CTA */
+    .cta-block { margin-top:60px;padding:32px;background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.2);border-radius:12px;text-align:center;max-width:720px; }
+    .cta-block h3 { font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:700;color:var(--gold);margin-bottom:8px; }
+    .cta-block p { color:var(--text-light);margin-bottom:20px;font-size:14px; }
+    .cta-btn { display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#eab308,#ca8a04);color:#000;font-weight:700;font-size:14px;padding:12px 24px;border-radius:8px;text-decoration:none;font-family:'Rajdhani',sans-serif; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+
+    /* Video embed */
+    .video-block { max-width:720px;margin:32px 0;border-radius:12px;overflow:hidden;border:1px solid rgba(234,179,8,0.2);position:relative;aspect-ratio:16/9;background:#000; }
+    .video-block video { width:100%;height:100%;object-fit:cover; }
+    .video-placeholder { display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;min-height:200px;gap:12px;color:var(--text-muted);font-size:14px; }
+    .video-placeholder span { font-size:40px; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a>
+      <span style="margin:0 8px">/</span>
+      Capturer une démo réelle avec Playwright + cookies de session
+    </div>
+
+    <div>
+      <span class="page-badge">🎭 Skill Playwright</span>
+      <span class="cat-badge" style="background:rgba(96,165,250,0.1);border:1px solid rgba(96,165,250,0.25);color:#60a5fa;">Automatisation navigateur</span>
+    </div>
+
+    <h1 class="page-title">Capturer une démo réelle du site avec Playwright + cookies de session</h1>
+    <p class="lede">Le skill Playwright de Claude Code permet de piloter un navigateur réel, de s'authentifier, de conserver la session entre les pages — et de capturer chaque interaction en vidéo ou en screenshots. Voici comment ça fonctionne concrètement sur automatisationboost.com.</p>
+
+    <div class="tools-list">
+      <span class="tool-tag">Playwright</span>
+      <span class="tool-tag">Xvfb</span>
+      <span class="tool-tag">Node.js</span>
+      <span class="tool-tag">FFmpeg</span>
+      <span class="tool-tag">Cookies de session</span>
+      <span class="tool-tag">Claude Code</span>
+    </div>
+
+    <!-- Pipeline visuel -->
+    <div class="pipeline">
+      <div class="pipe-step"><span class="pipe-icon">🖥️</span><span class="pipe-name">Xvfb<br>Écran virtuel</span></div>
+      <span class="pipe-arr">→</span>
+      <div class="pipe-step"><span class="pipe-icon">🎭</span><span class="pipe-name">Playwright<br>Navigation</span></div>
+      <span class="pipe-arr">→</span>
+      <div class="pipe-step"><span class="pipe-icon">🍪</span><span class="pipe-name">Cookies<br>Session</span></div>
+      <span class="pipe-arr">→</span>
+      <div class="pipe-step"><span class="pipe-icon">🎬</span><span class="pipe-name">FFmpeg<br>Capture</span></div>
+      <span class="pipe-arr">→</span>
+      <div class="pipe-step"><span class="pipe-icon">🎥</span><span class="pipe-name">MP4<br>Démo</span></div>
+    </div>
+
+    <div class="content-block">
+
+      <h2>Pourquoi Playwright et pas un simple scroll ?</h2>
+      <p>
+        Un scroll basique capture une page statique. Une <strong>démo réelle</strong>, c'est autre chose : connexion à un compte, navigation entre pages, clic sur des boutons, remplissage de formulaires — exactement ce que voit un utilisateur authentifié.
+      </p>
+      <p>
+        Playwright pilote un vrai Chromium (ou Firefox). Combiné à <strong>Xvfb</strong> (X Virtual FrameBuffer), il tourne en mode headless sur serveur Linux sans interface graphique. FFmpeg enregistre l'écran en temps réel pour produire une vidéo MP4 propre.
+      </p>
+
+      <div class="tip-box">
+        <strong>💡 Cas d'usage clé</strong>
+        <p>Générer automatiquement des vidéos de démo de votre SaaS à chaque déploiement, ou créer des tutoriels qui montrent une vraie navigation — pas une maquette.</p>
+      </div>
+
+      <h2>Étape 1 — Installer les dépendances</h2>
+      <p>Sur un serveur Ubuntu/Debian (ou dans un container Docker) :</p>
+
+      <div class="code-wrap">
+        <div class="code-label">bash — installation</div>
+        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+        <pre><span class="cm"># Xvfb pour l'écran virtuel</span>
+apt-get install -y xvfb x11-utils
+
+<span class="cm"># Playwright + Chromium</span>
+npm install playwright
+npx playwright install chromium
+npx playwright install-deps chromium
+
+<span class="cm"># FFmpeg pour l'enregistrement vidéo</span>
+apt-get install -y ffmpeg</pre>
+      </div>
+
+      <h2>Étape 2 — Démarrer Xvfb et préparer l'écran virtuel</h2>
+      <p>
+        Xvfb crée un écran X11 virtuel en mémoire. Playwright s'y branche, FFmpeg y lit les pixels pour enregistrer.
+      </p>
+
+      <div class="code-wrap">
+        <div class="code-label">bash — lancement Xvfb</div>
+        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+        <pre><span class="cm"># Démarrer un écran virtuel 1920x1080 sur le display :99</span>
+Xvfb :99 -screen 0 1920x1080x24 -ac &
+<span class="kw">export</span> DISPLAY=:99
+
+<span class="cm"># Vérifier que l'écran est actif</span>
+xdpyinfo -display :99 | grep dimensions</pre>
+      </div>
+
+      <h2>Étape 3 — Charger les cookies de session</h2>
+      <p>
+        Pour naviguer en tant qu'utilisateur connecté, il faut injecter les cookies de session dans Playwright <strong>avant</strong> d'ouvrir la première page. Deux approches :
+      </p>
+
+      <h3>Option A — Cookies exportés manuellement</h3>
+      <p>Exportez vos cookies depuis DevTools (Network → Copy as cURL ou extension EditThisCookie), puis chargez-les :</p>
+
+      <div class="code-wrap">
+        <div class="code-label">JavaScript — chargement cookies</div>
+        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+        <pre><span class="kw">const</span> { <span class="nb">chromium</span> } = require(<span class="str">'playwright'</span>);
+
+<span class="cm">// Cookies exportés depuis le navigateur</span>
+<span class="kw">const</span> SESSION_COOKIES = [
+  {
+    name: <span class="str">'session_token'</span>,
+    value: <span class="str">'eyJhbGc...'</span>,          <span class="cm">// votre token</span>
+    domain: <span class="str">'automatisationboost.com'</span>,
+    path: <span class="str">'/'</span>,
+    httpOnly: <span class="kw">true</span>,
+    secure: <span class="kw">true</span>,
+    sameSite: <span class="str">'Lax'</span>
+  },
+  {
+    name: <span class="str">'csrf_token'</span>,
+    value: <span class="str">'abc123...'</span>,
+    domain: <span class="str">'automatisationboost.com'</span>,
+    path: <span class="str">'/'</span>
+  }
+];
+
+<span class="kw">const</span> browser = <span class="kw">await</span> <span class="nb">chromium</span>.<span class="fn">launch</span>({
+  headless: <span class="kw">false</span>,          <span class="cm">// false car on utilise Xvfb</span>
+  args: [<span class="str">'--no-sandbox'</span>, <span class="str">'--disable-setuid-sandbox'</span>]
+});
+
+<span class="kw">const</span> context = <span class="kw">await</span> browser.<span class="fn">newContext</span>({
+  viewport: { width: <span class="nb">1920</span>, height: <span class="nb">1080</span> }
+});
+
+<span class="cm">// Injection des cookies AVANT la navigation</span>
+<span class="kw">await</span> context.<span class="fn">addCookies</span>(SESSION_COOKIES);
+
+<span class="kw">const</span> page = <span class="kw">await</span> context.<span class="fn">newPage</span>();
+<span class="kw">await</span> page.<span class="fn">goto</span>(<span class="str">'https://automatisationboost.com/acces'</span>);
+
+<span class="cm">// Vérifier qu'on est bien connecté</span>
+<span class="kw">const</span> isLoggedIn = <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">'[data-user]'</span>).<span class="fn">isVisible</span>();
+console.<span class="fn">log</span>(<span class="str">'Connecté :'</span>, isLoggedIn);</pre>
+      </div>
+
+      <h3>Option B — Connexion via le formulaire (plus robuste)</h3>
+      <p>Playwright remplit le formulaire de login et Playwright persiste automatiquement le cookie de session :</p>
+
+      <div class="code-wrap">
+        <div class="code-label">JavaScript — login automatique</div>
+        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+        <pre><span class="kw">async function</span> <span class="fn">login</span>(page) {
+  <span class="kw">await</span> page.<span class="fn">goto</span>(<span class="str">'https://automatisationboost.com/acces'</span>);
+  <span class="kw">await</span> page.<span class="fn">fill</span>(<span class="str">'input[type="email"]'</span>, process.env.DEMO_EMAIL);
+  <span class="kw">await</span> page.<span class="fn">fill</span>(<span class="str">'input[type="password"]'</span>, process.env.DEMO_PASSWORD);
+  <span class="kw">await</span> page.<span class="fn">click</span>(<span class="str">'button[type="submit"]'</span>);
+  <span class="kw">await</span> page.<span class="fn">waitForURL</span>(<span class="str">'**/dashboard**'</span>);
+
+  <span class="cm">// Sauvegarder le state (cookies + localStorage) pour réutilisation</span>
+  <span class="kw">await</span> page.context().<span class="fn">storageState</span>({ path: <span class="str">'./session.json'</span> });
+}
+
+<span class="cm">// Réutiliser la session sauvegardée au prochain lancement</span>
+<span class="kw">const</span> context = <span class="kw">await</span> browser.<span class="fn">newContext</span>({
+  storageState: <span class="str">'./session.json'</span>   <span class="cm">// session persistée</span>
+});</pre>
+      </div>
+
+      <div class="tip-box">
+        <strong>💡 storageState = gold standard</strong>
+        <p>La méthode <code>storageState</code> de Playwright sauvegarde cookies + localStorage en un seul fichier JSON. Réutilisez ce fichier pour toutes vos captures sans vous reconnecter à chaque fois.</p>
+      </div>
+
+      <h2>Étape 4 — Scénario de navigation réelle</h2>
+      <p>Un scénario de démo crédible sur automatisationboost.com : accueil → ressources → formation → espace membre.</p>
+
+      <div class="code-wrap">
+        <div class="code-label">JavaScript — scénario complet</div>
+        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+        <pre><span class="kw">async function</span> <span class="fn">runDemoScenario</span>(page) {
+
+  <span class="cm">// 1. Page d'accueil — laisser les animations se jouer</span>
+  <span class="kw">await</span> page.<span class="fn">goto</span>(<span class="str">'https://automatisationboost.com'</span>, {
+    waitUntil: <span class="str">'networkidle'</span>
+  });
+  <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(<span class="nb">2000</span>);
+  <span class="kw">await</span> page.<span class="fn">evaluate</span>(() => window.<span class="fn">scrollTo</span>({ top: <span class="nb">500</span>, behavior: <span class="str">'smooth'</span> }));
+  <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(<span class="nb">1500</span>);
+
+  <span class="cm">// 2. Clic sur "Ressources" dans la navigation</span>
+  <span class="kw">await</span> page.<span class="fn">click</span>(<span class="str">'a[href*="ressources"]'</span>);
+  <span class="kw">await</span> page.<span class="fn">waitForLoadState</span>(<span class="str">'networkidle'</span>);
+  <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(<span class="nb">2000</span>);
+
+  <span class="cm">// 3. Hover sur une carte ressource pour montrer l'interactivité</span>
+  <span class="kw">const</span> firstCard = page.<span class="fn">locator</span>(<span class="str">'.ressource-card'</span>).<span class="fn">first</span>();
+  <span class="kw">await</span> firstCard.<span class="fn">hover</span>();
+  <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(<span class="nb">1000</span>);
+
+  <span class="cm">// 4. Navigation vers la formation</span>
+  <span class="kw">await</span> page.<span class="fn">goto</span>(<span class="str">'https://automatisationboost.com/formation.html'</span>, {
+    waitUntil: <span class="str">'networkidle'</span>
+  });
+  <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(<span class="nb">2000</span>);
+  <span class="kw">await</span> page.<span class="fn">evaluate</span>(() => window.<span class="fn">scrollTo</span>({ top: <span class="nb">800</span>, behavior: <span class="str">'smooth'</span> }));
+  <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(<span class="nb">1500</span>);
+
+  <span class="cm">// 5. Espace membre (authentifié)</span>
+  <span class="kw">await</span> page.<span class="fn">goto</span>(<span class="str">'https://automatisationboost.com/acces.html'</span>, {
+    waitUntil: <span class="str">'networkidle'</span>
+  });
+  <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(<span class="nb">3000</span>);
+}</pre>
+      </div>
+
+      <h2>Étape 5 — Enregistrer la vidéo avec FFmpeg</h2>
+      <p>FFmpeg capture l'écran Xvfb en temps réel pendant que Playwright navigue. On lance les deux en parallèle :</p>
+
+      <div class="code-wrap">
+        <div class="code-label">JavaScript — capture vidéo complète</div>
+        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+        <pre><span class="kw">const</span> { <span class="nb">spawn</span> } = require(<span class="str">'child_process'</span>);
+<span class="kw">const</span> path = require(<span class="str">'path'</span>);
+
+<span class="kw">async function</span> <span class="fn">captureDemo</span>() {
+  <span class="kw">const</span> outputFile = <span class="str">`demo-${Date.now()}.mp4`</span>;
+
+  <span class="cm">// Lancer FFmpeg en arrière-plan</span>
+  <span class="kw">const</span> ffmpeg = <span class="fn">spawn</span>(<span class="str">'ffmpeg'</span>, [
+    <span class="str">'-f'</span>, <span class="str">'x11grab'</span>,
+    <span class="str">'-r'</span>, <span class="str">'30'</span>,                        <span class="cm">// 30 fps</span>
+    <span class="str">'-s'</span>, <span class="str">'1920x1080'</span>,
+    <span class="str">'-i'</span>, <span class="str">':99.0'</span>,                     <span class="cm">// display Xvfb</span>
+    <span class="str">'-vcodec'</span>, <span class="str">'libx264'</span>,
+    <span class="str">'-pix_fmt'</span>, <span class="str">'yuv420p'</span>,
+    <span class="str">'-preset'</span>, <span class="str">'fast'</span>,
+    <span class="str">'-crf'</span>, <span class="str">'23'</span>,
+    <span class="str">'-y'</span>, outputFile
+  ]);
+
+  <span class="cm">// Lancer le navigateur et le scénario</span>
+  <span class="kw">const</span> browser = <span class="kw">await</span> <span class="nb">chromium</span>.<span class="fn">launch</span>({
+    headless: <span class="kw">false</span>,
+    args: [<span class="str">'--no-sandbox'</span>, <span class="str">'--display=:99'</span>]
+  });
+  <span class="kw">const</span> context = <span class="kw">await</span> browser.<span class="fn">newContext</span>({
+    viewport: { width: <span class="nb">1920</span>, height: <span class="nb">1080</span> },
+    storageState: <span class="str">'./session.json'</span>    <span class="cm">// session persistée</span>
+  });
+  <span class="kw">const</span> page = <span class="kw">await</span> context.<span class="fn">newPage</span>();
+
+  <span class="kw">await</span> <span class="fn">runDemoScenario</span>(page);
+
+  <span class="cm">// Stopper FFmpeg proprement (signal SIGINT = fin d'encodage)</span>
+  ffmpeg.<span class="fn">stdin</span>.<span class="fn">write</span>(<span class="str">'q'</span>);
+  <span class="kw">await</span> <span class="kw">new</span> <span class="fn">Promise</span>(resolve => ffmpeg.<span class="fn">on</span>(<span class="str">'close'</span>, resolve));
+
+  <span class="kw">await</span> browser.<span class="fn">close</span>();
+  console.<span class="fn">log</span>(<span class="str">`✅ Vidéo générée : ${outputFile}`</span>);
+  <span class="kw">return</span> outputFile;
+}</pre>
+      </div>
+
+      <h2>Étape 6 — Scénario complet en un seul fichier</h2>
+      <p>Le script autonome qui enchaîne toutes les étapes :</p>
+
+      <div class="code-wrap">
+        <div class="code-label">JavaScript — capture-demo.js (script complet)</div>
+        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+        <pre><span class="cm">#!/usr/bin/env node</span>
+<span class="cm">// capture-demo.js — Démo authentifiée Playwright + Xvfb + FFmpeg</span>
+
+<span class="kw">const</span> { <span class="nb">chromium</span> } = require(<span class="str">'playwright'</span>);
+<span class="kw">const</span> { <span class="nb">spawn</span>, <span class="nb">execSync</span> } = require(<span class="str">'child_process'</span>);
+<span class="kw">const</span> fs = require(<span class="str">'fs'</span>);
+
+<span class="kw">const</span> TARGET_URL  = <span class="str">'https://automatisationboost.com'</span>;
+<span class="kw">const</span> DISPLAY     = <span class="str">':99'</span>;
+<span class="kw">const</span> RESOLUTION  = <span class="str">'1920x1080'</span>;
+<span class="kw">const</span> SESSION_FILE = <span class="str">'./session.json'</span>;
+<span class="kw">const</span> OUTPUT      = <span class="str">`./demo-${Date.now()}.mp4`</span>;
+
+<span class="cm">// 1. Démarrer Xvfb</span>
+<span class="fn">execSync</span>(<span class="str">`Xvfb ${DISPLAY} -screen 0 ${RESOLUTION}x24 -ac &`</span>);
+process.env.DISPLAY = DISPLAY;
+
+<span class="cm">// 2. Lancer FFmpeg</span>
+<span class="kw">const</span> ffmpeg = <span class="fn">spawn</span>(<span class="str">'ffmpeg'</span>, [
+  <span class="str">'-f'</span>, <span class="str">'x11grab'</span>, <span class="str">'-r'</span>, <span class="str">'30'</span>, <span class="str">'-s'</span>, RESOLUTION,
+  <span class="str">'-i'</span>, <span class="str">`${DISPLAY}.0`</span>,
+  <span class="str">'-vcodec'</span>, <span class="str">'libx264'</span>, <span class="str">'-pix_fmt'</span>, <span class="str">'yuv420p'</span>,
+  <span class="str">'-preset'</span>, <span class="str">'fast'</span>, <span class="str">'-crf'</span>, <span class="str">'23'</span>, <span class="str">'-y'</span>, OUTPUT
+], { stdio: [<span class="str">'pipe'</span>, <span class="str">'inherit'</span>, <span class="str">'inherit'</span>] });
+
+(<span class="kw">async</span> () => {
+  <span class="kw">const</span> browser = <span class="kw">await</span> <span class="nb">chromium</span>.<span class="fn">launch</span>({
+    headless: <span class="kw">false</span>,
+    args: [<span class="str">'--no-sandbox'</span>, <span class="str">'--disable-setuid-sandbox'</span>,
+           <span class="str">'--window-size=1920,1080'</span>]
+  });
+
+  <span class="kw">const</span> ctxOpts = { viewport: { width: <span class="nb">1920</span>, height: <span class="nb">1080</span> } };
+  <span class="kw">if</span> (fs.<span class="fn">existsSync</span>(SESSION_FILE)) {
+    ctxOpts.storageState = SESSION_FILE;   <span class="cm">// session persistée</span>
+  }
+
+  <span class="kw">const</span> ctx  = <span class="kw">await</span> browser.<span class="fn">newContext</span>(ctxOpts);
+  <span class="kw">const</span> page = <span class="kw">await</span> ctx.<span class="fn">newPage</span>();
+
+  <span class="cm">// Se connecter si pas de session sauvée</span>
+  <span class="kw">if</span> (!fs.<span class="fn">existsSync</span>(SESSION_FILE)) {
+    <span class="kw">await</span> page.<span class="fn">goto</span>(<span class="str">`${TARGET_URL}/acces.html`</span>);
+    <span class="kw">await</span> page.<span class="fn">fill</span>(<span class="str">'#email'</span>, process.env.DEMO_EMAIL);
+    <span class="kw">await</span> page.<span class="fn">fill</span>(<span class="str">'#password'</span>, process.env.DEMO_PASSWORD);
+    <span class="kw">await</span> page.<span class="fn">click</span>(<span class="str">'button[type=submit]'</span>);
+    <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(<span class="nb">2000</span>);
+    <span class="kw">await</span> ctx.<span class="fn">storageState</span>({ path: SESSION_FILE });
+  }
+
+  <span class="cm">// Scénario de navigation réelle</span>
+  <span class="kw">await</span> page.<span class="fn">goto</span>(TARGET_URL, { waitUntil: <span class="str">'networkidle'</span> });
+  <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(<span class="nb">2500</span>);
+  <span class="kw">await</span> page.<span class="fn">evaluate</span>(() => window.<span class="fn">scrollTo</span>({ top: <span class="nb">600</span>, behavior: <span class="str">'smooth'</span> }));
+  <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(<span class="nb">2000</span>);
+  <span class="kw">await</span> page.<span class="fn">click</span>(<span class="str">'a[href*="ressources"]'</span>);
+  <span class="kw">await</span> page.<span class="fn">waitForLoadState</span>(<span class="str">'networkidle'</span>);
+  <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(<span class="nb">2500</span>);
+  <span class="kw">await</span> page.<span class="fn">goto</span>(<span class="str">`${TARGET_URL}/formation.html`</span>, { waitUntil: <span class="str">'networkidle'</span> });
+  <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(<span class="nb">3000</span>);
+  <span class="kw">await</span> page.<span class="fn">evaluate</span>(() => window.<span class="fn">scrollTo</span>({ top: <span class="nb">900</span>, behavior: <span class="str">'smooth'</span> }));
+  <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(<span class="nb">2000</span>);
+
+  <span class="kw">await</span> browser.<span class="fn">close</span>();
+
+  <span class="cm">// Stopper FFmpeg</span>
+  ffmpeg.<span class="fn">stdin</span>.<span class="fn">write</span>(<span class="str">'q\n'</span>);
+  <span class="kw">await</span> <span class="kw">new</span> <span class="fn">Promise</span>(r => ffmpeg.<span class="fn">on</span>(<span class="str">'close'</span>, r));
+
+  console.<span class="fn">log</span>(<span class="str">`✅ Vidéo : ${OUTPUT}`</span>);
+})();</pre>
+      </div>
+
+      <h2>Gestion avancée des cookies</h2>
+
+      <h3>Renouveler la session expirée automatiquement</h3>
+      <div class="code-wrap">
+        <div class="code-label">JavaScript — refresh session</div>
+        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+        <pre><span class="kw">async function</span> <span class="fn">ensureSession</span>(page, ctx) {
+  <span class="kw">await</span> page.<span class="fn">goto</span>(<span class="str">'https://automatisationboost.com/acces.html'</span>);
+
+  <span class="cm">// Vérifier si la session est encore valide</span>
+  <span class="kw">const</span> isExpired = <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">'.login-form'</span>).<span class="fn">isVisible</span>();
+
+  <span class="kw">if</span> (isExpired) {
+    console.<span class="fn">log</span>(<span class="str">'Session expirée, reconnexion...'</span>);
+    <span class="kw">await</span> page.<span class="fn">fill</span>(<span class="str">'#email'</span>, process.env.DEMO_EMAIL);
+    <span class="kw">await</span> page.<span class="fn">fill</span>(<span class="str">'#password'</span>, process.env.DEMO_PASSWORD);
+    <span class="kw">await</span> page.<span class="fn">click</span>(<span class="str">'button[type=submit]'</span>);
+    <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(<span class="nb">2000</span>);
+    <span class="cm">// Mettre à jour le fichier session</span>
+    <span class="kw">await</span> ctx.<span class="fn">storageState</span>({ path: <span class="str">'./session.json'</span> });
+  }
+}</pre>
+      </div>
+
+      <h3>Bloquer les ressources inutiles pour accélérer la capture</h3>
+      <div class="code-wrap">
+        <div class="code-label">JavaScript — interception réseau</div>
+        <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+        <pre><span class="cm">// Bloquer analytics, publicités et fonts tiers</span>
+<span class="kw">await</span> page.<span class="fn">route</span>(<span class="str">'**/*'</span>, route => {
+  <span class="kw">const</span> url = route.request().<span class="fn">url</span>();
+  <span class="kw">const</span> blocked = [
+    <span class="str">'google-analytics'</span>, <span class="str">'gtag'</span>, <span class="str">'hotjar'</span>,
+    <span class="str">'facebook.net'</span>, <span class="str">'doubleclick'</span>
+  ];
+  <span class="kw">if</span> (blocked.<span class="fn">some</span>(b => url.<span class="fn">includes</span>(b))) {
+    route.<span class="fn">abort</span>();
+  } <span class="kw">else</span> {
+    route.<span class="fn">continue</span>();
+  }
+});</pre>
+      </div>
+
+      <div class="warn-box">
+        <strong>⚠️ Sécurité</strong>
+        <p>Ne jamais committer le fichier <code>session.json</code> dans Git — il contient vos tokens d'authentification. Ajoutez-le au <code>.gitignore</code> et stockez-le dans un volume Docker ou une variable d'environnement chiffrée.</p>
+      </div>
+
+      <h2>Intégration dans un pipeline n8n</h2>
+      <p>Ce script peut être déclenché automatiquement depuis n8n via un nœud <strong>Execute Command</strong> ou un webhook. La vidéo produite est ensuite uploadée sur Cloudflare R2 et l'URL sauvegardée dans Supabase.</p>
+
+      <ol class="steps">
+        <li>
+          <div class="step-body">
+            <strong>Déclencheur n8n (Schedule ou Webhook)</strong>
+            <p>Déclenche le workflow à chaque déploiement ou selon un planning défini.</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <strong>Nœud Execute Command</strong>
+            <p><code>node /scripts/capture-demo.js</code> — Playwright + Xvfb enregistrent la démo en MP4.</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <strong>Upload Cloudflare R2</strong>
+            <p>La vidéo est uploadée via l'API S3-compatible de R2 avec un nom unique horodaté.</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <strong>Sauvegarde Supabase</strong>
+            <p>L'URL publique de la vidéo est insérée dans la table <code>demos</code> avec métadonnées (date, durée, hash).</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-body">
+            <strong>Notification</strong>
+            <p>Telegram ou email avec le lien direct vers la démo fraîche.</p>
+          </div>
+        </li>
+      </ol>
+
+      <h2>Résultat attendu</h2>
+      <p>
+        En 30 à 60 secondes d'exécution, vous obtenez un MP4 1080p qui montre une vraie navigation sur votre site — avec l'utilisateur authentifié, les vraies données, et toutes les interactions. Aucune maquette, aucun montage manuel.
+      </p>
+
+    </div>
+
+    <!-- Bloc vidéo tutoriel -->
+    <div id="tutorial-video" style="max-width:720px;margin:40px 0;">
+      <h2 style="font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:16px;">Voir le résultat en vidéo</h2>
+      <div class="video-block" id="video-container">
+        <div class="video-placeholder" id="video-placeholder">
+          <span>🎬</span>
+          <p>Vidéo de démo en cours de génération…</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <h3>Automatisez toutes vos démos produit</h3>
+      <p>Formation complète n8n + IA à 29,90€ — de zéro aux pipelines autonomes</p>
+      <a href="../formation.html" class="cta-btn">Voir la formation →</a>
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  function copyCode(btn) {
+    const pre = btn.parentElement.querySelector('pre');
+    navigator.clipboard.writeText(pre.innerText).then(() => {
+      btn.textContent = '✓ Copié';
+      setTimeout(() => btn.textContent = 'Copier', 2000);
+    });
+  }
+
+  // Injecter la vidéo si disponible via data-attribute
+  window.addEventListener('DOMContentLoaded', () => {
+    const videoUrl = document.body.dataset.demoVideoUrl;
+    if (videoUrl) {
+      const container = document.getElementById('video-container');
+      container.innerHTML = `<video controls autoplay muted loop playsinline>
+        <source src="${videoUrl}" type="video/mp4">
+      </video>`;
+    }
+  });
+</script>
+</body>
+</html>
