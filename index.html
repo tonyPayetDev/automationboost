@@ -24,20 +24,25 @@
 </head>
 <body>
 
-<!-- ============ NAVBAR ============ -->
+<!-- ============ NAVBAR FLOATING PILL (21st.dev Mini Navbar) ============ -->
 <nav id="navbar">
-  <div class="nav-inner">
+  <div class="nav-pill">
     <a href="#" class="logo">
-      <div class="logo-icon">⚡</div>
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
       <span class="logo-text">Automation<span>Boost</span></span>
     </a>
     <div class="nav-desktop">
-      <a href="ressources.html">Ressources</a>
-      <a href="blog.html">Blog IA</a>
-      <a href="skills.html">Skills</a>
-      <a href="formation.html" class="nav-formation" style="color:var(--gold);background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.25);padding:6px 14px;border-radius:6px;">⚡ Formation 29,90€</a>
-      <a href="https://tony.automatisationboost.com/#contact" class="nav-cta">Contact →</a>
+      <a href="ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation 29,90€
+      </a>
     </div>
+    <a href="https://tony.automatisationboost.com/#contact" class="nav-cta">Contact →</a>
     <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -47,17 +52,18 @@
 <!-- Menu mobile -->
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <nav class="mobile-menu-inner">
-    <a href="ressources.html" class="mob-link">📚 Ressources</a>
-    <a href="blog.html" class="mob-link">✍️ Blog IA</a>
-    <a href="skills.html" class="mob-link mob-link--gold">⚡ Skills Claude</a>
-    <a href="formation.html" class="mob-link mob-link--gold">⚡ Formation 29,90€</a>
-    <a href="#pricing" class="mob-link" onclick="closeMobileMenu()">🚀 Commencer</a>
-    <a href="https://tony.automatisationboost.com/#contact" class="mob-link">✉ Contact</a>
+    <a href="ressources.html" class="mob-link">Ressources</a>
+    <a href="blog.html" class="mob-link">Blog IA</a>
+    <a href="skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="formation.html" class="mob-link mob-link--gold">Formation 29,90€</a>
+    <a href="#pricing" class="mob-link" onclick="closeMobileMenu()">Commencer</a>
+    <a href="https://tony.automatisationboost.com/#contact" class="mob-link">Contact</a>
   </nav>
 </div>
 
 <!-- ============ HERO ============ -->
 <section id="hero">
+  <canvas id="hero-particles" aria-hidden="true"></canvas>
   <div class="hero-glow"></div>
   <div class="container">
     <div class="hero-grid">
@@ -68,6 +74,7 @@
         <h1 class="hero-title">
           <span class="line-1">Publiez Partout.</span>
           <span class="line-2" id="hero-tagline" data-text="En Automatique.">En Automatique.</span>
+          <!-- data-text used by glitch ::before/::after pseudo-elements -->
         </h1>
         <p class="hero-subtitle">
           Générez, planifiez et publiez des posts percutants sur <strong>Instagram, LinkedIn, Facebook, TikTok</strong> et plus — le tout en quelques secondes grâce à l'IA.
@@ -90,8 +97,8 @@
             <span class="stat-label">plus d'engagement</span>
           </div>
           <div class="stat-item">
-            <span class="stat-number" data-count="2400" data-suffix="+">0+</span>
-            <span class="stat-label">créateurs actifs</span>
+            <span class="stat-number" data-count="100" data-suffix="%">0%</span>
+            <span class="stat-label">automatisé</span>
           </div>
         </div>
       </div>
@@ -110,13 +117,25 @@
               <span class="status-dot">Actif</span>
             </div>
             <div class="mockup-platforms">
-              <div class="platform-chip"><span class="icon">📷</span>Instagram</div>
-              <div class="platform-chip"><span class="icon">💼</span>LinkedIn</div>
-              <div class="platform-chip"><span class="icon">👥</span>Facebook</div>
-              <div class="platform-chip"><span class="icon">🎵</span>TikTok</div>
+              <div class="platform-chip">
+                <svg class="platform-chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+                Instagram
+              </div>
+              <div class="platform-chip">
+                <svg class="platform-chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                LinkedIn
+              </div>
+              <div class="platform-chip">
+                <svg class="platform-chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                Facebook
+              </div>
+              <div class="platform-chip">
+                <svg class="platform-chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+                TikTok
+              </div>
             </div>
             <div class="mockup-post-preview">
-              <div class="post-meta">✨ Post généré par IA — Prêt à publier</div>
+              <div class="post-meta">▸ Post généré par IA — Prêt à publier</div>
               <div class="post-text">
                 🚀 3 stratégies pour <span class="tag">#automatiser</span> votre croissance en 2026…
                 <br>🔥 Gagnez du temps. Multipliez votre portée.
@@ -148,18 +167,34 @@
 </section>
 
 <!-- ============ SOCIAL PROOF BANDEAU ============ -->
-<div style="background:#0a0a0a;border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a;padding:24px 0;position:relative;z-index:1;">
-  <div class="container">
-    <div style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;">
-      <span style="color:#71717a;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.1em;">Utilisé par des créateurs et agences sur</span>
-      <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap;">
-        <span style="color:#a1a1aa;font-size:1rem;">📷 Instagram</span>
-        <span style="color:#a1a1aa;font-size:1rem;">💼 LinkedIn</span>
-        <span style="color:#a1a1aa;font-size:1rem;">👥 Facebook</span>
-        <span style="color:#a1a1aa;font-size:1rem;">🎵 TikTok</span>
-        <span style="color:#a1a1aa;font-size:1rem;">🐦 X/Twitter</span>
-        <span style="color:#a1a1aa;font-size:1rem;">📌 Pinterest</span>
-      </div>
+<div class="social-proof-band">
+  <div class="social-proof-inner">
+    <span class="social-proof-label">Utilisé par des créateurs et agences sur</span>
+    <div class="social-proof-platforms">
+      <span class="platform-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+        Instagram
+      </span>
+      <span class="platform-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </span>
+      <span class="platform-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        Facebook
+      </span>
+      <span class="platform-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+        TikTok
+      </span>
+      <span class="platform-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16H20L8.267 4z"/><path d="M4 20l6.768-6.768M15.232 9.232L20 4"/></svg>
+        X / Twitter
+      </span>
+      <span class="platform-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12a4 4 0 1 0 8 0 4 4 0 0 0-8 0"/><path d="M12 8V4m0 16v-4M4 12H2m20 0h-2"/></svg>
+        Pinterest
+      </span>
     </div>
   </div>
 </div>
@@ -175,22 +210,30 @@
 
     <div class="problem-grid">
       <div class="problem-card fade-in fade-in-delay-1">
-        <div class="problem-icon">⏰</div>
+        <div class="problem-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
         <h3>Trop chronophage</h3>
         <p>Rédiger, adapter le format, poster manuellement sur 5 plateformes différentes vous prend 2-3h par jour. Du temps perdu sur des tâches répétitives.</p>
       </div>
       <div class="problem-card fade-in fade-in-delay-2">
-        <div class="problem-icon">😰</div>
+        <div class="problem-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
         <h3>La page blanche permanente</h3>
         <p>Trouver des idées fraîches chaque jour est un enfer. Vous tournez en rond, recyclez les mêmes sujets, votre engagement baisse.</p>
       </div>
       <div class="problem-card fade-in fade-in-delay-3">
-        <div class="problem-icon">📉</div>
+        <div class="problem-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>
+        </div>
         <h3>Incohérence de publication</h3>
         <p>Vous publiez quand vous avez le temps — pas selon les meilleurs créneaux. L'algorithme pénalise l'irrégularité et votre portée s'effondre.</p>
       </div>
       <div class="problem-card fade-in fade-in-delay-4">
-        <div class="problem-icon">🎭</div>
+        <div class="problem-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+        </div>
         <h3>Adapter le ton pour chaque réseau</h3>
         <p>Ce qui fonctionne sur LinkedIn ne marche pas sur Instagram. Reformater manuellement chaque post pour chaque plateforme est un calvaire.</p>
       </div>
@@ -217,37 +260,49 @@
     <div class="features-grid">
 
       <div class="feature-card fade-in">
-        <div class="feature-icon">🤖</div>
+        <div class="feature-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+        </div>
         <h3>Génération IA de Posts</h3>
         <p>Décrivez votre sujet en une phrase. L'IA génère un post optimisé pour chaque réseau en quelques secondes — ton, hashtags, emojis, CTA inclus.</p>
       </div>
 
       <div class="feature-card fade-in fade-in-delay-1">
-        <div class="feature-icon">📅</div>
+        <div class="feature-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
         <h3>Planification Intelligente</h3>
         <p>Notre algorithme analyse les données de vos abonnés pour déterminer les créneaux à plus fort engagement. Publiez au bon moment, automatiquement.</p>
       </div>
 
       <div class="feature-card fade-in fade-in-delay-2">
-        <div class="feature-icon">🔁</div>
+        <div class="feature-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        </div>
         <h3>Publication Multi-Plateformes</h3>
         <p>Un seul post, adapté automatiquement et publié sur Instagram, LinkedIn, Facebook, TikTok, X et Pinterest. Votre contenu partout, sans effort.</p>
       </div>
 
       <div class="feature-card fade-in fade-in-delay-1">
-        <div class="feature-icon">🎨</div>
+        <div class="feature-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        </div>
         <h3>Adaptation par Plateforme</h3>
         <p>L'IA reformate chaque contenu selon les codes de chaque réseau : longueur, ton, hashtags, mentions, format image. Rien n'est générique.</p>
       </div>
 
       <div class="feature-card fade-in fade-in-delay-2">
-        <div class="feature-icon">📊</div>
+        <div class="feature-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+        </div>
         <h3>Analytics Unifiés</h3>
         <p>Toutes vos métriques en un seul tableau de bord : portée, engagement, followers, meilleures performances. Prenez les bonnes décisions data.</p>
       </div>
 
       <div class="feature-card fade-in fade-in-delay-3">
-        <div class="feature-icon">🔗</div>
+        <div class="feature-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </div>
         <h3>Intégrations & Webhooks</h3>
         <p>Connectez AutomationBoost à vos outils : Notion, Airtable, Make, n8n, Zapier. Déclenchez des publications depuis n'importe quel workflow.</p>
       </div>
@@ -333,12 +388,15 @@
 
       <div class="demo-screen fade-in fade-in-delay-2">
         <div class="screen-header">
-          <span>📋</span> File de publication
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:5px;opacity:.7"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          File de publication
         </div>
         <div class="screen-body">
 
           <div class="queue-item">
-            <div class="qi-platform">📷</div>
+            <div class="qi-platform">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+            </div>
             <div class="qi-content">
               <div class="qi-title">Les 5 erreurs à éviter sur Instagram</div>
               <div class="qi-time">Publié aujourd'hui à 09:00</div>
@@ -347,39 +405,47 @@
           </div>
 
           <div class="queue-item">
-            <div class="qi-platform">💼</div>
+            <div class="qi-platform">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </div>
             <div class="qi-content">
               <div class="qi-title">Comment l'IA transforme le marketing</div>
               <div class="qi-time">Planifié demain à 08:30</div>
             </div>
-            <span class="qi-status status-sched">⏰ Planifié</span>
+            <span class="qi-status status-sched">Planifié</span>
           </div>
 
           <div class="queue-item">
-            <div class="qi-platform">👥</div>
+            <div class="qi-platform">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </div>
             <div class="qi-content">
               <div class="qi-title">3 astuces pour booster votre portée</div>
               <div class="qi-time">Planifié dans 2 jours</div>
             </div>
-            <span class="qi-status status-sched">⏰ Planifié</span>
+            <span class="qi-status status-sched">Planifié</span>
           </div>
 
           <div class="queue-item">
-            <div class="qi-platform">🎵</div>
+            <div class="qi-platform">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+            </div>
             <div class="qi-content">
               <div class="qi-title">Tendances réseaux sociaux 2026</div>
               <div class="qi-time">Brouillon — en attente</div>
             </div>
-            <span class="qi-status status-draft">✏ Brouillon</span>
+            <span class="qi-status status-draft">Brouillon</span>
           </div>
 
           <div class="queue-item">
-            <div class="qi-platform">🐦</div>
+            <div class="qi-platform">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16H20L8.267 4z"/><path d="M4 20l6.768-6.768M15.232 9.232L20 4"/></svg>
+            </div>
             <div class="qi-content">
               <div class="qi-title">Thread : automatiser sans perdre l'humain</div>
               <div class="qi-time">Planifié dans 3 jours</div>
             </div>
-            <span class="qi-status status-sched">⏰ Planifié</span>
+            <span class="qi-status status-sched">Planifié</span>
           </div>
 
         </div>
@@ -425,95 +491,22 @@
   </div>
 </section>
 
-<!-- ============ TESTIMONIALS ============ -->
+<!-- ============ EARLY ACCESS ============ -->
 <section id="testimonials">
   <div class="container">
     <div class="text-center fade-in">
-      <span class="section-label">Témoignages</span>
-      <h2 class="section-title">Ils ont transformé leur<br><span class="gold">présence en ligne</span></h2>
-      <p class="section-desc">Plus de 2 400 créateurs, freelances et agences utilisent AutomationBoost chaque jour. Voici leurs retours.</p>
+      <span class="section-label">Accès Anticipé</span>
+      <h2 class="section-title">Rejoins les premiers<br><span class="gold">à tester AutomationBoost</span></h2>
+      <p class="section-desc">Le produit est en phase de lancement. Inscris-toi à la liste d'attente et sois parmi les premiers à accéder à l'outil — et à partager ton expérience.</p>
     </div>
 
-    <div class="testi-grid">
-
-      <div class="testi-card fade-in">
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">"En 3 semaines, j'ai multiplié par 4 ma fréquence de publication sans y passer plus de temps. Mon engagement sur LinkedIn a explosé — +180% en un mois. Je ne reviendrais jamais en arrière."</p>
-        <div class="testi-author">
-          <div class="author-avatar">SC</div>
-          <div>
-            <div class="author-name">Sophie Cartier</div>
-            <div class="author-role">Consultante Marketing Digital, Paris</div>
-          </div>
-        </div>
-        <span class="testi-result">+180% d'engagement LinkedIn</span>
+    <div class="testi-grid" style="max-width:600px;margin:0 auto;text-align:center;">
+      <div class="testi-card fade-in" style="grid-column:1/-1;">
+        <p class="testi-text" style="font-size:1.1rem;">AutomationBoost automatise ta présence sur LinkedIn, Instagram et TikTok grâce à des workflows n8n sur mesure. Rejoins la liste d'attente et reçois un accès prioritaire dès le lancement.</p>
+        <a href="#pricing" class="btn-primary" style="margin-top:1.5rem;display:inline-block;">
+          ⚡ S'inscrire à la liste d'attente
+        </a>
       </div>
-
-      <div class="testi-card fade-in fade-in-delay-1">
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">"J'avais du mal à être constant sur les réseaux à cause de mon emploi du temps chargé. AutomationBoost planifie 2 semaines de contenu en 30 minutes. Game changer absolu pour mon agence."</p>
-        <div class="testi-author">
-          <div class="author-avatar">MV</div>
-          <div>
-            <div class="author-name">Marc Vidal</div>
-            <div class="author-role">Fondateur Agence Nova Digital</div>
-          </div>
-        </div>
-        <span class="testi-result">2 semaines de contenu en 30 min</span>
-      </div>
-
-      <div class="testi-card fade-in fade-in-delay-2">
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">"Le rapport qualité/prix est imbattable. Pour le prix d'un café par jour, j'ai gagné un assistant IA qui publie pour moi sur 5 réseaux. Mon business a grandi de 60% ce trimestre."</p>
-        <div class="testi-author">
-          <div class="author-avatar">AL</div>
-          <div>
-            <div class="author-name">Aurélie Lemoine</div>
-            <div class="author-role">E-commerçante, Bordeaux</div>
-          </div>
-        </div>
-        <span class="testi-result">+60% de croissance business</span>
-      </div>
-
-      <div class="testi-card fade-in">
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">"La fonctionnalité d'adaptation par plateforme est bluffante. Le même post devient naturellement différent sur Insta et LinkedIn. Mes followers ne savent pas que c'est automatique."</p>
-        <div class="testi-author">
-          <div class="author-avatar">TN</div>
-          <div>
-            <div class="author-name">Thomas Nguyen</div>
-            <div class="author-role">Créateur de Contenu, 50k followers</div>
-          </div>
-        </div>
-        <span class="testi-result">50k followers — 100% authentique</span>
-      </div>
-
-      <div class="testi-card fade-in fade-in-delay-1">
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">"J'ai testé 4 outils avant AutomationBoost. Aucun ne gérait aussi bien la nuance entre plateformes. Et le support est ultra-réactif — vraie équipe, vraies réponses."</p>
-        <div class="testi-author">
-          <div class="author-avatar">CR</div>
-          <div>
-            <div class="author-name">Camille Rousseau</div>
-            <div class="author-role">Freelance Community Manager</div>
-          </div>
-        </div>
-        <span class="testi-result">Gère 12 clients avec 1 seul outil</span>
-      </div>
-
-      <div class="testi-card fade-in fade-in-delay-2">
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">"Je suis coach et mon audience a besoin de régularité. Avant, je ratais des semaines entières. Depuis AutomationBoost, je n'ai pas manqué un seul jour de publication en 4 mois."</p>
-        <div class="testi-author">
-          <div class="author-avatar">JB</div>
-          <div>
-            <div class="author-name">Julie Bernard</div>
-            <div class="author-role">Coach Bien-être & Développement Personnel</div>
-          </div>
-        </div>
-        <span class="testi-result">0 jour manqué en 4 mois</span>
-      </div>
-
     </div>
   </div>
 </section>
@@ -523,42 +516,13 @@
   <div class="container">
     <div class="urgency-box fade-in">
       <div class="urgency-label">
-        🔥 Offre de Lancement Limitée
+        🚀 Tarif Lancement
       </div>
-      <h2>Profitez du tarif fondateur<br><span class="gold">avant la hausse de prix</span></h2>
-      <p>Cette offre de lancement est disponible pour les 73 premiers inscrits seulement. Après ça, les prix augmentent définitivement.</p>
-
-      <div class="countdown">
-        <div class="cd-item">
-          <span class="cd-number" id="cd-d">03</span>
-          <span class="cd-label">Jours</span>
-        </div>
-        <div class="cd-item">
-          <span class="cd-number" id="cd-h">00</span>
-          <span class="cd-label">Heures</span>
-        </div>
-        <div class="cd-item">
-          <span class="cd-number" id="cd-m">00</span>
-          <span class="cd-label">Minutes</span>
-        </div>
-        <div class="cd-item">
-          <span class="cd-number" id="cd-s">00</span>
-          <span class="cd-label">Secondes</span>
-        </div>
-      </div>
-
-      <div class="spots-bar">
-        <div class="spots-text">
-          <span>Places fondateur disponibles</span>
-          <span>⚠ 20 places restantes</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress-fill" style="width:0%" data-target="73"></div>
-        </div>
-      </div>
+      <h2>Profitez du tarif fondateur<br><span class="gold">pendant le lancement</span></h2>
+      <p>AutomationBoost est en phase de lancement. Inscris-toi maintenant pour bénéficier du tarif fondateur et accéder en priorité à toutes les fonctionnalités.</p>
 
       <a href="#pricing" class="btn-primary" style="font-size:1.1rem;padding:17px 42px;">
-        ⚡ Réserver Ma Place Maintenant
+        ⚡ Accéder au Tarif Fondateur
       </a>
     </div>
   </div>
@@ -736,7 +700,7 @@
     <div class="cta-box fade-in">
       <div class="hero-badge" style="margin:0 auto 24px;">🚀 Prêt à automatiser ?</div>
       <h2>Arrêtez de poster manuellement.<br><span class="gold">Laissez l'IA travailler pour vous.</span></h2>
-      <p>Rejoignez 2 400+ créateurs et agences qui ont récupéré leurs heures et multiplié leur impact sur les réseaux sociaux.</p>
+      <p>Automatise ta présence sur les réseaux sociaux et récupère tes heures grâce à des workflows IA sur mesure.</p>
       <a href="#pricing" class="btn-primary" style="font-size:1.1rem;padding:17px 42px;">
         ⚡ Démarrer Gratuitement 14 Jours
       </a>
@@ -872,6 +836,80 @@
 }
 </style>
 
+<script>
+/* ============================================================
+   PARTICLE HERO — 21st.dev ParticleHero ported to vanilla JS
+   Source: 21st.dev component "Particle Hero"
+   Adapted: gold cyberpunk palette
+   ============================================================ */
+(function() {
+  const canvas = document.getElementById('hero-particles');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let animId;
+
+  function resize() {
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    initParticles();
+  }
+
+  function makeParticle(isInit) {
+    const c = canvas;
+    const p = {
+      x: Math.random() * c.width,
+      y: isInit ? Math.random() * c.height : c.height + 2,
+      speed: Math.random() / 5 + 0.08,
+      opacity: 1,
+      fadingOut: false,
+      fadeStart: Date.now() + Math.random() * 600 + 100,
+    };
+    return p;
+  }
+
+  function resetParticle(p) {
+    const c = canvas;
+    p.x        = Math.random() * c.width;
+    p.y        = c.height + 2;
+    p.speed    = Math.random() / 5 + 0.08;
+    p.opacity  = 1;
+    p.fadingOut = false;
+    p.fadeStart = Date.now() + Math.random() * 600 + 100;
+  }
+
+  function initParticles() {
+    const count = Math.floor((canvas.width * canvas.height) / 7000);
+    particles = [];
+    for (let i = 0; i < count; i++) particles.push(makeParticle(true));
+  }
+
+  function tick() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const now = Date.now();
+    for (const p of particles) {
+      p.y -= p.speed;
+      if (!p.fadingOut && now > p.fadeStart) p.fadingOut = true;
+      if (p.fadingOut) p.opacity -= 0.007;
+      if (p.y < 0 || p.opacity <= 0) resetParticle(p);
+
+      ctx.fillStyle = `rgba(234,179,8,${Math.max(0, p.opacity * 0.65)})`;
+      ctx.fillRect(p.x, p.y, 0.6, Math.random() * 2 + 1);
+    }
+    animId = requestAnimationFrame(tick);
+  }
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(resize, 150);
+  });
+
+  resize();
+  tick();
+})();
+</script>
 <script src="assets/js/main.js"></script>
 <script>
   const burger = document.getElementById('navBurger');
