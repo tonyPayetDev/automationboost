@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Démos interactives – Testez nos automatisations | AutomationBoost</title>
+  <meta name="description" content="Testez en direct les automatisations construites par AutomationBoost. Exemple : générez le visuel Instagram de votre menu du jour comme le ferait notre workflow n8n pour un vrai client." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+
+  <style>
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: transparent;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    #navbar.scrolled {
+      background: rgba(5,5,5,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 1px 0 rgba(234,179,8,0.15);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 70px;
+    }
+    .nav-desktop {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .nav-desktop a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-light);
+      text-decoration: none;
+      transition: color 0.2s;
+      letter-spacing: 0.01em;
+    }
+    .nav-desktop a:hover { color: var(--gold); }
+    .nav-desktop a.active { color: var(--gold); }
+
+    /* ── HERO ── */
+    .demo-hero {
+      padding: 160px 20px 60px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .demo-hero .section-label { display: block; margin-bottom: 14px; }
+    .demo-hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.8rem, 4.5vw, 3rem);
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+    .demo-hero p {
+      max-width: 620px;
+      margin: 0 auto;
+      color: var(--text-light);
+      font-size: 1.05rem;
+    }
+
+    /* ── DEMO WIDGET ── */
+    #menuauto-demo { position: relative; z-index: 1; }
+    .demo-widget {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    @media (max-width: 860px) {
+      .demo-widget { grid-template-columns: 1fr; }
+    }
+    .demo-form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+    }
+    .demo-form-card .form-group { margin-bottom: 18px; }
+    .demo-form-card label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-light);
+      margin-bottom: 6px;
+      letter-spacing: 0.03em;
+    }
+    .demo-form-card input,
+    .demo-form-card textarea {
+      width: 100%;
+      background: var(--bg-card-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .demo-form-card input:focus,
+    .demo-form-card textarea:focus { border-color: var(--gold); }
+    .demo-form-card textarea { resize: vertical; min-height: 90px; }
+    .demo-hint { font-size: 0.8rem; color: var(--text-muted); margin-top: 6px; }
+
+    /* Rendu façon post Instagram, identique en structure au template utilisé
+       par le vrai workflow n8n (Builder HTML Template -> Screenshot HCTI) */
+    .ig-mockup {
+      background: #FFF9F0;
+      border-radius: 22px;
+      padding: 20px;
+      max-width: 340px;
+      margin: 0 auto;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+      font-family: 'Lilita One', cursive;
+      color: #111;
+    }
+    .ig-mockup-logo {
+      background: #111;
+      border-radius: 14px;
+      padding: 14px 10px;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+    .ig-mockup-logo .name { font-size: 24px; color: var(--gold); }
+    .ig-mockup-logo .sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #E63946;
+      margin-top: 4px;
+    }
+    .ig-mockup-date {
+      background: #111;
+      color: #fff;
+      border-radius: 30px;
+      padding: 7px 14px;
+      text-align: center;
+      font-size: 11px;
+      margin-bottom: 12px;
+    }
+    .ig-mockup-item {
+      background: #111;
+      color: #fff;
+      border-radius: 10px;
+      padding: 9px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      border-left: 4px solid var(--gold);
+      font-size: 13px;
+    }
+    .ig-mockup-empty {
+      font-family: 'Inter', sans-serif;
+      color: #999;
+      font-size: 13px;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .demo-caption {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 16px;
+    }
+
+    /* ── PIPELINE ── */
+    .pipeline-steps { display: flex; flex-direction: column; gap: 0; max-width: 760px; margin: 0 auto; }
+    .pipe-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .pipe-step:last-child { border-bottom: none; }
+    .pipe-icon {
+      width: 46px; height: 46px;
+      border-radius: 12px;
+      background: var(--gold-glow);
+      border: 1px solid rgba(234,179,8,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .pipe-content h4 { font-size: 1rem; margin-bottom: 4px; }
+    .pipe-content p { font-size: 0.9rem; color: var(--text-light); }
+    .pipe-tag {
+      display: inline-block;
+      background: var(--gold-glow);
+      color: var(--gold);
+      border-radius: 30px;
+      padding: 3px 10px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-top: 6px;
+    }
+
+    #demo-cta { text-align: center; position: relative; z-index: 1; }
+  </style>
+</head>
+<body>
+
+<!-- ════════════ NAVBAR ════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo">
+      <div class="logo-icon">⚡</div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="ressources.html">Ressources</a>
+      <a href="blog.html">Blog IA</a>
+      <a href="skills.html">Skills</a>
+      <a href="demos.html" class="active">Démos</a>
+      <a href="formation.html" style="color:var(--gold);background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.25);padding:6px 14px;border-radius:8px;font-size:0.85rem;font-weight:700;">⚡ Formation 29,90€</a>
+      <a href="https://tony.automatisationboost.com/#contact" class="nav-cta">Contact →</a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Menu mobile -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="ressources.html" class="mob-link">📚 Ressources</a>
+    <a href="blog.html" class="mob-link">✍️ Blog IA</a>
+    <a href="skills.html" class="mob-link">⚡ Skills Claude</a>
+    <a href="demos.html" class="mob-link mob-link--gold">🎬 Démos</a>
+    <a href="formation.html" class="mob-link mob-link--gold">⚡ Formation 29,90€</a>
+    <a href="https://tony.automatisationboost.com/#contact" class="mob-link">✉ Contact</a>
+  </nav>
+</div>
+
+<!-- ════════════ HERO ════════════ -->
+<section class="demo-hero">
+  <span class="section-label">Démos interactives</span>
+  <h1>Ne nous croyez pas sur parole.<br><span class="gold">Testez le workflow vous-même.</span></h1>
+  <p>Chaque démo ci-dessous reproduit un vrai workflow n8n livré à un client AutomationBoost. Remplissez le formulaire, regardez le résultat se générer, puis découvrez ce qui tourne en coulisses.</p>
+</section>
+
+<!-- ════════════ DEMO : MENUAUTO ════════════ -->
+<section id="menuauto-demo">
+  <div class="container">
+    <div class="text-center fade-in" style="margin-bottom:48px;">
+      <span class="section-label">Démo · Restaurants</span>
+      <h2 class="section-title">MenuAuto — le menu du jour, prêt pour Instagram</h2>
+      <p style="max-width:600px;margin:0 auto;color:var(--text-light);">Chez un vrai client, ce même moteur de génération est branché à un workflow n8n : capture d'image, email d'approbation, puis publication automatique sur Instagram à l'heure choisie.</p>
+    </div>
+
+    <div class="demo-widget fade-in">
+      <div class="demo-form-card">
+        <div class="form-group">
+          <label for="demo-resto-name">Nom du restaurant</label>
+          <input type="text" id="demo-resto-name" placeholder="Ex: Snack Étoile" value="Snack Étoile">
+        </div>
+        <div class="form-group">
+          <label for="demo-resto-type">Type d'établissement</label>
+          <input type="text" id="demo-resto-type" placeholder="Ex: Snack Bar" value="Snack Bar">
+        </div>
+        <div class="form-group">
+          <label for="demo-plats">Plats du jour</label>
+          <textarea id="demo-plats" placeholder="Un plat par ligne ou séparé par une virgule">Carry Poulet
+Rougail Saucisse
+Salade César
+Bonbon Piment</textarea>
+          <div class="demo-hint">Astuce : essayez "carry", "burger", "crevette", "dessert"… l'emoji est détecté automatiquement, comme dans le vrai workflow.</div>
+        </div>
+        <button class="btn-primary" id="demo-generate-btn" style="width:100%;justify-content:center;">✨ Générer le visuel</button>
+      </div>
+
+      <div>
+        <div class="ig-mockup" id="ig-mockup">
+          <div class="ig-mockup-logo">
+            <div class="name" id="mockup-name">Snack Étoile</div>
+            <div class="sub" id="mockup-type">Snack Bar</div>
+          </div>
+          <div class="ig-mockup-date" id="mockup-date"></div>
+          <div id="mockup-items"></div>
+        </div>
+        <p class="demo-caption">Aperçu instantané — identique au visuel produit par le workflow réel</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ SOUS LE CAPOT ════════════ -->
+<section style="background:var(--bg-card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="text-center fade-in" style="margin-bottom:40px;">
+      <span class="section-label">Sous le capot</span>
+      <h2 class="section-title">Ce qui tourne vraiment chez un client</h2>
+      <p style="max-width:600px;margin:0 auto;color:var(--text-light);">L'aperçu ci-dessus est instantané pour que vous puissiez tester librement. Chez un client réel, voici le workflow n8n complet qui se déclenche :</p>
+    </div>
+
+    <div class="pipeline-steps fade-in">
+      <div class="pipe-step">
+        <div class="pipe-icon">📝</div>
+        <div class="pipe-content">
+          <h4>Formulaire client</h4>
+          <p>Le restaurateur remplit un formulaire en ligne avec ses plats du jour et ses préférences visuelles.</p>
+          <span class="pipe-tag">n8n Form Trigger</span>
+        </div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-icon">🧱</div>
+        <div class="pipe-content">
+          <h4>Génération HTML dynamique</h4>
+          <p>Un template HTML sur mesure est construit avec les couleurs, la police et les plats — emojis détectés automatiquement.</p>
+          <span class="pipe-tag">Code Node · JavaScript</span>
+        </div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-icon">📸</div>
+        <div class="pipe-content">
+          <h4>Capture haute résolution</h4>
+          <p>Le HTML est converti en image prête pour Instagram via une API de screenshot.</p>
+          <span class="pipe-tag">HTTP Request · HCTI</span>
+        </div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-icon">✅</div>
+        <div class="pipe-content">
+          <h4>Approbation par email</h4>
+          <p>Le restaurateur reçoit l'image par email et valide, avec la date et l'heure de publication.</p>
+          <span class="pipe-tag">Gmail OAuth · Formulaire inline</span>
+        </div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-icon">📲</div>
+        <div class="pipe-content">
+          <h4>Publication automatique</h4>
+          <p>Une fois validée, l'image est publiée sur Instagram à l'heure exacte choisie — sans intervention manuelle.</p>
+          <span class="pipe-tag">Blotato API · Instagram</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ CTA ════════════ -->
+<section id="demo-cta">
+  <div class="container">
+    <div class="fade-in">
+      <h2 class="section-title">Ce workflow, c'est celui d'un restaurant.<br><span class="gold">Le vôtre peut être différent.</span></h2>
+      <p style="max-width:560px;margin:0 auto 32px;color:var(--text-light);">Chaque automatisation AutomationBoost est construite sur mesure pour votre activité — réseaux sociaux, prospection, contenu, ou tout autre processus répétitif.</p>
+      <a href="https://tony.automatisationboost.com/#contact" class="btn-primary">🚀 Je veux ça pour mon business</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer style="text-align:center;padding:36px 20px;border-top:1px solid var(--border);color:var(--text-muted);font-size:0.85rem;position:relative;z-index:1;">
+  <p>© 2026 AutomationBoost ·
+    <a href="/" style="color:var(--gold);text-decoration:none;">Accueil</a> ·
+    <a href="ressources.html" style="color:var(--gold);text-decoration:none;">Ressources</a> ·
+    <a href="blog.html" style="color:var(--gold);text-decoration:none;">Blog</a>
+  </p>
+</footer>
+
+<script>
+  // ── Navbar scroll ──
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // ── Burger mobile ──
+  const burger = document.getElementById('navBurger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  function closeMenu() {
+    burger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+  }
+
+  burger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.contains('open');
+    if (isOpen) {
+      closeMenu();
+    } else {
+      burger.classList.add('open');
+      mobileMenu.classList.add('open');
+      burger.setAttribute('aria-expanded', 'true');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!burger.contains(e.target) && !mobileMenu.contains(e.target)) closeMenu();
+  });
+
+  // ── Fade-in on scroll ──
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  fadeEls.forEach(el => io.observe(el));
+
+  // ── MenuAuto live preview ──
+  // Même logique de détection d'emoji que le Code Node "Builder HTML Template"
+  // du workflow n8n réel, portée en JS pour un rendu instantané côté navigateur.
+  const EMOJI_MAP = [
+    { keys: ['poulet','chicken','volaille'], emoji: '🍗' },
+    { keys: ['boeuf','steak','viande','beef'], emoji: '🥩' },
+    { keys: ['porc','cochon','pork'], emoji: '🐷' },
+    { keys: ['poisson','fish','thon','requin','capitaine','vieille'], emoji: '🐟' },
+    { keys: ['crevette','shrimp','fruits de mer'], emoji: '🦐' },
+    { keys: ['légume','legume','vegan','végé','vege'], emoji: '🥦' },
+    { keys: ['rougail','sauce'], emoji: '🌶️' },
+    { keys: ['carry','cari','curry'], emoji: '🍛' },
+    { keys: ['sandwich','sub','pain'], emoji: '🥖' },
+    { keys: ['pizza'], emoji: '🍕' },
+    { keys: ['burger'], emoji: '🍔' },
+    { keys: ['salade','salad'], emoji: '🥗' },
+    { keys: ['dessert','gâteau','gateau','cake','glace','bonbon'], emoji: '🍰' },
+  ];
+  const BORDER_COLORS = ['#eab308', '#E63946', '#2D9B4E', '#4A90D9'];
+
+  function emojiFor(plat) {
+    const key = plat.toLowerCase();
+    const found = EMOJI_MAP.find(e => e.keys.some(k => key.includes(k)));
+    return found ? found.emoji : '🍽️';
+  }
+
+  function renderMockup() {
+    const name = document.getElementById('demo-resto-name').value.trim() || 'Mon Restaurant';
+    const type = document.getElementById('demo-resto-type').value.trim() || 'Restaurant';
+    const rawPlats = document.getElementById('demo-plats').value.trim();
+    const plats = rawPlats.split(/[\n,]+/).map(p => p.trim()).filter(Boolean);
+
+    document.getElementById('mockup-name').textContent = name;
+    document.getElementById('mockup-type').textContent = type;
+    document.getElementById('mockup-date').textContent =
+      '🗓️ Menu du ' + new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: '2-digit' });
+
+    const itemsEl = document.getElementById('mockup-items');
+    itemsEl.innerHTML = '';
+    if (!plats.length) {
+      itemsEl.innerHTML = '<div class="ig-mockup-empty">Ajoutez vos plats du jour ci-contre 👈</div>';
+      return;
+    }
+    plats.slice(0, 6).forEach((plat, i) => {
+      const item = document.createElement('div');
+      item.className = 'ig-mockup-item';
+      item.style.borderLeftColor = BORDER_COLORS[i % BORDER_COLORS.length];
+      const emojiSpan = document.createElement('span');
+      emojiSpan.textContent = emojiFor(plat);
+      const nameSpan = document.createElement('span');
+      nameSpan.textContent = plat;
+      item.append(emojiSpan, nameSpan);
+      itemsEl.appendChild(item);
+    });
+  }
+
+  document.getElementById('demo-generate-btn').addEventListener('click', renderMockup);
+  ['demo-resto-name', 'demo-resto-type'].forEach(id => {
+    document.getElementById(id).addEventListener('input', renderMockup);
+  });
+  renderMockup();
+</script>
+</body>
+</html>
