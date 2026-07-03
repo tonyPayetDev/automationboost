@@ -361,12 +361,14 @@ nav.scrolled .nav-pill {
   margin-bottom: 24px;
 }
 
-.hero-title .line-1 {
+.hero-title .line-1,
+.hero-title .line-2,
+.hero-title .line-3 {
   display: block;
   color: var(--text);
 }
 
-.hero-title .line-2 {
+.hero-title .line-4 {
   display: block;
   color: var(--gold);
   text-shadow: 0 0 40px rgba(234,179,8,0.4);
@@ -1783,25 +1785,25 @@ footer {
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* Hero title line-2 — glitch effect */
-.hero-title .line-2 {
+/* Hero title line-4 — glitch effect */
+.hero-title .line-4 {
   position: relative;
 }
-.hero-title .line-2::before,
-.hero-title .line-2::after {
+.hero-title .line-4::before,
+.hero-title .line-4::after {
   content: attr(data-text);
   position: absolute;
   left: 0; top: 0;
   width: 100%;
   color: var(--gold);
 }
-.hero-title .line-2::before {
+.hero-title .line-4::before {
   color: rgba(234,179,8,0.55);
   animation: glitch-before 6s infinite;
   animation-delay: 3s;
   clip-path: inset(0 0 100% 0);
 }
-.hero-title .line-2::after {
+.hero-title .line-4::after {
   color: rgba(180,120,0,0.4);
   animation: glitch-after 6s infinite;
   animation-delay: 3.05s;

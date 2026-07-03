@@ -33,6 +33,8 @@
         .from('.hero-badge', { y: 20, autoAlpha: 0, duration: 0.5 })
         .from('.hero-title .line-1', { y: 34, autoAlpha: 0 }, '-=0.2')
         .from('.hero-title .line-2', { y: 34, autoAlpha: 0 }, '-=0.45')
+        .from('.hero-title .line-3', { y: 34, autoAlpha: 0 }, '-=0.45')
+        .from('.hero-title .line-4', { y: 34, autoAlpha: 0 }, '-=0.45')
         .from('.hero-subtitle', { y: 22, autoAlpha: 0 }, '-=0.35')
         .from('.hero-cta-group > *', { y: 22, autoAlpha: 0, stagger: 0.12 }, '-=0.25')
         .from('.hero-stats .stat-item', { y: 22, autoAlpha: 0, stagger: 0.1 }, '-=0.2');
