@@ -58,7 +58,7 @@
         gsap.set(headers, { y: 24, autoAlpha: 0 });
         ScrollTrigger.batch(headers, {
           start: 'top 85%',
-          onEnter: (batch) =>
+          onEnter: (batch) => {
             gsap.to(batch, {
               y: 0,
               autoAlpha: 1,
@@ -66,7 +66,14 @@
               duration: 0.7,
               ease: 'power3.out',
               overwrite: true
-            })
+            });
+            // Cinematic one-time "shine sweep" on the gold highlight of each
+            // revealed title (inspired by motionsites.ai-style hero reveals).
+            batch.forEach((el) => {
+              const gold = el.querySelector ? el.querySelector('.gold') : null;
+              if (gold) gold.classList.add('gold-shine');
+            });
+          }
         });
       }
 
@@ -136,6 +143,20 @@
             btn.removeEventListener('mouseleave', leave);
             gsap.set(btn, { clearProps: 'transform' });
           });
+        });
+
+        // Cursor-following spotlight glow on cards (21st.dev "Card Spotlight"
+        // pattern) — sets --mx/--my custom properties consumed by the
+        // card's ::after radial-gradient in style.css.
+        const spotlightCards = gsap.utils.toArray('.feature-card, .pricing-card, .testi-card');
+        spotlightCards.forEach((card) => {
+          const move = (e) => {
+            const r = card.getBoundingClientRect();
+            card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+            card.style.setProperty('--my', `${e.clientY - r.top}px`);
+          };
+          card.addEventListener('mousemove', move);
+          cleanups.push(() => card.removeEventListener('mousemove', move));
         });
       }
 

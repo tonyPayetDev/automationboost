@@ -106,6 +106,25 @@ p {
 .gold { color: var(--gold); }
 .highlight { color: var(--gold); font-weight: 700; }
 
+/* One-time "shine sweep" reveal, triggered by JS (gsap-motion.js) when a
+   .section-title scrolls into view — a subtle cinematic highlight rather
+   than a distracting always-on shimmer. */
+.gold-shine {
+  background-image: linear-gradient(100deg, var(--gold) 40%, #fff8dc 50%, var(--gold) 60%);
+  background-size: 250% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gold-shine-sweep 1.4s ease forwards;
+}
+@keyframes gold-shine-sweep {
+  to { background-position: 0 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gold-shine { animation: none; background: none; color: var(--gold); }
+}
+
 /* --- LAYOUT --- */
 .container {
   max-width: 1100px;
@@ -712,9 +731,11 @@ nav.scrolled .nav-pill {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, var(--gold-glow) 0%, transparent 60%);
+  border-radius: inherit;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), var(--gold-glow) 0%, transparent 65%);
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.4s;
+  pointer-events: none;
 }
 
 .feature-card:hover {
@@ -984,11 +1005,24 @@ nav.scrolled .nav-pill {
   line-height: 1;
 }
 
+.testi-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 50%), var(--gold-glow) 0%, transparent 65%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+
 .testi-card:hover {
   border-color: rgba(234,179,8,0.25);
   transform: translateY(-3px);
   box-shadow: 0 8px 30px rgba(234,179,8,0.08);
 }
+
+.testi-card:hover::after { opacity: 1; }
 
 .stars {
   color: var(--gold);
@@ -1071,6 +1105,19 @@ nav.scrolled .nav-pill {
   position: relative;
   transition: all 0.3s ease;
 }
+
+.pricing-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(460px circle at var(--mx, 50%) var(--my, 50%), var(--gold-glow) 0%, transparent 65%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+
+.pricing-card:hover::after { opacity: 1; }
 
 .pricing-card.featured {
   border-color: rgba(234,179,8,0.5);
