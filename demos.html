@@ -7,7 +7,6 @@
   <meta name="description" content="Testez en direct les automatisations construites par AutomationBoost. Exemple : générez le visuel Instagram de votre menu du jour comme le ferait notre workflow n8n pour un vrai client." />
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
-  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
 
   <style>
     #navbar {
@@ -72,111 +71,13 @@
 
     /* ── DEMO WIDGET ── */
     #menuauto-demo { position: relative; z-index: 1; }
-    .demo-widget {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: center;
-    }
-    @media (max-width: 860px) {
-      .demo-widget { grid-template-columns: 1fr; }
-    }
     .demo-form-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 32px;
     }
-    .demo-form-card .form-group { margin-bottom: 18px; }
-    .demo-form-card label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--text-light);
-      margin-bottom: 6px;
-      letter-spacing: 0.03em;
-    }
-    .demo-form-card input,
-    .demo-form-card textarea {
-      width: 100%;
-      background: var(--bg-card-2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 12px 14px;
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.95rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .demo-form-card input:focus,
-    .demo-form-card textarea:focus { border-color: var(--gold); }
-    .demo-form-card textarea { resize: vertical; min-height: 90px; }
     .demo-hint { font-size: 0.8rem; color: var(--text-muted); margin-top: 6px; }
-
-    /* Rendu façon post Instagram, identique en structure au template utilisé
-       par le vrai workflow n8n (Builder HTML Template -> Screenshot HCTI) */
-    .ig-mockup {
-      background: #FFF9F0;
-      border-radius: 22px;
-      padding: 20px;
-      max-width: 340px;
-      margin: 0 auto;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.45);
-      font-family: 'Lilita One', cursive;
-      color: #111;
-    }
-    .ig-mockup-logo {
-      background: #111;
-      border-radius: 14px;
-      padding: 14px 10px;
-      text-align: center;
-      margin-bottom: 14px;
-    }
-    .ig-mockup-logo .name { font-size: 24px; color: var(--gold); }
-    .ig-mockup-logo .sub {
-      font-family: 'Inter', sans-serif;
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #E63946;
-      margin-top: 4px;
-    }
-    .ig-mockup-date {
-      background: #111;
-      color: #fff;
-      border-radius: 30px;
-      padding: 7px 14px;
-      text-align: center;
-      font-size: 11px;
-      margin-bottom: 12px;
-    }
-    .ig-mockup-item {
-      background: #111;
-      color: #fff;
-      border-radius: 10px;
-      padding: 9px 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 8px;
-      border-left: 4px solid var(--gold);
-      font-size: 13px;
-    }
-    .ig-mockup-empty {
-      font-family: 'Inter', sans-serif;
-      color: #999;
-      font-size: 13px;
-      text-align: center;
-      padding: 20px 0;
-    }
-    .demo-caption {
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 16px;
-    }
 
     /* ── PIPELINE ── */
     .pipeline-steps { display: flex; flex-direction: column; gap: 0; max-width: 760px; margin: 0 auto; }
@@ -264,38 +165,15 @@
       <p style="max-width:600px;margin:0 auto;color:var(--text-light);">Chez un vrai client, ce même moteur de génération est branché à un workflow n8n : capture d'image, email d'approbation, puis publication automatique sur Instagram à l'heure choisie.</p>
     </div>
 
-    <div class="demo-widget fade-in">
-      <div class="demo-form-card">
-        <div class="form-group">
-          <label for="demo-resto-name">Nom du restaurant</label>
-          <input type="text" id="demo-resto-name" placeholder="Ex: Snack Étoile" value="Snack Étoile">
-        </div>
-        <div class="form-group">
-          <label for="demo-resto-type">Type d'établissement</label>
-          <input type="text" id="demo-resto-type" placeholder="Ex: Snack Bar" value="Snack Bar">
-        </div>
-        <div class="form-group">
-          <label for="demo-plats">Plats du jour</label>
-          <textarea id="demo-plats" placeholder="Un plat par ligne ou séparé par une virgule">Carry Poulet
-Rougail Saucisse
-Salade César
-Bonbon Piment</textarea>
-          <div class="demo-hint">Astuce : essayez "carry", "burger", "crevette", "dessert"… l'emoji est détecté automatiquement, comme dans le vrai workflow.</div>
-        </div>
-        <button class="btn-primary" id="demo-generate-btn" style="width:100%;justify-content:center;">✨ Générer le visuel</button>
-      </div>
-
-      <div>
-        <div class="ig-mockup" id="ig-mockup">
-          <div class="ig-mockup-logo">
-            <div class="name" id="mockup-name">Snack Étoile</div>
-            <div class="sub" id="mockup-type">Snack Bar</div>
-          </div>
-          <div class="ig-mockup-date" id="mockup-date"></div>
-          <div id="mockup-items"></div>
-        </div>
-        <p class="demo-caption">Aperçu instantané — identique au visuel produit par le workflow réel</p>
-      </div>
+    <div class="demo-form-card fade-in" style="max-width:560px;margin:0 auto;text-align:center;">
+      <p style="color:var(--text-light);margin-bottom:24px;">Ce n'est pas une simulation : c'est le formulaire n8n exact utilisé par nos clients restaurateurs. Remplissez-le, et le workflow réel se déclenche (génération du visuel, email d'approbation, publication Instagram).</p>
+      <a href="https://n7n.automatisationboost.com/form/68cf006b-7b57-4fb8-9d29-9dca617a0ce1"
+         target="_blank" rel="noopener"
+         class="btn-primary"
+         style="width:100%;justify-content:center;display:flex;">
+        🚀 Ouvrir le vrai formulaire
+      </a>
+      <p class="demo-hint" style="margin-top:14px;">Ouvre le formulaire n8n dans un nouvel onglet — le même que vos futurs clients utiliseront.</p>
     </div>
   </div>
 </section>
@@ -415,67 +293,6 @@ Bonbon Piment</textarea>
   }, { threshold: 0.12 });
   fadeEls.forEach(el => io.observe(el));
 
-  // ── MenuAuto live preview ──
-  // Même logique de détection d'emoji que le Code Node "Builder HTML Template"
-  // du workflow n8n réel, portée en JS pour un rendu instantané côté navigateur.
-  const EMOJI_MAP = [
-    { keys: ['poulet','chicken','volaille'], emoji: '🍗' },
-    { keys: ['boeuf','steak','viande','beef'], emoji: '🥩' },
-    { keys: ['porc','cochon','pork'], emoji: '🐷' },
-    { keys: ['poisson','fish','thon','requin','capitaine','vieille'], emoji: '🐟' },
-    { keys: ['crevette','shrimp','fruits de mer'], emoji: '🦐' },
-    { keys: ['légume','legume','vegan','végé','vege'], emoji: '🥦' },
-    { keys: ['rougail','sauce'], emoji: '🌶️' },
-    { keys: ['carry','cari','curry'], emoji: '🍛' },
-    { keys: ['sandwich','sub','pain'], emoji: '🥖' },
-    { keys: ['pizza'], emoji: '🍕' },
-    { keys: ['burger'], emoji: '🍔' },
-    { keys: ['salade','salad'], emoji: '🥗' },
-    { keys: ['dessert','gâteau','gateau','cake','glace','bonbon'], emoji: '🍰' },
-  ];
-  const BORDER_COLORS = ['#eab308', '#E63946', '#2D9B4E', '#4A90D9'];
-
-  function emojiFor(plat) {
-    const key = plat.toLowerCase();
-    const found = EMOJI_MAP.find(e => e.keys.some(k => key.includes(k)));
-    return found ? found.emoji : '🍽️';
-  }
-
-  function renderMockup() {
-    const name = document.getElementById('demo-resto-name').value.trim() || 'Mon Restaurant';
-    const type = document.getElementById('demo-resto-type').value.trim() || 'Restaurant';
-    const rawPlats = document.getElementById('demo-plats').value.trim();
-    const plats = rawPlats.split(/[\n,]+/).map(p => p.trim()).filter(Boolean);
-
-    document.getElementById('mockup-name').textContent = name;
-    document.getElementById('mockup-type').textContent = type;
-    document.getElementById('mockup-date').textContent =
-      '🗓️ Menu du ' + new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: '2-digit' });
-
-    const itemsEl = document.getElementById('mockup-items');
-    itemsEl.innerHTML = '';
-    if (!plats.length) {
-      itemsEl.innerHTML = '<div class="ig-mockup-empty">Ajoutez vos plats du jour ci-contre 👈</div>';
-      return;
-    }
-    plats.slice(0, 6).forEach((plat, i) => {
-      const item = document.createElement('div');
-      item.className = 'ig-mockup-item';
-      item.style.borderLeftColor = BORDER_COLORS[i % BORDER_COLORS.length];
-      const emojiSpan = document.createElement('span');
-      emojiSpan.textContent = emojiFor(plat);
-      const nameSpan = document.createElement('span');
-      nameSpan.textContent = plat;
-      item.append(emojiSpan, nameSpan);
-      itemsEl.appendChild(item);
-    });
-  }
-
-  document.getElementById('demo-generate-btn').addEventListener('click', renderMockup);
-  ['demo-resto-name', 'demo-resto-type'].forEach(id => {
-    document.getElementById(id).addEventListener('input', renderMockup);
-  });
-  renderMockup();
 </script>
 </body>
 </html>
