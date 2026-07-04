@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Veille IA & Automatisation — Semaine du 17-20 juin 2026</title>
+  <meta name="description" content="Les 7 actus IA et automatisation de la semaine : Claude Fable 5, GPT-5.6, Make MCP, n8n 2.0, OpenAI AgentKit et les tendances agents pour freelances et entrepreneurs." />
+  <style>
+    :root {
+      --bg: #0f0f13;
+      --surface: #1a1a24;
+      --surface2: #22222f;
+      --accent: #7c5cfc;
+      --accent2: #a78bfa;
+      --text: #e2e2f0;
+      --muted: #9090b0;
+      --border: #2e2e42;
+      --green: #34d399;
+      --orange: #fb923c;
+      --pink: #f472b6;
+      --cyan: #22d3ee;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    a { color: var(--accent2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      background: linear-gradient(135deg, #12001a 0%, #0a0a1a 40%, #001220 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 60px 24px 48px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 99px;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      max-width: 760px;
+      margin: 0 auto 16px;
+    }
+
+    header h1 span { color: var(--accent2); }
+
+    .meta { color: var(--muted); font-size: 14px; }
+    .meta strong { color: var(--text); }
+
+    main {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .intro {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 48px;
+      font-size: 15px;
+      color: var(--muted);
+    }
+    .intro strong { color: var(--text); }
+
+    .section-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    .news-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      transition: border-color .2s;
+    }
+    .news-card:hover { border-color: var(--accent); }
+
+    .card-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 14px; }
+
+    .card-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+    .icon-purple { background: rgba(124,92,252,.18); }
+    .icon-blue   { background: rgba(34,211,238,.15); }
+    .icon-green  { background: rgba(52,211,153,.15); }
+    .icon-orange { background: rgba(251,146,60,.15); }
+    .icon-pink   { background: rgba(244,114,182,.15); }
+    .icon-yellow { background: rgba(250,204,21,.15); }
+
+    .card-meta { flex: 1; }
+    .card-tag { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+    .tag-purple { color: var(--accent2); }
+    .tag-blue   { color: var(--cyan); }
+    .tag-green  { color: var(--green); }
+    .tag-orange { color: var(--orange); }
+    .tag-pink   { color: var(--pink); }
+    .tag-yellow { color: #fbbf24; }
+
+    .card-title { font-size: 1.15rem; font-weight: 700; line-height: 1.3; color: var(--text); }
+
+    .card-body { font-size: 14.5px; color: var(--muted); line-height: 1.75; }
+    .card-body strong { color: var(--text); }
+
+    .card-source {
+      margin-top: 16px; padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--muted);
+    }
+    .card-source a { color: var(--accent2); font-weight: 600; }
+
+    .insight {
+      background: linear-gradient(135deg, rgba(124,92,252,.12), rgba(167,139,250,.06));
+      border: 1px solid rgba(124,92,252,.3);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin-top: 16px;
+      font-size: 13.5px;
+    }
+    .insight-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--accent2); margin-bottom: 6px; }
+    .insight p { color: var(--muted); }
+    .insight p strong { color: var(--text); }
+
+    .analysis {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px;
+      margin-top: 48px;
+    }
+    .analysis h2 { font-size: 1.35rem; font-weight: 800; margin-bottom: 20px; }
+    .analysis h2 span { color: var(--accent2); }
+    .analysis p { color: var(--muted); font-size: 15px; margin-bottom: 14px; }
+    .analysis p strong { color: var(--text); }
+
+    .tip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .tip-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+    .tip-card .tip-icon { font-size: 22px; margin-bottom: 10px; }
+    .tip-card h3 { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .tip-card p { font-size: 12.5px; color: var(--muted); margin-bottom: 0; }
+
+    footer { text-align: center; padding: 40px 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; }
+    footer a { color: var(--accent2); }
+
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .pill { background: var(--surface2); border: 1px solid var(--border); border-radius: 99px; padding: 3px 12px; font-size: 12px; color: var(--muted); }
+
+    @media (max-width: 600px) {
+      .news-card { padding: 20px 18px; }
+      .analysis  { padding: 24px 20px; }
+      .card-header { flex-direction: column; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Veille hebdomadaire</div>
+  <h1>IA &amp; Automatisation :<br /><span>Les 7 actus qui comptent cette semaine</span></h1>
+  <p class="meta"><strong>Semaine du 17 au 20 juin 2026</strong> &nbsp;·&nbsp; Curatée par AutomationBoost</p>
+</header>
+
+<main>
+
+  <div class="intro">
+    <strong>TL;DR cette semaine :</strong> Anthropic sort Fable 5 (son modèle le plus puissant jamais disponible publiquement), OpenAI prépare GPT-5.6 et referme son Agent Builder, Make.com intègre le protocole MCP dans ses agents IA, n8n consolide son avance sur l'orchestration agentic, et le MCP devient le standard universel du tooling IA. Une semaine charnière pour les pros de l'automatisation.
+  </div>
+
+  <p class="section-title">7 actus à retenir</p>
+
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-purple">🧠</div>
+      <div class="card-meta">
+        <div class="card-tag tag-purple">Anthropic · 9 juin 2026</div>
+        <div class="card-title">Claude Fable 5 : le premier modèle Mythos-class disponible au grand public</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Anthropic a officiellement lancé <strong>Claude Fable 5</strong>, son modèle le plus puissant jamais rendu public. Fable 5 est basé sur l'architecture Mythos — jusqu'ici réservée à un accès limité via Project Glasswing — et dépasse tous les benchmarks précédents en <strong>ingénierie logicielle, recherche scientifique, vision et travaux de connaissance</strong>. Le modèle dispose également des <strong>capacités cybersécurité les plus avancées du marché</strong>.</p>
+      <br />
+      <p>La grande nouveauté technique : des <strong>classificateurs de sécurité embarqués</strong> qui détectent les tentatives de jailbreak et bloquent les requêtes à haut risque (bio, cyberattaques). C'est ce qui rend Fable 5 distribuable là où Mythos Preview ne l'était pas. Claude Mythos 5 — sans ces classifieurs — reste disponible uniquement via le programme limité Glasswing.</p>
+      <br />
+      <p>À noter : les deux modèles utilisent le nouveau tokenizer d'Anthropic (introduit avec Claude Opus 4.7), qui génère ~30 % de tokens supplémentaires pour le même texte. <strong>À surveiller pour les coûts API.</strong></p>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>Fable 5 est disponible sur Claude.ai Pro et via API — c'est votre prochain copilote de code, de rédaction et d'analyse. <strong>Pour les automatiseurs</strong>, l'intégration dans les agents n8n et Make est immédiate via les nœuds Claude existants. Attention au surcoût token (+30 %) à ajuster dans vos budgets.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://www.anthropic.com/news/claude-fable-5-mythos-5" target="_blank">Anthropic Blog</a> ·
+      <a href="https://techcrunch.com/2026/06/09/anthropic-released-claude-fable-5-its-most-powerful-model-publicly-days-after-warning-ai-is-getting-too-dangerous/" target="_blank">TechCrunch</a> ·
+      <a href="https://the-decoder.com/anthropic-releases-claude-fable-5-and-mythos-5-with-major-gains-in-coding-and-science/" target="_blank">The Decoder</a>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-orange">🔧</div>
+      <div class="card-meta">
+        <div class="card-tag tag-orange">Make.com · 3 &amp; 6 juin 2026</div>
+        <div class="card-title">Make AI Agents adopte le MCP — et met à jour son interface le 6 juin</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Make.com a déployé deux mises à jour majeures cette semaine. Le <strong>3 juin</strong>, les outils <strong>MCP (Model Context Protocol)</strong> deviennent disponibles pour les Make AI Agents, permettant aux agents de brancher n'importe quel serveur MCP du registre (plus de 9 000 aujourd'hui) sans développement supplémentaire.</p>
+      <br />
+      <p>Le <strong>6 juin</strong>, une mise à jour UI livre plusieurs améliorations : intégration de <strong>Claude Opus 4.8</strong> dans les agents, cartes de statut pour la détection des webhooks, support de Gmail personnel / Google Drive personnel, et des améliorations de scheduling. Maia — l'assistant conversationnel build-time de Make — s'enrichit aussi de nouveaux modules multimodaux (documents, images, audio).</p>
+      <br />
+      <p>Pour rappel : Make distingue désormais deux couches IA — <strong>Maia</strong> (assistant pour construire les scénarios en langage naturel) et <strong>Make AI Agents</strong> (agents autonomes qui prennent des décisions à l'exécution). Une distinction structurante pour bien choisir son approche.</p>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>L'arrivée du MCP dans Make est un game-changer : vous pouvez maintenant <strong>connecter vos agents Make à n'importe quel outil MCP</strong> (Notion, GitHub, Airtable, Stripe, vos propres APIs) sans coder d'intégration. Gain de temps massif pour les automatiseurs de TPE/PME.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://help.make.com/2026" target="_blank">Make Help Center — Release Notes 2026</a> ·
+      <a href="https://www.make.com/en/blog/2025-reflections-2026-predictions" target="_blank">Make Blog</a>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-blue">🤖</div>
+      <div class="card-meta">
+        <div class="card-tag tag-blue">OpenAI · Juin 2026</div>
+        <div class="card-title">OpenAI AgentKit est là — mais le Agent Builder est condamné pour novembre</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>OpenAI a officialisé son <strong>AgentKit</strong>, une suite complète pour construire, déployer et optimiser des agents IA. Le kit comprend un <strong>Agent Builder visuel</strong> (canvas drag-and-drop multi-agents), <strong>ChatKit</strong> (interface de chat embarquable dans vos apps), <strong>Evals for Agents</strong> (benchmark automatique des performances) et un <strong>Connector Registry</strong> pour brancher Google Drive, SharePoint, Teams, etc.</p>
+      <br />
+      <p>La surprise : le <strong>3 juin 2026</strong>, OpenAI annonce simultanément le <strong>sunset de l'Agent Builder et des Evals</strong> pour le 30 novembre 2026. Ces produits ne seront plus disponibles sur la plateforme OpenAI. La migration est vers l'API Responses — qui devra intégrer l'ensemble des fonctionnalités de l'Assistants API avant sa dépréciation. GPT-5.6, lui, est pressenti pour juin 2026 avec un contexte effectif de 1,5M tokens.</p>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>Si vous avez construit sur l'Assistants API ou le Agent Builder OpenAI : <strong>commencez la migration vers l'API Responses dès maintenant</strong>. Six mois c'est court. Pour les nouveaux projets, AgentKit est la voie recommandée — mais gardez un œil sur n8n ou Make pour éviter le vendor lock-in OpenAI.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://openai.com/index/introducing-agentkit/" target="_blank">OpenAI — Introducing AgentKit</a> ·
+      <a href="https://www.vktr.com/ai-news/openai-launches-agentkit-to-streamline-ai-agent-development/" target="_blank">VKTR</a> ·
+      <a href="https://andrew.ooo/answers/what-is-gpt-5-6-release-june-2026/" target="_blank">GPT-5.6 preview</a>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-green">⚙️</div>
+      <div class="card-meta">
+        <div class="card-tag tag-green">n8n · Avril-Juin 2026</div>
+        <div class="card-title">n8n 2.0 + serveur MCP natif en preview : l'orchestration agentic open-source s'impose</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>n8n 2.0 (lancé en janvier 2026) continue de s'imposer comme <strong>la référence open-source de l'orchestration agentic</strong>. Ses 70+ nœuds IA (intégration LangChain native, mémoire persistante, support LLM auto-hébergé, routage sémantique) lui donnent une longueur d'avance technique sur Make et Zapier.</p>
+      <br />
+      <p>Depuis <strong>avril 2026</strong>, un <strong>serveur MCP natif instance-level</strong> est en Public Preview : Claude Desktop, ChatGPT, Cursor ou n'importe quel client MCP peut désormais <strong>construire, tester et publier des workflows directement dans votre instance n8n</strong> via langage naturel. n8n devient ainsi un véritable moteur d'automation piloté par des agents externes.</p>
+      <br />
+      <p>L'architecture recommandée en 2026 : des <strong>petits outils modulaires</strong> gérés par un nœud AI Agent central — exit les arbres if/else à 200 branches. L'agent décide lui-même de l'enchaînement.</p>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>n8n self-hosted reste <strong>gratuit et sans limite d'opérations</strong>. Avec le serveur MCP, vous pouvez piloter vos automatisations depuis Claude ou ChatGPT directement. Idéal pour les solo-entrepreneurs techniques qui veulent la puissance sans les coûts de Make Enterprise.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://leanware.co/insights/n8n-mcp-integration" target="_blank">n8n MCP Integration Guide</a> ·
+      <a href="https://finbyz.tech/n8n/insights/n8n-2-0-langchain-agentic-workflows" target="_blank">n8n 2.0 + LangChain</a> ·
+      <a href="https://releasebot.io/updates/n8n" target="_blank">n8n Release Notes</a>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(34,211,238,.15)">🔗</div>
+      <div class="card-meta">
+        <div class="card-tag tag-blue">MCP · Mai-Juin 2026</div>
+        <div class="card-title">MCP atteint l'adoption universelle : 9 652 serveurs, 41 % des orgs en production</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Le <strong>Model Context Protocol</strong> (MCP, créé par Anthropic en 2024) est devenu le standard de facto du tooling IA. Chiffres clés de mi-2026 : <strong>9 652 serveurs MCP</strong> dans le registre officiel, <strong>28 959 enregistrements serveur/version</strong>, et <strong>41 % des organisations logicielles</strong> en déploiement limité ou large en production selon le rapport Stacklok 2026.</p>
+      <br />
+      <p>Anthropic, OpenAI, Google et Microsoft ont tous intégré un support MCP natif dans leurs modèles phares. LangChain, CrewAI, LangGraph et LlamaIndex font du MCP le protocole par défaut pour le tool-calling. En pratique : <strong>un seul serveur MCP suffit désormais pour que votre outil soit utilisable par Claude, GPT, Gemini et tous les agents LangChain</strong>.</p>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>Si vous développez des outils ou des intégrations pour clients : <strong>publiez un serveur MCP</strong>. C'est votre meilleur levier de distribution en 2026 — un seul endpoint, compatible avec tout l'écosystème IA. C'est la nouvelle API REST de l'IA.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://www.digitalapplied.com/blog/mcp-adoption-statistics-2026-model-context-protocol" target="_blank">MCP Adoption Statistics 2026</a> ·
+      <a href="https://explore.n1n.ai/blog/mcp-tools-2026-model-context-protocol-guide-2026-05-12" target="_blank">MCP Tools Guide 2026</a>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-yellow">📊</div>
+      <div class="card-meta">
+        <div class="card-tag tag-yellow">Tendances · 2026</div>
+        <div class="card-title">80 % des apps enterprise intégreront des agents IA d'ici fin 2026 — l'ère agentic s'accélère</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Les analystes s'accordent : 2026 est l'année de bascule de l'IA générative vers l'<strong>IA agentic</strong>. Chiffres marquants : <strong>80 % des applications enterprise</strong> devraient embarquer des agents d'ici fin 2026, et environ <strong>40 % des workflows business</strong> seront pilotés par des systèmes agentic autonomes (vs humains sur des interfaces cliquables).</p>
+      <br />
+      <p>Le nouveau paradigme dominant : les <strong>systèmes multi-agents</strong> où plusieurs IA collaborent, se passent du contexte, partagent de la mémoire long-terme et coordonnent des décisions en temps réel sur des chaînes complexes (sales + support + supply chain + finance). La gouvernance IA (human-in-the-loop, audit trails, limites d'action explicites) s'impose comme prérequis non-négociable.</p>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>La demande pour des <strong>experts en orchestration d'agents</strong> explose. Si vous maîtrisez n8n, Make + MCP + un LLM, vous êtes dans le top 5 % des profils les plus recherchés. Formez-vous aux patterns multi-agents dès maintenant — c'est votre avantage concurrentiel des 18 prochains mois.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://medium.com/@damoncote/agentic-ai-workflows-the-autonomous-enterprise-revolution-in-2026-dd8bb4930154" target="_blank">Agentic AI Workflows 2026 (Medium)</a> ·
+      <a href="https://cleardatascience.com/en/ai-agents-in-2026-from-prototypes-to-autonomous-workflow-orchestrators/" target="_blank">Clear Data Science</a> ·
+      <a href="https://www.salesmate.io/blog/future-of-ai-agents/" target="_blank">Future of AI Agents</a>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-pink">🇫🇷</div>
+      <div class="card-meta">
+        <div class="card-tag tag-pink">France · 2026</div>
+        <div class="card-title">34 % des PME françaises utilisent l'IA — le retard se comble vite</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Selon le <strong>Baromètre France Num 2025</strong>, <strong>34 % des PME françaises</strong> utilisent désormais l'IA (contre 13 % un an plus tôt). Environ <strong>250 000 entreprises françaises</strong> ont utilisé l'IA pour la première fois au cours des 12 derniers mois, portant le taux d'adoption total à 40 %. Le potentiel économique est estimé à <strong>30,1 milliards d'euros</strong> pour l'économie française.</p>
+      <br />
+      <p>Côté outils plébiscités par les freelances francophones en 2026 : <strong>Make.com</strong> (n°1 pour les petites structures, plan gratuit généreux, 1 500+ intégrations), <strong>n8n self-hosted</strong> (profils techniques), et <strong>Claude / GPT</strong> en assistants polyvalents. Un solopreneur utilisant bien l'IA libère en moyenne <strong>10 à 20 heures par semaine</strong> sur les tâches répétitives.</p>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>Le marché français rattrape son retard vite — ce qui crée une <strong>fenêtre d'opportunité courte</strong> pour les prestataires IA/automatisation. Les clients qui n'ont pas encore automatisé cherchent activement des experts. Le bon timing pour repositionner vos offres.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://eduoutils.fr/comparatifs/meilleurs-outils-automatisation-freelance-2026/" target="_blank">EduOutils — Top outils automation freelance 2026</a> ·
+      <a href="https://infreelancing.com/blog/12-outils-ia-indispensables-pour-les-freelances-en-2026/" target="_blank">InFreelancing</a> ·
+      <a href="https://blog-ia.com/outils-ia-solopreneur/" target="_blank">Blog-IA — Solopreneur 2026</a>
+    </div>
+  </div>
+
+  <div class="analysis">
+    <h2>Analyse &amp; <span>Recommandations de la semaine</span></h2>
+    <p>Cette semaine confirme une dynamique claire : <strong>l'automatisation entre dans l'ère agentic</strong>, et les plateformes comme Make et n8n ne sont plus de simples orchestrateurs de triggers — elles deviennent des environnements d'exécution pour des agents autonomes. Fable 5 d'Anthropic n'est pas qu'un modèle plus puissant : c'est un signal que les LLMs sont désormais <strong>assez fiables pour piloter des workflows critiques sans supervision constante</strong>.</p>
+    <p>Le MCP est en train de devenir ce que REST/JSON a été pour les APIs web : le <strong>protocole universel d'interopérabilité</strong>. Ne pas investir dedans aujourd'hui, c'est accumuler de la dette technique.</p>
+    <p>Pour les freelances et entrepreneurs, <strong>la valeur n'est plus dans "savoir utiliser ChatGPT"</strong> — tout le monde le fait. Elle est dans la capacité à <strong>orchestrer des agents, concevoir des architectures multi-agents, et intégrer des MCP servers</strong> dans des systèmes business réels. C'est là que se paient les missions à 5 chiffres.</p>
+    <p><strong>Action prioritaire cette semaine :</strong> Si vous êtes sur Make, testez les nouveaux outils MCP dans vos agents. Si vous êtes sur n8n, activez le serveur MCP natif en preview et pilotez un workflow depuis Claude Desktop. C'est une heure d'expérimentation qui peut transformer vos offres clients.</p>
+    <div class="tip-grid">
+      <div class="tip-card"><div class="tip-icon">⚡</div><h3>Migration API OpenAI</h3><p>Passez à l'API Responses avant nov. 2026 si vous utilisez l'Assistants API ou l'Agent Builder.</p></div>
+      <div class="tip-card"><div class="tip-icon">🔗</div><h3>Adoptez MCP maintenant</h3><p>Publiez un serveur MCP pour vos outils. Compatible Claude + GPT + tous les agents LangChain.</p></div>
+      <div class="tip-card"><div class="tip-icon">🧠</div><h3>Testez Fable 5</h3><p>Benchmark Fable 5 vs votre LLM actuel sur vos tâches métier. Attention au +30 % sur les tokens.</p></div>
+      <div class="tip-card"><div class="tip-icon">🏗️</div><h3>Apprenez le multi-agent</h3><p>Investissez dans les patterns d'orchestration multi-agents. C'est la compétence clé H2 2026.</p></div>
+    </div>
+  </div>
+
+  <div class="pills" style="margin-top:32px;">
+    <span class="pill">n8n</span><span class="pill">Make.com</span><span class="pill">Claude Fable 5</span>
+    <span class="pill">Anthropic</span><span class="pill">OpenAI</span><span class="pill">AgentKit</span>
+    <span class="pill">MCP</span><span class="pill">Agents IA</span><span class="pill">Workflow Automation</span>
+    <span class="pill">Freelance IA</span><span class="pill">Tendances 2026</span><span class="pill">LangChain</span>
+  </div>
+
+</main>
+
+<footer>
+  <p>AutomationBoost &nbsp;·&nbsp; Veille IA &amp; Automatisation &nbsp;·&nbsp; 20 juin 2026</p>
+  <p style="margin-top:6px;">Propulsé par Claude Fable 5 &amp; les dernières sources du web &nbsp;·&nbsp; <a href="#">S'abonner à la newsletter</a></p>
+</footer>
+
+</body>
+</html>

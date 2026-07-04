@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Veille IA & Automatisation — 2 - 4 juillet 2026</title>
+  <meta name="description" content="Les 7 actus IA et automatisation du 2 au 4 juillet 2026 : BLS jobs report choc, HHS utilise l'IA contre la fraude, Anthropic × Microsoft Maia 200, Coinbase routing multi-modèles, Gartner Hype Cycle Agentique, GPT-5.6 ultra mode et n8n 2.0." />
+  <style>
+    :root {
+      --bg: #0f0f13;
+      --surface: #1a1a24;
+      --surface2: #22222f;
+      --accent: #7c5cfc;
+      --accent2: #a78bfa;
+      --text: #e2e2f0;
+      --muted: #9090b0;
+      --border: #2e2e42;
+      --green: #34d399;
+      --orange: #fb923c;
+      --pink: #f472b6;
+      --cyan: #22d3ee;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    a { color: var(--accent2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      background: linear-gradient(135deg, #0d0020 0%, #0a0a1a 40%, #001a12 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 60px 24px 48px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 99px;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      max-width: 760px;
+      margin: 0 auto 16px;
+    }
+
+    header h1 span { color: var(--accent2); }
+
+    .meta { color: var(--muted); font-size: 14px; }
+    .meta strong { color: var(--text); }
+
+    main {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .intro {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 48px;
+      font-size: 15px;
+      color: var(--muted);
+    }
+    .intro strong { color: var(--text); }
+
+    .section-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    .news-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      transition: border-color .2s;
+    }
+    .news-card:hover { border-color: var(--accent); }
+
+    .card-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 14px; }
+
+    .card-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+    .icon-purple { background: rgba(124,92,252,.18); }
+    .icon-blue   { background: rgba(34,211,238,.15); }
+    .icon-green  { background: rgba(52,211,153,.15); }
+    .icon-orange { background: rgba(251,146,60,.15); }
+    .icon-pink   { background: rgba(244,114,182,.15); }
+    .icon-yellow { background: rgba(250,204,21,.15); }
+    .icon-red    { background: rgba(248,113,113,.15); }
+
+    .card-meta { flex: 1; }
+    .card-tag { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+    .tag-purple { color: var(--accent2); }
+    .tag-blue   { color: var(--cyan); }
+    .tag-green  { color: var(--green); }
+    .tag-orange { color: var(--orange); }
+    .tag-pink   { color: var(--pink); }
+    .tag-yellow { color: #fbbf24; }
+    .tag-red    { color: #f87171; }
+
+    .card-title { font-size: 1.15rem; font-weight: 700; line-height: 1.3; color: var(--text); }
+
+    .card-body { font-size: 14.5px; color: var(--muted); line-height: 1.75; }
+    .card-body strong { color: var(--text); }
+
+    .card-source {
+      margin-top: 16px; padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--muted);
+    }
+    .card-source a { color: var(--accent2); font-weight: 600; }
+
+    .insight {
+      background: linear-gradient(135deg, rgba(124,92,252,.12), rgba(167,139,250,.06));
+      border: 1px solid rgba(124,92,252,.3);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin-top: 16px;
+      font-size: 13.5px;
+    }
+    .insight-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--accent2); margin-bottom: 6px; }
+    .insight p { color: var(--muted); }
+    .insight p strong { color: var(--text); }
+
+    .analysis {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px;
+      margin-top: 48px;
+    }
+    .analysis h2 { font-size: 1.35rem; font-weight: 800; margin-bottom: 20px; }
+    .analysis h2 span { color: var(--accent2); }
+    .analysis p { color: var(--muted); font-size: 15px; margin-bottom: 14px; }
+    .analysis p strong { color: var(--text); }
+
+    .tip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .tip-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+    .tip-card .tip-icon { font-size: 22px; margin-bottom: 10px; }
+    .tip-card h3 { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .tip-card p { font-size: 12.5px; color: var(--muted); margin-bottom: 0; }
+
+    footer { text-align: center; padding: 40px 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; }
+    footer a { color: var(--accent2); }
+
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .pill { background: var(--surface2); border: 1px solid var(--border); border-radius: 99px; padding: 3px 12px; font-size: 12px; color: var(--muted); }
+
+    .stat-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin: 18px 0 12px;
+    }
+    .stat-box {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 18px;
+      flex: 1;
+      min-width: 140px;
+    }
+    .stat-box .stat-num { font-size: 1.5rem; font-weight: 800; color: var(--accent2); }
+    .stat-box .stat-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    .alert-banner {
+      background: linear-gradient(135deg, rgba(248,113,113,.12), rgba(251,146,60,.08));
+      border: 1px solid rgba(248,113,113,.35);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 14px 0;
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+    .alert-banner strong { color: #f87171; }
+
+    .success-banner {
+      background: linear-gradient(135deg, rgba(52,211,153,.12), rgba(34,211,238,.08));
+      border: 1px solid rgba(52,211,153,.35);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 14px 0;
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+    .success-banner strong { color: var(--green); }
+
+    @media (max-width: 600px) {
+      .news-card { padding: 20px 18px; }
+      .analysis  { padding: 24px 20px; }
+      .card-header { flex-direction: column; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Veille du 2 – 4 juillet 2026</div>
+  <h1>IA &amp; Automatisation :<br /><span>7 signaux forts de cette semaine</span></h1>
+  <p class="meta"><strong>2 au 4 juillet 2026</strong> &nbsp;·&nbsp; Curatée par AutomationBoost</p>
+</header>
+
+<main>
+
+  <div class="intro">
+    <strong>TL;DR :</strong> Le choc du rapport emploi BLS de juin — seulement 57 000 postes créés vs 185 000 attendus — confirme que l'IA commence à peser sur le marché du travail en temps réel. Le gouvernement américain (HHS) utilise désormais officiellement l'IA pour traquer la fraude dans les dépenses de santé fédérales. Anthropic serait en négociation avec Microsoft pour faire tourner Claude sur les puces Maia 200 d'Azure. Coinbase déploie un router multi-modèles qui sélectionne l'IA selon le coût et la complexité. Gartner publie son premier Hype Cycle dédié à l'IA agentique avec un avertissement fort : 40 % des projets seront annulés d'ici 2027. GPT-5.6 Sol franchit un cap avec son nouveau mode "ultra" multi-agents. Et n8n passe officiellement en version 2.0 avec une architecture rebâtie. Voici l'essentiel.
+  </div>
+
+  <p class="section-title">7 actus à retenir</p>
+
+  <!-- NEWS 1 : BLS Jobs Report -->
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-red">📉</div>
+      <div class="card-meta">
+        <div class="card-tag tag-red">Emploi & IA · 3 juillet 2026</div>
+        <div class="card-title">Rapport emploi BLS juin 2026 : seulement 57 000 postes créés — l'IA commence à creuser l'écart</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Le Bureau of Labor Statistics américain a publié le <strong>3 juillet 2026</strong> ses chiffres de l'emploi pour juin : <strong>57 000 postes nets créés</strong>, contre 185 000 attendus par le consensus des économistes — le chiffre le plus bas depuis le ralentissement de 2024. Plus de <strong>100 000 suppressions de postes tech</strong> ont déjà été enregistrées en 2026, dont une large partie attribuée directement à l'automatisation par l'IA.</p>
+      <br />
+      <p>Ce n'est pas une coïncidence de calendrier : la compression de l'emploi tech intervient exactement au moment où les agents IA passent de la phase prototype à la phase production dans les grandes entreprises. Les fonctions les plus touchées en 2026 : <strong>support client de niveau 1, saisie et traitement de données, rédaction de contenus standardisés, QA de code et certains postes de coordination de projets</strong>.</p>
+      <br />
+      <div class="alert-banner">
+        <strong>Signal de marché :</strong> Le McKinsey Global Institute projette 92 millions d'emplois déplacés par l'IA d'ici 2030, mais 170 millions de nouveaux rôles créés — soit un gain net de 78 millions. Le défi : la vitesse du déplacement dépasse la vitesse de reconversion.
+      </div>
+      <p>Pour autant, les données de Gartner et McKinsey montrent que les organisations qui <em>construisent</em> des systèmes IA surperforment celles qui subissent la transition : réductions de coûts opérationnels de 20-40 %, marges EBITDA en hausse de 12-14 points.</p>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>Ce rapport est paradoxalement une <strong>bonne nouvelle pour les constructeurs de systèmes d'automatisation</strong>. La compression de l'emploi dans les grandes boîtes crée deux opportunités : les ex-employés reconvertis cherchent des missions freelance, et les entreprises qui licencient ont besoin d'aide pour déployer les outils qui remplacent les postes supprimés. Positionnez-vous comme <strong>constructeur de systèmes agentiques</strong>, pas comme utilisateur d'IA — c'est là que la demande explose.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://www.buildfastwithai.com/blogs/ai-news-today-july-3-2026" target="_blank">BuildFastWithAI — AI News July 3 2026</a> ·
+      <a href="https://unrot.co/blogs/today-top-10-ai-news-july-3-2026" target="_blank">Unrot.co — Top 10 AI News July 3</a> ·
+      <a href="https://www.marketingprofs.com/opinions/2026/55197/ai-update-july-3-2026-ai-news-and-views-from-the-past-week" target="_blank">MarketingProfs — AI Update July 3</a>
+    </div>
+  </div>
+
+  <!-- NEWS 2 : HHS + IA fraude santé -->
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-blue">🏛️</div>
+      <div class="card-meta">
+        <div class="card-tag tag-blue">Gouvernement US · 3 juillet 2026</div>
+        <div class="card-title">Le gouvernement américain utilise officiellement l'IA pour détecter la fraude dans les 50 États — HHS déploie ChatGPT sur les audits fédéraux</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Le Département américain de la Santé (HHS) a annoncé le <strong>3 juillet 2026</strong> qu'il utilise désormais <strong>ChatGPT et d'autres outils IA</strong> pour analyser en continu les rapports d'audit annuels des 50 États concernant les dépenses de santé fédérales. Le programme, piloté par l'Assistant Secretary <strong>Gustav Chiarello</strong>, a pour mission de détecter fraude, gaspillage et abus dans les remboursements fédéraux — un marché estimé à plusieurs centaines de milliards de dollars annuels.</p>
+      <br />
+      <p>Le HHS a d'ores et déjà alerté les gouverneurs et trésoriers de chaque État du lancement du programme. La <strong>California Unemployment Development Agency</strong> figure parmi les premiers partenaires officiels, avec un déploiement IA ciblant le traitement des allocations chômage et la détection des fraudes à grande échelle.</p>
+      <br />
+      <div class="success-banner">
+        <strong>Signal institutionnel fort :</strong> Quand le gouvernement fédéral américain déploie l'IA en production sur des systèmes critiques, c'est le signal que la phase d'expérimentation est terminée. L'IA n'est plus un sujet "R&D" — c'est une infrastructure d'État.
+      </div>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>Ce déploiement gouvernemental valide deux choses pour les freelances : premièrement, la <strong>compliance IA devient une compétence commercialisable</strong> — les administrations publiques locales et régionales vont suivre et chercher des prestataires qui comprennent la gouvernance des agents IA. Deuxièmement, si vous travaillez avec des clients dans la santé, les services publics ou la finance, <strong>l'argument "l'État américain l'utilise déjà" supprime des mois d'objections</strong> sur la maturité de la technologie.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://www.buildfastwithai.com/blogs/ai-news-today-july-3-2026" target="_blank">BuildFastWithAI — HHS AI Fraud Detection</a> ·
+      <a href="https://artificialintelligenceherald.com/ai-news-today" target="_blank">AI Herald — AI News July 4 2026</a> ·
+      <a href="https://unrot.co/blogs/today-top-10-ai-news-july-3-2026" target="_blank">Unrot.co — Top AI News July 3</a>
+    </div>
+  </div>
+
+  <!-- NEWS 3 : Anthropic × Microsoft Maia 200 -->
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-green">🤝</div>
+      <div class="card-meta">
+        <div class="card-tag tag-green">Anthropic × Microsoft · 3-4 juillet 2026</div>
+        <div class="card-title">Anthropic en négociation avec Microsoft pour faire tourner Claude sur les puces Maia 200 d'Azure</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Selon des sources proches du dossier, <strong>Anthropic est en discussions préliminaires avec Microsoft</strong> pour exécuter les charges d'inférence Claude directement sur les <strong>puces IA custom Maia 200 de Microsoft via Azure</strong>. L'accord, s'il se concrétise, permettrait à Anthropic de diversifier son infrastructure d'inférence au-delà de Google Cloud et AWS — et à Microsoft d'enrichir son catalogue Azure AI avec les modèles Claude aux côtés de l'offre GPT/OpenAI.</p>
+      <br />
+      <p>Cette négociation intervient dans un contexte de course aux puces IA : les Maia 200 sont conçues pour réduire les coûts d'inférence à grande échelle et offrir aux entreprises Azure une alternative aux GPU NVIDIA, dont les délais de livraison restent tendus. Une intégration Claude sur Azure représenterait un accès à <strong>millions d'entreprises clientes</strong> déjà intégrées dans l'écosystème Microsoft 365 / Copilot.</p>
+      <br />
+      <p>En parallèle, <strong>Coinbase</strong> illustre une tendance de fond qui s'accélère : la startup a déployé un <strong>système de routing automatisé multi-modèles</strong> qui choisit en temps réel l'IA la plus adaptée selon la complexité de la tâche, le prix et l'efficacité du cache — utilisant notamment des modèles chinois moins chers pour les tâches à faible enjeu.</p>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>L'éventuel partenariat Anthropic × Azure signifie une chose pratique : <strong>Claude sera bientôt disponible nativement dans les outils Microsoft que vos clients PME utilisent déjà</strong> (Teams, Outlook, SharePoint). Anticipez cette intégration : si vous maîtrisez Claude aujourd'hui, vous serez l'expert que ces entreprises appelleront quand Claude apparaîtra dans leur interface Teams. Le routing multi-modèles de Coinbase est, lui, un modèle à dupliquer dans vos architectures n8n — coût réduit de 40-60 % sur les workflows à volume.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://www.buildfastwithai.com/blogs/ai-news-today-july-3-2026" target="_blank">BuildFastWithAI — Anthropic Microsoft talks</a> ·
+      <a href="https://unrot.co/blogs/today-top-10-ai-news-july-3-2026" target="_blank">Unrot.co — Coinbase AI routing</a> ·
+      <a href="https://artificialintelligenceherald.com/ai-news-today" target="_blank">AI Herald — July 4 2026</a>
+    </div>
+  </div>
+
+  <!-- NEWS 4 : Gartner Hype Cycle Agentic AI -->
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-yellow">📊</div>
+      <div class="card-meta">
+        <div class="card-tag tag-yellow">Gartner · Juillet 2026</div>
+        <div class="card-title">Gartner publie son premier Hype Cycle IA agentique — 40 % des projets annulés d'ici 2027, "agent washing" en plein essor</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Gartner a publié son <strong>premier Hype Cycle dédié à l'IA agentique en 2026</strong>, couvrant 30+ technologies. Le verdict : l'IA agentique est au <strong>Pic des Attentes Gonflées</strong> — l'attention du marché est extraordinaire, mais les déploiements pleinement autonomes restent hors de portée pour la majorité des cas d'usage enterprise. Seulement <strong>17 % des organisations ont déployé des agents IA</strong> à ce jour, malgré 60 % qui prévoient de le faire dans les deux prochaines années.</p>
+      <br />
+      <p>L'avertissement central du rapport est sans ambiguïté : <strong>plus de 40 % des projets d'IA agentique seront annulés d'ici fin 2027</strong> — à cause de coûts explosifs, d'une valeur business floue ou d'un manque de contrôles de risque. Gartner pointe aussi un phénomène qu'il a lui-même nommé : l'<strong>"agent washing"</strong> — des outils d'automatisation classiques (RPA, workflows) qui se rebrandent en "plateformes d'agents IA" sans en avoir les capacités réelles.</p>
+      <br />
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-num">17%</div>
+          <div class="stat-label">Orgs avec agents en prod</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">40%</div>
+          <div class="stat-label">Projets annulés d'ici 2027</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">30+</div>
+          <div class="stat-label">Technologies cartographiées</div>
+        </div>
+      </div>
+      <p>Le rapport met en avant trois nouveaux profils en émergence : <strong>gouvernance des agents IA, sécurité agentique, et FinOps pour l'IA agentique</strong> — signe que les entreprises entrent dans une phase de maturité où elles cherchent à auditer, sécuriser et optimiser les coûts de leurs déploiements.</p>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>Ce rapport Gartner est votre meilleur argument commercial. <strong>Montrez-le à vos prospects</strong> : "40 % des projets vont échouer — voici comment je vous aide à faire partie des 60 % qui réussissent." Les trois axes gagnants selon Gartner (gouvernance, sécurité, FinOps) sont précisément ce que les PME ne savent pas faire seules. <strong>Packagisez une offre "Agent IA Audit"</strong> qui évalue la gouvernance, les risques et le ROI des projets en cours — c'est le produit le plus demandé en 2026-2027.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://www.gartner.com/en/articles/hype-cycle-for-agentic-ai" target="_blank">Gartner — Hype Cycle for Agentic AI 2026</a> ·
+      <a href="https://tray.ai/blog/gartner-agentic-ai-hype-cycle-2026/" target="_blank">Tray.ai — 5 Hard Truths from Gartner</a> ·
+      <a href="https://xpander.ai/blog/gartner-hype-cycle-for-agentic-ai-what-it-means-for-ai-agent-development-platforms" target="_blank">xpander.ai — What It Means for Dev Platforms</a>
+    </div>
+  </div>
+
+  <!-- NEWS 5 : GPT-5.6 Sol ultra mode -->
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-green">🤖</div>
+      <div class="card-meta">
+        <div class="card-tag tag-green">OpenAI · Juillet 2026</div>
+        <div class="card-title">GPT-5.6 Sol active le mode "ultra" — plusieurs sous-agents en parallèle pour les tâches les plus complexes</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>OpenAI a précisé le fonctionnement de son nouveau <strong>mode "ultra"</strong> sur GPT-5.6 Sol, dévoilé cette semaine aux 20 partenaires en preview. Ce mode va <strong>au-delà des capacités d'un agent unique</strong> en orchestrant automatiquement des sous-agents spécialisés pour accélérer les tâches complexes : un sous-agent collecte et structure les données, un autre génère les analyses, un troisième synthétise et formate le livrable final — tout en parallèle.</p>
+      <br />
+      <p>GPT-5.6 Sol introduit également un nouveau <strong>niveau de raisonnement "max effort"</strong> qui donne au modèle le plus de temps possible pour raisonner en profondeur avant de répondre — comparable au mode extended thinking de Claude, mais avec une intégration native dans les workflows Codex et les API developer. La famille Sol/Terra/Luna est <strong>disponible en preview limité via API et Codex</strong>, avec un accès public prévu dans les prochaines semaines.</p>
+      <br />
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-num">750</div>
+          <div class="stat-label">tokens/s sur Cerebras</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">3</div>
+          <div class="stat-label">niveaux : Sol / Terra / Luna</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">2x</div>
+          <div class="stat-label">moins cher que Sol pour Terra</div>
+        </div>
+      </div>
+      <p>GPT-5.5 Instant, déjà disponible, a reçu une mise à jour de style : réponses plus claires, plus personnalisées, avec une meilleure qualité conversationnelle dans les interactions continues.</p>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>Le mode "ultra" multi-agents de GPT-5.6 Sol est un aperçu de ce que seront vos workflows automatisés dans 6 mois. <strong>L'architecture distribuée (plusieurs agents spécialisés en parallèle) est désormais accessible aux développeurs individuels via une simple API.</strong> Si vous construisez des systèmes de veille, de rédaction ou d'analyse, commencez à prototyper une architecture multi-agents maintenant — avec n8n comme orchestrateur et Sol/Terra/Luna comme moteurs. Terra sera probablement le sweet spot coût/performance pour la production.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://openai.com/index/previewing-gpt-5-6-sol/" target="_blank">OpenAI — Previewing GPT-5.6 Sol</a> ·
+      <a href="https://cryptobriefing.com/openai-releases-gpt-56-models-to-20-partners-public-launch-expected-by-july-2026/" target="_blank">CryptoBriefing — GPT-5.6 preview partners</a> ·
+      <a href="https://llm-stats.com/llm-updates" target="_blank">LLM Stats — AI Updates July 2026</a>
+    </div>
+  </div>
+
+  <!-- NEWS 6 : n8n 2.0 -->
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-orange">🔧</div>
+      <div class="card-meta">
+        <div class="card-tag tag-orange">n8n · Juillet 2026</div>
+        <div class="card-title">n8n passe en version 2.0 — architecture rebâtie, Canvas v2 spatial et 35+ nouveaux nœuds IA natifs</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>n8n a officiellement lancé <strong>n8n 2.0</strong>, une refonte architecturale majeure qui fait passer la plateforme du statut d'outil d'automatisation à celui d'<strong>infrastructure agentique open-source</strong>. Les trois piliers de la v2 : un <strong>AI Agent Node universel</strong> supportant Claude, GPT-4o, Gemini 1.5 Pro, Mistral et Groq avec tool calling natif ; le <strong>Canvas v2</strong>, une interface spatiale groupée pour gérer des milliers de nœuds sans perte de performance ; et un système d'<strong>erreur handling avancé</strong> avec retry exponentiel configurable par nœud.</p>
+      <br />
+      <p>Plus de <strong>35 nouveaux nœuds IA natifs</strong> ont été intégrés depuis janvier 2026, dont des nœuds dédiés Anthropic Claude, Google Gemini, Perplexity, ElevenLabs et Groq. Quatre types de mémoire sont désormais disponibles nativement : <strong>in-memory, Redis, Postgres et Motorhead</strong> — ce qui permet de construire des agents avec contexte persistant sans coder de solution custom.</p>
+      <br />
+      <div class="success-banner">
+        <strong>Architecture multi-LLM :</strong> Le fallback automatique est désormais possible nativement — si Claude est indisponible ou trop cher pour un nœud, n8n bascule automatiquement sur GPT-4o ou Gemini selon les règles définies. Résilience maximale, coût optimisé.
+      </div>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>n8n 2.0 auto-hébergé sur un VPS à 6-10 €/mois est aujourd'hui <strong>l'infrastructure d'une agence IA 5-personnes à portée d'un indépendant</strong>. Avec le routing multi-LLM natif, vous pouvez proposer à vos clients des systèmes agentiques avec SLA élevé (fallback automatique) à des prix inférieurs à ceux des outils SaaS. C'est votre argument pour décrocher des contrats d'infra IA récurrents : maintenance mensuelle 300-600 €, valeur délivrée 5-10x.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://blog.n8n.io/introducing-n8n-2-0/" target="_blank">n8n Blog — Introducing n8n 2.0</a> ·
+      <a href="https://docs.n8n.io/release-notes" target="_blank">n8n — Release Notes</a> ·
+      <a href="https://releasebot.io/updates/n8n" target="_blank">Releasebot — n8n June-July 2026</a>
+    </div>
+  </div>
+
+  <!-- NEWS 7 : Make.com + multi-agents en production -->
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-purple">⚡</div>
+      <div class="card-meta">
+        <div class="card-tag tag-purple">Make.com · Juillet 2026</div>
+        <div class="card-title">Make.com franchit le cap des 400 000 organisations — l'hyperautomatisation multi-agents quitte l'expérimentation</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Make.com a annoncé avoir franchi le cap des <strong>400 000 organisations clientes</strong> dans plus de 200 pays — une milestone qui marque le passage de l'outil "early adopter" à la plateforme mainstream. Le message de la direction pour le second semestre 2026 est clair : si 2025 était l'année des agents IA en prototype, <strong>2026 est l'année de la conversion en valeur business à l'échelle</strong>.</p>
+      <br />
+      <p>L'évolution majeure de la plateforme : le passage des <strong>workflows copilotes aux systèmes orientés objectifs</strong>. Les agents ne reçoivent plus une liste de tâches — ils reçoivent un résultat à atteindre. Make illustre ce modèle avec des architectures d'<strong>hyperautomatisation multi-agents</strong> : un agent lit et trie les emails entrants, un deuxième qualifie les leads, un troisième rédige les réponses personnalisées, un quatrième met à jour le CRM et déclenche des séquences marketing — sans intervention humaine.</p>
+      <br />
+      <p>Make identifie les <strong>"fastest wins"</strong> à déployer immédiatement : triage email, qualification de leads, support client niveau 1, administration financière et ops fondateur. La plateforme recommande de maintenir une validation humaine sur trois domaines sensibles : transferts financiers, clauses légales et décisions à risque de marque.</p>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>400 000 organisations sur Make, c'est un marché de services à portée de main. <strong>Proposez un "Pack Hyperautomation Starter" à 800-1 500 € TTC</strong> qui automatise les 3 "fastest wins" Make (email triage + lead qualification + support réponses) : vous livrez en 1-2 jours ouvrés, le client récupère 6-8 heures par semaine dès le premier mois. C'est votre meilleur produit d'entrée de gamme pour convertir des prospects en clients récurrents sur une maintenance mensuelle.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://www.make.com/en/whats-new" target="_blank">Make — What's New</a> ·
+      <a href="https://www.make.com/en/blog/2025-reflections-2026-predictions" target="_blank">Make — Reflections &amp; Predictions 2026</a> ·
+      <a href="https://www.globenewswire.com/news-release/2026/01/07/3214991/0/en/make-named-best-ai-automation-platform-for-2026.html" target="_blank">GlobeNewswire — Make Best Platform 2026</a>
+    </div>
+  </div>
+
+  <!-- ANALYSE -->
+  <div class="analysis">
+    <h2>Analyse : <span>Ce que ça change vraiment pour vous</span></h2>
+
+    <p>Ces 3 jours de début juillet dessinent un tableau cohérent : l'IA agentique est entrée dans sa phase de consolidation brutale. Trois dynamiques sont à intégrer maintenant.</p>
+
+    <p><strong>1. L'impact emploi devient mesurable — et c'est votre opportunité.</strong> 57 000 postes créés en juin vs 185 000 attendus : ce n'est pas une anecdote statistique, c'est le signal que la substitution IA dans les fonctions de coordination, support et traitement de données est désormais visible dans les chiffres macro. Pour les freelances, ce mouvement est structurellement favorable : les entreprises qui externalisent leurs postes supprimés ont besoin de prestataires agiles qui maîtrisent les outils IA. <strong>Vous n'êtes pas en concurrence avec l'IA — vous êtes la passerelle entre l'IA et les organisations qui ne savent pas s'en servir.</strong></p>
+
+    <p><strong>2. Le gouvernement US valide l'IA en production — fin des objections sur la maturité.</strong> HHS qui déploie ChatGPT sur la fraude de santé fédérale, c'est la validation institutionnelle la plus forte possible. En France et en Europe, vos prospects PME ou institutions locales hésitaient encore sur la fiabilité de l'IA pour des processus critiques. <strong>Utilisez l'argument gouvernemental américain pour briser les derniers blocs</strong> : si le système de santé américain (7 000 milliards de dépenses) fait confiance à l'IA pour détecter la fraude, votre PME peut lui faire confiance pour trier ses emails.</p>
+
+    <p><strong>3. Gartner avertit — soyez du bon côté.</strong> 40 % des projets agentiques annulés d'ici 2027 : le marché va se fragmenter entre les déploiements qui créent de la valeur et ceux qui brûlent du budget sur des POC sans gouvernance. Le rapport Gartner vous donne exactement le cadre pour vous différencier : <strong>governance, security, FinOps</strong> sont les trois piliers que les PME ne savent pas adresser seules. Structurez votre offre autour de ces trois axes — pas seulement "je fais des workflows", mais "je vous aide à déployer, gouverner et optimiser vos agents IA".</p>
+
+    <div class="tip-grid">
+      <div class="tip-card">
+        <div class="tip-icon">🏗️</div>
+        <h3>Construisez un "Agent Audit"</h3>
+        <p>Packagisez une offre d'évaluation gouvernance + ROI + risque des projets IA agentiques. Gartner vient de créer votre marché.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🔀</div>
+        <h3>Implémentez le routing multi-modèles</h3>
+        <p>Inspirez-vous de Coinbase : n8n + routing Claude/GPT/Gemini selon coût/complexité. Économisez 40-60 % sur vos coûts API en production.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🎯</div>
+        <h3>Misez sur n8n 2.0 self-hosted</h3>
+        <p>Infrastructure agentique à 6-10 €/mois avec fallback multi-LLM natif. Le meilleur ROI technique pour des offres clients récurrentes.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">📊</div>
+        <h3>Utilisez Gartner comme argument</h3>
+        <p>Le Hype Cycle agentique 2026 est votre meilleure aide à la vente pour les décideurs tech sceptiques. Montrez-leur le rapport, proposez-leur d'être dans les 60 %.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pills" style="margin-top:32px;">
+    <span class="pill">BLS Jobs Report</span>
+    <span class="pill">HHS Fraud AI</span>
+    <span class="pill">Anthropic × Microsoft</span>
+    <span class="pill">Coinbase routing</span>
+    <span class="pill">Gartner Hype Cycle</span>
+    <span class="pill">Agent Washing</span>
+    <span class="pill">GPT-5.6 Sol</span>
+    <span class="pill">Ultra Mode</span>
+    <span class="pill">n8n 2.0</span>
+    <span class="pill">Canvas v2</span>
+    <span class="pill">Make.com</span>
+    <span class="pill">Multi-agents</span>
+    <span class="pill">FinOps IA</span>
+    <span class="pill">Hyperautomatisation</span>
+    <span class="pill">Gouvernance IA</span>
+  </div>
+
+</main>
+
+<footer>
+  <p>Veille curatée par <a href="https://automationboost.fr">AutomationBoost</a> — 4 juillet 2026</p>
+  <p style="margin-top:8px;">Prochaine veille : 7-9 juillet 2026</p>
+</footer>
+
+</body>
+</html>

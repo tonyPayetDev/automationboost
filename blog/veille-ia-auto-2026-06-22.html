@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Veille IA & Automatisation — 19-22 juin 2026</title>
+  <meta name="description" content="Les 7 actus IA et automatisation du 19-22 juin 2026 : GitHub Agents, protocole A2A, première transaction IA autonome, n8n multi-LLM, Anthropic WIF, funding agentic et réglementation IA." />
+  <style>
+    :root {
+      --bg: #0f0f13;
+      --surface: #1a1a24;
+      --surface2: #22222f;
+      --accent: #7c5cfc;
+      --accent2: #a78bfa;
+      --text: #e2e2f0;
+      --muted: #9090b0;
+      --border: #2e2e42;
+      --green: #34d399;
+      --orange: #fb923c;
+      --pink: #f472b6;
+      --cyan: #22d3ee;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    a { color: var(--accent2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      background: linear-gradient(135deg, #0d0020 0%, #0a0a1a 40%, #001a12 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 60px 24px 48px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 99px;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      max-width: 760px;
+      margin: 0 auto 16px;
+    }
+
+    header h1 span { color: var(--accent2); }
+
+    .meta { color: var(--muted); font-size: 14px; }
+    .meta strong { color: var(--text); }
+
+    main {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .intro {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 48px;
+      font-size: 15px;
+      color: var(--muted);
+    }
+    .intro strong { color: var(--text); }
+
+    .section-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    .news-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      transition: border-color .2s;
+    }
+    .news-card:hover { border-color: var(--accent); }
+
+    .card-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 14px; }
+
+    .card-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+    .icon-purple { background: rgba(124,92,252,.18); }
+    .icon-blue   { background: rgba(34,211,238,.15); }
+    .icon-green  { background: rgba(52,211,153,.15); }
+    .icon-orange { background: rgba(251,146,60,.15); }
+    .icon-pink   { background: rgba(244,114,182,.15); }
+    .icon-yellow { background: rgba(250,204,21,.15); }
+    .icon-red    { background: rgba(248,113,113,.15); }
+
+    .card-meta { flex: 1; }
+    .card-tag { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+    .tag-purple { color: var(--accent2); }
+    .tag-blue   { color: var(--cyan); }
+    .tag-green  { color: var(--green); }
+    .tag-orange { color: var(--orange); }
+    .tag-pink   { color: var(--pink); }
+    .tag-yellow { color: #fbbf24; }
+    .tag-red    { color: #f87171; }
+
+    .card-title { font-size: 1.15rem; font-weight: 700; line-height: 1.3; color: var(--text); }
+
+    .card-body { font-size: 14.5px; color: var(--muted); line-height: 1.75; }
+    .card-body strong { color: var(--text); }
+
+    .card-source {
+      margin-top: 16px; padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--muted);
+    }
+    .card-source a { color: var(--accent2); font-weight: 600; }
+
+    .insight {
+      background: linear-gradient(135deg, rgba(124,92,252,.12), rgba(167,139,250,.06));
+      border: 1px solid rgba(124,92,252,.3);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin-top: 16px;
+      font-size: 13.5px;
+    }
+    .insight-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--accent2); margin-bottom: 6px; }
+    .insight p { color: var(--muted); }
+    .insight p strong { color: var(--text); }
+
+    .analysis {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px;
+      margin-top: 48px;
+    }
+    .analysis h2 { font-size: 1.35rem; font-weight: 800; margin-bottom: 20px; }
+    .analysis h2 span { color: var(--accent2); }
+    .analysis p { color: var(--muted); font-size: 15px; margin-bottom: 14px; }
+    .analysis p strong { color: var(--text); }
+
+    .tip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .tip-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+    .tip-card .tip-icon { font-size: 22px; margin-bottom: 10px; }
+    .tip-card h3 { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .tip-card p { font-size: 12.5px; color: var(--muted); margin-bottom: 0; }
+
+    footer { text-align: center; padding: 40px 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; }
+    footer a { color: var(--accent2); }
+
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .pill { background: var(--surface2); border: 1px solid var(--border); border-radius: 99px; padding: 3px 12px; font-size: 12px; color: var(--muted); }
+
+    .stat-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin: 18px 0 12px;
+    }
+    .stat-box {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 18px;
+      flex: 1;
+      min-width: 140px;
+    }
+    .stat-box .stat-num { font-size: 1.5rem; font-weight: 800; color: var(--accent2); }
+    .stat-box .stat-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    @media (max-width: 600px) {
+      .news-card { padding: 20px 18px; }
+      .analysis  { padding: 24px 20px; }
+      .card-header { flex-direction: column; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Veille du 19-22 juin 2026</div>
+  <h1>IA &amp; Automatisation :<br /><span>7 signaux forts de cette fin de semaine</span></h1>
+  <p class="meta"><strong>19 au 22 juin 2026</strong> &nbsp;·&nbsp; Curatée par AutomationBoost</p>
+</header>
+
+<main>
+
+  <div class="intro">
+    <strong>TL;DR :</strong> GitHub ouvre les Agentic Workflows au grand public, le protocole A2A de Google conquiert 150 organisations en production, un agent IA réalise la première transaction bancaire autonome de l'histoire (DBS + Mastercard), n8n intègre nativement Claude, Gemini et Groq, Anthropic sécurise ses API avec la fédération d'identité, et le financement des startups agentic explose — 20 milliards au Q2 2026. La bascule vers l'IA autonome n'est plus une promesse : elle se passe maintenant.
+  </div>
+
+  <p class="section-title">7 actus à retenir</p>
+
+  <!-- NEWS 1 : GitHub Agentic Workflows -->
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-blue">🐙</div>
+      <div class="card-meta">
+        <div class="card-tag tag-blue">GitHub · 11 juin 2026</div>
+        <div class="card-title">GitHub Agentic Workflows en Public Preview : les agents codent, trient et documentent dans vos repos</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>GitHub a mis en Public Preview ses <strong>Agentic Workflows</strong>, une couche d'automatisation raisonnante intégrée directement dans GitHub Actions. Concrètement, des agents IA peuvent désormais <strong>trier les issues automatiquement, analyser les erreurs CI, mettre à jour la documentation</strong> et suggérer des correctifs — sans aucun trigger humain.</p>
+      <br />
+      <p>Les agents s'appuient sur des <em>coding agents</em> (Copilot inclus) capables de lire le contexte du repo (historique de commits, PR ouvertes, tests cassés) pour prendre des décisions pertinentes. Le tout s'intègre aux workflows YAML existants sans refonte de pipeline.</p>
+      <br />
+      <p>Microsoft positionne clairement GitHub Actions comme <strong>le runtime d'exécution privilégié pour les agents IA d'entreprise</strong> — une montée en gamme stratégique face à n8n et Make sur le segment DevOps &amp; IT.</p>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>Pour les développeurs freelance, c'est du temps libre : l'agent peut <strong>répondre aux issues simples, clôturer les doublons et déclencher des correctifs mineurs</strong> pendant que vous dormez. Pour les agences web, c'est une façon de vendre un "support technique IA inclus" sans sur-facturer le SAV.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://github.blog/changelog/2026-06-11-github-agentic-workflows-is-now-in-public-preview/" target="_blank">GitHub Changelog</a> ·
+      <a href="https://azure.microsoft.com/en-us/blog/microsoft-build-2026-building-agentic-apps-with-microsoft-fabric-and-microsoft-databases/" target="_blank">Microsoft Build 2026</a>
+    </div>
+  </div>
+
+  <!-- NEWS 2 : A2A Protocol -->
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-green">🔗</div>
+      <div class="card-meta">
+        <div class="card-tag tag-green">Interopérabilité · Juin 2026</div>
+        <div class="card-title">Le protocole A2A dépasse 150 organisations en production — l'interopérabilité inter-agents devient réelle</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Le protocole <strong>A2A (Agent-to-Agent)</strong> de Google — permettant à des agents IA hétérogènes de se déléguer des tâches — a franchi le cap de <strong>150 organisations en production</strong>, dont AWS, Microsoft, Salesforce, SAP, IBM et ServiceNow. Son repo GitHub cumule <strong>22 000+ stars</strong> et des SDK production-ready existent désormais en Python, JavaScript, Java, Go et .NET.</p>
+      <br />
+      <p>La combinaison A2A + MCP est en train de définir le <strong>standard d'interopérabilité IA</strong> de 2026 : MCP pour brancher des outils, A2A pour orchestrer entre agents de fournisseurs différents. Un agent Claude peut déléguer une sous-tâche à un agent GPT, qui lui-même appelle un agent Gemini — le tout sans code colle personnalisé.</p>
+      <br />
+      <p>Anthropic, de son côté, contribue activement au développement de l'ACP (Agent Communication Protocol) initié par Linux Foundation AI — une troisième couche de standardisation qui devrait converger avec A2A et MCP d'ici fin 2026.</p>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>Connaître A2A + MCP, c'est parler le langage des architectes systèmes chez les grands comptes. <strong>Vous pouvez proposer des audits d'architecture agentic</strong> à des PME qui bricolent encore leurs automatisations en silos. Mission haute valeur, peu de concurrence encore.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://zylos.ai/research/2026-05-16-agent-to-agent-communication-protocols-a2a-mcp/" target="_blank">Agent Interoperability 2026 — Zylos AI</a> ·
+      <a href="https://zylos.ai/research/2026-03-26-agent-interoperability-protocols-mcp-a2a-acp-convergence/" target="_blank">MCP / A2A / ACP Convergence</a>
+    </div>
+  </div>
+
+  <!-- NEWS 3 : DBS + Mastercard - première transaction agentic -->
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-orange">💳</div>
+      <div class="card-meta">
+        <div class="card-tag tag-orange">Finance · Juin 2026</div>
+        <div class="card-title">Première transaction bancaire 100 % autonome : un agent IA réserve et paie sans validation humaine</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>DBS Bank et Mastercard ont annoncé avoir réalisé avec succès <strong>la première transaction de paiement agentic en conditions réelles</strong>. Un agent IA a autonomement réservé un trajet vers l'aéroport de Changi (Singapour) et l'a payé — <strong>sans aucune confirmation humaine</strong> à aucun moment du flux.</p>
+      <br />
+      <p>Cette démonstration marque un basculement symbolique fort : l'agent n'a pas juste "suggéré" un paiement — il a exécuté l'intégralité de la décision d'achat (recherche du service, sélection du fournisseur, déclenchement du paiement, confirmation). Le tout dans un environnement contrôlé, mais avec de vrais comptes et de vrais fonds.</p>
+      <br />
+      <p>Mastercard développe en parallèle des <strong>rails de paiement spécifiquement conçus pour les agents</strong>, avec des limites, des règles de gouvernance et des audit trails intégrés — pour que les entreprises puissent accorder des "budgets autonomes" à leurs agents sans prise de tête compliance.</p>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>L'ère du <strong>budget autonome pour agent</strong> arrive vite. Imaginez un agent qui gère vos achats publicitaires Meta Ads, vos abonnements SaaS et vos factures fournisseurs dans une limite définie. <strong>Moins de charge mentale, zéro oubli de renouvellement.</strong> À surveiller dès H2 2026 pour les premières offres grand public.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://noimosai.com/en/blog/top-5-autonomous-ai-agent-examples-in-2026-the-rise-of-the-digital-workforce" target="_blank">Top 5 Autonomous AI Agent Examples 2026</a> ·
+      <a href="https://aiagentstore.ai/ai-agent-news/this-week" target="_blank">AI Agent News — This Week</a>
+    </div>
+  </div>
+
+  <!-- NEWS 4 : n8n multi-LLM -->
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-green">⚙️</div>
+      <div class="card-meta">
+        <div class="card-tag tag-green">n8n · H1 2026</div>
+        <div class="card-title">n8n intègre nativement Claude 3.5, Gemini multimodal et Groq — 35+ nœuds IA ajoutés en 6 mois</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>n8n a consolidé sa position de plateforme d'orchestration open-source la plus complète du marché en ajoutant <strong>35+ nœuds IA</strong> entre janvier et juin 2026. Les ajouts marquants : le nœud <strong>Anthropic Claude</strong> (Claude 3.5 Sonnet, 3 Opus, 3 Haiku, intégrable à l'AI Agent node) en janvier, le nœud <strong>Google Gemini 1.5</strong> (Pro et Flash, avec support multimodal image/audio) en février, et le nœud <strong>Groq</strong> (Llama 3, Mixtral, Gemma avec latence &lt;500 ms) — idéal pour les workflows temps réel.</p>
+      <br />
+      <p>Côté infrastructure, n8n supporte désormais <strong>quatre types de mémoire pour les agents</strong> : In-memory, Redis, Postgres, et Motorhead (auto-résumé de conversation longue). Ajoutez la configuration de retry par nœud (exponentielle, 1-10 essais), le tracing OpenTelemetry natif et l'Error Trigger dédié — vous avez un runtime d'agent sérieux, pas un prototype.</p>
+      <br />
+      <p>Les <strong>MCP workflow tools</strong> sont également disponibles : n'importe quel client MCP externe (Claude Desktop, Cursor) peut appeler des workflows n8n comme outils depuis un agent IA externe.</p>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>La stack gratuite idéale en 2026 : <strong>n8n self-hosted + Claude 3.5 Sonnet + Groq pour la vitesse</strong>. Zéro limite d'exécution, mémoire persistante, retry auto, et accès à tous les LLM sans vendor lock-in. Pour les freelances qui veulent des agents robustes sans budget Make Enterprise, c'est imbattable.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://www.softomatesolutions.com/blog/n8n-updates-2026-whats-new/" target="_blank">n8n Updates 2026 — Softomate</a> ·
+      <a href="https://releasebot.io/updates/n8n" target="_blank">n8n Release Notes</a> ·
+      <a href="https://docs.n8n.io/release-notes/" target="_blank">n8n Official Docs</a>
+    </div>
+  </div>
+
+  <!-- NEWS 5 : Make module tools -->
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-orange">🔧</div>
+      <div class="card-meta">
+        <div class="card-tag tag-orange">Make.com · 3-6 juin 2026</div>
+        <div class="card-title">Make lance les "Module Tools" pour agents — vos scénarios deviennent des outils IA en 1 clic</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Make a introduit les <strong>Module Tools for AI Agents</strong> : n'importe quel scénario Make existant peut désormais être exposé comme un <strong>outil utilisable par un agent IA</strong> — au même titre que les MCP servers ou les appels API. Un agent peut ainsi déclencher un workflow Make (envoyer un email, créer une opportunité CRM, générer une facture) comme s'il appelait une fonction.</p>
+      <br />
+      <p>La mise à jour du <strong>6 juin</strong> consolide l'offre : intégration de <strong>Claude Opus 4.8</strong> dans les agents Make, nouvelles cartes de statut webhook pour le monitoring, navigation canvas unifiée dans le scenario builder, et support de Gmail / Google Drive personnels (exit les comptes G Suite obligatoires pour les petites structures).</p>
+      <br />
+      <p>Maia — l'assistant Make de construction en langage naturel — reçoit également de nouveaux modules natifs multimodaux : documents, images, audio. La frontière entre "construire un scénario" et "parler à un agent" continue de s'effacer.</p>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p><strong>Vos automatisations Make deviennent des briques réutilisables</strong> pour vos agents IA. Concrètement : construisez une fois le scénario "créer un devis Pennylane + envoyer par email", exposez-le comme Module Tool, et laissez votre agent l'appeler à la demande. <strong>Productivité x3 sans réécrire de logique.</strong></p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://help.make.com/introducing-module-tools-for-ai-agents" target="_blank">Make Help Center — Module Tools</a> ·
+      <a href="https://www.make.com/en/whats-new" target="_blank">Make — What's New</a> ·
+      <a href="https://help.make.com/release-notes" target="_blank">Make Release Notes</a>
+    </div>
+  </div>
+
+  <!-- NEWS 6 : Anthropic WIF + sandboxes -->
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-purple">🔐</div>
+      <div class="card-meta">
+        <div class="card-tag tag-purple">Anthropic API · 10-11 juin 2026</div>
+        <div class="card-title">Anthropic sécurise ses API avec la Workload Identity Federation — fini les clés API statiques</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Anthropic a déployé la <strong>Workload Identity Federation (WIF)</strong> pour son API : les applications peuvent désormais s'authentifier avec des <strong>credentials de courte durée et à portée limitée</strong> (AWS IAM roles, GCP/Kubernetes service accounts, Azure managed identities, GitHub Actions tokens, Okta OIDC) — sans jamais créer ni stocker de clés API Anthropic statiques.</p>
+      <br />
+      <p>Cette évolution est majeure pour les équipes en production : une clé API qui n'existe pas ne peut pas fuiter. Le risque de secret compromis dans un repo Git ou un log système disparaît structurellement. Les <strong>self-hosted sandboxes</strong> sont également en Public Beta : l'exécution du code par les agents peut maintenant se faire sur votre propre infrastructure (Cloudflare, Daytona, Modal, Vercel) ou en interne, sans que les données quittent votre environnement.</p>
+      <br />
+      <p>Côté API, le <strong>Code Execution Tool</strong> (version <code>code_execution_20260521</code>) publie maintenant sa limite de 90 secondes par cellule, le Web Search Tool et le Web Fetch Tool sont stabilisés sans beta headers, et le paramètre <code>response_inclusion</code> permet de ne pas renvoyer les blocs de résultats déjà consommés — économie de tokens sur les workflows agentic longs.</p>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>Pour les freelances qui gèrent des projets client avec l'API Claude : <strong>passez à WIF dès que possible</strong>. Vos clients du secteur santé, finance ou juridique vous demanderont bientôt cette garantie de sécurité. C'est aussi un excellent argument commercial pour se démarquer d'agences moins rigoureuses.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://platform.claude.com/docs/en/release-notes/overview" target="_blank">Claude Platform Release Notes</a> ·
+      <a href="https://releasebot.io/updates/anthropic/claude-developer-platform" target="_blank">Anthropic Developer Platform Updates</a>
+    </div>
+  </div>
+
+  <!-- NEWS 7 : Funding agentic + Estonia -->
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-yellow">📊</div>
+      <div class="card-meta">
+        <div class="card-tag tag-yellow">Marché · Q2 2026</div>
+        <div class="card-title">$20 milliards pour les startups agentic au Q2 2026 — et l'Estonie crée les premiers "ID codes" pour agents IA</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Le financement IA du Q2 2026 atteint <strong>42,6 milliards de dollars</strong> sur 312 rounds — dont <strong>20 milliards (47 %)</strong> fléchés vers des startups d'IA agentic. Un signal sans ambiguïté sur où va le capital-risque. Pour référence, les LLM "purs" (sans couche agentic) captent moins d'un tiers du total.</p>
+
+      <div class="stat-row">
+        <div class="stat-box"><div class="stat-num">$42,6Md</div><div class="stat-label">Funding IA Q2 2026</div></div>
+        <div class="stat-box"><div class="stat-num">47 %</div><div class="stat-label">Part pour l'agentic</div></div>
+        <div class="stat-box"><div class="stat-num">77 %</div><div class="stat-label">Freelances utilisant l'IA</div></div>
+        <div class="stat-box"><div class="stat-num">5,8×</div><div class="stat-label">ROI moyen IA (McKinsey)</div></div>
+      </div>
+
+      <p>Sur le front réglementaire, l'<strong>Estonie a introduit les "AI ID codes"</strong> — un système de registre obligatoire pour les agents IA autonomes. Chaque agent doit avoir un identifiant traçable relié à un opérateur humain responsable. C'est la première réglementation nationale d'accountability pour agents IA — et elle risque fort de faire école en Europe.</p>
+      <br />
+      <p>Pendant ce temps, les <strong>77 % de freelances qui utilisent déjà l'IA</strong> déclarent des gains de productivité de 20 à 40 % (source : études sectorielles 2026). La demande pour les compétences IA dans les offres freelance a bondi de <strong>+109 % en glissement annuel</strong>.</p>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>La réglementation "agent accountability" arrive en Europe. Anticipez-la : <strong>documentez vos architectures agents, gardez des logs, identifiez clairement quel agent fait quoi</strong>. Ce n'est pas de la paperasse — c'est votre protection juridique. Et le ROI de 5,8× en 14 mois (McKinsey) : montrez-le à vos prospects qui hésitent encore à investir.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://blog.mean.ceo/ai-agents-news-june-2026/" target="_blank">AI Agents News Startup Edition — Juin 2026</a> ·
+      <a href="https://www.aiapps.com/blog/ai-news-breakthroughs-launches-trends-must-read/" target="_blank">Top AI News June 2026 — AI Apps</a> ·
+      <a href="https://www.ibm.com/think/insights/ai-roi" target="_blank">How to maximize AI ROI 2026 — IBM</a>
+    </div>
+  </div>
+
+  <!-- ANALYSE GLOBALE -->
+  <div class="analysis">
+    <h2>Analyse &amp; <span>Recommandations de la semaine</span></h2>
+    <p>La semaine du 19-22 juin 2026 confirme une rupture nette : <strong>l'IA n'assiste plus — elle agit</strong>. Un agent paie une facture (DBS + Mastercard), un autre trie vos issues GitHub, un troisième construit et publie vos workflows n8n. Ce n'est plus de l'expérimentation — c'est de la production, chez des acteurs qui valent des centaines de milliards.</p>
+    <p>La convergence <strong>A2A + MCP</strong> est le fait technique le plus structurant de cette période. Dans 12 mois, "est-ce que votre outil supporte MCP et A2A ?" sera une question de qualification client au même titre que "est-ce que votre API est RESTful ?". Les outils qui ne s'y conforment pas deviendront des orphelins.</p>
+    <p>Pour les freelances, le message est clair : <strong>la valeur se déplace de l'exécution vers l'architecture</strong>. Savoir utiliser ChatGPT ne suffit plus — tout le monde le fait. Savoir concevoir un système multi-agents avec gouvernance, mémoire persistante, A2A inter-fournisseurs et audit trails, c'est là que se paient les missions à 5 chiffres mensuels. La fenêtre de compétence différenciante est encore ouverte — mais elle se referme vite.</p>
+    <p><strong>Action prioritaire cette semaine :</strong> Explorez les Module Tools de Make si vous êtes sur Make. Testez le nœud Groq dans n8n pour vos workflows temps réel. Et si vous déployez du code Claude en production, activez WIF immédiatement — c'est une heure de config qui supprime votre plus gros risque de sécurité.</p>
+    <div class="tip-grid">
+      <div class="tip-card"><div class="tip-icon">🐙</div><h3>GitHub Agentic Workflows</h3><p>Activez la Public Preview dans vos repos. Économisez 2-3h/semaine sur le triage d'issues et les relances de CI.</p></div>
+      <div class="tip-card"><div class="tip-icon">🔗</div><h3>Apprenez A2A</h3><p>Lisez la spec A2A de Google et les SDK Python/JS. C'est la compétence architecture IA la plus demandée en H2 2026.</p></div>
+      <div class="tip-card"><div class="tip-icon">🔧</div><h3>Module Tools Make</h3><p>Exposez vos scénarios Make existants comme outils d'agent. Aucun code requis — gain de temps immédiat.</p></div>
+      <div class="tip-card"><div class="tip-icon">🔐</div><h3>Sécurisez vos API Claude</h3><p>Passez à Workload Identity Federation. Clé API statique = dette de sécurité que vos clients ne veulent plus payer.</p></div>
+    </div>
+  </div>
+
+  <div class="pills" style="margin-top:32px;">
+    <span class="pill">GitHub Agents</span><span class="pill">A2A Protocol</span><span class="pill">Make Module Tools</span>
+    <span class="pill">n8n Multi-LLM</span><span class="pill">Anthropic WIF</span><span class="pill">Agentic Payments</span>
+    <span class="pill">Claude 3.5</span><span class="pill">Groq</span><span class="pill">Gemini Multimodal</span>
+    <span class="pill">Freelance IA</span><span class="pill">Tendances 2026</span><span class="pill">Réglementation IA</span>
+  </div>
+
+</main>
+
+<footer>
+  <p>AutomationBoost &nbsp;·&nbsp; Veille IA &amp; Automatisation &nbsp;·&nbsp; 22 juin 2026</p>
+  <p style="margin-top:6px;">Propulsé par Claude Fable 5 &amp; les dernières sources du web &nbsp;·&nbsp; <a href="#">S'abonner à la newsletter</a></p>
+</footer>
+
+</body>
+</html>

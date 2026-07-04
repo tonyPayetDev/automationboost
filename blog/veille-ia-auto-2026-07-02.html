@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Veille IA & Automatisation — 30 juin - 2 juillet 2026</title>
+  <meta name="description" content="Les 7 actus IA et automatisation du 30 juin - 2 juillet 2026 : Claude Fable 5 de retour, Sonnet 5 lancé, GPT-5.6 Sol en preview, n8n AI Agent Node v2, $206Mds investis en agents IA, Claude Science et MCP qui explose dans Make." />
+  <style>
+    :root {
+      --bg: #0f0f13;
+      --surface: #1a1a24;
+      --surface2: #22222f;
+      --accent: #7c5cfc;
+      --accent2: #a78bfa;
+      --text: #e2e2f0;
+      --muted: #9090b0;
+      --border: #2e2e42;
+      --green: #34d399;
+      --orange: #fb923c;
+      --pink: #f472b6;
+      --cyan: #22d3ee;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    a { color: var(--accent2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      background: linear-gradient(135deg, #0d0020 0%, #0a0a1a 40%, #001a12 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 60px 24px 48px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 99px;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      max-width: 760px;
+      margin: 0 auto 16px;
+    }
+
+    header h1 span { color: var(--accent2); }
+
+    .meta { color: var(--muted); font-size: 14px; }
+    .meta strong { color: var(--text); }
+
+    main {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .intro {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 48px;
+      font-size: 15px;
+      color: var(--muted);
+    }
+    .intro strong { color: var(--text); }
+
+    .section-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    .news-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      transition: border-color .2s;
+    }
+    .news-card:hover { border-color: var(--accent); }
+
+    .card-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 14px; }
+
+    .card-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+    .icon-purple { background: rgba(124,92,252,.18); }
+    .icon-blue   { background: rgba(34,211,238,.15); }
+    .icon-green  { background: rgba(52,211,153,.15); }
+    .icon-orange { background: rgba(251,146,60,.15); }
+    .icon-pink   { background: rgba(244,114,182,.15); }
+    .icon-yellow { background: rgba(250,204,21,.15); }
+    .icon-red    { background: rgba(248,113,113,.15); }
+
+    .card-meta { flex: 1; }
+    .card-tag { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+    .tag-purple { color: var(--accent2); }
+    .tag-blue   { color: var(--cyan); }
+    .tag-green  { color: var(--green); }
+    .tag-orange { color: var(--orange); }
+    .tag-pink   { color: var(--pink); }
+    .tag-yellow { color: #fbbf24; }
+    .tag-red    { color: #f87171; }
+
+    .card-title { font-size: 1.15rem; font-weight: 700; line-height: 1.3; color: var(--text); }
+
+    .card-body { font-size: 14.5px; color: var(--muted); line-height: 1.75; }
+    .card-body strong { color: var(--text); }
+
+    .card-source {
+      margin-top: 16px; padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--muted);
+    }
+    .card-source a { color: var(--accent2); font-weight: 600; }
+
+    .insight {
+      background: linear-gradient(135deg, rgba(124,92,252,.12), rgba(167,139,250,.06));
+      border: 1px solid rgba(124,92,252,.3);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin-top: 16px;
+      font-size: 13.5px;
+    }
+    .insight-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--accent2); margin-bottom: 6px; }
+    .insight p { color: var(--muted); }
+    .insight p strong { color: var(--text); }
+
+    .analysis {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px;
+      margin-top: 48px;
+    }
+    .analysis h2 { font-size: 1.35rem; font-weight: 800; margin-bottom: 20px; }
+    .analysis h2 span { color: var(--accent2); }
+    .analysis p { color: var(--muted); font-size: 15px; margin-bottom: 14px; }
+    .analysis p strong { color: var(--text); }
+
+    .tip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .tip-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+    .tip-card .tip-icon { font-size: 22px; margin-bottom: 10px; }
+    .tip-card h3 { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .tip-card p { font-size: 12.5px; color: var(--muted); margin-bottom: 0; }
+
+    footer { text-align: center; padding: 40px 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; }
+    footer a { color: var(--accent2); }
+
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .pill { background: var(--surface2); border: 1px solid var(--border); border-radius: 99px; padding: 3px 12px; font-size: 12px; color: var(--muted); }
+
+    .stat-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin: 18px 0 12px;
+    }
+    .stat-box {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 18px;
+      flex: 1;
+      min-width: 140px;
+    }
+    .stat-box .stat-num { font-size: 1.5rem; font-weight: 800; color: var(--accent2); }
+    .stat-box .stat-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    .alert-banner {
+      background: linear-gradient(135deg, rgba(248,113,113,.12), rgba(251,146,60,.08));
+      border: 1px solid rgba(248,113,113,.35);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 14px 0;
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+    .alert-banner strong { color: #f87171; }
+
+    .success-banner {
+      background: linear-gradient(135deg, rgba(52,211,153,.12), rgba(34,211,238,.08));
+      border: 1px solid rgba(52,211,153,.35);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 14px 0;
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+    .success-banner strong { color: var(--green); }
+
+    @media (max-width: 600px) {
+      .news-card { padding: 20px 18px; }
+      .analysis  { padding: 24px 20px; }
+      .card-header { flex-direction: column; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Veille du 30 juin – 2 juillet 2026</div>
+  <h1>IA &amp; Automatisation :<br /><span>7 signaux forts de cette semaine</span></h1>
+  <p class="meta"><strong>30 juin au 2 juillet 2026</strong> &nbsp;·&nbsp; Curatée par AutomationBoost</p>
+</header>
+
+<main>
+
+  <div class="intro">
+    <strong>TL;DR :</strong> Semaine de basculement majeur. Claude Fable 5 — suspendu depuis le 12 juin — est officiellement de retour le 1er juillet après la levée des contrôles d'exportation américains. Dans la foulée, Anthropic lance Claude Sonnet 5, son modèle le plus agentique jamais sorti. OpenAI dévoile GPT-5.6 Sol en preview limité — un saut de génération avec 750 tokens/seconde sur Cerebras. n8n consolide son AI Agent Node v2 avec support multi-LLM natif. Les dépenses en agents IA atteignent 206,5 milliards de dollars en 2026. Anthropic lance Claude Science pour la recherche académique. Et les nouvelles règles de confidentialité d'Anthropic (en vigueur le 8 juillet) introduisent pour la première fois la collecte de données biométriques sur consentement. La semaine a été explosive — voici l'essentiel.
+  </div>
+
+  <p class="section-title">7 actus à retenir</p>
+
+  <!-- NEWS 1 : Claude Fable 5 de retour + Sonnet 5 -->
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-green">🎉</div>
+      <div class="card-meta">
+        <div class="card-tag tag-green">Anthropic · 1er juillet 2026</div>
+        <div class="card-title">Claude Fable 5 est de retour — et Anthropic en profite pour lancer Sonnet 5, son modèle le plus agentique</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Le 1er juillet 2026, Anthropic a restauré l'accès à <strong>Claude Fable 5 et Mythos 5</strong>, ses deux modèles suspendus depuis le 12 juin par directive de contrôle des exportations américaine. La levée des restrictions est intervenue après des négociations entre l'administration américaine et les grands labs IA. Fable 5 est désormais disponible mondialement sur Claude.ai, Claude Code, l'API et Claude Cowork — avec un <strong>classifieur de cybersécurité renforcé</strong>.</p>
+      <br />
+      <p>Profitant de l'événement, Anthropic a simultanément lancé <strong>Claude Sonnet 5</strong>, décrit comme "le modèle Sonnet le plus agentique jamais sorti". Ses capacités : multi-step planning, utilisation autonome d'outils (navigateur, terminal), auto-vérification de ses outputs sans prompt explicite, et meilleure recherche dans de grands codebases. Il s'approche des performances d'Opus 4.8, à <strong>un coût significativement inférieur</strong>.</p>
+      <br />
+      <div class="success-banner">
+        <strong>Prix de lancement :</strong> $2/M tokens en entrée et $10/M en sortie jusqu'au 31 août 2026 (prix promotionnel). Après : $3/$15 par million de tokens. Fenêtre de contexte native de <strong>1 million de tokens</strong>. Sonnet 5 est désormais le modèle par défaut dans Claude Code.
+      </div>
+      <p>La coexistence Fable 5 + Sonnet 5 + Opus 4.8 dans l'écosystème Anthropic offre enfin un vrai choix cost/performance pour les builders : Sonnet 5 pour les tâches agentiques du quotidien, Opus 4.8 pour la complexité, Fable 5 pour les cas d'usage les plus exigeants.</p>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>Le retour de Fable 5 + le lancement de Sonnet 5 créent une fenêtre d'opportunité immédiate. <strong>Sonnet 5 est probablement le meilleur rapport qualité-prix du marché jusqu'au 31 août</strong> : $2/$10 pour des capacités quasi-Opus. Migrez vos workflows Claude Code et vos agents sur Sonnet 5 dès maintenant — vous économiserez 33-50 % sur votre facture API. Et si vous vendez des services IA, c'est le moment d'upgrader vos démos clients avec Fable 5.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://www.ghacks.net/2026/07/01/anthropic-releases-claude-sonnet-5-with-near-opus-performance-restores-fable-5-and-mythos-5-after-us-lifts-export-controls/" target="_blank">gHacks — Sonnet 5 &amp; Fable 5 (1er juil.)</a> ·
+      <a href="https://leclaireur.fnac.com/article/681573-anthropic-lance-claude-sonnet-5-quelles-sont-les-nouveautes/" target="_blank">Le Éclaireur Fnac — Sonnet 5</a> ·
+      <a href="https://www.it-connect.tech/claude-fable-5-returns-worldwide-as-anthropic-launches-sonnet-5/" target="_blank">IT-Connect — Fable 5 de retour</a>
+    </div>
+  </div>
+
+  <!-- NEWS 2 : GPT-5.6 Sol preview -->
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-green">🤖</div>
+      <div class="card-meta">
+        <div class="card-tag tag-green">OpenAI · Juillet 2026</div>
+        <div class="card-title">GPT-5.6 Sol en preview — OpenAI lance une famille de 3 modèles avec 750 tokens/s sur Cerebras</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>OpenAI a prévisualisé <strong>GPT-5.6 Sol</strong>, la tête de file d'une nouvelle famille de trois modèles baptisés Sol, Terra et Luna. Sol est le flagship pour développeurs et entreprises ; <strong>Terra</strong> est la version capable et économique ; <strong>Luna</strong> est la plus rapide et la moins chère. La famille GPT-5.6 met l'accent sur le <strong>codage avancé, le raisonnement scientifique, la planification à long terme et les workflows agentiques</strong>.</p>
+      <br />
+      <p>La nouveauté technique majeure : OpenAI a lancé GPT-5.6 Sol sur <strong>Cerebras</strong> à <strong>750 tokens par seconde</strong> — soit une vitesse d'inférence sans précédent pour un modèle frontier. Cela ouvre la voie à des agents IA capables de traiter des tâches complexes en temps quasi-réel, sans les latences habituelles des grands modèles.</p>
+      <br />
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-num">750</div>
+          <div class="stat-label">tokens/s sur Cerebras</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">3</div>
+          <div class="stat-label">modèles : Sol / Terra / Luna</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">20</div>
+          <div class="stat-label">partenaires en preview limité</div>
+        </div>
+      </div>
+      <p>Le déploiement commence en <strong>preview limité pour 20 partenaires de confiance</strong>, avec une disponibilité générale prévue dans les prochaines semaines. OpenAI a également mis à jour GPT-5.5 Instant pour améliorer le style de réponse et la qualité conversationnelle dans l'intervalle.</p>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>750 tokens/s signifie qu'un agent GPT-5.6 Sol peut produire l'équivalent d'un article complet en moins de 2 secondes. <strong>Pour les créateurs de contenu et les agences marketing automatisées, c'est un changement de dimension.</strong> À surveiller dès l'ouverture GA : testez en priorité sur vos cas d'usage de génération de livrables clients — rapports, propositions commerciales, plans éditoriaux. Terra et Luna seront probablement les modèles à fort ROI pour les workflows à volume élevé.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://openai.com/index/previewing-gpt-5-6-sol/" target="_blank">OpenAI — Previewing GPT-5.6 Sol</a> ·
+      <a href="https://cryptobriefing.com/openai-releases-gpt-56-models-to-20-partners-public-launch-expected-by-july-2026/" target="_blank">CryptoBriefing — GPT-5.6 preview</a> ·
+      <a href="https://releasebot.io/updates/openai" target="_blank">Releasebot — OpenAI July 2026</a>
+    </div>
+  </div>
+
+  <!-- NEWS 3 : n8n AI Agent Node v2 -->
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-orange">🔧</div>
+      <div class="card-meta">
+        <div class="card-tag tag-orange">n8n · Juin-Juillet 2026</div>
+        <div class="card-title">n8n consolide son AI Agent Node — Claude, GPT-4o, Gemini et Groq dans un hub universel avec Canvas v2</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>n8n a finalisé en juin-juillet 2026 une refonte majeure de son <strong>AI Agent Node</strong>, désormais capable d'orchestrer Claude, GPT-4o, Gemini 1.5 Pro, Mistral et Groq dans un même workflow sans changer de plateforme. Le nœud intègre nativement le <strong>tool calling cross-LLM</strong> : quel que soit le modèle sélectionné, il peut appeler des outils (recherche web, base de données, email, APIs custom) de façon autonome.</p>
+      <br />
+      <p>La mise à jour introduit également <strong>Canvas v2</strong> — une interface spatiale qui remplace l'ancien builder plat par un canvas groupé supportant des milliers de nœuds sans perte de performance. Plus de 35 nouveaux nœuds ont été ajoutés entre janvier et juin 2026, dont des nœuds dédiés Anthropic Claude, Google Gemini, Perplexity, ElevenLabs et Groq.</p>
+      <br />
+      <p>Sur la stabilité : n8n a corrigé une série de bugs critiques sur l'assistant IA, le shutdown du task runner, OAuth, les packages communautaires, et plusieurs nœuds (OpenAI, Google Vertex, MySQL, WooCommerce). La plateforme s'impose clairement comme le <strong>hub open-source de référence pour les workflows agentiques</strong> en 2026.</p>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>La combinaison AI Agent Node v2 + Canvas v2 fait de n8n le <strong>meilleur outil pour construire des agences IA à bas coût</strong>. Auto-hébergé sur un VPS à 5-15 €/mois, vous pouvez orchestrer Claude Sonnet 5 + GPT-5.5 + Gemini dans un seul workflow — avec fallback automatique si un modèle est en panne ou trop cher. C'est l'infrastructure d'une agence 5-personne, pour le prix d'un café par jour.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://docs.n8n.io/release-notes" target="_blank">n8n — Release Notes</a> ·
+      <a href="https://medium.com/@angelosorte1/n8n-in-2026-latest-updates-practical-use-cases-ethical-automation-11af4cb4b455" target="_blank">Medium — n8n in 2026</a> ·
+      <a href="https://n8n.io/ai-agents/" target="_blank">n8n — AI Agents Platform</a>
+    </div>
+  </div>
+
+  <!-- NEWS 4 : $206Mds en agents IA -->
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-yellow">📈</div>
+      <div class="card-meta">
+        <div class="card-tag tag-yellow">Marché · Juillet 2026</div>
+        <div class="card-title">Les agents IA font exploser les dépenses tech — $206 milliards en 2026, +139 % en un an</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Les dépenses mondiales en logiciels d'agents IA devraient atteindre <strong>206,5 milliards de dollars en 2026</strong>, contre 86,4 milliards en 2025 — soit une croissance de <strong>+139 % en un an</strong>, le segment logiciel à la plus forte croissance de toute l'histoire de l'industrie. Les agents IA passent des expérimentations à la production, automatisant des workflows entiers en RH, finance, IT et opérations.</p>
+      <br />
+      <p>Selon les dernières données, <strong>62 % des organisations</strong> expérimentent ou déploient à l'échelle des agents IA, et <strong>23 % ont déjà des systèmes agentiques en production</strong> dans au moins une fonction métier. Les architectures multi-agents se généralisent : des agents spécialisés — collecte de signaux marché, rédaction d'emails, préparation de specs, monitoring compliance — travaillent en parallèle pendant que les humains se concentrent sur les décisions stratégiques.</p>
+      <br />
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-num">$206Mds</div>
+          <div class="stat-label">Dépenses agents IA 2026</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">+139%</div>
+          <div class="stat-label">Croissance vs 2025</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">62%</div>
+          <div class="stat-label">Orgs qui déploient des agents</div>
+        </div>
+      </div>
+      <p>Le gouvernement de l'IA est désormais le facteur clé : les déploiements qui scalent vs. les 74 % qui sont annulés se distinguent uniquement par la qualité de la gouvernance — audit, traçabilité, garde-fous humains.</p>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>$206 milliards, ça veut dire que <strong>chaque PME, cabinet comptable, agence ou association a un budget IA en 2026</strong> — qu'elle le sache ou non. Le marché de l'accompagnement ("je vous aide à déployer vos premiers agents") est immense et sous-adressé. Positionnez-vous maintenant comme consultant en architecture agentique : la demande dépasse largement l'offre disponible en France.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://aiagentstore.ai/ai-agent-news/this-week" target="_blank">AI Agent Store — News hebdo</a> ·
+      <a href="https://sanalabs.com/agents-blog/ai-agents-for-automating-work-enterprise-guide-2026" target="_blank">SanaLabs — Enterprise Guide 2026</a> ·
+      <a href="https://www.cflowapps.com/ai-workflow-automation-trends/" target="_blank">CFlow — AI Workflow Automation Trends</a>
+    </div>
+  </div>
+
+  <!-- NEWS 5 : Claude Science -->
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-blue">🔬</div>
+      <div class="card-meta">
+        <div class="card-tag tag-blue">Anthropic · 1er juillet 2026</div>
+        <div class="card-title">Claude Science : Anthropic lance un environnement IA dédié à la recherche académique et scientifique</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Anthropic a lancé le 1er juillet <strong>Claude Science</strong>, un environnement de recherche IA spécialisé pour les scientifiques et laboratoires. Disponible en bêta sur macOS et Linux pour les abonnés Pro, Max, Team et Enterprise, il offre des capacités de raisonnement scientifique avancé, d'analyse de données expérimentales, et d'assistance à la rédaction de publications.</p>
+      <br />
+      <p>Anthropic accompagne le lancement d'un <strong>programme de soutien à la recherche</strong> : jusqu'à 50 projets scientifiques financés, avec des crédits API pouvant atteindre <strong>30 000 dollars par projet</strong>. Les candidatures sont ouvertes jusqu'au 15 juillet 2026. Des tarifs préférentiels sont proposés aux laboratoires universitaires et organisations à but non lucratif.</p>
+      <br />
+      <p>Claude Science intègre des fonctionnalités inédites : lecture et analyse de papers PDF, navigation dans des bases de données scientifiques, génération de code d'analyse (Python, R, Julia), et un mode "deep research" capable de synthétiser des dizaines de sources en quelques minutes.</p>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>Claude Science n'est pas réservé aux labos : <strong>tout entrepreneur qui fait de la veille concurrentielle, analyse des données ou produit des contenus expertes peut en bénéficier</strong>. Le mode deep research appliqué à une veille marché ou à l'analyse de tendances sectorielles est une offre premium immédiatement vendable. Si vous êtes consultant ou formateur, c'est aussi une façon de proposer des livrables documentés à haute valeur ajoutée — à un coût marginal proche de zéro.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://dataconomy.com/2026/07/01/anthropic-claude-science-ai-research-launch/" target="_blank">Dataconomy — Claude Science Launch</a> ·
+      <a href="https://www.blog-nouvelles-technologies.fr/374436/claude-science-anthropic-ia-recherche/" target="_blank">Blog NTech — Claude Science</a> ·
+      <a href="https://releasebot.io/updates/anthropic/claude" target="_blank">Releasebot — Claude July 2026</a>
+    </div>
+  </div>
+
+  <!-- NEWS 6 : Make.com hyperautomation + multi-agents -->
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-purple">⚡</div>
+      <div class="card-meta">
+        <div class="card-tag tag-purple">Make.com · Juillet 2026</div>
+        <div class="card-title">Make.com mise sur l'hyperautomatisation — les multi-agents passent de l'expérimentation à la valeur business tangible</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Make.com a publié son analyse des grandes tendances d'automatisation pour le second semestre 2026. Le constat est sans appel : si 2025 était l'année des agents IA en prototype, <strong>2026 est l'année où les entreprises convertissent ce potentiel en valeur concrète à grande échelle</strong>. Les workflows passent d'outils copilotes à des systèmes orientés objectifs — les agents reçoivent un résultat à atteindre, pas une liste de tâches.</p>
+      <br />
+      <p>La grande bascule est le passage des <strong>assistants mono-tâche aux architectures d'hyperautomatisation multi-agents</strong> : un agent lit les emails et trie les leads, un autre rédige les réponses, un troisième met à jour le CRM, un quatrième génère les rapports hebdomadaires — tout ça sans intervention humaine. Les petites équipes peuvent désormais piloter des flux complets avec la densité opérationnelle d'une grande entreprise.</p>
+      <br />
+      <p>Les domaines où les gains sont les plus rapides : <strong>triage email, qualification de leads, support client, administration financière et ops fondateur</strong>. Make préconise de garder la validation humaine sur trois domaines : argent, termes légaux et risque de marque.</p>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>Make identifie les "fastest wins" — les victoires rapides à saisir maintenant : <strong>triage email + qualification de leads + réponses support</strong>. Ce sont exactement les missions chronophages que vos clients détestent. Proposez un "pack hyperautomation entrée" à 800-1 500 € qui automatise ces 3 workflows avec Make : vous livrez en 1-2 jours, le client économise 6-8 heures par semaine. C'est votre meilleur produit d'appel pour 2026.</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://www.make.com/en/blog/2025-reflections-2026-predictions" target="_blank">Make — Reflections &amp; Predictions 2026</a> ·
+      <a href="https://blog.mean.ceo/ai-automation-trends-july-2026/" target="_blank">Mean CEO — AI Automation Trends Juillet 2026</a> ·
+      <a href="https://www.make.com/en/webinars/top-ai-automation-trends-2026" target="_blank">Make Webinar — Top AI Trends 2026</a>
+    </div>
+  </div>
+
+  <!-- NEWS 7 : Anthropic nouvelles règles confidentialité + WIF -->
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-icon icon-pink">🔐</div>
+      <div class="card-meta">
+        <div class="card-tag tag-pink">Anthropic · 8 juillet 2026</div>
+        <div class="card-title">Anthropic révise sa politique de confidentialité — données biométriques, WIF et SSO gateway pour Claude Code</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>À compter du <strong>8 juillet 2026</strong>, Anthropic déploie une nouvelle politique de confidentialité qui reflète la réalité de l'IA agentique : plus de clarté sur l'utilisation des données personnelles dans des contextes d'automatisation, et — fait inédit — l'introduction explicite d'une possible <strong>collecte de données biométriques sur consentement explicite</strong>. Cette mise à jour est à lire avec attention si vous utilisez Claude dans des workflows traitant des données sensibles.</p>
+      <br />
+      <p>Sur le volet infrastructure, Anthropic généralise deux changements majeurs. Le <strong>WIF (Workload Identity Federation)</strong> remplace les clés API statiques par des identifiants à courte durée de vie et à portée limitée — plus aucune clé Anthropic statique à créer, faire tourner ou risquer de divulguer. Et un <strong>gateway SSO</strong> centralisé offre authentification, politique unifiée, accès basé sur les rôles et attribution des coûts par utilisateur pour Claude Code dans les équipes.</p>
+      <br />
+      <div class="alert-banner">
+        <strong>À faire avant le 8 juillet :</strong> Relisez la nouvelle politique de confidentialité Anthropic si vous traitez des données personnelles de clients via Claude. Mettez à jour vos mentions légales et informations RGPD si vous utilisez Claude dans vos services.
+      </div>
+      <div class="insight">
+        <div class="insight-label">💡 Impact freelances / entrepreneurs</div>
+        <p>Le passage au WIF est une excellente nouvelle pour la sécurité de vos intégrations : <strong>exit les clés API qui traînent dans des fichiers .env ou des scripts partagés</strong>. Si vous gérez des projets Claude pour des clients en entreprise, le gateway SSO + attribution des coûts par utilisateur est une fonctionnalité que les DSI attendent depuis longtemps. Intégrez-la dans vos propositions commerciales — c'est ce qui fait passer une intégration artisanale à une solution "enterprise-ready".</p>
+      </div>
+    </div>
+    <div class="card-source">
+      Sources :
+      <a href="https://www.clubic.com/actualite-618607-anthropic-change-les-regles-pour-claude-et-evoque-pour-la-premiere-fois-la-collecte-de-donnees-biometriques.html" target="_blank">Clubic — Anthropic &amp; données biométriques</a> ·
+      <a href="https://www.leto.legal/news/anthropic-claude-prompts-entrainement-ia-rgpd-2026" target="_blank">Leto Legal — Anthropic RGPD 2026</a> ·
+      <a href="https://releasebot.io/updates/anthropic" target="_blank">Releasebot — Anthropic July 2026</a>
+    </div>
+  </div>
+
+  <!-- ANALYSE -->
+  <div class="analysis">
+    <h2>Analyse : <span>Ce que ça change vraiment pour vous</span></h2>
+
+    <p>Cette semaine de début juillet marque un point d'inflexion que l'on ressentira encore dans 12 mois. Trois dynamiques sont à comprendre maintenant, avant qu'elles deviennent évidentes pour tout le monde.</p>
+
+    <p><strong>1. La fin de la pénurie de puissance IA.</strong> Fable 5 + Sonnet 5 + GPT-5.6 Sol disponibles en même temps, c'est la première fois que le marché a simultanément accès à 3 modèles de classe "frontier". La compétition s'intensifie, les prix baissent (Sonnet 5 à $2/$10 en est la preuve), et l'IA de haute qualité est en train de devenir une commodité. Pour les freelancers, ça signifie que l'avantage ne viendra plus du modèle utilisé, mais de <strong>l'architecture des workflows construits autour</strong>.</p>
+
+    <p><strong>2. L'argent suit les agents, pas les chatbots.</strong> $206 milliards de dépenses en agents IA en 2026, c'est 8 fois le marché des chatbots de 2022. Les décideurs ont compris que la vraie valeur n'est pas dans "poser des questions à une IA" mais dans "faire tourner des processus complets en autonomie". Les freelancers qui se repositionnent comme constructeurs de systèmes agentiques — plutôt qu'utilisateurs d'outils IA — captureront une part croissante de ce marché.</p>
+
+    <p><strong>3. La compliance devient un argument de vente.</strong> WIF, SSO gateway, nouvelle politique de confidentialité Anthropic, collecte biométrique sur consentement : l'IA entre dans une phase de maturité réglementaire. Pour les entrepreneurs qui travaillent avec des PME ou des grands comptes, <strong>savoir structurer une intégration IA "RGPD-ready"</strong> est un différenciateur immédiat. Ne laissez plus ce sujet de côté — c'est ce qui débloquera les contrats que vos concurrents perdent sur la sécurité.</p>
+
+    <div class="tip-grid">
+      <div class="tip-card">
+        <div class="tip-icon">⚡</div>
+        <h3>Migrez sur Sonnet 5 maintenant</h3>
+        <p>Profitez du tarif promo $2/$10 jusqu'au 31 août. C'est le moment de basculer vos workflows Claude Code sur le nouveau modèle par défaut.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🔧</div>
+        <h3>Déployez n8n + multi-LLM</h3>
+        <p>Configurez un fallback automatique Claude Sonnet 5 → GPT-5.5 → Gemini dans vos workflows n8n. Résilience maximale, coût marginal nul.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🔐</div>
+        <h3>Lisez la nouvelle politique Anthropic</h3>
+        <p>Applicable le 8 juillet. Si vous traitez des données clients via Claude, mettez à jour vos mentions légales et votre information RGPD.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🚀</div>
+        <h3>Candidatez à Claude Science</h3>
+        <p>Jusqu'à $30 000 de crédits API pour des projets de recherche. Dossiers ouverts jusqu'au 15 juillet 2026. Idéal pour les consultants formateurs.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pills" style="margin-top:32px;">
+    <span class="pill">Claude Fable 5</span>
+    <span class="pill">Claude Sonnet 5</span>
+    <span class="pill">GPT-5.6 Sol</span>
+    <span class="pill">n8n Canvas v2</span>
+    <span class="pill">Make.com</span>
+    <span class="pill">Claude Science</span>
+    <span class="pill">Agents IA</span>
+    <span class="pill">$206Mds</span>
+    <span class="pill">WIF Anthropic</span>
+    <span class="pill">Hyperautomatisation</span>
+    <span class="pill">Multi-agents</span>
+    <span class="pill">RGPD IA</span>
+    <span class="pill">Freelance IA</span>
+  </div>
+
+</main>
+
+<footer>
+  <p>Veille curatée par <a href="https://automationboost.fr">AutomationBoost</a> — 2 juillet 2026</p>
+  <p style="margin-top:8px;">Prochaine veille : 5-7 juillet 2026</p>
+</footer>
+
+</body>
+</html>
