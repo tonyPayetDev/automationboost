@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sites Web Pro avec Claude Code – AutomationBoost</title>
+  <meta name="description" content="La configuration complète pour que Claude Code génère des sites de niveau pro : le skill ui-ux-pro-max + le serveur MCP 21st.dev. Commandes exactes, prompts et pièges." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li { margin-bottom:6px; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto;white-space:pre; }
+    .source-cta { display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#000;font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;padding:14px 28px;border-radius:var(--radius);text-decoration:none;margin-top:40px;transition:all .2s; }
+    .source-cta:hover { background:var(--gold-dark);transform:translateY(-2px); }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    .step-num { display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--gold);color:#000;font-weight:800;font-size:14px;margin-right:10px;font-family:'Orbitron',sans-serif; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Sites web pro avec Claude Code
+    </div>
+
+    <div class="page-badge">▶ Vidéo · 33s</div>
+    <h1 class="page-title">La config complète pour des <span>sites de niveau pro</span></h1>
+    <div class="page-meta">
+      <span>Claude Code</span>
+      <span>·</span>
+      <span>Interface &amp; Design</span>
+      <span>·</span>
+      <span>Niveau débutant</span>
+    </div>
+
+    <div class="content-block">
+      <p>Par défaut, Claude Code écrit du HTML qui <em>fonctionne</em> mais qui ne ressemble à rien : structure correcte, style plat, espacements au hasard. Deux installations changent complètement le résultat — c'est tout ce qu'il y a dans cette page, avec les commandes exactes.</p>
+
+      <div class="divider"></div>
+
+      <h2><span class="step-num">1</span> Le skill : ui-ux-pro-max</h2>
+      <p>Un skill, c'est un dossier de connaissances que Claude Code charge tout seul quand la tâche correspond. Celui-là lui donne les vraies règles du design : palettes de couleurs cohérentes, associations de polices, échelles d'espacement, états d'interaction (hover, focus, disabled), et les patterns propres à chaque type de produit.</p>
+      <p>Concrètement, tu récupères le dossier du skill et tu le déposes dans le répertoire des skills de ton projet :</p>
+      <div class="code-block">.claude/
+  skills/
+    ui-ux-pro-max/
+      SKILL.md      ← les règles de design
+      data/         ← palettes, polices, styles
+      scripts/</div>
+      <p>Claude Code le détecte au démarrage de la session — aucune commande à lancer. Tu peux aussi coller l'URL du skill directement dans le chat et demander à Claude de l'installer : il télécharge le dossier et le range au bon endroit.</p>
+
+      <div class="tip-box">
+        <div class="tip-label">💡 Comment vérifier qu'il est actif</div>
+        <p>Tape <code>/</code> dans Claude Code : le skill doit apparaître dans la liste. S'il n'y est pas, c'est que le dossier n'est pas au bon niveau — il doit être dans <code>.claude/skills/</code>, pas dans un sous-dossier de plus.</p>
+      </div>
+
+      <h2><span class="step-num">2</span> Le serveur MCP : 21st.dev</h2>
+      <p>Le skill donne le <strong style="color:var(--text)">goût</strong>. Le MCP donne la <strong style="color:var(--text)">matière</strong> : 21st.dev est une bibliothèque de milliers de composants d'interface (heroes, navbars, pricing, dashboards, shaders) que Claude peut chercher et intégrer directement dans ton code.</p>
+      <p>Récupère une clé API gratuite sur <strong style="color:var(--text)">21st.dev</strong>, puis ajoute le serveur en une commande :</p>
+      <div class="code-block">claude mcp add 21st-dev-magic \
+  --env API_KEY=21st_sk_ta_cle_ici \
+  -- npx -y @21st-dev/magic@latest</div>
+      <p>Ou directement dans ton <code>.claude/settings.json</code> :</p>
+      <div class="code-block">{
+  "mcpServers": {
+    "21st-dev-magic": {
+      "command": "npx",
+      "args": ["-y", "@21st-dev/magic@latest"],
+      "env": { "API_KEY": "21st_sk_ta_cle_ici" }
+    }
+  }
+}</div>
+
+      <div class="tip-box">
+        <div class="tip-label">⚠ Le piège qui fait perdre une heure</div>
+        <p>Un serveur MCP lancé par <code>npx</code> tourne en local, sur ta machine. Si tu utilises Claude Code depuis le navigateur ou un environnement hébergé, ce type de serveur ne peut pas se connecter — seuls les MCP en HTTP/SSE fonctionnent là-bas. Ce n'est pas une erreur de config : installe-le sur le Claude Code de ton poste.</p>
+      </div>
+
+      <h2><span class="step-num">3</span> Le prompt qui exploite les deux</h2>
+      <p>Avec les deux en place, tu n'as plus besoin de décrire le CSS. Tu décris l'intention, le public et l'ambiance — Claude s'occupe du reste :</p>
+      <div class="code-block">Crée la landing d'un appart-hôtel de charme à La Réunion.
+Public : voyageurs qui réservent en direct, pas sur Booking.
+Ambiance : luxe discret, photo plein écran, beaucoup de blanc.
+Sections : hero, hébergements, à proximité, avis, réservation.
+Utilise 21st.dev pour le hero et la grille d'hébergements.</div>
+      <p>Trois précisions changent tout dans ce prompt : <strong style="color:var(--text)">le public</strong> (il dicte le ton), <strong style="color:var(--text)">l'ambiance</strong> (elle dicte la palette), et <strong style="color:var(--text)">la liste des sections</strong> (elle dicte la structure). Sans elles, tu obtiens une page générique — avec elles, tu obtiens une page qui a un point de vue.</p>
+
+      <h2>Ce que tu obtiens</h2>
+      <ul>
+        <li>Une landing complète et responsive en 1 à 3 prompts</li>
+        <li>Du CSS moderne — variables, grid, flexbox — pas des styles inline jetables</li>
+        <li>Une palette et une typo cohérentes sur toute la page, pas des couleurs au hasard</li>
+        <li>Des composants réels (hero, pricing, témoignages) au lieu de blocs vides</li>
+      </ul>
+
+      <div class="tip-box">
+        <div class="tip-label">⚡ Conseil pro</div>
+        <p>Ajoute une capture d'écran d'un site dont tu aimes le style dans ton prompt. Claude s'en sert comme référence visuelle et transpose le style dans ton contexte — c'est le raccourci le plus rapide vers un résultat qui ne « sent pas le template ».</p>
+      </div>
+
+      <a href="skill-design-web.html" class="source-cta">
+        ◈ Voir aussi : le skill Design Web en détail
+      </a>
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+</script>
+</body>
+</html>
