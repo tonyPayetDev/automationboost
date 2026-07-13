@@ -14,13 +14,13 @@
     .breadcrumb span { margin: 0 8px; }
     .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
     .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
-    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Orbitron',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Space Grotesk',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
     .page-title span { color:var(--gold); }
     .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
     .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
     .content-block { max-width:720px; }
-    .content-block h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
-    .content-block h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block h2 { font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
     .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
     .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
     .content-block ul li, .content-block ol li { margin-bottom:6px; }
@@ -38,8 +38,8 @@
     .reading { max-width:720px; }
     .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
     .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
-    article.article-body h2 { font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
-    article.article-body h3 { font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body h2 { font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
     article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
     article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
     article.article-body li { margin-bottom:6px; }
@@ -52,18 +52,49 @@
     .tip-row strong { color:var(--gold); }
     .numbered-list { counter-reset:num; }
     .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
-    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Orbitron',sans-serif;font-size:0.85em; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Space Grotesk',sans-serif;font-size:0.85em; }
+  
+    /* Lisibilité lecture longue : Space Grotesk (chargée) au lieu d'Orbitron/Rajdhani (jamais chargées) */
+    .page-title, .content-block h2, .content-block h3,
+    article.article-body h2, article.article-body h3 { font-family:'Space Grotesk',sans-serif; }
+    .content-block p, .content-block li,
+    article.article-body p, article.article-body li { font-size:17px; line-height:1.75; }
   </style>
 </head>
 <body>
 <nav id="navbar">
-  <div class="nav-inner">
-    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
-    <div style="display:flex;align-items:center;gap:16px;">
-      <a href="../ressources.html" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none;font-family:'Rajdhani',sans-serif;">← Ressources</a>
+  <div class="nav-pill">
+    <a href="../" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation 29,90€
+      </a>
     </div>
+    <a href="https://tony.automatisationboost.com/#contact" class="nav-cta">Contact →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation 29,90€</a>
+    <a href="https://tony.automatisationboost.com/#contact" class="mob-link">Contact</a>
+  </nav>
+</div>
 
 <section class="res-page">
   <div class="container">
@@ -362,5 +393,6 @@ Vis avec ce test pendant 48h avant de commander 5 L de peinture.
   });
 </script>
 <script src="../assets/js/lead-popup.js" defer></script>
+<script src="../assets/js/nav.js" defer></script>
 </body>
 </html>
