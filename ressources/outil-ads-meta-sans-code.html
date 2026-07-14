@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ton propre outil de pub Meta, sans code – AutomationBoost</title>
+  <meta name="description" content="La marche à suivre pour construire ton outil de gestion de publicités Facebook et Instagram : campagnes, ciblage, budget en temps réel et leads envoyés sur WhatsApp." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .res-page{padding:120px 0 80px}.breadcrumb{font-size:13px;color:var(--text-muted);margin-bottom:32px}.breadcrumb a{color:var(--gold);text-decoration:none}.breadcrumb span{margin:0 8px}.page-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.25);color:#818cf8;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}.page-title{font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Space Grotesk',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2}.page-title span{color:var(--gold)}.page-meta{display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px}.divider{width:60px;height:2px;background:var(--gold);margin:40px 0}.content-block{max-width:720px}.content-block h2{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px}.content-block p{color:var(--text-light);line-height:1.8;margin-bottom:16px}.content-block ul{color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px}.content-block ul li{margin-bottom:6px}.tip-box{background:var(--bg-card);border:1px solid rgba(234,179,8,.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0}.tip-box .tip-label{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}.tip-box p{color:var(--text-light);margin:0;font-size:15px}.code-block{background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto;white-space:pre}.source-cta{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#000;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;padding:14px 28px;border-radius:var(--radius);text-decoration:none;margin-top:40px;transition:all .2s}.source-cta:hover{background:var(--gold-dark);transform:translateY(-2px)}.nav-back{display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s}.nav-back:hover{color:var(--gold)}
+
+    /* Lisibilité lecture longue : Space Grotesk (chargée) au lieu d'Orbitron/Rajdhani (jamais chargées) */
+    .page-title, .content-block h2, .content-block h3,
+    article.article-body h2, article.article-body h3 { font-family:'Space Grotesk',sans-serif; }
+    .content-block p, .content-block li,
+    article.article-body p, article.article-body li { font-size:17px; line-height:1.75; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="../" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation 29,90€
+      </a>
+    </div>
+    <a href="https://tony.automatisationboost.com/#contact" class="nav-cta">Contact →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation 29,90€</a>
+    <a href="https://tony.automatisationboost.com/#contact" class="mob-link">Contact</a>
+  </nav>
+</div>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb"><a href="../ressources.html">Ressources</a><span>/</span>Ton propre outil de pub Meta</div>
+
+    <div class="page-badge">▶ Vidéo · 31s</div>
+    <h1 class="page-title">Ton propre outil de <span>pub Meta</span>, sans écrire une ligne de code</h1>
+    <div class="page-meta">
+      <span>Meta Marketing API</span><span>·</span><span>Publicité</span><span>·</span><span>Niveau intermédiaire</span>
+    </div>
+
+    <div class="content-block">
+      <p>Une agence te facture 2 000 à 3 000 € par mois pour gérer tes campagnes Facebook et Instagram, et tu ne vois jamais ce qu'elle fait de ton budget. Voici la marche à suivre pour construire ton propre outil : création de campagnes, ciblage, suivi du budget en temps réel, et les leads qui arrivent directement sur WhatsApp.</p>
+
+      <div class="divider"></div>
+
+      <h2>Ce que tu construis exactement</h2>
+      <ul>
+        <li>Une interface où tu décris ta campagne en français, et elle est créée sur Meta</li>
+        <li>Un tableau de bord qui affiche le budget dépensé, le coût par lead et les résultats du jour</li>
+        <li>Un webhook qui pousse chaque lead Facebook sur ton WhatsApp en moins d'une minute</li>
+      </ul>
+      <p>Trois briques : la <strong style="color:var(--text)">Meta Marketing API</strong> (qui fait le travail), <strong style="color:var(--text)">n8n</strong> (qui orchestre), et un <strong style="color:var(--text)">générateur d'interface par IA</strong> (qui te fabrique le tableau de bord).</p>
+
+      <h2>Étape 1 — Ouvrir l'accès à l'API Meta</h2>
+      <p>Va sur <code style="color:var(--gold)">developers.facebook.com</code>, crée une application de type « Entreprise », puis ajoute le produit <strong style="color:var(--text)">Marketing API</strong>. Il te faut ensuite trois identifiants :</p>
+      <ul>
+        <li>l'ID de ton compte publicitaire, au format <code style="color:var(--gold)">act_1234567890</code></li>
+        <li>un jeton d'utilisateur système (Business Settings → Utilisateurs système → Générer un jeton), avec les permissions <code style="color:var(--gold)">ads_management</code>, <code style="color:var(--gold)">ads_read</code> et <code style="color:var(--gold)">leads_retrieval</code></li>
+        <li>l'ID de ta page Facebook</li>
+      </ul>
+      <p>Teste tout de suite que ton jeton fonctionne :</p>
+      <div class="code-block">curl -G "https://graph.facebook.com/v21.0/act_TON_COMPTE/campaigns" \
+  -d "fields=name,status,daily_budget" \
+  -d "access_token=TON_JETON"</div>
+
+      <h2>Étape 2 — Créer une campagne par API</h2>
+      <p>Une campagne Meta se crée en trois appels : la campagne (l'objectif), l'ensemble de publicités (le budget et le ciblage), puis la publicité elle-même (le visuel). Voici les deux premiers :</p>
+      <div class="code-block"># 1. La campagne — l'objectif
+curl -X POST "https://graph.facebook.com/v21.0/act_TON_COMPTE/campaigns" \
+  -d "name=Leads Reunion Juillet" \
+  -d "objective=OUTCOME_LEADS" \
+  -d "status=PAUSED" \
+  -d "special_ad_categories=[]" \
+  -d "access_token=TON_JETON"
+
+# 2. L'ensemble de pubs — budget + ciblage
+curl -X POST "https://graph.facebook.com/v21.0/act_TON_COMPTE/adsets" \
+  -d "name=Reunion 25-55 ans" \
+  -d "campaign_id=ID_RENVOYE_A_L_ETAPE_1" \
+  -d "daily_budget=2000" \
+  -d "billing_event=IMPRESSIONS" \
+  -d "optimization_goal=LEAD_GENERATION" \
+  -d 'targeting={"geo_locations":{"countries":["RE"]},"age_min":25,"age_max":55}' \
+  -d "status=PAUSED" \
+  -d "access_token=TON_JETON"</div>
+      <p>Le budget est en centimes : <code style="color:var(--gold)">daily_budget=2000</code> vaut 20 € par jour. Et tu crées toujours en <code style="color:var(--gold)">PAUSED</code> — tu actives à la main après relecture.</p>
+
+      <div class="tip-box">
+        <div class="tip-label">Piège vu en production</div>
+        <p>Une application Meta neuve n'a que l'accès « développement » : tes appels ne marchent que sur ton propre compte publicitaire. Pour gérer le compte d'un client, il faut demander l'<strong style="color:var(--text)">accès avancé</strong> à <code style="color:var(--gold)">ads_management</code> et passer la revue de l'app — compte quelques jours. Commence sur ton compte à toi.</p>
+      </div>
+
+      <h2>Étape 3 — Le suivi du budget en temps réel</h2>
+      <p>Un seul endpoint te donne tout ce qu'une agence te facture en reporting mensuel :</p>
+      <div class="code-block">curl -G "https://graph.facebook.com/v21.0/act_TON_COMPTE/insights" \
+  -d "fields=spend,impressions,clicks,cpc,actions,cost_per_action_type" \
+  -d "date_preset=today" \
+  -d "level=campaign" \
+  -d "access_token=TON_JETON"</div>
+      <p>Branche ça sur un n8n déclenché toutes les heures, stocke le résultat, et ton tableau de bord affiche la dépense réelle du jour et le coût par lead. Plus besoin d'attendre le rapport de fin de mois.</p>
+
+      <h2>Étape 4 — Les leads envoyés sur WhatsApp</h2>
+      <p>Dans n8n : un nœud <strong style="color:var(--text)">Webhook</strong> abonné à l'événement <code style="color:var(--gold)">leadgen</code> de ta page, puis un appel qui récupère les champs du lead, puis un envoi WhatsApp.</p>
+      <div class="code-block"># Récupérer les réponses du formulaire à partir de l'ID reçu
+GET https://graph.facebook.com/v21.0/{leadgen_id}?access_token=TON_JETON
+
+# Envoyer le lead sur ton WhatsApp (WhatsApp Cloud API)
+POST https://graph.facebook.com/v21.0/{PHONE_NUMBER_ID}/messages
+{
+  "messaging_product": "whatsapp",
+  "to": "262692XXXXXX",
+  "type": "text",
+  "text": { "body": "Nouveau lead : Marie D. — 0692 XX XX XX — Campagne Leads Reunion" }
+}</div>
+
+      <div class="tip-box">
+        <div class="tip-label">Piège vu en production</div>
+        <p>L'abonnement au webhook <code style="color:var(--gold)">leadgen</code> ne suffit pas : il faut aussi abonner explicitement <strong style="color:var(--text)">la page</strong> à ton application (<code style="color:var(--gold)">POST /{page_id}/subscribed_apps</code>). Sans ça, ton webhook est validé par Meta mais ne reçoit jamais aucun lead — et tu cherches le bug du mauvais côté pendant des heures.</p>
+      </div>
+
+      <h2>Étape 5 — L'interface, générée par IA</h2>
+      <p>Tu n'écris pas le tableau de bord : tu le décris. Colle ce prompt dans ton générateur d'interface (Claude, Lovable, v0 — n'importe lequel) :</p>
+      <div class="code-block">Construis un tableau de bord de gestion de publicités Meta.
+
+Écrans :
+1. Liste des campagnes — nom, statut, budget/jour, dépensé aujourd'hui,
+   nombre de leads, coût par lead. Bouton pause/activer sur chaque ligne.
+2. Création de campagne — formulaire : objectif, zone géographique,
+   tranche d'âge, budget quotidien, texte de l'annonce.
+3. Leads — tableau des leads du jour avec nom, téléphone, campagne d'origine.
+
+Les données viennent de mon API interne (endpoints REST /campaigns,
+/insights, /leads). Fais un état de chargement et un état vide propres.
+Style sobre, mode sombre, lisible sur mobile.</div>
+      <p>Ton interface appelle ton n8n, ton n8n appelle Meta. Tu contrôles la chaîne complète, et tu vois où part chaque euro.</p>
+
+      <h2>Ce à quoi t'attendre</h2>
+      <ul>
+        <li>Une après-midi pour la première campagne créée par API, en test, sur ton propre compte</li>
+        <li>Le coût réel : ton budget publicitaire, plus quelques euros d'hébergement n8n — pas 3 000 € par mois</li>
+        <li>Le vrai gain n'est pas le prix : c'est de voir la dépense en temps réel au lieu d'un rapport mensuel opaque</li>
+      </ul>
+
+      <a href="https://developers.facebook.com/docs/marketing-apis/" target="_blank" rel="noopener" class="source-cta">◈ Documentation Meta Marketing API</a>
+    </div>
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+<script>const navbar=document.getElementById('navbar');window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>20));</script>
+<script src="../assets/js/lead-popup.js" defer></script>
+<script src="../assets/js/nav.js" defer></script>
+</body>
+</html>
