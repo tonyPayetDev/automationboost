@@ -385,13 +385,24 @@ nav.scrolled .nav-pill {
 
 .hero-glow {
   position: absolute;
-  top: 20%;
+  top: -8%;
   left: 50%;
   transform: translateX(-50%);
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(234,179,8,0.08) 0%, transparent 70%);
+  width: min(1150px, 125vw);
+  height: 820px;
+  background:
+    radial-gradient(closest-side, rgba(234,179,8,0.18), transparent 72%) 28% 26% / 62% 60% no-repeat,
+    radial-gradient(closest-side, rgba(217,119,87,0.15), transparent 72%) 74% 38% / 56% 56% no-repeat,
+    radial-gradient(closest-side, rgba(139,92,246,0.13), transparent 72%) 50% 74% / 58% 56% no-repeat;
+  filter: blur(24px);
   pointer-events: none;
+  z-index: 0;
+}
+:root[data-theme="dark"] .hero-glow {
+  background:
+    radial-gradient(closest-side, rgba(234,179,8,0.22), transparent 72%) 28% 26% / 62% 60% no-repeat,
+    radial-gradient(closest-side, rgba(217,119,87,0.16), transparent 72%) 74% 38% / 56% 56% no-repeat,
+    radial-gradient(closest-side, rgba(139,92,246,0.18), transparent 72%) 50% 74% / 58% 56% no-repeat;
 }
 
 .hero-badge {
@@ -522,6 +533,14 @@ nav.scrolled .nav-pill {
   color: var(--gold);
   line-height: 1;
 }
+/* Accents variés (jaune / orange Claude / violet) sur les stats du hero */
+.hero-stats .stat-item:nth-child(2) .stat-number { color: var(--orange); }
+.hero-stats .stat-item:nth-child(3) .stat-number { color: var(--violet); }
+
+/* Rythme des sections : alternance surface claire / blanc (thème-aware) */
+#problem, #how-it-works, #testimonials, #faq { background: var(--bg-card-2); }
+#problem, #how-it-works, #testimonials, #faq,
+#features, #demo, #urgency, #pricing, #final-cta { position: relative; z-index: 1; }
 
 .stat-label {
   font-size: 0.85rem;
@@ -1587,6 +1606,9 @@ footer {
 
   /* Sections : padding réduit */
   section { padding: 44px 0 !important; }
+  /* Pages ressources/article : garder assez d'espace en haut pour ne pas
+     passer sous la nav pill flottante (fixed) sur mobile. */
+  section.res-page { padding-top: 88px !important; }
 
   /* Marges section-desc et grilles trop généreux */
   .section-desc { margin-bottom: 24px !important; font-size: 0.9rem !important; }
