@@ -2,8 +2,13 @@
    localStorage, and a toggle button is injected into the floating nav pill. */
 (function () {
   var root = document.documentElement;
+  var urlTheme = null;
+  try { urlTheme = new URLSearchParams(location.search).get('theme'); } catch (e) {}
   try {
-    if (localStorage.getItem('ab-theme') === 'dark') root.setAttribute('data-theme', 'dark');
+    var pref = urlTheme || localStorage.getItem('ab-theme');
+    if (pref === 'dark') root.setAttribute('data-theme', 'dark');
+    else if (pref === 'light') root.removeAttribute('data-theme');
+    if (urlTheme) localStorage.setItem('ab-theme', urlTheme);
   } catch (e) {}
 
   function icon(btn) {
