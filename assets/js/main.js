@@ -31,15 +31,21 @@ function getEndDate() {
 }
 
 function updateCountdown() {
+  // Null-safe: the countdown block may not exist on every page (e.g. simplified
+  // homepage). Bail out cleanly instead of throwing and halting the whole script.
+  const cdD = document.getElementById('cd-d');
+  const cdH = document.getElementById('cd-h');
+  const cdM = document.getElementById('cd-m');
+  const cdS = document.getElementById('cd-s');
+  if (!cdD || !cdH || !cdM || !cdS) return;
+
   const endDate = getEndDate();
   const now = new Date();
   const diff = endDate - now;
 
+  const fmt = v => String(v).padStart(2, '0');
   if (diff <= 0) {
-    document.getElementById('cd-h').textContent = '00';
-    document.getElementById('cd-m').textContent = '00';
-    document.getElementById('cd-s').textContent = '00';
-    document.getElementById('cd-d').textContent = '00';
+    cdD.textContent = cdH.textContent = cdM.textContent = cdS.textContent = '00';
     return;
   }
 
@@ -47,16 +53,16 @@ function updateCountdown() {
   const hours   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-  const fmt = v => String(v).padStart(2, '0');
-  document.getElementById('cd-d').textContent = fmt(days);
-  document.getElementById('cd-h').textContent = fmt(hours);
-  document.getElementById('cd-m').textContent = fmt(minutes);
-  document.getElementById('cd-s').textContent = fmt(seconds);
+  cdD.textContent = fmt(days);
+  cdH.textContent = fmt(hours);
+  cdM.textContent = fmt(minutes);
+  cdS.textContent = fmt(seconds);
 }
 
-setInterval(updateCountdown, 1000);
-updateCountdown();
+if (document.getElementById('cd-d')) {
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+}
 
 // --- PROGRESS BAR ANIMATION ---
 function animateProgressBar() {

@@ -1251,6 +1251,16 @@ nav.scrolled .nav-pill {
   margin-bottom: 8px;
 }
 
+/* Remplace l'affichage du prix : baseline de valeur, pas de montant */
+.plan-tagline {
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: var(--text-light);
+  margin-bottom: 26px;
+  min-height: 44px;
+}
+.pricing-card.featured .plan-tagline { color: var(--text); }
+
 .price-amount {
   font-family: 'Sora', sans-serif;
   font-size: 3rem;
