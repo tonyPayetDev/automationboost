@@ -20,7 +20,7 @@
 
     /* FILTRES */
     .filters { display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:48px;position:relative;z-index:1; }
-    .filter-btn { background:var(--bg-card);border:1px solid var(--border);color:var(--text-muted);padding:8px 20px;border-radius:99px;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s; }
+    .filter-btn { background:var(--bg-card);border:1px solid var(--border);color:var(--text-muted);padding:8px 20px;border-radius:99px;font-family:'Sora',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s; }
     .filter-btn:hover,.filter-btn.active { background:rgba(234,179,8,0.12);border-color:rgba(234,179,8,0.4);color:var(--gold); }
 
     /* GRILLE */
@@ -29,11 +29,11 @@
     .blog-card:hover { border-color:rgba(234,179,8,0.4);transform:translateY(-3px); }
     .blog-card::before { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);transform:scaleX(0);transform-origin:left;transition:transform .3s; }
     .blog-card:hover::before { transform:scaleX(1); }
-    .bc-cat { font-size:10px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;font-family:'Orbitron',sans-serif; }
-    .bc-title { font-size:1.05rem;font-family:'Orbitron',sans-serif;font-weight:700;color:var(--text);line-height:1.35;margin-bottom:12px; }
+    .bc-cat { font-size:10px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;font-family:'Sora',sans-serif; }
+    .bc-title { font-size:1.05rem;font-family:'Sora',sans-serif;font-weight:700;color:var(--text);line-height:1.35;margin-bottom:12px; }
     .bc-desc { font-size:13px;color:var(--text-muted);line-height:1.6;flex:1;margin-bottom:20px; }
     .bc-meta { display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text-muted);border-top:1px solid var(--border);padding-top:16px;margin-top:auto; }
-    .bc-read { color:var(--gold);font-weight:600;font-family:'Rajdhani',sans-serif;font-size:13px; }
+    .bc-read { color:var(--gold);font-weight:600;font-family:'Sora',sans-serif;font-size:13px; }
 
     /* FEATURED */
     .blog-card.featured { grid-column: 1 / -1; flex-direction:row;gap:32px;padding:36px;border-color:rgba(234,179,8,0.2); }
@@ -216,5 +216,6 @@
     });
   });
 </script>
+<script src="/assets/js/theme.js" defer></script>
 </body>
 </html>

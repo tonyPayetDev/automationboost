@@ -3,7 +3,7 @@
    Palette : Cyberpunk Noir/Or
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 /* --- RESET & BASE --- */
 *, *::before, *::after {
@@ -12,23 +12,57 @@
   padding: 0;
 }
 
+/* LIGHT theme (default) — inspiré de buildyoursaas : fond clair, typo Sora,
+   jaune + orange Claude + violet en accents. Bascule vers black via
+   :root[data-theme="dark"]. */
 :root {
-  --bg-dark:     #050505;
-  --bg-card:     #0d0d0d;
-  --bg-card-2:   #111111;
-  --border:      #1a1a1a;
+  --bg-dark:     #ffffff;
+  --bg-card:     #ffffff;
+  --bg-card-2:   #f8fafb;
+  --border:      #e8ecef;
   --gold:        #eab308;
   --gold-dark:   #ca8a04;
+  --gold-glow:   rgba(234, 179, 8, 0.14);
+  --gold-glow2:  rgba(234, 179, 8, 0.35);
+  --orange:      #d97757;
+  --orange-dark: #c25f3f;
+  --violet:      #8b5cf6;
+  --violet-dark: #7c3aed;
+  --text:        #0c0c0c;
+  --text-muted:  #6b7280;
+  --text-light:  #3f3f46;
+  --red:         #ef4444;
+  --green:       #10b981;
+  --radius:      12px;
+  --radius-lg:   18px;
+  --shadow-gold: 0 8px 30px rgba(234,179,8,0.18);
+  --shadow-soft: 0 2px 14px rgba(16,24,40,0.06);
+  --grid-line:   rgba(12,12,12,0.035);
+  --scan:        rgba(12,12,12,0.012);
+  --nav-bg:      rgba(255,255,255,0.82);
+  --nav-bg-scr:  rgba(255,255,255,0.95);
+  --nav-shadow:  0 8px 30px rgba(16,24,40,0.10);
+  --on-gold:     #1a1200;
+}
+:root[data-theme="dark"] {
+  --bg-dark:     #0a0a0f;
+  --bg-card:     #111117;
+  --bg-card-2:   #16161d;
+  --border:      #232330;
   --gold-glow:   rgba(234, 179, 8, 0.15);
   --gold-glow2:  rgba(234, 179, 8, 0.4);
   --text:        #e4e4e7;
-  --text-muted:  #71717a;
-  --text-light:  #a1a1aa;
-  --red:         #ef4444;
+  --text-muted:  #8b8b98;
+  --text-light:  #b4b4c0;
   --green:       #22c55e;
-  --radius:      8px;
-  --radius-lg:   16px;
   --shadow-gold: 0 0 30px rgba(234,179,8,0.3), 0 0 60px rgba(234,179,8,0.1);
+  --shadow-soft: 0 10px 34px rgba(0,0,0,0.5);
+  --grid-line:   rgba(234,179,8,0.03);
+  --scan:        rgba(0,0,0,0.04);
+  --nav-bg:      rgba(10,10,15,0.88);
+  --nav-bg-scr:  rgba(6,6,10,0.96);
+  --nav-shadow:  0 12px 40px rgba(0,0,0,0.6);
+  --on-gold:     #000;
 }
 
 html { scroll-behavior: smooth; }
@@ -36,7 +70,7 @@ html { scroll-behavior: smooth; }
 body {
   background-color: var(--bg-dark);
   color: var(--text);
-  font-family: 'Inter', 'Rajdhani', sans-serif;
+  font-family: 'Inter', 'Sora', sans-serif;
   font-size: 17px;
   line-height: 1.75;
   overflow-x: hidden;
@@ -49,8 +83,8 @@ body::before {
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(rgba(234,179,8,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(234,179,8,0.03) 1px, transparent 1px);
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
   z-index: 0;
@@ -65,8 +99,8 @@ body::after {
     0deg,
     transparent,
     transparent 2px,
-    rgba(0,0,0,0.04) 2px,
-    rgba(0,0,0,0.04) 4px
+    var(--scan) 2px,
+    var(--scan) 4px
   );
   pointer-events: none;
   z-index: 0;
@@ -79,7 +113,7 @@ body::after {
 
 /* --- TYPOGRAPHY --- */
 h1, h2, h3, h4 {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Sora', sans-serif;
   line-height: 1.15;
   letter-spacing: -0.03em;
 }
@@ -148,20 +182,34 @@ nav {
   transition: top 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
+/* The rule above matches the <nav> element, not just the navbar, so every other
+   <nav> on the page inherits fixed positioning: the mobile menu body dropped out
+   of flow (collapsing its opaque panel to 0 height, leaving the links floating
+   unreadable over the page) and the landing footer links flew to the top.
+   humian.html still relies on a bare <nav> as its navbar, so keep this as a reset
+   rather than scoping the rule to #navbar. */
+.mobile-menu-inner,
+.lp-footer-links {
+  position: static;
+  transform: none;
+  width: auto;
+  max-width: none;
+  z-index: auto;
+}
+
 .nav-pill {
   display: flex;
   align-items: center;
   gap: 4px;
-  background: rgba(8, 8, 8, 0.88);
+  background: var(--nav-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(234,179,8,0.18);
+  border: 1px solid rgba(234,179,8,0.28);
   border-radius: 100px;
   padding: 7px 10px 7px 14px;
   box-shadow:
-    0 8px 32px rgba(0,0,0,0.5),
-    0 0 0 1px rgba(234,179,8,0.05),
-    inset 0 1px 0 rgba(255,255,255,0.04);
+    var(--nav-shadow),
+    0 0 0 1px rgba(234,179,8,0.05);
   transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
@@ -171,7 +219,26 @@ nav.scrolled .nav-pill {
     0 12px 40px rgba(0,0,0,0.6),
     0 0 24px rgba(234,179,8,0.1),
     inset 0 1px 0 rgba(255,255,255,0.05);
-  background: rgba(5,5,5,0.96);
+  background: var(--nav-bg-scr);
+}
+
+/* Theme toggle button (injected by theme.js into the nav pill) */
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  font-size: 15px; line-height: 1;
+  cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: all 0.2s ease;
+  flex: 0 0 auto;
+}
+.theme-toggle:hover {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-glow);
+  transform: translateY(-1px);
 }
 
 .logo {
@@ -194,7 +261,7 @@ nav.scrolled .nav-pill {
 }
 
 .logo-text {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Sora', sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--text);
@@ -205,7 +272,7 @@ nav.scrolled .nav-pill {
 .nav-cta {
   background: var(--gold);
   color: #000;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Sora', sans-serif;
   font-weight: 700;
   font-size: 0.95rem;
   padding: 9px 22px;
@@ -393,7 +460,7 @@ nav.scrolled .nav-pill {
 .btn-primary {
   background: linear-gradient(135deg, var(--gold), var(--gold-dark));
   color: #000;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Sora', sans-serif;
   font-weight: 700;
   font-size: 1.05rem;
   padding: 15px 34px;
@@ -418,7 +485,7 @@ nav.scrolled .nav-pill {
 .btn-secondary {
   background: transparent;
   color: var(--text);
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Sora', sans-serif;
   font-weight: 600;
   font-size: 1rem;
   padding: 14px 28px;
@@ -449,7 +516,7 @@ nav.scrolled .nav-pill {
 }
 
 .stat-number {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Sora', sans-serif;
   font-size: 2rem;
   font-weight: 900;
   color: var(--gold);
@@ -484,7 +551,7 @@ nav.scrolled .nav-pill {
 }
 
 .mockup-bar {
-  background: #0a0a0a;
+  background: var(--bg-card-2);
   padding: 12px 16px;
   display: flex;
   align-items: center;
@@ -509,7 +576,7 @@ nav.scrolled .nav-pill {
 }
 
 .mockup-title {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Sora', sans-serif;
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--gold);
@@ -597,7 +664,7 @@ nav.scrolled .nav-pill {
 }
 
 .metric-value {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Sora', sans-serif;
   font-size: 1rem;
   font-weight: 700;
   color: var(--gold);
@@ -823,7 +890,7 @@ nav.scrolled .nav-pill {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Sora', sans-serif;
   font-size: 1.1rem;
   font-weight: 900;
   color: #000;
@@ -905,13 +972,13 @@ nav.scrolled .nav-pill {
 }
 
 .screen-header {
-  background: #0a0a0a;
+  background: var(--bg-card-2);
   padding: 12px 16px;
   display: flex;
   align-items: center;
   gap: 8px;
   border-bottom: 1px solid var(--border);
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Sora', sans-serif;
   font-size: 0.7rem;
   color: var(--gold);
   text-transform: uppercase;
@@ -1054,7 +1121,7 @@ nav.scrolled .nav-pill {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Sora', sans-serif;
   font-size: 0.9rem;
   font-weight: 700;
   color: #000;
@@ -1147,7 +1214,7 @@ nav.scrolled .nav-pill {
 }
 
 .plan-name {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Sora', sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--text-muted);
@@ -1161,7 +1228,7 @@ nav.scrolled .nav-pill {
 }
 
 .price-amount {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Sora', sans-serif;
   font-size: 3rem;
   font-weight: 900;
   color: var(--text);
@@ -1243,7 +1310,7 @@ nav.scrolled .nav-pill {
 }
 
 .cd-number {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Sora', sans-serif;
   font-size: 2.5rem;
   font-weight: 900;
   color: var(--gold);
@@ -1322,7 +1389,7 @@ nav.scrolled .nav-pill {
   gap: 16px;
   cursor: pointer;
   text-align: left;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Sora', sans-serif;
   font-size: 1.05rem;
   font-weight: 600;
   color: var(--text);
@@ -1427,7 +1494,7 @@ footer {
 }
 
 .footer-heading {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Sora', sans-serif;
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -1676,10 +1743,9 @@ footer {
   left: 0;
   right: 0;
   z-index: 9999;
-  background: rgba(5,5,5,0.97);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: var(--bg-dark);
   border-bottom: 1px solid rgba(234,179,8,0.18);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.6);
   /* Fade + slide vertical — état fermé */
   visibility: hidden;
   opacity: 0;
@@ -1846,9 +1912,9 @@ footer {
 
 /* Social proof bandeau — platform tags */
 .social-proof-band {
-  background: #0a0a0a;
-  border-top: 1px solid #1a1a1a;
-  border-bottom: 1px solid #1a1a1a;
+  background: var(--bg-card-2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   padding: 22px 0;
   position: relative;
   z-index: 1;
