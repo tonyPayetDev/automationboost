@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Voix off pro avec ta propre voix, sans micro – AutomationBoost</title>
+  <meta name="description" content="Le workflow pour cloner ta voix une fois et générer autant de voix off que tu veux à partir d'un simple texte : sans micro, sans studio, avec WaveSpeed qwen3-tts voice-clone et n8n." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .res-page{padding:120px 0 80px}.breadcrumb{font-size:13px;color:var(--text-muted);margin-bottom:32px}.breadcrumb a{color:var(--gold);text-decoration:none}.breadcrumb span{margin:0 8px}.page-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.25);color:#818cf8;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}.page-title{font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Space Grotesk',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2}.page-title span{color:var(--gold)}.page-meta{display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px}.divider{width:60px;height:2px;background:var(--gold);margin:40px 0}.content-block{max-width:720px}.content-block h2{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px}.content-block p{color:var(--text-light);line-height:1.8;margin-bottom:16px}.content-block ul{color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px}.content-block ul li{margin-bottom:6px}.tip-box{background:var(--bg-card);border:1px solid rgba(234,179,8,.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0}.tip-box .tip-label{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}.tip-box p{color:var(--text-light);margin:0;font-size:15px}.code-block{background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto;white-space:pre}.source-cta{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#000;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;padding:14px 28px;border-radius:var(--radius);text-decoration:none;margin-top:40px;transition:all .2s}.source-cta:hover{background:var(--gold-dark);transform:translateY(-2px)}.nav-back{display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s}.nav-back:hover{color:var(--gold)}
+
+    .page-title, .content-block h2, .content-block h3,
+    article.article-body h2, article.article-body h3 { font-family:'Space Grotesk',sans-serif; }
+    .content-block p, .content-block li,
+    article.article-body p, article.article-body li { font-size:17px; line-height:1.75; }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="../" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation 29,90€
+      </a>
+    </div>
+    <a href="https://tony.automatisationboost.com/#contact" class="nav-cta">Contact →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation 29,90€</a>
+    <a href="https://tony.automatisationboost.com/#contact" class="mob-link">Contact</a>
+  </nav>
+</div>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb"><a href="../ressources.html">Ressources</a><span>/</span>Voix off pro avec ta propre voix</div>
+
+    <div class="page-badge">▶ Vidéo · Mot-clé VOIX</div>
+    <h1 class="page-title">Une voix off pro <span>avec ta propre voix</span>, sans micro et sans studio</h1>
+    <div class="page-meta">
+      <span>WaveSpeed qwen3-tts</span><span>·</span><span>Voice cloning</span><span>·</span><span>Niveau débutant</span>
+    </div>
+
+    <div class="content-block">
+      <p>Tu clones ta voix <strong style="color:var(--text)">une seule fois</strong> à partir d'un court échantillon, puis tu génères autant de voix off que tu veux à partir d'un simple texte. Plus besoin de micro, de studio, ni de réenregistrer dix fois. C'est le workflow que j'utilise pour la narration de mes vidéos.</p>
+
+      <div class="divider"></div>
+
+      <h2>Ce que tu construis exactement</h2>
+      <ul>
+        <li>Un échantillon de référence de ta voix, enregistré une fois avec ton téléphone</li>
+        <li>Un appel API qui transforme n'importe quel texte en audio, dans ta voix</li>
+        <li>Un workflow n8n : tu envoies un texte, tu récupères un fichier MP3 prêt à monter</li>
+      </ul>
+      <p>Un seul modèle fait le travail : <strong style="color:var(--text)">WaveSpeed qwen3-tts voice-clone</strong>. Il prend ta voix de référence + ton texte, et rend l'audio.</p>
+
+      <h2>Étape 1 — Enregistrer ta voix de référence</h2>
+      <p>Enregistre <strong style="color:var(--text)">15 à 30 secondes</strong> de toi qui lis un texte au calme, dans une pièce silencieuse. Un mémo vocal de téléphone suffit largement. Parle naturellement, au rythme que tu veux pour tes voix off. Exporte en <code style="color:var(--gold)">.mp3</code> ou <code style="color:var(--gold)">.wav</code> et héberge-le sur une URL publique (Drive, S3, ou ton propre serveur).</p>
+
+      <div class="tip-box">
+        <div class="tip-label">Règle non négociable</div>
+        <p>Ne clone que <strong style="color:var(--text)">ta propre voix</strong>, ou une voix pour laquelle tu as un accord écrit. Cloner la voix de quelqu'un sans consentement est interdit par la loi et par les conditions de WaveSpeed — et ça se retourne toujours contre toi.</p>
+      </div>
+
+      <h2>Étape 2 — Ta clé API WaveSpeed</h2>
+      <p>Crée un compte sur <code style="color:var(--gold)">wavespeed.ai</code>, va dans <strong style="color:var(--text)">API Keys</strong> et génère une clé. Tu l'utilises dans l'en-tête <code style="color:var(--gold)">Authorization: Bearer</code>. Teste que tout répond :</p>
+      <div class="code-block">curl -X POST "https://api.wavespeed.ai/api/v3/wavespeed-ai/qwen3-tts/voice-clone" \
+  -H "Authorization: Bearer TA_CLE_API" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "reference_audio": "https://ton-domaine.com/ma-voix.mp3",
+    "text": "Bonjour, ceci est un test de ma voix off générée par intelligence artificielle."
+  }'</div>
+      <p>La réponse te renvoie un <code style="color:var(--gold)">id</code> de requête : la génération est asynchrone.</p>
+
+      <h2>Étape 3 — Récupérer l'audio généré</h2>
+      <p>Avec l'<code style="color:var(--gold)">id</code> reçu, interroge le résultat jusqu'à ce que le statut passe à <code style="color:var(--gold)">completed</code> :</p>
+      <div class="code-block">curl -G "https://api.wavespeed.ai/api/v3/predictions/ID_DE_LA_REQUETE/result" \
+  -H "Authorization: Bearer TA_CLE_API"
+
+# Réponse quand c'est prêt :
+# { "status": "completed", "outputs": ["https://.../ta-voix-off.mp3"] }</div>
+      <p>Tu télécharges l'URL renvoyée : c'est ton fichier voix off, dans ta voix, prêt à poser sur une vidéo.</p>
+
+      <h2>Étape 4 — Automatiser dans n8n</h2>
+      <p>Pour ne plus jamais toucher à curl : un workflow n8n en quatre nœuds.</p>
+      <ul>
+        <li><strong style="color:var(--text)">Webhook / Formulaire</strong> — tu colles ton texte</li>
+        <li><strong style="color:var(--text)">HTTP Request</strong> (POST) — envoie le texte + ta voix de référence au modèle</li>
+        <li><strong style="color:var(--text)">Wait + HTTP Request</strong> (GET) — attend puis récupère l'URL de l'audio</li>
+        <li><strong style="color:var(--text)">Google Drive / Telegram</strong> — dépose le MP3 là où tu le récupères</li>
+      </ul>
+      <p>Stocke ta clé API et l'URL de ta voix de référence en variables, et tu génères une voix off en collant simplement ton texte.</p>
+
+      <div class="tip-box">
+        <div class="tip-label">Piège vu en production</div>
+        <p>Un échantillon de référence trop court, avec de la musique de fond ou de l'écho, donne une voix clonée « robotique ». La qualité de la sortie dépend <strong style="color:var(--text)">entièrement</strong> de la qualité de l'échantillon : 20 secondes propres valent mieux qu'une minute bruitée. Réenregistre l'échantillon avant de blâmer le modèle.</p>
+      </div>
+
+      <h2>Ce à quoi t'attendre</h2>
+      <ul>
+        <li>Dix minutes pour le premier clone, échantillon compris</li>
+        <li>Le coût réel : quelques centimes par génération, contre 30 à 80 € une voix off freelance</li>
+        <li>Le vrai gain : tu produis dix versions d'un script sans réserver un studio ni te réenregistrer</li>
+      </ul>
+
+      <a href="https://wavespeed.ai/models/wavespeed-ai/qwen3-tts" target="_blank" rel="noopener" class="source-cta">◈ Modèle WaveSpeed qwen3-tts</a>
+    </div>
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+<script>const navbar=document.getElementById('navbar');window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>20));</script>
+<script src="../assets/js/lead-popup.js" defer></script>
+<script src="../assets/js/nav.js" defer></script>
+</body>
+</html>
