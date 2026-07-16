@@ -5,8 +5,6 @@
 (function () {
   var WEBHOOK = 'https://n7n.automatisationboost.com/webhook/Form-lead-autoboost';
   var LEAD_KEY = 'ab_lead_email';
-  var DELAY_MS = 12000;
-  var SCROLL_RATIO = 0.35;
 
   if (localStorage.getItem(LEAD_KEY)) return;
 
@@ -98,11 +96,7 @@
     unlockScroll();
   }
 
-  setTimeout(show, DELAY_MS);
-  window.addEventListener('scroll', function () {
-    var max = document.documentElement.scrollHeight - window.innerHeight;
-    if (max > 0 && window.scrollY / max > SCROLL_RATIO) show();
-  }, { passive: true });
+  show();
 
   /* Keep focus inside the gate so the page behind stays unreachable by keyboard. */
   document.addEventListener('focusin', function (e) {
