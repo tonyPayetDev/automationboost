@@ -6,6 +6,18 @@
   var WEBHOOK = 'https://n7n.automatisationboost.com/webhook/Form-lead-autoboost';
   var LEAD_KEY = 'ab_lead_email';
 
+  /* Crawlers render the page without the gate: search engines index the resource,
+     and link previews (shares) still show it. Google treats this as cloaking unless
+     the paywalled content is declared with isAccessibleForFree structured data. */
+  var CRAWLERS = new RegExp([
+    'googlebot', 'google-inspectiontool', 'adsbot-google', 'storebot-google',
+    'mediapartners-google', 'google-extended', 'apis-google', 'feedfetcher-google',
+    'bingbot', 'bingpreview', 'duckduckbot', 'slurp', 'baiduspider', 'yandexbot',
+    'applebot', 'petalbot', 'facebookexternalhit', 'facebot', 'twitterbot',
+    'linkedinbot', 'whatsapp', 'telegrambot', 'discordbot', 'slackbot', 'pinterest'
+  ].join('|'), 'i');
+  if (CRAWLERS.test(navigator.userAgent)) return;
+
   if (localStorage.getItem(LEAD_KEY)) return;
 
   var overlay = document.createElement('div');
