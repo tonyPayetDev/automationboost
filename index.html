@@ -235,6 +235,47 @@
     m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});
   })();
 </script>
+<!-- Motion (style motionsite.ai) : révélations au scroll + parallax, GSAP ScrollTrigger -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+  if (!window.gsap || !window.ScrollTrigger) return;
+  // Accessibilité : pas d'animation si l'utilisateur la refuse (contenu déjà visible)
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  // 1) Entrée du hero en cascade (au chargement)
+  gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.8 } })
+    .from('#hero .hero-badge',     { y: 20, opacity: 0 })
+    .from('#hero .hero-title',     { y: 30, opacity: 0 }, '-=0.5')
+    .from('#hero .hero-subtitle',  { y: 20, opacity: 0 }, '-=0.55')
+    .from('#hero .hero-cta-group', { y: 18, opacity: 0 }, '-=0.5')
+    .from('#hero .stat-item',      { y: 16, opacity: 0, stagger: 0.1 }, '-=0.45');
+
+  // 2) Révélation des titres de section au scroll
+  gsap.utils.toArray('#benefits .text-center, #how .text-center').forEach(function (el) {
+    gsap.from(el, { y: 26, opacity: 0, duration: 0.7, ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
+  });
+
+  // 3) Cartes bénéfices : apparition décalée
+  gsap.from('#benefits .card', { y: 36, opacity: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out',
+    scrollTrigger: { trigger: '#benefits .grid-3', start: 'top 82%', once: true } });
+
+  // 4) Étapes : apparition décalée
+  gsap.from('#how .step', { y: 30, opacity: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out',
+    scrollTrigger: { trigger: '#how .steps', start: 'top 82%', once: true } });
+
+  // 5) Bande CTA : léger zoom + fondu
+  gsap.from('.cta-band', { y: 40, opacity: 0, scale: 0.98, duration: 0.85, ease: 'power3.out',
+    scrollTrigger: { trigger: '.cta-band', start: 'top 88%', once: true } });
+
+  // 6) Parallax doux sur le halo du hero
+  gsap.to('#hero .hero-glow', { yPercent: 20, ease: 'none',
+    scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
+})();
+</script>
 <script src="/assets/js/theme.js?v=20260715d" defer></script>
 </body>
 </html>
