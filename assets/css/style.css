@@ -175,11 +175,13 @@ nav {
   position: fixed;
   top: 16px;
   left: 50%;
-  transform: translateX(-50%);
   z-index: 1000;
   width: auto;
   max-width: calc(100% - 32px);
-  transition: top 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  /* translate rather than `top`: `top` is a layout property, and the pill also
+     carries the -50% centring, so both live on the same transform. */
+  transform: translateX(-50%) translateY(0);
+  transition: transform 0.25s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 /* The rule above matches the <nav> element, not just the navbar, so every other
@@ -210,7 +212,12 @@ nav {
   box-shadow:
     var(--nav-shadow),
     0 0 0 1px rgba(234,179,8,0.05);
-  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+  /* `.scrolled` toggles on every scroll past 50px, so this is the highest-frequency
+     transition on the site — list the properties instead of animating `all`. */
+  transition:
+    border-color 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+    background-color 0.35s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 nav.scrolled .nav-pill {
@@ -232,7 +239,7 @@ nav.scrolled .nav-pill {
   font-size: 15px; line-height: 1;
   cursor: pointer;
   display: inline-flex; align-items: center; justify-content: center;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, color 0.2s ease, opacity 0.2s ease;
   flex: 0 0 auto;
 }
 .theme-toggle:hover {
@@ -279,8 +286,11 @@ nav.scrolled .nav-pill {
   border-radius: var(--radius);
   text-decoration: none;
   letter-spacing: 0.03em;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, color 0.2s ease, opacity 0.2s ease;
   text-transform: uppercase;
+  /* Libellé sur une seule ligne : sinon il casse en deux et déborde de la pilule. */
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .nav-cta:hover {
@@ -341,7 +351,7 @@ nav.scrolled .nav-pill {
   font-weight: 600;
   text-decoration: none;
   letter-spacing: 0.02em;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, color 0.2s ease, opacity 0.2s ease;
   margin-left: 4px;
 }
 .nav-formation:hover {
@@ -427,12 +437,8 @@ nav.scrolled .nav-pill {
   height: 8px;
   background: var(--gold);
   border-radius: 50%;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.3); }
+  /* No pulse: a gold dot already reads as "active". A looping scale/opacity on a
+     status indicator draws the eye repeatedly without carrying new information. */
 }
 
 .hero-title {
@@ -478,7 +484,7 @@ nav.scrolled .nav-pill {
   border-radius: var(--radius);
   text-decoration: none;
   letter-spacing: 0.03em;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, color 0.2s ease, opacity 0.2s ease;
   text-transform: uppercase;
   border: none;
   cursor: pointer;
@@ -503,7 +509,7 @@ nav.scrolled .nav-pill {
   border-radius: var(--radius);
   text-decoration: none;
   border: 1px solid var(--border);
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, color 0.2s ease, opacity 0.2s ease;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -566,12 +572,17 @@ nav.scrolled .nav-pill {
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: 0 30px 70px rgba(16,24,40,0.28), 0 0 0 1px rgba(234,179,8,0.06);
-  animation: float 6s ease-in-out infinite;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+/* Ambient drift is decorative and vestibular-triggering, so it is opt-in:
+   the animation only exists when the user has not asked for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .dashboard-mockup { animation: float 6s ease-in-out infinite; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
 }
 
 .mockup-bar {
@@ -622,7 +633,7 @@ nav.scrolled .nav-pill {
   height: 7px;
   background: var(--green);
   border-radius: 50%;
-  animation: pulse 2s infinite;
+  /* Static green dot — see .hero-badge::before for why the pulse was dropped. */
 }
 
 .mockup-platforms {
@@ -739,7 +750,7 @@ nav.scrolled .nav-pill {
   padding: 28px;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, color 0.3s ease, opacity 0.3s ease;
 }
 
 .problem-card::before {
@@ -766,7 +777,7 @@ nav.scrolled .nav-pill {
   justify-content: center;
   margin-bottom: 16px;
   color: #ef4444;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, color 0.3s ease, opacity 0.3s ease;
 }
 
 .problem-card:hover .problem-icon {
@@ -791,12 +802,17 @@ nav.scrolled .nav-pill {
   font-size: 2.5rem;
   color: var(--gold);
   margin: 40px 0;
-  animation: bounce 2s ease-in-out infinite;
 }
 
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(8px); }
+/* One nudge when the arrow scrolls into view (`.is-in` is added by main.js),
+   instead of bouncing forever. A gesture that repeats stops being a gesture. */
+@media (prefers-reduced-motion: no-preference) {
+  .solution-arrow.is-in { animation: bounce 1.6s ease-in-out 2; }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
 }
 
 /* --- FEATURES --- */
@@ -815,7 +831,7 @@ nav.scrolled .nav-pill {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 32px;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, color 0.3s ease, opacity 0.3s ease;
   position: relative;
   overflow: hidden;
 }
@@ -853,7 +869,7 @@ nav.scrolled .nav-pill {
   position: relative;
   z-index: 1;
   color: var(--gold);
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, color 0.3s ease, opacity 0.3s ease;
 }
 
 .feature-card:hover .feature-icon {
@@ -929,7 +945,7 @@ nav.scrolled .nav-pill {
   border-radius: var(--radius-lg);
   padding: 24px;
   flex: 1;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, color 0.3s ease, opacity 0.3s ease;
 }
 
 .step-content:hover {
@@ -1020,7 +1036,7 @@ nav.scrolled .nav-pill {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   margin-bottom: 10px;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, color 0.3s ease, opacity 0.3s ease;
 }
 
 .queue-item:hover {
@@ -1082,7 +1098,7 @@ nav.scrolled .nav-pill {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 28px;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, color 0.3s ease, opacity 0.3s ease;
   position: relative;
 }
 
@@ -1196,7 +1212,7 @@ nav.scrolled .nav-pill {
   padding: 36px;
   text-align: center;
   position: relative;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, color 0.3s ease, opacity 0.3s ease;
 }
 
 .pricing-card::after {
@@ -1394,7 +1410,12 @@ nav.scrolled .nav-pill {
   height: 100%;
   background: linear-gradient(90deg, var(--gold), var(--red));
   border-radius: 100px;
-  transition: width 1s ease;
+  /* scaleX composites; width relayouts the track every frame. 1s also meant the
+     bar always showed a stale value — 400ms tracks the state closely enough. */
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* --- FAQ --- */
@@ -1444,18 +1465,23 @@ nav.scrolled .nav-pill {
   justify-content: center;
   font-size: 1rem;
   color: var(--gold);
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, color 0.3s ease, opacity 0.3s ease;
 }
 
 .faq-item.open .faq-icon { transform: rotate(45deg); background: rgba(234,179,8,0.2); }
 
+/* grid-template-rows interpolates the CONTENT's real height, so the easing curve
+   matches the movement you actually see. `max-height` had to overshoot the real
+   height, which made the open feel fast-then-slow and capped answers at 300px. */
 .faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease, padding 0.3s ease;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.faq-item.open .faq-answer { max-height: 300px; }
+.faq-answer > * { overflow: hidden; }
+
+.faq-item.open .faq-answer { grid-template-rows: 1fr; }
 
 .faq-answer p {
   padding: 0 0 20px;
@@ -1566,8 +1592,8 @@ footer {
 
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
-  /* Navbar : masquer les boutons secondaires sur mobile */
-  .nav-cta { display: none; }
+  /* Le dimensionnement mobile du .nav-cta est en fin de fichier : il doit passer
+     après le bloc néon (~l.2060) qui redéfinit padding/font-size sans media query. */
   .nav-formation { font-size: 12px !important; padding: 5px 10px !important; }
 
   section { padding: 60px 0; }
@@ -1818,7 +1844,7 @@ footer {
   letter-spacing: -0.01em;
   border-radius: 10px;
   border: 1px solid transparent;
-  transition: all 0.18s;
+  transition: background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease, color 0.18s ease, opacity 0.18s ease;
 }
 .mob-link:hover, .mob-link:active {
   background: rgba(255,255,255,0.05);
@@ -1842,8 +1868,8 @@ footer {
   .mobile-menu { display: block; }
   nav { top: 10px; max-width: calc(100% - 20px); }
   .nav-pill { padding: 6px 8px 6px 12px; gap: 6px; }
-  .nav-cta { display: none; }
-  .logo-text { font-size: 0.95rem; }
+  .logo-text { font-size: 0.85rem; }
+  .logo-icon { width: 26px; height: 26px; }
 }
 
 /* --- ANIMATIONS --- */
@@ -1902,15 +1928,25 @@ footer {
 }
 .hero-title .line-4::before {
   color: rgba(234,179,8,0.55);
-  animation: glitch-before 6s infinite;
-  animation-delay: 3s;
   clip-path: inset(0 0 100% 0);
 }
 .hero-title .line-4::after {
   color: rgba(180,120,0,0.4);
-  animation: glitch-after 6s infinite;
-  animation-delay: 3.05s;
   clip-path: inset(0 0 100% 0);
+}
+
+/* Two bursts, then rest — a glitch that never stops reads as a broken page
+   rather than an effect. Both layers stay hidden (`inset(0 0 100% 0)`) outside
+   the burst window, which is also the reduced-motion resting state. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-title .line-4::before {
+    animation: glitch-before 6s 2;
+    animation-delay: 1.5s;
+  }
+  .hero-title .line-4::after {
+    animation: glitch-after 6s 2;
+    animation-delay: 1.55s;
+  }
 }
 
 @keyframes glitch-before {
@@ -1995,4 +2031,89 @@ footer {
 .platform-tag:hover {
   border-color: rgba(234,179,8,0.25);
   color: var(--gold);
+}
+
+/* ============================================================
+   NEON BUTTONS — site-wide yellow/violet glow (2026-07-17)
+   Applied globally via the shared stylesheet.
+   ============================================================ */
+:root {
+  --neon-y: rgba(234, 179, 8, 0.55);   /* jaune */
+  --neon-v: rgba(139, 92, 246, 0.50);  /* violet */
+}
+
+.btn-primary,
+.btn-secondary,
+.nav-cta {
+  transition: box-shadow .25s ease, transform .2s ease,
+              border-color .2s ease, background .2s ease, color .2s ease;
+}
+
+/* Primary CTA — dual yellow + violet neon halo */
+.btn-primary {
+  box-shadow: 0 4px 20px rgba(234, 179, 8, .35),
+              0 0 16px var(--neon-y),
+              0 0 32px var(--neon-v);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(234, 179, 8, .5),
+              0 0 24px var(--neon-y),
+              0 0 52px var(--neon-v);
+}
+
+/* Secondary CTA — outlined neon */
+.btn-secondary {
+  border-color: rgba(234, 179, 8, .35);
+  box-shadow: 0 0 14px rgba(234, 179, 8, .20),
+              0 0 26px rgba(139, 92, 246, .16);
+}
+.btn-secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: var(--gold-glow);
+  box-shadow: 0 0 20px var(--neon-y),
+              0 0 40px var(--neon-v);
+}
+
+/* Contact button (nav) — smaller + neon */
+.nav-cta {
+  padding: 6px 15px;
+  font-size: 0.8rem;
+  box-shadow: 0 0 12px var(--neon-y),
+              0 0 24px var(--neon-v);
+}
+.nav-cta:hover {
+  box-shadow: 0 0 20px var(--neon-y),
+              0 0 40px var(--neon-v);
+}
+
+/* ============================================================
+   Navbar mobile — le CTA principal reste visible
+   ------------------------------------------------------------
+   Ce bloc doit rester EN FIN DE FICHIER : les règles néon
+   ci-dessus redéfinissent .nav-cta sans media query, et à
+   spécificité égale c'est l'ordre source qui tranche.
+   Budget mesuré à 390px (pilule = 370px de large) :
+   logo 148 + thème 34 + CTA 96 + burger 38 + gaps ≈ 340.
+   ============================================================ */
+@media (max-width: 768px) {
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.68rem;
+    padding: 8px 11px;
+    letter-spacing: 0.01em;
+  }
+  .nav-pill { gap: 4px; padding-right: 6px; }
+  /* Le logo garde la priorité sur la marque, mais cède l'espace résiduel. */
+  .logo { gap: 7px; }
+  .logo-text { font-size: 0.82rem; }
+  .logo-icon { width: 28px; height: 28px; border-radius: 7px; }
+  .logo-icon svg { width: 15px; height: 15px; }
+}
+
+@media (max-width: 380px) {
+  .nav-cta { font-size: 0.62rem; padding: 7px 8px; }
+  .logo-text { font-size: 0.78rem; }
 }

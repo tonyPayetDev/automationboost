@@ -71,13 +71,27 @@ function animateProgressBar() {
   const target = bar.dataset.target || '73';
   const io = new IntersectionObserver((entries) => {
     if (entries[0].isIntersecting) {
-      bar.style.width = target + '%';
+      /* The bar is full-width and scaled down; scaling up composites instead of
+         relayouting the track. `target` stays a percentage in the markup. */
+      bar.style.transform = 'scaleX(' + (parseFloat(target) / 100) + ')';
       io.disconnect();
     }
   }, { threshold: 0.5 });
   io.observe(bar);
 }
 animateProgressBar();
+
+// --- ONE-SHOT ARROW NUDGE ---
+// The arrow used to bounce forever; it now nudges twice when it scrolls in.
+document.querySelectorAll('.solution-arrow').forEach(arrow => {
+  const io = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      arrow.classList.add('is-in');
+      io.disconnect();
+    }
+  }, { threshold: 0.6 });
+  io.observe(arrow);
+});
 
 // --- FAQ ACCORDION ---
 document.querySelectorAll('.faq-question').forEach(btn => {

@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>automationboost motion audit — 2026-07-19</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:oklch(0.155 0.006 255); --surface:oklch(0.195 0.007 255); --surface-2:oklch(0.235 0.008 255);
+  --paper:oklch(0.945 0.004 255); --paper-dim:oklch(0.800 0.006 255);
+  --muted:oklch(0.680 0.008 255); --faint:oklch(0.505 0.008 255);
+  --line:oklch(0.95 0.01 255 / 0.09); --line-strong:oklch(0.95 0.01 255 / 0.16);
+  --accent:var(--paper); --accent-soft:var(--paper-dim); --accent-tint:oklch(0.95 0.01 255 / 0.07);
+  --crit:oklch(0.655 0.185 25); --imp:oklch(0.805 0.125 78); --opp:oklch(0.745 0.135 152);
+  --t-good:oklch(0.745 0.135 152); --t-mid:oklch(0.805 0.125 78); --t-slow:oklch(0.655 0.185 25);
+  --display:"Familjen Grotesk","Hanken Grotesk",system-ui,sans-serif;
+  --sans:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  --mono:"Geist Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+:root:has(#theme-light:checked){
+  --ink:oklch(0.985 0.003 255); --surface:oklch(0.965 0.004 255); --surface-2:oklch(0.940 0.005 255);
+  --paper:oklch(0.180 0.006 255); --paper-dim:oklch(0.330 0.008 255);
+  --muted:oklch(0.475 0.010 255); --faint:oklch(0.640 0.009 255);
+  --line:oklch(0.180 0.010 255 / 0.12); --line-strong:oklch(0.180 0.010 255 / 0.22);
+  --accent-tint:oklch(0.180 0.010 255 / 0.05);
+  --crit:oklch(0.520 0.190 25); --imp:oklch(0.600 0.130 78); --opp:oklch(0.520 0.140 152);
+  --t-good:oklch(0.520 0.140 152); --t-mid:oklch(0.600 0.130 78); --t-slow:oklch(0.520 0.190 25);
+}
+*{box-sizing:border-box}
+body{background:var(--ink);color:var(--paper);font-family:var(--sans);margin:0;padding:0;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:40px 28px 80px}
+.vh{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+a{color:inherit}
+code{font-family:var(--mono);font-size:.88em;background:var(--accent-tint);padding:1px 5px;border-radius:4px;color:var(--paper-dim)}
+.mono-label{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+
+.theme-switch{display:flex;justify-content:flex-end;margin-bottom:28px}
+.seg{display:inline-flex;border:1px solid var(--line-strong);border-radius:100px;overflow:hidden}
+.seg label{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:5px 11px;cursor:pointer;user-select:none}
+:root:has(#theme-dark:checked) .theme-switch label[for="theme-dark"],
+:root:has(#theme-light:checked) .theme-switch label[for="theme-light"]{background:color-mix(in oklch,var(--paper) 12%,transparent);color:var(--paper)}
+
+header.hd{border-bottom:1px solid var(--line);padding-bottom:34px;margin-bottom:44px}
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-bottom:18px}
+h1.title{font-family:var(--display);font-size:clamp(30px,5vw,46px);font-weight:700;letter-spacing:-.025em;line-height:1.1;margin:0 0 16px}
+p.lede{font-size:16.5px;color:var(--paper-dim);max-width:66ch;margin:0 0 22px}
+.meta-row{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:24px}
+.stats{display:flex;flex-wrap:wrap;gap:10px}
+.stat{display:inline-flex;align-items:baseline;gap:7px;border:1px solid var(--line-strong);border-radius:8px;padding:8px 14px;text-decoration:none}
+.stat b{font-family:var(--display);font-size:19px;font-weight:700}
+.stat span{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.stat.c b{color:var(--crit)} .stat.i b{color:var(--imp)} .stat.o b{color:var(--opp)}
+
+section{margin-bottom:56px}
+.assessment{border:1px solid var(--line-strong);border-radius:12px;padding:26px 28px;background:var(--surface)}
+.assessment p{font-family:var(--display);font-size:19px;line-height:1.5;margin:12px 0 0;color:var(--paper)}
+h2.sec{font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin:0 0 20px;font-family:var(--mono)}
+
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:500;padding:0 14px 10px 0;border-bottom:1px solid var(--line)}
+td{padding:14px 14px 14px 0;border-bottom:1px solid var(--line);vertical-align:top;color:var(--paper-dim)}
+td:first-child{color:var(--paper)}
+.lens-table tr{transition:border-color .2s ease}
+.chip{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line-strong);border-radius:100px;padding:2px 8px;color:var(--muted);margin-left:8px;white-space:nowrap}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:8px;vertical-align:middle}
+.dot.c{background:var(--crit)} .dot.i{background:var(--imp)} .dot.o{background:var(--opp)}
+
+.timing-grid{display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:start}
+.timing-key{list-style:none;margin:0;padding:0;font-size:13px}
+.timing-key li{display:flex;gap:10px;padding:6px 0;border-bottom:1px solid var(--line);color:var(--paper-dim)}
+.timing-key b{font-family:var(--mono);font-size:11px;color:var(--paper);flex-shrink:0;width:26px}
+.timing-key em{font-family:var(--mono);font-style:normal;font-size:11px;color:var(--muted);margin-left:auto;flex-shrink:0}
+.whats-off{margin-top:24px;border:1px solid var(--line-strong);border-radius:10px;padding:20px 22px;background:var(--surface)}
+.whats-off p{margin:10px 0 0;font-size:14px;color:var(--paper-dim)}
+
+.lens-sec__head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.lens-sec__head h3{font-family:var(--display);font-size:24px;font-weight:700;letter-spacing:-.02em;margin:0}
+.lens-sec__verdict{font-size:15px;color:var(--paper-dim);margin:0 0 28px}
+.lens-block{margin-bottom:30px}
+.lens-block > .mono-label{display:block;margin-bottom:14px}
+.lens-list{list-style:none;margin:0;padding:0;font-size:14.5px}
+.lens-list li{padding:8px 0 8px 26px;position:relative;color:var(--paper-dim);border-bottom:1px solid var(--line)}
+.lens-list li::before{position:absolute;left:0;top:8px}
+.lens-list.good li::before{content:"✓";color:var(--opp)}
+.lens-list.opp li::before{content:"💡";font-size:12px}
+.lens-empty{font-style:italic;color:var(--faint);font-size:14px}
+.lens-take{margin-top:26px;border:1px solid var(--line-strong);border-radius:10px;padding:18px 20px;background:var(--surface);font-size:15px;color:var(--paper)}
+
+.finding-row{display:grid;grid-template-columns:1fr 380px;gap:32px;border:1px solid var(--line-strong);border-radius:12px;padding:24px;margin-bottom:20px;transition:border-color .2s ease}
+.finding-row[data-sev="crit"]{border-color:color-mix(in oklch,var(--crit) 34%,transparent)}
+.finding-row[data-sev="imp"]{border-color:color-mix(in oklch,var(--imp) 30%,transparent)}
+.find-tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;border-radius:100px;padding:3px 9px;border:1px solid var(--line-strong);color:var(--muted)}
+.tag.crit{border-color:var(--crit);color:var(--crit)}
+.tag.imp{border-color:var(--imp);color:var(--imp)}
+h4.find-title{font-family:var(--display);font-size:19px;font-weight:600;letter-spacing:-.015em;margin:0 0 14px;line-height:1.3}
+.find-body p{font-size:14.5px;color:var(--paper-dim);margin:0 0 12px}
+.find-body .label{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:4px}
+.fix{border:1px solid var(--line-strong);border-radius:8px;padding:14px 16px;background:var(--surface);margin:16px 0}
+.fix p{margin:0}
+.find-loc{font-size:12px}
+
+.demo{position:relative}
+.demo__bar{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+.demo__meta{min-width:0}
+.demo__title{display:block;font-size:13.5px;font-weight:600;color:var(--paper);line-height:1.3}
+.demo__timing{display:block;font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:2px;font-variant-numeric:tabular-nums}
+.demo__controls{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.demo__loop{font-family:var(--mono);font-size:12px;color:var(--faint)}
+.demo .seg label{font-size:9.5px;padding:4px 9px}
+.demo input[id$="-a"]:checked ~ .demo__bar .seg label[for$="-a"],
+.demo input[id$="-l"]:checked ~ .demo__bar .seg label[for$="-l"],
+.demo input[id$="-d"]:checked ~ .demo__bar .seg label[for$="-d"]{background:color-mix(in oklch,var(--paper) 12%,transparent);color:var(--paper)}
+.demo__stage{--st-bg:var(--surface-2);--st-fg:var(--paper);--st-line:var(--line-strong);--st-dim:color-mix(in oklch,var(--paper) 55%,transparent);
+  background:var(--st-bg);color:var(--st-fg);border:1px solid var(--line);border-radius:10px;padding:32px 24px;min-height:168px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.demo input[id$="-l"]:checked ~ .demo__stage{--st-bg:oklch(0.985 0.003 255);--st-fg:oklch(0.180 0.006 255);--st-line:oklch(0.180 0.010 255 / 0.18);--st-dim:oklch(0.180 0.010 255 / 0.45)}
+.demo input[id$="-d"]:checked ~ .demo__stage{--st-bg:oklch(0.180 0.006 255);--st-fg:oklch(0.985 0.003 255);--st-line:oklch(0.985 0.010 255 / 0.18);--st-dim:oklch(0.985 0.010 255 / 0.50)}
+.ui-btn{display:inline-flex;align-items:center;justify-content:center;padding:9px 18px;border-radius:8px;background:var(--st-fg);color:var(--st-bg);font-family:var(--sans);font-size:13px;font-weight:600}
+.ui-card{background:var(--st-bg);border:1px solid var(--st-line);border-radius:10px;padding:14px 16px;min-width:190px;box-shadow:0 8px 24px oklch(0 0 0 / .12)}
+.ui-row{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--st-fg)}
+.ui-label{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--st-dim)}
+.ui-bar{width:190px;height:6px;border-radius:100px;background:color-mix(in oklch,var(--st-fg) 16%,transparent);overflow:hidden}
+.ui-bar i{display:block;height:100%;background:var(--st-fg);transform-origin:0 50%}
+.ui-nav{width:200px;border:1px solid var(--st-line);border-radius:100px;padding:8px 16px;background:var(--st-bg);font-size:12px;color:var(--st-fg);text-align:center;box-shadow:0 6px 18px oklch(0 0 0 / .14)}
+
+.tier-label{display:flex;align-items:baseline;gap:12px;margin-bottom:14px}
+.tier-label .mono-label.c{color:var(--crit)} .tier-label .mono-label.i{color:var(--imp)} .tier-label .mono-label.o{color:var(--opp)}
+.tier-count{font-family:var(--mono);font-size:11px;color:var(--faint);margin-left:auto}
+.rec-table{margin-bottom:40px}
+
+.ref-summary{border:1px solid var(--line-strong);border-radius:12px;padding:26px 28px;background:var(--surface)}
+.ref-summary p{font-size:15px;color:var(--paper-dim)}
+.ref-lean{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}
+.ref-lean div{border:1px solid var(--line);border-radius:9px;padding:15px 17px;font-size:13.5px;color:var(--paper-dim)}
+.ref-lean b{display:block;font-family:var(--display);font-size:15px;color:var(--paper);margin-bottom:6px}
+
+footer{border-top:1px solid var(--line);padding-top:22px;font-family:var(--mono);font-size:11px;color:var(--faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+@media(max-width:860px){
+  .finding-row{grid-template-columns:1fr}
+  .timing-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .ref-lean{grid-template-columns:1fr}
+  .lens-table thead{display:none}
+  .lens-table tr{display:block;border:1px solid var(--line);border-radius:9px;padding:14px;margin-bottom:12px}
+  .lens-table td{display:block;border:0;padding:4px 0}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .demo__loop{display:none}
+  [class*="__mt"],[class*="__mt"] *{animation:none !important;transition:none !important}
+}
+
+@media (prefers-reduced-motion: no-preference){
+  /* 1 — reduced-motion: one-shot settle instead of an endless loop */
+  @keyframes m1{
+    0%{opacity:0;transform:translateY(6px)}
+    60%{opacity:1;transform:translateY(0)}
+    100%{opacity:1;transform:translateY(0)}
+  }
+  .demo-1__mt{animation:m1 3s cubic-bezier(0.22,1,0.36,1) infinite}
+
+  /* 2 — gate exit: subtler than the enter, downward and quick */
+  @keyframes m2{
+    0%{opacity:1;transform:scale(1) translateY(0)}
+    60%{opacity:0;transform:scale(0.97) translateY(6px)}
+    100%{opacity:0;transform:scale(0.97) translateY(6px)}
+  }
+  .demo-2__mt{animation:m2 3s cubic-bezier(0.4,0,1,1) infinite;opacity:0;transform:scale(0.97) translateY(6px)}
+
+  /* 3 — nav: translateY instead of top */
+  @keyframes m3{
+    0%{transform:translateY(-22px);opacity:0}
+    60%{transform:translateY(0);opacity:1}
+    100%{transform:translateY(0);opacity:1}
+  }
+  .demo-3__mt{animation:m3 3s cubic-bezier(0.23,1,0.32,1) infinite}
+
+  /* 4 — accordion: grid-template-rows reveal, real height, no max-height guess */
+  @keyframes m4{
+    0%{grid-template-rows:0fr;opacity:0}
+    60%{grid-template-rows:1fr;opacity:1}
+    100%{grid-template-rows:1fr;opacity:1}
+  }
+  .demo-4__mt{display:grid;grid-template-rows:1fr;animation:m4 3s cubic-bezier(0.22,1,0.36,1) infinite;width:210px}
+  .demo-4__mt > div{overflow:hidden}
+
+  /* 5 — explicit properties instead of transition:all */
+  @keyframes m5{
+    0%{border-color:var(--st-line);background:var(--st-bg)}
+    60%{border-color:var(--st-fg);background:color-mix(in oklch,var(--st-fg) 8%,var(--st-bg))}
+    100%{border-color:var(--st-line);background:var(--st-bg)}
+  }
+  .demo-5__mt{animation:m5 3s cubic-bezier(0.22,1,0.36,1) infinite}
+
+  /* 6 — spotlight written straight to style.transform, not a CSS variable */
+  @keyframes m6{
+    0%{transform:translateX(-56px)}
+    60%{transform:translateX(56px)}
+    100%{transform:translateX(56px)}
+  }
+  .demo-6__mt{animation:m6 3s cubic-bezier(0.33,0,0.67,1) infinite;transform:translateX(56px)}
+
+  /* 7 — damped return, no elastic overshoot */
+  @keyframes m7{
+    0%{transform:translate(26px,10px)}
+    60%{transform:translate(0,0)}
+    100%{transform:translate(0,0)}
+  }
+  .demo-7__mt{animation:m7 3s cubic-bezier(0.22,1,0.36,1) infinite}
+
+  /* 8 — progress via scaleX, not width */
+  @keyframes m8{
+    0%{transform:scaleX(0)}
+    60%{transform:scaleX(0.72)}
+    100%{transform:scaleX(0.72)}
+  }
+  .demo-8__mt i{animation:m8 3s cubic-bezier(0.22,1,0.36,1) infinite;transform:scaleX(0.72)}
+}
+</style>
+</head>
+<body>
+<input class="vh" type="radio" name="theme" id="theme-dark" checked>
+<input class="vh" type="radio" name="theme" id="theme-light">
+
+<div class="wrap">
+<div class="theme-switch">
+  <div class="seg"><label for="theme-dark">Dark</label><label for="theme-light">Light</label></div>
+</div>
+
+<header class="hd">
+  <div class="eyebrow">Motion audit · design-motion-principles</div>
+  <h1 class="title">automatisationboost.com — une couche GSAP soignée posée sur une couche CSS qui l'ignore</h1>
+  <p class="lede">Site marketing de lead-generation. Le moteur de motion écrit à la main (GSAP + ScrollTrigger) est nettement au-dessus de la moyenne : matchMedia, cleanup, batching. Le CSS qui l'entoure annule une partie de ce travail.</p>
+  <div class="meta-row">HTML statique · GSAP 3 + ScrollTrigger · 2 086 lignes de CSS · 6 scripts · pas de framework</div>
+  <div class="stats">
+    <a class="stat" href="#rec-crit"><b>8</b><span>Findings</span></a>
+    <a class="stat c" href="#rec-crit"><b>3</b><span>Critical</span></a>
+    <a class="stat i" href="#rec-imp"><b>5</b><span>Important</span></a>
+    <a class="stat o" href="#rec-opp"><b>4</b><span>Opportunities</span></a>
+  </div>
+</header>
+
+<section class="assessment">
+  <div class="mono-label">Overall</div>
+  <p>La couche GSAP est du bon travail : <code>gsap.matchMedia()</code> avec sortie propre sur <code>prefers-reduced-motion</code>, <code>ScrollTrigger.batch</code> plutôt qu'un trigger par carte, listeners nettoyés, <code>clearProps</code> pour rendre la main au CSS. Le problème n'est pas là. Il est dans le CSS, qui fait tourner six animations infinies sans le moindre garde-fou d'accessibilité — un utilisateur qui a coupé les animations dans son OS voit le hero glitcher et le mockup flotter quand même. Et le point qui coûte de l'argent : le gate de capture d'email entre en douceur puis disparaît d'un coup, sans sortie. C'est l'interaction la plus importante du site et c'est la seule qui n'est pas finie.</p>
+</section>
+
+<section>
+  <h2 class="sec">01 · Lens summary</h2>
+  <table class="lens-table">
+    <thead><tr><th>Lens</th><th>Verdict</th><th>Lecture en une ligne</th></tr></thead>
+    <tbody>
+      <tr><td>Jakub Krehel<span class="chip">Primary</span></td><td><span class="dot i"></span>Mixed</td><td>L'entrée est travaillée, la sortie est absente — le gate et les boutons magnétiques ont le déséquilibre inversé classique.</td></tr>
+      <tr><td>Jhey Tompkins<span class="chip">Secondary</span></td><td><span class="dot o"></span>Strong</td><td>Le parti pris néon/glitch est assumé et bien exécuté ; il gagnerait à se déclencher une fois plutôt qu'à boucler.</td></tr>
+      <tr><td>Emil Kowalski<span class="chip">Selective</span></td><td><span class="dot c"></span>Problem</td><td>Propriétés de layout animées sur la nav et l'accordéon, variables CSS écrites à chaque mousemove.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2 class="sec">02 · Où tombent les durées</h2>
+  <div class="timing-grid">
+    <svg viewBox="0 0 660 300" width="100%" role="img" aria-label="Diagramme des durées d'animation de 0 à 600ms">
+      <style>
+        .zg{fill:var(--t-good);opacity:.12}.zm{fill:var(--t-mid);opacity:.12}.zs{fill:var(--t-slow);opacity:.12}
+        .zl{font-family:var(--mono);font-size:10px;letter-spacing:.1em;fill:var(--muted)}
+        .ax{stroke:var(--line-strong);stroke-width:1}
+        .tk{font-family:var(--mono);font-size:10px;fill:var(--faint)}
+        .dg{fill:var(--t-good)}.dm{fill:var(--t-mid)}.ds{fill:var(--t-slow)}
+        .dn{fill:none;stroke:var(--muted);stroke-width:1.5;stroke-dasharray:3 3}
+        .dt{font-family:var(--mono);font-size:10px;font-weight:600;fill:var(--ink)}
+        .dtn{font-family:var(--mono);font-size:10px;font-weight:600;fill:var(--muted)}
+      </style>
+      <rect class="zg" x="40" y="30" width="103" height="150"/>
+      <rect class="zg" x="143" y="30" width="103" height="150"/>
+      <rect class="zm" x="246" y="30" width="103" height="150"/>
+      <rect class="zs" x="349" y="30" width="271" height="150"/>
+      <text class="zl" x="46" y="24">INSTANT</text>
+      <text class="zl" x="149" y="24">RESPONSIVE</text>
+      <text class="zl" x="252" y="24">DELIBERATE</text>
+      <text class="zl" x="355" y="24">SLUGGISH</text>
+      <line class="ax" x1="40" y1="180" x2="620" y2="180"/>
+      <text class="tk" x="34" y="198">0</text>
+      <text class="tk" x="130" y="198">100</text>
+      <text class="tk" x="233" y="198">300</text>
+      <text class="tk" x="336" y="198">500</text>
+      <text class="tk" x="590" y="198">1000ms+</text>
+
+      <circle class="dn" cx="40" cy="120" r="13"/><text class="dtn" x="36" y="124">2</text>
+      <circle class="dn" cx="40" cy="86" r="13"/><text class="dtn" x="36" y="90">9</text>
+      <circle class="dg" cx="143" cy="152" r="13"/><text class="dt" x="139" y="156">6</text>
+      <circle class="dm" cx="292" cy="152" r="13"/><text class="dt" x="288" y="156">7</text>
+      <circle class="dm" cx="298" cy="120" r="13"/><text class="dt" x="294" y="124">3</text>
+      <circle class="dm" cx="298" cy="86" r="13"/><text class="dt" x="294" y="90">4</text>
+      <circle class="dm" cx="323" cy="54" r="13"/><text class="dt" x="319" y="58">5</text>
+      <circle class="ds" cx="401" cy="152" r="13"/><text class="dt" x="397" y="156">1</text>
+      <circle class="ds" cx="452" cy="120" r="13"/><text class="dt" x="448" y="124">10</text>
+      <circle class="ds" cx="555" cy="86" r="13"/><text class="dt" x="548" y="90">8</text>
+      <circle class="ds" cx="607" cy="54" r="13"/><text class="dt" x="598" y="58">11</text>
+    </svg>
+    <ul class="timing-key">
+      <li><b>1</b> Reveal cartes (GSAP)<em>600ms</em></li>
+      <li><b>2</b> Sortie du lead gate<em>aucune</em></li>
+      <li><b>3</b> Nav scrolled (<code>top</code>)<em>400ms</em></li>
+      <li><b>4</b> Accordéon FAQ (<code>max-height</code>)<em>400ms</em></li>
+      <li><b>5</b> Balayage bouton primaire<em>450ms</em></li>
+      <li><b>6</b> Hovers génériques<em>200ms</em></li>
+      <li><b>7</b> Entrée du lead gate<em>350ms</em></li>
+      <li><b>8</b> Retour bouton magnétique<em>600ms</em></li>
+      <li><b>9</b> Formulaire → succès<em>aucune</em></li>
+      <li><b>10</b> Hero / section reveals<em>700ms</em></li>
+      <li><b>11</b> <code>progress-fill</code> (<code>width</code>)<em>1000ms</em></li>
+    </ul>
+  </div>
+  <div class="whats-off">
+    <div class="mono-label">Ce qui cloche</div>
+    <p><b>Les deux cercles vides sont le vrai sujet.</b> Ce sont les deux moments du gate de capture — la fermeture et le passage au succès — qui n'ont aucune transition. Sur un site dont l'objectif unique est de récolter des emails, ce sont les deux seules animations qui manquent.</p>
+    <p><b>Le déséquilibre entrée/sortie est inversé partout.</b> Le gate entre en 350ms et sort en 0ms. Le bouton magnétique suit le curseur en 400ms et revient en 600ms élastique. Dans les deux cas, la règle « la sortie est plus discrète que l'entrée » est retournée.</p>
+    <p><b>La zone rouge n'est pas fatale ici.</b> 600–700ms sur des reveals au scroll est un choix défendable pour une landing page (Jakub l'approuverait). En revanche <code>progress-fill</code> à 1000ms en <code>ease</code> par défaut, sur une propriété de layout, cumule les trois problèmes.</p>
+  </div>
+</section>
+
+<section>
+  <div class="lens-sec__head"><h3>Jakub Krehel — Production Polish</h3><span class="chip">Primary</span></div>
+  <p class="lens-sec__verdict"><span class="dot i"></span>Mixed — les entrées sont pensées, les sorties n'existent pas.</p>
+
+  <div class="lens-block">
+    <div class="mono-label">Ce qui fonctionne bien</div>
+    <ul class="lens-list good">
+      <li>Courbes personnalisées plutôt que <code>ease</code> par défaut sur la nav et les cartes — <code>cubic-bezier(0.23, 1, 0.32, 1)</code> — <code>style.css:182, 213</code></li>
+      <li>Hovers systématiquement transitionnés à 200–300ms, jamais de changement sec — <code>style.css</code> (une vingtaine de règles)</li>
+      <li><code>hover:scale</code> réservé aux cartes de pricing, pas saupoudré partout : deux occurrences ciblées, exactement le dosage attendu — <code>style.css:1221, 1224</code></li>
+      <li>Le gate entre depuis <code>scale(0.92)</code> et non <code>scale(0)</code> — le réflexe correct — <code>lead-popup.js:71</code></li>
+      <li><code>ScrollTrigger.batch</code> plutôt qu'un trigger par carte, avec <code>overwrite: true</code> — <code>gsap-motion.js:61, 88</code></li>
+    </ul>
+  </div>
+
+  <div class="lens-block">
+    <div class="mono-label">Problèmes à traiter</div>
+
+    <div class="finding-row" data-sev="crit">
+      <div class="finding-row__prose">
+        <div class="find-tags"><span class="tag crit">Critical</span><span class="tag">Jakub</span><span class="tag">Emil</span></div>
+        <h4 class="find-title">Le lead gate n'a pas de sortie, et le passage au succès est un saut</h4>
+        <div class="find-body">
+          <p><span class="label">Quoi</span>Le gate entre avec <code>abPopIn .35s</code>, correctement construit. Mais <code>close()</code> fait <code>overlay.style.display = 'none'</code> : disparition instantanée. Et à la soumission, <code>leadForm</code> passe en <code>display:none</code> pendant que <code>leadSuccess</code> passe en <code>display:block</code> — un remplacement sec, sans fondu, sur un conteneur dont la hauteur change.</p>
+          <p><span class="label">Pourquoi ça compte</span>C'est l'interaction la plus rentable du site : tout le reste existe pour amener ici. L'utilisateur vient de donner son email, et la récompense visuelle est un à-coup. Le <code>setTimeout(close, 2200)</code> qui suit fait ensuite disparaître le tout d'un claquement. Trois moments de suite qui ne sont pas finis, au seul endroit où la finition se convertit en revenu.</p>
+          <div class="fix"><p><span class="label">Motion recommandée</span>Sortie plus discrète que l'entrée : <code>opacity 0</code> + <code>scale(0.97)</code> + <code>translateY(6px)</code> sur 200ms en <code>cubic-bezier(0.4, 0, 1, 1)</code>, puis <code>display:none</code> à la fin via <code>transitionend</code>. Pour le passage au succès : crossfade de 180ms sur les deux blocs superposés en grid, en animant la hauteur du conteneur avec <code>grid-template-rows</code>.</p></div>
+          <p class="find-loc"><code>assets/js/lead-popup.js:34, 102, 106-109, 165-166</code></p>
+        </div>
+      </div>
+      <div class="demo">
+        <input class="vh" type="radio" name="st2" id="st2-a" checked><input class="vh" type="radio" name="st2" id="st2-l"><input class="vh" type="radio" name="st2" id="st2-d">
+        <div class="demo__bar">
+          <div class="demo__meta"><span class="demo__title">Sortie du gate (plus discrète que l'entrée)</span><span class="demo__timing">200ms · cubic-bezier(0.4, 0, 1, 1)</span></div>
+          <div class="demo__controls"><div class="seg"><label for="st2-a">Auto</label><label for="st2-l">Light</label><label for="st2-d">Dark</label></div><span class="demo__loop">↻</span></div>
+        </div>
+        <div class="demo__stage">
+          <div class="demo-2__mt"><div class="ui-card"><div class="ui-label" style="margin-bottom:6px">Accès gratuit</div><div class="ui-row">Débloquer la ressource</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="finding-row" data-sev="imp">
+      <div class="finding-row__prose">
+        <div class="find-tags"><span class="tag imp">Important</span><span class="tag">Jakub</span></div>
+        <h4 class="find-title">Le retour des boutons magnétiques est plus voyant que leur aller</h4>
+        <div class="find-body">
+          <p><span class="label">Quoi</span>Le suivi du curseur se fait en 400ms <code>power3.out</code>. Le retour au repos, lui, est en 600ms <code>elastic.out(1, 0.4)</code> — plus long, et avec un rebond. La sortie est donc plus longue et plus spectaculaire que l'entrée.</p>
+          <p><span class="label">Pourquoi ça compte</span>C'est la règle entrée/sortie exactement à l'envers. Pire, ces boutons sont <code>.btn-primary</code>, <code>.btn-secondary</code> et <code>.nav-cta</code> : les éléments qu'on survole le plus souvent. Un rebond élastique passe bien la première fois et devient agaçant à la dixième. Sur un CTA, le rebond suggère aussi que le bouton n'a pas fini de se poser au moment où l'on veut cliquer.</p>
+          <div class="fix"><p><span class="label">Motion recommandée</span>Retour amorti sans dépassement : <code>duration: 0.35</code> avec <code>power2.out</code>. Le mouvement s'arrête net à la position de repos. Garder l'élastique uniquement si tu le veux comme signature de marque — mais alors sur un seul bouton, pas sur toute la nav.</p></div>
+          <p class="find-loc"><code>assets/js/gsap-motion.js:138, 140</code></p>
+        </div>
+      </div>
+      <div class="demo">
+        <input class="vh" type="radio" name="st7" id="st7-a" checked><input class="vh" type="radio" name="st7" id="st7-l"><input class="vh" type="radio" name="st7" id="st7-d">
+        <div class="demo__bar">
+          <div class="demo__meta"><span class="demo__title">Retour amorti, sans rebond</span><span class="demo__timing">350ms · power2.out</span></div>
+          <div class="demo__controls"><div class="seg"><label for="st7-a">Auto</label><label for="st7-l">Light</label><label for="st7-d">Dark</label></div><span class="demo__loop">↻</span></div>
+        </div>
+        <div class="demo__stage"><div class="demo-7__mt"><span class="ui-btn">Réserver un appel</span></div></div>
+      </div>
+    </div>
+
+    <div class="finding-row" data-sev="imp">
+      <div class="finding-row__prose">
+        <div class="find-tags"><span class="tag imp">Important</span><span class="tag">Jakub</span><span class="tag">Emil</span></div>
+        <h4 class="find-title"><code>transition: all</code> sur seize sélecteurs</h4>
+        <div class="find-body">
+          <p><span class="label">Quoi</span>Seize règles déclarent <code>transition: all</code>. Chacune anime donc toute propriété qui change sur cet élément — y compris celles ajoutées plus tard par quelqu'un qui ne saura pas que la transition existait.</p>
+          <p><span class="label">Pourquoi ça compte</span>Deux effets. D'abord la performance : si une règle de hover modifie un <code>padding</code> ou une <code>width</code>, <code>all</code> l'anime et déclenche un layout à chaque frame, sans que rien dans le code ne le signale. Ensuite la maintenance : impossible de savoir en lisant la règle ce qui bouge réellement. C'est aussi ce qui rend une base CSS de 2 000 lignes progressivement impossible à ajuster finement.</p>
+          <div class="fix"><p><span class="label">Motion recommandée</span>Lister les propriétés : <code>transition: background-color .2s ease, border-color .2s ease, transform .2s ease</code>. Le gain est autant en lisibilité qu'en performance — et ça verrouille le comportement contre les modifications futures.</p></div>
+          <p class="find-loc"><code>assets/css/style.css</code> — 16 occurrences, dont <code>:213, 235, 282, 347</code></p>
+        </div>
+      </div>
+      <div class="demo">
+        <input class="vh" type="radio" name="st5" id="st5-a" checked><input class="vh" type="radio" name="st5" id="st5-l"><input class="vh" type="radio" name="st5" id="st5-d">
+        <div class="demo__bar">
+          <div class="demo__meta"><span class="demo__title">Propriétés explicites uniquement</span><span class="demo__timing">200ms · ease</span></div>
+          <div class="demo__controls"><div class="seg"><label for="st5-a">Auto</label><label for="st5-l">Light</label><label for="st5-d">Dark</label></div><span class="demo__loop">↻</span></div>
+        </div>
+        <div class="demo__stage"><div class="demo-5__mt ui-card"><div class="ui-label" style="margin-bottom:6px">Feature</div><div class="ui-row">border-color + background</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lens-block">
+    <div class="mono-label">Opportunités</div>
+    <ul class="lens-list opp">
+      <li>Aucun retour au clic : ajouter <code>:active { transform: scale(0.97) }</code> sur les boutons donne une sensation de solidité pour trois lignes de CSS — <code>style.css</code>, règles <code>.btn-*</code></li>
+      <li>Le balayage doré <code>.gold-shine</code> déclenché au scroll est le meilleur détail du site ; il mériterait d'être réutilisé sur le CTA final plutôt que réservé aux titres de section — <code>style.css:153</code></li>
+    </ul>
+  </div>
+
+  <div class="lens-take"><b>Through Jakub's lens:</b> le site sait faire entrer les choses et ne sait pas les faire sortir. Corriger les deux sorties du lead gate et calmer le retour des boutons magnétiques suffirait à faire passer l'ensemble de « bien animé » à « fini » — ce sont trois interventions localisées, pas une refonte.</div>
+</section>
+
+<section>
+  <div class="lens-sec__head"><h3>Jhey Tompkins — Experimentation &amp; Delight</h3><span class="chip">Secondary</span></div>
+  <p class="lens-sec__verdict"><span class="dot o"></span>Strong — le parti pris créatif est réel et tenu, il lui manque juste de savoir s'arrêter.</p>
+
+  <div class="lens-block">
+    <div class="mono-label">Ce qui fonctionne bien</div>
+    <ul class="lens-list good">
+      <li>Le glitch sur la dernière ligne du hero est construit à la main en <code>::before</code>/<code>::after</code> — pas une librairie importée, du vrai travail CSS — <code>style.css:1908-1926</code></li>
+      <li>Le spotlight au curseur sur les cartes est un effet ambitieux, correctement pensé en <code>radial-gradient</code> piloté par des coordonnées — <code>gsap-motion.js:153-162</code></li>
+      <li>Le balayage lumineux du bouton primaire via <code>::before</code> et <code>left</code> remis à zéro sans transition avant relance : le détail qui évite le retour en arrière visible — <code>style.css:1945-1950</code></li>
+      <li>Le typewriter et le feed auto-cyclant donnent au hero une vie qu'une landing page statique n'a pas — <code>main.js:137-176</code></li>
+    </ul>
+  </div>
+
+  <div class="lens-block">
+    <div class="mono-label">Problèmes à traiter</div>
+    <p class="lens-empty">Aucun problème propre à cette perspective — les findings qui touchent aux effets créatifs sont traités sous l'angle accessibilité (Emil) et sortie (Jakub).</p>
+  </div>
+
+  <div class="lens-block">
+    <div class="mono-label">Opportunités</div>
+    <ul class="lens-list opp">
+      <li><b>Le glitch mériterait de se déclencher une fois, pas en boucle.</b> Un glitch de 6s qui tourne indéfiniment sur un titre devient un bruit de fond ; le même glitch joué une seule fois à l'entrée du hero est un effet. Le déclencher depuis la timeline GSAP existante, puis retirer la classe — <code>style.css:1908</code></li>
+      <li><b>Idem pour la flèche qui rebondit.</b> <code>bounce 2s infinite</code> sur <code>.solution-arrow</code> est le pattern « regarde-moi » classique. Un seul rebond au moment où la section entre dans le viewport dit la même chose et respecte davantage le lecteur — <code>style.css:797</code></li>
+      <li>Le spotlight ne tourne que sur desktop et se perd au tactile : une version tap-to-reveal sur mobile récupérerait l'effet là où se trouve la majorité du trafic social — <code>gsap-motion.js:106</code></li>
+      <li>Les animations en boucle n'ont pas de mécanisme de pause ; une classe <code>.motion-paused</code> sur <code>body</code> pilotée par un petit bouton rendrait le site contrôlable sans toucher aux réglages OS</li>
+    </ul>
+  </div>
+
+  <div class="lens-take"><b>Through Jhey's lens:</b> l'identité visuelle est là et elle est faite main, ce qui est rare. Le vrai levier n'est pas d'en ajouter mais de transformer les boucles en événements — un glitch qui arrive une fois frappe plus fort qu'un glitch qui n'arrête jamais.</div>
+</section>
+
+<section>
+  <div class="lens-sec__head"><h3>Emil Kowalski — Restraint &amp; Speed</h3><span class="chip">Selective</span></div>
+  <p class="lens-sec__verdict"><span class="dot c"></span>Problem — propriétés de layout animées et écritures CSS à haute fréquence.</p>
+
+  <div class="lens-block">
+    <div class="mono-label">Ce qui fonctionne bien</div>
+    <ul class="lens-list good">
+      <li><code>gsap.matchMedia()</code> avec sortie anticipée sur <code>reduce</code> et cleanup automatique : la manière correcte de gérer l'accessibilité en JS — <code>gsap-motion.js:15-26</code></li>
+      <li>Les listeners de souris sont retirés dans le <code>cleanups</code> retourné, pas laissés attachés — <code>gsap-motion.js:143-147, 161</code></li>
+      <li>Les flourishes coûteux (parallax, magnétique, spotlight) sont conditionnés à <code>min-width: 768px</code> : le mobile ne paie pas pour des effets qu'il ne peut pas déclencher — <code>gsap-motion.js:106</code></li>
+    </ul>
+  </div>
+
+  <div class="lens-block">
+    <div class="mono-label">Problèmes à traiter</div>
+
+    <div class="finding-row" data-sev="crit">
+      <div class="finding-row__prose">
+        <div class="find-tags"><span class="tag crit">Critical</span><span class="tag">Emil</span><span class="tag">Jakub</span></div>
+        <h4 class="find-title">Le CSS ignore totalement <code>prefers-reduced-motion</code> — six boucles infinies tournent quoi qu'il arrive</h4>
+        <div class="find-body">
+          <p><span class="label">Quoi</span>Un seul garde-fou existe dans 2 086 lignes de CSS, sur <code>.gold-shine</code>. À côté, six animations tournent en <code>infinite</code> sans aucune condition : <code>pulse 2s</code> sur le badge du hero et sur le point de statut, <code>float 6s</code> sur le mockup de dashboard, <code>bounce 2s</code> sur la flèche, et deux <code>glitch 6s</code> sur le titre du hero. Le typewriter et le feed auto-cyclant en JS sont dans le même cas.</p>
+          <p><span class="label">Pourquoi ça compte</span>C'est une régression d'accessibilité, et elle est d'autant plus frustrante que la couche GSAP fait exactement ce qu'il faut juste à côté. Un utilisateur qui a activé « réduire les animations » — souvent pour des raisons vestibulaires, migraine ou trouble de l'attention — voit son réglage respecté par les reveals au scroll, puis contredit par un titre qui glitche et un mockup qui flotte en permanence. Le <code>float</code> et le parallax sont précisément les mouvements que ce réglage existe pour supprimer. Deux <code>pulse</code> sur des indicateurs de statut tombent en plus dans le pattern « pulsing indicator » : boucle d'attention sans information nouvelle.</p>
+          <div class="fix"><p><span class="label">Motion recommandée</span>Envelopper toutes les boucles décoratives dans <code>@media (prefers-reduced-motion: no-preference)</code> — l'inverse du réflexe habituel, mais c'est la forme qui échoue du bon côté. Puis, indépendamment du réglage, convertir <code>glitch</code> et <code>bounce</code> en déclenchements uniques pilotés par la timeline GSAP existante, et supprimer les deux <code>pulse</code> : un point de statut coloré dit « en ligne » sans clignoter.</p></div>
+          <p class="find-loc"><code>assets/css/style.css:433, 572, 628, 797, 1908, 1914</code> · <code>assets/js/main.js:137, 174</code></p>
+        </div>
+      </div>
+      <div class="demo">
+        <input class="vh" type="radio" name="st1" id="st1-a" checked><input class="vh" type="radio" name="st1" id="st1-l"><input class="vh" type="radio" name="st1" id="st1-d">
+        <div class="demo__bar">
+          <div class="demo__meta"><span class="demo__title">Déclenchement unique, puis repos</span><span class="demo__timing">400ms · ease-out-quint</span></div>
+          <div class="demo__controls"><div class="seg"><label for="st1-a">Auto</label><label for="st1-l">Light</label><label for="st1-d">Dark</label></div><span class="demo__loop">↻</span></div>
+        </div>
+        <div class="demo__stage"><div class="demo-1__mt"><div class="ui-card"><div class="ui-label" style="margin-bottom:6px">Statut</div><div class="ui-row">Système actif — sans clignotement</div></div></div></div>
+      </div>
+    </div>
+
+    <div class="finding-row" data-sev="crit">
+      <div class="finding-row__prose">
+        <div class="find-tags"><span class="tag crit">Critical</span><span class="tag">Emil</span></div>
+        <h4 class="find-title">La nav anime <code>top</code> — une propriété de layout, à chaque scroll</h4>
+        <div class="find-body">
+          <p><span class="label">Quoi</span><code>nav</code> déclare <code>transition: top 0.4s cubic-bezier(0.23, 1, 0.32, 1)</code>, et <code>main.js</code> bascule la classe <code>.scrolled</code> dès que <code>scrollY > 50</code>. La nav est en <code>position: fixed</code> avec <code>left: 50%</code> et une <code>max-width</code> calculée.</p>
+          <p><span class="label">Pourquoi ça compte</span><code>top</code> déclenche layout puis paint puis composite, à chaque frame des 400ms — contre un simple composite si on animait <code>transform</code>. Et c'est déclenché par le scroll, l'interaction la plus fréquente qui soit : sur mobile milieu de gamme c'est exactement le profil qui produit un scroll qui accroche. La courbe choisie est bonne ; c'est la propriété qui ne l'est pas.</p>
+          <div class="fix"><p><span class="label">Motion recommandée</span>Fixer <code>top</code> à sa valeur finale et animer <code>transform: translateY()</code> à la place, en fusionnant avec le <code>translateX(-50%)</code> qu'impose déjà <code>left: 50%</code>. Durée à descendre vers 250ms : c'est une réaction au scroll, elle doit suivre le geste.</p></div>
+          <p class="find-loc"><code>assets/css/style.css:182</code> · <code>assets/js/main.js:8</code></p>
+        </div>
+      </div>
+      <div class="demo">
+        <input class="vh" type="radio" name="st3" id="st3-a" checked><input class="vh" type="radio" name="st3" id="st3-l"><input class="vh" type="radio" name="st3" id="st3-d">
+        <div class="demo__bar">
+          <div class="demo__meta"><span class="demo__title">translateY au lieu de top</span><span class="demo__timing">250ms · cubic-bezier(0.23, 1, 0.32, 1)</span></div>
+          <div class="demo__controls"><div class="seg"><label for="st3-a">Auto</label><label for="st3-l">Light</label><label for="st3-d">Dark</label></div><span class="demo__loop">↻</span></div>
+        </div>
+        <div class="demo__stage"><div class="demo-3__mt"><div class="ui-nav">automatisationboost</div></div></div>
+      </div>
+    </div>
+
+    <div class="finding-row" data-sev="imp">
+      <div class="finding-row__prose">
+        <div class="find-tags"><span class="tag imp">Important</span><span class="tag">Emil</span></div>
+        <h4 class="find-title">L'accordéon FAQ anime <code>max-height</code></h4>
+        <div class="find-body">
+          <p><span class="label">Quoi</span><code>.faq-answer</code> passe de <code>max-height: 0</code> à une valeur fixe via <code>transition: max-height 0.4s ease, padding 0.3s ease</code>. Deux propriétés de layout animées ensemble, avec des durées différentes.</p>
+          <p><span class="label">Pourquoi ça compte</span>Le problème classique du <code>max-height</code> : la valeur cible est forcément surdimensionnée par rapport à la hauteur réelle du contenu, donc la courbe s'applique à une distance qui n'est pas celle qu'on voit. Résultat, l'ouverture paraît rapide puis traîne, et la fermeture démarre en apparence en retard — l'easing déclaré n'est pas l'easing perçu. Les durées désynchronisées (400ms / 300ms) font en plus que le padding finit avant la hauteur.</p>
+          <div class="fix"><p><span class="label">Motion recommandée</span><code>grid-template-rows: 0fr → 1fr</code> avec l'enfant en <code>overflow: hidden</code> : la hauteur réelle est interpolée, la courbe correspond enfin au mouvement vu. Une seule durée de 300ms en <code>ease-out</code> pour la hauteur et le padding.</p></div>
+          <p class="find-loc"><code>assets/css/style.css:1458</code></p>
+        </div>
+      </div>
+      <div class="demo">
+        <input class="vh" type="radio" name="st4" id="st4-a" checked><input class="vh" type="radio" name="st4" id="st4-l"><input class="vh" type="radio" name="st4" id="st4-d">
+        <div class="demo__bar">
+          <div class="demo__meta"><span class="demo__title">grid-template-rows 0fr → 1fr</span><span class="demo__timing">300ms · ease-out-quint</span></div>
+          <div class="demo__controls"><div class="seg"><label for="st4-a">Auto</label><label for="st4-l">Light</label><label for="st4-d">Dark</label></div><span class="demo__loop">↻</span></div>
+        </div>
+        <div class="demo__stage"><div class="demo-4__mt"><div><div class="ui-card"><div class="ui-label" style="margin-bottom:6px">Réponse</div><div class="ui-row">Hauteur réelle interpolée</div></div></div></div></div>
+      </div>
+    </div>
+
+    <div class="finding-row" data-sev="imp">
+      <div class="finding-row__prose">
+        <div class="find-tags"><span class="tag imp">Important</span><span class="tag">Emil</span></div>
+        <h4 class="find-title">Le spotlight écrit deux propriétés CSS personnalisées à chaque <code>mousemove</code></h4>
+        <div class="find-body">
+          <p><span class="label">Quoi</span>Pour chaque carte concernée, un listener <code>mousemove</code> non throttlé appelle <code>card.style.setProperty('--mx', ...)</code> et <code>('--my', ...)</code>, consommés ensuite par un <code>radial-gradient</code> en <code>::after</code>. Un <code>getBoundingClientRect()</code> est aussi appelé à chaque événement.</p>
+          <p><span class="label">Pourquoi ça compte</span>Modifier une propriété personnalisée invalide le style de l'élément et de ses descendants — c'est plus coûteux qu'une écriture directe, précisément parce que le moteur doit reconsidérer la cascade. À la fréquence du <code>mousemove</code> (jusqu'à 120 Hz sur un écran moderne), sur plusieurs cartes, avec un <code>getBoundingClientRect()</code> qui force un reflow synchrone à chaque passage, c'est le pire endroit pour ce pattern. Le gradient repeint en plus une grande surface.</p>
+          <div class="fix"><p><span class="label">Motion recommandée</span>Mesurer le rect une fois à l'entrée (<code>mouseenter</code>) et non à chaque mouvement, puis regrouper les écritures dans un <code>requestAnimationFrame</code> pour n'appliquer qu'une mise à jour par frame. Si le halo peut être un élément positionné plutôt qu'un gradient, écrire directement <code>el.style.transform</code> évite complètement le recalcul de cascade.</p></div>
+          <p class="find-loc"><code>assets/js/gsap-motion.js:155-160</code></p>
+        </div>
+      </div>
+      <div class="demo">
+        <input class="vh" type="radio" name="st6" id="st6-a" checked><input class="vh" type="radio" name="st6" id="st6-l"><input class="vh" type="radio" name="st6" id="st6-d">
+        <div class="demo__bar">
+          <div class="demo__meta"><span class="demo__title">transform direct, une écriture par frame</span><span class="demo__timing">rAF · composite only</span></div>
+          <div class="demo__controls"><div class="seg"><label for="st6-a">Auto</label><label for="st6-l">Light</label><label for="st6-d">Dark</label></div><span class="demo__loop">↻</span></div>
+        </div>
+        <div class="demo__stage"><div class="ui-card" style="position:relative;overflow:hidden"><div class="ui-label" style="margin-bottom:6px">Feature</div><div class="ui-row">Halo suivi du curseur</div><div class="demo-6__mt" style="position:absolute;inset:-40% auto;width:90px;background:color-mix(in oklch,var(--st-fg) 14%,transparent);filter:blur(18px)"></div></div></div>
+      </div>
+    </div>
+
+    <div class="finding-row" data-sev="imp">
+      <div class="finding-row__prose">
+        <div class="find-tags"><span class="tag imp">Important</span><span class="tag">Emil</span></div>
+        <h4 class="find-title"><code>.progress-fill</code> cumule les trois erreurs : <code>width</code>, 1 seconde, <code>ease</code> par défaut</h4>
+        <div class="find-body">
+          <p><span class="label">Quoi</span><code>transition: width 1s ease</code>. Propriété de layout, durée la plus longue du site, et courbe par défaut.</p>
+          <p><span class="label">Pourquoi ça compte</span>Une barre de progression doit refléter un état ; à 1 seconde, elle affiche systématiquement une valeur périmée. <code>width</code> relayoute son conteneur à chaque frame alors que <code>transform: scaleX()</code> ne coûte qu'un composite. Et <code>ease</code> par défaut est mou aux deux extrémités — c'est justement la courbe que le reste du site a pris soin de remplacer par des Bézier personnalisées ailleurs.</p>
+          <div class="fix"><p><span class="label">Motion recommandée</span><code>transform: scaleX()</code> avec <code>transform-origin: 0 50%</code>, sur 400ms en <code>cubic-bezier(0.22, 1, 0.36, 1)</code>. Le remplissage démarre immédiatement et décélère vers sa cible.</p></div>
+          <p class="find-loc"><code>assets/css/style.css:1400</code></p>
+        </div>
+      </div>
+      <div class="demo">
+        <input class="vh" type="radio" name="st8" id="st8-a" checked><input class="vh" type="radio" name="st8" id="st8-l"><input class="vh" type="radio" name="st8" id="st8-d">
+        <div class="demo__bar">
+          <div class="demo__meta"><span class="demo__title">scaleX au lieu de width</span><span class="demo__timing">400ms · cubic-bezier(0.22, 1, 0.36, 1)</span></div>
+          <div class="demo__controls"><div class="seg"><label for="st8-a">Auto</label><label for="st8-l">Light</label><label for="st8-d">Dark</label></div><span class="demo__loop">↻</span></div>
+        </div>
+        <div class="demo__stage"><div class="demo-8__mt"><div class="ui-label" style="margin-bottom:10px">Progression</div><div class="ui-bar"><i></i></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lens-block">
+    <div class="mono-label">Opportunités</div>
+    <ul class="lens-list opp">
+      <li>La barre de progression de scroll est créée en JS et injectée dans le DOM ; une <code>animation-timeline: scroll()</code> en CSS ferait la même chose sans JS et sans ScrollTrigger — <code>gsap-motion.js:43-54</code></li>
+    </ul>
+  </div>
+
+  <div class="lens-take"><b>Through Emil's lens:</b> le JS est discipliné, le CSS ne l'est pas. Trois propriétés à changer — <code>top</code> → <code>transform</code>, <code>max-height</code> → <code>grid-template-rows</code>, <code>width</code> → <code>scaleX</code> — enlèvent l'essentiel du coût de layout du site sans toucher à une seule intention de design.</div>
+</section>
+
+<section>
+  <h2 class="sec">06 · Recommandations</h2>
+
+  <div class="rec-table" id="rec-crit">
+    <div class="tier-label"><span class="mono-label c">Critical · must fix</span><span class="tier-count">3</span></div>
+    <table>
+      <thead><tr><th style="width:34%">Problème</th><th style="width:26%">Fichier</th><th>Correction</th></tr></thead>
+      <tbody>
+        <tr><td>Aucun <code>prefers-reduced-motion</code> en CSS, 6 boucles infinies</td><td><code>style.css:433,572,628,797,1908,1914</code></td><td>Envelopper dans <code>@media (prefers-reduced-motion: no-preference)</code> ; supprimer les 2 <code>pulse</code> ; passer glitch et bounce en one-shot</td></tr>
+        <tr><td>Lead gate sans sortie + saut formulaire → succès</td><td><code>lead-popup.js:102,106-109,165-166</code></td><td>Sortie 200ms plus discrète que l'entrée ; crossfade 180ms avec hauteur en <code>grid-template-rows</code></td></tr>
+        <tr><td>La nav anime <code>top</code> à chaque scroll</td><td><code>style.css:182</code></td><td><code>transform: translateY()</code>, 250ms, en fusionnant le <code>translateX(-50%)</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="rec-table" id="rec-imp">
+    <div class="tier-label"><span class="mono-label i">Important · should fix</span><span class="tier-count">5</span></div>
+    <table>
+      <thead><tr><th style="width:34%">Problème</th><th style="width:26%">Fichier</th><th>Correction</th></tr></thead>
+      <tbody>
+        <tr><td>Accordéon FAQ en <code>max-height</code></td><td><code>style.css:1458</code></td><td><code>grid-template-rows: 0fr → 1fr</code>, 300ms, une seule durée</td></tr>
+        <tr><td>Spotlight : variables CSS écrites à chaque <code>mousemove</code></td><td><code>gsap-motion.js:155-160</code></td><td>Rect mesuré au <code>mouseenter</code>, écritures groupées en <code>requestAnimationFrame</code></td></tr>
+        <tr><td>Retour élastique des boutons plus voyant que l'aller</td><td><code>gsap-motion.js:138,140</code></td><td><code>power2.out</code> 350ms, sans dépassement</td></tr>
+        <tr><td><code>transition: all</code> ×16</td><td><code>style.css</code> (16 règles)</td><td>Lister les propriétés réellement animées</td></tr>
+        <tr><td><code>progress-fill</code> : <code>width</code> + 1s + <code>ease</code></td><td><code>style.css:1400</code></td><td><code>scaleX()</code> 400ms en Bézier personnalisée</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="rec-table" id="rec-opp">
+    <div class="tier-label"><span class="mono-label o">Opportunities · could enhance</span><span class="tier-count">4</span></div>
+    <table>
+      <thead><tr><th style="width:34%">Amélioration</th><th style="width:26%">Où</th><th>Impact</th></tr></thead>
+      <tbody>
+        <tr><td>Glitch et bounce en déclenchement unique</td><td><code>style.css:797,1908</code></td><td>L'effet reprend de la force et cesse d'être un bruit de fond</td></tr>
+        <tr><td><code>:active { transform: scale(0.97) }</code> sur les boutons</td><td><code>style.css</code>, règles <code>.btn-*</code></td><td>Retour tactile immédiat, trois lignes de CSS</td></tr>
+        <tr><td>Spotlight en version tap-to-reveal sur mobile</td><td><code>gsap-motion.js:106</code></td><td>Récupère l'effet là où arrive le trafic social</td></tr>
+        <tr><td>Barre de scroll en <code>animation-timeline: scroll()</code></td><td><code>gsap-motion.js:43-54</code></td><td>Supprime un élément injecté et un ScrollTrigger</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec">07 · Lens reference summary</h2>
+  <div class="ref-summary">
+    <p><b>Perspective la plus mobilisée : Emil Kowalski — Restraint &amp; Speed.</b> C'est inattendu pour une landing page, où Jakub domine normalement. La raison est que les problèmes réels du site ne sont pas des problèmes de goût : ce sont trois propriétés de layout animées et une écriture CSS à haute fréquence. Des faits mesurables, pas des arbitrages esthétiques. Le parti pris visuel, lui, tient parfaitement la route.</p>
+    <div class="ref-lean">
+      <div><b>Suivre Emil plus strictement</b>Descendre les reveals au scroll de 600–700ms vers 300ms, supprimer les boutons magnétiques et le spotlight, retirer le glitch. Le site gagnerait en vitesse perçue et perdrait son identité — arbitrage réel, à trancher selon ce que tu veux que la page dise.</div>
+      <div><b>Suivre Jakub plus strictement</b>Traiter chaque sortie comme une entrée : gate, menu mobile, messages du feed. Ajouter le retour au clic sur tous les éléments interactifs. Harmoniser les durées sur une échelle unique (150 / 250 / 400ms) au lieu des sept valeurs actuelles.</div>
+      <div><b>Suivre Jhey plus strictement</b>Garder le glitch mais le rendre réactif — au survol du titre, ou piloté par la position de scroll. Étendre le balayage doré aux CTA. Construire le spotlight en version tactile.</div>
+      <div><b>Le compromis recommandé</b>Corriger les 3 Critical (accessibilité + gate + nav) sans toucher au design, puis les 5 Important qui sont tous des substitutions de propriété à rendu identique. Les Opportunities sont du confort, pas de l'urgence.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>automationboost · motion audit · 2026-07-19</span>
+  <span>3 critical · 5 important · 4 opportunities</span>
+</footer>
+</div>
+</body>
+</html>

@@ -137,7 +137,9 @@
             const my = e.clientY - r.top - r.height / 2;
             gsap.to(btn, { x: mx * 0.25, y: my * 0.4, duration: 0.4, ease: 'power3.out' });
           };
-          const leave = () => gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1,0.4)' });
+          // Damped return, no overshoot: the exit must not be louder than the
+          // entrance, and an elastic wobble on a CTA reads as "not settled yet".
+          const leave = () => gsap.to(btn, { x: 0, y: 0, duration: 0.35, ease: 'power2.out' });
           btn.addEventListener('mousemove', move);
           btn.addEventListener('mouseleave', leave);
           cleanups.push(() => {
@@ -152,13 +154,38 @@
         // card's ::after radial-gradient in style.css.
         const spotlightCards = gsap.utils.toArray('.feature-card, .pricing-card, .testi-card');
         spotlightCards.forEach((card) => {
+          // Measure once on enter instead of on every move: getBoundingClientRect
+          // forces a synchronous reflow, and mousemove can fire at 120Hz.
+          let rect = null;
+          let frame = 0;
+          let px = 0;
+          let py = 0;
+
+          const enter = () => { rect = card.getBoundingClientRect(); };
           const move = (e) => {
-            const r = card.getBoundingClientRect();
-            card.style.setProperty('--mx', `${e.clientX - r.left}px`);
-            card.style.setProperty('--my', `${e.clientY - r.top}px`);
+            if (!rect) rect = card.getBoundingClientRect();
+            px = e.clientX - rect.left;
+            py = e.clientY - rect.top;
+            // Coalesce to one write per frame — setting a custom property
+            // invalidates style for the element and its subtree.
+            if (frame) return;
+            frame = requestAnimationFrame(() => {
+              frame = 0;
+              card.style.setProperty('--mx', `${px}px`);
+              card.style.setProperty('--my', `${py}px`);
+            });
           };
+          const leave = () => { rect = null; };
+
+          card.addEventListener('mouseenter', enter);
           card.addEventListener('mousemove', move);
-          cleanups.push(() => card.removeEventListener('mousemove', move));
+          card.addEventListener('mouseleave', leave);
+          cleanups.push(() => {
+            if (frame) cancelAnimationFrame(frame);
+            card.removeEventListener('mouseenter', enter);
+            card.removeEventListener('mousemove', move);
+            card.removeEventListener('mouseleave', leave);
+          });
         });
       }
 

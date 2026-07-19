@@ -31,7 +31,7 @@
   overlay.innerHTML = [
     '<div style="background:#0d0d0d;border:1px solid rgba(234,179,8,0.35);border-radius:16px;',
     'padding:40px 32px;max-width:440px;width:100%;box-shadow:0 0 60px rgba(234,179,8,0.15),0 0 0 1px rgba(234,179,8,0.08);',
-    'text-align:center;position:relative;animation:abPopIn .35s cubic-bezier(0.4,0,0.2,1);">',
+    'text-align:center;position:relative;" id="leadCard" class="ab-card">',
     '<div style="font-size:2.2rem;margin-bottom:12px;">&#9889;</div>',
     '<div style="display:inline-block;background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.25);',
     'color:#eab308;font-family:\'Space Grotesk\',sans-serif;font-size:10px;font-weight:700;padding:4px 12px;',
@@ -41,7 +41,7 @@
     '<span style="color:#eab308;">offerts chaque semaine</span></h2>',
     '<p style="font-family:\'Inter\',sans-serif;font-size:.9rem;color:#71717a;line-height:1.6;margin-bottom:24px;">',
     'Entre ton pr&eacute;nom et ton email pour d&eacute;bloquer cette ressource et recevoir les prochaines en avant-premi&egrave;re.</p>',
-    '<form id="leadForm">',
+    '<form id="leadForm" class="ab-fade">',
     '<input id="leadName" type="text" placeholder="Ton pr&eacute;nom" required minlength="2" autocomplete="given-name" ',
     'style="width:100%;background:#111;border:1px solid #2a2a2a;border-radius:8px;padding:13px 16px;color:#e4e4e7;',
     'font-family:\'Inter\',sans-serif;font-size:.95rem;margin-bottom:10px;outline:none;box-sizing:border-box;" />',
@@ -55,7 +55,7 @@
     'border-radius:8px;cursor:pointer;letter-spacing:.04em;text-transform:uppercase;margin-bottom:12px;">',
     '&#128640; D&eacute;bloquer la ressource</button>',
     '</form>',
-    '<div id="leadSuccess" style="display:none;padding:16px 0;">',
+    '<div id="leadSuccess" class="ab-fade" style="display:none;opacity:0;padding:16px 0;">',
     '<div style="font-size:2rem;margin-bottom:8px;">&#9989;</div>',
     '<p style="font-family:\'Inter\',sans-serif;color:#22c55e;font-weight:600;font-size:.95rem;margin:0 0 16px;">',
     'C\'est parti ! V&eacute;rifie ta bo&icirc;te mail.</p>',
@@ -67,8 +67,21 @@
     '</div>'
   ].join('');
 
+  /* Enter, exit and the form→success swap. The exit is deliberately shorter and
+     smaller than the enter — an exit as loud as its entrance reads as a glitch. */
   var style = document.createElement('style');
-  style.textContent = '@keyframes abPopIn{from{opacity:0;transform:scale(0.92) translateY(16px);}to{opacity:1;transform:scale(1) translateY(0);}}';
+  style.textContent = [
+    '#leadOverlay{opacity:1;transition:opacity .2s ease;}',
+    '#leadOverlay.ab-leaving{opacity:0;}',
+    '.ab-card{transition:opacity .2s ease,transform .2s cubic-bezier(0.4,0,1,1);}',
+    '#leadOverlay.ab-leaving .ab-card{opacity:0;transform:scale(0.97) translateY(6px);}',
+    '.ab-fade{transition:opacity .18s ease;}',
+    '@media (prefers-reduced-motion: no-preference){',
+    '  .ab-card{animation:abPopIn .35s cubic-bezier(0.4,0,0.2,1);}',
+    '  @keyframes abPopIn{from{opacity:0;transform:scale(0.92) translateY(16px);}',
+    '  to{opacity:1;transform:scale(1) translateY(0);}}',
+    '}'
+  ].join('');
 
   document.head.appendChild(style);
   document.body.appendChild(overlay);
@@ -104,8 +117,15 @@
     document.getElementById('leadName').focus();
   }
   function close() {
-    overlay.style.display = 'none';
-    unlockScroll();
+    /* Play the exit, then remove from flow. The timeout is the transition
+       duration plus a small margin, so the gate never gets stuck visible if
+       transitionend does not fire (reduced motion, backgrounded tab). */
+    overlay.classList.add('ab-leaving');
+    setTimeout(function () {
+      overlay.style.display = 'none';
+      overlay.classList.remove('ab-leaving');
+      unlockScroll();
+    }, 220);
   }
 
   show();
@@ -162,9 +182,20 @@
 
     unlocked = true;
     localStorage.setItem(LEAD_KEY, email);
-    document.getElementById('leadForm').style.display = 'none';
-    document.getElementById('leadSuccess').style.display = 'block';
-    document.getElementById('leadClose').focus();
-    setTimeout(close, 2200);
+
+    /* Crossfade rather than swap: the user just handed over their email, and a
+       hard cut is the one moment on the site where polish is worth the most. */
+    var form = document.getElementById('leadForm');
+    var success = document.getElementById('leadSuccess');
+    form.style.opacity = '0';
+    setTimeout(function () {
+      form.style.display = 'none';
+      success.style.display = 'block';
+      /* Next frame, so the browser registers display:block before opacity moves. */
+      requestAnimationFrame(function () { success.style.opacity = '1'; });
+      document.getElementById('leadClose').focus();
+    }, 180);
+
+    setTimeout(close, 2600);
   });
 })();
