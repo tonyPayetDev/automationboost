@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Construire et vendre un agent IA de relances – AutomationBoost</title>
+  <meta name="description" content="Le guide complet pour construire avec n8n et Claude un agent qui relance les devis, les factures et les prospects dormants d'un CRM — architecture, prompts, délivrabilité, cadre CNIL et prix de vente." />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Sora',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Sora',sans-serif;font-size:1rem;font-weight:700;color:var(--gold);margin:28px 0 12px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li { margin-bottom:6px; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto;white-space:pre; }
+    .price-table { width:100%;border-collapse:collapse;margin:20px 0;font-size:15px; }
+    .price-table th { text-align:left;color:var(--gold);font-size:11px;text-transform:uppercase;letter-spacing:.06em;padding:10px 12px;border-bottom:1px solid var(--border); }
+    .price-table td { color:var(--text-light);padding:12px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.6; }
+    .price-table td:last-child { color:var(--text);font-weight:700;white-space:nowrap; }
+    .table-scroll { overflow-x:auto;margin:20px 0; }
+    .source-cta { display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#000;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;padding:14px 28px;border-radius:var(--radius);text-decoration:none;margin-top:40px;transition:all .2s; }
+    .source-cta:hover { background:var(--gold-dark);transform:translateY(-2px); }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+
+    /* Lisibilité lecture longue : Sora (chargée) au lieu d'Orbitron/Rajdhani (jamais chargées) */
+    .page-title, .content-block h2, .content-block h3,
+    article.article-body h2, article.article-body h3 { font-family:'Sora',sans-serif; }
+    .content-block p, .content-block li,
+    article.article-body p, article.article-body li { font-size:17px; line-height:1.75; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Construire et vendre un agent IA de relances",
+    "description": "Le guide complet pour construire avec n8n et Claude un agent qui relance les devis, les factures et les prospects dormants d'un CRM — architecture, prompts, délivrabilité, cadre CNIL et prix de vente.",
+    "url": "https://automatisationboost.com/ressources/agent-ia-relances.html",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://automatisationboost.com/ressources/agent-ia-relances.html"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "url": "https://automatisationboost.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://automatisationboost.com/assets/images/logo.svg"
+      }
+    },
+    "isAccessibleForFree": false,
+    "hasPart": {
+      "@type": "WebPageElement",
+      "isAccessibleForFree": false,
+      "cssSelector": ".content-block"
+    }
+  }
+  </script>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="../" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
+    </div>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
+  </nav>
+</div>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Agent IA de relances
+    </div>
+
+    <div class="page-badge">◈ Guide PDF · 19 pages</div>
+    <h1 class="page-title">Construire et vendre un <span>agent IA de relances</span></h1>
+    <div class="page-meta">
+      <span>n8n + API Claude</span>
+      <span>·</span>
+      <span>CRM, devis &amp; factures</span>
+      <span>·</span>
+      <span>Niveau low-code</span>
+    </div>
+
+    <div class="content-block">
+      <p>Un agent qui relance tout seul les devis sans réponse, les factures échues et les prospects oubliés du CRM. Une V1 se construit en un week-end ; une version vendable à un vrai client demande deux à trois semaines de plus. Le guide complet est en PDF en bas de page — voici ce qu'il contient et les parties que tu peux copier tout de suite.</p>
+
+      <div class="divider"></div>
+
+      <h2>Ce que l'agent fait, concrètement</h2>
+      <ul>
+        <li><strong>Relancer</strong> les devis sans réponse et les factures échues aux bonnes cadences : J+3 (douce), J+10 (ferme), J+30 (escalade humaine)</li>
+        <li><strong>Suivre</strong> chaque dossier — qui a répondu, qui a ouvert, qui a payé — et mettre à jour le CRM sans saisie manuelle</li>
+        <li><strong>Scorer</strong> les prospects dormants avec Claude et sortir chaque lundi le top 10 à recontacter, avec un message déjà rédigé</li>
+        <li><strong>Rapporter</strong> au dirigeant chaque matin en quatre lignes : ce qui est parti, ce qui a bougé, ce qui demande une action</li>
+      </ul>
+
+      <h2>L'architecture en cinq briques</h2>
+      <p>Chaque brique est un workflow n8n séparé. Plus simple à construire, à débugger, à expliquer au client — et à facturer par module.</p>
+      <div class="code-block">Brique 0 · en continu     → délivrabilité + monitoring (les fondations)
+Brique 1 · tous les jours 8h  → relances devis & factures
+Brique 2 · lundi 7h           → scoring des prospects dormants
+Brique 3 · appelée par 1 et 2 → rédaction du message via l'API Claude
+Brique 4 · tous les jours 8h30 → rapport au dirigeant
+
+Flux global : CRM → extraction → fondations vérifiées
+            → décision (cadence ou score) → rédaction Claude
+            → envoi → mise à jour CRM → log → rapport</div>
+
+      <h2>Brique 0 — les fondations que tout le monde saute</h2>
+      <p>C'est la brique qui décide si tes relances arrivent en boîte de réception ou en spam. Quatre points côté délivrabilité :</p>
+      <ul>
+        <li><strong>SPF, DKIM et DMARC</strong> sur le domaine d'envoi — sans ces trois enregistrements DNS, Gmail et Outlook traitent les messages comme suspects par défaut</li>
+        <li><strong>Un sous-domaine dédié</strong> (<code style="color:var(--gold)">contact.entreprise.com</code>), jamais le domaine principal du client : si une campagne dérape, ses emails internes ne sont pas affectés</li>
+        <li><strong>Un warm-up progressif</strong> sur 2 à 3 semaines : 20 emails/jour, puis 50, puis 100. Un domaine neuf qui envoie 200 emails le premier jour est marqué immédiatement</li>
+        <li><strong>Un test par template</strong> sur mail-tester.com — viser 8+/10 avant d'activer l'envoi automatique</li>
+      </ul>
+      <p>Et cinq points côté fiabilité : un Error Trigger n8n branché sur les quatre briques, une validation du JSON renvoyé par Claude avec un retry unique, l'idempotence (clé <code style="color:var(--gold)">contact_id + date + type</code> vérifiée avant tout envoi), un retry avec backoff sur les appels API, et un health-check quotidien à 9h qui vérifie que la Brique 1 s'est bien exécutée à 8h.</p>
+
+      <div class="tip-box">
+        <div class="tip-label">⚠ Le piège le plus coûteux du guide</div>
+        <p>La majorité des missions qui échouent ne cassent pas sur le workflow n8n — il marche presque toujours en démo. Elles cassent entre le « ça marche chez moi » et le « ça tient chez le client » : délivrabilité non configurée, erreurs silencieuses, CRM sale. Compte une demi-journée pour la Brique 0 sur chaque projet. C'est elle qui fait la différence entre un prestataire qu'on rappelle et un prestataire dont « le système ne marchait plus » au bout de trois semaines.</p>
+      </div>
+
+      <h2>Brique 1 — le workflow de relances, nœud par nœud</h2>
+      <div class="code-block">1.  Schedule Trigger · tous les jours à 8h
+2.  Nœud CRM (HubSpot / Pipedrive natif, ou HTTP Request)
+    → deals "devis envoyé" + factures "non payées"
+3.  Nœud Code ou IF
+    → calcule les jours écoulés depuis l'envoi ou l'échéance
+    → route : J+3 (douce) / J+10 (ferme) / J+30 (alerte humain)
+4.  Filter
+    → exclut ceux qui ont répondu (vérification du thread email)
+    → exclut "ne pas relancer" + liste d'exclusion CNIL
+5.  [idempotence] table de log → déjà relancé aujourd'hui ?
+6.  Sous-workflow Rédaction (Brique 3) → message personnalisé
+7.  [fiabilité] Validation JSON → retry si format invalide
+8.  IF montant > seuil (ex : 5 000 €)
+    → OUI : validation du dirigeant (Slack / email à boutons)
+    → NON : envoi via Brevo / SMTP, depuis le sous-domaine dédié
+9.  Mise à jour CRM → note la relance dans la timeline
+10. Append vers la table de log (Airtable / Sheets)</div>
+      <p>Sur le volet factures, ajoute les mentions légales françaises : pénalités de retard et indemnité forfaitaire de 40 € (article L441-10 du Code de commerce). Ça se voit en deux secondes dans un message de relance, et le client apprécie que tu connaisses son cadre réglementaire.</p>
+
+      <h2>Brique 2 — le prompt de scoring des dormants</h2>
+      <p>C'est le moment « waouh » de la démo. Chaque lundi, l'agent passe en revue les contacts sans activité depuis 30+ jours, les score par batch de 10 via l'API Claude, trie et garde le top 10.</p>
+      <div class="code-block">Tu es l'assistant commercial de [entreprise cliente], qui vend
+[offre en une phrase] à [cible].
+
+Prospect dormant du CRM :
+- Nom / société : {{nom}} / {{societe}}
+- Secteur : {{secteur}}
+- Historique des échanges : {{resume_interactions}}
+- Dernier contact : {{date_dernier_contact}}
+- Statut du deal : {{statut}} · Montant potentiel : {{montant}}
+
+Évalue la probabilité que ce prospect soit encore intéressé, sur 100.
+Critères : une objection de timing dépassée score haut · un besoin
+exprimé jamais traité score haut · un "non" explicite ou un
+concurrent choisi score bas · l'ancienneté joue contre, sauf
+changement de contexte sectoriel.
+
+Réponds UNIQUEMENT en JSON :
+{"score": &lt;0-100&gt;, "raison": "", "angle_de_reprise": ""}</div>
+
+      <div class="tip-box">
+        <div class="tip-label">💡 Ce qui rend le top 10 réellement actionnable</div>
+        <p>Un score de 87/100 reste abstrait pour un dirigeant pressé : il devra encore rédiger le message lui-même, et il ne le fera pas. Fais produire par la Brique 3 un message prêt à envoyer pour chacun des 10 contacts, livré dans le même tableau que le score. Il n'a plus qu'à cliquer « envoyer » ou ajuster une phrase. C'est ce détail qui transforme un rapport qu'on lit en un rapport qu'on utilise.</p>
+      </div>
+
+      <h2>Brique 3 — le prompt de rédaction</h2>
+      <div class="code-block">Tu rédiges les relances de [entreprise], [activité en une phrase].
+Ton : [direct et chaleureux / formel et sobre — à définir avec le
+client, 3 adjectifs maximum]
+
+Contexte :
+- Destinataire : {{prenom}} {{nom}}, {{fonction}} chez {{societe}}
+- Objet de la relance : {{type}} (devis n°X / facture n°Y / reprise)
+- Historique : {{resume}}
+- Niveau : {{niveau}} (1 = courtoise · 2 = ferme · 3 = long silence)
+
+Règles dures :
+- 80 mots maximum, objet de mail de 6 mots maximum
+- Jamais de formule culpabilisante ("sans réponse de votre part...")
+- Une seule question claire qui appelle une réponse simple
+- Pas de jargon commercial ("opportunité", "synergie")
+- Niveau 2 factures : mentionner les conditions de règlement
+  contractuelles, rester professionnel
+- Signature : {{signature_client}}
+
+Réponds en JSON : {"objet": "...", "corps": "..."}</div>
+      <p>Fais valider dix exemples de messages générés par ton client avant la mise en production, et ajuste le prompt avec ses retours. Ce rituel d'une heure évite l'essentiel des frictions post-livraison, et le client se sent co-auteur de son agent.</p>
+
+      <h2>Le cadre CNIL, en trois lignes</h2>
+      <ul>
+        <li><strong>En B2B</strong> : l'intérêt légitime suffit (art. 6.1.f RGPD), à trois conditions cumulatives — message en rapport avec la profession du destinataire, information sur l'usage de son adresse et l'identité de l'expéditeur, moyen simple de s'opposer dans chaque message</li>
+        <li><strong>En B2C</strong> : consentement explicite préalable obligatoire, sauf client existant pour des produits analogues</li>
+        <li><strong>Dans tous les cas</strong> : le droit d'opposition est absolu (art. 21 RGPD). Une liste d'exclusion consultée avant chaque envoi, par le même nœud Filter que celui qui gère l'idempotence</li>
+      </ul>
+      <p>À noter : relancer les devis et factures de <em>clients existants</em> n'est pas de la prospection, c'est de la gestion de relation contractuelle — la Brique 1 est sereine. C'est la Brique 2 (reprise de prospects) qui demande la vigilance.</p>
+
+      <h2>Combien le vendre</h2>
+      <div class="table-scroll">
+        <table class="price-table">
+          <thead>
+            <tr><th>Formule</th><th>Contenu</th><th>Fourchette</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Audit fondations</td><td>Brique 0 seule : SPF/DKIM/DMARC, warm-up, monitoring d'erreurs</td><td>800 à 1 500 €</td></tr>
+            <tr><td>Setup seul</td><td>Briques 0 + 1 + 4, un canal, un CRM</td><td>3 000 à 5 000 €</td></tr>
+            <tr><td>Setup complet</td><td>Les cinq briques, multicanal, validation humaine, conformité CNIL documentée</td><td>6 000 à 9 000 €</td></tr>
+            <tr><td>Maintenance mensuelle</td><td>Surveillance, ajustements de prompts, évolutions légères, support</td><td>150 à 500 €/mois</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Ne vends jamais le setup sans la maintenance. Un système vivant a besoin d'entretien réel, et le récurrent transforme une activité de coup par coup en revenu prévisible : dix clients à 300 €/mois, c'est un socle de 3 000 €/mois avant même de vendre un nouveau setup.</p>
+
+      <div class="tip-box">
+        <div class="tip-label">⚡ Le calcul de ROI à faire en direct devant le prospect</div>
+        <p>Ouvre un tableur partagé à l'écran et remplis-le avec <em>ses</em> chiffres : 20 devis/mois × 40 % jamais relancés = 8 devis. 8 × 5 % de conversion = 0,4 affaire/mois, soit ~5 affaires/an. × 2 500 € de panier moyen = 12 500 € de CA récupéré par an. Le système à 6 000 € se rembourse la première année sur le seul volet devis — sans compter les factures encaissées plus vite. C'est lui qui voit son propre argent apparaître à l'écran, pas toi qui l'affirmes.</p>
+      </div>
+
+      <h2>Les pièges du métier</h2>
+      <ul>
+        <li><strong>Sur-promettre le délai</strong> — « je vous l'installe en deux jours » devient trois semaines dès que le CRM du client est mal tenu, et il l'est toujours. Annonce deux à trois semaines, livre en deux</li>
+        <li><strong>Brancher l'agent sur un CRM sale</strong> — doublons, deals fantômes, statuts incohérents : l'agent relance des morts et des clients déjà signés. Première semaine de toute mission : audit et nettoyage. Facture-la</li>
+        <li><strong>Donner les pleins pouvoirs dès le premier jour</strong> — les deux premières semaines, fais tourner le système en mode brouillon : messages générés et mis en file d'attente pour validation, pas envoyés</li>
+        <li><strong>Vendre la techno au lieu du résultat</strong> — le dirigeant n'achète ni « de l'IA » ni « de l'automatisation n8n ». Il achète : « mes devis sont relancés, mes factures rentrent »</li>
+        <li><strong>Oublier que tu touches aux données de l'entreprise</strong> — NDA systématique, clause de sous-traitance RGPD (art. 28), jamais les données d'un client pour un autre</li>
+      </ul>
+
+      <h2>Le coût pour démarrer</h2>
+      <p>n8n cloud ~20 €/mois + ~5 € d'API Claude en tests + HubSpot gratuit + Brevo gratuit (300 emails/jour) + mail-tester gratuit = <strong style="color:var(--text)">environ 25 € le premier mois</strong>. C'est le seul investissement avant la première vente, et l'environnement de démo que tu construis une fois sert ensuite pour tous les prospects.</p>
+
+      <a href="https://assets.automatisationboost.com/Pdf%20claude/Construire_et_vendre_un_agent_IA_de_relances_Automation_Boost.pdf" target="_blank" rel="noopener" class="source-cta">
+        ◈ Télécharger le guide complet (PDF, 19 pages)
+      </a>
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+</script>
+<script src="../assets/js/lead-popup.js?v=20260716b" defer></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="/assets/js/theme.js?v=20260717n" defer></script>
+</body>
+</html>
