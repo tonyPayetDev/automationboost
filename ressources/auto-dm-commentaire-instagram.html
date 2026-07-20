@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Commentaire Instagram → DM automatique – AutomationBoost</title>
+  <meta name="description" content="Le système n8n + Blotato qui envoie automatiquement la bonne ressource en message privé quand quelqu'un commente ton mot-clé, puis relance pour vérifier la réception." />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Sora',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li { margin-bottom:6px; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .source-cta { display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#000;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;padding:14px 28px;border-radius:var(--radius);text-decoration:none;margin-top:40px;transition:all .2s; }
+    .source-cta:hover { background:var(--gold-dark);transform:translateY(-2px); }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+
+    /* Lisibilité lecture longue : Sora (chargée) au lieu d'Orbitron/Rajdhani (jamais chargées) */
+    .page-title, .content-block h2, .content-block h3,
+    article.article-body h2, article.article-body h3 { font-family:'Sora',sans-serif; }
+    .content-block p, .content-block li,
+    article.article-body p, article.article-body li { font-size:17px; line-height:1.75; }
+
+    .flow-step { display:flex;gap:14px;align-items:flex-start;margin-bottom:14px; }
+    .flow-step .num { flex:0 0 26px;height:26px;border-radius:50%;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.3);color:var(--gold);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:2px; }
+    .flow-step p { margin:0; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Commentaire Instagram → DM automatique avec la bonne ressource",
+    "description": "Le système n8n + Blotato qui envoie automatiquement la bonne ressource en message privé quand quelqu'un commente ton mot-clé, puis relance pour vérifier la réception.",
+    "url": "https://automatisationboost.com/ressources/auto-dm-commentaire-instagram.html",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://automatisationboost.com/ressources/auto-dm-commentaire-instagram.html"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "url": "https://automatisationboost.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://automatisationboost.com/assets/images/logo.svg"
+      }
+    },
+    "isAccessibleForFree": false,
+    "hasPart": {
+      "@type": "WebPageElement",
+      "isAccessibleForFree": false,
+      "cssSelector": ".content-block"
+    }
+  }
+  </script>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="../" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
+    </div>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
+  </nav>
+</div>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Commentaire → DM automatique
+    </div>
+
+    <div class="page-badge">◈ Guide workflow</div>
+    <h1 class="page-title">Commentaire Instagram → <span>DM automatique</span> avec la bonne ressource</h1>
+    <div class="page-meta">
+      <span>n8n + Blotato</span>
+      <span>·</span>
+      <span>Automatisation réseaux</span>
+      <span>·</span>
+      <span>Niveau intermédiaire</span>
+    </div>
+
+    <div class="content-block">
+      <p>Tu termines chaque vidéo par « commente le mot MACHIN et je t'envoie le guide ». Puis tu passes tes soirées à copier-coller des liens en message privé. Ou pire : tu oublies, et la personne qui t'a fait confiance ne reçoit jamais rien.</p>
+      <p>Ce système le fait à ta place. Quelqu'un commente ton mot-clé, il reçoit <strong style="color:var(--text)">la bonne ressource</strong> en privé dans les dix minutes, puis une relance une heure après pour vérifier qu'il l'a bien reçue.</p>
+
+      <div class="divider"></div>
+
+      <h2>Ce qu'il te faut</h2>
+      <ul>
+        <li>Un <strong>compte Instagram professionnel</strong> (pas un compte perso — l'API refuse)</li>
+        <li><strong>Blotato</strong>, connecté à ce compte, avec la synchro engagement active</li>
+        <li><strong>n8n</strong> (auto-hébergé ou cloud)</li>
+        <li>Un <strong>Google Sheet</strong> pour le mapping mot-clé → ressource</li>
+      </ul>
+
+      <h2>L'architecture, en six étapes</h2>
+      <div class="flow-step"><div class="num">1</div><p>Un déclencheur planifié toutes les <strong>10 minutes</strong>.</p></div>
+      <div class="flow-step"><div class="num">2</div><p>Lecture des commentaires récents via <code style="color:var(--gold)">GET /v2/comments</code>.</p></div>
+      <div class="flow-step"><div class="num">3</div><p>Lecture du mapping mot-clé → lien dans le Google Sheet.</p></div>
+      <div class="flow-step"><div class="num">4</div><p>Un nœud Code croise les deux et construit le message.</p></div>
+      <div class="flow-step"><div class="num">5</div><p>Envoi du DM via <code style="color:var(--gold)">POST /v2/messages</code>, puis vérification du statut.</p></div>
+      <div class="flow-step"><div class="num">6</div><p>Attente d'une heure, puis relance « tu as bien reçu ? ».</p></div>
+
+      <h2>La règle qui change tout : le mapping vit dans un Sheet</h2>
+      <p>La tentation, c'est d'écrire la liste des mots-clés en dur dans le nœud Code. Ne le fais pas. Tu vas publier une vidéo par jour, chacune avec son mot-clé, et tu vas oublier de mettre le workflow à jour. Résultat : la vidéo promet une ressource, et le commentaire tombe dans le vide sans que rien ne signale l'erreur.</p>
+      <p>Crée un onglet avec deux colonnes, <code style="color:var(--gold)">Mot-cle CTA</code> et <code style="color:var(--gold)">Lien Ressource</code>. Le workflow le lit à chaque exécution. Brancher une nouvelle vidéo devient : ajouter une ligne.</p>
+
+      <div class="code-block">// Nœud Code — construit le mapping depuis le Sheet
+const FALLBACK = 'https://tonsite.com/ressources.html';
+
+function norm(s) {
+  return String(s || '').normalize('NFD')
+    .replace(/[̀-ͯ]/g, '').toUpperCase().trim();
+}
+
+const MAP = {};
+for (const item of $input.all()) {
+  const r = item.json || {};
+  const kw = norm(r['Mot-cle CTA']);
+  if (kw) MAP[kw] = String(r['Lien Ressource'] || '').trim();
+}
+
+// Les mots-clés les plus longs d'abord :
+// évite qu'AGENT capture AGENTIA
+const KEYWORDS = Object.keys(MAP).sort((a, b) => b.length - a.length);
+
+const resp = $('Lire commentaires').first().json || {};
+const out = [];
+
+for (const c of (resp.items || [])) {
+  if (!c || c.isAuthor === true) continue;
+  if (c.status && c.status !== 'posted') continue;
+  if (!c.authorId) continue;
+
+  const text = norm(c.text);
+  const hit = KEYWORDS.find(k => new RegExp('\\b' + k + '\\b').test(text));
+  if (!hit) continue;
+
+  const link = MAP[hit] || FALLBACK;
+  out.push({ json: {
+    recipientId: c.authorId,
+    commentId: c.id,
+    keyword: hit,
+    text: 'Salut ! Comme promis, voici ton accès 👇\n' + link
+  }});
+}
+
+return out;</div>
+
+      <p>Trois détails de ce code comptent vraiment :</p>
+      <ul>
+        <li><strong>La normalisation des accents</strong> — « système » et « SYSTEME » doivent matcher le même mot-clé, sinon la moitié de ton audience passe à travers.</li>
+        <li><strong>Le tri par longueur décroissante</strong> — sans ça, un mot-clé court capture les plus longs.</li>
+        <li><strong>Les frontières de mot</strong> (<code style="color:var(--gold)">\b</code>) — sans elles, « le metavers c'est mort » déclenche le mot-clé META.</li>
+      </ul>
+
+      <h2>Le corps de la requête d'envoi</h2>
+      <p>C'est le point sur lequel on perd le plus de temps. Le <code style="color:var(--gold)">commentId</code> va <strong>dans</strong> l'objet <code style="color:var(--gold)">target</code>, et il n'y a pas de champ <code style="color:var(--gold)">platform</code> à la racine :</p>
+      <div class="code-block">{
+  "accountId": "TON_ACCOUNT_ID",
+  "recipientId": "{{ $json.recipientId }}",
+  "text": "{{ $json.text }}",
+  "target": {
+    "targetType": "instagram",
+    "commentId": "{{ $json.commentId }}"
+  }
+}</div>
+      <p>Limite Instagram : 1000 octets par message.</p>
+
+      <div class="tip-box">
+        <div class="tip-label">⚠ Le piège qui coûte une journée</div>
+        <p>Tu ne peux pas tester en commentant depuis ton propre compte. L'API renvoie <code>isAuthor: true</code> sur tes commentaires, et le filtre les écarte — c'est voulu, sinon tu t'enverrais des DM à toi-même. Il te faut un vrai second compte. Poster un commentaire via l'API ne marche pas non plus : il est publié au nom du propriétaire de la page, donc <code>isAuthor: true</code> aussi.</p>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">⚠ La fenêtre de lecture doit être plus courte que le cycle</div>
+        <p>Si ton déclencheur tourne toutes les 15 minutes et que tu relis les commentaires des 15 dernières minutes, le recouvrement fait qu'un commentaire tombant dans la zone est traité deux fois — la personne reçoit deux messages. Lis sur une fenêtre <strong>plus courte</strong> que l'intervalle : 11 minutes pour un cycle de 10.</p>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">⚠ Un statut vert ne prouve rien</div>
+        <p>Si l'API renvoie une liste vide, ton workflow finit en « succès » à chaque tour sans avoir rien envoyé. On peut rester des jours avec un tableau de bord tout vert et zéro DM parti. Avant de déboguer n8n, appelle <code>GET /v2/comments</code> à la main : si la réponse est <code>{"items":[]}</code> alors qu'un vrai commentaire existe, le problème est en amont, chez ton fournisseur.</p>
+      </div>
+
+      <h2>La relance, et pourquoi elle ne doit pas tout bloquer</h2>
+      <p>Après l'envoi, attends dix secondes, interroge le statut du message, puis ne relance que ceux réellement partis. Une heure de délai : assez pour ne pas ressembler à un robot, assez court pour que la personne se souvienne encore de toi.</p>
+      <p>Point important : le nœud qui fait le bilan ne doit <strong>pas</strong> lever d'erreur quand un envoi échoue. Sinon un seul DM raté interrompt l'exécution et prive de relance tous les autres destinataires du même lot. Marque l'échec dans les données, filtre-le, et laisse le reste continuer.</p>
+
+      <h2>Et quand le mot-clé n'a pas encore de ressource ?</h2>
+      <p>Ça arrive tout le temps : la vidéo sort avant que la page soit prête. Deux comportements possibles, et le mauvais choix est de ne rien envoyer.</p>
+      <ul>
+        <li><strong>Mot-clé listé, lien vide</strong> → envoie quand même un message qui renvoie vers ta bibliothèque complète. La personne a quelque chose.</li>
+        <li><strong>Mot-clé absent de la liste</strong> → ignore. Sinon tu envoies un DM à chaque commentaire, y compris les « super vidéo 🔥 ».</li>
+      </ul>
+
+      <h2>Ce à quoi t'attendre</h2>
+      <ul>
+        <li>DM parti en moins de 10 minutes après le commentaire</li>
+        <li>Relance automatique à 1 heure, uniquement sur les envois confirmés</li>
+        <li>Une nouvelle vidéo se branche en ajoutant une ligne dans un Sheet</li>
+        <li>Zéro copier-coller manuel, zéro promesse oubliée</li>
+      </ul>
+
+      <div class="tip-box">
+        <div class="tip-label">💡 Le combo qui double l'effet</div>
+        <p>Ajoute un second workflow qui répond <em>publiquement</em> au commentaire (« c'est parti en privé, regarde tes messages 👀 »). Les autres lecteurs voient que tu réponds vraiment, et ça pousse aux commentaires. Attention : ce workflow a besoin du même garde-fou de fenêtre, sinon il répond deux fois au même commentaire.</p>
+      </div>
+
+      <a href="../ressources.html" class="source-cta">
+        ◈ Voir toutes les ressources
+      </a>
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+</script>
+<script src="../assets/js/lead-popup.js?v=20260716b" defer></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="/assets/js/theme.js?v=20260717n" defer></script>
+</body>
+</html>
