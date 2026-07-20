@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Un agent IA de relances comme projet de PFA – AutomationBoost</title>
+  <meta name="description" content="Le guide étudiant pour construire un agent IA de relances commerciales (n8n + API Claude) en projet de fin d'année : architecture en 5 briques, calendrier sur 3 mois, conformité RGPD, structure de soutenance et KPIs à mesurer." />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Sora',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px;flex-wrap:wrap; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Sora',sans-serif;font-size:1rem;font-weight:700;color:var(--gold);margin:28px 0 12px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li { margin-bottom:6px; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto;white-space:pre; }
+    .price-table { width:100%;border-collapse:collapse;margin:20px 0;font-size:15px; }
+    .price-table th { text-align:left;color:var(--gold);font-size:11px;text-transform:uppercase;letter-spacing:.06em;padding:10px 12px;border-bottom:1px solid var(--border); }
+    .price-table td { color:var(--text-light);padding:12px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.6; }
+    .price-table td:first-child { color:var(--text);font-weight:700;white-space:nowrap; }
+    .table-scroll { overflow-x:auto;margin:20px 0; }
+    .source-cta { display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#000;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;padding:14px 28px;border-radius:var(--radius);text-decoration:none;margin-top:40px;transition:all .2s; }
+    .source-cta:hover { background:var(--gold-dark);transform:translateY(-2px); }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+
+    /* Lisibilité lecture longue : Sora (chargée) au lieu d'Orbitron/Rajdhani (jamais chargées) */
+    .page-title, .content-block h2, .content-block h3,
+    article.article-body h2, article.article-body h3 { font-family:'Sora',sans-serif; }
+    .content-block p, .content-block li,
+    article.article-body p, article.article-body li { font-size:17px; line-height:1.75; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Un agent IA de relances comme projet de PFA",
+    "description": "Le guide étudiant pour construire un agent IA de relances commerciales (n8n + API Claude) en projet de fin d'année : architecture en 5 briques, calendrier sur 3 mois, conformité RGPD, structure de soutenance et KPIs à mesurer.",
+    "url": "https://automatisationboost.com/ressources/agent-ia-relances-pfa-etudiant.html",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://automatisationboost.com/ressources/agent-ia-relances-pfa-etudiant.html"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "url": "https://automatisationboost.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://automatisationboost.com/assets/images/logo.svg"
+      }
+    },
+    "isAccessibleForFree": false,
+    "hasPart": {
+      "@type": "WebPageElement",
+      "isAccessibleForFree": false,
+      "cssSelector": ".content-block"
+    }
+  }
+  </script>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="../" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
+    </div>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
+  </nav>
+</div>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Agent IA de relances — édition étudiante
+    </div>
+
+    <div class="page-badge">◈ Guide PDF · Édition étudiante · 17 pages</div>
+    <h1 class="page-title">Un agent IA de relances comme <span>projet de PFA</span></h1>
+    <div class="page-meta">
+      <span>n8n + API Claude</span>
+      <span>·</span>
+      <span>Stage de fin d'année, 2 à 3 mois</span>
+      <span>·</span>
+      <span>Moins de 20 € de budget</span>
+    </div>
+
+    <div class="content-block">
+      <p>La même architecture que le <a href="agent-ia-relances.html" style="color:var(--gold)">guide freelance</a>, mais réécrite pour un contexte académique : une entreprise partenaire, un encadrant, un jury, et trois mois pour livrer quelque chose qui tourne vraiment. L'intérêt de ce sujet de PFA n'est pas technique — c'est qu'il produit des chiffres. Un jury ne peut pas noter « j'ai fait de l'IA ». Il peut noter « le délai de paiement moyen est passé de 52 à 38 jours ».</p>
+
+      <div class="tip-box">
+        <div class="tip-label">◈ Le guide PDF</div>
+        <p>Le guide complet (17 pages, édition étudiante) se télécharge <strong style="color:var(--text)">tout en bas de cette page</strong> : fais défiler jusqu'au bouton jaune, ou <a href="#guide-pdf" style="color:var(--gold)">clique ici pour y aller directement</a>.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2>Pourquoi ce sujet plaît aux entreprises partenaires</h2>
+      <p>Trois fuites d'argent existent dans à peu près toutes les PME, et aucune n'est traitée faute de temps : des devis envoyés puis jamais relancés, des factures payées en retard sans relance systématique, des centaines de contacts qualifiés qui dorment dans le CRM. Le dirigeant connaît le problème et ne le résout pas. C'est exactement le terrain où un stagiaire peut livrer une valeur mesurable en huit semaines.</p>
+      <p>Ce que tu démontres en le construisant : architecture multi-composants, intégration d'API tierces, logique décisionnelle automatisée, sécurité des données en transit et au repos, conformité réglementaire, et capacité à mesurer un ROI. C'est la liste que lit un recruteur en fin de cursus.</p>
+
+      <h2>Ce que l'agent fait, précisément</h2>
+      <ul>
+        <li><strong>Relancer</strong> devis sans réponse et factures échues, aux cadences J+3 (douce), J+10 (ferme), J+30 (escalade humaine)</li>
+        <li><strong>Suivre</strong> chaque dossier — qui a répondu, qui a payé — et mettre à jour le CRM sans saisie manuelle</li>
+        <li><strong>Scorer</strong> les prospects dormants et sortir chaque lundi le top 10 à recontacter, avec un message déjà rédigé</li>
+        <li><strong>Rapporter</strong> au dirigeant chaque matin en quatre lignes : ce qui est parti, ce qui a bougé, ce qui demande une action humaine</li>
+      </ul>
+
+      <h2>Les prérequis — ce que tu as déjà</h2>
+      <p>Comprendre HTTP/HTTPS et les appels REST, lire et écrire du JSON, documenter une architecture, penser gestion d'erreurs et environnements isolés : c'est tout ce que la partie technique demande. n8n est low-code, mais un profil réseau/cybersécurité y débugge ce que les autres subissent.</p>
+      <div class="table-scroll">
+        <table class="price-table">
+          <thead><tr><th>Brique du budget</th><th>Détail</th><th>Coût</th></tr></thead>
+          <tbody>
+            <tr><td>VPS n8n auto-hébergé</td><td>Hetzner ou OVH, n8n gratuit en self-hosted</td><td>~5 €/mois</td></tr>
+            <tr><td>API Claude</td><td>Console Anthropic, phase de test — demande à ton encadrant si l'école couvre ce poste, c'est souvent le cas sur budget PFA</td><td>5 à 15 €/mois</td></tr>
+            <tr><td>CRM de démo</td><td>HubSpot free tier pour construire et tester avant le déploiement partenaire</td><td>0 €</td></tr>
+            <tr><td>Envoi email</td><td>Brevo, 300 emails/jour en gratuit</td><td>0 €</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Total : <strong style="color:var(--text)">moins de 20 € pour toute la phase de construction</strong>, avant la première démo chez le partenaire.</p>
+
+      <h2>L'architecture en cinq briques</h2>
+      <p>Chaque brique est un workflow n8n séparé. Plus simple à construire, à débugger — et surtout à présenter à un jury section par section.</p>
+      <div class="code-block">Brique 0 · en continu          → délivrabilité + monitoring (fondations)
+Brique 1 · tous les jours 8h   → relances devis &amp; factures
+Brique 2 · lundi 7h            → scoring des prospects dormants
+Brique 3 · appelée par 1 et 2  → rédaction du message via l'API Claude
+Brique 4 · tous les jours 8h30 → rapport au dirigeant
+
+Flux global : CRM → extraction → fondations vérifiées
+            → décision (cadence ou score) → rédaction Claude
+            → envoi → mise à jour CRM → log → rapport</div>
+
+      <div class="tip-box">
+        <div class="tip-label">◈ L'angle technique à valoriser dans ton rapport</div>
+        <p>Chaque interface entre briques est un vecteur d'attaque : tokens d'API exposés, injection via les données CRM, énumération de contacts. Documente ton modèle de menace et les contre-mesures implémentées. C'est ce qui distingue ton rapport d'un rapport d'automatisation générique — quelle que soit ta filière.</p>
+      </div>
+
+      <h2>Brique 0 — les fondations invisibles</h2>
+      <p>Un agent qui envoie des messages parfaits vers un dossier spam ne vaut rien. Un agent qui plante en silence coûte la confiance du partenaire. Cette brique traite les deux <em>avant</em> le premier envoi, et c'est la cause d'échec numéro un quand on la saute.</p>
+      <ul>
+        <li><strong>SPF, DKIM, DMARC</strong> sur le domaine d'envoi — sans ces trois enregistrements DNS, Gmail et Outlook traitent les messages comme suspects. Compte 15 minutes avec l'aide de Claude pour les générer selon le fournisseur DNS de l'entreprise</li>
+        <li><strong>Un sous-domaine dédié</strong> (<code style="color:var(--gold)">contact.entreprise.com</code>) pour isoler la réputation d'envoi du domaine principal</li>
+        <li><strong>Un warm-up progressif</strong> sur 2 à 3 semaines : 20 emails/jour, puis 50, puis 100. Un domaine neuf qui en envoie 200 le premier jour est marqué immédiatement</li>
+        <li><strong>Un test par template</strong> sur mail-tester.com, cible 8+/10 avant d'activer l'automatique</li>
+      </ul>
+      <p>Côté fiabilité : un Error Trigger global qui te notifie avant que le dirigeant ne s'aperçoive de quoi que ce soit, une validation du JSON renvoyé par Claude avec un retry unique et correction explicite, l'idempotence (clé <code style="color:var(--gold)">contact_id + date + type</code> vérifiée dans le log avant chaque envoi), et un health-check à 9h qui vérifie que la Brique 1 s'est bien exécutée à 8h — c'est lui qui détecte un trigger désactivé en silence.</p>
+
+      <h2>Brique 1 — le workflow de relances, nœud par nœud</h2>
+      <div class="code-block">1.  Schedule Trigger · tous les jours à 8h
+2.  Nœud CRM (HubSpot natif ou HTTP Request)
+    → deals "devis envoyé" + factures "non payées"
+3.  Nœud Code / IF
+    → calcule les jours écoulés depuis l'envoi ou l'échéance
+    → route : J+3 (douce) / J+10 (ferme) / J+30 (alerte humain)
+4.  Filter
+    → exclut les contacts ayant déjà répondu
+    → exclut la liste d'opposition (droit des données personnelles)
+5.  [idempotence] Vérification dans le log → déjà relancé aujourd'hui ?
+6.  Sous-workflow Rédaction (Brique 3)
+7.  [fiabilité] Validation JSON → retry si format invalide
+8.  IF montant > seuil défini avec le partenaire
+    → OUI : validation humaine avant envoi (Slack, email, mobile)
+    → NON : envoi via Brevo, depuis le sous-domaine dédié
+9.  Mise à jour CRM → note la relance dans la timeline du contact
+10. Append vers la table de log (Google Sheets / Airtable)</div>
+      <p>Les données clients du CRM sont des données personnelles. Dans le rapport, documente : le chiffrement des credentials stockés dans n8n, le principe du moindre privilège sur les accès CRM, la journalisation conforme des envois, et la procédure de révocation d'accès en fin de stage. Peu d'étudiants formalisent ça — c'est précisément pour ça que ça compte.</p>
+
+      <h2>Brique 2 — le scoring, ton moment de soutenance</h2>
+      <p>Chaque lundi, l'agent passe en revue les contacts sans activité depuis 30+ jours (filtre : au moins un échange passé, deal non perdu explicitement), les traite par batch de 10 via l'API Claude, trie par score décroissant et garde le top 10.</p>
+      <div class="code-block">Tu es l'assistant commercial de [entreprise partenaire], qui vend
+[offre] à [cible].
+
+Prospect dormant :
+- Nom / société : {{nom}} / {{societe}}
+- Secteur : {{secteur}}
+- Historique : {{resume_interactions}}
+- Dernier contact : {{date}} · Statut : {{statut}}
+- Montant potentiel : {{montant}}
+
+Critères : objection de timing dépassée → score haut · besoin
+exprimé non traité → score haut · "non" explicite → score bas ·
+concurrence déjà choisie → score bas.
+
+Réponds UNIQUEMENT en JSON :
+{"score": &lt;0-100&gt;, "raison": "", "angle_de_reprise": ""}</div>
+      <p>Le détail qui fait la différence en démo : pour chacun des 10 prospects scorés, la Brique 3 a déjà produit un message prêt à envoyer. Le dirigeant n'a qu'à cliquer. Tu passes de « ça calcule un score » à « ça fait gagner du temps réel ».</p>
+
+      <h2>Brique 3 — la rédaction IA</h2>
+      <div class="code-block">Tu rédiges les relances de [entreprise partenaire].
+Ton : [à définir avec le dirigeant — 3 adjectifs]
+
+Contexte :
+- Destinataire : {{prenom}} {{nom}}, {{fonction}} chez {{societe}}
+- Objet : {{type}} (devis n°X / facture n°Y / reprise de contact)
+- Historique : {{resume}}
+- Niveau : {{niveau}} (1=courtoise · 2=ferme · 3=après long silence)
+
+Règles dures :
+- 80 mots maximum · objet de 6 mots maximum
+- Jamais de formule culpabilisante
+- Une seule question claire qui appelle une réponse simple
+- Pas de jargon commercial ("synergie", "opportunité")
+- Signature : {{signature}}
+
+Réponds en JSON : {"objet": "...", "corps": "..."}</div>
+      <p>Définis les règles de ton avec le dirigeant lors de la réunion de cadrage : formel pour une banque ou un cabinet, plus direct pour une PME commerciale. Trente minutes qui t'évitent deux semaines d'ajustements après déploiement. Puis fais-lui valider dix messages générés avant d'activer l'envoi automatique — une heure de rituel qui élimine l'essentiel des frictions, et qui fait de lui un co-auteur du système. Un dirigeant co-auteur soutient ton projet en soutenance.</p>
+
+      <h2>Brique 4 — le rapport quotidien</h2>
+      <p>La brique la moins technique et la plus importante pour ton PFA : c'est elle que ton encadrant entreprise voit chaque matin. Sans elle, ton projet est invisible entre deux réunions de suivi. Elle lit le log des 24 h et demande à Claude une synthèse en quatre lignes : ce qui est parti, ce qui a bougé, ce qui demande une action humaine (avec un lien CRM direct), et le chiffre de la semaine.</p>
+      <div class="tip-box">
+        <div class="tip-label">⚡ Deux minutes qui changent la visibilité de ton travail</div>
+        <p>Dès la première réunion, demande au dirigeant quel canal il consulte <em>vraiment</em> chaque matin : email, Slack, Teams ou messagerie mobile. Un rapport livré sur le mauvais canal est un rapport que personne ne lit — et un projet que personne ne voit tourner.</p>
+      </div>
+
+      <h2>Conformité — la section que le jury attend</h2>
+      <p>Les contacts du CRM sont des données personnelles, où que soit basée l'entreprise partenaire. Côté RGPD : base légale requise (intérêt légitime en B2B, consentement préalable en B2C), information des personnes sur l'identité de l'expéditeur et la finalité, droit d'opposition absolu — un contact qui s'y oppose ne doit plus jamais être relancé — et durée de conservation limitée, à définir avec le partenaire.</p>
+      <p>Hors Union européenne, la plupart des pays ont une législation inspirée du RGPD et une autorité de contrôle dédiée : CNIL en France, APD en Belgique, PFPDT en Suisse, CNDP au Maroc, INPDP en Tunisie, CDP au Sénégal. Identifie la tienne et documente ses exigences.</p>
+      <p>Dans tous les cas, cinq mesures techniques à implémenter : credentials API chiffrés dans n8n (variables d'environnement, jamais en clair), liste d'opposition consultée par le nœud Filter avant chaque envoi, journalisation horodatée de chaque envoi, accès CRM limité au minimum requis, et une procédure de purge des données en fin de stage — documentée et signée.</p>
+
+      <h2>Le calendrier sur 3 mois</h2>
+      <div class="table-scroll">
+        <table class="price-table">
+          <thead><tr><th>Semaines</th><th>Travaux</th><th>Livrable</th></tr></thead>
+          <tbody>
+            <tr><td>S1–S2</td><td>Audit du CRM partenaire, état des lieux des relances actuelles, nettoyage de la base, accord de confidentialité</td><td>Rapport d'audit signé</td></tr>
+            <tr><td>S3–S4</td><td>Brique 0 complète : SPF/DKIM/DMARC, warm-up, monitoring d'erreurs, idempotence, health-check</td><td>Infrastructure de prod sécurisée</td></tr>
+            <tr><td>S5–S6</td><td>Brique 1 en mode brouillon — validation humaine, pas d'envoi automatique</td><td>100 premiers messages générés et validés</td></tr>
+            <tr><td>S7–S8</td><td>Briques 2 et 3 : scoring hebdo, rédaction IA, validation de 10 templates avec le dirigeant</td><td>Premier top 10 prospects scorés</td></tr>
+            <tr><td>S9–S10</td><td>Brique 4, passage en production automatique partiel, mesure des KPIs</td><td>Tableau de bord KPIs</td></tr>
+            <tr><td>S11–S12</td><td>Production complète, documentation sécurité &amp; conformité, rédaction du rapport, préparation soutenance</td><td>Rapport PFA final + démo live</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong style="color:var(--text)">Le mode brouillon des semaines 5 à 8 est ton assurance qualité</strong> : le système génère les messages sans les envoyer, ils partent dans une file validée manuellement. Le dirigeant vérifie, tu ajustes les prompts. Cette phase protège la réputation de l'entreprise et te donne les données de validation que ton jury attendra.</p>
+
+      <div class="tip-box">
+        <div class="tip-label">⚠ Le blocage numéro un — à débloquer en semaine 1</div>
+        <p>Pose la question dès le premier entretien avec l'encadrant entreprise : accès CRM en lecture/écriture, une adresse email d'envoi dédiée, et l'autorisation de tester sur un sous-ensemble de contacts. Sans ces trois éléments, le projet ne peut pas démarrer. Prépare un document d'accord à faire signer la première semaine.</p>
+      </div>
+
+      <h2>Structurer les 20 minutes de soutenance</h2>
+      <ul>
+        <li><strong>Le problème (3 min)</strong> — les chiffres réels de l'entreprise partenaire : combien de devis non relancés par mois, quel retard moyen de paiement. Pas une slide théorique</li>
+        <li><strong>L'architecture (5 min)</strong> — les 5 briques, le flux de données, le modèle de sécurité, le diagramme de séquence et le threat model</li>
+        <li><strong>La démo live (7 min)</strong> — déclenche la Brique 1 devant le jury, montre un message généré, puis le rapport quotidien reçu par le dirigeant, puis le scoring top 10</li>
+        <li><strong>Les résultats mesurés (5 min)</strong> — taux de réponse avant/après, délai de paiement avant/après, prospects réactivés, sur les semaines 9 à 12</li>
+      </ul>
+      <p><strong style="color:var(--text)">Ne montre jamais l'intérieur de n8n en premier.</strong> Les nœuds et les flèches impressionnent les techniciens et perdent les membres non techniques du jury. Commence par les résultats et le rapport dirigeant, garde la vue n8n pour la section architecture, bien après la démo — et propose un « zoom technique » si le jury le demande.</p>
+
+      <h2>Les cinq erreurs qui cassent ce projet</h2>
+      <ul>
+        <li><strong>Attendre la semaine 8 pour montrer quelque chose</strong> — ton encadrant doit voir du concret dès la fin du mois 1 : Brique 0 fonctionnelle + 20 messages générés, même en brouillon, suffisent</li>
+        <li><strong>Brancher le système sur un CRM mal tenu</strong> — doublons, contacts obsolètes, statuts incohérents : l'agent relance des prospects déjà signés. Audit et nettoyage en semaine 1, présentés comme une phase à part entière</li>
+        <li><strong>Ignorer la délivrabilité</strong> — sans SPF/DKIM/DMARC ni warm-up, les relances finissent en spam et l'encadrant conclut que « le système ne marche pas », sans savoir pourquoi</li>
+        <li><strong>Négliger la section sécurité du rapport</strong> — un jury technique qui ne voit ni threat model, ni moindre privilège, ni conformité, questionnera la pertinence du sujet pour ta filière</li>
+        <li><strong>Présenter « de l'IA » au lieu de résultats</strong> — le jury évalue X devis relancés, Y % de taux de réponse, Z jours gagnés sur les paiements. Parle résultats, pas technologie</li>
+      </ul>
+
+      <h2>Les KPIs à mesurer dès la semaine 9</h2>
+      <p>Taux de réponse aux relances, délai moyen de paiement avant vs après, nombre de prospects dormants réactivés, taux de faux positifs du scoring, uptime du système. Sans ces métriques, ton jury n'a aucune base pour évaluer le succès du projet — et la différence entre les étudiants qui repartent avec une offre de leur partenaire et ceux qui repartent avec un bon souvenir tient exactement là : avoir des chiffres à montrer le dernier jour.</p>
+
+      <h2>Après la soutenance</h2>
+      <p>Une ligne LinkedIn qui fonctionne : « Projet PFA — Agent IA de relances commerciales : conception et déploiement d'un système d'automatisation (n8n + Claude API) pour [secteur], avec gestion de la sécurité des données (conformité RGPD, chiffrement, moindre privilège). Résultats : +X % de taux de réponse sur les devis, délai de paiement réduit de Y jours. »</p>
+      <p>Les cibles qui répondent à ce profil : ESN et cabinets de conseil IA (ils cherchent des profils qui ont déjà déployé en production), startups fintech (le recouvrement automatisé est leur problème n°1), grands comptes bancaires et telcos (automatisation + conformité), et l'entreprise partenaire elle-même si les KPIs sont bons. Si elle veut garder le système, propose un accord de maintenance légère de quelques heures par mois : c'est souvent comme ça que commence une première mission freelance.</p>
+
+      <a id="guide-pdf" href="https://assets.automatisationboost.com/Pdf%20claude/Agent_IA_Relances_Guide_PFA_Etudiant-1.pdf" target="_blank" rel="noopener" class="source-cta">
+        ◈ Télécharger le guide PFA complet (PDF, 17 pages)
+      </a>
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+</script>
+<script src="../assets/js/lead-popup.js?v=20260716b" defer></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="/assets/js/theme.js?v=20260717n" defer></script>
+</body>
+</html>
