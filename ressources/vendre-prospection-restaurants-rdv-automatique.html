@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vendre à des restaurants sans appel à froid – AutomationBoost</title>
+  <meta name="description" content="Le workflow n8n complet : il scanne les restaurants d'une zone, qualifie chaque prospect, rédige une offre personnalisée et programme le rendez-vous automatiquement dans votre agenda." />
+  <meta property="og:title" content="Vendre à des restaurants sans appel à froid – AutomationBoost" />
+  <meta property="og:description" content="Le workflow n8n complet : scan Google Maps, qualification IA, offre personnalisée, rendez-vous automatique." />
+  <meta property="og:type" content="article" />
+  <link rel="canonical" href="https://automatisationboost.com/ressources/vendre-prospection-restaurants-rdv-automatique" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size:13px;color:var(--text-muted);margin-bottom:32px; }
+    .breadcrumb a { color:var(--gold);text-decoration:none; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.6rem,3.5vw,2.5rem);font-family:'Sora',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:32px;max-width:720px; }
+    .tools-list { display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px; }
+    .tool-tag { display:inline-block;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:var(--text-light);font-size:12px;padding:4px 12px;border-radius:20px; }
+    .workflow-box { background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.2);border-radius:12px;padding:32px;margin-bottom:40px;max-width:720px; }
+    .workflow-box h2 { font-family:'Sora',sans-serif;font-size:1rem;font-weight:700;color:var(--gold);margin-bottom:16px; }
+    .trigger-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.3);color:var(--gold);font-size:12px;font-weight:600;padding:6px 14px;border-radius:6px;margin-bottom:16px; }
+    .download-btn { display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#eab308,#ca8a04);color:#000;font-weight:700;font-size:15px;padding:14px 28px;border-radius:8px;text-decoration:none;transition:transform .2s,box-shadow .2s;font-family:'Sora',sans-serif;letter-spacing:.03em; }
+    .download-btn:hover { transform:translateY(-2px);box-shadow:0 8px 24px rgba(234,179,8,0.3); }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .cta-block { margin-top:60px;padding:32px;background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.2);border-radius:12px;text-align:center;max-width:720px; }
+    .cta-block h3 { font-family:'Sora',sans-serif;font-size:1rem;font-weight:700;color:var(--gold);margin-bottom:8px; }
+    .cta-block p { color:var(--text-light);margin-bottom:20px;font-size:14px; }
+    .cta-btn { display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#eab308,#ca8a04);color:#000;font-weight:700;font-size:14px;padding:12px 24px;border-radius:8px;text-decoration:none;font-family:'Sora',sans-serif; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+
+    .page-title, .content-block h2, .content-block h3 { font-family:'Sora',sans-serif; }
+    .content-block p, .content-block li { font-size:17px; line-height:1.75; }
+
+    .steps-flow { display:grid;gap:12px;margin:24px 0 8px;max-width:720px; }
+    .step-row { display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.10);border-radius:10px;padding:16px 18px; }
+    .step-row .n { flex:none;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;border:1.5px solid var(--gold);color:var(--gold); }
+    .step-row b { color:var(--text);display:block;margin-bottom:2px;font-size:15px; }
+    .step-row span { color:var(--text-light);font-size:14px;line-height:1.6; }
+    .warn { background:rgba(217,119,87,0.08);border:1px solid rgba(217,119,87,0.28);border-radius:10px;padding:20px 22px;margin:28px 0;max-width:720px; }
+    .warn b { color:var(--orange);display:block;margin-bottom:6px;font-size:15px;font-family:'Sora',sans-serif; }
+    .warn p { color:var(--text-light);font-size:15px;line-height:1.7;margin:0 0 8px; }
+    .warn p:last-child { margin-bottom:0; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Vendre à des restaurants sans appel à froid",
+    "description": "Le workflow n8n complet : il scanne les restaurants d'une zone, qualifie chaque prospect, rédige une offre personnalisée et programme le rendez-vous automatiquement.",
+    "url": "https://automatisationboost.com/ressources/vendre-prospection-restaurants-rdv-automatique.html",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://automatisationboost.com/ressources/vendre-prospection-restaurants-rdv-automatique.html"
+    },
+    "author": { "@type": "Organization", "name": "AutomationBoost", "url": "https://automatisationboost.com" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "logo": { "@type": "ImageObject", "url": "https://automatisationboost.com/assets/images/logo.svg" }
+    },
+    "isAccessibleForFree": false,
+    "hasPart": {
+      "@type": "WebPageElement",
+      "isAccessibleForFree": false,
+      "cssSelector": ".content-block"
+    }
+  }
+  </script>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="../" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
+    </div>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
+  </nav>
+</div>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb"><a href="../ressources.html">Ressources</a><span style="margin:0 8px">/</span>Vendre à des restaurants sans appel à froid</div>
+    <div>
+      <span class="page-badge">⚙ Workflow n8n</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#8b5cf6;">Prospection &amp; Vente</span>
+    </div>
+    <h1 class="page-title">Vendre à des restaurants sans appel à froid</h1>
+    <p class="lede">Le workflow scanne les restaurants d'une zone, qualifie chaque prospect sur des critères précis, rédige une offre personnalisée à partir de ce qu'il a trouvé, puis programme le rendez-vous dans votre agenda dès qu'une réponse est positive.</p>
+
+    <div class="tools-list">
+      <span class="tool-tag">n8n</span><span class="tool-tag">Apify</span><span class="tool-tag">OpenAI</span><span class="tool-tag">Gmail</span><span class="tool-tag">Google Sheets</span><span class="tool-tag">Google Calendar</span>
+    </div>
+
+    <div class="workflow-box">
+      <h2>Télécharger le workflow n8n</h2>
+      <div class="trigger-badge">⚡ Deux déclencheurs : planification quotidienne + réponses Gmail</div>
+      <p style="color:var(--text-light);font-size:14px;line-height:1.7;margin-bottom:24px;">
+        27 nœuds, aucune clé API en dur. Importez le JSON dans votre n8n, branchez vos
+        identifiants, réglez votre zone de prospection et testez avant d'activer.
+      </p>
+      <p style="color:var(--text-light);font-size:13px;line-height:1.7;margin-bottom:24px;padding:14px 16px;background:rgba(255,255,255,0.04);border-left:2px solid var(--orange);border-radius:0 6px 6px 0;">
+        <strong style="color:var(--orange);">Fourni tel quel.</strong> Ce workflow est une base de
+        travail complète, pas un produit clé en main éprouvé sur des centaines de campagnes. Il dépend
+        de vos comptes Apify et OpenAI, de votre zone et de votre offre. Testez-le sur un ou deux
+        prospects avant de l'activer pour de bon.
+      </p>
+      <a href="assets/vendre/workflow-prospection-restaurants.json" download="workflow-prospection-restaurants.json" class="download-btn">
+        ⬇ Télécharger le workflow JSON
+      </a>
+    </div>
+
+    <div class="content-block">
+      <h2>Ce que fait le workflow, étape par étape</h2>
+      <div class="steps-flow">
+        <div class="step-row"><span class="n">1</span><span><b>Scanner la zone</b>Chaque matin à 8h, il interroge Google Maps via Apify et remonte les restaurants de la zone que vous avez définie, avec leur note, leur volume d'avis et leur site.</span></div>
+        <div class="step-row"><span class="n">2</span><span><b>Qualifier chaque prospect</b>Il lit le site de l'établissement et note le prospect de 1 à 10 sur trois critères : la taille, l'activité récente et la présence en ligne. Il en déduit l'angle d'offre le plus pertinent.</span></div>
+        <div class="step-row"><span class="n">3</span><span><b>Rédiger l'offre</b>Seuls les prospects au-dessus de votre score minimum passent. L'email est écrit à partir d'un élément précis observé sur l'établissement, en 120 mots maximum.</span></div>
+        <div class="step-row"><span class="n">4</span><span><b>Programmer le rendez-vous</b>Un second déclencheur relève les réponses toutes les 15 minutes, les classe, et crée le rendez-vous dans votre agenda avec invitation au prospect dès qu'une réponse est positive.</span></div>
+      </div>
+
+      <h2>Ce qu'il vous faut avant de commencer</h2>
+      <ul>
+        <li>Une instance <strong>n8n</strong> (cloud ou auto-hébergée)</li>
+        <li>Un compte <strong>Apify</strong> avec du crédit — c'est lui qui scanne Google Maps</li>
+        <li>Une clé <strong>OpenAI</strong> avec du crédit disponible</li>
+        <li>Un compte <strong>Google</strong> pour Gmail, Sheets et Calendar</li>
+        <li>Un <strong>Google Sheet</strong> de suivi avec deux onglets nommés <strong>Prospects</strong> et <strong>Réponses</strong></li>
+      </ul>
+
+      <h2>Installation</h2>
+      <ol>
+        <li>Dans n8n : <strong>Workflows → Import from File</strong>, sélectionnez le JSON téléchargé</li>
+        <li>Créez la credential Apify en <strong>Header Auth</strong> : nom <code>Authorization</code>, valeur <code>Bearer VOTRE_TOKEN</code></li>
+        <li>Branchez vos identifiants OpenAI, Gmail, Google Sheets et Google Calendar sur les nœuds correspondants</li>
+        <li>Ouvrez <strong>Paramètres de prospection</strong> et réglez votre zone, votre requête, le nombre de prospects par jour et le score minimum</li>
+        <li>Ouvrez <strong>Paramètres des réponses</strong> et renseignez l'adresse qui recevra les alertes</li>
+        <li>Sélectionnez votre agenda dans <strong>Créer le rendez-vous</strong> et votre document dans les deux nœuds Google Sheets</li>
+      </ol>
+
+      <div class="warn">
+        <b>Testez avant d'activer — ce n'est pas optionnel</b>
+        <p>Ce workflow envoie de vrais emails à de vrais établissements et crée de vrais rendez-vous. Une erreur de configuration se voit immédiatement, du mauvais côté.</p>
+        <p>Commencez avec le nombre de prospects réglé sur 1 ou 2, et mettez votre propre adresse comme destinataire le temps de vérifier le contenu des emails générés. N'activez le workflow qu'une fois ce test concluant.</p>
+        <p>Relisez les textes produits par l'IA au moins sur vos premiers envois : c'est votre nom qui arrive dans la boîte du restaurateur, pas celui du modèle.</p>
+      </div>
+
+      <h2>Les choix de conception, et pourquoi</h2>
+      <p>
+        <strong>Le doute penche vers vous, pas vers l'automatisation.</strong> Quand l'IA hésite entre
+        « intéressé » et « simple question », elle classe en question et vous alerte. Un rendez-vous
+        créé à tort coûte plus cher qu'une relance écrite à la main.
+      </p>
+      <p>
+        <strong>Les fiches sans email sont écartées.</strong> Google Maps ne fournit presque jamais
+        d'adresse email. Le workflow active l'extraction de contacts d'Apify et ignore les fiches qui
+        n'en ont pas, plutôt que d'envoyer dans le vide sans que vous le sachiez.
+      </p>
+      <p>
+        <strong>Rien n'est perdu en silence.</strong> Les réponses ambiguës, les questions et les refus
+        sont soit journalisés, soit remontés par email. Aucune branche ne se termine dans le vide.
+      </p>
+
+      <h2>Personnalisation</h2>
+      <p>
+        Le workflow est écrit pour les restaurants, mais rien n'y est spécifique à la restauration :
+        changez la requête dans <strong>Paramètres de prospection</strong> et les consignes des deux
+        agents IA, et il prospecte des salons de coiffure, des garages ou des cabinets. Le score
+        minimum est le réglage le plus utile : montez-le si vous recevez trop de prospects faibles.
+      </p>
+    </div>
+
+    <div class="cta-block">
+      <h3>Besoin d'aide pour déployer ce workflow ?</h3>
+      <p>Formation complète n8n + IA à 29,90€ — maîtrisez l'automatisation de A à Z</p>
+      <a href="../formation.html" class="cta-btn">Voir la formation →</a>
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 20); });
+</script>
+<script src="../assets/js/lead-popup.js?v=20260716b" defer></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="/assets/js/theme.js?v=20260717n" defer></script>
+</body>
+</html>

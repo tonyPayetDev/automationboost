@@ -1,0 +1,1033 @@
+{
+  "name": "VENDRE - Prospection restaurants vers RDV automatique",
+  "nodes": [
+    {
+      "id": "07739337-d13f-4e05-9232-f8e6fd634c58",
+      "name": "Scan quotidien 08h",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "416b6c9d-04b8-4cde-bc0e-8e47c449192d",
+      "name": "Parametres de prospection",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        0
+      ],
+      "parameters": {
+        "mode": "manual",
+        "includeOtherFields": false,
+        "assignments": {
+          "assignments": [
+            {
+              "id": "zone",
+              "name": "zone",
+              "value": "Saint-Denis, La Reunion",
+              "type": "string"
+            },
+            {
+              "id": "requete",
+              "name": "requete",
+              "value": "restaurant",
+              "type": "string"
+            },
+            {
+              "id": "maxProspects",
+              "name": "maxProspects",
+              "value": 20,
+              "type": "number"
+            },
+            {
+              "id": "scoreMini",
+              "name": "scoreMini",
+              "value": 6,
+              "type": "number"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "82e312de-9914-41b2-a82c-6200d5ff0311",
+      "name": "Scanner les restaurants (Google Maps)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        440,
+        0
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/compass~crawler-google-places/run-sync-get-dataset-items",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "contentType": "json",
+        "jsonBody": "={ \"searchStringsArray\": [\"{{ $json.requete }}\"], \"locationQuery\": \"{{ $json.zone }}\", \"maxCrawledPlacesPerSearch\": {{ $json.maxProspects }}, \"language\": \"fr\", \"scrapeContacts\": true }",
+        "options": {
+          "timeout": 300000
+        }
+      }
+    },
+    {
+      "id": "07b4954d-2c6e-457f-bedd-90d01184b562",
+      "name": "Normaliser les fiches",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        0
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "return $input.all().map(i => {\n  const r = i.json;\n  return { json: {\n    nom: r.title || \"\",\n    adresse: r.address || \"\",\n    telephone: r.phone || \"\",\n    siteWeb: r.website || \"\",\n    note: r.totalScore || 0,\n    nbAvis: r.reviewsCount || 0,\n    email: (r.emails && r.emails[0]) || \"\"\n  } };\n});"
+      }
+    },
+    {
+      "id": "8ed5c622-1639-435b-b124-9ab2d917c70e",
+      "name": "Garder les fiches contactables",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        880,
+        0
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.nom }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            },
+            {
+              "leftValue": "={{ $json.email }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      }
+    },
+    {
+      "id": "037405d4-7e76-4371-bd83-4ea4f0bcaa6a",
+      "name": "Lire le site du restaurant",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1100,
+        0
+      ],
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $json.siteWeb }}",
+        "options": {
+          "timeout": 20000,
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "id": "82506815-0b4a-40f6-8e75-27f4fc8ad0b7",
+      "name": "Qualifier le prospect",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1320,
+        0
+      ],
+      "parameters": {
+        "promptType": "define",
+        "hasOutputParser": true,
+        "text": "=Restaurant : {{ $('Garder les fiches contactables').item.json.nom }}\nAdresse : {{ $('Garder les fiches contactables').item.json.adresse }}\nNote Google : {{ $('Garder les fiches contactables').item.json.note }} sur {{ $('Garder les fiches contactables').item.json.nbAvis }} avis\nSite web : {{ $('Garder les fiches contactables').item.json.siteWeb }}\nContenu du site : {{ $json.data }}",
+        "options": {
+          "systemMessage": "Tu qualifies des restaurants comme prospects pour des services d automatisation.\n\nEvalue sur trois criteres : la taille de l etablissement, son activite recente (volume et fraicheur des avis), et sa presence en ligne.\nDonne un score de 1 a 10 : 10 = fort besoin et capacite a payer, 1 = aucun interet.\nIdentifie l angle d offre le plus pertinent et justifie toujours ta note.\nSi le contenu du site est vide ou illisible, considere la presence en ligne comme faible plutot que d inventer."
+        }
+      }
+    },
+    {
+      "id": "dfc605aa-660a-4ea7-8b43-4928355e891e",
+      "name": "Modele qualification",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        1320,
+        200
+      ],
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5.1",
+          "mode": "list",
+          "cachedResultName": "gpt-5.1"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "f5a5709b-3206-4f3d-830d-f7b7ee79391e",
+      "name": "Format qualification",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        1460,
+        200
+      ],
+      "parameters": {
+        "schemaType": "fromJson",
+        "jsonSchemaExample": "{ \"score\": 8, \"taille\": \"petit\", \"presenceEnLigne\": \"faible\", \"pointsFaibles\": [\"pas de reservation en ligne\"], \"angleOffre\": \"automatiser les reservations\", \"raison\": \"bonne note mais aucune presence digitale\" }"
+      }
+    },
+    {
+      "id": "48bcf30f-13c6-400c-8d0d-313750714958",
+      "name": "Score suffisant ?",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        1540,
+        0
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.output.score }}",
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              },
+              "rightValue": "={{ $('Parametres de prospection').first().json.scoreMini }}"
+            }
+          ],
+          "combinator": "and"
+        }
+      }
+    },
+    {
+      "id": "b9ce98cb-3247-4b8b-8f54-2ab6c2791554",
+      "name": "Rediger l offre personnalisee",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1760,
+        0
+      ],
+      "parameters": {
+        "promptType": "define",
+        "hasOutputParser": true,
+        "text": "=Restaurant : {{ $('Garder les fiches contactables').item.json.nom }}\nAngle retenu : {{ $json.output.angleOffre }}\nPoints faibles observes : {{ $json.output.pointsFaibles }}\nPourquoi ce prospect : {{ $json.output.raison }}",
+        "options": {
+          "systemMessage": "Tu rediges des emails de prospection courts et concrets a destination de restaurateurs.\n\nRegles : maximum 120 mots, vouvoiement, pas de superlatif, une seule proposition claire.\nAppuie-toi sur un element precis observe sur l etablissement.\nTermine par une question simple proposant un echange de 15 minutes.\nNe promets aucun chiffre que tu ne peux pas prouver."
+        }
+      }
+    },
+    {
+      "id": "c8ac3c99-7f52-4834-a13f-82b2d86bd567",
+      "name": "Modele redaction offre",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        1760,
+        200
+      ],
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5.1",
+          "mode": "list",
+          "cachedResultName": "gpt-5.1"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "0d52c4cc-5479-4223-807d-6accdd3482a6",
+      "name": "Format offre",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        1900,
+        200
+      ],
+      "parameters": {
+        "schemaType": "fromJson",
+        "jsonSchemaExample": "{ \"objet\": \"Une idee pour vos reservations\", \"corps\": \"Bonjour, ...\" }"
+      }
+    },
+    {
+      "id": "341a8260-3b08-4944-b6c9-c841cd995881",
+      "name": "Envoyer l offre",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1980,
+        0
+      ],
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "sendTo": "={{ $('Garder les fiches contactables').item.json.email }}",
+        "subject": "={{ $json.output.objet }}",
+        "emailType": "text",
+        "message": "={{ $json.output.corps }}",
+        "options": {}
+      },
+      "onError": "continueRegularOutput",
+      "webhookId": "84cc8c85-f362-4c5d-842b-ba7f20ba64ca"
+    },
+    {
+      "id": "7464625a-5a22-493d-95d6-a9ba6d0d436d",
+      "name": "Journaliser le prospect",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2200,
+        0
+      ],
+      "parameters": {
+        "resource": "sheet",
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "",
+          "cachedResultName": "Feuille de suivi prospection"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Prospects"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "date": "={{ $now.toISO() }}",
+            "nom": "={{ $('Garder les fiches contactables').item.json.nom }}",
+            "email": "={{ $('Garder les fiches contactables').item.json.email }}",
+            "score": "={{ $('Score suffisant ?').item.json.output.score }}",
+            "angle": "={{ $('Score suffisant ?').item.json.output.angleOffre }}",
+            "statut": "offre envoyee"
+          },
+          "schema": [
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "nom",
+              "displayName": "nom",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "score",
+              "displayName": "score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "angle",
+              "displayName": "angle",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "statut",
+              "displayName": "statut",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "id": "dfcd8ffe-9503-4ab6-8556-1a482a801c04",
+      "name": "Reponses entrantes",
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        600
+      ],
+      "parameters": {
+        "event": "messageReceived",
+        "simple": false,
+        "maxResults": 10,
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 15,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "filters": {
+          "q": "newer_than:2d -from:me",
+          "readStatus": "unread"
+        }
+      }
+    },
+    {
+      "id": "a174aed9-700b-4bda-a1c9-784dce6d4ab8",
+      "name": "Classer la reponse",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        220,
+        600
+      ],
+      "parameters": {
+        "promptType": "define",
+        "hasOutputParser": true,
+        "text": "=De : {{ $json.from }}\nObjet : {{ $json.subject }}\nMessage : {{ $json.text }}\n\nDate du jour : {{ $now.toISO() }}",
+        "options": {
+          "systemMessage": "Tu classes les reponses a des emails de prospection.\n\nintention doit valoir exactement INTERESSE, QUESTION ou REFUS.\nINTERESSE : la personne accepte un echange ou propose un creneau.\nQUESTION : elle demande une precision sans accepter.\nREFUS : elle decline.\n\nSi un creneau est mentionne, renvoie le en ISO 8601 dans creneauISO, sinon chaine vide.\nEn cas de doute entre INTERESSE et QUESTION, choisis QUESTION : un rendez-vous cree a tort coute plus cher qu une relance manuelle.\nDonne toujours la raison du classement."
+        }
+      }
+    },
+    {
+      "id": "596c8935-e063-4864-8587-809786ffe50b",
+      "name": "Modele classement reponse",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        220,
+        800
+      ],
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5.1",
+          "mode": "list",
+          "cachedResultName": "gpt-5.1"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "5fc0e801-45c6-4509-9ff2-0ed10964ba03",
+      "name": "Format classement",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        360,
+        800
+      ],
+      "parameters": {
+        "schemaType": "fromJson",
+        "jsonSchemaExample": "{ \"intention\": \"INTERESSE\", \"creneauISO\": \"2026-07-23T14:00:00\", \"confiance\": 0.9, \"raison\": \"accepte explicitement et propose un creneau\" }"
+      }
+    },
+    {
+      "id": "73a41216-00f6-4ca1-9c20-53831611000a",
+      "name": "Router selon l intention",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        440,
+        600
+      ],
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "outputKey": "INTERESSE",
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.output.intention }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "rightValue": "INTERESSE"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "outputKey": "QUESTION",
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.output.intention }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "rightValue": "QUESTION"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "outputKey": "REFUS",
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.output.intention }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "rightValue": "REFUS"
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra",
+          "renameFallbackOutput": "A revoir"
+        }
+      }
+    },
+    {
+      "id": "af6edf2b-0a98-4d6f-b9e0-26b636e273b6",
+      "name": "Creer le rendez-vous",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        700,
+        440
+      ],
+      "parameters": {
+        "resource": "event",
+        "operation": "create",
+        "calendar": {
+          "__rl": true,
+          "mode": "id",
+          "value": "",
+          "cachedResultName": "Agenda principal"
+        },
+        "start": "={{ $json.output.creneauISO || $now.plus(2, 'days').set({ hour: 14, minute: 0 }).toISO() }}",
+        "end": "={{ ($json.output.creneauISO ? $json.output.creneauISO.toDateTime() : $now.plus(2, 'days').set({ hour: 14, minute: 0 })).plus(30, 'minutes').toISO() }}",
+        "useDefaultReminders": true,
+        "additionalFields": {
+          "summary": "=Echange - {{ $('Reponses entrantes').item.json.from }}",
+          "description": "=Rendez-vous programme automatiquement.\n\nRaison du classement : {{ $json.output.raison }}\n\nMessage recu :\n{{ $('Reponses entrantes').item.json.text }}",
+          "attendees": [
+            "={{ $('Reponses entrantes').item.json.from }}"
+          ],
+          "sendUpdates": "all"
+        }
+      }
+    },
+    {
+      "id": "d9bfc734-3cf2-4197-9f05-46d8b2206518",
+      "name": "Confirmer le rendez-vous",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        920,
+        440
+      ],
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "sendTo": "={{ $('Reponses entrantes').item.json.from }}",
+        "subject": "=Re: {{ $('Reponses entrantes').item.json.subject }}",
+        "emailType": "text",
+        "message": "=Bonjour,\n\nC est note, je vous ai envoye une invitation pour le {{ $json.start.dateTime }}.\n\nA tres vite.",
+        "options": {}
+      },
+      "onError": "continueRegularOutput",
+      "webhookId": "3db4e39f-a9e8-4eab-8b07-66013e342dc6"
+    },
+    {
+      "id": "23467da8-9003-4d0f-9000-397b0e150f9a",
+      "name": "Alerter pour reponse manuelle",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        700,
+        640
+      ],
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "sendTo": "={{ $('Parametres des reponses').item.json.emailAlerte }}",
+        "subject": "=Question prospect - {{ $('Reponses entrantes').item.json.from }}",
+        "emailType": "text",
+        "message": "=Un prospect pose une question, une reponse manuelle est attendue.\n\nDe : {{ $('Reponses entrantes').item.json.from }}\nMessage :\n{{ $('Reponses entrantes').item.json.text }}\n\nAnalyse : {{ $json.output.raison }}",
+        "options": {}
+      },
+      "onError": "continueRegularOutput",
+      "webhookId": "62bb8c83-d1b8-4d04-9178-73d6871099a1"
+    },
+    {
+      "id": "ec32de8e-2620-47d5-a850-c5b33c3bd9a7",
+      "name": "Journaliser l issue",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        700,
+        840
+      ],
+      "parameters": {
+        "resource": "sheet",
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "",
+          "cachedResultName": "Feuille de suivi prospection"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Reponses"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "date": "={{ $now.toISO() }}",
+            "email": "={{ $('Reponses entrantes').item.json.from }}",
+            "intention": "={{ $json.output.intention }}",
+            "raison": "={{ $json.output.raison }}"
+          },
+          "schema": [
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "intention",
+              "displayName": "intention",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "raison",
+              "displayName": "raison",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "id": "74c4c43b-cb0f-4fe9-baa4-5f0fe8a8d771",
+      "name": "Sticky Note dc9108fb",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        170,
+        -50
+      ],
+      "parameters": {
+        "content": "## A configurer avant activation\n\n1. Zone et requete dans \"Parametres de prospection\"\n2. Credentials : Apify (header Authorization Bearer), OpenAI, Gmail, Google Sheets, Google Calendar\n3. Feuille de suivi : deux onglets \"Prospects\" et \"Reponses\"\n4. Tester en manuel avant d activer\n\nLe scan ne garde que les fiches avec un email trouve (option scrapeContacts).",
+        "color": 3,
+        "width": 520,
+        "height": 200
+      }
+    },
+    {
+      "id": "a047ee4d-bc4c-477c-b292-e33b35bdf5e1",
+      "name": "Sticky Note ea28373b",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -50,
+        550
+      ],
+      "parameters": {
+        "content": "## Branche reponses\n\nLe trigger Gmail releve les reponses toutes les 15 min.\nUne reponse positive cree le rendez-vous et envoie la confirmation.\nLes questions et les cas ambigus partent en revue manuelle, rien n est perdu.",
+        "color": 5,
+        "width": 520,
+        "height": 200
+      }
+    },
+    {
+      "id": "b7c1e9a4-3f21-4d8e-9a55-2c6f0b41d7e3",
+      "name": "Parametres des reponses",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        110,
+        600
+      ],
+      "parameters": {
+        "mode": "manual",
+        "includeOtherFields": true,
+        "assignments": {
+          "assignments": [
+            {
+              "id": "emailAlerte",
+              "name": "emailAlerte",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Scan quotidien 08h": {
+      "main": [
+        [
+          {
+            "node": "Parametres de prospection",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parametres de prospection": {
+      "main": [
+        [
+          {
+            "node": "Scanner les restaurants (Google Maps)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scanner les restaurants (Google Maps)": {
+      "main": [
+        [
+          {
+            "node": "Normaliser les fiches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normaliser les fiches": {
+      "main": [
+        [
+          {
+            "node": "Garder les fiches contactables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Garder les fiches contactables": {
+      "main": [
+        [
+          {
+            "node": "Lire le site du restaurant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lire le site du restaurant": {
+      "main": [
+        [
+          {
+            "node": "Qualifier le prospect",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Qualifier le prospect": {
+      "main": [
+        [
+          {
+            "node": "Score suffisant ?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Modele qualification": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Qualifier le prospect",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format qualification": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Qualifier le prospect",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Score suffisant ?": {
+      "main": [
+        [
+          {
+            "node": "Rediger l offre personnalisee",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rediger l offre personnalisee": {
+      "main": [
+        [
+          {
+            "node": "Envoyer l offre",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Modele redaction offre": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Rediger l offre personnalisee",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format offre": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Rediger l offre personnalisee",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Envoyer l offre": {
+      "main": [
+        [
+          {
+            "node": "Journaliser le prospect",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reponses entrantes": {
+      "main": [
+        [
+          {
+            "node": "Parametres des reponses",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Classer la reponse": {
+      "main": [
+        [
+          {
+            "node": "Router selon l intention",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Modele classement reponse": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Classer la reponse",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format classement": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Classer la reponse",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Router selon l intention": {
+      "main": [
+        [
+          {
+            "node": "Creer le rendez-vous",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Alerter pour reponse manuelle",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Journaliser l issue",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Alerter pour reponse manuelle",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Creer le rendez-vous": {
+      "main": [
+        [
+          {
+            "node": "Confirmer le rendez-vous",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parametres des reponses": {
+      "main": [
+        [
+          {
+            "node": "Classer la reponse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}
