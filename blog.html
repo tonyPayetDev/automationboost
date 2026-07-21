@@ -15,7 +15,7 @@
   <title>Blog IA & Automatisation – AutomationBoost</title>
   <meta name="description" content="Veille IA et automatisation pour entrepreneurs et PME. Articles publiés tous les 2 jours sur les derniers outils, modèles et stratégies pour gagner du temps avec l'IA." />
   <link rel="canonical" href="https://automationboost.tonypayet.com/blog.html" />
-  <link rel="stylesheet" href="assets/css/style.css?v=20260715d" />
+  <link rel="stylesheet" href="assets/css/style.css?v=20260717n" />
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
   <style>
     .blog-hero { padding: 140px 0 60px; text-align: center; position: relative; z-index: 1; }
@@ -60,25 +60,36 @@
 </head>
 <body>
 <nav id="navbar">
-  <div class="nav-inner">
-    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+  <div class="nav-pill">
+    <a href="/" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
     <div class="nav-desktop">
-      <a href="ressources.html">Ressources</a>
-      <a href="blog.html" style="color:var(--gold)">Blog</a>
-      <a href="demos.html">Démos</a>
-      <a href="formation.html">Formation</a>
-      <a href="index.html#pricing" class="nav-cta">Commencer</a>
+      <a href="ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
     </div>
-    <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<div class="mobile-menu" id="mobileMenu">
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <nav class="mobile-menu-inner">
-    <a href="ressources.html" class="mob-link">📚 Ressources</a>
-    <a href="blog.html" class="mob-link">✍️ Blog</a>
-    <a href="demos.html" class="mob-link mob-link--gold">🎬 Démos</a>
-    <a href="formation.html" class="mob-link mob-link--gold">⚡ Formation 29,90€</a>
-    <a href="index.html#pricing" class="mob-link">🚀 Commencer</a>
+    <a href="ressources.html" class="mob-link">Ressources</a>
+    <a href="blog.html" class="mob-link">Blog IA</a>
+    <a href="skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
   </nav>
 </div>
 
@@ -190,7 +201,7 @@
   <div class="blog-cta">
     <h2>Vous voulez implémenter l'IA dans votre business ?</h2>
     <p>Je vous aide à mettre en place des automatisations sur-mesure adaptées à votre activité — résultats en 48h.</p>
-    <a href="https://tony.automatisationboost.com/#contact" class="btn-gold">Parler à Tony →</a>
+    <a href="/#contact" class="btn-gold">Recevoir mon audit gratuit →</a>
   </div>
 </div>
 
@@ -200,19 +211,8 @@
   </div>
 </footer>
 
+<script src="/assets/js/nav.js" defer></script>
 <script>
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 20); });
-
-  const burger = document.getElementById('navBurger');
-  const menu = document.getElementById('mobileMenu');
-  if (burger && menu) {
-    burger.addEventListener('click', () => {
-      burger.classList.toggle('open');
-      menu.classList.toggle('open');
-    });
-  }
-
   // Filtres
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -225,6 +225,6 @@
     });
   });
 </script>
-<script src="/assets/js/theme.js?v=20260715d" defer></script>
+<script src="/assets/js/theme.js?v=20260717n" defer></script>
 </body>
 </html>

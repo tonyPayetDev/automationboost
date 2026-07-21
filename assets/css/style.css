@@ -2076,16 +2076,10 @@ footer {
               0 0 40px var(--neon-v);
 }
 
-/* Contact button (nav) — smaller + neon */
+/* Contact button (nav) — smaller, no permanent neon glow */
 .nav-cta {
   padding: 6px 15px;
   font-size: 0.8rem;
-  box-shadow: 0 0 12px var(--neon-y),
-              0 0 24px var(--neon-v);
-}
-.nav-cta:hover {
-  box-shadow: 0 0 20px var(--neon-y),
-              0 0 40px var(--neon-v);
 }
 
 /* ============================================================

@@ -14,7 +14,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Démos interactives – Testez nos automatisations | AutomationBoost</title>
   <meta name="description" content="Testez en direct les automatisations construites par AutomationBoost. Exemple : générez le visuel Instagram de votre menu du jour comme le ferait notre workflow n8n pour un vrai client." />
-  <link rel="stylesheet" href="assets/css/style.css?v=20260715d" />
+  <link rel="stylesheet" href="assets/css/style.css?v=20260717n" />
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
 
   <style>
@@ -40,23 +40,6 @@
       padding: 0 24px;
       height: 70px;
     }
-    .nav-desktop {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-    }
-    .nav-desktop a {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--text-light);
-      text-decoration: none;
-      transition: color 0.2s;
-      letter-spacing: 0.01em;
-    }
-    .nav-desktop a:hover { color: var(--gold); }
-    .nav-desktop a.active { color: var(--gold); }
-
     /* ── HERO ── */
     .demo-hero {
       padding: 160px 20px 60px;
@@ -127,19 +110,23 @@
 
 <!-- ════════════ NAVBAR ════════════ -->
 <nav id="navbar">
-  <div class="nav-inner">
+  <div class="nav-pill">
     <a href="/" class="logo">
-      <div class="logo-icon">⚡</div>
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
       <span class="logo-text">Automation<span>Boost</span></span>
     </a>
     <div class="nav-desktop">
-      <a href="ressources.html">Ressources</a>
-      <a href="blog.html">Blog IA</a>
-      <a href="skills.html">Skills</a>
-      <a href="demos.html" class="active">Démos</a>
-      <a href="formation.html" style="color:var(--gold);background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.25);padding:6px 14px;border-radius:8px;font-size:0.85rem;font-weight:700;">⚡ Formation 29,90€</a>
-      <a href="https://tony.automatisationboost.com/#contact" class="nav-cta">Contact →</a>
+      <a href="ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
     </div>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
     <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -149,12 +136,11 @@
 <!-- Menu mobile -->
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <nav class="mobile-menu-inner">
-    <a href="ressources.html" class="mob-link">📚 Ressources</a>
-    <a href="blog.html" class="mob-link">✍️ Blog IA</a>
-    <a href="skills.html" class="mob-link">⚡ Skills Claude</a>
-    <a href="demos.html" class="mob-link mob-link--gold">🎬 Démos</a>
-    <a href="formation.html" class="mob-link mob-link--gold">⚡ Formation 29,90€</a>
-    <a href="https://tony.automatisationboost.com/#contact" class="mob-link">✉ Contact</a>
+    <a href="ressources.html" class="mob-link">Ressources</a>
+    <a href="blog.html" class="mob-link">Blog IA</a>
+    <a href="skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
   </nav>
 </div>
 
@@ -247,7 +233,7 @@
     <div class="fade-in">
       <h2 class="section-title">Ce workflow, c'est celui d'un restaurant.<br><span class="gold">Le vôtre peut être différent.</span></h2>
       <p style="max-width:560px;margin:0 auto 32px;color:var(--text-light);">Chaque automatisation AutomationBoost est construite sur mesure pour votre activité — réseaux sociaux, prospection, contenu, ou tout autre processus répétitif.</p>
-      <a href="https://tony.automatisationboost.com/#contact" class="btn-primary">🚀 Je veux ça pour mon business</a>
+      <a href="/#contact" class="btn-primary">Recevoir mon audit gratuit →</a>
     </div>
   </div>
 </section>
@@ -261,40 +247,8 @@
   </p>
 </footer>
 
+<script src="/assets/js/nav.js" defer></script>
 <script>
-  // ── Navbar scroll ──
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 20);
-  });
-
-  // ── Burger mobile ──
-  const burger = document.getElementById('navBurger');
-  const mobileMenu = document.getElementById('mobileMenu');
-
-  function closeMenu() {
-    burger.classList.remove('open');
-    mobileMenu.classList.remove('open');
-    burger.setAttribute('aria-expanded', 'false');
-    mobileMenu.setAttribute('aria-hidden', 'true');
-  }
-
-  burger.addEventListener('click', () => {
-    const isOpen = mobileMenu.classList.contains('open');
-    if (isOpen) {
-      closeMenu();
-    } else {
-      burger.classList.add('open');
-      mobileMenu.classList.add('open');
-      burger.setAttribute('aria-expanded', 'true');
-      mobileMenu.setAttribute('aria-hidden', 'false');
-    }
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!burger.contains(e.target) && !mobileMenu.contains(e.target)) closeMenu();
-  });
-
   // ── Fade-in on scroll ──
   const fadeEls = document.querySelectorAll('.fade-in');
   const io = new IntersectionObserver((entries) => {
@@ -303,6 +257,6 @@
   fadeEls.forEach(el => io.observe(el));
 
 </script>
-<script src="/assets/js/theme.js?v=20260715d" defer></script>
+<script src="/assets/js/theme.js?v=20260717n" defer></script>
 </body>
 </html>

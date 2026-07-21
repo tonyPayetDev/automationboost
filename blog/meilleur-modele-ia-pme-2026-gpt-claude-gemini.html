@@ -20,7 +20,7 @@
   <meta property="og:url" content="https://automatisationboost.com/blog/meilleur-modele-ia-pme-2026-gpt-claude-gemini.html" />
   <meta name="article:published_time" content="2026-06-12T08:00:00+04:00" />
   <link rel="canonical" href="https://automatisationboost.com/blog/meilleur-modele-ia-pme-2026-gpt-claude-gemini.html" />
-  <link rel="stylesheet" href="../assets/css/style.css?v=20260715d" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
   <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
   <style>
     .blog-page { padding: 120px 0 80px; }
@@ -76,21 +76,36 @@
 </head>
 <body>
 <nav id="navbar">
-  <div class="nav-inner">
-    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
+  <div class="nav-pill">
+    <a href="../" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
     <div class="nav-desktop">
-      <a href="/ressources.html">Ressources</a>
-      <a href="/blog.html" style="color:var(--gold)">Blog IA</a>
-      <a href="https://tony.automatisationboost.com/#contact" class="nav-cta">Contact →</a>
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
     </div>
-    <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<div class="mobile-menu" id="mobileMenu">
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <nav class="mobile-menu-inner">
-    <a href="/ressources.html" class="mob-link">📚 Ressources</a>
-    <a href="/blog.html" class="mob-link">✍️ Blog IA</a>
-    <a href="https://tony.automatisationboost.com/#contact" class="mob-link mob-link--gold">✉ Contact</a>
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
   </nav>
 </div>
 
@@ -270,7 +285,7 @@
       <div class="cta-box">
         <h3>Vous voulez implémenter le bon modèle IA dans votre business ?</h3>
         <p>Je vous aide à choisir et configurer le modèle IA adapté à vos cas d'usage — et à l'intégrer dans vos workflows existants. Résultats livrés en 48h.</p>
-        <a href="https://tony.automatisationboost.com/#contact">Prendre contact →</a>
+        <a href="/#contact">Recevoir mon audit gratuit →</a>
       </div>
 
       <h2>Conclusion : faut-il tout changer maintenant ?</h2>
@@ -310,18 +325,7 @@
   </div>
 </footer>
 
-<script>
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 20); });
-  const burger = document.getElementById('navBurger');
-  const menu = document.getElementById('mobileMenu');
-  if (burger && menu) {
-    burger.addEventListener('click', () => {
-      burger.classList.toggle('open');
-      menu.classList.toggle('open');
-    });
-  }
-</script>
-<script src="/assets/js/theme.js?v=20260715d" defer></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="/assets/js/theme.js?v=20260717n" defer></script>
 </body>
 </html>

@@ -22,7 +22,7 @@
   <meta property="og:image" content="https://automatisationboost.com/assets/images/og-image.svg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="canonical" href="https://automatisationboost.com/" />
-  <link rel="stylesheet" href="assets/css/style.css?v=20260715d" />
+  <link rel="stylesheet" href="assets/css/style.css?v=20260717n" />
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
   <style>
     /* --- Simple homepage helpers (theme-aware via tokens) --- */
@@ -87,11 +87,91 @@
     .cta-band h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; margin-bottom: 14px; }
     .cta-band p { max-width: 540px; margin: 0 auto 28px; color: var(--text-light); }
 
+    /* ---- Formulaire audit gratuit ---- */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+    }
+    .audit-form { max-width: 540px; margin: 0 auto; text-align: left; }
+    .audit-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 560px) { .audit-row { grid-template-columns: 1fr; } }
+    .audit-form input,
+    .audit-form textarea {
+      width: 100%; background: var(--bg-card); color: var(--text);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 13px 16px; font-family: 'Inter', sans-serif; font-size: 0.95rem;
+      outline: none; transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .audit-form textarea { margin-top: 12px; resize: vertical; min-height: 92px; }
+    .audit-form input::placeholder,
+    .audit-form textarea::placeholder { color: var(--text-muted); }
+    .audit-form input:focus-visible,
+    .audit-form textarea:focus-visible {
+      border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-glow);
+    }
+    /* Ne signaler l'erreur qu'une fois le champ quitté, jamais pendant la frappe. */
+    .audit-form input:not(:placeholder-shown):invalid,
+    .audit-form textarea:not(:placeholder-shown):invalid { border-color: var(--red); }
+    .audit-form .btn-primary { width: 100%; justify-content: center; margin-top: 16px; }
+    .audit-form .btn-primary[disabled] { opacity: 0.65; cursor: not-allowed; }
+    .audit-error { color: var(--red); font-size: 0.85rem; margin: 10px 0 0; }
+    .audit-legal { font-size: 0.8rem; color: var(--text-muted); text-align: center; margin: 12px auto 0; }
+    .audit-success { max-width: 540px; margin: 0 auto; padding: 20px 0; }
+    .audit-success-icon { font-size: 2rem; margin-bottom: 8px; }
+    .audit-success h3 { font-family: 'Sora', sans-serif; font-size: 1.25rem; font-weight: 800; margin-bottom: 8px; color: var(--text); }
+    .audit-success p { margin: 0 auto; }
+
+    /* Le CTA du menu burger est traité comme un bouton, pas comme un lien de nav. */
+    .mob-link--cta {
+      background: var(--gold); color: var(--on-gold) !important;
+      font-weight: 700; text-align: center; border-radius: var(--radius);
+      margin-top: 8px;
+    }
+    .mob-link--cta:hover, .mob-link--cta:active { background: var(--gold-dark); }
+
     .lp-footer { border-top: 1px solid var(--border); padding: 40px 0; margin-top: 20px; }
     .lp-footer .container { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; justify-content: space-between; }
     .lp-footer a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
     .lp-footer a:hover { color: var(--gold); }
     .lp-footer .muted { color: var(--text-muted); font-size: 0.85rem; }
+
+    /* ---- Glow feature cards (néon jaune/violet) ---- */
+    .gf-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 12px; margin: 48px auto 0; width: 100%; max-width: 936px;
+    }
+    @media (max-width: 820px) { .gf-grid { grid-template-columns: 1fr; gap: 40px; } }
+    .gf-card {
+      position: relative; display: flex; flex-direction: column;
+      align-items: flex-start; width: 100%; max-width: 300px; margin: 0 auto;
+    }
+    /* Blurred gradient halo behind the card */
+    .gf-glow {
+      position: absolute; inset: 0; width: 100%; height: 300px;
+      opacity: 0.6; border-radius: 40px; pointer-events: none; filter: blur(45px);
+      background: var(--gf-grad);
+    }
+    /* Foreground card with gradient border (background-clip technique) */
+    .gf-fg {
+      position: relative; align-self: stretch; height: 300px;
+      border-radius: 40px; z-index: 10; overflow: hidden;
+      border: 8px solid transparent;
+      background:
+        linear-gradient(#131319, #131319) padding-box,
+        var(--gf-grad) border-box;
+    }
+    @media (max-width: 480px) { .gf-fg, .gf-glow { height: 260px; } }
+    .gf-inner {
+      width: 100%; height: 100%; padding: 28px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .gf-ic { color: rgba(255,255,255,0.9); }
+    .gf-ic svg { width: 32px; height: 32px; }
+    .gf-card h3 {
+      color: #fff; font-family: 'Sora', sans-serif; font-weight: 500;
+      font-size: 1.25rem; margin: 0 0 12px; letter-spacing: -0.02em;
+    }
+    .gf-card p { color: #9ca3af; font-size: 14px; line-height: 1.6; margin: 0; font-weight: 400; }
   </style>
 </head>
 <body>
@@ -109,8 +189,12 @@
       <a href="ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
       <a href="blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
       <a href="skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
     </div>
-    <a href="https://tony.automatisationboost.com/#contact" class="nav-cta">Contact →</a>
+    <a href="#contact" class="nav-cta">Audit gratuit</a>
     <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -122,7 +206,8 @@
     <a href="ressources.html" class="mob-link">Ressources</a>
     <a href="blog.html" class="mob-link">Blog IA</a>
     <a href="skills.html" class="mob-link mob-link--gold">Skills Claude</a>
-    <a href="https://tony.automatisationboost.com/#contact" class="mob-link">Contact</a>
+    <a href="formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="#contact" class="mob-link mob-link--cta">Recevoir mon audit gratuit</a>
   </nav>
 </div>
 
@@ -136,7 +221,7 @@
       Génère, planifie et publie des posts percutants sur Instagram, LinkedIn, Facebook et TikTok — en quelques secondes grâce à l'IA.
     </p>
     <div class="hero-cta-group">
-      <a href="https://tony.automatisationboost.com/#contact" class="btn-primary">Parler de mon projet →</a>
+      <a href="#contact" class="btn-primary">Recevoir mon audit gratuit →</a>
       <a href="ressources.html" class="btn-secondary">Voir les ressources</a>
     </div>
     <div class="hero-stats">
@@ -179,21 +264,42 @@
       <span class="section-label">Ce que ça change</span>
       <h2 class="section-title">Moins de corvée,<br><span class="gold">plus d'impact</span></h2>
     </div>
-    <div class="grid-3">
-      <div class="card">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-        <h3>Tu gagnes des heures</h3>
-        <p>Fini les publications à la main : l'IA rédige, planifie et publie pour toi, chaque semaine.</p>
+    <div class="gf-grid">
+      <div class="gf-card" style="--gf-grad: linear-gradient(137deg, #eab308 0%, #fde68a 45%, #d97757 100%);">
+        <div class="gf-glow"></div>
+        <div class="gf-fg">
+          <div class="gf-inner">
+            <div class="gf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+            <div>
+              <h3>Tu gagnes des heures</h3>
+              <p>Fini les publications à la main : l'IA rédige, planifie et publie pour toi, chaque semaine.</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="card violet">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H5.2L4 17.2V4z"/><path d="M8 9h8M8 12h5"/></svg></span>
-        <h3>Tu publies partout</h3>
-        <p>Un seul contenu, adapté et diffusé sur Instagram, LinkedIn, Facebook et TikTok automatiquement.</p>
+      <div class="gf-card" style="--gf-grad: linear-gradient(137deg, #8b5cf6 0%, #c4b5fd 45%, #eab308 100%);">
+        <div class="gf-glow"></div>
+        <div class="gf-fg">
+          <div class="gf-inner">
+            <div class="gf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H5.2L4 17.2V4z"/><path d="M8 9h8M8 12h5"/></svg></div>
+            <div>
+              <h3>Tu publies partout</h3>
+              <p>Un seul contenu, adapté et diffusé sur Instagram, LinkedIn, Facebook et TikTok automatiquement.</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="card orange">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
-        <h3>Tu restes régulier</h3>
-        <p>Ton audience voit du contenu de qualité en continu, sans que tu aies à y penser.</p>
+      <div class="gf-card" style="--gf-grad: linear-gradient(137deg, #fbbf24 0%, #d97757 45%, #8b5cf6 100%);">
+        <div class="gf-glow"></div>
+        <div class="gf-fg">
+          <div class="gf-inner">
+            <div class="gf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+            <div>
+              <h3>Tu restes régulier</h3>
+              <p>Ton audience voit du contenu de qualité en continu, sans que tu aies à y penser.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -226,13 +332,36 @@
   </div>
 </section>
 
-<!-- ============ CTA CONTACT ============ -->
-<section id="contact-cta">
+<!-- ============ CONTACT / AUDIT GRATUIT ============ -->
+<section id="contact">
   <div class="container">
     <div class="cta-band">
-      <h2>Prêt à automatiser tes réseaux ?</h2>
-      <p>Parlons de ton projet. Je te propose l'accompagnement adapté à tes objectifs — réponse sous 24&nbsp;h, sans engagement.</p>
-      <a href="https://tony.automatisationboost.com/#contact" class="btn-primary">Être recontacté →</a>
+      <h2>Reçois ton audit d'automatisation<br><span class="gold">gratuit</span></h2>
+      <p>Décris ton activité en deux lignes. Je te renvoie sous 24&nbsp;h les 3 tâches que tu peux automatiser en premier, et ce que ça te fait gagner. Sans engagement.</p>
+
+      <form id="auditForm" class="audit-form" novalidate>
+        <div class="audit-row">
+          <label class="sr-only" for="auditName">Prénom</label>
+          <input id="auditName" name="name" type="text" placeholder="Ton prénom" required minlength="2" autocomplete="given-name" />
+
+          <label class="sr-only" for="auditEmail">Email</label>
+          <input id="auditEmail" name="email" type="email" placeholder="ton@email.com" required autocomplete="email" />
+        </div>
+
+        <label class="sr-only" for="auditMessage">Ton activité</label>
+        <textarea id="auditMessage" name="message" rows="3" placeholder="Ton activité et ce qui te prend le plus de temps aujourd'hui…" required minlength="10"></textarea>
+
+        <p id="auditError" class="audit-error" role="alert" hidden></p>
+
+        <button type="submit" id="auditBtn" class="btn-primary">Recevoir mon audit gratuit →</button>
+        <p class="audit-legal">Pas de spam. Ton email sert uniquement à t'envoyer l'audit.</p>
+      </form>
+
+      <div id="auditSuccess" class="audit-success" role="status" hidden>
+        <div class="audit-success-icon">✅</div>
+        <h3>C'est envoyé&nbsp;!</h3>
+        <p>Je reviens vers toi sous 24&nbsp;h avec ton audit. Regarde tes spams si tu ne vois rien passer.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -248,28 +377,80 @@
       <a href="ressources.html">Ressources</a>
       <a href="blog.html">Blog IA</a>
       <a href="skills.html">Skills</a>
-      <a href="https://tony.automatisationboost.com/#contact">Contact</a>
+      <a href="#contact">Audit gratuit</a>
     </nav>
     <span class="muted">© 2026 AutomationBoost · Tony Payet</span>
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=20260715d"></script>
-<script>
-  // Burger mobile (autonome, robuste)
-  (function(){
-    var b=document.getElementById('navBurger'), m=document.getElementById('mobileMenu');
-    if(!b||!m) return;
-    function close(){b.classList.remove('open');m.classList.remove('open');b.setAttribute('aria-expanded','false');m.setAttribute('aria-hidden','true');}
-    window.closeMobileMenu=close;
-    b.addEventListener('click',function(e){e.stopPropagation();
-      if(m.classList.contains('open'))close();
-      else{b.classList.add('open');m.classList.add('open');b.setAttribute('aria-expanded','true');m.setAttribute('aria-hidden','false');}});
-    document.addEventListener('click',function(e){if(!b.contains(e.target)&&!m.contains(e.target))close();});
-    m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});
-  })();
-</script>
+<script src="assets/js/main.js?v=20260717n"></script>
+<script src="assets/js/nav.js" defer></script>
 <!-- Motion (style motionsite.ai) : révélations au scroll + parallax, GSAP ScrollTrigger -->
+<script>
+/* Formulaire « audit gratuit » → webhook n8n Form-lead-autoboost
+   (même endpoint que lead-popup.js, distingué par le champ `source`). */
+(function () {
+  var WEBHOOK = 'https://n7n.automatisationboost.com/webhook/Form-lead-autoboost';
+  var form = document.getElementById('auditForm');
+  if (!form) return;
+
+  var btn = document.getElementById('auditBtn');
+  var err = document.getElementById('auditError');
+  var success = document.getElementById('auditSuccess');
+  var label = btn.textContent;
+
+  function fail(msg, field) {
+    err.textContent = msg;
+    err.hidden = false;
+    if (field) field.focus();
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    var nameEl = document.getElementById('auditName');
+    var emailEl = document.getElementById('auditEmail');
+    var msgEl = document.getElementById('auditMessage');
+    var name = nameEl.value.trim();
+    var email = emailEl.value.trim();
+    var message = msgEl.value.trim();
+
+    if (name.length < 2) return fail('Entre ton prénom.', nameEl);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return fail('Entre une adresse email valide.', emailEl);
+    if (message.length < 10) return fail('Décris ton activité en une phrase au moins.', msgEl);
+
+    err.hidden = true;
+    btn.disabled = true;
+    btn.textContent = 'Envoi…';
+
+    try {
+      var res = await fetch(WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          message: message,
+          source: 'audit-gratuit-home',
+          page: window.location.pathname,
+          date: new Date().toISOString()
+        })
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+    } catch (_) {
+      /* Un lead perdu doit se voir : on rend la main plutôt que de simuler un succès. */
+      btn.disabled = false;
+      btn.textContent = label;
+      return fail('L\'envoi a échoué. Réessaie, ou écris-moi à tony.payet.professionnel@gmail.com.');
+    }
+
+    form.hidden = true;
+    success.hidden = false;
+    success.setAttribute('tabindex', '-1');
+    success.focus();
+  });
+})();
+</script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script>
@@ -280,12 +461,14 @@
   gsap.registerPlugin(ScrollTrigger);
 
   // 1) Entrée du hero en cascade (au chargement)
-  gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.8 } })
-    .from('#hero .hero-badge',     { y: 20, opacity: 0 })
-    .from('#hero .hero-title',     { y: 30, opacity: 0 }, '-=0.5')
-    .from('#hero .hero-subtitle',  { y: 20, opacity: 0 }, '-=0.55')
-    .from('#hero .hero-cta-group', { y: 18, opacity: 0 }, '-=0.5')
-    .from('#hero .stat-item',      { y: 16, opacity: 0, stagger: 0.1 }, '-=0.45');
+  //    Le CTA est l'objectif de la page : il est visible à ~0,55 s au lieu de 1,65 s.
+  //    Les stats, secondaires, finissent de s'installer après.
+  gsap.timeline({ defaults: { ease: 'power2.out', duration: 0.45 } })
+    .from('#hero .hero-badge',     { y: 14, opacity: 0 })
+    .from('#hero .hero-title',     { y: 22, opacity: 0 }, '-=0.32')
+    .from('#hero .hero-subtitle',  { y: 16, opacity: 0 }, '-=0.34')
+    .from('#hero .hero-cta-group', { y: 14, opacity: 0 }, '-=0.36')
+    .from('#hero .stat-item',      { y: 12, opacity: 0, stagger: 0.07 }, '-=0.3');
 
   // 2) Révélation des titres de section au scroll
   gsap.utils.toArray('#video .text-center, #benefits .text-center, #how .text-center').forEach(function (el) {
@@ -298,15 +481,17 @@
     scrollTrigger: { trigger: '.video-frame', start: 'top 85%', once: true } });
 
   // 3) Cartes bénéfices : apparition décalée
-  gsap.from('#benefits .card', { y: 36, opacity: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out',
-    scrollTrigger: { trigger: '#benefits .grid-3', start: 'top 82%', once: true } });
+  gsap.from('#benefits .gf-card', { y: 36, opacity: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out',
+    scrollTrigger: { trigger: '#benefits .gf-grid', start: 'top 82%', once: true } });
 
   // 4) Étapes : apparition décalée
   gsap.from('#how .step', { y: 30, opacity: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out',
     scrollTrigger: { trigger: '#how .steps', start: 'top 82%', once: true } });
 
-  // 5) Bande CTA : léger zoom + fondu
-  gsap.from('.cta-band', { y: 40, opacity: 0, scale: 0.98, duration: 0.85, ease: 'power3.out',
+  // 5) Bande contact : fondu simple.
+  //    Pas de scale ici : la bande contient un formulaire, et animer l'échelle
+  //    d'un conteneur de champs rend le texte flou pendant la transition.
+  gsap.from('.cta-band', { y: 24, opacity: 0, duration: 0.5, ease: 'power2.out',
     scrollTrigger: { trigger: '.cta-band', start: 'top 88%', once: true } });
 
   // 6) Parallax doux sur le halo du hero
@@ -314,6 +499,6 @@
     scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
 })();
 </script>
-<script src="/assets/js/theme.js?v=20260715d" defer></script>
+<script src="/assets/js/theme.js?v=20260717n" defer></script>
 </body>
 </html>
