@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-0SRZVQ1WGD');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TikTok → YouTube Shorts + Instagram Reels : le workflow n8n – AutomationBoost</title>
+  <meta name="description" content="Le workflow n8n complet, à télécharger, qui récupère ta vidéo TikTok sans watermark, réécrit la description avec l'IA et la publie sur YouTube Shorts et Instagram Reels tout seul." />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Sora',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li { margin-bottom:6px; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .source-cta { display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#000;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;padding:14px 28px;border-radius:var(--radius);text-decoration:none;margin-top:40px;transition:all .2s; }
+    .source-cta:hover { background:var(--gold-dark);transform:translateY(-2px); }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+
+    /* Lisibilité lecture longue : Sora (chargée) au lieu d'Orbitron/Rajdhani (jamais chargées) */
+    .page-title, .content-block h2, .content-block h3,
+    article.article-body h2, article.article-body h3 { font-family:'Sora',sans-serif; }
+    .content-block p, .content-block li,
+    article.article-body p, article.article-body li { font-size:17px; line-height:1.75; }
+
+    .flow-step { display:flex;gap:14px;align-items:flex-start;margin-bottom:14px; }
+    .flow-step .num { flex:0 0 26px;height:26px;border-radius:50%;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.3);color:var(--gold);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:2px; }
+    .flow-step p { margin:0; }
+
+    .dl-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.3);border-radius:var(--radius);padding:28px;margin:32px 0; }
+    .dl-box h3 { font-family:'Sora',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text);margin:0 0 8px; }
+    .dl-box p { margin:0 0 4px;font-size:15px; }
+    .dl-box .source-cta { margin-top:20px; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Une vidéo TikTok, trois plateformes : le workflow n8n complet",
+    "description": "Le workflow n8n complet, à télécharger, qui récupère ta vidéo TikTok sans watermark, réécrit la description avec l'IA et la publie sur YouTube Shorts et Instagram Reels tout seul.",
+    "url": "https://automatisationboost.com/ressources/repurpose-tiktok-youtube-instagram.html",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://automatisationboost.com/ressources/repurpose-tiktok-youtube-instagram.html"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "url": "https://automatisationboost.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://automatisationboost.com/assets/images/logo.svg"
+      }
+    }
+  }
+  </script>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="../" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
+    </div>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
+  </nav>
+</div>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>TikTok → YouTube + Instagram
+    </div>
+
+    <div class="page-badge">▶ Vidéo · 33s</div>
+    <h1 class="page-title">Une vidéo TikTok, <span>trois plateformes</span> — le workflow n8n complet</h1>
+    <div class="page-meta">
+      <span>n8n + Apify + OpenAI</span>
+      <span>·</span>
+      <span>Repurposing automatique</span>
+      <span>·</span>
+      <span>Niveau intermédiaire</span>
+    </div>
+
+    <div class="content-block">
+      <p>Tu passes deux heures sur une vidéo, tu la postes sur TikTok, et elle meurt là. Pendant ce temps, la même vidéo aurait pu tourner sur YouTube Shorts et sur Instagram Reels — sans une minute de travail en plus.</p>
+      <p>Voici le workflow qui le fait. Il va chercher ta dernière vidéo TikTok, récupère le fichier <strong style="color:var(--text)">sans watermark</strong>, fait réécrire la description par l'IA pour chaque plateforme, puis publie sur YouTube et Instagram. Tu le télécharges, tu remplis cinq champs, tu l'actives.</p>
+
+      <div class="dl-box">
+        <h3>Le workflow n8n, prêt à importer</h3>
+        <p>24 nœuds, entièrement commenté à l'intérieur. Importé et validé sur une instance n8n réelle avant d'être publié ici.</p>
+        <a href="files/repurpose-tiktok-youtube-instagram.json" download class="source-cta">
+          ◈ Télécharger le workflow n8n (.json)
+        </a>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2>Ce qu'il te faut</h2>
+      <ul>
+        <li><strong>n8n</strong> — auto-hébergé ou cloud</li>
+        <li>Un compte <strong>Apify</strong> (le plan gratuit suffit largement) pour lister tes dernières vidéos TikTok</li>
+        <li>Une clé <strong>OpenAI</strong> pour la réécriture des descriptions</li>
+        <li>Une chaîne <strong>YouTube</strong> connectée en OAuth2 dans n8n</li>
+        <li>Un compte <strong>Instagram professionnel</strong> relié à une page Facebook (l'API refuse les comptes perso)</li>
+        <li>Un endroit où <strong>héberger le fichier</strong> le temps de la publication : un bucket S3/R2, ou ton propre micro-service</li>
+      </ul>
+
+      <h2>L'architecture, en dix étapes</h2>
+      <div class="flow-step"><div class="num">1</div><p>Un déclencheur planifié, deux fois par jour.</p></div>
+      <div class="flow-step"><div class="num">2</div><p>Un nœud <strong>Configuration</strong> qui centralise les cinq valeurs à personnaliser.</p></div>
+      <div class="flow-step"><div class="num">3</div><p>Apify scrape ton profil TikTok et renvoie tes dernières publications.</p></div>
+      <div class="flow-step"><div class="num">4</div><p>Un filtre ne garde que les vidéos publiées <strong>aujourd'hui</strong>, puis on en prend une seule.</p></div>
+      <div class="flow-step"><div class="num">5</div><p>On ouvre la page TikTok de la vidéo et on en extrait l'URL de lecture directe.</p></div>
+      <div class="flow-step"><div class="num">6</div><p>Téléchargement du fichier — c'est le master, il n'a jamais eu de watermark.</p></div>
+      <div class="flow-step"><div class="num">7</div><p>Upload sur ton hébergement, qui renvoie une URL publique en 9:16.</p></div>
+      <div class="flow-step"><div class="num">8</div><p>Un agent GPT-4o réécrit <strong>un titre + une description pour YouTube</strong> et <strong>une légende pour Instagram</strong>.</p></div>
+      <div class="flow-step"><div class="num">9</div><p>Upload resumable vers YouTube, en privé avec publication programmée à +1 h.</p></div>
+      <div class="flow-step"><div class="num">10</div><p>Container Instagram, attente d'encodage, publication du Reel, puis une ligne dans un Google Sheet.</p></div>
+
+      <h2>Le watermark : on ne l'enlève pas, on ne le télécharge jamais</h2>
+      <p>C'est le point que tout le monde rate. On voit des gens tenter de recadrer, de flouter, ou de passer par des sites tiers qui « suppriment le watermark » — et qui te rendent une vidéo réencodée, floue, avec leur propre logo.</p>
+      <p>Le watermark n'est ajouté que sur le fichier d'export, celui du bouton « Enregistrer ». Le fichier que TikTok sert à son propre lecteur web, lui, est propre. Il est référencé dans un bloc JSON planqué dans le HTML de la page :</p>
+
+      <div class="code-block">// Nœud Code — extrait la vidéo sans watermark
+const html = $input.first().json.data;
+const cookies = ($input.first().json.headers || {})['set-cookie'] || [];
+
+const regex = /&lt;script id="__UNIVERSAL_DATA_FOR_REHYDRATION__" type="application\/json"&gt;([\s\S]*?)&lt;\/script&gt;/;
+const match = html.match(regex);
+if (!match) throw new Error("TikTok a servi une page anti-bot : change le User-Agent.");
+
+const data = JSON.parse(match[1]);
+const item = data?.__DEFAULT_SCOPE__?.['webapp.video-detail']?.itemInfo?.itemStruct;
+
+return [{ json: {
+  videoUrl: item?.video?.playAddr,        // ← le master, sans watermark
+  description: (item?.desc || '').trim(),
+  cookies: cookies.join('; ')             // ← indispensable pour l'étape suivante
+}}];</div>
+
+      <div class="tip-box">
+        <div class="tip-label">⚠ Le piège qui coûte deux heures</div>
+        <p>Cette <code>playAddr</code> ne se télécharge pas toute seule. Sans les <strong>cookies renvoyés par la page</strong> et un en-tête <code>Referer: https://www.tiktok.com/</code>, le CDN répond <code>403</code> — et le message d'erreur ne dit rien d'utile. Les cookies sont dans <code>headers['set-cookie']</code> de la requête précédente : il faut donc récupérer la page avec <code>fullResponse: true</code>, sinon ils sont perdus.</p>
+      </div>
+
+      <h2>Les cinq valeurs à remplacer</h2>
+      <p>Tout est regroupé dans le nœud <strong>Configuration</strong>, en tête de workflow. Rien à chercher ailleurs :</p>
+      <div class="code-block">tiktokProfile   → ton pseudo TikTok, sans le @
+apifyToken      → apify.com → Settings → Integrations
+hostEndpoint    → une URL qui accepte un upload multipart
+                  et renvoie { "url": "https://..." }
+igUserId        → l'ID de ton compte Instagram business
+igAccessToken   → ton token Facebook longue durée</div>
+      <p>Puis les credentials à brancher : <strong>YouTube OAuth2</strong> sur les deux nœuds YouTube, <strong>OpenAI</strong> sur le nœud GPT-4o, <strong>Google Sheets</strong> sur le journal.</p>
+
+      <div class="tip-box">
+        <div class="tip-label">⚠ Instagram ne prend pas de fichier</div>
+        <p>L'API Graph ne sait pas recevoir un upload : tu lui donnes une <code>video_url</code> et c'est <strong>elle</strong> qui va la chercher. Cette URL doit être publique, en HTTPS, sans authentification. C'est toute la raison d'être de l'étape 7 — et la raison pour laquelle un lien Google Drive ou un stockage protégé par cookie ne marchera jamais ici.</p>
+      </div>
+
+      <h2>Une description par réseau, pas un copier-coller</h2>
+      <p>Reposter la description TikTok telle quelle est la façon la plus rapide de ne rien gagner. Sur YouTube, les gens <em>cherchent</em> : le titre doit contenir les mots qu'on tape. Sur Instagram, personne ne cherche : la première ligne doit accrocher en deux secondes.</p>
+      <p>L'agent produit donc les deux d'un coup, dans un seul JSON :</p>
+      <div class="code-block">{
+  "youtube_title": "90 caractères max, une promesse cherchable",
+  "youtube_description": "2 à 4 phrases + hashtags à la fin",
+  "youtube_tags": ["8", "à", "12", "mots-clés"],
+  "instagram_caption": "accroche courte, puis ~12 hashtags"
+}</div>
+      <p>Le nœud suivant nettoie cette réponse avant de la parser. Ce n'est pas de la paranoïa : un LLM renvoie régulièrement son JSON entouré de <code>```json</code>, avec des guillemets typographiques ou une virgule en trop. Sans ce nettoyage, le workflow casse une fois sur cinq, au hasard.</p>
+
+      <div class="tip-box">
+        <div class="tip-label">⚠ YouTube : publishAt exige privacyStatus private</div>
+        <p>Si tu veux programmer la sortie (le workflow la place à +1 h), la vidéo <strong>doit</strong> être envoyée en <code>privacyStatus: "private"</code>. En <code>public</code>, l'API accepte la requête, ignore silencieusement <code>publishAt</code> et publie tout de suite. Aucune erreur, juste une vidéo en ligne au mauvais moment.</p>
+      </div>
+
+      <h2>Ce à quoi t'attendre</h2>
+      <ul>
+        <li>Tu postes sur TikTok le soir, la vidéo est sur les trois plateformes le lendemain matin</li>
+        <li>Trois textes différents, adaptés à trois audiences, sans les écrire</li>
+        <li>Aucun réencodage : c'est le fichier d'origine, en qualité d'origine, sans watermark</li>
+        <li>Coût réel : quelques centimes d'OpenAI par vidéo, le reste tient dans les paliers gratuits</li>
+      </ul>
+
+      <div class="tip-box">
+        <div class="tip-label">💡 Commence par une seule plateforme</div>
+        <p>Désactive le bloc Instagram au premier essai et fais tourner uniquement la branche YouTube. Les deux tiers des problèmes de départ viennent des tokens Facebook — inutile de les déboguer en même temps que le reste de la chaîne.</p>
+      </div>
+
+      <a href="files/repurpose-tiktok-youtube-instagram.json" download class="source-cta">
+        ◈ Télécharger le workflow n8n (.json)
+      </a>
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+</script>
+<script src="../assets/js/lead-popup.js?v=20260716b" defer></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="/assets/js/theme.js?v=20260717n" defer></script>
+</body>
+</html>

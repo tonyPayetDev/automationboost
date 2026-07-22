@@ -1,0 +1,763 @@
+{
+  "name": "TikTok → YouTube Shorts + Instagram Reels (repurpose auto)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8,
+              "triggerAtMinute": 30
+            },
+            {
+              "triggerAtHour": 19,
+              "triggerAtMinute": 30
+            }
+          ]
+        }
+      },
+      "name": "Deux fois par jour",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1180,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a1",
+              "name": "tiktokProfile",
+              "value": "ton_compte_tiktok",
+              "type": "string"
+            },
+            {
+              "id": "a2",
+              "name": "apifyToken",
+              "value": "REMPLACE_PAR_TON_TOKEN_APIFY",
+              "type": "string"
+            },
+            {
+              "id": "a3",
+              "name": "hostEndpoint",
+              "value": "https://ton-service-de-fichiers.exemple.com/upload",
+              "type": "string"
+            },
+            {
+              "id": "a4",
+              "name": "igUserId",
+              "value": "REMPLACE_PAR_TON_ID_INSTAGRAM_BUSINESS",
+              "type": "string"
+            },
+            {
+              "id": "a5",
+              "name": "igAccessToken",
+              "value": "REMPLACE_PAR_TON_TOKEN_LONGUE_DUREE",
+              "type": "string"
+            },
+            {
+              "id": "a6",
+              "name": "jour",
+              "value": "={{ $now.setZone('UTC').toFormat('yyyy-MM-dd') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Configuration",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -960,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.apify.com/v2/acts/clockworks~tiktok-profile-scraper/runs?token={{ $json.apifyToken }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"profiles\": [\"{{ $json.tiktokProfile }}\"],\n  \"resultsPerPage\": 4,\n  \"excludePinnedPosts\": true,\n  \"oldestPostDateUnified\": \"{{ $json.jour }}\",\n  \"shouldDownloadVideos\": false,\n  \"shouldDownloadCovers\": false,\n  \"shouldDownloadAvatars\": false,\n  \"shouldDownloadSubtitles\": false,\n  \"shouldDownloadSlideshowImages\": false\n}",
+        "options": {}
+      },
+      "name": "Apify — scraper le profil TikTok",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -740,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 60
+      },
+      "name": "Attendre la fin du scrape",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -520,
+        320
+      ],
+      "webhookId": "repurpose-wait-scrape"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.apify.com/v2/acts/clockworks~tiktok-profile-scraper/runs/last/dataset/items?token={{ $('Configuration').item.json.apifyToken }}",
+        "options": {}
+      },
+      "name": "Récupérer les vidéos scrapées",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -300,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f1",
+              "leftValue": "={{ $json.createTimeISO }}",
+              "rightValue": "={{ $('Configuration').item.json.jour }}",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "name": "Ne garder que les vidéos du jour",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -80,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "maxItems": 1
+      },
+      "name": "Une seule vidéo à la fois",
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        140,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.webVideoUrl }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "responseFormat": "text"
+            }
+          }
+        }
+      },
+      "name": "Ouvrir la page TikTok",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        360,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extrait l'URL de lecture directe de la vidéo TikTok.\n// Cette URL (playAddr) pointe vers le master SANS watermark :\n// c'est le fichier que TikTok sert au lecteur web, pas l'export \"Enregistrer\".\nconst html = $input.first().json.data;\nconst headers = $input.first().json.headers || {};\nconst cookies = headers['set-cookie'] || [];\n\nif (!html) {\n  throw new Error(\"Corps HTML vide. Verifie que le noeud precedent renvoie du texte (responseFormat: text + fullResponse).\");\n}\n\nconst regex = /<script id=\"__UNIVERSAL_DATA_FOR_REHYDRATION__\" type=\"application\\/json\">([\\s\\S]*?)<\\/script>/;\nconst match = html.match(regex);\n\nif (!match) {\n  throw new Error(\"Bloc __UNIVERSAL_DATA_FOR_REHYDRATION__ introuvable. TikTok a servi une page anti-bot : change le User-Agent ou reessaie.\");\n}\n\nconst data = JSON.parse(match[1]);\nconst item = data?.__DEFAULT_SCOPE__?.['webapp.video-detail']?.itemInfo?.itemStruct;\n\nconst videoUrl = item?.video?.playAddr;\nif (!videoUrl) {\n  throw new Error(\"playAddr absent : la video est peut-etre privee ou supprimee.\");\n}\n\nlet description = (item?.desc || '').replace(/\\r?\\n|\\r/g, ' ').trim();\n\nreturn [{\n  json: {\n    videoUrl,\n    description,\n    tiktokId: item?.id || '',\n    // Les cookies de la page sont OBLIGATOIRES pour telecharger le fichier :\n    // sans eux le CDN renvoie un 403.\n    cookies: Array.isArray(cookies) ? cookies.join('; ') : String(cookies)\n  }\n}];\n"
+      },
+      "name": "Extraire la vidéo sans watermark",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        580,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.videoUrl }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"
+            },
+            {
+              "name": "Referer",
+              "value": "https://www.tiktok.com/"
+            },
+            {
+              "name": "Accept",
+              "value": "video/mp4,video/*;q=0.9,application/octet-stream;q=0.8"
+            },
+            {
+              "name": "Cookie",
+              "value": "={{ $('Extraire la vidéo sans watermark').item.json.cookies }}"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "data"
+            }
+          }
+        }
+      },
+      "name": "Télécharger la vidéo",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        800,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Configuration').item.json.hostEndpoint }}?format=portrait",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "data",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Héberger la vidéo en 9:16",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1020,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Description TikTok d'origine : {{ $('Extraire la vidéo sans watermark').item.json.description }}",
+        "options": {
+          "systemMessage": "Tu recois la description d'origine d'une video TikTok. Tu produis DEUX textes distincts : un pour YouTube Shorts, un pour Instagram Reels. Ce ne sont pas les memes audiences, donc ce ne sont pas les memes textes.\n\nREGLES STRICTES (OBLIGATOIRES) :\n- Reponds UNIQUEMENT par un objet JSON valide sur une seule ligne\n- Pas de retour a la ligne, pas de markdown, pas de fences ```\n- Pas de guillemets doubles a l'interieur des valeurs\n- Ecris en francais\n\nREGLES DE CONTENU :\n- youtube_title : maximum 90 caracteres, une promesse claire et cherchable (YouTube est un moteur de recherche)\n- youtube_description : 2 a 4 phrases, la premiere doit tenir seule dans l'apercu, puis les hashtags a la fin\n- youtube_tags : 8 a 12 mots-cles, sans le signe diese\n- instagram_caption : accroche courte sur la premiere ligne, 2 a 3 phrases ensuite, puis environ 12 hashtags a la fin\n- Ne recopie jamais la description TikTok telle quelle et ne mentionne jamais TikTok\n\nSCHEMA DE SORTIE (EXACT) :\n{\"youtube_title\":\"string\",\"youtube_description\":\"string\",\"youtube_tags\":[\"string\"],\"instagram_caption\":\"string\"}"
+        }
+      },
+      "name": "Réécrire pour chaque réseau",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        1240,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o"
+        },
+        "options": {}
+      },
+      "name": "GPT-4o",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1240,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse la reponse de l'agent IA.\n// Un LLM renvoie regulierement du JSON entoure de fences, de guillemets\n// typographiques ou de virgules traînantes : on nettoie avant de parser.\nconst raw = ($input.first()?.json?.output ?? '').toString();\n\nlet text = raw\n  .replace(/\\`\\`\\`(?:json)?\\s*([\\s\\S]*?)\\s*\\`\\`\\`/gi, '$1')\n  .replace(/^\\uFEFF/, '')\n  .replace(/[\\u201C\\u201D]/g, '\"')\n  .replace(/[\\u2018\\u2019]/g, \"'\")\n  .replace(/,\\s*([}\\]])/g, '$1')\n  .trim();\n\nif (!text.startsWith('{')) {\n  const first = text.indexOf('{');\n  const last = text.lastIndexOf('}');\n  if (first !== -1 && last > first) text = text.slice(first, last + 1);\n}\n\n// Quote les cles non quotees : {title: \"x\"} -> {\"title\": \"x\"}\ntext = text.replace(/([{,]\\s*)([A-Za-z_][A-Za-z0-9_-]*)(\\s*):/g, '$1\"$2\"$3:');\n\nlet data;\ntry {\n  data = JSON.parse(text);\n} catch (err) {\n  throw new Error('JSON invalide renvoye par l IA : ' + err.message + '\\n\\n' + text.slice(0, 700));\n}\n\nconst clean = (s) => String(s || '').replace(/\"/g, \"'\").replace(/\\s+/g, ' ').trim();\n\nreturn [{\n  json: {\n    ytTitle: clean(data.youtube_title).slice(0, 95),\n    ytDescription: clean(data.youtube_description),\n    ytTags: Array.isArray(data.youtube_tags) ? data.youtube_tags.join(',') : clean(data.youtube_tags),\n    igCaption: clean(data.instagram_caption).slice(0, 2100)\n  }\n}];\n"
+      },
+      "name": "Parser la réponse IA",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1460,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.googleapis.com/upload/youtube/v3/videos?part=snippet,status&uploadType=resumable",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "youTubeOAuth2Api",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "X-Upload-Content-Type",
+              "value": "video/mp4"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "RAW/JSON",
+        "body": "={\n  \"snippet\": {\n    \"title\": \"{{ $json.ytTitle }}\",\n    \"description\": \"{{ $json.ytDescription }}\",\n    \"tags\": \"{{ $json.ytTags }}\",\n    \"categoryId\": \"22\",\n    \"defaultLanguage\": \"fr\",\n    \"defaultAudioLanguage\": \"fr\"\n  },\n  \"status\": {\n    \"privacyStatus\": \"private\",\n    \"license\": \"youtube\",\n    \"embeddable\": true,\n    \"selfDeclaredMadeForKids\": false,\n    \"publishAt\": \"{{ $now.plus({ hours: 1 }).setZone('UTC').toFormat(\"yyyy-MM-dd'T'HH:mm:ss'Z'\") }}\"\n  }\n}",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "name": "YouTube — ouvrir l'upload",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1680,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Héberger la vidéo en 9:16').item.json.url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "data"
+            }
+          }
+        }
+      },
+      "name": "Reprendre le fichier hébergé",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1900,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "={{ $('YouTube — ouvrir l\\'upload').item.json.headers.location }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "youTubeOAuth2Api",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "video/mp4"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "binaryData",
+        "inputDataFieldName": "data",
+        "options": {}
+      },
+      "name": "YouTube — envoyer le fichier",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2120,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v21.0/{{ $('Configuration').item.json.igUserId }}/media",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"media_type\": \"REELS\",\n  \"video_url\": \"{{ $('Héberger la vidéo en 9:16').item.json.url }}\",\n  \"caption\": \"{{ $('Parser la réponse IA').item.json.igCaption }}\",\n  \"share_to_feed\": true,\n  \"access_token\": \"{{ $('Configuration').item.json.igAccessToken }}\"\n}",
+        "options": {}
+      },
+      "name": "Instagram — créer le container",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2340,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 2,
+        "unit": "minutes"
+      },
+      "name": "Attendre l'encodage Instagram",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2560,
+        200
+      ],
+      "webhookId": "repurpose-wait-ig"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v21.0/{{ $('Configuration').item.json.igUserId }}/media_publish",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"creation_id\": \"{{ $('Instagram — créer le container').item.json.id }}\",\n  \"access_token\": \"{{ $('Configuration').item.json.igAccessToken }}\"\n}",
+        "options": {}
+      },
+      "name": "Instagram — publier le Reel",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2780,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "REMPLACE_PAR_ID_DE_TON_SHEET"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Repurpose"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "date": "={{ $now.setZone('UTC').toFormat('dd-MM-yyyy HH:mm') }}",
+            "tiktok": "={{ $('Une seule vidéo à la fois').item.json.webVideoUrl }}",
+            "youtube": "=https://www.youtube.com/watch?v={{ $('YouTube — envoyer le fichier').item.json.id }}",
+            "instagram": "={{ $json.id }}",
+            "titre": "={{ $('Parser la réponse IA').item.json.ytTitle }}"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "name": "Journal",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        3000,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## 1. Avant de lancer\n\nOuvre le nœud **Configuration** et remplace les 5 valeurs :\n\n- `tiktokProfile` — ton pseudo TikTok, sans le @\n- `apifyToken` — apify.com → Settings → Integrations\n- `hostEndpoint` — une URL qui accepte un upload multipart et renvoie `{ \"url\": \"...\" }` (ton micro-service ffmpeg, un bucket S3/R2, etc.)\n- `igUserId` / `igAccessToken` — compte Instagram **professionnel** relié à une page Facebook\n\nCredentials à brancher : **YouTube OAuth2** sur les 2 nœuds YouTube, **OpenAI** sur GPT-4o, **Google Sheets** sur Journal.",
+        "height": 460,
+        "width": 460,
+        "color": 4
+      },
+      "name": "Note — Setup",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1180,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## 2. Le watermark\n\nOn ne l'efface pas : on ne le télécharge jamais.\n\nLa page TikTok contient un bloc JSON `__UNIVERSAL_DATA_FOR_REHYDRATION__` avec `video.playAddr` — le master servi au lecteur web, **sans watermark**.\n\nLe téléchargement exige les cookies renvoyés par la page, sinon le CDN répond **403**.",
+        "height": 340,
+        "width": 420,
+        "color": 5
+      },
+      "name": "Note — Watermark",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        360,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## 3. Instagram\n\nL'API Graph ne prend **pas** de fichier : elle va chercher elle-même `video_url`. Cette URL doit être publique, sans authentification, servie en HTTPS.\n\nC'est tout le rôle de « Héberger la vidéo en 9:16 ».\n\nL'attente de 2 minutes couvre l'encodage. Si `media_publish` répond *Media ID is not available*, allonge-la.",
+        "height": 360,
+        "width": 420,
+        "color": 6
+      },
+      "name": "Note — Instagram",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2340,
+        -180
+      ]
+    }
+  ],
+  "connections": {
+    "Deux fois par jour": {
+      "main": [
+        [
+          {
+            "node": "Configuration",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Configuration": {
+      "main": [
+        [
+          {
+            "node": "Apify — scraper le profil TikTok",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Apify — scraper le profil TikTok": {
+      "main": [
+        [
+          {
+            "node": "Attendre la fin du scrape",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Attendre la fin du scrape": {
+      "main": [
+        [
+          {
+            "node": "Récupérer les vidéos scrapées",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Récupérer les vidéos scrapées": {
+      "main": [
+        [
+          {
+            "node": "Ne garder que les vidéos du jour",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ne garder que les vidéos du jour": {
+      "main": [
+        [
+          {
+            "node": "Une seule vidéo à la fois",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Une seule vidéo à la fois": {
+      "main": [
+        [
+          {
+            "node": "Ouvrir la page TikTok",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ouvrir la page TikTok": {
+      "main": [
+        [
+          {
+            "node": "Extraire la vidéo sans watermark",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extraire la vidéo sans watermark": {
+      "main": [
+        [
+          {
+            "node": "Télécharger la vidéo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Télécharger la vidéo": {
+      "main": [
+        [
+          {
+            "node": "Héberger la vidéo en 9:16",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Héberger la vidéo en 9:16": {
+      "main": [
+        [
+          {
+            "node": "Réécrire pour chaque réseau",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Réécrire pour chaque réseau": {
+      "main": [
+        [
+          {
+            "node": "Parser la réponse IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parser la réponse IA": {
+      "main": [
+        [
+          {
+            "node": "YouTube — ouvrir l'upload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "YouTube — ouvrir l'upload": {
+      "main": [
+        [
+          {
+            "node": "Reprendre le fichier hébergé",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reprendre le fichier hébergé": {
+      "main": [
+        [
+          {
+            "node": "YouTube — envoyer le fichier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "YouTube — envoyer le fichier": {
+      "main": [
+        [
+          {
+            "node": "Instagram — créer le container",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Instagram — créer le container": {
+      "main": [
+        [
+          {
+            "node": "Attendre l'encodage Instagram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Attendre l'encodage Instagram": {
+      "main": [
+        [
+          {
+            "node": "Instagram — publier le Reel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Instagram — publier le Reel": {
+      "main": [
+        [
+          {
+            "node": "Journal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GPT-4o": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Réécrire pour chaque réseau",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "meta": {
+    "instanceId": "automatisationboost"
+  }
+}
