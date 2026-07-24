@@ -110,6 +110,59 @@
     .hb-reassure span { display: flex; gap: 8px; align-items: flex-start; }
     .hb-reassure b { color: var(--gold); font-weight: 700; }
 
+    /* ── DÉMO VIDÉO ── */
+    .hb-demo { display: grid; grid-template-columns: 320px 1fr; gap: 34px; align-items: center; margin-top: 30px; }
+    .hb-player {
+      position: relative; border-radius: 20px; overflow: hidden;
+      border: 1px solid rgba(139,92,246,0.28); background: #000;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.28); aspect-ratio: 9 / 16;
+    }
+    .hb-player video { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .hb-player-hint {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+      color: #fff; font-family: 'Inter', sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.04em; padding: 26px 14px 12px; text-align: center;
+      pointer-events: none; transition: opacity .25s;
+    }
+    .hb-player.playing .hb-player-hint { opacity: 0; }
+    .hb-demo-notes { display: flex; flex-direction: column; gap: 16px; }
+    .hb-note {
+      display: flex; gap: 14px; align-items: flex-start;
+      border-left: 2px solid rgba(234,179,8,0.4); padding-left: 16px;
+    }
+    .hb-note-t {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; font-weight: 700;
+      color: var(--gold); flex: 0 0 62px; padding-top: 2px;
+    }
+    .hb-note-d { font-size: 0.88rem; line-height: 1.6; color: var(--text-muted); }
+    .hb-note-d b { color: var(--text-light); font-weight: 600; }
+    .hb-demo-meta {
+      margin-top: 6px; font-size: 0.78rem; color: var(--text-muted);
+      border-top: 1px solid var(--border); padding-top: 14px; line-height: 1.6;
+    }
+
+    /* ── VALEUR ── */
+    .hb-value { margin-top: 30px; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; background: var(--bg-card); }
+    .hb-vrow {
+      display: grid; grid-template-columns: 1fr 150px; gap: 16px;
+      padding: 17px 22px; border-bottom: 1px solid var(--border); align-items: center;
+    }
+    .hb-vrow:last-child { border-bottom: none; }
+    .hb-vrow.total { background: rgba(234,179,8,0.055); }
+    .hb-vlabel { font-size: 0.9rem; color: var(--text-light); line-height: 1.5; }
+    .hb-vlabel small { display: block; font-size: 0.78rem; color: var(--text-muted); margin-top: 3px; line-height: 1.5; }
+    .hb-vnum {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.15rem; font-weight: 800;
+      color: var(--text); text-align: right; letter-spacing: -0.01em; white-space: nowrap;
+    }
+    .hb-vrow.total .hb-vnum { color: var(--gold); font-size: 1.5rem; }
+    .hb-vfoot {
+      margin-top: 18px; font-size: 0.85rem; line-height: 1.75; color: var(--text-muted);
+      border-left: 2px solid var(--violet); padding-left: 16px;
+    }
+    .hb-vfoot b { color: var(--text-light); font-weight: 600; }
+
     /* ── SECTIONS ── */
     .hb-sec { padding: 62px 0 0; }
     .hb-sec h2 {
@@ -229,6 +282,11 @@
       .hb-tl-head span:last-child, .hb-tl-row .hb-tl-tag { display: none; }
       .hb-viral { padding: 20px; }
       .hb-buy { padding: 30px 22px; }
+      .hb-demo { grid-template-columns: 1fr; gap: 26px; }
+      .hb-player { max-width: 300px; margin: 0 auto; width: 100%; }
+      .hb-vrow { grid-template-columns: 1fr auto; padding: 15px 18px; }
+      .hb-vnum { font-size: 1rem; }
+      .hb-vrow.total .hb-vnum { font-size: 1.3rem; }
     }
   </style>
 </head>
@@ -312,6 +370,58 @@
 </section>
 
 <div class="hb-wrap">
+
+  <!-- ════════════ DÉMO ════════════ -->
+  <section class="hb-sec">
+    <div class="hb-kicker">Démonstration</div>
+    <h2>Une vidéo montée avec ce skill</h2>
+    <p>
+      34,45s, 1080×1920, sortie telle quelle du pipeline. Monte le son : tout l'intérêt
+      est dans le placement, et le placement s'entend.
+    </p>
+    <div class="hb-demo">
+      <div class="hb-player" id="demoPlayer">
+        <video
+          controls
+          preload="none"
+          playsinline
+          poster="/assets/video/horror-beatsync/demo-poster.jpg"
+          id="demoVideo">
+          <source src="/assets/video/horror-beatsync/demo-horror-beatsync.mp4" type="video/mp4" />
+          Ton navigateur ne peut pas lire cette vidéo.
+        </video>
+        <div class="hb-player-hint">▶ Lecture avec le son</div>
+      </div>
+
+      <div class="hb-demo-notes">
+        <div class="hb-note">
+          <div class="hb-note-t">0 → 2.34</div>
+          <div class="hb-note-d">La montée. Rien ne bouge, la tension monte — c'est le silence avant le drop qui rend le drop lisible.</div>
+        </div>
+        <div class="hb-note">
+          <div class="hb-note-t">2.34</div>
+          <div class="hb-note-d"><b>Le mot apparaît pile sur le drop.</b> C'est l'image du poster. À 3s comme le disaient les analyses automatiques, il arriverait 0,65s en retard — et ça se voit.</div>
+        </div>
+        <div class="hb-note">
+          <div class="hb-note-t">2.67 → …</div>
+          <div class="hb-note-d">L'anneau jaune de l'avatar pulse toutes les <b>2,673s</b>. Un pulse sur trois retombe exactement sur un mini-drop.</div>
+        </div>
+        <div class="hb-note">
+          <div class="hb-note-t">tout du long</div>
+          <div class="hb-note-d">Les captions changent sur la grille de beats à <b>0,50125s</b>, et la musique reste 10 à 16 dB sous la voix — mesuré, pas jugé à l'oreille.</div>
+        </div>
+        <div class="hb-note">
+          <div class="hb-note-t">34.42</div>
+          <div class="hb-note-d">Coupe nette sur un mini-drop. Pas 35s : la vidéo se termine <b>sur</b> un temps fort, jamais au milieu d'une phrase musicale.</div>
+        </div>
+        <div class="hb-demo-meta">
+          Vidéo réellement produite avec ce pipeline (juillet 2026) — c'est le projet sur lequel
+          la grille a été corrigée et le bug de captions invisibles rattrapé. Les deux pièges
+          sont documentés dans le skill que tu reçois.
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ════════════ PROBLÈME ════════════ -->
   <section class="hb-sec">
@@ -490,6 +600,60 @@
     </div>
   </section>
 
+  <!-- ════════════ VALEUR ════════════ -->
+  <section class="hb-sec">
+    <div class="hb-kicker">Ce que ça vaut</div>
+    <h2>Le prix de ne pas l'avoir</h2>
+    <p>
+      Ce skill n'a pas été écrit d'un trait : c'est le résidu de plusieurs vidéos ratées,
+      d'un rendu de 11 minutes jeté à la poubelle et d'une grille de drops entièrement
+      remesurée parce que l'analyse automatique se trompait. Voilà ce que ça représente.
+    </p>
+
+    <div class="hb-value">
+      <div class="hb-vrow">
+        <div class="hb-vlabel">
+          Reconstruire le pipeline soi-même
+          <small>FFmpeg, mesure de la grille, décalage de phase, TTS clip par clip, allocation des captions — en partant de zéro</small>
+        </div>
+        <div class="hb-vnum">25-40 h</div>
+      </div>
+      <div class="hb-vrow">
+        <div class="hb-vlabel">
+          Au tarif d'un freelance vidéo/automatisation
+          <small>50 à 80 €/h — le coût réel de la R&amp;D déjà payée</small>
+        </div>
+        <div class="hb-vnum">1 250-3 200 €</div>
+      </div>
+      <div class="hb-vrow">
+        <div class="hb-vlabel">
+          Monter <b>une seule</b> vidéo à la main
+          <small>Marquage des beats à l'oreille sur un morceau sans beat percussif, cuts, captions alignées — et le résultat reste décalé</small>
+        </div>
+        <div class="hb-vnum">≈ 1 h 30</div>
+      </div>
+      <div class="hb-vrow">
+        <div class="hb-vlabel">
+          Le même montage avec le skill
+          <small>Tu donnes ton rush et le script, Claude exécute la procédure</small>
+        </div>
+        <div class="hb-vnum">quelques min</div>
+      </div>
+      <div class="hb-vrow total">
+        <div class="hb-vlabel">Ce que tu paies, une fois</div>
+        <div class="hb-vnum">19,90 €</div>
+      </div>
+    </div>
+
+    <div class="hb-vfoot">
+      <b>Le vrai coût n'est pas le temps, c'est le silence des erreurs.</b> Un mix trop fort,
+      une révélation 0,65s en retard, une caption qui dure zéro frame : le rendu réussit, le
+      MP4 s'ouvre, rien ne signale quoi que ce soit. Tu ne l'apprends qu'en voyant la vidéo ne
+      pas prendre — sans savoir que le coupable était le montage. C'est ça que tu achètes :
+      les erreurs déjà commises, mesurées et corrigées.
+    </div>
+  </section>
+
   <!-- ════════════ FAQ ════════════ -->
   <section class="hb-sec">
     <div class="hb-kicker">Questions</div>
@@ -583,6 +747,19 @@
   </p>
 </footer>
 
+<script>
+  // Le hint "lecture avec le son" s'efface dès la première lecture.
+  (function () {
+    var v = document.getElementById('demoVideo');
+    var p = document.getElementById('demoPlayer');
+    if (!v || !p) return;
+    v.addEventListener('play', function () {
+      p.classList.add('playing');
+      if (typeof gtag === 'function') gtag('event', 'demo_play', { product: 'skill-horror-beatsync' });
+    });
+    v.addEventListener('pause', function () { if (v.currentTime === 0) p.classList.remove('playing'); });
+  })();
+</script>
 <script src="/assets/js/nav.js" defer></script>
 <script src="/assets/js/theme.js?v=20260717n" defer></script>
 </body>
