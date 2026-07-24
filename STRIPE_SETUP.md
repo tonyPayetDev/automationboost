@@ -310,6 +310,88 @@ SENDER_EMAIL=formation@automationboost.com
 
 ---
 
-**Last Updated**: 2026-06-17  
-**Status**: Ready for implementation  
+# Product 2 — Premium skill "Horror Beat-Sync" (19,90€)
+
+Added 2026-07-24. Second paid product, sold from the skills page. Reuses the same
+token-gate mechanism as the formation, but with its own storage key and its own
+`product` discriminator so a formation token cannot unlock the skill (and vice versa).
+
+## Files
+
+| File | Role |
+|---|---|
+| `skills/horror-beatsync.html` | Public sales page (details, pricing, buy button) |
+| `skills/horror-beatsync-acces.html` | Gated delivery page — validates the token, then reveals the download |
+| `assets/downloads/horror-beatsync-video-skill-ab7f3c.zip` | The product itself (3 files, 12 KB) |
+| `skills.html` | Premium card at the top of the grid, links to the sales page |
+
+## Payment link (live)
+
+```
+https://buy.stripe.com/aFacN4apbbQKerH2gs7N602
+```
+
+Hardcoded in three places: the hero buy box and the final CTA of
+`skills/horror-beatsync.html`, plus the "no token" state of
+`skills/horror-beatsync-acces.html`.
+
+## What still has to be configured by hand
+
+**1. Stripe — redirect after payment.** In the payment link settings, set the
+confirmation page to:
+
+```
+https://automatisationboost.com/skills/horror-beatsync-acces.html?session_id={CHECKOUT_SESSION_ID}
+```
+
+Without this, the buyer lands on Stripe's default confirmation page and only gets in
+through the email link.
+
+**2. n8n — handle the `product` field.** The delivery page posts to the existing
+webhook `POST /webhook/validate-token`, with an extra field:
+
+```json
+{ "token": "cs_live_xxx", "product": "skill-horror-beatsync" }
+```
+
+The workflow must branch on `product`: a token issued for the formation must NOT
+validate here. Expected response is unchanged:
+
+```json
+{ "valid": true, "email": "buyer@example.com" }
+```
+
+**3. n8n — delivery email.** On `checkout.session.completed` for this price, send:
+
+```
+Subject: ⚡ Ton skill Horror Beat-Sync est prêt
+Body:   https://automatisationboost.com/skills/horror-beatsync-acces.html?token={TOKEN}
+```
+
+## Known limitation — the gate is cosmetic
+
+The site is served by plain nginx (see `Dockerfile`), so the ZIP is a **static file at a
+public URL**. The token check runs in the browser: it decides whether the page *shows*
+the link, not whether nginx *serves* the file. Anyone who has (or guesses) the URL can
+download it without paying.
+
+Mitigations in place: the filename carries a random suffix (`-ab7f3c`) and the delivery
+page is `noindex, nofollow`. This is enough against casual sharing, not against someone
+deliberately redistributing the link.
+
+To make it a real gate, the download has to stop being a static file — serve it from an
+n8n endpoint that checks the token server-side and streams the bytes, then point the
+button at that endpoint instead of `/assets/downloads/...`.
+
+## Content sanitization
+
+The distributed ZIP is **not** a raw copy of `.claude/skills/horror-beatsync-video/`:
+the internal n8n workflow ID of the auto-DM flow was replaced with
+`<TON_WORKFLOW_AUTO_DM>` before packaging, and an `INSTALL.md` was added for buyers.
+Rebuild the ZIP with the same substitution if the skill is updated.
+
+---
+
+**Last Updated**: 2026-07-24
+**Status**: Formation = ready for implementation (still on a `test_` link) · Skill Horror = live link wired, Stripe redirect + n8n branch pending
 **Contact**: Tony PAYET (tony.payet.professionnel@gmail.com)

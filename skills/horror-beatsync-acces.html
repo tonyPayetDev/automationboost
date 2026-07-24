@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0SRZVQ1WGD');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ton skill Horror Beat-Sync – AutomationBoost</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .dl-page { min-height: 100vh; padding: 120px 20px 80px; display: flex; align-items: flex-start; justify-content: center; position: relative; z-index: 1; }
+    .dl-box { max-width: 660px; width: 100%; }
+    .state { display: none; }
+    .state.active { display: block; }
+
+    .dl-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 18px; padding: 40px 34px; text-align: center;
+      box-shadow: var(--shadow-soft);
+    }
+    .dl-card.ok { border-color: rgba(234,179,8,0.3); }
+    .dl-ico { font-size: 46px; margin-bottom: 18px; line-height: 1; }
+    .dl-card h1 { font-size: 1.5rem; font-weight: 800; color: var(--text); margin-bottom: 10px; letter-spacing: -0.02em; }
+    .dl-sub { font-size: 0.93rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 28px; }
+
+    .spinner { display:inline-block;width:32px;height:32px;border:3px solid rgba(234,179,8,0.2);border-top-color:#eab308;border-radius:50%;animation:spin .7s linear infinite;margin-bottom:22px }
+    @keyframes spin { to { transform:rotate(360deg) } }
+
+    .btn-dl {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      background: var(--gold); color: var(--on-gold, #1a1200);
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1rem;
+      padding: 16px 34px; border-radius: 12px; text-decoration: none;
+      transition: transform .2s, box-shadow .2s, background .2s;
+    }
+    .btn-dl:hover { background: #fde047; transform: translateY(-2px); box-shadow: 0 0 32px rgba(234,179,8,0.4); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 18px;
+      border: 1px solid var(--border); color: var(--text-light); background: transparent;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 0.85rem;
+      padding: 11px 22px; border-radius: 10px; text-decoration: none; transition: border-color .2s;
+    }
+    .btn-ghost:hover { border-color: var(--gold); }
+    .dl-meta { font-size: 0.78rem; color: var(--text-muted); margin-top: 14px; }
+
+    .err-box { background: rgba(239,68,68,0.09); border: 1px solid rgba(239,68,68,0.3); border-radius: 10px; padding: 15px 18px; font-size: 0.86rem; color: #f87171; line-height: 1.6; margin-top: 8px; text-align: left; }
+
+    /* ── Install steps (après déblocage) ── */
+    .dl-steps { margin-top: 34px; text-align: left; }
+    .dl-steps h2 {
+      font-size: 0.72rem; font-family: 'Inter', sans-serif; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px;
+    }
+    .step { display: flex; gap: 16px; padding: 16px 0; border-top: 1px solid var(--border); }
+    .step-n {
+      flex: 0 0 26px; height: 26px; border-radius: 50%;
+      background: rgba(234,179,8,0.12); border: 1px solid rgba(234,179,8,0.32);
+      color: var(--gold); font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: 0.78rem; display: flex; align-items: center; justify-content: center;
+    }
+    .step-body { flex: 1; min-width: 0; }
+    .step-body h3 { font-size: 0.94rem; font-weight: 700; color: var(--text); margin: 2px 0 7px; }
+    .step-body p { font-size: 0.86rem; color: var(--text-muted); line-height: 1.65; margin: 0 0 10px; }
+    .step-body pre {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; line-height: 1.7;
+      background: var(--bg-card-2); border: 1px solid var(--border); border-radius: 9px;
+      padding: 13px 15px; margin: 0; overflow-x: auto; color: var(--text-light);
+    }
+    .step-body code {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.85em;
+      background: rgba(234,179,8,0.09); padding: 1px 5px; border-radius: 4px; color: var(--gold-dark);
+    }
+    html[data-theme="dark"] .step-body code { color: var(--gold); }
+    .dl-note {
+      margin-top: 26px; border-left: 2px solid var(--gold); padding: 4px 0 4px 16px;
+      font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; text-align: left;
+    }
+    @media (max-width: 640px) {
+      .dl-page { padding: 100px 14px 60px; }
+      .dl-card { padding: 30px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="/" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
+    </div>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
+  </nav>
+</div>
+
+<div class="dl-page">
+  <div class="dl-box">
+
+    <!-- ── Vérification (état par défaut : la page n'est jamais blanche si le JS tarde) ── -->
+    <div class="state active" id="state-loading">
+      <div class="dl-card">
+        <div class="spinner"></div>
+        <h1>Vérification de ton accès…</h1>
+        <p class="dl-sub">On confirme ton paiement auprès du serveur. Quelques secondes.</p>
+      </div>
+    </div>
+
+    <!-- ── Accès OK ── -->
+    <div class="state" id="state-ok">
+      <div class="dl-card ok">
+        <div class="dl-ico">⚡</div>
+        <h1>Ton skill est prêt.</h1>
+        <p class="dl-sub">
+          Merci pour ton achat. Télécharge le pack, pose-le dans <code>.claude/skills/</code>,
+          et Claude le chargera tout seul dès que tu parleras de beat-sync.
+        </p>
+        <a href="/assets/downloads/horror-beatsync-video-skill-ab7f3c.zip"
+           class="btn-dl" download id="dl-link">
+          ↓ Télécharger le skill (.zip)
+        </a>
+        <div class="dl-meta">horror-beatsync-video-skill.zip · 12 Ko · 3 fichiers</div>
+
+        <div class="dl-steps">
+          <h2>Installation — 2 minutes</h2>
+
+          <div class="step">
+            <div class="step-n">1</div>
+            <div class="step-body">
+              <h3>Décompresse et copie le dossier</h3>
+              <p>Pour un seul projet, ou dans <code>~/.claude/skills/</code> pour l'avoir partout :</p>
+              <pre>mkdir -p .claude/skills
+cp -r horror-beatsync-video .claude/skills/</pre>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-n">2</div>
+            <div class="step-body">
+              <h3>Relance Claude Code</h3>
+              <p>
+                Le catalogue de skills est lu au démarrage. Tape <code>/horror-beatsync-video</code> :
+                il doit apparaître dans l'autocomplétion. Sinon, vérifie que <code>SKILL.md</code>
+                est bien à la racine du dossier, pas dans un sous-dossier.
+              </p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-n">3</div>
+            <div class="step-body">
+              <h3>Premier montage</h3>
+              <p>Un rush vertical avec ta voix, nommé <code>rush.mp4</code>, puis :</p>
+              <pre>monte rush.mp4 sur la trend horror avec le script 3</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="dl-note">
+          <strong>Ne saute pas la dernière étape.</strong> Après l'upload sur TikTok ou Instagram,
+          ajoute le son officiel dans l'app à 1-5 % de volume par-dessus ta vidéo. C'est ce qui te
+          référence sur la trend — ta bande-son mixée reste celle qu'on entend.
+        </div>
+
+        <a href="horror-beatsync.html" class="btn-ghost">← Revoir la fiche du skill</a>
+      </div>
+    </div>
+
+    <!-- ── Lien invalide ── -->
+    <div class="state" id="state-error">
+      <div class="dl-card">
+        <div class="dl-ico">🔒</div>
+        <h1>Lien invalide ou expiré</h1>
+        <p class="dl-sub">Ce lien d'accès n'a pas pu être validé.</p>
+        <div class="err-box">
+          Si tu viens de payer, ton email d'accès arrive dans la minute — vérifie aussi tes spams.
+          Si tu penses que c'est une erreur, réponds directement à l'email de confirmation Stripe
+          et on te débloque à la main.
+        </div>
+        <a href="horror-beatsync.html" class="btn-ghost">← Retour à la fiche</a>
+      </div>
+    </div>
+
+    <!-- ── Pas de token ── -->
+    <div class="state" id="state-no-token">
+      <div class="dl-card">
+        <div class="dl-ico">🔒</div>
+        <h1>Accès réservé</h1>
+        <p class="dl-sub">
+          Cette page est réservée aux acheteurs du skill Horror Beat-Sync. Tu reçois ton lien
+          d'accès par email dès que ton paiement est confirmé.
+        </p>
+        <a href="https://buy.stripe.com/aFacN4apbbQKerH2gs7N602" class="btn-dl" target="_blank" rel="noopener">
+          ⚡ Obtenir le skill — 19,90 €
+        </a>
+        <a href="horror-beatsync.html" class="btn-ghost">Voir ce que fait le skill</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer style="text-align:center;padding:36px 20px;border-top:1px solid var(--border);color:var(--text-muted);font-size:0.85rem;position:relative;z-index:1;">
+  <p>© 2026 AutomationBoost ·
+    <a href="/" style="color:var(--gold);text-decoration:none;">Accueil</a> ·
+    <a href="../skills.html" style="color:var(--gold);text-decoration:none;">Skills</a>
+  </p>
+</footer>
+
+<script>
+(async function () {
+  var VALIDATE_URL = 'https://n7n.automatisationboost.com/webhook/validate-token';
+  var PRODUCT = 'skill-horror-beatsync';
+  var STORE_KEY = 'ab_skill_horror_access';
+
+  function show(id) {
+    document.querySelectorAll('.state').forEach(function (el) { el.classList.remove('active'); });
+    document.getElementById(id).classList.add('active');
+  }
+
+  function hasAccess() {
+    try { return JSON.parse(localStorage.getItem(STORE_KEY) || 'null') !== null; }
+    catch (e) { return false; }
+  }
+
+  function grant(token, email) {
+    try {
+      localStorage.setItem(STORE_KEY, JSON.stringify({
+        token: token, email: email || '', product: PRODUCT, at: Date.now()
+      }));
+    } catch (e) {}
+  }
+
+  // Déjà débloqué sur cet appareil — on ne repasse pas par le webhook.
+  if (hasAccess()) { show('state-ok'); return; }
+
+  var params = new URLSearchParams(window.location.search);
+  var token = params.get('token') || params.get('session_id');
+
+  if (!token) { show('state-no-token'); return; }
+
+  show('state-loading');
+
+  var result = null;
+  try {
+    var r = await fetch(VALIDATE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: token, product: PRODUCT })
+    });
+    if (r.ok) result = await r.json();
+  } catch (e) { result = null; }
+
+  if (result && result.valid) {
+    grant(token, result.email);
+    gtag('event', 'skill_unlock', { product: PRODUCT });
+    show('state-ok');
+  } else {
+    show('state-error');
+  }
+})();
+</script>
+<script src="/assets/js/nav.js" defer></script>
+<script src="/assets/js/theme.js?v=20260717n" defer></script>
+</body>
+</html>

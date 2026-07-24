@@ -288,6 +288,99 @@
       border-radius: 4px;
     }
 
+    /* ──────────────── PREMIUM ──────────────── */
+    .sk-cat-tag.premium {
+      background: rgba(139,92,246,0.08);
+      border-color: rgba(139,92,246,0.3);
+    }
+    .sk-cat-tag.premium .sk-cat-count {
+      background: rgba(139,92,246,0.16);
+      color: var(--violet);
+    }
+    .sk-cat-line.premium {
+      background: linear-gradient(90deg, rgba(139,92,246,0.35) 0%, transparent 100%);
+    }
+    .sk-card.premium {
+      border-color: rgba(139,92,246,0.28);
+      background: linear-gradient(150deg, rgba(139,92,246,0.05) 0%, var(--bg-card) 55%);
+    }
+    .sk-card.premium::after {
+      background: linear-gradient(90deg, transparent 0%, var(--violet) 50%, transparent 100%);
+      opacity: 1;
+    }
+    .sk-card.premium:hover {
+      border-color: rgba(139,92,246,0.5);
+      box-shadow: 0 16px 48px rgba(139,92,246,0.12), 0 4px 16px rgba(0,0,0,0.4);
+    }
+    .sk-card.premium .sk-cmd {
+      color: var(--violet);
+      background: rgba(139,92,246,0.09);
+      border-color: rgba(139,92,246,0.28);
+    }
+    .sk-card.premium .sk-card-num { color: rgba(139,92,246,0.06); }
+    .sk-premium-flag {
+      position: absolute;
+      top: 0; right: 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--violet);
+      background: rgba(139,92,246,0.12);
+      border-left: 1px solid rgba(139,92,246,0.28);
+      border-bottom: 1px solid rgba(139,92,246,0.28);
+      border-radius: 0 16px 0 10px;
+      padding: 6px 14px 6px 12px;
+    }
+    .sk-buy-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .sk-price {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .sk-price span {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .sk-btn-premium {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--violet);
+      color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.86rem;
+      padding: 11px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .sk-btn-premium:hover {
+      background: var(--violet-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(139,92,246,0.35);
+    }
+
     /* ──────────────── CTA ──────────────── */
     .sk-cta {
       margin: 20px 24px 80px;
@@ -414,7 +507,7 @@
   <p>Des skills Claude Code construits sur de vrais cas métier — chaque slash commande déclenche une séquence complète, du brief à la mise en ligne.</p>
   <div class="sk-stats">
     <div class="sk-stat">
-      <span class="sk-stat-num" data-count="10">10</span>
+      <span class="sk-stat-num" data-count="13">13</span>
       <span class="sk-stat-label">Skills actifs</span>
     </div>
     <div class="sk-stat">
@@ -434,6 +527,39 @@
 
 <!-- ════════════ SKILLS ════════════ -->
 <div class="sk-section">
+
+  <!-- PREMIUM -->
+  <div class="sk-cat">
+    <div class="sk-cat-header">
+      <div class="sk-cat-tag premium">
+        <span class="sk-cat-icon">👑</span>
+        Skills Premium
+        <span class="sk-cat-count">1</span>
+      </div>
+      <div class="sk-cat-line premium"></div>
+    </div>
+    <div class="sk-grid">
+
+      <div class="sk-card premium">
+        <span class="sk-premium-flag">Premium</span>
+        <span class="sk-card-num">00</span>
+        <span class="sk-cmd">/horror-beatsync-video</span>
+        <h3>Vidéo montée sur le drop — trend horror</h3>
+        <p>Monte tes vidéos 9:16 sur le son de la trend, cuts calés à la frame sur les drops réels du fichier (2,34s puis toutes les 8,02s), voix mixée sous la musique en sidechain, captions snappées sur le beat. <strong style="color:var(--violet)">+20 % de viralité</strong> en collant vraiment au son. 3 scripts prêts inclus.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">FFmpeg</span>
+          <span class="sk-tag">Beat-sync</span>
+          <span class="sk-tag">TTS</span>
+          <span class="sk-tag">Captions</span>
+        </div>
+        <div class="sk-buy-row">
+          <div class="sk-price">19,90 €<span>Paiement unique</span></div>
+          <a href="skills/horror-beatsync.html" class="sk-btn-premium">Voir le skill →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
   <!-- VIDÉO & AVATAR -->
   <div class="sk-cat">

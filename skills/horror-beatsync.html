@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0SRZVQ1WGD');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skill Horror Beat-Sync – Monte tes vidéos sur le drop | AutomationBoost</title>
+  <meta name="description" content="Skill Claude Code premium : monte automatiquement tes vidéos 9:16 sur la trend horror mix. Grille de drops mesurée à la frame, ducking voix/musique, captions calées sur le beat. 19,90€." />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+    .hb-wrap { max-width: 940px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+    /* ── HERO ── */
+    .hb-hero { padding: 130px 0 56px; text-align: center; position: relative; overflow: hidden; }
+    .hb-hero::before {
+      content: ''; position: absolute; top: -100px; left: 50%;
+      transform: translateX(-50%); width: 760px; height: 520px;
+      background: radial-gradient(ellipse at center, rgba(139,92,246,0.14) 0%, rgba(234,179,8,0.06) 45%, transparent 70%);
+      pointer-events: none;
+    }
+    .hb-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(139,92,246,0.12); border: 1px solid rgba(139,92,246,0.35);
+      color: var(--violet); font-family: 'Inter', sans-serif; font-size: 0.72rem;
+      font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 100px; margin-bottom: 24px;
+    }
+    .hb-badge::before {
+      content: ''; width: 6px; height: 6px; background: var(--violet);
+      border-radius: 50%; box-shadow: 0 0 8px var(--violet);
+      animation: hb-pulse 2s ease-in-out infinite;
+    }
+    @keyframes hb-pulse { 0%,100% { opacity:1; transform:scale(1) } 50% { opacity:.35; transform:scale(.7) } }
+
+    .hb-hero h1 {
+      font-size: clamp(2.1rem, 5.5vw, 3.7rem); font-weight: 800; line-height: 1.08;
+      letter-spacing: -0.03em; color: var(--text); margin-bottom: 20px;
+    }
+    .hb-hero h1 .hl {
+      background: linear-gradient(135deg, #8b5cf6 0%, #eab308 60%, #d97757 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hb-lead { max-width: 620px; margin: 0 auto 14px; font-size: 1.06rem; line-height: 1.75; color: var(--text-muted); }
+    .hb-cmd-big {
+      display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
+      font-weight: 700; color: var(--gold); background: rgba(234,179,8,0.09);
+      border: 1px solid rgba(234,179,8,0.25); padding: 7px 16px; border-radius: 8px; margin-bottom: 32px;
+    }
+
+    /* ── VIRALITÉ ── */
+    .hb-viral {
+      display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: center;
+      background: linear-gradient(135deg, rgba(139,92,246,0.09) 0%, rgba(234,179,8,0.04) 100%);
+      border: 1px solid rgba(139,92,246,0.25); border-radius: 16px;
+      padding: 22px 28px; max-width: 640px; margin: 0 auto 36px; text-align: left;
+    }
+    .hb-viral-num {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2.6rem; font-weight: 800;
+      line-height: 1; letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #8b5cf6, #eab308);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      white-space: nowrap;
+    }
+    .hb-viral-txt { flex: 1; min-width: 240px; font-size: 0.9rem; line-height: 1.65; color: var(--text-muted); }
+    .hb-viral-txt strong { color: var(--text-light); font-weight: 600; }
+
+    /* ── PRICE BOX ── */
+    .hb-buy {
+      background: var(--bg-card); border: 1px solid rgba(234,179,8,0.28);
+      border-radius: 20px; padding: 36px 32px; max-width: 460px; margin: 0 auto;
+      box-shadow: var(--shadow-soft); position: relative; overflow: hidden;
+    }
+    .hb-buy::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .hb-price { display: flex; align-items: baseline; justify-content: center; gap: 10px; margin-bottom: 6px; }
+    .hb-price-num {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 3rem; font-weight: 800;
+      color: var(--text); letter-spacing: -0.03em; line-height: 1;
+    }
+    .hb-price-cur { font-size: 1.3rem; font-weight: 700; color: var(--gold); }
+    .hb-price-note { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 26px; }
+    .btn-buy-hb {
+      display: flex; align-items: center; justify-content: center; gap: 9px;
+      background: var(--gold); color: var(--on-gold, #1a1200);
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1rem;
+      padding: 16px 28px; border-radius: 12px; text-decoration: none;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn-buy-hb:hover {
+      background: #fde047; transform: translateY(-2px);
+      box-shadow: 0 0 34px rgba(234,179,8,0.42), 0 10px 26px rgba(0,0,0,0.25);
+    }
+    .hb-reassure { display: flex; flex-direction: column; gap: 7px; margin-top: 20px; font-size: 0.82rem; color: var(--text-muted); text-align: left; }
+    .hb-reassure span { display: flex; gap: 8px; align-items: flex-start; }
+    .hb-reassure b { color: var(--gold); font-weight: 700; }
+
+    /* ── SECTIONS ── */
+    .hb-sec { padding: 62px 0 0; }
+    .hb-sec h2 {
+      font-size: clamp(1.5rem, 3.4vw, 2.1rem); font-weight: 800; letter-spacing: -0.02em;
+      color: var(--text); margin-bottom: 14px;
+    }
+    .hb-sec > p { font-size: 1rem; line-height: 1.75; color: var(--text-muted); max-width: 720px; }
+    .hb-kicker {
+      font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+    }
+
+    /* ── PROBLÈME ── */
+    .hb-split { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 28px; }
+    .hb-col { border-radius: 14px; padding: 24px; border: 1px solid var(--border); background: var(--bg-card-2); }
+    .hb-col.bad { border-color: rgba(239,68,68,0.28); }
+    .hb-col.good { border-color: rgba(34,197,94,0.3); }
+    .hb-col h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .hb-col.bad h3 { color: var(--red); }
+    .hb-col.good h3 { color: var(--green); }
+    .hb-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+    .hb-col li { font-size: 0.88rem; line-height: 1.6; color: var(--text-muted); padding-left: 18px; position: relative; }
+    .hb-col li::before { position: absolute; left: 0; top: 0; }
+    .hb-col.bad li::before { content: '✕'; color: var(--red); font-size: 0.75rem; }
+    .hb-col.good li::before { content: '✓'; color: var(--green); font-size: 0.8rem; }
+
+    /* ── FEATURES ── */
+    .hb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; margin-top: 30px; }
+    .hb-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 26px; display: flex; flex-direction: column; gap: 11px;
+      transition: border-color .25s, transform .25s, box-shadow .25s;
+    }
+    .hb-card:hover { border-color: rgba(234,179,8,0.3); transform: translateY(-3px); box-shadow: 0 14px 40px rgba(0,0,0,0.10); }
+    .hb-card-ico { font-size: 1.5rem; line-height: 1; }
+    .hb-card h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin: 0; line-height: 1.35; }
+    .hb-card p { font-size: 0.88rem; line-height: 1.65; color: var(--text-muted); margin: 0; }
+    .hb-card code {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.8em;
+      background: rgba(234,179,8,0.09); color: var(--gold-dark);
+      padding: 1px 5px; border-radius: 4px; border: 1px solid rgba(234,179,8,0.16);
+    }
+    html[data-theme="dark"] .hb-card code { color: var(--gold); }
+
+    /* ── TIMELINE ── */
+    .hb-timeline { margin-top: 30px; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; background: var(--bg-card); }
+    .hb-tl-head {
+      display: grid; grid-template-columns: 96px 1fr 108px; gap: 12px;
+      padding: 13px 20px; background: var(--bg-card-2); border-bottom: 1px solid var(--border);
+      font-family: 'Inter', sans-serif; font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted);
+    }
+    .hb-tl-row {
+      display: grid; grid-template-columns: 96px 1fr 108px; gap: 12px;
+      padding: 15px 20px; border-bottom: 1px solid var(--border); align-items: center;
+    }
+    .hb-tl-row:last-child { border-bottom: none; }
+    .hb-tl-row.drop { background: rgba(234,179,8,0.05); }
+    .hb-tl-t { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; font-weight: 700; color: var(--gold); }
+    .hb-tl-d { font-size: 0.88rem; color: var(--text-light); line-height: 1.5; }
+    .hb-tl-tag {
+      font-family: 'Inter', sans-serif; font-size: 0.63rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted);
+      border: 1px solid var(--border); border-radius: 4px; padding: 3px 7px; text-align: center; white-space: nowrap;
+    }
+    .hb-tl-row.drop .hb-tl-tag { color: var(--gold); border-color: rgba(234,179,8,0.35); background: rgba(234,179,8,0.08); }
+
+    /* ── PACK ── */
+    .hb-pack { margin-top: 30px; border: 1px solid rgba(234,179,8,0.22); border-radius: 16px; padding: 28px; background: var(--bg-card); }
+    .hb-tree {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; line-height: 1.85;
+      color: var(--text-light); background: var(--bg-card-2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 18px 20px; margin: 0 0 20px; overflow-x: auto; white-space: pre;
+    }
+    .hb-tree b { color: var(--gold); font-weight: 700; }
+    .hb-pack ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 11px; }
+    .hb-pack li { font-size: 0.9rem; line-height: 1.6; color: var(--text-muted); padding-left: 24px; position: relative; }
+    .hb-pack li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+    .hb-pack li b { color: var(--text-light); font-weight: 600; }
+
+    /* ── FAQ ── */
+    .hb-faq { margin-top: 26px; display: flex; flex-direction: column; gap: 10px; }
+    .hb-faq details {
+      border: 1px solid var(--border); border-radius: 12px; background: var(--bg-card);
+      padding: 16px 20px; transition: border-color .2s;
+    }
+    .hb-faq details[open] { border-color: rgba(234,179,8,0.28); }
+    .hb-faq summary {
+      cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+      font-size: 0.94rem; color: var(--text); list-style: none; display: flex;
+      justify-content: space-between; align-items: center; gap: 14px;
+    }
+    .hb-faq summary::-webkit-details-marker { display: none; }
+    .hb-faq summary::after { content: '+'; color: var(--gold); font-size: 1.3rem; font-weight: 400; line-height: 1; }
+    .hb-faq details[open] summary::after { content: '−'; }
+    .hb-faq p { margin: 13px 0 0; font-size: 0.88rem; line-height: 1.7; color: var(--text-muted); }
+    .hb-faq p code {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.85em;
+      background: rgba(234,179,8,0.09); padding: 1px 5px; border-radius: 4px; color: var(--gold-dark);
+    }
+    html[data-theme="dark"] .hb-faq p code { color: var(--gold); }
+
+    /* ── CTA FINAL ── */
+    .hb-final {
+      margin: 70px 0 90px; text-align: center; border-radius: 20px; padding: 56px 32px;
+      background: linear-gradient(135deg, rgba(139,92,246,0.08) 0%, rgba(234,179,8,0.04) 100%);
+      border: 1px solid rgba(234,179,8,0.2); position: relative; overflow: hidden;
+    }
+    .hb-final h2 { font-size: clamp(1.5rem, 3.6vw, 2.2rem); margin-bottom: 12px; }
+    .hb-final p { max-width: 520px; margin: 0 auto 30px; font-size: 0.98rem; color: var(--text-muted); line-height: 1.7; }
+    .hb-final .btn-buy-hb { display: inline-flex; }
+
+    @media (max-width: 760px) {
+      .hb-hero { padding: 108px 0 44px; }
+      .hb-split { grid-template-columns: 1fr; }
+      .hb-tl-head, .hb-tl-row { grid-template-columns: 74px 1fr; }
+      .hb-tl-head span:last-child, .hb-tl-row .hb-tl-tag { display: none; }
+      .hb-viral { padding: 20px; }
+      .hb-buy { padding: 30px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════ NAVBAR ════════════ -->
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="/" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
+    </div>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
+  </nav>
+</div>
+
+<!-- ════════════ HERO ════════════ -->
+<section class="hb-hero">
+  <div class="hb-wrap">
+    <div class="hb-badge">Skill Premium</div>
+    <h1>Ta vidéo ne colle pas au son.<br><span class="hl">Elle rate le drop de 0,65 seconde.</span></h1>
+    <p class="hb-lead">
+      Un skill Claude Code qui monte tes vidéos 9:16 sur la trend
+      « YOU CAN ASK THE FLOWERS (HORROR MIX) » — cuts calés à la frame sur les drops réels
+      du fichier, voix mixée sous la musique, captions snappées sur le beat.
+      Tu donnes ton rush, il sort le MP4.
+    </p>
+    <div class="hb-cmd-big">/horror-beatsync-video</div>
+
+    <div class="hb-viral">
+      <div class="hb-viral-num">+20%</div>
+      <div class="hb-viral-txt">
+        <strong>de viralité en montant sur le son de la trend.</strong>
+        Une vidéo calée sur le son officiel est poussée sur la page du son —
+        tu récupères l'audience de la trend en plus de la tienne. Mais ça ne marche
+        que si les cuts tombent vraiment sur les drops : à 0,5s près, l'œil le voit
+        et la vidéo « sonne à côté ».
+      </div>
+    </div>
+
+    <div class="hb-buy">
+      <div class="hb-price">
+        <span class="hb-price-num">19,90</span>
+        <span class="hb-price-cur">€</span>
+      </div>
+      <div class="hb-price-note">Paiement unique · accès à vie · mises à jour incluses</div>
+      <a href="https://buy.stripe.com/aFacN4apbbQKerH2gs7N602" class="btn-buy-hb" target="_blank" rel="noopener">
+        ⚡ Obtenir le skill
+      </a>
+      <div class="hb-reassure">
+        <span><b>✓</b> Le skill complet + 3 scripts déjà calés sur la grille</span>
+        <span><b>✓</b> Installation en 2 commandes, aucune config</span>
+        <span><b>✓</b> Lien de téléchargement par email juste après le paiement</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hb-wrap">
+
+  <!-- ════════════ PROBLÈME ════════════ -->
+  <section class="hb-sec">
+    <div class="hb-kicker">Le vrai problème</div>
+    <h2>Monter « à l'oreille » sur cette trend ne marche pas</h2>
+    <p>
+      Ce morceau n'a pas de beat percussif net. Les analyseurs automatiques (librosa & co)
+      renvoient un BPM que rien ne départage entre 104 et 124, et un placement de drop faux
+      de plus d'une demi-seconde. Résultat : tu cales ta révélation sur 3s alors que le vrai
+      drop est à 2,34s — 0,65s de retard, largement au-dessus du seuil perceptible.
+    </p>
+    <div class="hb-split">
+      <div class="hb-col bad">
+        <h3>Sans le skill</h3>
+        <ul>
+          <li>Drop supposé à 3s → la révélation tombe 0,65s après le vrai drop</li>
+          <li>Beat à 0,511s → dérive de 0,65s au bout de 4 phrases</li>
+          <li>Musique à <code>volume=0.9</code> au lieu de <code>0.09</code> : +7 dB au-dessus de la voix, inaudible</li>
+          <li>Clips TTS avec 0,5s de silence en tête → chaque mot arrive un demi-beat trop tard</li>
+          <li>Captions qui apparaissent et disparaissent dans la même frame — dont le mot du CTA</li>
+        </ul>
+      </div>
+      <div class="hb-col good">
+        <h3>Avec le skill</h3>
+        <ul>
+          <li>Grille mesurée sur le fichier : drop à <b>2,34s</b>, période <b>8,02s</b></li>
+          <li>Beat déduit de la structure : <b>0,50125s</b> — zéro dérive sur toute la vidéo</li>
+          <li>Mix vérifié au chiffre : musique 10 à 16 dB sous la voix, ducking en sidechain</li>
+          <li>Silence de padding trimé automatiquement, chaque clip mesuré contre son slot</li>
+          <li>Captions allouées en beats entiers, plancher d'un beat, zéro chevauchement</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ CE QUE FAIT LE SKILL ════════════ -->
+  <section class="hb-sec">
+    <div class="hb-kicker">Détail technique</div>
+    <h2>Ce que le skill fait exactement</h2>
+    <p>
+      Ce n'est pas un prompt ni un template. C'est la procédure complète — mesures, commandes
+      FFmpeg, garde-fous et pièges déjà payés — que Claude exécute à ta place.
+    </p>
+    <div class="hb-grid">
+
+      <div class="hb-card">
+        <div class="hb-card-ico">🎯</div>
+        <h3>La grille de drops, mesurée</h3>
+        <p>
+          Drop principal à <code>2.34s</code>, mini-drops tous les <code>8.02s</code>,
+          beat à <code>0.50125s</code> (~119,7 BPM). Mesuré sur l'enveloppe d'énergie du vrai
+          MP3, pas estimé — et la méthode de mesure est fournie pour la refaire sur n'importe
+          quel autre son.
+        </p>
+      </div>
+
+      <div class="hb-card">
+        <div class="hb-card-ico">✂️</div>
+        <h3>Le montage FFmpeg complet</h3>
+        <p>
+          La commande prête à l'emploi : scale/crop 1080×1920, pulse de zoom calé sur le beat
+          avec son décalage de phase, <code>sidechaincompress</code> pour le ducking, coupe sur
+          un mini-drop. Plus la variante multi-plans avec le piège du <code>-c copy</code> qui
+          coupe au keyframe et désaligne tout.
+        </p>
+      </div>
+
+      <div class="hb-card">
+        <div class="hb-card-ico">🎙️</div>
+        <h3>La voix, clip par clip</h3>
+        <p>
+          Un MP3 continu ne respecte jamais la grille. Le skill génère un clip TTS par phrase,
+          trime le silence de padding, mesure chaque clip contre son slot de 8,02s et les pose
+          sur les mini-drops avec <code>adelay</code>. Avec <code>normalize=0</code> sur
+          l'<code>amix</code>, sans quoi la voix disparaît.
+        </p>
+      </div>
+
+      <div class="hb-card">
+        <div class="hb-card-ico">💬</div>
+        <h3>Les captions en beats entiers</h3>
+        <p>
+          Chaque groupe de mots occupe un nombre entier de beats, minimum un. C'est ce qui évite
+          le bug le plus coûteux du format : deux groupes qui atterrissent sur le même beat et
+          s'écrasent — la caption sort avec <code>data-s == data-e</code> et devient invisible.
+          Assert automatique avant injection.
+        </p>
+      </div>
+
+      <div class="hb-card">
+        <div class="hb-card-ico">💛</div>
+        <h3>Le pulse néon sur le beat</h3>
+        <p>
+          L'anneau jaune de l'avatar flashe toutes les <code>2.673s</code> — le tiers de phrase,
+          donc un pulse sur trois retombe pile sur un mini-drop. Pas de zoom plein écran, et pas
+          3,000s pile (ça dérive de 2s en fin de vidéo). Avec
+          <code>immediateRender: false</code>, sans quoi aucun pulse ne sort du rendu.
+        </p>
+      </div>
+
+      <div class="hb-card">
+        <div class="hb-card-ico">🔊</div>
+        <h3>Le mix vérifié au chiffre</h3>
+        <p>
+          Le skill extrait les stems et mesure le <code>mean_volume</code> des deux pistes au
+          lieu de juger à l'oreille. La musique doit finir 10 à 16 dB sous la voix — un signe
+          <code>+</code> dans la mesure et le mix est déclaré cassé avant publication.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════ TIMELINE ════════════ -->
+  <section class="hb-sec">
+    <div class="hb-kicker">La structure livrée</div>
+    <h2>Le découpage canonique d'une vidéo de 34,42s</h2>
+    <p>
+      Chaque changement de plan tombe sur un mini-drop, et la vidéo se termine sur un mini-drop —
+      34,42s, pas 35s.
+    </p>
+    <div class="hb-timeline">
+      <div class="hb-tl-head">
+        <span>Temps</span><span>Ce qui se passe</span><span>Musique</span>
+      </div>
+      <div class="hb-tl-row">
+        <div class="hb-tl-t">0 → 2.34</div>
+        <div class="hb-tl-d">Intro / montée — l'accroche, visage proche, lumière basse</div>
+        <div class="hb-tl-tag">Montée</div>
+      </div>
+      <div class="hb-tl-row drop">
+        <div class="hb-tl-t">2.34</div>
+        <div class="hb-tl-d">La révélation tombe pile ici. Jamais avant, jamais après.</div>
+        <div class="hb-tl-tag">Drop</div>
+      </div>
+      <div class="hb-tl-row">
+        <div class="hb-tl-t">2.34 → 10.36</div>
+        <div class="hb-tl-d">Phrase 1 — la démonstration, nouveau plan</div>
+        <div class="hb-tl-tag">Mini-drop</div>
+      </div>
+      <div class="hb-tl-row">
+        <div class="hb-tl-t">10.36 → 18.38</div>
+        <div class="hb-tl-d">Phrase 2 — l'enjeu, retour visage</div>
+        <div class="hb-tl-tag">Mini-drop</div>
+      </div>
+      <div class="hb-tl-row">
+        <div class="hb-tl-t">18.38 → 26.40</div>
+        <div class="hb-tl-d">Phrase 3 — la preuve chiffrée, split avant/après</div>
+        <div class="hb-tl-tag">Mini-drop</div>
+      </div>
+      <div class="hb-tl-row drop">
+        <div class="hb-tl-t">26.40 → 34.42</div>
+        <div class="hb-tl-d">Phrase 4 — le CTA, coupe nette sur le dernier mini-drop</div>
+        <div class="hb-tl-tag">Fin</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ PACK ════════════ -->
+  <section class="hb-sec">
+    <div class="hb-kicker">Ce que tu reçois</div>
+    <h2>Le pack, dans le détail</h2>
+    <div class="hb-pack">
+      <div class="hb-tree"><b>horror-beatsync-video/</b>
+├── SKILL.md            <i>— la procédure complète (6 sections + checklist)</i>
+├── INSTALL.md          <i>— installation, prérequis, premier montage</i>
+└── references/
+    └── scripts-horror.md   <i>— 3 scripts prêts, calés sur la grille</i></div>
+      <ul>
+        <li><b>Le skill complet</b> — grille mesurée, commandes FFmpeg, montage multi-plans, variante HyperFrames avec les <code>data-start</code> / <code>data-duration</code> déjà calculés.</li>
+        <li><b>3 scripts prêts à tourner</b> — « Le restaurant fantôme » (HoReCa), « La tâche qui te hante » (PME, universel), « L'IA qui travaille la nuit » (agents IA). Chaque réplique est déjà placée dans son slot de 8,02s.</li>
+        <li><b>La checklist de tournage</b> — le rythme de parole (~24-26 mots par phrase de 8s), le demi-souffle avant chaque mini-drop, et l'étape TikTok/IG que tout le monde saute.</li>
+        <li><b>La checklist finale en 13 points</b> — ce qu'il faut vérifier avant de publier, avec les commandes de mesure, pas des « vérifie à l'œil ».</li>
+        <li><b>La méthode pour un autre son</b> — comment remesurer une grille de drops en Node pur, sans Python ni librosa, pour appliquer le format à la prochaine trend.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ════════════ FAQ ════════════ -->
+  <section class="hb-sec">
+    <div class="hb-kicker">Questions</div>
+    <h2>Avant d'acheter</h2>
+    <div class="hb-faq">
+
+      <details>
+        <summary>Il me faut quoi pour l'utiliser ?</summary>
+        <p>
+          Claude Code, <code>ffmpeg</code>/<code>ffprobe</code> et <code>node</code>. C'est tout
+          pour la version « rush talking-head », qui est le cas d'usage principal. HyperFrames et
+          un TTS ne servent que si tu veux une compo animée ou une voix générée plutôt que ta
+          propre voix.
+        </p>
+      </details>
+
+      <details>
+        <summary>Ça marche avec un autre son que la trend horror ?</summary>
+        <p>
+          La grille livrée est mesurée sur ce morceau précis — la recopier sur un autre son
+          donnerait un montage faux. En revanche la §2 du skill documente la méthode de mesure
+          complète (enveloppe RMS par trames de 20 ms, détection du front de montée le plus raide)
+          et le one-liner Node qui recalcule la période de pulse et le décalage de phase pour ton
+          fps. Tu peux donc l'appliquer à la trend suivante.
+        </p>
+      </details>
+
+      <details>
+        <summary>Je dois savoir coder ?</summary>
+        <p>
+          Non. Tu poses le dossier dans <code>.claude/skills/</code> et tu demandes à Claude de
+          monter ta vidéo. Le skill est écrit pour être exécuté par l'agent, pas lu ligne par
+          ligne. Les commandes sont là si tu veux comprendre ou reprendre la main.
+        </p>
+      </details>
+
+      <details>
+        <summary>Le fameux +20 % de viralité, ça vient d'où ?</summary>
+        <p>
+          Du mécanisme de distribution des trends : une vidéo qui utilise le son officiel est
+          référencée sur la page de ce son et touche son audience en plus de la tienne. C'est
+          l'ordre de grandeur observé sur les contenus AutomationBoost montés sur le son de la
+          trend — pas une garantie contractuelle, et ça ne remplace pas un bon hook. Le skill
+          garantit la partie technique : que ton montage colle vraiment au son.
+        </p>
+      </details>
+
+      <details>
+        <summary>Et l'étape TikTok à la main ?</summary>
+        <p>
+          Après l'upload, tu ajoutes le son officiel dans l'app à 1-5 % de volume par-dessus ta
+          vidéo. C'est ce qui te fait exister dans la trend, et ça se fait forcément à la main
+          dans l'application. Ta bande-son mixée reste celle qu'on entend. Le skill te le
+          rappelle à la fin de chaque montage.
+        </p>
+      </details>
+
+      <details>
+        <summary>Comment je reçois le skill ?</summary>
+        <p>
+          Après le paiement Stripe, tu reçois par email un lien d'accès personnel vers ta page de
+          téléchargement. Le pack est un <code>.zip</code> de 12 Ko — trois fichiers Markdown à
+          poser dans <code>.claude/skills/</code>.
+        </p>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ════════════ CTA FINAL ════════════ -->
+  <div class="hb-final">
+    <h2>Arrête de rater le drop.</h2>
+    <p>
+      La différence entre une vidéo qui « colle » à la trend et une qui sonne à côté tient
+      dans 0,65 seconde. Ce skill l'a déjà mesurée pour toi.
+    </p>
+    <a href="https://buy.stripe.com/aFacN4apbbQKerH2gs7N602" class="btn-buy-hb" target="_blank" rel="noopener">
+      ⚡ Obtenir le skill — 19,90 €
+    </a>
+  </div>
+
+</div>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer style="text-align:center;padding:36px 20px;border-top:1px solid var(--border);color:var(--text-muted);font-size:0.85rem;position:relative;z-index:1;">
+  <p>© 2026 AutomationBoost ·
+    <a href="/" style="color:var(--gold);text-decoration:none;">Accueil</a> ·
+    <a href="../skills.html" style="color:var(--gold);text-decoration:none;">Skills</a> ·
+    <a href="../ressources.html" style="color:var(--gold);text-decoration:none;">Ressources</a> ·
+    <a href="../blog.html" style="color:var(--gold);text-decoration:none;">Blog</a>
+  </p>
+</footer>
+
+<script src="/assets/js/nav.js" defer></script>
+<script src="/assets/js/theme.js?v=20260717n" defer></script>
+</body>
+</html>
