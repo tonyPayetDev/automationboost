@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-0SRZVQ1WGD');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>n8n + MCP : connecter Claude à tes workflows – AutomationBoost</title>
+  <meta name="description" content="n8n intègre nativement le protocole MCP. Le workflow à télécharger qui expose tes workflows n8n comme des outils que Claude peut lire, écrire et déclencher tout seul — zéro ligne de code côté agent." />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Sora',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li { margin-bottom:6px; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .source-cta { display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#000;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;padding:14px 28px;border-radius:var(--radius);text-decoration:none;margin-top:40px;transition:all .2s; }
+    .source-cta:hover { background:var(--gold-dark);transform:translateY(-2px); }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+
+    /* Lisibilité lecture longue : Sora (chargée) au lieu d'Orbitron/Rajdhani (jamais chargées) */
+    .page-title, .content-block h2, .content-block h3,
+    article.article-body h2, article.article-body h3 { font-family:'Sora',sans-serif; }
+    .content-block p, .content-block li,
+    article.article-body p, article.article-body li { font-size:17px; line-height:1.75; }
+
+    .flow-step { display:flex;gap:14px;align-items:flex-start;margin-bottom:14px; }
+    .flow-step .num { flex:0 0 26px;height:26px;border-radius:50%;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.3);color:var(--gold);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:2px; }
+    .flow-step p { margin:0; }
+
+    .cta-block { margin-top:60px;padding:32px;background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.2);border-radius:12px;text-align:center;max-width:720px; }
+    .cta-block h3 { font-family:'Sora',sans-serif;font-size:1rem;font-weight:700;color:var(--gold);margin-bottom:8px; }
+    .cta-block p { color:var(--text-light);margin-bottom:20px;font-size:14px; }
+    .cta-btn { display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#eab308,#ca8a04);color:#000;font-weight:700;font-size:14px;padding:12px 24px;border-radius:8px;text-decoration:none;font-family:'Sora',sans-serif; }
+
+    .dl-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.3);border-radius:var(--radius);padding:28px;margin:32px 0; }
+    .dl-box h3 { font-family:'Sora',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text);margin:0 0 8px; }
+    .dl-box p { margin:0 0 4px;font-size:15px; }
+    .dl-box .source-cta { margin-top:20px; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "n8n + MCP : connecter Claude à tes workflows, sans une ligne de code",
+    "description": "n8n intègre nativement le protocole MCP. Le workflow à télécharger qui expose tes workflows n8n comme des outils que Claude peut lire, écrire et déclencher tout seul.",
+    "url": "https://automatisationboost.com/ressources/mcp-claude-n8n.html",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://automatisationboost.com/ressources/mcp-claude-n8n.html"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "url": "https://automatisationboost.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://automatisationboost.com/assets/images/logo.svg"
+      }
+    }
+  }
+  </script>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="../" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
+    </div>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
+  </nav>
+</div>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>n8n + MCP
+    </div>
+
+    <div class="page-badge">⚙ Workflow n8n</div>
+    <h1 class="page-title">n8n + MCP : connecter <span>Claude</span> à tes workflows, sans une ligne de code</h1>
+    <div class="page-meta">
+      <span>n8n + protocole MCP</span>
+      <span>·</span>
+      <span>Agent IA connecté</span>
+      <span>·</span>
+      <span>Niveau débutant / intermédiaire</span>
+    </div>
+
+    <div class="content-block">
+      <p>n8n a intégré nativement le <strong style="color:var(--text)">protocole MCP</strong> (Model Context Protocol) — et presque personne ne s'en sert encore. Concrètement : avant, brancher Claude à tes outils demandait des heures de code API, un serveur, de l'authentification. Aujourd'hui, <strong style="color:var(--text)">un seul nœud dans n8n</strong> expose tes workflows comme des outils que Claude peut appeler tout seul.</p>
+      <p>Tu poses une question à Claude, il va chercher la donnée dans n8n, il agit, il revient avec le résultat. Zéro ligne de code côté agent.</p>
+
+      <div class="dl-box">
+        <h3>Le workflow n8n, prêt à importer</h3>
+        <p>Un MCP Server Trigger + deux outils d'exemple (lecture d'un Google Sheet, déclenchement d'un workflow par webhook). Importé et validé sur une instance n8n réelle avant d'être publié ici.</p>
+        <a href="files/mcp-claude-n8n.json" download class="source-cta">
+          ◈ Télécharger le workflow n8n (.json)
+        </a>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2>Ce qu'il te faut</h2>
+      <ul>
+        <li><strong>n8n</strong> récent (le nœud « MCP Server Trigger » est natif depuis les versions 1.88+) — auto-hébergé ou cloud</li>
+        <li>Un compte <strong>Claude</strong> qui accepte les connecteurs MCP distants (Claude.ai avec connecteurs personnalisés, ou Claude Code)</li>
+        <li>Pour l'outil d'exemple : une credential <strong>Google Sheets</strong> connectée dans n8n</li>
+      </ul>
+
+      <h2>Comment ça marche, en cinq étapes</h2>
+      <div class="flow-step"><div class="num">1</div><p>Le nœud <strong>MCP Server Trigger</strong> expose une URL. C'est ton serveur MCP — n8n s'occupe de tout le protocole.</p></div>
+      <div class="flow-step"><div class="num">2</div><p>Chaque nœud « Tool » branché dessus devient <strong>un outil visible par Claude</strong>, avec son nom et sa description.</p></div>
+      <div class="flow-step"><div class="num">3</div><p>Tu colles l'URL du trigger dans la config MCP de Claude (Settings → Connectors → Add custom connector).</p></div>
+      <div class="flow-step"><div class="num">4</div><p>Claude découvre les outils tout seul : « Lire les leads », « Déclencher un workflow »…</p></div>
+      <div class="flow-step"><div class="num">5</div><p>Tu discutes. Claude choisit l'outil, l'appelle avec les bons paramètres, et te répond avec le résultat réel.</p></div>
+
+      <h2>Les deux outils fournis dans le template</h2>
+      <p><strong style="color:var(--text)">Lire les leads</strong> — un nœud Google Sheets en lecture. Remplace le Sheet d'exemple par n'importe quelle source : tes commandes, ton CRM, ton suivi de projets. Claude pourra répondre à « combien de leads cette semaine ? » avec tes vrais chiffres.</p>
+      <p><strong style="color:var(--text)">Déclencher un workflow</strong> — un nœud HTTP Request qui appelle le webhook de ton choix. C'est le pont vers tout le reste de ton n8n : Claude peut lancer une relance, une génération de rapport, une publication — n'importe quel workflow qui a un webhook.</p>
+
+      <div class="tip-box">
+        <div class="tip-label">💡 Le vrai déclic</div>
+        <p>Un outil MCP n'est pas limité à « lire une donnée ». Chaque workflow n8n que tu possèdes déjà peut devenir un outil de Claude en dix secondes : ajoute un nœud Tool qui pointe vers son webhook, donne-lui une description claire, c'est tout. Trois workflows connectés = un agent qui pilote ton business en langage naturel.</p>
+      </div>
+
+      <h2>Installation, pas à pas</h2>
+      <div class="code-block">1. n8n → Workflows → Import from File → mcp-claude-n8n.json
+2. Ouvre « Lire les leads » → branche ta credential Google Sheets
+   → choisis ton document et ton onglet
+3. Ouvre « Déclencher un workflow » → mets l'URL d'un webhook à toi
+4. Active le workflow (toggle en haut à droite)
+5. Ouvre le nœud MCP Server Trigger → copie la Production URL
+6. Claude → Settings → Connectors → Add custom connector → colle l'URL</div>
+
+      <div class="tip-box">
+        <div class="tip-label">⚠ Le piège classique</div>
+        <p>L'URL MCP n'existe qu'en mode <strong>actif</strong>. Si tu testes avec le workflow désactivé, Claude verra un serveur vide ou une erreur de connexion — et rien ne te dira pourquoi. Active d'abord, connecte ensuite.</p>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">⚠ Sécurité : ne laisse pas le serveur ouvert</div>
+        <p>Par défaut le trigger est exposé sans authentification — pratique pour tester, dangereux pour durer. Dès que ça marche, ajoute une authentification <strong>Bearer</strong> dans le nœud MCP Server Trigger (champ Authentication) et renseigne le même token côté Claude. Tes workflows pilotent tes vraies données : traite cette URL comme un mot de passe.</p>
+      </div>
+
+      <h2>Ce à quoi t'attendre</h2>
+      <ul>
+        <li>Claude répond avec <strong>tes données réelles</strong>, pas des généralités</li>
+        <li>Chaque nouveau workflow n8n devient un super-pouvoir de plus pour ton agent</li>
+        <li>Aucun serveur à coder, aucun SDK à apprendre : n8n parle MCP nativement</li>
+        <li>Ça marche depuis Claude.ai, Claude Code, et tout client MCP standard</li>
+      </ul>
+
+      <a href="files/mcp-claude-n8n.json" download class="source-cta">
+        ◈ Télécharger le workflow n8n (.json)
+      </a>
+
+      <h2>Et si tu bloques ?</h2>
+      <p>Le template est complet et gratuit — mais le brancher sur <em>tes</em> workflows, choisir les bons outils à exposer et sécuriser l'accès, c'est là que ça se joue. Si tu préfères que ce soit fait proprement une bonne fois, décris ton activité en deux lignes : je te renvoie sous 24 h les trois automatisations à mettre en place en premier chez toi, et ce que ça te fait gagner. C'est gratuit et sans engagement.</p>
+    </div>
+
+    <div class="cta-block">
+      <h3>Fais-toi accompagner sur ton automatisation</h3>
+      <p>Audit gratuit en 24 h : les 3 tâches à automatiser en premier dans ton activité, et le gain estimé pour chacune.</p>
+      <a href="/#contact" class="cta-btn">Recevoir mon audit gratuit →</a>
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+</script>
+<script src="../assets/js/lead-popup.js?v=20260716b" defer></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="/assets/js/theme.js?v=20260717n" defer></script>
+</body>
+</html>

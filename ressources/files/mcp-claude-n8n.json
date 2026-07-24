@@ -1,0 +1,93 @@
+{
+  "name": "MCP — Claude pilote tes workflows n8n",
+  "nodes": [
+    {
+      "id": "967ae47f-0125-4fa3-b226-88aac8e19c77",
+      "name": "MCP Server — Claude",
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 1.1,
+      "position": [560, 300],
+      "parameters": {
+        "path": "claude-automationboost"
+      }
+    },
+    {
+      "id": "b3994bd7-2aaf-44b0-aaae-952b5790339d",
+      "name": "Lire les leads",
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [420, 520],
+      "parameters": {
+        "resource": "sheet",
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "",
+          "cachedResultName": "Ton Google Sheet de leads (remplace-moi)"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Leads"
+        }
+      }
+    },
+    {
+      "id": "e4754658-cc74-4532-8c5c-0cd8597e44ed",
+      "name": "Declencher un workflow",
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.4,
+      "position": [700, 520],
+      "parameters": {
+        "method": "POST",
+        "url": "https://ton-n8n.exemple.com/webhook/REMPLACE-MOI",
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('payload', 'Le JSON a envoyer au workflow cible (ex: {\"action\":\"relance\",\"email\":\"...\"})') }}"
+      }
+    },
+    {
+      "id": "39a713a1-f8f7-4197-ae8a-932ac7484831",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [180, 120],
+      "parameters": {
+        "content": "## MCP — Claude pilote tes workflows n8n\n\n1. Branche ta credential **Google Sheets** sur « Lire les leads » et choisis ton Sheet.\n2. Mets l'URL d'un webhook de ton choix dans « Declencher un workflow ».\n3. Active le workflow : n8n expose une **URL MCP** (Production URL du trigger).\n4. Colle cette URL dans la config MCP de Claude (Settings → Connectors → Add custom connector).\n\nClaude peut alors lire tes donnees et declencher tes workflows tout seul.\nAjoute autant de tools que tu veux : chaque node « Tool » branche sur le trigger devient un outil pour Claude.",
+        "color": 4,
+        "width": 520,
+        "height": 340
+      }
+    }
+  ],
+  "connections": {
+    "Lire les leads": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server — Claude",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Declencher un workflow": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server — Claude",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}
