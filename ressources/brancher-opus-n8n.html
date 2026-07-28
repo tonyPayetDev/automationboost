@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-0SRZVQ1WGD');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brancher Claude Opus à tes automatisations n8n – AutomationBoost</title>
+  <meta name="description" content="Le guide concret pour brancher Claude Opus (le dernier modèle Anthropic) dans tes workflows n8n : node HTTP Request, clé API en credential, exemple de body JSON et le piège du header obligatoire." />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Sora',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li { margin-bottom:6px; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto;white-space:pre; }
+    .source-cta { display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#000;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;padding:14px 28px;border-radius:var(--radius);text-decoration:none;margin-top:40px;transition:all .2s; }
+    .source-cta:hover { background:var(--gold-dark);transform:translateY(-2px); }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+
+    /* Lisibilité lecture longue : Sora (chargée) au lieu d'Orbitron/Rajdhani (jamais chargées) */
+    .page-title, .content-block h2, .content-block h3,
+    article.article-body h2, article.article-body h3 { font-family:'Sora',sans-serif; }
+    .content-block p, .content-block li,
+    article.article-body p, article.article-body li { font-size:17px; line-height:1.75; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Brancher Claude Opus à tes automatisations n8n",
+    "description": "Le guide concret pour brancher Claude Opus dans tes workflows n8n : node HTTP Request vers l'API Anthropic, clé en credential, body JSON et le piège du header obligatoire.",
+    "url": "https://automatisationboost.com/ressources/brancher-opus-n8n.html",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://automatisationboost.com/ressources/brancher-opus-n8n.html"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "url": "https://automatisationboost.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://automatisationboost.com/assets/images/logo.svg"
+      }
+    },
+    "isAccessibleForFree": false,
+    "hasPart": {
+      "@type": "WebPageElement",
+      "isAccessibleForFree": false,
+      "cssSelector": ".content-block"
+    }
+  }
+  </script>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="../" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
+    </div>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
+  </nav>
+</div>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Brancher Opus à n8n
+    </div>
+
+    <div class="page-badge">▶ Vidéo · 33s</div>
+    <h1 class="page-title">Brancher Claude Opus à tes <span>automatisations n8n</span></h1>
+    <div class="page-meta">
+      <span>n8n</span>
+      <span>·</span>
+      <span>API Anthropic</span>
+      <span>·</span>
+      <span>Niveau intermédiaire</span>
+    </div>
+
+    <div class="content-block">
+      <p>Tu as commenté <strong style="color:var(--text)">OPUS</strong> sous la vidéo : voilà exactement comment brancher le dernier modèle de Claude dans tes workflows n8n, à la place de ton ancien modèle. Pas de teaser, la config complète.</p>
+
+      <div class="divider"></div>
+
+      <h2>C'est quoi Opus, exactement</h2>
+      <p>Opus, c'est la famille de modèles la plus puissante d'Anthropic (les créateurs de Claude). Le dernier en date s'appelle <strong style="color:var(--text)">Opus 5</strong> ; la génération juste avant, <strong style="color:var(--text)">Opus 4.8</strong>, tourne encore très bien et coûte pareil. Les deux frôlent le haut de gamme sur le code et le raisonnement.</p>
+      <p>Le vrai atout pour tes automatisations : une <strong style="color:var(--text)">fenêtre de contexte énorme (1 million de tokens)</strong>, active par défaut. Tu peux lui envoyer un projet de code entier, ou cent pages de documents d'un coup, et il garde tout en tête pour répondre. C'est pour ça qu'il fait la différence sur les tâches longues.</p>
+
+      <h2>Étape 1 — Récupérer ta clé API et la stocker en credential</h2>
+      <p>Crée une clé API dans ta console Anthropic (<code style="color:var(--gold)">console.anthropic.com</code>, section API Keys). Ne la colle <strong style="color:var(--text)">jamais</strong> en clair dans un node.</p>
+      <p>Dans n8n : ouvre un node <strong style="color:var(--text)">HTTP Request</strong>, section Authentication → <em>Generic Credential Type</em> → <em>Header Auth</em>. Crée une credential où :</p>
+      <ul>
+        <li><strong>Name</strong> = <code style="color:var(--gold)">x-api-key</code></li>
+        <li><strong>Value</strong> = ta clé (<code>sk-ant-...</code>)</li>
+      </ul>
+      <p>La clé vit dans le coffre de credentials n8n, pas dans le workflow. Tu peux exporter/partager le workflow sans fuiter le secret.</p>
+
+      <h2>Étape 2 — Le node HTTP Request vers l'API Anthropic</h2>
+      <p>Configure le node comme ceci :</p>
+      <ul>
+        <li><strong>Method</strong> : <code style="color:var(--gold)">POST</code></li>
+        <li><strong>URL</strong> : <code style="color:var(--gold)">https://api.anthropic.com/v1/messages</code></li>
+        <li><strong>Authentication</strong> : la credential Header Auth de l'étape 1 (<code>x-api-key</code>)</li>
+        <li><strong>Headers</strong> : ajoute <code style="color:var(--gold)">anthropic-version</code> = <code style="color:var(--gold)">2023-06-01</code></li>
+        <li><strong>Body</strong> : JSON (voir ci-dessous)</li>
+      </ul>
+
+      <p>Le body minimal, à coller dans le champ JSON du node :</p>
+      <div class="code-block">{
+  "model": "claude-opus-4-8",
+  "max_tokens": 1024,
+  "messages": [
+    {
+      "role": "user",
+      "content": "Résume ce texte en 3 points : {{ $json.texte }}"
+    }
+  ]
+}</div>
+      <p>La réponse arrive dans <code style="color:var(--gold)">content[0].text</code> — tu la récupères avec une expression n8n du type <code>{{ $json.content[0].text }}</code> dans le node suivant.</p>
+
+      <h2>Quel modèle mettre dans "model"</h2>
+      <ul>
+        <li><code style="color:var(--gold)">claude-opus-4-8</code> — Opus 4.8, valeur sûre, excellent rapport qualité/prix</li>
+        <li><code style="color:var(--gold)">claude-opus-5</code> — la toute dernière génération Opus, si tu veux le maximum</li>
+      </ul>
+      <p>Tu changes juste la chaîne de caractères pour basculer d'un modèle à l'autre : le reste du node ne bouge pas.</p>
+
+      <div class="tip-box">
+        <div class="tip-label">⚠ Le piège que tout le monde oublie</div>
+        <p>Sans le header <code>anthropic-version: 2023-06-01</code>, l'API répond <strong style="color:var(--text)">400 Bad Request</strong> — et n8n te sort une erreur cryptique qui n'a rien à voir. Ce header est <strong style="color:var(--text)">obligatoire sur chaque appel</strong>. Ajoute-le une fois pour toutes. Autre point : pour profiter des gros contextes (le projet entier, les 100 pages), pense à monter le <code>max_tokens</code> et à allonger le <em>timeout</em> du node HTTP Request — sinon n8n coupe l'appel avant la réponse. Et garde en tête que plus tu envoies de contexte, plus l'appel coûte cher : les gros contextes se facturent au token.</p>
+      </div>
+
+      <h2>Ce à quoi t'attendre</h2>
+      <ul>
+        <li>Un modèle branché dans n8n en un seul node HTTP Request, sans plugin</li>
+        <li>La différence se voit direct sur les tâches longues (résumés massifs, analyse de code, tri de gros volumes)</li>
+        <li>Un basculement d'un modèle à l'autre en changeant une seule ligne</li>
+      </ul>
+
+      <a href="https://docs.anthropic.com/en/api/messages" target="_blank" rel="noopener" class="source-cta">
+        ▶ Voir la doc officielle de l'API Messages
+      </a>
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+</script>
+<script src="../assets/js/lead-popup.js?v=20260716b" defer></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="/assets/js/theme.js?v=20260717n" defer></script>
+</body>
+</html>

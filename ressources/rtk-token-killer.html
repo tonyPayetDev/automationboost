@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-0SRZVQ1WGD');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RTK, le Rust Token Killer qui coupe 90% de tes tokens – AutomationBoost</title>
+  <meta name="description" content="RTK (Rust Token Killer) est un proxy CLI qui filtre la sortie de tes commandes pour couper jusqu'à 90% des tokens envoyés à Claude Code, Cursor ou Codex. Installation exacte, vérifiée, commande par commande." />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Sora',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li { margin-bottom:6px; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto;white-space:pre; }
+    .source-cta { display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#000;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;padding:14px 28px;border-radius:var(--radius);text-decoration:none;margin-top:40px;transition:all .2s; }
+    .source-cta:hover { background:var(--gold-dark);transform:translateY(-2px); }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+
+    /* Lisibilité lecture longue : Sora (chargée) au lieu d'Orbitron/Rajdhani (jamais chargées) */
+    .page-title, .content-block h2, .content-block h3,
+    article.article-body h2, article.article-body h3 { font-family:'Sora',sans-serif; }
+    .content-block p, .content-block li,
+    article.article-body p, article.article-body li { font-size:17px; line-height:1.75; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "RTK, le Rust Token Killer qui coupe 90% de tes tokens",
+    "description": "RTK est un proxy CLI qui filtre la sortie de tes commandes pour couper jusqu'à 90% des tokens envoyés à Claude Code, Cursor ou Codex. Installation exacte et vérifiée.",
+    "url": "https://automatisationboost.com/ressources/rtk-token-killer.html",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://automatisationboost.com/ressources/rtk-token-killer.html"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "url": "https://automatisationboost.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://automatisationboost.com/assets/images/logo.svg"
+      }
+    },
+    "isAccessibleForFree": false,
+    "hasPart": {
+      "@type": "WebPageElement",
+      "isAccessibleForFree": false,
+      "cssSelector": ".content-block"
+    }
+  }
+  </script>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="../" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
+    </div>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
+  </nav>
+</div>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>RTK — Rust Token Killer
+    </div>
+
+    <div class="page-badge">◈ Article</div>
+    <h1 class="page-title">RTK : le proxy qui coupe <span>jusqu'à 90% de tes tokens</span></h1>
+    <div class="page-meta">
+      <span>Claude Code / Cursor / Codex</span>
+      <span>·</span>
+      <span>Gagner du temps</span>
+      <span>·</span>
+      <span>Niveau intermédiaire</span>
+    </div>
+
+    <div class="content-block">
+      <p>Tu as commenté <strong style="color:var(--text)">RTK</strong> : voilà l'outil et son installation exacte. RTK, pour <strong style="color:var(--text)">Rust Token Killer</strong>, est un proxy en ligne de commande qui filtre la sortie de tes commandes (git, grep, find, tests, logs) avant qu'elle n'arrive à ton assistant IA. Résultat : jusqu'à <strong style="color:var(--text)">90% de tokens en moins</strong> envoyés à Claude Code, Cursor ou Codex.</p>
+
+      <div class="divider"></div>
+
+      <h2>Le problème qu'il règle</h2>
+      <p>Quand ton agent lance un <code>git status</code>, un <code>grep</code> ou une suite de tests, la sortie brute part en entier dans le contexte. Sur un gros repo, c'est des milliers de tokens de bruit — répétés à chaque tour de conversation. Tu paies pour ça, et ta session sature plus vite.</p>
+      <p>RTK s'intercale entre la commande et l'agent : il garde le signal utile, jette le reste. Concrètement :</p>
+      <ul>
+        <li>Tu paies beaucoup moins de tokens sur chaque commande</li>
+        <li>Tes sessions durent plus longtemps avant de saturer le contexte</li>
+        <li>Zéro changement dans ta façon de travailler : le hook réécrit les commandes tout seul</li>
+      </ul>
+
+      <h2>Étape 1 — Installer le binaire</h2>
+      <p>Une seule commande installe RTK (version ~0.44 au moment où on écrit) :</p>
+      <div class="code-block">curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/master/install.sh | sh</div>
+
+      <h2>Étape 2 — Ajouter RTK au PATH</h2>
+      <p>Le binaire s'installe dans <code style="color:var(--gold)">~/.local/bin</code>. Ajoute-le à ton PATH en collant cette ligne dans ton <code>~/.bashrc</code> (ou <code>~/.zshrc</code>) :</p>
+      <div class="code-block">export PATH="$PATH:$HOME/.local/bin"</div>
+      <p>Recharge ton terminal (ou <code>source ~/.bashrc</code>) pour que le changement prenne effet.</p>
+
+      <h2>Étape 3 — Vérifier l'installation</h2>
+      <div class="code-block">rtk --version
+rtk gain</div>
+      <p><code>rtk --version</code> doit afficher <code>rtk X.Y.Z</code>. <code>rtk gain</code> te montre les économies de tokens déjà réalisées — c'est aussi le test qui confirme que c'est bien le bon binaire (voir le piège plus bas).</p>
+
+      <h2>Étape 4 — Activer RTK dans Claude Code</h2>
+      <p>Cette commande branche le hook <em>PreToolUse</em> sur le Bash de Claude Code, directement dans ton <code style="color:var(--gold)">~/.claude/settings.json</code> :</p>
+      <div class="code-block">rtk init -g --auto-patch</div>
+      <p>À partir de là, chaque commande bash que Claude lance (par ex. <code>git status</code>) est automatiquement réécrite en <code>rtk git status</code> — de façon transparente, sans surcoût de tokens. <strong style="color:var(--text)">Puis redémarre Claude Code.</strong></p>
+
+      <h2>Étape 5 — Confirmer que tout est au vert</h2>
+      <div class="code-block">rtk init --show</div>
+      <p>Cette commande affiche l'état de la configuration : le hook doit apparaître comme actif.</p>
+
+      <div class="tip-box">
+        <div class="tip-label">⚠ Deux pièges à connaître</div>
+        <p><strong style="color:var(--text)">1. Le hook ne s'active qu'APRÈS un redémarrage.</strong> Tant que tu n'as pas relancé Claude Code, le hook <code>PreToolUse</code> n'est pas chargé et RTK ne filtre rien — tu croiras que ça ne marche pas. Redémarre, c'est tout.<br><br><strong style="color:var(--text)">2. Collision de nom possible.</strong> Un autre outil s'appelle aussi <code>rtk</code> (Rust Type Kit). Si <code>rtk gain</code> te sort « command not found » ou une erreur bizarre, tu as probablement le mauvais binaire. Vérifie avec <code>which rtk</code> et <code>rtk gain</code> : le vrai RTK répond aux commandes <code>gain</code>, <code>discover</code> et <code>proxy</code>.</p>
+      </div>
+
+      <h2>Ce à quoi t'attendre</h2>
+      <ul>
+        <li>Des sorties de commandes bien plus courtes dans ton agent, dès le premier <code>git</code> ou <code>grep</code></li>
+        <li><code>rtk gain</code> qui chiffre les tokens économisés au fil des sessions</li>
+        <li>Une facture d'API qui baisse et des sessions qui tiennent plus longtemps</li>
+      </ul>
+
+      <a href="https://github.com/rtk-ai/rtk" target="_blank" rel="noopener" class="source-cta">
+        ◈ Voir RTK sur GitHub
+      </a>
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+</script>
+<script src="../assets/js/lead-popup.js?v=20260716b" defer></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="/assets/js/theme.js?v=20260717n" defer></script>
+</body>
+</html>
