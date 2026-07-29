@@ -130,6 +130,17 @@
   <p>Chaque démo ci-dessous reproduit un vrai workflow n8n livré à un client AutomationBoost. Remplissez le formulaire, regardez le résultat se générer, puis découvrez ce qui tourne en coulisses.</p>
 </section>
 
+<!-- ════════════ FEED PERSONNALISÉ (injecté depuis l'email de prospection) ════════════ -->
+<section id="feed-perso" style="display:none;padding:0 20px 20px;">
+  <div class="demo-form-card fade-in visible" style="max-width:720px;margin:0 auto;text-align:center;border-color:rgba(234,179,8,0.4);">
+    <span class="section-label">Rien que pour vous</span>
+    <h2 class="section-title" style="margin:10px 0 8px;">Voici le feed Instagram qu'on a recréé pour <span class="gold" id="feed-nom">votre établissement</span></h2>
+    <p style="max-width:560px;margin:0 auto 22px;color:var(--text-light);">On a régénéré une grille 3×3 complète à partir de votre présence en ligne. Aucun engagement — c'est un aperçu offert pour vous montrer ce que notre workflow produit.</p>
+    <img id="feed-img" src="" alt="Feed Instagram régénéré" style="width:100%;max-width:480px;border-radius:var(--radius-lg);border:1px solid var(--border);display:block;margin:0 auto 22px;" />
+    <a href="#menuauto-demo" class="btn-primary" style="justify-content:center;display:inline-flex;">Je veux le mien en vrai →</a>
+  </div>
+</section>
+
 <!-- ════════════ DEMO : MENUAUTO ════════════ -->
 <section id="menuauto-demo">
   <div class="container">
@@ -141,7 +152,7 @@
 
     <div class="demo-form-card fade-in" style="max-width:560px;margin:0 auto;text-align:center;">
       <p style="color:var(--text-light);margin-bottom:24px;">Ce n'est pas une simulation : c'est le formulaire n8n exact utilisé par nos clients restaurateurs. Remplissez-le, et le workflow réel se déclenche (génération du visuel, email d'approbation, publication Instagram).</p>
-      <a href="https://n7n.automatisationboost.com/form/68cf006b-7b57-4fb8-9d29-9dca617a0ce1"
+      <a id="demo-form-link" href="https://n7n.automatisationboost.com/form/68cf006b-7b57-4fb8-9d29-9dca617a0ce1"
          target="_blank" rel="noopener"
          class="btn-primary"
          style="width:100%;justify-content:center;display:flex;">
@@ -235,6 +246,38 @@
   }, { threshold: 0.12 });
   fadeEls.forEach(el => io.observe(el));
 
+  // ── Feed personnalisé : lu depuis l'URL (?feed=email&img=url&nom=...) ──
+  (function () {
+    const p = new URLSearchParams(window.location.search);
+    const img = p.get('img');
+    const email = p.get('feed') || p.get('email') || '';
+    const nom = p.get('nom');
+    if (img) {
+      const sec = document.getElementById('feed-perso');
+      const imgEl = document.getElementById('feed-img');
+      const nomEl = document.getElementById('feed-nom');
+      imgEl.src = img;
+      if (nom) nomEl.textContent = decodeURIComponent(nom);
+      sec.style.display = 'block';
+    }
+    // Préremplit le formulaire n8n avec la charte du feed (clés = libellés exacts des champs)
+    const link = document.getElementById('demo-form-link');
+    if (link) {
+      const url = new URL(link.href);
+      const couleur = p.get('couleur');
+      const policeRaw = p.get('police');
+      const policesOk = ['Arial','Georgia','Playfair Display','Montserrat','Lobster','Oswald','Raleway'];
+      if (nom) url.searchParams.set('Nom du restaurant', decodeURIComponent(nom));
+      if (email) url.searchParams.set('Email', email);
+      if (couleur) url.searchParams.set('Couleur du titre (ex: #FFFFFF)', couleur);
+      if (policeRaw) {
+        const match = policesOk.find(f => f.toLowerCase() === decodeURIComponent(policeRaw).trim().toLowerCase());
+        if (match) url.searchParams.set('Police du texte', match);
+      }
+      if (img) url.searchParams.set('feedImage', img);
+      link.href = url.toString();
+    }
+  })();
 </script>
 <script src="/assets/js/theme.js?v=20260717n" defer></script>
 </body>
