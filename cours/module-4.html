@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1713977213196523');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1713977213196523&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
   <script>
@@ -102,6 +119,12 @@
         </div>
       </div>
 
+      <div class="res-links">
+        <div class="res-links-label">📚 Choisir ton outil</div>
+        <a href="../ressources/zapier-make-n8n.html">Zapier, Make, n8n à l'ère MCP</a>
+        <a href="../ressources/anatomie-automatisation-ia.html">Anatomie d'une automatisation IA</a>
+      </div>
+
       <h2 class="section-h2">Les 5 workflows les plus vendus</h2>
 
       <div class="workflow-card">
@@ -134,6 +157,13 @@
         <div class="workflow-tools">Outils : <span>Shopify/WooCommerce → n8n → Email → Slack</span></div>
       </div>
 
+      <div class="res-links">
+        <div class="res-links-label">📚 Des workflows concrets</div>
+        <a href="../ressources/automatisations-mail-calendar-leads.html">Workflows mail, calendar et triage de leads</a>
+        <a href="../ressources/automatisations-multi-etapes.html">Enchaîner plusieurs étapes en une automatisation</a>
+        <a href="../ressources/bons-mauvais-cas-usage.html">Ce qu'il faut (et ne faut pas) automatiser</a>
+      </div>
+
       <h2 class="section-h2">Structure type d'un workflow n8n</h2>
       <p>Chaque workflow profitable a cette structure :</p>
       <div class="code-block">
@@ -159,6 +189,13 @@ GESTION D'ERREURS
         <p>Ne facture pas au temps. Facture à la valeur : calcule combien d'heures/mois ton workflow économise × le coût horaire du client. Facture 20-30% de ce montant annuel comme tarif unique. Exemple : 5h/semaine économisées × 40€/h × 52 semaines = 10 400€ de valeur. Facturer 2 000-3 000€ est totalement justifié.</p>
       </div>
 
+      <div class="res-links">
+        <div class="res-links-label">📚 Construire et maintenir</div>
+        <a href="../ressources/construire-premiere-automatisation.html">Construire ta première automatisation</a>
+        <a href="../ressources/creer-un-agent-ia.html">Créer un agent IA de zéro</a>
+        <a href="../ressources/maintenir-automatisations.html">Maintenir tes automatisations</a>
+      </div>
+
       <!-- EXERCICE -->
       <div class="exercise-box">
         <div class="exercise-title">🤖 Exercice — Crée ton premier workflow n8n</div>
@@ -171,10 +208,12 @@ GESTION D'ERREURS
             <li>Note le temps que tu as mis et l'économie que ça représente pour un client</li>
           </ol>
         </div>
-        <button class="btn-complete" id="btn-complete" onclick="completeModule()">
-          ✓ J'ai créé mon workflow — Débloquer le Module 5
+        <button class="btn-complete" onclick="document.getElementById('quiz-mount').scrollIntoView({behavior:'smooth'})">
+          ✓ Workflow créé — Passer au quiz de validation
         </button>
       </div>
+
+      <div id="quiz-mount"></div>
 
       <div class="nav-footer">
         <a href="module-3.html" class="nav-back-link">← Module 3</a>
@@ -193,9 +232,17 @@ const lvl = AB.getCurrentLevel();
 document.getElementById('level-chip').textContent = lvl.badge + ' ' + lvl.xp + ' XP';
 document.getElementById('progress-chip').textContent = AB.getCompletedCount() + '/6 complétés';
 
-const btn = document.getElementById('btn-complete');
-if (AB.isModuleDone(4)) { btn.textContent = '✓ Module complété'; btn.disabled = true; }
-function completeModule() { AB.completeModule(4); }
+AB.renderQuiz('#quiz-mount', 4, [
+  { q: "Quel est l'avantage clé de n8n face à Make ou Zapier ?",
+    options: ['Open source, gratuit en auto-hébergé, sans coût par exécution', 'Plus de templates tout faits', 'Une meilleure application mobile'], correct: 0,
+    explain: "n8n est open source : gratuit auto-hébergé, aucun coût par opération, marque blanche possible." },
+  { q: "Dans un workflow n8n, quelle étape apporte la vraie valeur ajoutée ?",
+    options: ['Le trigger', 'Le traitement IA (nœud Claude/OpenAI)', 'La gestion d\'erreurs'], correct: 1,
+    explain: "Le nœud de traitement IA est là où se crée la valeur ; le reste transporte les données." },
+  { q: "Comment facturer une automatisation à un client ?",
+    options: ['Au temps que tu as mis pour la créer', 'À la valeur : une part des heures/argent qu\'elle économise', 'Au nombre de nœuds du workflow'], correct: 1,
+    explain: "Calcule la valeur annuelle économisée et facture-en 20-30 % en tarif unique." },
+]);
 
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));

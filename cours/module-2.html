@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1713977213196523');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1713977213196523&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
   <script>
@@ -108,6 +125,13 @@
         <div class="service-sells">Se vend bien à : <span>E-commerce, SaaS, services clients</span></div>
       </div>
 
+      <div class="res-links">
+        <div class="res-links-label">📚 Construire ton offre</div>
+        <a href="../ressources/matrice-competences-marche.html">Trouver ce que tu peux vendre à partir de tes compétences</a>
+        <a href="../ressources/offre-commerciale-freelance.html">Construire une offre que les clients achètent</a>
+        <a href="../ressources/creer-un-agent-ia.html">Créer un agent IA de zéro (à vendre)</a>
+      </div>
+
       <h2 class="section-h2">Comment pitcher à un client non-technique</h2>
       <p>La plupart des clients ne comprennent pas l'IA — et s'en foutent. Ce qui les intéresse, c'est ce que ça fait pour eux. Utilise toujours cette structure :</p>
 
@@ -128,6 +152,12 @@ que sur les cas complexes. Sur l'année, c'est 150h récupérées.
 L'investissement est de 800€ une fois."
       </div>
 
+      <div class="res-links">
+        <div class="res-links-label">📚 Mieux pitcher</div>
+        <a href="../ressources/closing-freelance.html">Conclure : entretien + proposition</a>
+        <a href="../ressources/monetiser-sans-bruler-confiance.html">Monétiser sans brûler la confiance</a>
+      </div>
+
       <h2 class="section-h2">Tarification : de 50€ à 150€/h</h2>
       <table class="price-table">
         <tr><th>Niveau</th><th>Quand l'appliquer</th><th>Tarif</th></tr>
@@ -142,6 +172,13 @@ L'investissement est de 800€ une fois."
         <p>Dès que tu peux, arrête de facturer à l'heure. Si tu automatises une tâche qui prenait 5h/semaine (= 200h/an), facture une partie de cette valeur — pas les 2h qu'il t'a fallu pour le faire.</p>
       </div>
 
+      <div class="res-links">
+        <div class="res-links-label">📚 Fixer tes tarifs</div>
+        <a href="../ressources/tarifs-freelance-valeur.html">Facturer ta valeur, pas ton temps</a>
+        <a href="../ressources/statut-juridique-freelance.html">Choisir ton statut juridique</a>
+        <a href="../ressources/pricing-produit-numerique.html">Fixer le juste prix</a>
+      </div>
+
       <!-- EXERCICE -->
       <div class="exercise-box">
         <div class="exercise-title">💼 Exercice — Rédige ton offre de service</div>
@@ -154,10 +191,12 @@ L'investissement est de 800€ une fois."
             <li>Écris une phrase d'offre de 2-3 lignes que tu pourrais envoyer à un prospect demain</li>
           </ol>
         </div>
-        <button class="btn-complete" id="btn-complete" onclick="completeModule()">
-          ✓ J'ai rédigé mon offre — Débloquer le Module 3
+        <button class="btn-complete" onclick="document.getElementById('quiz-mount').scrollIntoView({behavior:'smooth'})">
+          ✓ Offre rédigée — Passer au quiz de validation
         </button>
       </div>
+
+      <div id="quiz-mount"></div>
 
       <div class="nav-footer">
         <a href="module-1.html" class="nav-back-link">← Module 1</a>
@@ -176,9 +215,17 @@ const lvl = AB.getCurrentLevel();
 document.getElementById('level-chip').textContent = lvl.badge + ' ' + lvl.xp + ' XP';
 document.getElementById('progress-chip').textContent = AB.getCompletedCount() + '/6 complétés';
 
-const btn = document.getElementById('btn-complete');
-if (AB.isModuleDone(2)) { btn.textContent = '✓ Module complété'; btn.disabled = true; }
-function completeModule() { AB.completeModule(2); }
+AB.renderQuiz('#quiz-mount', 2, [
+  { q: "Quel service IA est souvent le plus rentable à vendre ?",
+    options: ["L'automatisation de processus", 'La rédaction de posts', 'La veille technologique'], correct: 0,
+    explain: "L'automatisation de processus (500€–3 000€) est citée comme la plus rentable." },
+  { q: "Face à un client non-technique, tu dois surtout parler…",
+    options: ['Des modèles et de la technique IA', 'Du résultat concret et mesurable pour lui', 'Des outils que tu utilises'], correct: 1,
+    explain: "Le client se fiche de l'IA — il veut un résultat mesurable, en un délai, à un prix." },
+  { q: "Dès que tu le peux, tu devrais facturer…",
+    options: ["À l'heure passée", 'À la valeur générée', 'Au nombre de réunions'], correct: 1,
+    explain: "Facture une partie de la valeur créée (heures économisées × coût horaire), pas ton temps." },
+]);
 
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));

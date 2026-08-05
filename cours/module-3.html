@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1713977213196523');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1713977213196523&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
   <script>
@@ -111,6 +128,12 @@
         </ul>
       </div>
 
+      <div class="res-links">
+        <div class="res-links-label">📚 Te rendre visible</div>
+        <a href="../ressources/premiers-clients-freelance.html">Tes premiers clients sans réseau</a>
+        <a href="../ressources/personal-branding-sans-cringe.html">L'image de marque personnelle sans devenir gênant</a>
+      </div>
+
       <h2 class="section-h2">Script de prospection LinkedIn</h2>
       <p>Ce script a un taux de réponse de 30-40% quand il est bien personnalisé :</p>
 
@@ -140,6 +163,12 @@ Tu aurais 15 min cette semaine ou la semaine prochaine ?
         <p>Sur 100 messages envoyés, 30-40 répondront, 10-15 accepteront un appel, 5 deviendront des clients potentiels, 1-2 signeront. C'est mathématique. Ne prends pas les refus personnellement — c'est juste un jeu de nombres.</p>
       </div>
 
+      <div class="res-links">
+        <div class="res-links-label">📚 Prospecter et créer du contenu</div>
+        <a href="../ressources/posts-carrousels-reseaux-ia.html">Écrire tes posts LinkedIn avec l'IA sans sonner faux</a>
+        <a href="../ressources/vendre-prospection-restaurants-rdv-automatique.html">Prospecter et décrocher des RDV automatiquement</a>
+      </div>
+
       <h2 class="section-h2">Convertir un appel en contrat</h2>
       <p>L'objectif d'un premier appel n'est pas de vendre — c'est de comprendre le problème et de qualifier si tu peux aider. Structure :</p>
       <ol>
@@ -149,6 +178,12 @@ Tu aurais 15 min cette semaine ou la semaine prochaine ?
         <li><strong>5 min</strong> — Proposition concrète avec budget indicatif</li>
         <li><strong>Closing</strong> — "Est-ce que ça fait sens de préparer un devis ?"</li>
       </ol>
+
+      <div class="res-links">
+        <div class="res-links-label">📚 Closer ton client</div>
+        <a href="../ressources/closing-freelance.html">Conclure : entretien + proposition</a>
+        <a href="../ressources/offre-commerciale-freelance.html">Construire une offre que les clients achètent</a>
+      </div>
 
       <!-- EXERCICE -->
       <div class="exercise-box">
@@ -162,10 +197,12 @@ Tu aurais 15 min cette semaine ou la semaine prochaine ?
             <li>Note dans un tableau : nom, entreprise, date d'envoi, réponse reçue</li>
           </ol>
         </div>
-        <button class="btn-complete" id="btn-complete" onclick="completeModule()">
-          ✓ J'ai envoyé mes 5 messages — Débloquer le Module 4
+        <button class="btn-complete" onclick="document.getElementById('quiz-mount').scrollIntoView({behavior:'smooth'})">
+          ✓ Messages envoyés — Passer au quiz de validation
         </button>
       </div>
+
+      <div id="quiz-mount"></div>
 
       <div class="nav-footer">
         <a href="module-2.html" class="nav-back-link">← Module 2</a>
@@ -184,9 +221,17 @@ const lvl = AB.getCurrentLevel();
 document.getElementById('level-chip').textContent = lvl.badge + ' ' + lvl.xp + ' XP';
 document.getElementById('progress-chip').textContent = AB.getCompletedCount() + '/6 complétés';
 
-const btn = document.getElementById('btn-complete');
-if (AB.isModuleDone(3)) { btn.textContent = '✓ Module complété'; btn.disabled = true; }
-function completeModule() { AB.completeModule(3); }
+AB.renderQuiz('#quiz-mount', 3, [
+  { q: "Quelle plateforme offre le meilleur ROI pour des services IA en B2B ?",
+    options: ['LinkedIn', 'Instagram', 'Upwork'], correct: 0,
+    explain: "LinkedIn — les décideurs y sont et le taux de réponse à la prospection y est le plus élevé." },
+  { q: "Le vrai objectif d'un premier appel avec un prospect, c'est…",
+    options: ['Vendre coûte que coûte', 'Comprendre son problème et qualifier si tu peux aider', 'Présenter tous tes services'], correct: 1,
+    explain: "Un premier appel sert à comprendre le problème et qualifier — pas à vendre." },
+  { q: "Selon la règle des 5 %, sur 100 messages envoyés, combien signent en moyenne ?",
+    options: ['30 à 40', '1 à 2', 'Aucun'], correct: 1,
+    explain: "≈30-40 répondent, 5 deviennent des pistes, 1-2 signent. C'est un jeu de nombres." },
+]);
 
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));

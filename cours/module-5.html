@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1713977213196523');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1713977213196523&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
   <script>
@@ -109,6 +126,12 @@
         <div class="product-time">Temps de création : <span>2-4h</span> · Potentiel mensuel : 300-3000€</div>
       </div>
 
+      <div class="res-links">
+        <div class="res-links-label">📚 Concevoir ton produit</div>
+        <a href="../ressources/format-produit-numerique.html">Quel format pour ton produit numérique</a>
+        <a href="../ressources/produit-unique-a-la-gamme.html">Transformer un produit unique en gamme complète</a>
+      </div>
+
       <h2 class="section-h2">Où vendre tes produits digitaux</h2>
       <div class="platform-mini">
         <div class="plat-chip"><strong>Gumroad</strong> — Le plus simple, 0% de frais fixes</div>
@@ -116,6 +139,12 @@
         <div class="plat-chip"><strong>Podia</strong> — Pour les formations avec membres</div>
         <div class="plat-chip"><strong>Notion Templates</strong> — Marketplace native Notion</div>
         <div class="plat-chip"><strong>Ton propre site</strong> — Stripe direct + contrôle total</div>
+      </div>
+
+      <div class="res-links">
+        <div class="res-links-label">📚 Vendre au bon endroit</div>
+        <a href="../ressources/plateformes-vente-produit.html">Gumroad, Stan, Podia, Systeme.io</a>
+        <a href="../ressources/page-vente-produit-numerique.html">La page qui convertit</a>
       </div>
 
       <h2 class="section-h2">Comment créer en 1 journée</h2>
@@ -131,6 +160,13 @@
         <p>Le titre fait 80% des ventes. "Pack de prompts IA" ne vend pas. "47 prompts pour rédiger tes posts LinkedIn 10x plus vite" vend. Sois ultra-précis sur le résultat et le gain de temps.</p>
       </div>
 
+      <div class="res-links">
+        <div class="res-links-label">📚 Créer et lancer</div>
+        <a href="../ressources/construire-produit-30-jours.html">En 30 jours, sans coder</a>
+        <a href="../ressources/lancement-produit-numerique.html">Preventes, email, jour J</a>
+        <a href="../ressources/produits-numeriques-ne-vendent-pas.html">Pourquoi 90 % ne vendent pas</a>
+      </div>
+
       <!-- EXERCICE -->
       <div class="exercise-box">
         <div class="exercise-title">💰 Exercice — Crée et publie ton premier produit</div>
@@ -143,10 +179,12 @@
             <li>Partage le lien sur LinkedIn avec un post expliquant ce que tu as créé et pourquoi</li>
           </ol>
         </div>
-        <button class="btn-complete" id="btn-complete" onclick="completeModule()">
-          ✓ J'ai publié mon produit — Débloquer le Module 6
+        <button class="btn-complete" onclick="document.getElementById('quiz-mount').scrollIntoView({behavior:'smooth'})">
+          ✓ Produit publié — Passer au quiz de validation
         </button>
       </div>
+
+      <div id="quiz-mount"></div>
 
       <div class="nav-footer">
         <a href="module-4.html" class="nav-back-link">← Module 4</a>
@@ -165,9 +203,17 @@ const lvl = AB.getCurrentLevel();
 document.getElementById('level-chip').textContent = lvl.badge + ' ' + lvl.xp + ' XP';
 document.getElementById('progress-chip').textContent = AB.getCompletedCount() + '/6 complétés';
 
-const btn = document.getElementById('btn-complete');
-if (AB.isModuleDone(5)) { btn.textContent = '✓ Module complété'; btn.disabled = true; }
-function completeModule() { AB.completeModule(5); }
+AB.renderQuiz('#quiz-mount', 5, [
+  { q: "Quel produit digital est le plus rapide à créer ?",
+    options: ['Le pack de prompts (2-4h)', 'La mini-formation vidéo (1-3 jours)', 'Le template Notion (4-8h)'], correct: 0,
+    explain: "Le pack de prompts se crée en 2-4h — c'est le point de départ le plus rapide." },
+  { q: "Quelle part des ventes se joue sur le titre du produit ?",
+    options: ['Environ 20 %', 'Environ 80 %', 'Aucune, c\'est le prix qui compte'], correct: 1,
+    explain: "Le titre fait ~80 % des ventes : sois ultra-précis sur le résultat et le gain de temps." },
+  { q: "Pour une mini-formation, qu'est-ce qui vend le mieux ?",
+    options: ['Couvrir un sujet très large', 'Un sujet précis et dense', 'Le prix le plus bas possible'], correct: 1,
+    explain: "La précision bat la largeur : « Automatiser ses emails avec n8n en 2h » vend mieux qu'un cours généraliste." },
+]);
 
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));

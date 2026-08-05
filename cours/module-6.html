@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1713977213196523');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1713977213196523&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
   <script>
@@ -110,6 +127,12 @@
         <div class="calc-row"><span class="calc-label" style="color:#eab308">Total</span><span class="calc-val" style="color:#eab308">2 200€/mois</span></div>
       </div>
 
+      <div class="res-links">
+        <div class="res-links-label">📚 Piloter tes revenus</div>
+        <a href="../ressources/mesurer-optimiser-data.html">Suivre les bons chiffres pour faire grandir ton activité</a>
+        <a href="../ressources/monetiser-sans-bruler-confiance.html">Monétiser sans brûler la confiance</a>
+      </div>
+
       <h2 class="section-h2">Roadmap 30 jours</h2>
 
       <div class="week-block">
@@ -152,6 +175,12 @@
         </ul>
       </div>
 
+      <div class="res-links">
+        <div class="res-links-label">📚 Tenir la cadence</div>
+        <a href="../ressources/systeme-10h-semaine.html">Le système qui te fait récupérer 10 h par semaine</a>
+        <a href="../ressources/tester-idee-7-jours.html">Tester ton idée en 7 jours</a>
+      </div>
+
       <h2 class="section-h2">Cas pratiques — Ils l'ont fait</h2>
 
       <div class="case-card">
@@ -180,6 +209,13 @@
       <div class="mistake-card"><div class="mistake-title">❌ Prospecter sans système</div><div class="mistake-fix">Fix : La prospection doit être rituelle. 10 messages par jour, tous les jours, peu importe l'humeur. C'est mathématique.</div></div>
       <div class="mistake-card"><div class="mistake-title">❌ Livrer la prestation, pas la valeur</div><div class="mistake-fix">Fix : Quantifie toujours le résultat pour ton client. "J'ai automatisé tes emails" ne suffit pas. "Tu économises 4h/semaine soit 2 080€ de valeur annuelle" — ça justifie de te recommander.</div></div>
 
+      <div class="res-links">
+        <div class="res-links-label">📚 Éviter les pièges</div>
+        <a href="../ressources/systemes-scalables-effondrent.html">Pourquoi 80 % des systèmes s'effondrent</a>
+        <a href="../ressources/scaler-sans-recruter.html">Grandir sans recruter</a>
+        <a href="../ressources/piege-sur-automatisation.html">Le piège de la sur-automatisation</a>
+      </div>
+
       <!-- EXERCICE FINAL -->
       <div class="exercise-box">
         <div class="exercise-title">👑 Exercice final — Ton plan d'action 30 jours</div>
@@ -192,10 +228,12 @@
             <li>Lance la Semaine 1 aujourd'hui — pas demain</li>
           </ol>
         </div>
-        <button class="btn-complete" id="btn-complete" onclick="completeModule()">
-          👑 J'ai mon plan — Terminer la formation
+        <button class="btn-complete" onclick="document.getElementById('quiz-mount').scrollIntoView({behavior:'smooth'})">
+          👑 Plan prêt — Passer au quiz final
         </button>
       </div>
+
+      <div id="quiz-mount"></div>
 
       <div class="nav-footer">
         <a href="module-5.html" class="nav-back-link">← Module 5</a>
@@ -214,9 +252,17 @@ const lvl = AB.getCurrentLevel();
 document.getElementById('level-chip').textContent = lvl.badge + ' ' + lvl.xp + ' XP';
 document.getElementById('progress-chip').textContent = AB.getCompletedCount() + '/6 complétés';
 
-const btn = document.getElementById('btn-complete');
-if (AB.isModuleDone(6)) { btn.textContent = '👑 Formation complétée — Tu es IA Master !'; btn.disabled = true; }
-function completeModule() { AB.completeModule(6); }
+AB.renderQuiz('#quiz-mount', 6, [
+  { q: "100 €/jour, ça représente combien par mois ?",
+    options: ['1 500 €/mois', '3 000 €/mois', '5 000 €/mois'], correct: 1,
+    explain: "100 €/jour = 3 000 €/mois, atteignable en combinant services et produits passifs." },
+  { q: "Erreur « attendre d'être prêt » — quel est le fix ?",
+    options: ['Suivre encore quelques formations', 'Lancer avec ce que tu sais déjà', 'Attendre le bon moment'], correct: 1,
+    explain: "Tu ne seras jamais « prêt ». Tu apprends 10× plus vite avec un vrai client qu'avec des tutos." },
+  { q: "À quoi sert de choisir une niche (1 service + 1 cible) ?",
+    options: ['À limiter ton chiffre d\'affaires', 'À devenir l\'expert qu\'on se recommande', 'À travailler plus d\'heures'], correct: 1,
+    explain: "La niche fait les experts qui se font recommander : maîtrise 1 service + 1 cible avant de diversifier." },
+]);
 
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
