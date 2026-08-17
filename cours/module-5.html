@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <meta charset="UTF-8" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-0SRZVQ1WGD');
   </script>
-  <meta charset="UTF-8" />
   <!-- Meta Pixel Code -->
   <script>
   !function(f,b,e,v,n,t,s)
@@ -29,63 +28,27 @@
   /></noscript>
   <!-- End Meta Pixel Code -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Module 5 – Revenus passifs avec l'IA | AutomationBoost</title>
+  <title>Module 5 — Produire du contenu à la chaîne | AutomationBoost</title>
+  <meta name="description" content="Écrire un script vidéo calibré, connaître le coût réel de production et tenir une cadence de publication." />
   <meta name="robots" content="noindex" />
-  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260817" />
+  <link rel="stylesheet" href="../assets/css/cours.css?v=20260817" />
   <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
-  <style>
-    .cours-page { padding:120px 0 80px }
-    .cours-inner { max-width:760px }
-    .mod-eyebrow { display:flex;align-items:center;gap:12px;margin-bottom:24px }
-    .mod-badge { background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.2);color:#eab308;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;font-family:'Orbitron',sans-serif }
-    .mod-progress-chip { font-size:12px;color:#71717a }
-    .mod-title { font-family:'Orbitron',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;margin-bottom:16px;line-height:1.2 }
-    .mod-intro { font-size:1.1rem;color:#a1a1aa;line-height:1.9;margin-bottom:40px;border-left:3px solid #eab308;padding-left:20px }
-    .section-h2 { font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:700;color:#e4e4e7;margin:44px 0 16px }
-    .section-h3 { font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;color:#eab308;margin:28px 0 10px }
-    p { color:#a1a1aa;line-height:1.9;margin-bottom:16px }
-    ul, ol { color:#a1a1aa;line-height:1.9;padding-left:20px;margin-bottom:16px }
-    li { margin-bottom:6px }
-    strong { color:#e4e4e7 }
-    .product-card { background:#0d0d0d;border:1px solid #1a1a1a;border-radius:12px;padding:24px;margin:16px 0 }
-    .product-header { display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px }
-    .product-name { font-weight:700;color:#e4e4e7 }
-    .product-price { font-family:'Orbitron',sans-serif;font-size:.85rem;font-weight:700;color:#eab308 }
-    .product-desc { font-size:14px;color:#71717a;line-height:1.7;margin-bottom:10px }
-    .product-time { font-size:12px;color:#a1a1aa }
-    .product-time span { color:#4ade80 }
-    .platform-mini { display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 }
-    .plat-chip { background:#111;border:1px solid #1a1a1a;border-radius:8px;padding:10px 16px;font-size:13px;color:#a1a1aa }
-    .plat-chip strong { color:#eab308 }
-    .timeline { position:relative;padding-left:24px;margin:20px 0 }
-    .timeline::before { content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#eab308,#1a1a1a) }
-    .tl-item { position:relative;margin-bottom:24px;padding-left:16px }
-    .tl-item::before { content:'';position:absolute;left:-22px;top:6px;width:10px;height:10px;border-radius:50%;background:#eab308 }
-    .tl-title { font-weight:700;color:#e4e4e7;margin-bottom:4px }
-    .tl-desc { font-size:14px;color:#71717a }
-    .tip-box { background:#0d0d0d;border:1px solid #1a1a1a;border-left:3px solid #eab308;border-radius:8px;padding:20px;margin:24px 0 }
-    .tip-label { font-size:11px;font-weight:700;color:#eab308;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px }
-    .exercise-box { background:rgba(234,179,8,0.05);border:2px solid rgba(234,179,8,0.3);border-radius:12px;padding:32px;margin:48px 0 0 }
-    .exercise-title { font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:700;color:#eab308;margin-bottom:8px }
-    .exercise-desc { font-size:15px;color:#a1a1aa;line-height:1.8;margin-bottom:24px }
-    .exercise-steps { background:#0d0d0d;border-radius:8px;padding:20px;margin-bottom:24px }
-    .exercise-steps li { color:#a1a1aa;margin-bottom:10px }
-    .btn-complete { background:#eab308;color:#000;font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;padding:16px 32px;border:none;border-radius:8px;cursor:pointer;width:100%;transition:all .2s }
-    .btn-complete:hover { background:#ca8a04 }
-    .btn-complete:disabled { background:#71717a;cursor:not-allowed }
-    .nav-footer { display:flex;justify-content:space-between;align-items:center;margin-top:48px;padding-top:32px;border-top:1px solid #1a1a1a }
-    .nav-back-link { color:#71717a;font-size:14px;text-decoration:none }
-    .nav-back-link:hover { color:#eab308 }
-  </style>
 </head>
 <body>
 <nav id="navbar">
-  <div class="nav-inner">
-    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
-    <div style="display:flex;align-items:center;gap:16px">
-      <a href="index.html" style="color:#71717a;font-size:14px;text-decoration:none;font-family:'Rajdhani',sans-serif">← Tableau de bord</a>
-      <span style="font-size:13px;color:#eab308;font-weight:700" id="level-chip"></span>
+  <div class="nav-pill">
+    <a href="/" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="index.html" class="nav-link-slide"><span>Tableau de bord</span><span>Tableau de bord</span></a>
+      <a href="mon-rendu.html" class="nav-link-slide"><span>Mon rendu</span><span>Mon rendu</span></a>
     </div>
+    <span class="nav-cta" id="level-chip" style="cursor:default">…</span>
   </div>
 </nav>
 
@@ -94,130 +57,304 @@
     <div class="cours-inner">
       <div class="mod-eyebrow">
         <span class="mod-badge">Module 5 / 6</span>
-        <span class="mod-progress-chip" id="progress-chip">Chargement…</span>
+        <span class="mod-progress-chip" id="progress-chip">…</span>
       </div>
 
-      <h1 class="mod-title">💰 Revenus passifs avec l'IA</h1>
-      <p class="mod-intro">Les services freelance te paient quand tu travailles. Les produits digitaux te paient pendant que tu dors. Dans ce module, tu vas créer ton premier produit vendable avec l'IA — en moins d'une journée de travail.</p>
+      <h1 class="mod-title">🎬 Produire du contenu à la chaîne</h1>
+      <div class="mod-goal"><span>🎯</span><div><b>À la fin de ce module tu sais :</b> écrire un script vidéo de 30 secondes calibré au mot près, connaître ton coût réel par vidéo, et tenir une cadence.</div></div>
+      <p class="mod-intro">Le contenu est le canal d'acquisition le moins cher pour un freelance — et le plus lent. Il ne remplace pas la prospection du module 3 : il la rend progressivement inutile. Ce module te donne la <strong>structure d'un script qui tient 30 secondes</strong>, le calibrage au mot près, et le coût réel d'une chaîne de production.</p>
 
-      <h2 class="section-h2">Les 4 types de produits digitaux IA</h2>
 
-      <div class="product-card">
-        <div class="product-header"><div class="product-name">📋 Pack de prompts spécialisés</div><div class="product-price">9€ – 49€</div></div>
-        <div class="product-desc">Collection de 20-50 prompts optimisés pour un usage spécifique : rédaction commerciale, analyse financière, management, marketing... Les gens paient pour ne pas avoir à les tester eux-mêmes.</div>
-        <div class="product-time">Temps de création : <span>2-4h</span> · Potentiel mensuel : 200-2000€</div>
+      <h2 class="section-h2">Le calibrage : la seule règle qu'on peut mesurer</h2>
+      <p>En français, une voix off tenable se situe autour de <strong>2,6 mots par seconde</strong>. Ce n'est pas un avis, c'est une contrainte de production :</p>
+      <div class="cours-table-wrap">
+      <table class="cours-table">
+        <thead><tr><th>Durée cible</th><th>Nombre de mots</th><th>Usage</th></tr></thead>
+        <tbody>
+          <tr><td>15 s</td><td>36 – 42 mots</td><td>Une seule idée, un seul plan</td></tr>
+          <tr><td>30 s</td><td>72 – 85 mots</td><td>Le format qui convertit le mieux en social</td></tr>
+          <tr><td>45 s</td><td>110 – 125 mots</td><td>Démonstration ou étude de cas</td></tr>
+          <tr><td>60 s</td><td>145 – 165 mots</td><td>Explication complète, rétention plus difficile</td></tr>
+        </tbody>
+      </table>
       </div>
+      <p>Écrire 140 mots pour une vidéo de 30 secondes est l'erreur n°1 : soit tu accélères la voix et ça s'entend, soit la vidéo déborde et la rétention s'effondre. <strong>Compte tes mots avant d'enregistrer, pas après.</strong></p>
 
-      <div class="product-card">
-        <div class="product-header"><div class="product-name">🗂️ Template Notion avec IA intégrée</div><div class="product-price">19€ – 79€</div></div>
-        <div class="product-desc">Un espace de travail Notion clé-en-main avec des prompts Claude/ChatGPT intégrés dans les pages. Exemples : "CRM freelance avec IA", "Gestion de projet IA", "Newsletter factory".</div>
-        <div class="product-time">Temps de création : <span>4-8h</span> · Potentiel mensuel : 500-5000€</div>
-      </div>
+      <h2 class="section-h2">La structure d'un script de 30 secondes</h2>
+      <ol class="steps">
+        <li><strong>Hook — 0 à 2 s (5 à 10 mots)</strong> — une tension, pas une présentation. Jamais « Bonjour, aujourd'hui je vais vous parler de ». <span class="st-time">décide 80 % de la rétention</span></li>
+        <li><strong>Tension — 2 à 8 s (15 à 20 mots)</strong> — pourquoi c'est un problème, pour qui, maintenant.</li>
+        <li><strong>Preuve — 8 à 22 s (35 à 45 mots)</strong> — la démonstration, le chiffre, la capture d'écran. C'est le cœur.</li>
+        <li><strong>Chute + appel à l'action — 22 à 30 s (10 à 15 mots)</strong> — une seule action demandée. Pas trois.</li>
+      </ol>
+      <div class="prompt-box" id="p-script"><span class="prompt-label">Exemple calibré — 78 mots</span>HOOK (7 mots)
+Ton devis met douze minutes. Regarde ça.
 
-      <div class="product-card">
-        <div class="product-header"><div class="product-name">🎓 Mini-formation vidéo (30-60 min)</div><div class="product-price">29€ – 99€</div></div>
-        <div class="product-desc">Une formation courte et dense sur un sujet très précis : "Automatiser ses emails avec n8n en 2h", "Créer un chatbot pour son site en 1 journée". La précision vend mieux que la largeur.</div>
-        <div class="product-time">Temps de création : <span>1-3 jours</span> · Potentiel mensuel : 1000-10000€</div>
-      </div>
+TENSION (18 mots)
+Quarante demandes par semaine, douze minutes chacune : huit heures
+perdues chaque semaine à recopier les mêmes informations.
 
-      <div class="product-card">
-        <div class="product-header"><div class="product-name">⚡ Workflow n8n prêt à l'emploi</div><div class="product-price">29€ – 149€</div></div>
-        <div class="product-desc">Exporter un workflow n8n que tu as créé et le vendre comme template. L'acheteur importe et adapte. Idéal pour les workflows que tu répètes souvent chez différents clients.</div>
-        <div class="product-time">Temps de création : <span>2-4h</span> · Potentiel mensuel : 300-3000€</div>
-      </div>
+PREUVE (41 mots)
+L'appel arrive, il est transcrit, les informations sont extraites,
+le devis est pré-rempli avec les tarifs de l'atelier, et il atterrit
+dans ta boîte mail. Tu relis, tu ajustes, tu envoies. Quarante
+secondes au lieu de douze minutes.
+
+CHUTE + CTA (12 mots)
+Huit heures récupérées par semaine. Commente DEVIS, je t'envoie
+le détail.</div>
+      <button class="copy-btn" data-copy="p-script">📋 Copier l'exemple</button>
 
       <div class="res-links">
-        <div class="res-links-label">📚 Concevoir ton produit</div>
-        <a href="../ressources/format-produit-numerique.html">Quel format pour ton produit numérique</a>
-        <a href="../ressources/produit-unique-a-la-gamme.html">Transformer un produit unique en gamme complète</a>
+        <div class="res-links-label">📚 Approfondir : écrire pour la vidéo</div>
+        <a href="../ressources/hooks-attention.html">Les hooks qui retiennent l'attention</a>
+        <a href="../ressources/scripts-video-podcast.html">Écrire des scripts vidéo et podcast</a>
+        <a href="../ressources/videos-courtes-ia-2026.html">Les vidéos courtes générées par IA en 2026</a>
+        <a href="../ressources/ia-ecrire-comme-humain.html">Faire écrire l'IA comme un humain</a>
       </div>
 
-      <h2 class="section-h2">Où vendre tes produits digitaux</h2>
-      <div class="platform-mini">
-        <div class="plat-chip"><strong>Gumroad</strong> — Le plus simple, 0% de frais fixes</div>
-        <div class="plat-chip"><strong>Lemon Squeezy</strong> — Moderne, bonne UX pour l'acheteur</div>
-        <div class="plat-chip"><strong>Podia</strong> — Pour les formations avec membres</div>
-        <div class="plat-chip"><strong>Notion Templates</strong> — Marketplace native Notion</div>
-        <div class="plat-chip"><strong>Ton propre site</strong> — Stripe direct + contrôle total</div>
+      <h2 class="section-h2">Le coût réel d'une vidéo</h2>
+      <p>C'est le calcul que personne ne fait, et c'est lui qui détermine si tu peux tenir une cadence.</p>
+      <div class="cours-table-wrap">
+      <table class="cours-table">
+        <thead><tr><th>Méthode</th><th>Temps par vidéo</th><th>Coût direct</th></tr></thead>
+        <tbody>
+          <tr><td>Tournage + montage manuel</td><td>1 h 30 à 2 h 30</td><td>0 € (mais ton temps)</td></tr>
+          <tr><td>Montage assisté (rush + outil de sous-titrage)</td><td>40 à 60 min</td><td>~15 – 30 €/mois d'abonnement</td></tr>
+          <tr><td>Chaîne automatisée (voix clonée + avatar + captions)</td><td>5 à 10 min d'intervention</td><td>≈ 0,50 € d'API vocale par vidéo</td></tr>
+        </tbody>
+      </table>
       </div>
-
-      <div class="res-links">
-        <div class="res-links-label">📚 Vendre au bon endroit</div>
-        <a href="../ressources/plateformes-vente-produit.html">Gumroad, Stan, Podia, Systeme.io</a>
-        <a href="../ressources/page-vente-produit-numerique.html">La page qui convertit</a>
-      </div>
-
-      <h2 class="section-h2">Comment créer en 1 journée</h2>
-      <div class="timeline">
-        <div class="tl-item"><div class="tl-title">Matin — Décide du produit (1h)</div><div class="tl-desc">Choisis un sujet que tu maîtrises + qui a une audience qui paie. Valide avec une recherche rapide sur Gumroad/Lemon Squeezy.</div></div>
-        <div class="tl-item"><div class="tl-title">Matin — Crée avec l'IA (2-3h)</div><div class="tl-desc">Utilise Claude pour générer le contenu. Pour les prompts : "Génère 30 prompts professionnels pour [usage]". Pour les templates : construis dans Notion.</div></div>
-        <div class="tl-item"><div class="tl-title">Après-midi — Packaging (1h)</div><div class="tl-desc">Une belle page de vente (Gumroad ou ton site). Un nom précis et un sous-titre qui décrit le résultat. 3-5 points clés.</div></div>
-        <div class="tl-item"><div class="tl-title">Après-midi — Publication (30 min)</div><div class="tl-desc">Mets en ligne, partage sur LinkedIn avec un post "J'ai créé ça en une journée". Les premières ventes viennent souvent de ton réseau.</div></div>
-      </div>
+      <p>La troisième ligne est celle qui rend une cadence quotidienne tenable : à ~0,50 € et dix minutes par vidéo, produire trente vidéos coûte environ <strong>15 € et cinq heures de travail</strong>. Le même volume en montage manuel représente plus de cinquante heures — c'est-à-dire : tu n'y arriveras pas.</p>
 
       <div class="tip-box">
-        <div class="tip-label">💡 Le secret des meilleurs vendeurs</div>
-        <p>Le titre fait 80% des ventes. "Pack de prompts IA" ne vend pas. "47 prompts pour rédiger tes posts LinkedIn 10x plus vite" vend. Sois ultra-précis sur le résultat et le gain de temps.</p>
+        <div class="tip-label">🧰 L'outil que j'utilise pour ça</div>
+        <p><strong>ShortForge</strong> est le pipeline que j'ai construit pour cette étape : tu colles un paragraphe, il calcule le débit vocal, calibre le texte, génère la voix clonée, incruste l'avatar, cale les sous-titres mot à mot et sort un MP4 vertical 1080×1920. Tarif fondateur <strong>67 €</strong> (puis 97 €), paiement unique, tourne sur ta machine. Ce module fonctionne aussi entièrement sans lui — le calibrage et la structure du script sont indépendants de l'outil.</p>
+        <p style="margin-top:12px"><a href="https://videoboost.automatisationboost.com/vente.html" class="copy-btn" style="text-decoration:none" target="_blank" rel="noopener">Voir ShortForge →</a></p>
+      </div>
+
+      <h2 class="section-h2">La cadence bat la qualité</h2>
+      <p>Le schéma d'échec est toujours le même : huit vidéos très travaillées, puis plus rien. Ce n'est pas un problème de motivation, c'est un problème de coût unitaire. Trois règles :</p>
+      <ul>
+        <li><strong>Décide d'un format et n'en change plus pendant 30 publications.</strong> Même durée, même identité visuelle, même structure. Le changement de format remet le coût de production à zéro à chaque fois.</li>
+        <li><strong>Produis par lots.</strong> Écris dix scripts d'affilée, produis-les d'affilée, publie-les étalés. Le passage d'un mode à l'autre est ce qui coûte le plus cher.</li>
+        <li><strong>Un seul appel à l'action par vidéo.</strong> « Commente le mot X » fonctionne uniquement si tu réponds vraiment — sinon c'est un signal négatif sur ton compte.</li>
+      </ul>
+      <div class="honest-box">
+        <div class="honest-label">Ce que le contenu fait, et ne fait pas</div>
+        <p>Le contenu ne remplit pas un agenda en trois semaines. Sur des comptes qui démarrent, les premières publications font des dizaines de vues, pas des milliers, et les appels à l'action ne déclenchent souvent aucun commentaire pendant plusieurs semaines — je l'observe sur mes propres comptes. Ce qui fonctionne, c'est la durée. Traite le contenu comme un investissement à six mois, et la prospection du module 3 comme ton revenu à court terme.</p>
       </div>
 
       <div class="res-links">
-        <div class="res-links-label">📚 Créer et lancer</div>
-        <a href="../ressources/construire-produit-30-jours.html">En 30 jours, sans coder</a>
-        <a href="../ressources/lancement-produit-numerique.html">Preventes, email, jour J</a>
-        <a href="../ressources/produits-numeriques-ne-vendent-pas.html">Pourquoi 90 % ne vendent pas</a>
+        <div class="res-links-label">📚 Approfondir : tenir la production</div>
+        <a href="../ressources/systeme-editorial-content.html">Monter un système éditorial qui tient</a>
+        <a href="../ressources/repurpose-tiktok-youtube-instagram.html">Recycler une vidéo sur TikTok, YouTube et Instagram</a>
+        <a href="../ressources/transformer-video-10-contenus.html">Transformer une vidéo en 10 contenus</a>
+        <a href="../ressources/voix-off-clonage-vocal.html">Voix off et clonage vocal</a>
+        <a href="../ressources/auto-dm-commentaire-instagram.html">Répondre automatiquement aux commentaires en DM</a>
       </div>
 
-      <!-- EXERCICE -->
-      <div class="exercise-box">
-        <div class="exercise-title">💰 Exercice — Crée et publie ton premier produit</div>
-        <p class="exercise-desc">Aujourd'hui, tu vas créer et mettre en vente ton premier produit digital. Même si personne ne l'achète tout de suite — l'essentiel c'est de publier.</p>
-        <div class="exercise-steps">
-          <ol>
-            <li>Choisis un type de produit parmi les 4 ci-dessus (le pack de prompts est le plus rapide)</li>
-            <li>Utilise Claude pour générer le contenu sur un sujet que tu maîtrises</li>
-            <li>Crée une page de vente sur <strong>Gumroad</strong> (compte gratuit, 5 min) avec un prix entre 9€ et 29€</li>
-            <li>Partage le lien sur LinkedIn avec un post expliquant ce que tu as créé et pourquoi</li>
-          </ol>
-        </div>
-        <button class="btn-complete" onclick="document.getElementById('quiz-mount').scrollIntoView({behavior:'smooth'})">
-          ✓ Produit publié — Passer au quiz de validation
-        </button>
-      </div>
 
-      <div id="quiz-mount"></div>
+      <div id="defi-mount"></div>
 
       <div class="nav-footer">
         <a href="module-4.html" class="nav-back-link">← Module 4</a>
-        <span style="font-size:13px;color:#71717a">Module 5/6 · 💰 Créateur Passif · +100 XP</span>
+        <span class="nav-footer-meta">Module 5/6 · défi noté sur 100</span>
       </div>
     </div>
   </div>
 </section>
 
-<script src="../assets/js/cours.js"></script>
+<script src="../assets/js/cours.js?v=20260817"></script>
+<script src="../assets/js/defi.js?v=20260817"></script>
 <script>
 AB.requireAccess('../');
 if (!AB.isModuleUnlocked(5)) { window.location.href = 'index.html'; }
 
-const lvl = AB.getCurrentLevel();
-document.getElementById('level-chip').textContent = lvl.badge + ' ' + lvl.xp + ' XP';
-document.getElementById('progress-chip').textContent = AB.getCompletedCount() + '/6 complétés';
+(function(){
+  var lvl = AB.getCurrentLevel();
+  document.getElementById('level-chip').textContent = lvl.badge + ' ' + lvl.xp + ' XP';
+  document.getElementById('progress-chip').textContent = AB.getCompletedCount() + '/6 défis validés';
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var src = document.getElementById(b.dataset.copy);
+      if (!src) return;
+      // on retire le libellé du bloc avant de copier : sinon le JSON collé
+      // dans n8n est invalide et le prompt commence par son propre titre
+      var clone = src.cloneNode(true);
+      var lab = clone.querySelector('.prompt-label');
+      if (lab) lab.remove();
+      AB.copier(clone.textContent.trim(), 'Copié ✓');
+    });
+  });
+})();
 
-AB.renderQuiz('#quiz-mount', 5, [
-  { q: "Quel produit digital est le plus rapide à créer ?",
-    options: ['Le pack de prompts (2-4h)', 'La mini-formation vidéo (1-3 jours)', 'Le template Notion (4-8h)'], correct: 0,
-    explain: "Le pack de prompts se crée en 2-4h — c'est le point de départ le plus rapide." },
-  { q: "Quelle part des ventes se joue sur le titre du produit ?",
-    options: ['Environ 20 %', 'Environ 80 %', 'Aucune, c\'est le prix qui compte'], correct: 1,
-    explain: "Le titre fait ~80 % des ventes : sois ultra-précis sur le résultat et le gain de temps." },
-  { q: "Pour une mini-formation, qu'est-ce qui vend le mieux ?",
-    options: ['Couvrir un sujet très large', 'Un sujet précis et dense', 'Le prix le plus bas possible'], correct: 1,
-    explain: "La précision bat la largeur : « Automatiser ses emails avec n8n en 2h » vend mieux qu'un cours généraliste." },
-]);
+AB.renderDefi('#defi-mount', 5, {
+  "titre": "Écris un script calibré et publie",
+  "brief": "Le calibrage est vérifié <b>au mot près</b> par le navigateur : ton script doit tomber entre 72 et 85 mots pour une vidéo de 30 secondes. C'est le critère le plus objectif de toute la formation — et le plus utile.",
+  "seuil": 70,
+  "champs": [
+    {
+      "id": "hook",
+      "type": "textarea",
+      "rows": 2,
+      "label": "1. Ton hook (0 à 2 secondes)",
+      "aide": "Entre 5 et 12 mots. Une tension, pas une présentation. Interdit : « bonjour », « aujourd'hui je vais vous parler de ».",
+      "placeholder": "Ton devis met douze minutes. Regarde ça.",
+      "criteres": [
+        {
+          "pts": 7,
+          "label": "Au moins 5 mots",
+          "test": "minMots",
+          "arg": 5
+        },
+        {
+          "pts": 8,
+          "label": "Pas plus de 12 mots (au-delà, tu dépasses les 2 secondes)",
+          "test": "maxMots",
+          "arg": 12
+        },
+        {
+          "pts": 7,
+          "label": "Ne commence pas par une formule de politesse",
+          "test": "neContientPas",
+          "arg": [
+            "bonjour",
+            "salut a tous",
+            "aujourd'hui je vais",
+            "dans cette video"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "script",
+      "type": "textarea",
+      "rows": 9,
+      "label": "2. Le corps du script (tension + preuve)",
+      "aide": "Entre 52 et 72 mots — hook et CTA comptés à part, l'ensemble tombe autour de 80 mots, soit 30 secondes à 2,6 mots/seconde.",
+      "placeholder": "Quarante demandes par semaine, douze minutes chacune…",
+      "criteres": [
+        {
+          "pts": 12,
+          "label": "Au moins 52 mots",
+          "test": "minMots",
+          "arg": 52
+        },
+        {
+          "pts": 12,
+          "label": "Pas plus de 72 mots (calibrage 30 s)",
+          "test": "maxMots",
+          "arg": 72
+        },
+        {
+          "pts": 8,
+          "label": "Contient un chiffre ou une donnée concrète",
+          "test": "motif",
+          "arg": "\\d|deux|trois|quatre|cinq|six|sept|huit|neuf|dix|douze|quinze|vingt|trente|quarante|cinquante|cent|mille"
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "type": "textarea",
+      "rows": 2,
+      "label": "3. Ta chute + appel à l'action",
+      "aide": "Maximum 20 mots. Une seule action demandée.",
+      "placeholder": "Huit heures récupérées par semaine. Commente DEVIS, je t'envoie le détail.",
+      "criteres": [
+        {
+          "pts": 7,
+          "label": "Pas plus de 20 mots",
+          "test": "maxMots",
+          "arg": 20
+        },
+        {
+          "pts": 8,
+          "label": "Une action explicite est demandée",
+          "test": "contientUn",
+          "arg": [
+            "commente",
+            "commentaire",
+            "dm",
+            "message",
+            "lien",
+            "clique",
+            "abonne",
+            "partage",
+            "ecris-moi",
+            "ecris moi"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "couts",
+      "type": "textarea",
+      "rows": 4,
+      "label": "4. Ton coût et ta cadence",
+      "aide": "Combien te coûte une vidéo (temps + euros), et combien tu t'engages à en publier par semaine, sur combien de semaines.",
+      "placeholder": "Coût : ~0,50 € d'API vocale + 12 min de mon temps par vidéo. Cadence : 3 vidéos par semaine pendant 8 semaines, produites par lots de 6 le dimanche.",
+      "criteres": [
+        {
+          "pts": 7,
+          "label": "Un coût en euros est indiqué",
+          "test": "montantEuro"
+        },
+        {
+          "pts": 6,
+          "label": "Un temps de production est indiqué",
+          "test": "duree"
+        },
+        {
+          "pts": 7,
+          "label": "Une cadence hebdomadaire est fixée",
+          "test": "contientUn",
+          "arg": [
+            "par semaine",
+            "/semaine",
+            "semaine",
+            "hebdo"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "url",
+      "type": "url",
+      "label": "5. Bonus — l'URL de ta vidéo publiée",
+      "aide": "Colle le lien de ta vidéo en ligne. Le format de l'URL est réellement vérifié. Laisse vide si tu n'as pas encore publié : le défi reste validable sans.",
+      "placeholder": "https://www.tiktok.com/@toncompte/video/...",
+      "criteres": [
+        {
+          "pts": 6,
+          "label": "URL valide (http/https)",
+          "test": "url",
+          "arg": {}
+        },
+        {
+          "pts": 5,
+          "label": "Hébergée sur une plateforme sociale",
+          "test": "url",
+          "arg": {
+            "hotes": [
+              "tiktok",
+              "instagram",
+              "youtube",
+              "youtu.be",
+              "linkedin",
+              "facebook"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+});
 
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+var navbar = document.getElementById('navbar');
+window.addEventListener('scroll', function(){ navbar.classList.toggle('scrolled', window.scrollY > 20); });
 </script>
-<script src="/assets/js/theme.js?v=20260717n" defer></script>
+<script src="/assets/js/theme.js?v=20260817" defer></script>
 </body>
 </html>

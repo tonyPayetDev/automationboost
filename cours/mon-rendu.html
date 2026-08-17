@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0SRZVQ1WGD');
+  </script>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1713977213196523');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1713977213196523&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mon rendu – Formation AutomationBoost</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260817" />
+  <link rel="stylesheet" href="../assets/css/cours.css?v=20260817" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .rendu-mod { background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin:14px 0;box-shadow:var(--shadow-soft) }
+    .rendu-mod.vide { opacity:.6 }
+    .rendu-head { display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px }
+    .rendu-t { font-family:'Sora',sans-serif;font-weight:800;color:var(--text);font-size:15px }
+    .rendu-score { font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;padding:3px 12px;border-radius:100px;white-space:nowrap }
+    .rendu-score.ok { background:color-mix(in srgb,var(--green) 14%,transparent);color:var(--green);border:1px solid color-mix(in srgb,var(--green) 35%,transparent) }
+    .rendu-score.no { background:var(--bg-card-2);color:var(--text-muted);border:1px solid var(--border) }
+    .rendu-champ { border-top:1px dashed var(--border);padding:11px 0 2px }
+    .rendu-champ-l { font-size:12px;font-weight:700;color:var(--text-muted);font-family:'Sora',sans-serif;margin-bottom:5px }
+    .rendu-champ-v { font-size:13.5px;color:var(--text-light);line-height:1.7;white-space:pre-wrap;word-break:break-word;font-family:'JetBrains Mono',monospace;background:var(--bg-card-2);border:1px solid var(--border);border-radius:8px;padding:11px 13px;max-height:190px;overflow:auto }
+    .rendu-actions { display:flex;flex-wrap:wrap;gap:11px;margin:26px 0 34px }
+    .r-btn { flex:1;min-width:200px;background:var(--gold);color:var(--on-gold);font-family:'Sora',sans-serif;font-size:13.5px;font-weight:800;padding:16px 24px;border:none;border-radius:10px;cursor:pointer;text-align:center;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:transform .2s,box-shadow .2s }
+    .r-btn:hover { transform:translateY(-1px);box-shadow:var(--shadow-gold) }
+    .r-btn.ghost { background:transparent;color:var(--text-muted);border:1px solid var(--border) }
+    .r-btn.ghost:hover { color:var(--text);border-color:var(--gold);box-shadow:none;transform:none }
+    .rendu-zone { width:100%;background:var(--bg-card-2);border:1px solid var(--border);border-radius:12px;padding:16px;color:var(--text-light);font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.65;min-height:220px;resize:vertical }
+    @media (max-width:640px){ .r-btn { min-width:100% } }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="/" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="index.html" class="nav-link-slide"><span>Tableau de bord</span><span>Tableau de bord</span></a>
+    </div>
+    <span class="nav-cta" id="level-chip" style="cursor:default">…</span>
+  </div>
+</nav>
+
+<section class="cours-page">
+  <div class="container">
+    <div class="cours-inner">
+      <div class="mod-eyebrow"><span class="mod-badge">Validation par Tony</span><span class="mod-progress-chip" id="progress-chip">…</span></div>
+      <h1 class="mod-title">📤 Mon rendu</h1>
+      <div class="mod-goal"><span>🎯</span><div><b>À quoi sert cette page :</b> l'auto-scoring vérifie la <em>forme</em> de tes livrables (chiffres présents, calibrage, JSON valide…). Il ne peut pas juger le <em>fond</em>. Cette page rassemble tout ce que tu as produit pour qu'un humain — Tony — le relise et te dise ce qui tient et ce qui ne tient pas.</div></div>
+
+      <p>Tout ce qui suit est stocké <strong>uniquement dans ce navigateur</strong>. Rien n'est envoyé automatiquement. Tu décides quoi transmettre.</p>
+
+      <div id="progress-bar" style="margin:22px 0 30px"></div>
+
+      <div class="rendu-actions">
+        <button type="button" class="r-btn" id="btn-copier">📋 Copier mon rendu complet</button>
+        <a class="r-btn ghost" id="btn-mail" href="#">✉️ Envoyer à Tony</a>
+        <button type="button" class="r-btn ghost" id="btn-txt">⬇️ Télécharger en .txt</button>
+      </div>
+
+      <div id="rendu-liste"></div>
+
+      <h2 class="section-h2">Le texte transmis</h2>
+      <p>Relis-le avant de l'envoyer — tu peux le modifier ici, le bouton copier reprend ce que tu vois.</p>
+      <textarea class="rendu-zone" id="rendu-zone" rows="16" spellcheck="false"></textarea>
+
+      <div class="honest-box" style="margin-top:30px">
+        <div class="honest-label">Ce que la relecture humaine regarde</div>
+        <ul>
+          <li>Le <strong>module 3</strong> en premier : une liste de prospects réels se distingue en dix secondes d'une liste inventée.</li>
+          <li>Le <strong>module 2</strong> : est-ce que le périmètre est vraiment fermé, ou est-ce qu'il laisse la porte ouverte à du travail gratuit ?</li>
+          <li>Le <strong>module 6</strong> : est-ce que le nombre d'heures disponibles et l'objectif sont compatibles ? C'est là que la plupart des plans cassent.</li>
+        </ul>
+      </div>
+
+      <div class="nav-footer">
+        <a href="index.html" class="nav-back-link">← Tableau de bord</a>
+        <span class="nav-footer-meta">Données stockées localement · aucun envoi automatique</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../assets/js/cours.js?v=20260817"></script>
+<script src="../assets/js/defi.js?v=20260817"></script>
+<script>
+AB.requireAccess('../');
+AB.injectDefiStyles();
+
+var MODULES = [
+  { n:1, titre:'Ton premier livrable vendable', champs:[
+      {id:'cible',   label:"L'entreprise auditée"},
+      {id:'prompt',  label:'Le prompt utilisé'},
+      {id:'constats',label:'Les 3 constats chiffrés'},
+      {id:'prix',    label:'Prix et temps réel'} ] },
+  { n:2, titre:'Ton offre chiffrée', champs:[
+      {id:'offre',      label:"L'offre en une phrase"},
+      {id:'perimetre',  label:'Périmètre inclus / non inclus'},
+      {id:'prix_delai', label:'Prix, délai, paiement'},
+      {id:'calcul',     label:'Le calcul personnel'} ] },
+  { n:3, titre:'Tes 10 premiers prospects', champs:[
+      {id:'liste',   label:'Les 10 prospects'},
+      {id:'message', label:'Le message de prospection'},
+      {id:'relance', label:'Les deux relances'},
+      {id:'preuve',  label:"Preuve d'envoi"} ] },
+  { n:4, titre:'Le livrable automatisé', champs:[
+      {id:'json',    label:'Export JSON du workflow'},
+      {id:'valeur',  label:'Le calcul de valeur'},
+      {id:'erreur',  label:"Le chemin d'erreur"} ] },
+  { n:5, titre:'Produire du contenu à la chaîne', champs:[
+      {id:'hook',   label:'Le hook'},
+      {id:'script', label:'Le corps du script'},
+      {id:'cta',    label:"Chute et appel à l'action"},
+      {id:'couts',  label:'Coût et cadence'},
+      {id:'url',    label:'URL de la vidéo publiée'} ] },
+  { n:6, titre:'Ton système, chiffré par toi', champs:[
+      {id:'objectif', label:'Objectif mensuel décomposé'},
+      {id:'charge',   label:'Charge réelle'},
+      {id:'plan',     label:'Les 4 semaines'},
+      {id:'risque',   label:'Risque et parade'} ] },
+];
+
+(function(){
+  var lvl = AB.getCurrentLevel();
+  document.getElementById('level-chip').textContent = lvl.badge + ' ' + lvl.xp + ' XP';
+  document.getElementById('progress-chip').textContent = AB.getCompletedCount() + '/6 défis validés';
+  AB.renderProgressBar(document.getElementById('progress-bar'));
+
+  var all = AB.getLivrables();
+  var liste = document.getElementById('rendu-liste');
+
+  MODULES.forEach(function(m){
+    var d = all['m' + m.n] || { champs:{} };
+    var rempli = m.champs.some(function(c){ return (d.champs[c.id] || '').trim(); });
+    var box = document.createElement('div');
+    box.className = 'rendu-mod' + (rempli ? '' : ' vide');
+    var html = '<div class="rendu-head"><span class="rendu-t">Module ' + m.n + ' — ' + m.titre + '</span>' +
+      '<span class="rendu-score ' + (d.score != null ? 'ok' : 'no') + '">' +
+      (d.score != null ? d.score + '/100' : 'non rendu') + '</span></div>';
+    if (rempli) {
+      m.champs.forEach(function(c){
+        var v = (d.champs[c.id] || '').trim();
+        if (!v) return;
+        html += '<div class="rendu-champ"><div class="rendu-champ-l">' + c.label + '</div>' +
+                '<div class="rendu-champ-v"></div></div>';
+      });
+    } else {
+      html += '<div class="rendu-champ" style="border-top:none;color:var(--text-muted);font-size:13.5px">Ce module n\'a pas encore été rendu.</div>';
+    }
+    box.innerHTML = html;
+    // injection sûre du contenu utilisateur (textContent, jamais innerHTML)
+    if (rempli) {
+      var slots = box.querySelectorAll('.rendu-champ-v');
+      var i = 0;
+      m.champs.forEach(function(c){
+        var v = (d.champs[c.id] || '').trim();
+        if (!v) return;
+        slots[i++].textContent = v;
+      });
+    }
+    liste.appendChild(box);
+  });
+
+  var zone = document.getElementById('rendu-zone');
+  zone.value = AB.texteRecapGlobal(MODULES);
+
+  document.getElementById('btn-copier').onclick = function(){
+    AB.copier(zone.value, 'Rendu complet copié ✓');
+  };
+
+  document.getElementById('btn-txt').onclick = function(){
+    var blob = new Blob([zone.value], { type:'text/plain;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'rendu-formation-automationboost.txt';
+    document.body.appendChild(a); a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  };
+
+  var mail = document.getElementById('btn-mail');
+  function majMail(){
+    var corps = zone.value.length > 1800 ? zone.value.slice(0, 1800) + '\n\n[…] Rendu tronqué : colle la suite depuis le bouton « Copier mon rendu complet ».' : zone.value;
+    mail.href = 'mailto:tony.payet.professionnel@gmail.com'
+      + '?subject=' + encodeURIComponent('Rendu formation — validation')
+      + '&body=' + encodeURIComponent(corps);
+  }
+  majMail();
+  zone.addEventListener('input', majMail);
+})();
+
+var navbar = document.getElementById('navbar');
+window.addEventListener('scroll', function(){ navbar.classList.toggle('scrolled', window.scrollY > 20); });
+</script>
+<script src="/assets/js/theme.js?v=20260817" defer></script>
+</body>
+</html>

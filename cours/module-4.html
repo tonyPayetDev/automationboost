@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <meta charset="UTF-8" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-0SRZVQ1WGD');
   </script>
-  <meta charset="UTF-8" />
   <!-- Meta Pixel Code -->
   <script>
   !function(f,b,e,v,n,t,s)
@@ -29,63 +28,27 @@
   /></noscript>
   <!-- End Meta Pixel Code -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Module 4 – Automatiser pour scaler | AutomationBoost</title>
+  <title>Module 4 — Le livrable automatisé (n8n) | AutomationBoost</title>
+  <meta name="description" content="Construire, chiffrer et livrer un workflow n8n qui supprime une tâche répétitive chez un client." />
   <meta name="robots" content="noindex" />
-  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260817" />
+  <link rel="stylesheet" href="../assets/css/cours.css?v=20260817" />
   <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
-  <style>
-    .cours-page { padding:120px 0 80px }
-    .cours-inner { max-width:760px }
-    .mod-eyebrow { display:flex;align-items:center;gap:12px;margin-bottom:24px }
-    .mod-badge { background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.2);color:#eab308;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;font-family:'Orbitron',sans-serif }
-    .mod-progress-chip { font-size:12px;color:#71717a }
-    .mod-title { font-family:'Orbitron',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;margin-bottom:16px;line-height:1.2 }
-    .mod-intro { font-size:1.1rem;color:#a1a1aa;line-height:1.9;margin-bottom:40px;border-left:3px solid #eab308;padding-left:20px }
-    .section-h2 { font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:700;color:#e4e4e7;margin:44px 0 16px }
-    .section-h3 { font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;color:#eab308;margin:28px 0 10px }
-    p { color:#a1a1aa;line-height:1.9;margin-bottom:16px }
-    ul, ol { color:#a1a1aa;line-height:1.9;padding-left:20px;margin-bottom:16px }
-    li { margin-bottom:6px }
-    strong { color:#e4e4e7 }
-    .workflow-card { background:#0d0d0d;border:1px solid #1a1a1a;border-radius:12px;padding:24px;margin:16px 0 }
-    .workflow-header { display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px }
-    .workflow-name { font-weight:700;color:#e4e4e7 }
-    .workflow-roi { font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;background:rgba(34,197,94,0.1);color:#4ade80;border:1px solid rgba(34,197,94,0.2) }
-    .workflow-desc { font-size:14px;color:#71717a;line-height:1.7;margin-bottom:10px }
-    .workflow-tools { font-size:12px;color:#a1a1aa }
-    .workflow-tools span { color:#eab308 }
-    .code-block { background:#050505;border:1px solid rgba(234,179,8,0.2);border-radius:8px;padding:20px;margin:16px 0;font-family:monospace;font-size:13px;color:#a3e635;line-height:1.8 }
-    .code-label { font-size:11px;font-weight:700;color:#eab308;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;font-family:'Rajdhani',sans-serif }
-    .tip-box { background:#0d0d0d;border:1px solid #1a1a1a;border-left:3px solid #eab308;border-radius:8px;padding:20px;margin:24px 0 }
-    .tip-label { font-size:11px;font-weight:700;color:#eab308;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px }
-    .pricing-compare { display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0 }
-    .price-col { background:#0d0d0d;border:1px solid #1a1a1a;border-radius:10px;padding:20px }
-    .price-col.better { border-color:rgba(234,179,8,0.3);background:rgba(234,179,8,0.03) }
-    .price-col-title { font-size:12px;font-weight:700;color:#71717a;text-transform:uppercase;margin-bottom:12px }
-    .price-col.better .price-col-title { color:#eab308 }
-    .price-col p { font-size:13px;margin-bottom:8px }
-    .exercise-box { background:rgba(234,179,8,0.05);border:2px solid rgba(234,179,8,0.3);border-radius:12px;padding:32px;margin:48px 0 0 }
-    .exercise-title { font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:700;color:#eab308;margin-bottom:8px }
-    .exercise-desc { font-size:15px;color:#a1a1aa;line-height:1.8;margin-bottom:24px }
-    .exercise-steps { background:#0d0d0d;border-radius:8px;padding:20px;margin-bottom:24px }
-    .exercise-steps li { color:#a1a1aa;margin-bottom:10px }
-    .btn-complete { background:#eab308;color:#000;font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;padding:16px 32px;border:none;border-radius:8px;cursor:pointer;width:100%;transition:all .2s }
-    .btn-complete:hover { background:#ca8a04 }
-    .btn-complete:disabled { background:#71717a;cursor:not-allowed }
-    .nav-footer { display:flex;justify-content:space-between;align-items:center;margin-top:48px;padding-top:32px;border-top:1px solid #1a1a1a }
-    .nav-back-link { color:#71717a;font-size:14px;text-decoration:none }
-    .nav-back-link:hover { color:#eab308 }
-    @media(max-width:600px){.pricing-compare{grid-template-columns:1fr}}
-  </style>
 </head>
 <body>
 <nav id="navbar">
-  <div class="nav-inner">
-    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
-    <div style="display:flex;align-items:center;gap:16px">
-      <a href="index.html" style="color:#71717a;font-size:14px;text-decoration:none;font-family:'Rajdhani',sans-serif">← Tableau de bord</a>
-      <span style="font-size:13px;color:#eab308;font-weight:700" id="level-chip"></span>
+  <div class="nav-pill">
+    <a href="/" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="index.html" class="nav-link-slide"><span>Tableau de bord</span><span>Tableau de bord</span></a>
+      <a href="mon-rendu.html" class="nav-link-slide"><span>Mon rendu</span><span>Mon rendu</span></a>
     </div>
+    <span class="nav-cta" id="level-chip" style="cursor:default">…</span>
   </div>
 </nav>
 
@@ -94,159 +57,326 @@
     <div class="cours-inner">
       <div class="mod-eyebrow">
         <span class="mod-badge">Module 4 / 6</span>
-        <span class="mod-progress-chip" id="progress-chip">Chargement…</span>
+        <span class="mod-progress-chip" id="progress-chip">…</span>
       </div>
 
-      <h1 class="mod-title">🤖 Automatiser pour scaler</h1>
-      <p class="mod-intro">Le vrai levier pour gagner plus sans travailler plus : des automatisations qui tournent pendant que tu dors. Dans ce module, tu vas apprendre à créer des workflows n8n qui ont de la valeur pour tes clients — et pour toi.</p>
+      <h1 class="mod-title">🤖 Le livrable automatisé</h1>
+      <div class="mod-goal"><span>🎯</span><div><b>À la fin de ce module tu sais :</b> construire un workflow n8n qui tourne, le chiffrer par la valeur qu'il crée, et le livrer avec un chemin d'erreur.</div></div>
+      <p class="mod-intro">L'audit identifie le problème ; l'automatisation le supprime. C'est la prestation qui se facture le mieux, parce que le client peut mesurer le gain. Dans ce module tu construis un workflow réel — pas un tutoriel regardé — et tu apprends la seule chose qui distingue un workflow livré d'un workflow bricolé : <strong>ce qui se passe quand ça casse</strong>.</p>
 
-      <h2 class="section-h2">Pourquoi n8n plutôt que Make ou Zapier</h2>
-      <p>Les trois outils font des automatisations. Mais il y a une vraie différence :</p>
-      <div class="pricing-compare">
-        <div class="price-col">
-          <div class="price-col-title">Make / Zapier</div>
-          <p>✓ Plus simple pour débuter</p>
-          <p>✗ Coûteux à l'échelle (par opération)</p>
-          <p>✗ Tu dépends de leur pricing</p>
-          <p>✗ Hébergé chez eux</p>
-        </div>
-        <div class="price-col better">
-          <div class="price-col-title">n8n (recommandé)</div>
-          <p>✓ Open source = gratuit en auto-hébergé</p>
-          <p>✓ Aucun coût par exécution</p>
-          <p>✓ Code custom si besoin</p>
-          <p>✓ Marque blanche pour tes clients</p>
-        </div>
+
+      <h2 class="section-h2">Pourquoi n8n</h2>
+      <div class="cours-table-wrap">
+      <table class="cours-table">
+        <thead><tr><th>Critère</th><th>Make / Zapier</th><th>n8n</th></tr></thead>
+        <tbody>
+          <tr><td>Coût à l'échelle</td><td>Par opération — explose vite</td><td>Gratuit en auto-hébergé</td></tr>
+          <tr><td>Prise en main</td><td>Plus rapide</td><td>Plus exigeante au début</td></tr>
+          <tr><td>Code sur mesure</td><td>Limité</td><td>Nœud Code complet (JS / Python)</td></tr>
+          <tr><td>Livraison chez le client</td><td>Sur leur compte, tu dépends de leur abonnement</td><td>Sur leur instance, marque blanche possible</td></tr>
+          <tr><td>Pertinence commerciale</td><td>Tu revends un abonnement</td><td>Tu revends ton travail</td></tr>
+        </tbody>
+      </table>
       </div>
+      <p>Pour une prestation facturée, n8n gagne pour une seule raison : <strong>le coût récurrent ne mange pas ta marge et ne surprend pas ton client six mois plus tard</strong>.</p>
 
       <div class="res-links">
-        <div class="res-links-label">📚 Choisir ton outil</div>
+        <div class="res-links-label">📚 Approfondir : choisir et comprendre</div>
         <a href="../ressources/zapier-make-n8n.html">Zapier, Make, n8n à l'ère MCP</a>
-        <a href="../ressources/anatomie-automatisation-ia.html">Anatomie d'une automatisation IA</a>
+        <a href="../ressources/anatomie-automatisation-ia.html">L'anatomie d'une automatisation IA</a>
+        <a href="../ressources/bons-mauvais-cas-usage.html">Ce qu'il faut — et ne faut pas — automatiser</a>
+        <a href="../ressources/choisir-plateforme-principale.html">Choisir ta plateforme principale</a>
       </div>
 
-      <h2 class="section-h2">Les 5 workflows les plus vendus</h2>
-
-      <div class="workflow-card">
-        <div class="workflow-header"><div class="workflow-name">📧 Traitement automatique des emails entrants</div><div class="workflow-roi">ROI élevé</div></div>
-        <div class="workflow-desc">Classifier les emails, générer des réponses automatiques pour les demandes standard, alerter l'équipe sur les urgences. Gain moyen : 3-5h/semaine.</div>
-        <div class="workflow-tools">Outils : <span>Gmail/Outlook → n8n → Claude AI → Gmail</span></div>
+      <h2 class="section-h2">Les 5 automatisations qui se vendent</h2>
+      <div class="offer-card">
+        <div class="offer-head"><span class="offer-name">📧 Tri et réponse des emails entrants</span><span class="offer-price">800 – 2 500 €</span></div>
+        <div class="offer-desc">Classification des demandes, réponse automatique sur les cas standard, alerte humaine sur les cas complexes. Gain typique : 3 à 5 h/semaine.</div>
+        <div class="offer-meta"><b>Chaîne :</b> Gmail/IMAP → n8n → modèle IA → Gmail + Slack</div>
+      </div>
+      <div class="offer-card">
+        <div class="offer-head"><span class="offer-name">📊 Rapport récurrent généré et envoyé</span><span class="offer-price">600 – 1 800 €</span></div>
+        <div class="offer-desc">Agrégation de données, synthèse rédigée, envoi tous les lundis. Très demandé et techniquement simple.</div>
+        <div class="offer-meta"><b>Chaîne :</b> Sheets/API → n8n → modèle IA → PDF → email</div>
+      </div>
+      <div class="offer-card">
+        <div class="offer-head"><span class="offer-name">🤝 Traitement et relance des leads</span><span class="offer-price">1 000 – 3 000 €</span></div>
+        <div class="offer-desc">Enrichissement du lead, séquence de relance personnalisée, alerte commerciale au bon moment. Le ROI est le plus facile à démontrer.</div>
+        <div class="offer-meta"><b>Chaîne :</b> Formulaire/CRM → n8n → enrichissement → email → notification</div>
+      </div>
+      <div class="offer-card">
+        <div class="offer-head"><span class="offer-name">📱 Déclinaison multi-canal d'un contenu</span><span class="offer-price">500 – 1 500 €</span></div>
+        <div class="offer-desc">Un article devient un post LinkedIn, trois accroches, un extrait newsletter. Se combine directement avec le module 5.</div>
+        <div class="offer-meta"><b>Chaîne :</b> Notion/RSS → n8n → modèle IA → réseaux</div>
+      </div>
+      <div class="offer-card">
+        <div class="offer-head"><span class="offer-name">🛒 Suivi de commandes e-commerce</span><span class="offer-price">800 – 2 500 €</span></div>
+        <div class="offer-desc">Confirmations, mises à jour de stock, notifications logistiques, emails de suivi. Volume élevé donc gain visible immédiatement.</div>
+        <div class="offer-meta"><b>Chaîne :</b> Shopify/Woo → n8n → email + Slack + Sheets</div>
       </div>
 
-      <div class="workflow-card">
-        <div class="workflow-header"><div class="workflow-name">📊 Génération de rapports automatiques</div><div class="workflow-roi">ROI élevé</div></div>
-        <div class="workflow-desc">Agréger des données depuis Google Sheets, Airtable ou une API, générer un rapport PDF avec analyse IA, envoyer par email tous les lundis matin.</div>
-        <div class="workflow-tools">Outils : <span>Google Sheets → n8n → Claude → PDF → Email</span></div>
-      </div>
+      <h2 class="section-h2">L'anatomie d'un workflow livrable</h2>
+      <p>Cinq blocs. Le cinquième est celui que les débutants oublient, et c'est celui qui fait la différence entre une prestation et un problème.</p>
+      <ol class="steps">
+        <li><strong>Déclencheur</strong> — webhook, planification, nouvel email, nouvelle ligne. Un seul point d'entrée.</li>
+        <li><strong>Récupération</strong> — les données dont tu as besoin, et rien de plus.</li>
+        <li><strong>Traitement</strong> — c'est là que le modèle IA travaille, avec un prompt versionné, pas improvisé.</li>
+        <li><strong>Action</strong> — écrire, envoyer, notifier. L'effet visible pour le client.</li>
+        <li><strong>Chemin d'erreur</strong> — un Error Trigger qui prévient <em>toi</em>, pas le client. Sans ça, une panne silencieuse dure trois semaines avant d'être découverte.</li>
+      </ol>
 
-      <div class="workflow-card">
-        <div class="workflow-header"><div class="workflow-name">🤝 Suivi automatique des leads CRM</div><div class="workflow-roi">ROI très élevé</div></div>
-        <div class="workflow-desc">Enrichir les nouveaux leads (LinkedIn, site web), envoyer une séquence d'emails personnalisés, alerter le commercial au bon moment.</div>
-        <div class="workflow-tools">Outils : <span>CRM → n8n → Perplexity/Clay → Email → Slack</span></div>
-      </div>
-
-      <div class="workflow-card">
-        <div class="workflow-header"><div class="workflow-name">📱 Publication de contenu multi-canaux</div><div class="workflow-roi">ROI moyen</div></div>
-        <div class="workflow-desc">À partir d'un article de blog, générer automatiquement des posts LinkedIn, des tweets, un extrait newsletter, et publier partout en un clic.</div>
-        <div class="workflow-tools">Outils : <span>Notion/Blog → n8n → Claude → LinkedIn/Twitter/Mailchimp</span></div>
-      </div>
-
-      <div class="workflow-card">
-        <div class="workflow-header"><div class="workflow-name">🛒 Gestion des commandes e-commerce</div><div class="workflow-roi">ROI élevé</div></div>
-        <div class="workflow-desc">Confirmer les commandes, mettre à jour le stock, notifier l'entrepôt, envoyer les emails de suivi client, gérer les retours automatiquement.</div>
-        <div class="workflow-tools">Outils : <span>Shopify/WooCommerce → n8n → Email → Slack</span></div>
-      </div>
+      <div class="prompt-box" id="p-n8n"><span class="prompt-label">Squelette n8n — à importer puis compléter</span>{
+  "name": "Squelette livrable AutomationBoost",
+  "nodes": [
+    {
+      "parameters": { "rule": { "interval": [ { "field": "days" } ] } },
+      "id": "trigger-1",
+      "name": "Déclencheur planifié",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [ 0, 0 ]
+    },
+    {
+      "parameters": { "options": {} },
+      "id": "fetch-1",
+      "name": "Récupération des données",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [ 220, 0 ]
+    },
+    {
+      "parameters": { "jsCode": "return items;" },
+      "id": "process-1",
+      "name": "Traitement",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [ 440, 0 ]
+    },
+    {
+      "parameters": { "options": {} },
+      "id": "action-1",
+      "name": "Action de sortie",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [ 660, 0 ]
+    }
+  ],
+  "connections": {
+    "Déclencheur planifié": { "main": [ [ { "node": "Récupération des données", "type": "main", "index": 0 } ] ] },
+    "Récupération des données": { "main": [ [ { "node": "Traitement", "type": "main", "index": 0 } ] ] },
+    "Traitement": { "main": [ [ { "node": "Action de sortie", "type": "main", "index": 0 } ] ] }
+  },
+  "settings": {},
+  "pinData": {}
+}</div>
+      <button class="copy-btn" data-copy="p-n8n">📋 Copier le squelette JSON</button>
+      <p>Dans n8n : <strong>Workflows → … → Import from clipboard</strong>. Tu obtiens la chaîne complète, il te reste à remplacer chaque nœud par le vrai service et à ajouter le chemin d'erreur.</p>
 
       <div class="res-links">
-        <div class="res-links-label">📚 Des workflows concrets</div>
-        <a href="../ressources/automatisations-mail-calendar-leads.html">Workflows mail, calendar et triage de leads</a>
-        <a href="../ressources/automatisations-multi-etapes.html">Enchaîner plusieurs étapes en une automatisation</a>
-        <a href="../ressources/bons-mauvais-cas-usage.html">Ce qu'il faut (et ne faut pas) automatiser</a>
-      </div>
-
-      <h2 class="section-h2">Structure type d'un workflow n8n</h2>
-      <p>Chaque workflow profitable a cette structure :</p>
-      <div class="code-block">
-        <div class="code-label">Anatomie d'un workflow</div>
-TRIGGER (ce qui démarre le workflow)
-  → Webhook / Cron / Email reçu / Nouveau lead
-
-DONNÉES (récupérer les infos)
-  → HTTP Request / Google Sheets / CRM API
-
-TRAITEMENT IA (la valeur ajoutée)
-  → Nœud Claude/OpenAI avec ton prompt
-
-ACTION (faire quelque chose)
-  → Envoyer email / Créer document / Notifier Slack
-
-GESTION D'ERREURS
-  → Si erreur → notifier par email
-      </div>
-
-      <div class="tip-box">
-        <div class="tip-label">💰 Comment facturer les automatisations</div>
-        <p>Ne facture pas au temps. Facture à la valeur : calcule combien d'heures/mois ton workflow économise × le coût horaire du client. Facture 20-30% de ce montant annuel comme tarif unique. Exemple : 5h/semaine économisées × 40€/h × 52 semaines = 10 400€ de valeur. Facturer 2 000-3 000€ est totalement justifié.</p>
-      </div>
-
-      <div class="res-links">
-        <div class="res-links-label">📚 Construire et maintenir</div>
+        <div class="res-links-label">📚 Approfondir : construire pour de vrai</div>
         <a href="../ressources/construire-premiere-automatisation.html">Construire ta première automatisation</a>
-        <a href="../ressources/creer-un-agent-ia.html">Créer un agent IA de zéro</a>
-        <a href="../ressources/maintenir-automatisations.html">Maintenir tes automatisations</a>
+        <a href="../ressources/automatisations-multi-etapes.html">Enchaîner plusieurs étapes proprement</a>
+        <a href="../ressources/automatisations-mail-calendar-leads.html">Workflows mail, agenda et leads</a>
+        <a href="../ressources/mcp-claude-n8n.html">Brancher Claude sur n8n via MCP</a>
       </div>
 
-      <!-- EXERCICE -->
-      <div class="exercise-box">
-        <div class="exercise-title">🤖 Exercice — Crée ton premier workflow n8n</div>
-        <p class="exercise-desc">Pas besoin d'un client pour cet exercice. Tu vas créer un workflow utile pour toi.</p>
-        <div class="exercise-steps">
-          <ol>
-            <li>Connecte-toi sur ton compte <strong>n8n.io</strong> (ou héberge-le gratuitement sur Railway)</li>
-            <li>Crée un workflow simple : <strong>quand tu reçois un email de formulaire de contact → Claude le résume en 2 lignes → tu reçois la notification sur ton téléphone</strong></li>
-            <li>Teste-le avec un faux email de contact et vérifie que la notification arrive</li>
-            <li>Note le temps que tu as mis et l'économie que ça représente pour un client</li>
-          </ol>
-        </div>
-        <button class="btn-complete" onclick="document.getElementById('quiz-mount').scrollIntoView({behavior:'smooth'})">
-          ✓ Workflow créé — Passer au quiz de validation
-        </button>
+      <h2 class="section-h2">Ce qui casse en production</h2>
+      <p>Ces trois pannes représentent l'essentiel des incidents réels sur des workflows livrés. Les connaître à l'avance vaut plusieurs journées de débogage.</p>
+      <div class="mistake">
+        <div class="mistake-t">❌ Les identifiants d'un nœud disparaissent après une modification</div>
+        <div class="mistake-fix">C'est le classique : tu modifies un workflow par l'API ou par import, et les credentials rattachés aux nœuds HTTP sautent silencieusement. Le workflow reste « actif », il échoue à chaque exécution. <strong>Fix :</strong> après toute modification, ouvre le workflow dans l'interface, vérifie chaque nœud d'authentification, et lance une exécution de test.</div>
+      </div>
+      <div class="mistake">
+        <div class="mistake-t">❌ Une modification enregistrée n'est pas publiée</div>
+        <div class="mistake-fix">Enregistrer ne suffit pas toujours : la version active peut rester l'ancienne. <strong>Fix :</strong> vérifie que la version courante est bien la version active avant de dire au client que c'est corrigé. Ne te fie jamais à un « enregistré ✓ ».</div>
+      </div>
+      <div class="mistake">
+        <div class="mistake-t">❌ Une API tierce change ou limite le débit, et personne ne le voit</div>
+        <div class="mistake-fix">Sans chemin d'erreur, l'échec est muet. <strong>Fix :</strong> un Error Trigger qui t'envoie un email ou un message avec le nom du workflow et le message d'erreur. Cinq minutes de travail qui sauvent une relation client.</div>
       </div>
 
-      <div id="quiz-mount"></div>
+      <h2 class="section-h2">Chiffrer une automatisation</h2>
+      <p>Ne facture pas tes heures : facture une part de la valeur, avec un calcul que le client peut refaire lui-même.</p>
+      <div class="prompt-box" id="p-calcauto"><span class="prompt-label">Le calcul à montrer au client</span>Temps économisé      : 4 h / semaine
+Coût horaire chargé  : 35 €/h
+Valeur annuelle      : 4 × 52 × 35 = 7 280 €
+Ta facturation       : 1 200 à 2 000 € (16 à 27 % de la valeur)
+Retour sur invest.   : entre 2 et 4 mois</div>
+      <button class="copy-btn" data-copy="p-calcauto">📋 Copier le calcul</button>
+      <div class="honest-box">
+        <div class="honest-label">Ce que tu ne dois jamais garantir</div>
+        <p>Ne t'engage jamais contractuellement sur un gain de temps chiffré, un taux de réponse correcte d'un modèle, ou une disponibilité que tu ne contrôles pas (les API tierces tombent). Écris « gain estimé » dans le devis, et « objectif » dans la roadmap. Un engagement de résultat sur une brique que tu n'héberges pas est une dette à retardement.</p>
+      </div>
+
+      <div class="res-links">
+        <div class="res-links-label">📚 Approfondir : livrer et maintenir</div>
+        <a href="../ressources/maintenir-automatisations.html">Maintenir des automatisations qui durent</a>
+        <a href="../ressources/piege-sur-automatisation.html">Le piège de la sur-automatisation</a>
+        <a href="../ressources/human-in-the-loop.html">Garder un humain dans la boucle</a>
+        <a href="../ressources/tester-agent-ia.html">Tester un agent IA avant de le livrer</a>
+      </div>
+
+
+      <div id="defi-mount"></div>
 
       <div class="nav-footer">
         <a href="module-3.html" class="nav-back-link">← Module 3</a>
-        <span style="font-size:13px;color:#71717a">Module 4/6 · 🤖 Automatiseur · +100 XP</span>
+        <span class="nav-footer-meta">Module 4/6 · défi noté sur 100</span>
       </div>
     </div>
   </div>
 </section>
 
-<script src="../assets/js/cours.js"></script>
+<script src="../assets/js/cours.js?v=20260817"></script>
+<script src="../assets/js/defi.js?v=20260817"></script>
 <script>
 AB.requireAccess('../');
 if (!AB.isModuleUnlocked(4)) { window.location.href = 'index.html'; }
 
-const lvl = AB.getCurrentLevel();
-document.getElementById('level-chip').textContent = lvl.badge + ' ' + lvl.xp + ' XP';
-document.getElementById('progress-chip').textContent = AB.getCompletedCount() + '/6 complétés';
+(function(){
+  var lvl = AB.getCurrentLevel();
+  document.getElementById('level-chip').textContent = lvl.badge + ' ' + lvl.xp + ' XP';
+  document.getElementById('progress-chip').textContent = AB.getCompletedCount() + '/6 défis validés';
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var src = document.getElementById(b.dataset.copy);
+      if (!src) return;
+      // on retire le libellé du bloc avant de copier : sinon le JSON collé
+      // dans n8n est invalide et le prompt commence par son propre titre
+      var clone = src.cloneNode(true);
+      var lab = clone.querySelector('.prompt-label');
+      if (lab) lab.remove();
+      AB.copier(clone.textContent.trim(), 'Copié ✓');
+    });
+  });
+})();
 
-AB.renderQuiz('#quiz-mount', 4, [
-  { q: "Quel est l'avantage clé de n8n face à Make ou Zapier ?",
-    options: ['Open source, gratuit en auto-hébergé, sans coût par exécution', 'Plus de templates tout faits', 'Une meilleure application mobile'], correct: 0,
-    explain: "n8n est open source : gratuit auto-hébergé, aucun coût par opération, marque blanche possible." },
-  { q: "Dans un workflow n8n, quelle étape apporte la vraie valeur ajoutée ?",
-    options: ['Le trigger', 'Le traitement IA (nœud Claude/OpenAI)', 'La gestion d\'erreurs'], correct: 1,
-    explain: "Le nœud de traitement IA est là où se crée la valeur ; le reste transporte les données." },
-  { q: "Comment facturer une automatisation à un client ?",
-    options: ['Au temps que tu as mis pour la créer', 'À la valeur : une part des heures/argent qu\'elle économise', 'Au nombre de nœuds du workflow'], correct: 1,
-    explain: "Calcule la valeur annuelle économisée et facture-en 20-30 % en tarif unique." },
-]);
+AB.renderDefi('#defi-mount', 4, {
+  "titre": "Construis et chiffre un workflow réel",
+  "brief": "Monte un workflow dans n8n — même simple — puis exporte-le. Dans n8n : sélectionne tout (<code>Ctrl+A</code>) puis <code>Ctrl+C</code>, et colle ici. <b>Le JSON est réellement analysé par le navigateur</b> : structure, nombre de nœuds et présence d'un déclencheur sont vérifiés pour de bon.",
+  "seuil": 70,
+  "champs": [
+    {
+      "id": "json",
+      "type": "json",
+      "rows": 14,
+      "label": "1. L'export JSON de ton workflow",
+      "aide": "Copie depuis n8n (Ctrl+A puis Ctrl+C dans le canvas). Le contrôle est réel : JSON parsé, clés <code>nodes</code> et <code>connections</code> vérifiées, nœuds comptés.",
+      "placeholder": "{\n  \"nodes\": [ … ],\n  \"connections\": { … }\n}",
+      "criteres": [
+        {
+          "pts": 12,
+          "label": "JSON valide (réellement parsé)",
+          "test": "jsonValide"
+        },
+        {
+          "pts": 10,
+          "label": "Contient les clés « nodes » et « connections »",
+          "test": "jsonClefs",
+          "arg": [
+            "nodes",
+            "connections"
+          ]
+        },
+        {
+          "pts": 10,
+          "label": "Au moins 4 nœuds",
+          "test": "n8nNoeuds",
+          "arg": 4
+        },
+        {
+          "pts": 8,
+          "label": "Contient un nœud déclencheur (trigger / webhook / schedule)",
+          "test": "n8nType",
+          "arg": [
+            "trigger",
+            "webhook",
+            "schedule",
+            "cron"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "valeur",
+      "type": "textarea",
+      "rows": 5,
+      "label": "2. Le calcul de valeur",
+      "aide": "Temps économisé, coût horaire retenu, valeur annuelle, ce que tu factures. Le calcul doit être refaisable par ton client.",
+      "placeholder": "Temps économisé : 4 h/semaine. Coût horaire chargé : 35 €/h.\nValeur annuelle : 4 × 52 × 35 = 7 280 €.\nJe facture 1 500 € (21 % de la valeur), ROI en ~3 mois.",
+      "criteres": [
+        {
+          "pts": 8,
+          "label": "Une durée économisée est indiquée",
+          "test": "duree"
+        },
+        {
+          "pts": 8,
+          "label": "Un montant en euros",
+          "test": "montantEuro"
+        },
+        {
+          "pts": 7,
+          "label": "Facturation ≥ 300 €",
+          "test": "montantMin",
+          "arg": 300
+        },
+        {
+          "pts": 6,
+          "label": "Un calcul écrit (× ou =)",
+          "test": "motif",
+          "arg": "[x×*]|="
+        }
+      ]
+    },
+    {
+      "id": "erreur",
+      "type": "textarea",
+      "rows": 4,
+      "label": "3. Ton chemin d'erreur",
+      "aide": "Que se passe-t-il si le workflow échoue à 3 h du matin ? Qui est prévenu, comment, avec quelle information ?",
+      "placeholder": "Un Error Trigger envoie un email à mon adresse avec le nom du workflow, l'ID d'exécution et le message d'erreur. Le client n'est jamais notifié directement. Je vérifie les exécutions en échec chaque lundi matin.",
+      "criteres": [
+        {
+          "pts": 9,
+          "label": "Au moins 25 mots",
+          "test": "minMots",
+          "arg": 25
+        },
+        {
+          "pts": 8,
+          "label": "Un canal d'alerte est nommé (email, Slack, Telegram…)",
+          "test": "contientUn",
+          "arg": [
+            "email",
+            "mail",
+            "slack",
+            "telegram",
+            "sms",
+            "notification",
+            "webhook"
+          ]
+        },
+        {
+          "pts": 7,
+          "label": "Le mécanisme d'erreur est nommé",
+          "test": "contientUn",
+          "arg": [
+            "error trigger",
+            "erreur",
+            "echec",
+            "catch",
+            "try"
+          ]
+        }
+      ]
+    }
+  ]
+});
 
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+var navbar = document.getElementById('navbar');
+window.addEventListener('scroll', function(){ navbar.classList.toggle('scrolled', window.scrollY > 20); });
 </script>
-<script src="/assets/js/theme.js?v=20260717n" defer></script>
+<script src="/assets/js/theme.js?v=20260817" defer></script>
 </body>
 </html>

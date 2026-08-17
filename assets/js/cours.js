@@ -9,23 +9,25 @@ const AB = {
   PROGRESS_KEY: 'ab_cours_progress',
   TOTAL_MODULES: 6,
 
+  // Le niveau dépend du nombre de DÉFIS validés (livrables produits),
+  // pas du temps passé à lire. L'XP affichée = somme des scores obtenus.
   LEVELS: [
-    { xp: 0,   title: 'Débutant',         badge: '🌱' },
-    { xp: 100, title: 'IA Starter',        badge: '⚡' },
-    { xp: 200, title: 'IA Apprenti',       badge: '🔧' },
-    { xp: 300, title: 'IA Practitioner',   badge: '🚀' },
-    { xp: 400, title: 'IA Builder',        badge: '🏗️' },
-    { xp: 500, title: 'IA Architect',      badge: '🎯' },
-    { xp: 600, title: 'IA Master',         badge: '👑' },
+    { mods: 0, title: 'Spectateur',       badge: '🌱' },
+    { mods: 1, title: 'Premier livrable', badge: '⚔️' },
+    { mods: 2, title: 'Offre prête',      badge: '💼' },
+    { mods: 3, title: 'En prospection',   badge: '🤝' },
+    { mods: 4, title: 'Automatiseur',     badge: '🤖' },
+    { mods: 5, title: 'Producteur',       badge: '🎬' },
+    { mods: 6, title: 'Système monté',    badge: '👑' },
   ],
 
   BADGES: [
-    { module: 1, name: 'Arsenal Déployé',   icon: '⚔️' },
-    { module: 2, name: 'Premier Service',   icon: '💼' },
-    { module: 3, name: 'Client Débloqué',   icon: '🤝' },
-    { module: 4, name: 'Automatiseur',      icon: '🤖' },
-    { module: 5, name: 'Créateur Passif',   icon: '💰' },
-    { module: 6, name: 'IA Master',         icon: '👑' },
+    { module: 1, name: 'Livrable en main',   icon: '⚔️' },
+    { module: 2, name: 'Offre chiffrée',     icon: '💼' },
+    { module: 3, name: 'Pipeline ouvert',    icon: '🤝' },
+    { module: 4, name: 'Automatiseur',       icon: '🤖' },
+    { module: 5, name: 'Machine à contenu',  icon: '🎬' },
+    { module: 6, name: 'Système monté',      icon: '👑' },
   ],
 
   getAccess() {
@@ -62,12 +64,27 @@ const AB = {
     return !!this.getProgress()[`m${n}`]?.done;
   },
 
-  completeModule(n, onDone) {
+  // completeModule(n, score) — le score du défi (0-100) EST l'XP gagnée.
+  // Rejouer un défi met à jour l'XP si le score est meilleur, sans rejouer
+  // la modale de déblocage.
+  completeModule(n, score) {
+    const xp = Math.max(0, Math.min(100, Math.round(score == null ? 100 : score)));
     const p = this.getProgress();
-    if (p[`m${n}`]?.done) return;
-    p[`m${n}`] = { done: true, doneAt: Date.now(), xp: 100 };
+    const deja = !!p[`m${n}`]?.done;
+    if (deja) {
+      if (xp > (p[`m${n}`].xp || 0)) {
+        p[`m${n}`].xp = xp;
+        localStorage.setItem(this.PROGRESS_KEY, JSON.stringify(p));
+      }
+      return;
+    }
+    p[`m${n}`] = { done: true, doneAt: Date.now(), xp };
     localStorage.setItem(this.PROGRESS_KEY, JSON.stringify(p));
-    this._showCompletionModal(n, onDone);
+    this._showCompletionModal(n, xp);
+  },
+
+  getModuleScore(n) {
+    return this.getProgress()[`m${n}`]?.xp ?? null;
   },
 
   getTotalXP() {
@@ -80,11 +97,12 @@ const AB = {
 
   getCurrentLevel() {
     const xp = this.getTotalXP();
+    const done = this.getCompletedCount();
     let lvl = this.LEVELS[0];
-    for (const l of this.LEVELS) { if (xp >= l.xp) lvl = l; }
+    for (const l of this.LEVELS) { if (done >= l.mods) lvl = l; }
     const idx = this.LEVELS.indexOf(lvl);
     const next = this.LEVELS[idx + 1] || null;
-    return { ...lvl, xp, next };
+    return { ...lvl, xp, done, next };
   },
 
   async validateToken(token) {
@@ -99,29 +117,30 @@ const AB = {
     } catch { return null; }
   },
 
-  _showCompletionModal(moduleNum, onDone) {
+  _showCompletionModal(moduleNum, scoreGagne) {
     const badge = this.BADGES.find(b => b.module === moduleNum);
     const lvl = this.getCurrentLevel();
     const overlay = document.createElement('div');
-    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)';
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.72);z-index:9999;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(5px);padding:20px';
     overlay.innerHTML = `
-      <div style="background:#0d0d0d;border:1px solid rgba(234,179,8,0.4);border-radius:16px;padding:48px 40px;max-width:440px;text-align:center;box-shadow:0 0 60px rgba(234,179,8,0.2)">
-        <div style="font-size:64px;margin-bottom:16px">${badge?.icon || '⚡'}</div>
-        <div style="font-size:11px;font-weight:700;color:#eab308;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Badge débloqué</div>
-        <h2 style="font-family:'Orbitron',sans-serif;font-size:1.4rem;color:#e4e4e7;margin-bottom:8px">${badge?.name || 'Module complété'}</h2>
-        <p style="color:#a1a1aa;font-size:14px;margin-bottom:24px">+100 XP — Tu passes ${lvl.xp >= 600 ? 'au niveau max' : 'au niveau suivant'}</p>
-        <div style="background:#111;border:1px solid #1a1a1a;border-radius:8px;padding:16px;margin-bottom:24px">
-          <div style="font-size:28px;margin-bottom:4px">${lvl.badge}</div>
-          <div style="font-size:13px;font-weight:700;color:#eab308">${lvl.title}</div>
-          <div style="font-size:12px;color:#71717a">${lvl.xp} XP total</div>
+      <div style="background:var(--bg-card);border:1px solid var(--gold-glow2);border-radius:18px;padding:44px 36px;max-width:440px;width:100%;text-align:center;box-shadow:0 24px 70px rgba(0,0,0,0.35)">
+        <div style="font-size:60px;margin-bottom:14px">${badge?.icon || '⚡'}</div>
+        <div style="font-size:11px;font-weight:800;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px">Défi validé — badge débloqué</div>
+        <h2 style="font-family:'Sora',sans-serif;font-size:1.35rem;color:var(--text);margin-bottom:8px">${badge?.name || 'Module complété'}</h2>
+        <p style="color:var(--text-muted);font-size:14px;margin-bottom:22px;line-height:1.65">+${scoreGagne} XP (ton score au défi)${moduleNum < 6 ? ' — le module suivant est déverrouillé.' : ' — tu as fini le parcours.'}</p>
+        <div style="background:var(--bg-card-2);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:22px">
+          <div style="font-size:26px;margin-bottom:4px">${lvl.badge}</div>
+          <div style="font-size:13px;font-weight:800;color:var(--gold);font-family:'Sora',sans-serif">${lvl.title}</div>
+          <div style="font-size:12px;color:var(--text-muted)">${lvl.xp} XP cumulés</div>
         </div>
-        <button onclick="this.closest('[style]').remove();${onDone ? 'window.location.href=onDoneUrl' : ''}" style="background:#eab308;color:#000;font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;padding:14px 32px;border:none;border-radius:8px;cursor:pointer;width:100%">
-          ${moduleNum < 6 ? '→ Module suivant' : '🏆 Voir mon tableau de bord'}
+        <button type="button" style="background:var(--gold);color:var(--on-gold);font-family:'Sora',sans-serif;font-size:13px;font-weight:800;padding:15px 32px;border:none;border-radius:10px;cursor:pointer;width:100%">
+          ${moduleNum < 6 ? '→ Module suivant' : '🏆 Voir mon rendu complet'}
         </button>
+        <button type="button" data-rester style="background:none;border:none;color:var(--text-muted);font-size:12.5px;margin-top:12px;cursor:pointer;text-decoration:underline">Rester sur cette page</button>
       </div>`;
-    const btn = overlay.querySelector('button');
-    const nextUrl = moduleNum < 6 ? `module-${moduleNum + 1}.html` : 'index.html';
-    btn.onclick = () => { overlay.remove(); window.location.href = nextUrl; };
+    const nextUrl = moduleNum < 6 ? `module-${moduleNum + 1}.html` : 'mon-rendu.html';
+    overlay.querySelector('button').onclick = () => { overlay.remove(); window.location.href = nextUrl; };
+    overlay.querySelector('[data-rester]').onclick = () => overlay.remove();
     document.body.appendChild(overlay);
     this._confetti();
   },
@@ -144,164 +163,37 @@ const AB = {
     const pct = Math.round((done / this.TOTAL_MODULES) * 100);
     const lvl = this.getCurrentLevel();
     containerEl.innerHTML = `
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-        <span style="font-size:13px;color:#a1a1aa">${done}/${this.TOTAL_MODULES} modules complétés</span>
-        <span style="font-size:13px;font-weight:700;color:#eab308">${lvl.badge} ${lvl.title} — ${lvl.xp} XP</span>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px;flex-wrap:wrap">
+        <span style="font-size:13px;color:var(--text-muted)">${done}/${this.TOTAL_MODULES} défis validés</span>
+        <span style="font-size:13px;font-weight:800;color:var(--gold);font-family:'Sora',sans-serif">${lvl.badge} ${lvl.title} — ${lvl.xp} XP</span>
       </div>
-      <div style="background:#1a1a1a;border-radius:100px;height:8px;overflow:hidden">
-        <div style="background:linear-gradient(90deg,#eab308,#f97316);height:100%;width:${pct}%;border-radius:100px;transition:width .6s ease"></div>
+      <div style="background:var(--bg-card-2);border:1px solid var(--border);border-radius:100px;height:9px;overflow:hidden">
+        <div style="background:linear-gradient(90deg,var(--gold),var(--orange));height:100%;width:${pct}%;border-radius:100px;transition:width .6s ease"></div>
       </div>`;
   },
 
-  // ---- Quiz de validation ---------------------------------------------------
-  // renderQuiz(mount, moduleNum, questions)
-  //   questions = [{ q, options:[...], correct:<index>, explain }]
-  // Le module n'est validé (completeModule) QUE si toutes les réponses sont
-  // correctes. Sinon : options fautives marquées, explications révélées, retry.
-  _quizStylesInjected: false,
+  // ---- Styles partagés (liens ressources) ----------------------------------
+  // Le QCM de mémorisation a été retiré : la validation d'un module se fait
+  // désormais par un DÉFI à livrable auto-scoré (voir assets/js/defi.js).
+  _sharedStylesInjected: false,
   _injectQuizStyles() {
-    if (this._quizStylesInjected) return;
-    this._quizStylesInjected = true;
+    if (this._sharedStylesInjected) return;
+    this._sharedStylesInjected = true;
     const css = `
-    .res-links{background:#0b0b0b;border:1px solid #1a1a1a;border-left:3px solid #22c55e;border-radius:8px;padding:16px 20px;margin:20px 0}
-    .res-links-label{font-size:11px;font-weight:700;color:#4ade80;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;font-family:'Rajdhani',sans-serif}
-    .res-links a{display:flex;align-items:center;gap:8px;color:#a1a1aa;text-decoration:none;font-size:14px;padding:7px 0;border-bottom:1px solid #141414;transition:color .2s ease,transform .2s ease}
+    .res-links{background:var(--bg-card-2);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:10px;padding:16px 20px;margin:22px 0}
+    .res-links-label{font-family:'Sora',sans-serif;font-size:11px;font-weight:800;color:var(--green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+    .res-links a{display:flex;align-items:center;gap:8px;color:var(--text-light);text-decoration:none;font-size:14px;padding:7px 0;border-bottom:1px solid var(--border);transition:color .2s ease}
     .res-links a:last-child{border-bottom:none}
-    .res-links a::before{content:'→';color:#4ade80;transition:transform .2s ease}
-    .res-links a:hover{color:#e4e4e7}
+    .res-links a::before{content:'→';color:var(--green);transition:transform .2s ease;display:inline-block}
+    .res-links a:hover{color:var(--gold-dark)}
     .res-links a:hover::before{transform:translateX(3px)}
-    .quiz{background:#0d0d0d;border:2px solid rgba(234,179,8,.25);border-radius:14px;padding:32px;margin:32px 0 0;animation:quizIn .4s cubic-bezier(.2,.7,.2,1) both}
-    .quiz-eyebrow{font-size:11px;font-weight:700;color:#eab308;text-transform:uppercase;letter-spacing:.08em;font-family:'Orbitron',sans-serif;margin-bottom:6px}
-    .quiz-title{font-family:'Orbitron',sans-serif;font-size:1.05rem;font-weight:700;color:#e4e4e7;margin-bottom:6px;line-height:1.4}
-    .quiz-sub{font-size:14px;color:#71717a;margin-bottom:24px;line-height:1.6}
-    .quiz-q{margin-bottom:22px}
-    .quiz-q-text{font-weight:700;color:#e4e4e7;font-size:15px;margin-bottom:12px;line-height:1.5}
-    .quiz-opt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:#111;border:1px solid #1f1f1f;border-radius:10px;padding:14px 16px;margin-bottom:10px;color:#a1a1aa;font-size:14px;line-height:1.4;cursor:pointer;font-family:inherit;transition:transform .15s cubic-bezier(.2,.7,.2,1),border-color .2s ease,background .2s ease,color .2s ease}
-    .quiz-opt:hover:not(.locked){border-color:rgba(234,179,8,.4);color:#e4e4e7}
-    .quiz-opt:active:not(.locked){transform:scale(.985)}
-    .quiz-mark{width:20px;height:20px;border-radius:50%;border:2px solid #333;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;transition:border-color .2s ease,background .2s ease}
-    .quiz-opt.selected{border-color:#eab308;background:rgba(234,179,8,.06);color:#e4e4e7}
-    .quiz-opt.selected .quiz-mark{border-color:#eab308;background:#eab308;color:#000}
-    .quiz-opt.correct{border-color:#22c55e;background:rgba(34,197,94,.08);color:#e4e4e7}
-    .quiz-opt.correct .quiz-mark{border-color:#22c55e;background:#22c55e;color:#000}
-    .quiz-opt.wrong{border-color:#ef4444;background:rgba(239,68,68,.08);color:#e4e4e7;animation:quizShake .4s ease}
-    .quiz-opt.wrong .quiz-mark{border-color:#ef4444;background:#ef4444;color:#fff}
-    .quiz-opt.locked{cursor:default}
-    .quiz-explain{font-size:13px;color:#71717a;line-height:1.6;margin:2px 0 4px;padding-left:4px}
-    .quiz-explain b{color:#4ade80}
-    .quiz-feedback{font-size:14px;font-weight:700;margin:6px 0 18px;min-height:18px}
-    .quiz-feedback.ok{color:#4ade80}
-    .quiz-feedback.ko{color:#f87171}
-    .quiz-btn{background:#eab308;color:#000;font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;padding:16px 32px;border:none;border-radius:8px;cursor:pointer;width:100%;transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
-    .quiz-btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 24px rgba(234,179,8,.25)}
-    .quiz-btn:disabled{background:#3f3f46;color:#71717a;cursor:not-allowed}
-    .quiz-done{text-align:center;padding:8px 0}
-    .quiz-done-icon{font-size:40px;margin-bottom:8px}
-    .quiz-done h3{font-family:'Orbitron',sans-serif;color:#4ade80;font-size:1.1rem;margin-bottom:4px}
-    .quiz-done p{color:#71717a;font-size:14px}
-    @keyframes quizIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-    @keyframes quizShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
-    @media (prefers-reduced-motion: reduce){
-      .quiz{animation:none}
-      .quiz-opt,.quiz-btn,.quiz-mark,.res-links a,.res-links a::before{transition:none}
-      .quiz-opt.wrong{animation:none}
-      .quiz-opt:active:not(.locked){transform:none}
-    }`;
+    @media (prefers-reduced-motion: reduce){.res-links a,.res-links a::before{transition:none}}
+    `;
     const s = document.createElement('style');
     s.textContent = css;
     document.head.appendChild(s);
   },
-
-  renderQuiz(mount, moduleNum, questions) {
-    this._injectQuizStyles();
-    const el = typeof mount === 'string' ? document.querySelector(mount) : mount;
-    if (!el) return;
-
-    el.innerHTML = `
-      <div class="quiz">
-        <div class="quiz-eyebrow">🎯 Quiz de validation</div>
-        <div class="quiz-title">Valide le module ${moduleNum} pour débloquer la suite</div>
-        <div class="quiz-sub">Réponds correctement aux ${questions.length} questions ci-dessous. Tu peux réessayer autant de fois que nécessaire.</div>
-        <div class="quiz-form"></div>
-        <div class="quiz-feedback"></div>
-        <button type="button" class="quiz-btn" disabled>Valider mes réponses</button>
-      </div>`;
-
-    if (this.isModuleDone(moduleNum)) {
-      el.querySelector('.quiz').innerHTML =
-        '<div class="quiz-done"><div class="quiz-done-icon">✅</div><h3>Module validé</h3><p>Tu as déjà réussi ce quiz — le module suivant est débloqué.</p></div>';
-      return;
-    }
-
-    const form = el.querySelector('.quiz-form');
-    const fb = el.querySelector('.quiz-feedback');
-    const submit = el.querySelector('.quiz-btn');
-    const state = questions.map(() => null);
-
-    questions.forEach((q, qi) => {
-      const qd = document.createElement('div');
-      qd.className = 'quiz-q';
-      const qt = document.createElement('div');
-      qt.className = 'quiz-q-text';
-      qt.textContent = `${qi + 1}. ${q.q}`;
-      qd.appendChild(qt);
-
-      q.options.forEach((opt, oi) => {
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.className = 'quiz-opt';
-        b.dataset.q = qi;
-        const mark = document.createElement('span');
-        mark.className = 'quiz-mark';
-        const label = document.createElement('span');
-        label.textContent = opt;
-        b.appendChild(mark);
-        b.appendChild(label);
-        b.onclick = () => {
-          if (b.classList.contains('locked')) return;
-          qd.querySelectorAll('.quiz-opt').forEach(x => x.classList.remove('selected'));
-          b.classList.add('selected');
-          state[qi] = oi;
-          submit.disabled = state.some(s => s === null);
-        };
-        qd.appendChild(b);
-      });
-
-      const ex = document.createElement('div');
-      ex.className = 'quiz-explain';
-      ex.style.display = 'none';
-      if (q.explain) ex.innerHTML = `<b>Réponse :</b> ${q.explain}`;
-      qd.appendChild(ex);
-      form.appendChild(qd);
-    });
-
-    const grade = () => {
-      let correct = 0;
-      questions.forEach((q, qi) => {
-        const opts = form.querySelectorAll(`.quiz-opt[data-q="${qi}"]`);
-        opts.forEach(o => { o.classList.remove('correct', 'wrong'); o.classList.add('locked'); });
-        const sel = state[qi];
-        if (sel === q.correct) { correct++; opts[sel].classList.add('correct'); }
-        else { if (sel != null) opts[sel].classList.add('wrong'); opts[q.correct].classList.add('correct'); }
-      });
-
-      if (correct === questions.length) {
-        fb.className = 'quiz-feedback ok';
-        fb.textContent = `✓ ${correct}/${questions.length} — Parfait, module validé !`;
-        submit.disabled = true;
-        submit.textContent = 'Validé ✓';
-        setTimeout(() => this.completeModule(moduleNum), 800);
-      } else {
-        fb.className = 'quiz-feedback ko';
-        fb.textContent = `${correct}/${questions.length} bonnes réponses. Revois les points ci-dessous et réessaie.`;
-        form.querySelectorAll('.quiz-explain').forEach(e => { e.style.display = 'block'; });
-        submit.textContent = 'Réessayer';
-        submit.onclick = () => this.renderQuiz(mount, moduleNum, questions);
-      }
-    };
-
-    submit.onclick = grade;
-  }
 };
 
 window.AB = AB;
+if (typeof document !== 'undefined') AB._injectQuizStyles();

@@ -1,0 +1,160 @@
+/* AutomationBoost — Espace formation (dashboard + modules)
+   Charte : tokens de style.css (thème clair par défaut, black via
+   :root[data-theme="dark"]), typo Sora / Inter / JetBrains Mono.
+   Aucune couleur en dur : tout passe par les variables. */
+
+.cours-page { padding: 120px 0 90px; }
+.cours-inner { max-width: 780px; margin: 0 auto; }
+
+/* ── En-tête de module ── */
+.mod-eyebrow { display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:22px }
+.mod-badge {
+  background: var(--gold-glow); border: 1px solid var(--gold-glow2); color: var(--gold-dark);
+  font-family:'Sora',sans-serif; font-size:11px; font-weight:800; padding:5px 13px;
+  border-radius:100px; letter-spacing:.09em; text-transform:uppercase;
+}
+:root[data-theme="dark"] .mod-badge { color: var(--gold); }
+.mod-progress-chip { font-size:12.5px;color:var(--text-muted) }
+.mod-title { font-family:'Sora',sans-serif;font-size:clamp(1.7rem,3.4vw,2.4rem);font-weight:900;margin-bottom:8px;line-height:1.18;color:var(--text) }
+.mod-goal {
+  display:flex;gap:11px;align-items:flex-start;background:var(--bg-card-2);
+  border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:10px;
+  padding:14px 18px;margin:18px 0 30px;font-size:14.5px;color:var(--text-light);line-height:1.7;
+}
+.mod-goal b { color: var(--text); font-family:'Sora',sans-serif }
+.mod-intro { font-size:1.06rem;color:var(--text-light);line-height:1.9;margin-bottom:38px }
+
+/* ── Corps ── */
+.cours-inner .section-h2 {
+  font-family:'Sora',sans-serif;font-size:1.25rem;font-weight:800;color:var(--text);
+  margin:52px 0 14px;padding-top:14px;border-top:1px solid var(--border);
+}
+.cours-inner .section-h3 { font-family:'Sora',sans-serif;font-size:1rem;font-weight:700;color:var(--gold-dark);margin:30px 0 10px }
+:root[data-theme="dark"] .cours-inner .section-h3 { color: var(--gold); }
+.cours-inner p { color:var(--text-light);line-height:1.9;margin-bottom:16px;font-size:15.5px }
+.cours-inner ul, .cours-inner ol { color:var(--text-light);line-height:1.9;padding-left:22px;margin-bottom:18px;font-size:15.5px }
+.cours-inner li { margin-bottom:7px }
+.cours-inner strong { color:var(--text);font-weight:700 }
+
+/* ── Blocs pédagogiques ── */
+.tool-card { background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin:12px 0;display:flex;gap:15px;align-items:flex-start;box-shadow:var(--shadow-soft) }
+.tool-icon { font-size:26px;flex-shrink:0;line-height:1.2 }
+.tool-name { font-family:'Sora',sans-serif;font-weight:700;color:var(--text);margin-bottom:4px;font-size:15px }
+.tool-desc { font-size:14px;color:var(--text-muted);line-height:1.7 }
+.tool-tag { display:inline-block;background:color-mix(in srgb,var(--green) 14%,transparent);border:1px solid color-mix(in srgb,var(--green) 35%,transparent);color:var(--green);font-size:10px;font-weight:800;padding:2px 8px;border-radius:100px;margin-left:8px;text-transform:uppercase;letter-spacing:.05em;vertical-align:middle }
+
+.prompt-box { background:var(--bg-card-2);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:10px;padding:18px 20px;margin:16px 0;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text-light);line-height:1.75;white-space:pre-wrap;overflow-x:auto }
+.prompt-label { font-family:'Sora',sans-serif;font-size:10.5px;font-weight:800;color:var(--gold-dark);text-transform:uppercase;letter-spacing:.09em;margin-bottom:10px }
+:root[data-theme="dark"] .prompt-label { color: var(--gold); }
+.copy-btn { display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid var(--border);color:var(--text-muted);font-family:'Sora',sans-serif;font-size:11.5px;font-weight:700;padding:7px 13px;border-radius:100px;cursor:pointer;margin-top:12px;transition:color .2s,border-color .2s }
+.copy-btn:hover { color:var(--gold-dark);border-color:var(--gold) }
+
+.tip-box { background:var(--bg-card-2);border:1px solid var(--border);border-left:3px solid var(--violet);border-radius:10px;padding:18px 20px;margin:26px 0 }
+.tip-label { font-family:'Sora',sans-serif;font-size:10.5px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:.09em;margin-bottom:8px }
+.tip-box p:last-child { margin-bottom:0 }
+
+.honest-box { background:color-mix(in srgb,var(--orange) 9%,transparent);border:1px solid color-mix(in srgb,var(--orange) 32%,transparent);border-radius:12px;padding:20px 22px;margin:28px 0 }
+.honest-label { font-family:'Sora',sans-serif;font-size:10.5px;font-weight:800;color:var(--orange-dark);text-transform:uppercase;letter-spacing:.09em;margin-bottom:9px }
+:root[data-theme="dark"] .honest-label { color: var(--orange); }
+.honest-box p:last-child, .honest-box ul:last-child { margin-bottom:0 }
+
+/* Tableaux (grilles tarifaires, comparatifs) */
+.cours-table-wrap { overflow-x:auto;margin:20px 0;-webkit-overflow-scrolling:touch }
+.cours-table { width:100%;border-collapse:collapse;font-size:14px;min-width:520px }
+.cours-table th { text-align:left;font-family:'Sora',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--text-muted);padding:11px 14px;border-bottom:1px solid var(--border);white-space:nowrap }
+.cours-table td { padding:13px 14px;border-bottom:1px solid var(--border);color:var(--text-light);line-height:1.6;vertical-align:top }
+.cours-table tr:last-child td { border-bottom:none }
+.cours-table td:last-child { font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--gold-dark);font-weight:600;white-space:nowrap }
+:root[data-theme="dark"] .cours-table td:last-child { color: var(--gold); }
+
+/* Cartes chiffrées (services, workflows) */
+.offer-card { background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin:14px 0;box-shadow:var(--shadow-soft) }
+.offer-head { display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:8px }
+.offer-name { font-family:'Sora',sans-serif;font-weight:800;color:var(--text);font-size:15.5px }
+.offer-price { font-family:'JetBrains Mono',monospace;font-size:13.5px;font-weight:700;color:var(--gold-dark);white-space:nowrap }
+:root[data-theme="dark"] .offer-price { color: var(--gold); }
+.offer-desc { font-size:14px;color:var(--text-muted);line-height:1.75;margin-bottom:8px }
+.offer-meta { font-size:12.5px;color:var(--text-muted);border-top:1px dashed var(--border);padding-top:9px;margin-top:9px }
+.offer-meta b { color:var(--text-light) }
+
+/* Étapes chronométrées */
+.steps { counter-reset:st;margin:20px 0;padding:0;list-style:none }
+.steps li { counter-increment:st;position:relative;padding:0 0 16px 42px;color:var(--text-light);line-height:1.75;font-size:15px }
+.steps li::before { content:counter(st);position:absolute;left:0;top:0;width:27px;height:27px;border-radius:50%;background:var(--gold-glow);border:1px solid var(--gold-glow2);color:var(--gold-dark);font-family:'Sora',sans-serif;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center }
+:root[data-theme="dark"] .steps li::before { color: var(--gold); }
+.steps .st-time { display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--text-muted);background:var(--bg-card-2);border:1px solid var(--border);padding:1px 8px;border-radius:100px;margin-left:8px }
+
+/* Calculateur (module 6) */
+.calc { background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:24px;margin:24px 0;box-shadow:var(--shadow-soft) }
+.calc-t { font-family:'Sora',sans-serif;font-size:15px;font-weight:800;color:var(--text);margin-bottom:6px }
+.calc-sub { font-size:13.5px;color:var(--text-muted);line-height:1.7;margin-bottom:18px }
+.calc-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:18px }
+.calc-field label { display:block;font-size:12px;font-weight:700;color:var(--text-muted);margin-bottom:5px;font-family:'Sora',sans-serif }
+.calc-field input { width:100%;background:var(--bg-card-2);border:1px solid var(--border);border-radius:9px;padding:11px 13px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:14px }
+.calc-field input:focus { outline:none;border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-glow) }
+.calc-out { background:var(--bg-card-2);border:1px solid var(--border);border-radius:10px;padding:16px 18px }
+.calc-line { display:flex;justify-content:space-between;gap:14px;font-size:14px;color:var(--text-light);padding:6px 0;border-bottom:1px dashed var(--border) }
+.calc-line:last-child { border-bottom:none }
+.calc-line b { font-family:'JetBrains Mono',monospace;color:var(--gold-dark);white-space:nowrap }
+:root[data-theme="dark"] .calc-line b { color: var(--gold); }
+.calc-line.total { font-family:'Sora',sans-serif;font-weight:800;color:var(--text);padding-top:11px;margin-top:5px;border-top:1px solid var(--border);border-bottom:none }
+
+/* Erreurs / pièges */
+.mistake { background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--red);border-radius:10px;padding:16px 19px;margin:12px 0 }
+.mistake-t { font-family:'Sora',sans-serif;font-weight:700;color:var(--text);font-size:14.5px;margin-bottom:6px }
+.mistake-fix { font-size:14px;color:var(--text-muted);line-height:1.75 }
+
+/* Navigation bas de module */
+.nav-footer { display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-top:52px;padding-top:26px;border-top:1px solid var(--border) }
+.nav-back-link { color:var(--text-muted);font-size:14px;text-decoration:none;font-weight:600 }
+.nav-back-link:hover { color:var(--gold-dark) }
+.nav-footer-meta { font-size:13px;color:var(--text-muted) }
+
+/* ── Tableau de bord ── */
+.dashboard { padding:120px 0 90px }
+.dash-title { font-family:'Sora',sans-serif;font-size:clamp(1.7rem,3.4vw,2.3rem);font-weight:900;margin-bottom:8px;color:var(--text) }
+.dash-sub { color:var(--text-muted);font-size:15px;line-height:1.75;max-width:620px }
+.stats-row { display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin:30px 0 26px }
+.stat-box { background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:18px 20px;box-shadow:var(--shadow-soft) }
+.stat-val { font-family:'Sora',sans-serif;font-size:1.7rem;font-weight:900;color:var(--gold-dark);line-height:1.15 }
+:root[data-theme="dark"] .stat-val { color: var(--gold); }
+.stat-label { font-size:12px;color:var(--text-muted);margin-top:5px }
+.modules-list { display:flex;flex-direction:column;gap:13px;margin-top:34px }
+.mod-card { background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px 22px;display:flex;align-items:center;gap:18px;transition:border-color .2s,transform .2s;text-decoration:none;color:inherit;box-shadow:var(--shadow-soft) }
+.mod-card:hover:not(.locked) { border-color:var(--gold);transform:translateX(3px) }
+.mod-card.locked { opacity:.55;cursor:not-allowed }
+.mod-card.done { border-color:color-mix(in srgb,var(--green) 45%,transparent) }
+.mod-ic { width:46px;height:46px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:21px;flex-shrink:0;background:var(--bg-card-2);border:1px solid var(--border) }
+.mod-ic.unlocked { background:var(--gold-glow);border-color:var(--gold-glow2) }
+.mod-ic.done { background:color-mix(in srgb,var(--green) 12%,transparent);border-color:color-mix(in srgb,var(--green) 35%,transparent) }
+.mod-body { flex:1;min-width:0 }
+.mod-card-title { font-family:'Sora',sans-serif;font-size:15px;font-weight:800;margin-bottom:3px;color:var(--text) }
+.mod-desc { font-size:13.5px;color:var(--text-muted);line-height:1.6 }
+.mod-meta { display:flex;align-items:center;gap:9px;margin-top:8px;flex-wrap:wrap }
+.chip { font-size:11px;font-weight:800;padding:3px 11px;border-radius:100px;font-family:'Sora',sans-serif;letter-spacing:.03em }
+.chip-done { background:color-mix(in srgb,var(--green) 13%,transparent);color:var(--green);border:1px solid color-mix(in srgb,var(--green) 35%,transparent) }
+.chip-locked { background:var(--bg-card-2);color:var(--text-muted);border:1px solid var(--border) }
+.chip-current { background:var(--gold-glow);color:var(--gold-dark);border:1px solid var(--gold-glow2) }
+:root[data-theme="dark"] .chip-current { color: var(--gold); }
+.mod-xp { font-size:11.5px;color:var(--text-muted);font-family:'JetBrains Mono',monospace }
+.mod-arrow { color:var(--gold);font-size:17px;flex-shrink:0 }
+.badges-section { margin-top:46px }
+.badges-title { font-family:'Sora',sans-serif;font-size:11px;font-weight:800;margin-bottom:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.09em }
+.badges-grid { display:flex;flex-wrap:wrap;gap:11px }
+.badge-item { background:var(--bg-card);border:1px solid var(--border);border-radius:11px;padding:15px 10px;text-align:center;width:104px }
+.badge-item.earned { border-color:var(--gold-glow2);background:var(--gold-glow) }
+.badge-ic { font-size:25px;margin-bottom:5px }
+.badge-name { font-size:10.5px;color:var(--text-muted);line-height:1.35 }
+.badge-item.earned .badge-name { color:var(--gold-dark);font-weight:700 }
+:root[data-theme="dark"] .badge-item.earned .badge-name { color: var(--gold); }
+
+@media (max-width: 640px) {
+  .cours-page, .dashboard { padding-top:100px }
+  .mod-card { padding:16px 15px;gap:13px }
+  .tool-card { padding:15px 16px }
+  .prompt-box { font-size:12px;padding:15px 14px }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mod-card, .copy-btn { transition:none }
+  .mod-card:hover:not(.locked) { transform:none }
+}

@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <meta charset="UTF-8" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-0SRZVQ1WGD');
   </script>
-  <meta charset="UTF-8" />
   <!-- Meta Pixel Code -->
   <script>
   !function(f,b,e,v,n,t,s)
@@ -29,84 +28,42 @@
   /></noscript>
   <!-- End Meta Pixel Code -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tableau de bord – Formation IA | AutomationBoost</title>
+  <title>Ton parcours – Formation AutomationBoost</title>
   <meta name="robots" content="noindex" />
-  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260817" />
+  <link rel="stylesheet" href="../assets/css/cours.css?v=20260817" />
   <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
-  <style>
-    .dashboard { padding: 120px 0 80px; }
-    .dash-header { margin-bottom: 48px; }
-    .dash-title { font-family:'Orbitron',sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;margin-bottom:8px }
-    .dash-sub { color:#71717a;font-size:15px }
-    .progress-bar-wrap { margin:24px 0 }
-    .stats-row { display:flex;flex-wrap:wrap;gap:16px;margin-bottom:48px }
-    .stat-box { background:#0d0d0d;border:1px solid #1a1a1a;border-radius:12px;padding:20px 24px;flex:1;min-width:140px }
-    .stat-val { font-family:'Orbitron',sans-serif;font-size:1.8rem;font-weight:900;color:#eab308 }
-    .stat-label { font-size:12px;color:#71717a;margin-top:4px }
-    .modules-list { display:flex;flex-direction:column;gap:16px }
-    .mod-card { background:#0d0d0d;border:1px solid #1a1a1a;border-radius:12px;padding:24px 28px;display:flex;align-items:center;gap:20px;transition:all .2s;text-decoration:none;color:inherit }
-    .mod-card:hover:not(.locked) { border-color:rgba(234,179,8,0.4);transform:translateX(4px) }
-    .mod-card.locked { opacity:.5;cursor:not-allowed }
-    .mod-card.done { border-color:rgba(34,197,94,0.3) }
-    .mod-icon { width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0 }
-    .mod-icon.unlocked { background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.2) }
-    .mod-icon.locked { background:#111;border:1px solid #1a1a1a }
-    .mod-icon.done { background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2) }
-    .mod-body { flex:1 }
-    .mod-title { font-family:'Orbitron',sans-serif;font-size:.95rem;font-weight:700;margin-bottom:4px }
-    .mod-desc { font-size:13px;color:#71717a }
-    .mod-meta { display:flex;align-items:center;gap:8px;margin-top:6px }
-    .mod-badge-chip { font-size:11px;font-weight:700;padding:2px 10px;border-radius:4px }
-    .chip-done { background:rgba(34,197,94,0.1);color:#4ade80;border:1px solid rgba(34,197,94,0.2) }
-    .chip-locked { background:#111;color:#71717a;border:1px solid #1a1a1a }
-    .chip-current { background:rgba(234,179,8,0.1);color:#eab308;border:1px solid rgba(234,179,8,0.2) }
-    .mod-xp { font-size:11px;color:#71717a }
-    .mod-arrow { color:#eab308;font-size:16px;flex-shrink:0 }
-    .badges-section { margin-top:48px }
-    .badges-title { font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:700;margin-bottom:20px;color:#71717a;text-transform:uppercase;letter-spacing:.08em;font-size:11px }
-    .badges-grid { display:flex;flex-wrap:wrap;gap:12px }
-    .badge-item { background:#0d0d0d;border:1px solid #1a1a1a;border-radius:10px;padding:16px;text-align:center;width:100px }
-    .badge-item.earned { border-color:rgba(234,179,8,0.3);background:rgba(234,179,8,0.05) }
-    .badge-icon { font-size:28px;margin-bottom:6px }
-    .badge-name { font-size:10px;color:#71717a;line-height:1.3 }
-    .badge-item.earned .badge-name { color:#eab308 }
-  </style>
 </head>
 <body>
 <nav id="navbar">
-  <div class="nav-inner">
-    <a href="/" class="logo"><div class="logo-icon">⚡</div><span class="logo-text">Automation<span>Boost</span></span></a>
-    <div style="font-size:13px;color:#71717a;font-family:'Rajdhani',sans-serif" id="level-display">Chargement…</div>
+  <div class="nav-pill">
+    <a href="/" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="mon-rendu.html" class="nav-link-slide"><span>Mon rendu</span><span>Mon rendu</span></a>
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+    </div>
+    <span class="nav-cta" id="level-display" style="cursor:default">…</span>
   </div>
 </nav>
 
 <section class="dashboard">
   <div class="container">
-    <div class="dash-header">
-      <h1 class="dash-title">Ton tableau de bord</h1>
-      <p class="dash-sub">Complète chaque module pour débloquer le suivant et monter en niveau.</p>
-    </div>
+    <h1 class="dash-title">Ton parcours</h1>
+    <p class="dash-sub">Chaque module se termine par un <strong>défi</strong> : tu produis un livrable réel, le navigateur le note sur 100 selon un barème affiché, et le module suivant se débloque à partir de 70. Tes livrables sont enregistrés dans ce navigateur — tu peux les exporter à tout moment pour les faire relire.</p>
 
     <div class="stats-row">
-      <div class="stat-box">
-        <div class="stat-val" id="stat-done">0</div>
-        <div class="stat-label">Modules complétés</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-val" id="stat-xp">0</div>
-        <div class="stat-label">XP total</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-val" id="stat-level">🌱</div>
-        <div class="stat-label">Niveau actuel</div>
-      </div>
-      <div class="stat-box" style="background:rgba(234,179,8,0.05);border-color:rgba(234,179,8,0.2)">
-        <div class="stat-val" id="stat-next">6</div>
-        <div class="stat-label">Modules restants</div>
-      </div>
+      <div class="stat-box"><div class="stat-val" id="stat-done">0</div><div class="stat-label">Défis validés</div></div>
+      <div class="stat-box"><div class="stat-val" id="stat-xp">0</div><div class="stat-label">XP (somme des scores)</div></div>
+      <div class="stat-box"><div class="stat-val" id="stat-level" style="font-size:1.15rem">🌱</div><div class="stat-label">Niveau</div></div>
+      <div class="stat-box"><div class="stat-val" id="stat-next">6</div><div class="stat-label">Défis restants</div></div>
     </div>
 
-    <div class="progress-bar-wrap" id="progress-bar"></div>
+    <div id="progress-bar"></div>
 
     <div class="modules-list" id="modules-list"></div>
 
@@ -114,31 +71,43 @@
       <div class="badges-title">Tes badges</div>
       <div class="badges-grid" id="badges-grid"></div>
     </div>
+
+    <div class="badges-section">
+      <div class="badges-title">Validation par Tony</div>
+      <div class="mod-card" style="cursor:pointer" onclick="window.location.href='mon-rendu.html'">
+        <div class="mod-ic unlocked">📤</div>
+        <div class="mod-body">
+          <div class="mod-card-title">Générer mon rendu complet</div>
+          <div class="mod-desc">Rassemble tous tes livrables et tes scores en un seul texte, à copier ou à envoyer. C'est ce document que Tony relit pour valider ton parcours pour de vrai — l'auto-scoring vérifie la forme, lui vérifie le fond.</div>
+        </div>
+        <span class="mod-arrow">→</span>
+      </div>
+    </div>
   </div>
 </section>
 
-<script src="../assets/js/cours.js"></script>
+<script src="../assets/js/cours.js?v=20260817"></script>
 <script>
 AB.requireAccess();
 
 const MODULES = [
-  { n:1, title:'Ton arsenal IA',          desc:'Outils gratuits, setup optimal, les 3 prompts essentiels', icon:'⚔️' },
-  { n:2, title:'Vendre des services IA',   desc:'Les 5 services les plus demandés, pitcher, tarifier',      icon:'💼' },
-  { n:3, title:'Trouver tes premiers clients', desc:'Malt, LinkedIn, Upwork — scripts de prospection',     icon:'🤝' },
-  { n:4, title:'Automatiser pour scaler',  desc:'n8n, Make — workflows qui tournent sans toi',              icon:'🤖' },
-  { n:5, title:'Revenus passifs IA',       desc:'Templates, prompts, mini-formations à vendre',             icon:'💰' },
-  { n:6, title:'Plan 100€/jour',           desc:'Roadmap 30 jours, cas pratiques, erreurs à éviter',        icon:'👑' },
+  { n:1, title:'Ton premier livrable vendable', desc:"Produire un audit IA complet sur une entreprise réelle", icon:'⚔️' },
+  { n:2, title:'Ton offre chiffrée',            desc:'Périmètre fermé, prix, délai — et le devis qui va avec', icon:'💼' },
+  { n:3, title:'Tes 10 premiers prospects',      desc:'Liste nominative, message qui obtient une réponse, relances', icon:'🤝' },
+  { n:4, title:'Le livrable automatisé',         desc:'Un workflow n8n qui tourne, chiffré par la valeur créée', icon:'🤖' },
+  { n:5, title:'Produire du contenu à la chaîne',desc:'Script calibré au mot près, coût réel, cadence tenable', icon:'🎬' },
+  { n:6, title:'Ton système, chiffré par toi',   desc:'Calculateur, plan 30 jours, et ce qui pourrait le faire échouer', icon:'👑' },
 ];
 
 function render() {
   const lvl = AB.getCurrentLevel();
   const done = AB.getCompletedCount();
 
-  document.getElementById('stat-done').textContent = done;
+  document.getElementById('stat-done').textContent = done + '/6';
   document.getElementById('stat-xp').textContent = lvl.xp;
   document.getElementById('stat-level').textContent = lvl.badge + ' ' + lvl.title;
   document.getElementById('stat-next').textContent = AB.TOTAL_MODULES - done;
-  document.getElementById('level-display').textContent = lvl.badge + ' ' + lvl.title + ' · ' + lvl.xp + ' XP';
+  document.getElementById('level-display').textContent = lvl.badge + ' ' + lvl.xp + ' XP';
   AB.renderProgressBar(document.getElementById('progress-bar'));
 
   const list = document.getElementById('modules-list');
@@ -146,37 +115,37 @@ function render() {
   MODULES.forEach(m => {
     const isDone = AB.isModuleDone(m.n);
     const isLocked = !AB.isModuleUnlocked(m.n);
-    const isCurrent = !isDone && !isLocked;
+    const score = AB.getModuleScore(m.n);
 
     const card = document.createElement(isLocked ? 'div' : 'a');
     card.className = 'mod-card' + (isLocked ? ' locked' : '') + (isDone ? ' done' : '');
-    if (!isLocked) card.href = `module-${m.n}.html`;
+    if (!isLocked) card.href = 'module-' + m.n + '.html';
 
-    card.innerHTML = `
-      <div class="mod-icon ${isDone ? 'done' : isLocked ? 'locked' : 'unlocked'}">${isLocked ? '🔒' : m.icon}</div>
-      <div class="mod-body">
-        <div class="mod-title">Module ${m.n} — ${m.title}</div>
-        <div class="mod-desc">${m.desc}</div>
-        <div class="mod-meta">
-          <span class="mod-badge-chip ${isDone ? 'chip-done' : isLocked ? 'chip-locked' : 'chip-current'}">
-            ${isDone ? '✓ Complété' : isLocked ? '🔒 Verrouillé' : '→ En cours'}
-          </span>
-          <span class="mod-xp">+100 XP</span>
-        </div>
-      </div>
-      ${!isLocked ? '<span class="mod-arrow">→</span>' : ''}`;
+    card.innerHTML =
+      '<div class="mod-ic ' + (isDone ? 'done' : isLocked ? '' : 'unlocked') + '">' + (isLocked ? '🔒' : m.icon) + '</div>' +
+      '<div class="mod-body">' +
+        '<div class="mod-card-title">Module ' + m.n + ' — ' + m.title + '</div>' +
+        '<div class="mod-desc">' + m.desc + '</div>' +
+        '<div class="mod-meta">' +
+          '<span class="chip ' + (isDone ? 'chip-done' : isLocked ? 'chip-locked' : 'chip-current') + '">' +
+            (isDone ? '✓ Défi validé' : isLocked ? '🔒 Verrouillé' : '→ À faire') +
+          '</span>' +
+          '<span class="mod-xp">' + (isDone ? score + '/100' : 'seuil 70/100') + '</span>' +
+        '</div>' +
+      '</div>' +
+      (isLocked ? '' : '<span class="mod-arrow">→</span>');
 
     list.appendChild(card);
   });
 
-  const bgGrid = document.getElementById('badges-grid');
-  bgGrid.innerHTML = '';
+  const bg = document.getElementById('badges-grid');
+  bg.innerHTML = '';
   AB.BADGES.forEach(b => {
     const earned = AB.isModuleDone(b.module);
     const el = document.createElement('div');
     el.className = 'badge-item' + (earned ? ' earned' : '');
-    el.innerHTML = `<div class="badge-icon">${earned ? b.icon : '❓'}</div><div class="badge-name">${b.name}</div>`;
-    bgGrid.appendChild(el);
+    el.innerHTML = '<div class="badge-ic">' + (earned ? b.icon : '🔒') + '</div><div class="badge-name">' + b.name + '</div>';
+    bg.appendChild(el);
   });
 }
 
@@ -184,6 +153,6 @@ render();
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
 </script>
-<script src="/assets/js/theme.js?v=20260717n" defer></script>
+<script src="/assets/js/theme.js?v=20260817" defer></script>
 </body>
 </html>
