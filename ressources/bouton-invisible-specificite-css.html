@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-0SRZVQ1WGD');
+  </script>
+  <meta charset="UTF-8" />
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1713977213196523');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1713977213196523&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le bouton invisible : la règle CSS qui casse sans rien signaler – AutomationBoost</title>
+  <meta name="description" content="Un bouton d'achat dore sur fond dore, invisible pendant des semaines, sur trois pages a la fois. La regle de specificite CSS qui l'explique, et le controle de vingt lignes qui l'attrape." />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Sora',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px;flex-wrap:wrap; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:820px; }
+    .content-block h2 { font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:48px 0 16px;scroll-margin-top:110px; }
+    .content-block h3 { font-family:'Sora',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:8px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    /* Le bouton doit rester noir sur or : sans cette requalification,
+       le selecteur de lien du content-block gagne et le libelle devient
+       dore sur fond dore, donc illisible. */
+    .content-block a.source-cta { color:#000; }
+    .content-block a.source-cta:hover { color:#000;text-decoration:none; }
+    .content-block a.nav-back { color:var(--text-muted); }
+    .content-block a.nav-back:hover { color:var(--gold); }
+
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+
+    /* Sommaire */
+    .toc { background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;margin:32px 0; }
+    .toc-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px; }
+    .toc ol { list-style:none;padding:0;margin:0;counter-reset:toc; }
+    .toc li { counter-increment:toc;margin-bottom:10px;padding-left:2.2rem;position:relative;line-height:1.5; }
+    .toc li::before { content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:1px;font-family:'Sora',sans-serif;font-size:.78rem;font-weight:700;color:var(--gold);background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.28);border-radius:4px;padding:2px 6px; }
+    .toc a { color:var(--text);font-weight:600;text-decoration:none;font-size:15px; }
+    .toc a:hover { color:var(--gold); }
+    .toc .toc-sub { display:block;color:var(--text-muted);font-size:13px;font-weight:400;margin-top:2px; }
+
+    /* Blocs prompt copiables */
+    .prompt-card { border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin:20px 0;background:#0a0a0a; }
+    .prompt-head { display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px;background:#111117;border-bottom:1px solid #232330;flex-wrap:wrap; }
+    .prompt-name { font-family:'Sora',sans-serif;font-size:12px;font-weight:700;color:#eab308;letter-spacing:.05em;text-transform:uppercase; }
+    .copy-btn { display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:#000;font-family:'Sora',sans-serif;font-size:12px;font-weight:700;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;transition:all .2s;line-height:1; }
+    .copy-btn:hover { background:var(--gold-dark);transform:translateY(-1px); }
+    .copy-btn.copied { background:#eab308;color:#0a0a0a; }
+    .prompt-card pre { margin:0;padding:18px 20px;overflow-x:auto;background:#0a0a0a; }
+    .prompt-card code { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px;line-height:1.7;color:#a3e635;white-space:pre-wrap;word-break:break-word;display:block; }
+
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto;white-space:pre-wrap; }
+
+    /* Tableaux */
+    .table-wrap { overflow-x:auto;margin:20px 0;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-card); }
+    .table-wrap table { width:100%;border-collapse:collapse;min-width:520px;font-size:15px; }
+    .table-wrap th { text-align:left;font-family:'Sora',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gold);padding:12px 16px;border-bottom:1px solid var(--border);background:var(--bg-card-2);white-space:nowrap; }
+    .table-wrap td { padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-light);line-height:1.6;vertical-align:top; }
+    .table-wrap tr:last-child td { border-bottom:none; }
+    .table-wrap td:first-child { color:var(--text);font-weight:600;white-space:nowrap; }
+    .table-wrap code { font-family:ui-monospace,monospace;font-size:.9em;color:var(--gold); }
+
+    .prompt-intro { color:var(--text-muted);font-size:14px;margin:0 0 8px; }
+    .prompt-intro strong { color:var(--text); }
+
+    .source-cta { display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#000;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;padding:14px 28px;border-radius:var(--radius);text-decoration:none;margin-top:40px;transition:all .2s; }
+    .source-cta:hover { background:var(--gold-dark);transform:translateY(-2px);text-decoration:none; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+
+    .content-block ol.numbered-list { counter-reset:num;padding-left:0; }
+    .content-block ol.numbered-list li { list-style:none;counter-increment:num;padding-left:2.4rem;position:relative;margin-bottom:14px; }
+    .content-block ol.numbered-list li::before { content:counter(num);position:absolute;left:0;top:0;width:1.6rem;height:1.6rem;display:flex;align-items:center;justify-content:center;background:rgba(234,179,8,0.14);border:1px solid rgba(234,179,8,0.3);border-radius:50%;color:var(--gold);font-weight:700;font-family:'Sora',sans-serif;font-size:0.8em; }
+
+    .content-block p, .content-block li { font-size:17px; line-height:1.75; }
+    .page-title, .content-block h2, .content-block h3 { font-family:'Sora',sans-serif; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Le bouton invisible : la règle CSS qui casse sans rien signaler",
+    "description": "La specificite CSS expliquee par un vrai bug de production, et le controle autonome qui le detecte." ,
+    "url": "https://automatisationboost.com/ressources/bouton-invisible-specificite-css.html",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://automatisationboost.com/ressources/bouton-invisible-specificite-css.html"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "url": "https://automatisationboost.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://automatisationboost.com/assets/images/logo.svg"
+      }
+    },
+    "isAccessibleForFree": false,
+    "hasPart": {
+      "@type": "WebPageElement",
+      "isAccessibleForFree": false,
+      "cssSelector": ".content-block"
+    }
+  }
+  </script>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="../" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="https://videoboost.automatisationboost.com/vente.html" class="nav-link-slide"><span>ShortForge</span><span>ShortForge</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
+    </div>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="https://videoboost.automatisationboost.com/vente.html" class="mob-link mob-link--gold">ShortForge</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
+  </nav>
+</div>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb"><a href="../ressources.html">Ressources</a><span>/</span>Le bouton invisible</div>
+
+    <div class="page-badge">◈ Cas réel · Édition 2026</div>
+    <h1 class="page-title">Mon bouton d'achat était <span>invisible</span></h1>
+    <div class="page-meta">
+      <span>Cas de production</span><span>·</span><span>3 pages touchées</span>
+      <span>·</span><span>Contraste mesuré 1,0 : 1</span><span>·</span><span>Niveau débutant</span>
+    </div>
+
+    <div class="content-block">
+      <p>Le 20 août 2026, j'ai découvert que le bouton d'achat de ma page de vente était <strong>invisible</strong>. Pas cassé : invisible. Le libellé s'affichait en doré, sur un fond doré.</p>
+
+      <p><strong>Quatre de mes automatisations envoyaient les gens vers cette page.</strong> Ils cliquaient, ils arrivaient, ils voyaient un rectangle jaune sans un mot dessus. Je ne sais toujours pas depuis combien de temps.</p>
+
+      <div class="tip-box">
+        <div class="tip-label">⚠ Le vrai sujet</div>
+        <p>Le code était juste. Le navigateur n'a rien signalé. <strong>Aucun outil ne plante quand un texte devient illisible</strong> — c'est la classe de bug la plus coûteuse : celle qui ne crie pas.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2 id="cause">1 · La cause : deux règles, une seule gagne</h2>
+
+      <p>Deux règles CSS visaient le même élément :</p>
+
+      <div class="prompt-card">
+        <div class="prompt-head"><span class="prompt-name">Le conflit</span></div>
+        <pre><code>.content-block a { color: var(--gold); }   /* spécificité 0,1,1 */
+.source-cta      { color: #000; }           /* spécificité 0,1,0 */</code></pre>
+      </div>
+
+      <p>Instinctivement on lit la seconde comme « plus précise » : elle cible une classe unique, faite pour ce bouton. <strong>C'est le contraire.</strong> Le navigateur ne juge pas l'intention, il compte.</p>
+
+      <h3>Comment le compte se fait</h3>
+      <p>Trois nombres, lus de gauche à droite comme un score. Le premier qui diffère tranche, quel que soit l'ordre dans le fichier.</p>
+
+      <div class="table-wrap"><table>
+        <tr><th>Position</th><th>Ce qu'on compte</th><th>Exemple</th></tr>
+        <tr><td>1 — identifiants</td><td>chaque <code>#id</code></td><td><code>#panier</code> → 1,0,0</td></tr>
+        <tr><td>2 — classes</td><td>classes, attributs, pseudo-classes</td><td><code>.source-cta</code> → 0,1,0</td></tr>
+        <tr><td>3 — éléments</td><td>balises et pseudo-éléments</td><td><code>a</code>, <code>::after</code> → 0,0,1</td></tr>
+      </table></div>
+
+      <p><code>.content-block a</code> vaut <strong>0,1,1</strong> — une classe et une balise. <code>.source-cta</code> vaut <strong>0,1,0</strong>. Égalité sur les classes, puis 1 contre 0 sur les éléments. La première gagne, et le bouton hérite de la couleur des liens.</p>
+
+      <div class="divider"></div>
+
+      <h2 id="correctif">2 · Le correctif, et celui qu'il ne faut pas prendre</h2>
+
+      <p>Le réflexe est <code>!important</code>. Il marche, et il rend la feuille de style impossible à débugger la fois suivante : la prochaine exception devra surenchérir.</p>
+
+      <p><strong>Requalifier la classe par son contexte suffit :</strong></p>
+
+      <div class="prompt-card">
+        <div class="prompt-head"><span class="prompt-name">Le correctif</span>
+        <button class="copy-btn" type="button" data-copy>Copier</button></div>
+        <pre><code>.content-block a.source-cta { color: #000; }   /* 0,2,1 — deux classes, une balise */</code></pre>
+      </div>
+
+      <p>Deux classes contre une : la règle reprend la main sans jamais toucher à la cascade générale.</p>
+
+      <div class="divider"></div>
+
+      <h2 id="controle">3 · Le contrôle qui l'attrape</h2>
+
+      <p>Vingt lignes à coller dans la console de n'importe quelle page. Il compare la couleur calculée de chaque texte visible à celle du fond derrière lui, et liste tout ce qui passe sous le seuil lisible — 4,5 : 1 pour du texte courant, 3 : 1 pour du gros.</p>
+
+      <div class="prompt-card">
+        <div class="prompt-head"><span class="prompt-name">Contrôle de contraste — console</span>
+        <button class="copy-btn" type="button" data-copy>Copier le contrôle</button></div>
+        <pre><code>// Colle ceci dans la console de ta page. Il compare, pour chaque element
+// visible portant du texte, la couleur calculee du texte et celle du fond
+// derriere lui, et signale tout ce qui passe sous le seuil lisible.
+(function () {
+  const lum = (c) =&gt; {
+    const [r, g, b] = c.match(/\d+/g).map(Number).map((v) =&gt; {
+      v /= 255;
+      return v &lt;= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  };
+  const fond = (el) =&gt; {
+    let n = el;
+    while (n &amp;&amp; n !== document.documentElement) {
+      const bg = getComputedStyle(n).backgroundColor;
+      if (bg &amp;&amp; !/rgba\(0, 0, 0, 0\)|transparent/.test(bg)) return bg;
+      n = n.parentElement;
+    }
+    return 'rgb(255, 255, 255)';
+  };
+  const vus = [];
+  document.querySelectorAll('*').forEach((el) =&gt; {
+    if (!el.offsetParent &amp;&amp; getComputedStyle(el).position !== 'fixed') return;
+    const txt = [...el.childNodes]
+      .filter((n) =&gt; n.nodeType === 3 &amp;&amp; n.textContent.trim())
+      .map((n) =&gt; n.textContent.trim()).join(' ');
+    if (!txt) return;
+    const s = getComputedStyle(el);
+    const l1 = lum(s.color), l2 = lum(fond(el));
+    const ratio = (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+    const gros = parseFloat(s.fontSize) &gt;= 24 || (parseFloat(s.fontSize) &gt;= 18.66 &amp;&amp; +s.fontWeight &gt;= 700);
+    const seuil = gros ? 3 : 4.5;
+    if (ratio &lt; seuil) vus.push({ ratio: +ratio.toFixed(2), seuil, texte: txt.slice(0, 40), el });
+  });
+  if (!vus.length) { console.log('Aucun texte sous le seuil.'); return; }
+  console.table(vus.sort((a, b) =&gt; a.ratio - b.ratio));
+})();</code></pre>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">⚡ Le détail qui compte</div>
+        <p>Il remonte l'arbre pour trouver le vrai fond. Un texte posé sur un conteneur transparent hérite du fond du parent — c'est exactement ce qui rendait mon bouton illisible sans qu'aucune règle ne paraisse fautive.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2 id="lecon">4 · Ce que ça a changé chez moi</h2>
+
+      <p>J'ai lancé le contrôle sur toutes les pages du site. <strong>Trois étaient touchées, pas une.</strong> Le même bouton, la même cause, dupliquée par copier-coller.</p>
+
+      <p>Depuis, je ne me fie plus au rendu supposé : je capture la page servie et je la regarde. Un rendu techniquement parfait peut masquer exactement ce qu'on voulait montrer.</p>
+
+      <p><strong>Ce qui est cassé ne crie pas.</strong> C'est la seule leçon de cette histoire, et elle vaut bien au-delà du CSS.</p>
+
+      <div class="divider"></div>
+
+      <h2 id="accompagnement">Si tu veux qu'on regarde ton site</h2>
+      <p>Ce contrôle attrape les contrastes. Il ne dit pas si ta page convertit. Si tu veux qu'on regarde ce que ton site coûte et où il perd des gens, on commence par un audit — et si le calcul ne tombe pas en ta faveur, je te le dis.</p>
+      <a href="/#contact" class="source-cta">Recevoir mon audit</a>
+
+      <p style="margin-top:48px;font-size:13px;color:var(--text-muted);letter-spacing:.04em;">LE BOUTON INVISIBLE | TONY PAYET / AUTOMATION BOOST | 2026 EDITION</p>
+      <a class="nav-back" href="../ressources.html">← Toutes les ressources</a>
+    </div>
+  </div>
+</section>
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+
+  document.querySelectorAll('.copy-btn[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var card = btn.closest('.prompt-card');
+      var code = card ? card.querySelector('code') : null;
+      if (!code) return;
+      var text = code.innerText;
+      var done = function () {
+        var original = btn.dataset.original || btn.textContent;
+        btn.dataset.original = original;
+        btn.textContent = 'Copié ✓';
+        btn.classList.add('copied');
+        setTimeout(function () {
+          btn.textContent = btn.dataset.original;
+          btn.classList.remove('copied');
+        }, 2000);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(function () { fallback(text, done); });
+      } else {
+        fallback(text, done);
+      }
+    });
+  });
+
+  function fallback(text, done) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'absolute';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); done(); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+</script>
+<script src="../assets/js/lead-popup.js?v=20260716b" defer></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="/assets/js/theme.js?v=20260717n" defer></script>
+</body>
+</html>
