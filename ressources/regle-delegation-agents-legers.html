@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-0SRZVQ1WGD');
+  </script>
+  <meta charset="UTF-8" />
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1713977213196523');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1713977213196523&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ton IA te coûte trop cher parce qu'elle lit des logs — la règle de délégation – AutomationBoost</title>
+  <meta name="description" content="La règle pour garder le modèle premium sur les décisions et envoyer le travail de fourmi sur des agents légers. Chiffrée sur un audit de 132 sessions : la relecture du contexte pesait 59 % du coût." />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Sora',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px;flex-wrap:wrap; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:820px; }
+    .content-block h2 { font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:48px 0 16px;scroll-margin-top:110px; }
+    .content-block h3 { font-family:'Sora',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:8px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    /* Le bouton doit rester noir sur or : sans cette requalification,
+       le selecteur de lien du content-block gagne et le libelle devient
+       dore sur fond dore, donc illisible. */
+    .content-block a.source-cta { color:#000; }
+    .content-block a.source-cta:hover { color:#000;text-decoration:none; }
+    .content-block a.nav-back { color:var(--text-muted); }
+    .content-block a.nav-back:hover { color:var(--gold); }
+
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+
+    /* Sommaire */
+    .toc { background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;margin:32px 0; }
+    .toc-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px; }
+    .toc ol { list-style:none;padding:0;margin:0;counter-reset:toc; }
+    .toc li { counter-increment:toc;margin-bottom:10px;padding-left:2.2rem;position:relative;line-height:1.5; }
+    .toc li::before { content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:1px;font-family:'Sora',sans-serif;font-size:.78rem;font-weight:700;color:var(--gold);background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.28);border-radius:4px;padding:2px 6px; }
+    .toc a { color:var(--text);font-weight:600;text-decoration:none;font-size:15px; }
+    .toc a:hover { color:var(--gold); }
+    .toc .toc-sub { display:block;color:var(--text-muted);font-size:13px;font-weight:400;margin-top:2px; }
+
+    /* Blocs prompt copiables */
+    .prompt-card { border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin:20px 0;background:#0a0a0a; }
+    .prompt-head { display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px;background:#111117;border-bottom:1px solid #232330;flex-wrap:wrap; }
+    .prompt-name { font-family:'Sora',sans-serif;font-size:12px;font-weight:700;color:#eab308;letter-spacing:.05em;text-transform:uppercase; }
+    .copy-btn { display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:#000;font-family:'Sora',sans-serif;font-size:12px;font-weight:700;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;transition:all .2s;line-height:1; }
+    .copy-btn:hover { background:var(--gold-dark);transform:translateY(-1px); }
+    .copy-btn.copied { background:#eab308;color:#0a0a0a; }
+    .prompt-card pre { margin:0;padding:18px 20px;overflow-x:auto;background:#0a0a0a; }
+    .prompt-card code { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px;line-height:1.7;color:#a3e635;white-space:pre-wrap;word-break:break-word;display:block; }
+
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto;white-space:pre-wrap; }
+
+    /* Tableaux */
+    .table-wrap { overflow-x:auto;margin:20px 0;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-card); }
+    .table-wrap table { width:100%;border-collapse:collapse;min-width:520px;font-size:15px; }
+    .table-wrap th { text-align:left;font-family:'Sora',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gold);padding:12px 16px;border-bottom:1px solid var(--border);background:var(--bg-card-2);white-space:nowrap; }
+    .table-wrap td { padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-light);line-height:1.6;vertical-align:top; }
+    .table-wrap tr:last-child td { border-bottom:none; }
+    .table-wrap td:first-child { color:var(--text);font-weight:600;white-space:nowrap; }
+    .table-wrap code { font-family:ui-monospace,monospace;font-size:.9em;color:var(--gold); }
+
+    .prompt-intro { color:var(--text-muted);font-size:14px;margin:0 0 8px; }
+    .prompt-intro strong { color:var(--text); }
+
+    .source-cta { display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#000;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;padding:14px 28px;border-radius:var(--radius);text-decoration:none;margin-top:40px;transition:all .2s; }
+    .source-cta:hover { background:var(--gold-dark);transform:translateY(-2px);text-decoration:none; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+
+    .content-block ol.numbered-list { counter-reset:num;padding-left:0; }
+    .content-block ol.numbered-list li { list-style:none;counter-increment:num;padding-left:2.4rem;position:relative;margin-bottom:14px; }
+    .content-block ol.numbered-list li::before { content:counter(num);position:absolute;left:0;top:0;width:1.6rem;height:1.6rem;display:flex;align-items:center;justify-content:center;background:rgba(234,179,8,0.14);border:1px solid rgba(234,179,8,0.3);border-radius:50%;color:var(--gold);font-weight:700;font-family:'Sora',sans-serif;font-size:0.8em; }
+
+    .content-block p, .content-block li { font-size:17px; line-height:1.75; }
+    .page-title, .content-block h2, .content-block h3 { font-family:'Sora',sans-serif; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Devis et propositions commerciales automatiques : le workflow n8n nœud par nœud",
+    "description": "Le workflow n8n qui transforme un formulaire d\u2019audit en proposition commerciale PDF envoyée par email. Huit nœuds décrits un par un, et les trois endroits où ça casse.",
+    "url": "https://automatisationboost.com/ressources/devis-proposition-automatique.html",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://automatisationboost.com/ressources/devis-proposition-automatique.html"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "url": "https://automatisationboost.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://automatisationboost.com/assets/images/logo.svg"
+      }
+    },
+    "isAccessibleForFree": false,
+    "hasPart": {
+      "@type": "WebPageElement",
+      "isAccessibleForFree": false,
+      "cssSelector": ".content-block"
+    }
+  }
+  </script>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="../" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="https://videoboost.automatisationboost.com/vente.html" class="nav-link-slide"><span>ShortForge</span><span>ShortForge</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
+    </div>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="https://videoboost.automatisationboost.com/vente.html" class="mob-link mob-link--gold">ShortForge</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
+  </nav>
+</div>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>La règle de délégation
+    </div>
+
+    <div class="page-badge">◈ Méthode · chiffrée sur 132 sessions</div>
+    <h1 class="page-title">Ton IA te coûte trop cher parce qu'elle <span>lit des logs</span></h1>
+    <div class="page-meta">
+      <span>Règle de délégation</span><span>·</span>
+      <span>Mesuré, pas estimé</span><span>·</span>
+      <span>Applicable en 20 minutes</span>
+    </div>
+
+    <div class="content-block">
+      <p>Le modèle le plus cher que tu paies passe le plus clair de son temps à faire du travail de
+      fourmi : ouvrir vingt fichiers pour en retenir deux lignes, dérouler un journal d'erreurs,
+      compter des occurrences. Ce travail-là n'a besoin d'aucun jugement. Il a besoin de patience.</p>
+
+      <p>Et il y a pire que le prix du travail lui-même — c'est ce qu'il laisse derrière.</p>
+    </div>
+
+    <div class="tip-box">
+      <span class="tip-label">Le chiffre qui change la façon de voir</span>
+      <p>Sur un audit réel de <strong>132 sessions et environ 17 000 tours de conversation</strong> :
+      <strong>3 délégations</strong> en tout, <strong>~65 %</strong> des tours exécutés directement
+      par le modèle premium — et surtout, la <strong>relecture du contexte représentait ~59 % du
+      coût total en jetons</strong>. Pas la génération : la <em>relecture</em>.</p>
+    </div>
+
+    <div class="content-block">
+      <p>C'est le point que presque personne ne voit. Quand ton modèle premium déroule un gros
+      résultat de recherche dans la conversation, ce texte ne coûte pas une fois. Il reste dans le
+      fil, et il est <strong>refacturé à chaque tour suivant</strong>. Une seule commande bavarde
+      en début de session se paie encore trente échanges plus tard.</p>
+
+      <p>Déléguer ne sert donc pas seulement à payer un tarif plus bas sur la tâche. Ça sert à ce
+      que <em>le bruit n'entre jamais dans le contexte cher</em>. L'agent secondaire absorbe les
+      quatre cents lignes de sortie et ne remonte que la conclusion. C'est structurel, et c'est là
+      qu'est le gros de l'économie.</p>
+    </div>
+
+    <div class="toc">
+      <div class="toc-label">La règle, en trois parties</div>
+      <ol>
+        <li><a href="#deleguer">Ce qui part sur un agent léger</a><span class="toc-sub">Le critère tient en une phrase</span></li>
+        <li><a href="#garder">Ce qui ne part jamais</a><span class="toc-sub">Déléguer ça coûte plus cher que de le faire</span></li>
+        <li><a href="#paquet">Le paquet de transmission</a><span class="toc-sub">La raison n°1 des délégations ratées</span></li>
+      </ol>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2 id="deleguer">1. Ce qui part sur un agent léger</h2>
+
+    <div class="content-block">
+      <p>Le critère tient en une phrase : <strong>si la tâche produit beaucoup de texte dont tu ne
+      garderas qu'une conclusion, elle se délègue.</strong></p>
+
+      <ul>
+        <li><strong>Toute recherche qui ratisse.</strong> Un <em>grep</em> sur tout un dépôt, un
+        historique de versions sur cent commits, la fin d'un gros journal. Tu veux la réponse, pas
+        les quatre cents lignes qui y mènent.</li>
+        <li><strong>Se repérer dans du code qu'on ne connaît pas.</strong> Ouvrir cinq ou six
+        fichiers pour comprendre comment un module est branché. La lecture est volumineuse, le
+        résultat tient en un paragraphe.</li>
+        <li><strong>Les vérifications après coup.</strong> Est-ce que la page répond ? Est-ce que
+        le rendu est correct ? Est-ce que le déploiement est passé ? Réponses courtes, chemin
+        long.</li>
+        <li><strong>Explorer une API ou un outil pour trouver quelque chose</strong>, par
+        opposition à faire un appel précis dont tu connais déjà la cible.</li>
+        <li><strong>Toute modification qui demande de beaucoup lire avant de peu écrire.</strong></li>
+      </ul>
+
+      <p>Le point commun : le rapport entre le volume traversé et le volume utile est très
+      défavorable. C'est exactement ce qu'il ne faut pas laisser s'accumuler dans un contexte cher.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2 id="garder">2. Ce qui ne part jamais</h2>
+
+    <div class="content-block">
+      <p>La symétrie est aussi importante que la règle. Déléguer ces tâches-là dégrade le résultat
+      <em>et</em> coûte plus cher, parce qu'il faut ensuite tout reprendre.</p>
+
+      <ul>
+        <li><strong>Les décisions d'architecture.</strong> Quoi construire, dans quel ordre, avec
+        quel compromis. Ça ne se sous-traite pas à un modèle qui n'a pas le contexte du métier.</li>
+        <li><strong>Le diagnostic d'un échec.</strong> Quand quelque chose casse sans raison
+        apparente, c'est précisément le moment où le raisonnement coûteux est rentable. Un agent
+        léger va proposer la cause la plus probable ; or les vraies pannes sont rarement les plus
+        probables.</li>
+        <li><strong>La synthèse finale et l'appréciation du risque</strong>, sur les éléments que
+        l'agent secondaire a rapportés. Il collecte, tu tranches.</li>
+        <li><strong>Une modification d'une ligne dans un fichier déjà ouvert.</strong> Monter une
+        délégation coûte plus que la tâche elle-même. Le bon sens reste la règle supérieure.</li>
+        <li><strong>Tout ce qui sort vers l'extérieur</strong> — publier, envoyer, facturer,
+        supprimer. Pas pour une raison de coût : pour une raison de responsabilité.</li>
+      </ul>
+    </div>
+
+    <div class="tip-box">
+      <span class="tip-label">Le piège du raisonnement</span>
+      <p>« Cette tâche est simple, donc je la garde, ce sera plus rapide. » C'est vrai une fois.
+      C'est faux à la trentième — parce que ce qui coûte n'est pas la tâche, c'est la trace qu'elle
+      laisse dans le fil. <strong>Juge au volume produit, pas à la difficulté.</strong></p>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2 id="paquet">3. Le paquet de transmission</h2>
+
+    <div class="content-block">
+      <p>C'est ici que la plupart des délégations échouent, et l'erreur est toujours la même.</p>
+
+      <p><strong>Un agent lancé démarre à froid.</strong> Il n'a pas lu la conversation, il ne sait
+      pas ce que tu viens d'écarter, il ne connaît pas le nom du fichier dont vous parlez depuis
+      dix minutes. Écrire « à partir de ce qui précède, corrige le problème » garantit un résultat
+      inutilisable — et tu paieras deux fois : la délégation ratée, puis le travail refait.</p>
+
+      <p>Un paquet correct contient quatre choses, et pas une de moins :</p>
+
+      <ol class="numbered-list">
+        <li><strong>Où chercher.</strong> Les chemins exacts, pas « dans le projet ».</li>
+        <li><strong>Ce qui est déjà écarté.</strong> Les pistes explorées et abandonnées, sinon
+        l'agent les refera toutes.</li>
+        <li><strong>À quoi ressemble « terminé ».</strong> Le critère de réussite, formulé de façon
+        vérifiable.</li>
+        <li><strong>Ce qu'il doit rapporter.</strong> La conclusion attendue — sinon il te renvoie
+        les quatre cents lignes que tu voulais justement éviter, et toute l'économie est perdue.</li>
+      </ol>
+
+      <p>Le quatrième point est le plus oublié, et c'est celui qui annule le bénéfice quand il
+      manque.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2>Ce que ça donne vraiment</h2>
+
+    <div class="content-block">
+      <p>Sur l'écart de tarif : il dépend entièrement des deux modèles que tu associes. Un modèle
+      léger coûte couramment plusieurs fois moins qu'un modèle de raisonnement — l'ordre de grandeur
+      annoncé est réaliste, mais <strong>vérifie-le sur la grille de ton fournisseur plutôt que de
+      me croire.</strong> Le chiffre bouge à chaque nouvelle version.</p>
+
+      <p>L'économie structurelle, elle, ne dépend d'aucune grille tarifaire : c'est le contexte qui
+      ne gonfle pas. Sur l'audit cité plus haut, la relecture pesait <strong>~59 % du coût</strong>.
+      C'est cette part-là qu'on attaque en empêchant le bruit d'entrer, et elle est indépendante du
+      prix affiché des modèles.</p>
+
+      <p>Et une chose que cette méthode <strong>ne fait pas</strong> : elle ne rend pas un mauvais
+      découpage rentable. Si tu délègues une tâche mal définie, tu paies un agent léger pour
+      produire quelque chose d'inutilisable, puis le modèle cher pour tout reprendre. La règle ne
+      remplace pas le fait de savoir ce que tu veux.</p>
+    </div>
+
+    <a href="/#contact" class="source-cta">Tu veux qu'on l'installe sur ton système ? → voir mon audit</a>
+
+    <p style="margin-top:48px;font-size:13px;color:var(--text-muted);letter-spacing:.04em;">FABLE | TONY PAYET / AUTOMATION BOOST | 2026</p>
+    <a class="nav-back" href="../ressources.html">← Toutes les ressources</a>
+  </div>
+</section>
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+
+  document.querySelectorAll('.copy-btn[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var card = btn.closest('.prompt-card');
+      var code = card ? card.querySelector('code') : null;
+      if (!code) return;
+      var text = code.innerText;
+      var done = function () {
+        var original = btn.dataset.original || btn.textContent;
+        btn.dataset.original = original;
+        btn.textContent = 'Copié ✓';
+        btn.classList.add('copied');
+        setTimeout(function () {
+          btn.textContent = btn.dataset.original;
+          btn.classList.remove('copied');
+        }, 2000);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(function () { fallback(text, done); });
+      } else {
+        fallback(text, done);
+      }
+    });
+  });
+
+  function fallback(text, done) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'absolute';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); done(); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+</script>
+<script src="../assets/js/lead-popup.js?v=20260716b" defer></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="/assets/js/theme.js?v=20260717n" defer></script>
+</body>
+</html>
