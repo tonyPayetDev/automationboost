@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-0SRZVQ1WGD');
+  </script>
+  <meta charset="UTF-8" />
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1713977213196523');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1713977213196523&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ton propre Claude Code accessible du téléphone — VPS, Coolify, MCP – AutomationBoost</title>
+  <meta name="description" content="Le guide complet pour déployer ton propre terminal Claude Code sur un VPS avec Coolify, y brancher tes MCP, et le déclencher depuis ton téléphone. Avec les quatre pannes que tu auras et ce qu'elles sont vraiment." />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Sora',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px;flex-wrap:wrap; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:820px; }
+    .content-block h2 { font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:48px 0 16px;scroll-margin-top:110px; }
+    .content-block h3 { font-family:'Sora',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:8px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    /* Le bouton doit rester noir sur or : sans cette requalification,
+       le selecteur de lien du content-block gagne et le libelle devient
+       dore sur fond dore, donc illisible. */
+    .content-block a.source-cta { color:#000; }
+    .content-block a.source-cta:hover { color:#000;text-decoration:none; }
+    .content-block a.nav-back { color:var(--text-muted); }
+    .content-block a.nav-back:hover { color:var(--gold); }
+
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+
+    /* Sommaire */
+    .toc { background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;margin:32px 0; }
+    .toc-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px; }
+    .toc ol { list-style:none;padding:0;margin:0;counter-reset:toc; }
+    .toc li { counter-increment:toc;margin-bottom:10px;padding-left:2.2rem;position:relative;line-height:1.5; }
+    .toc li::before { content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:1px;font-family:'Sora',sans-serif;font-size:.78rem;font-weight:700;color:var(--gold);background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.28);border-radius:4px;padding:2px 6px; }
+    .toc a { color:var(--text);font-weight:600;text-decoration:none;font-size:15px; }
+    .toc a:hover { color:var(--gold); }
+    .toc .toc-sub { display:block;color:var(--text-muted);font-size:13px;font-weight:400;margin-top:2px; }
+
+    /* Blocs prompt copiables */
+    .prompt-card { border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin:20px 0;background:#0a0a0a; }
+    .prompt-head { display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px;background:#111117;border-bottom:1px solid #232330;flex-wrap:wrap; }
+    .prompt-name { font-family:'Sora',sans-serif;font-size:12px;font-weight:700;color:#eab308;letter-spacing:.05em;text-transform:uppercase; }
+    .copy-btn { display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:#000;font-family:'Sora',sans-serif;font-size:12px;font-weight:700;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;transition:all .2s;line-height:1; }
+    .copy-btn:hover { background:var(--gold-dark);transform:translateY(-1px); }
+    .copy-btn.copied { background:#eab308;color:#0a0a0a; }
+    .prompt-card pre { margin:0;padding:18px 20px;overflow-x:auto;background:#0a0a0a; }
+    .prompt-card code { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px;line-height:1.7;color:#a3e635;white-space:pre-wrap;word-break:break-word;display:block; }
+
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto;white-space:pre-wrap; }
+
+    /* Tableaux */
+    .table-wrap { overflow-x:auto;margin:20px 0;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-card); }
+    .table-wrap table { width:100%;border-collapse:collapse;min-width:520px;font-size:15px; }
+    .table-wrap th { text-align:left;font-family:'Sora',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gold);padding:12px 16px;border-bottom:1px solid var(--border);background:var(--bg-card-2);white-space:nowrap; }
+    .table-wrap td { padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-light);line-height:1.6;vertical-align:top; }
+    .table-wrap tr:last-child td { border-bottom:none; }
+    .table-wrap td:first-child { color:var(--text);font-weight:600;white-space:nowrap; }
+    .table-wrap code { font-family:ui-monospace,monospace;font-size:.9em;color:var(--gold); }
+
+    .prompt-intro { color:var(--text-muted);font-size:14px;margin:0 0 8px; }
+    .prompt-intro strong { color:var(--text); }
+
+    .source-cta { display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#000;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;padding:14px 28px;border-radius:var(--radius);text-decoration:none;margin-top:40px;transition:all .2s; }
+    .source-cta:hover { background:var(--gold-dark);transform:translateY(-2px);text-decoration:none; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+
+    .content-block ol.numbered-list { counter-reset:num;padding-left:0; }
+    .content-block ol.numbered-list li { list-style:none;counter-increment:num;padding-left:2.4rem;position:relative;margin-bottom:14px; }
+    .content-block ol.numbered-list li::before { content:counter(num);position:absolute;left:0;top:0;width:1.6rem;height:1.6rem;display:flex;align-items:center;justify-content:center;background:rgba(234,179,8,0.14);border:1px solid rgba(234,179,8,0.3);border-radius:50%;color:var(--gold);font-weight:700;font-family:'Sora',sans-serif;font-size:0.8em; }
+
+    .content-block p, .content-block li { font-size:17px; line-height:1.75; }
+    .page-title, .content-block h2, .content-block h3 { font-family:'Sora',sans-serif; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Devis et propositions commerciales automatiques : le workflow n8n nœud par nœud",
+    "description": "Le workflow n8n qui transforme un formulaire d\u2019audit en proposition commerciale PDF envoyée par email. Huit nœuds décrits un par un, et les trois endroits où ça casse.",
+    "url": "https://automatisationboost.com/ressources/devis-proposition-automatique.html",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://automatisationboost.com/ressources/devis-proposition-automatique.html"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "url": "https://automatisationboost.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://automatisationboost.com/assets/images/logo.svg"
+      }
+    },
+    "isAccessibleForFree": false,
+    "hasPart": {
+      "@type": "WebPageElement",
+      "isAccessibleForFree": false,
+      "cssSelector": ".content-block"
+    }
+  }
+  </script>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="../" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="https://videoboost.automatisationboost.com/vente.html" class="nav-link-slide"><span>ShortForge</span><span>ShortForge</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
+    </div>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="https://videoboost.automatisationboost.com/vente.html" class="mob-link mob-link--gold">ShortForge</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
+  </nav>
+</div>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Ton terminal Claude Code
+    </div>
+
+    <div class="page-badge">◈ Guide · VPS + Coolify</div>
+    <h1 class="page-title">Ton propre Claude Code, <span>accessible depuis ton téléphone</span></h1>
+    <div class="page-meta">
+      <span>3 étapes</span><span>·</span>
+      <span>3 à 7 h de mise en place</span><span>·</span>
+      <span>Niveau intermédiaire</span><span>·</span>
+      <span>Linux en ligne de commande requis</span>
+    </div>
+
+    <div class="content-block">
+      <p>L'application mobile te donne une conversation. Ce qui suit te donne autre chose : un
+      <strong>terminal</strong> qui tourne en permanence sur ta propre machine, qui voit tes
+      fichiers, tes dépôts et tes automatisations, et que tu peux déclencher depuis ton téléphone
+      — dans la file d'attente, chez le coiffeur, n'importe où.</p>
+
+      <p>La différence n'est pas le confort, c'est ce qu'il peut faire. Une conversation te répond.
+      Un terminal <em>agit</em> : il écrit dans tes fichiers, lance tes scripts, commite, déploie.
+      Et comme il tourne chez toi, il n'oublie rien entre deux sessions.</p>
+    </div>
+
+    <div class="tip-box">
+      <span class="tip-label">À lire avant de commencer</span>
+      <p>Ce guide décrit un <strong>montage à reproduire chez toi</strong>, pas un service à
+      acheter. Tu auras besoin d'un serveur à toi, d'un nom de domaine, et d'être à l'aise avec
+      une ligne de commande Linux. Si ces trois mots te sont étrangers, commence par autre chose —
+      ce n'est pas une question d'intelligence, c'est une question d'heures.</p>
+    </div>
+
+    <div class="toc">
+      <div class="toc-label">Ce que tu vas monter</div>
+      <ol>
+        <li><a href="#vps">Un VPS</a><span class="toc-sub">La machine qui ne s'éteint jamais</span></li>
+        <li><a href="#coolify">Coolify</a><span class="toc-sub">Ce qui remplace « je bricole en SSH »</span></li>
+        <li><a href="#deployer">Claude Code en conteneur</a><span class="toc-sub">Et pourquoi il tourne sous un utilisateur non-root</span></li>
+        <li><a href="#mcp">Tes MCP</a><span class="toc-sub">Le piège qui fait perdre une soirée</span></li>
+        <li><a href="#telephone">L'appeler depuis le téléphone</a><span class="toc-sub">Deux chemins, un seul tient la route</span></li>
+        <li><a href="#casse">Ce qui casse vraiment</a><span class="toc-sub">Les quatre pannes que tu auras</span></li>
+      </ol>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2 id="vps">1. Un VPS — la machine qui ne s'éteint jamais</h2>
+
+    <div class="content-block">
+      <p>Un VPS est un ordinateur loué, allumé en permanence, chez un hébergeur. C'est la seule
+      pièce que tu ne peux pas remplacer par autre chose : il faut une machine qui reste debout
+      quand ton portable est fermé.</p>
+
+      <p>Deux critères, et un seul compte vraiment :</p>
+
+      <ul>
+        <li><strong>La mémoire vive.</strong> C'est là que ça se joue. Un agent qui code ouvre des
+        processus, un navigateur sans interface, parfois un encodage vidéo. Quand la RAM sature,
+        les symptômes ne ressemblent pas du tout à un manque de mémoire : un rendu s'arrête au
+        milieu, une commande meurt sans message. Tu chercheras le bug pendant une heure au mauvais
+        endroit.</li>
+        <li><strong>Le disque.</strong> Moins critique, mais il se remplit sans prévenir — images
+        Docker, journaux, anciens déploiements. Un disque plein bloque les déploiements avec des
+        messages qui parlent de tout sauf de disque.</li>
+      </ul>
+
+      <p>Le processeur n'est pas le sujet : le modèle ne tourne pas chez toi, il répond depuis les
+      serveurs d'Anthropic. Ta machine ne fait qu'orchestrer.</p>
+    </div>
+
+    <div class="tip-box">
+      <span class="tip-label">Le réflexe qui fait gagner une heure</span>
+      <p>Avant d'accuser un script, regarde la mémoire disponible et l'espace disque. Sur ce
+      montage, la cause la plus fréquente d'un « ça a planté sans rien dire » est une session
+      abandonnée qui n'a jamais rendu sa mémoire. <strong>Vérifie la machine avant de déboguer le
+      code.</strong></p>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2 id="coolify">2. Coolify — ce qui remplace « je bricole en SSH »</h2>
+
+    <div class="content-block">
+      <p>Coolify est une interface que tu installes sur ton VPS pour déployer des applications
+      sans écrire de fichiers de configuration à la main. C'est ce qui transforme un serveur nu en
+      quelque chose que tu peux piloter depuis un navigateur — y compris depuis un téléphone.</p>
+
+      <p>Tu t'en serviras pour trois choses : héberger Claude Code, héberger tes autres outils
+      (une instance n8n, tes sites), et surtout <strong>redémarrer quelque chose quand tu n'es pas
+      devant ton ordinateur</strong>.</p>
+    </div>
+
+    <div class="tip-box">
+      <span class="tip-label">Le piège qui coûte le plus de temps perdu</span>
+      <p><strong>Coolify ne redéploie pas tout seul quand tu pousses sur Git.</strong> Tu pousses,
+      tu rafraîchis la page, tu ne vois aucun changement, et tu conclus que ton code est faux. Il
+      ne l'est pas : le déploiement n'a jamais été déclenché. Il faut le lancer — depuis
+      l'interface, ou par un appel à son API. Note-le quelque part maintenant, tu te feras avoir
+      une fois quand même.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2 id="deployer">3. Claude Code en conteneur</h2>
+
+    <div class="content-block">
+      <p>Claude Code s'installe dans un conteneur Docker que Coolify gère comme n'importe quelle
+      autre application. Le conteneur monte le dossier de travail que tu veux lui confier — tes
+      dépôts, tes projets — et c'est tout ce qu'il voit.</p>
+
+      <h3>L'utilisateur non-root, et pourquoi ça n'est pas un détail</h3>
+
+      <p>Fais tourner le processus sous un utilisateur normal, pas sous <code>root</code>. La
+      raison est très concrète : si l'agent écrit dans ton dépôt Git en tant que root, une partie
+      des fichiers internes de Git appartiendra à root. Plus tard, tes commits échoueront —
+      <strong>pas systématiquement, une fois sur vingt</strong>, ce qui est bien pire qu'une panne
+      franche : tu croiras à un problème réseau, à un verrou, à n'importe quoi d'autre.</p>
+
+      <p>Concrètement, on appelle le binaire en imposant l'utilisateur :</p>
+
+      <div class="code-block">docker exec -i -u 1000:1000 &lt;nom-du-conteneur&gt; \
+  claude -p --dangerously-skip-permissions "&lt;ta consigne&gt;"</div>
+
+      <p>Deux options méritent une explication :</p>
+
+      <ul>
+        <li><code>-p</code> exécute une consigne et rend la réponse sur la sortie standard, sans
+        session interactive. C'est ce qui rend l'appel utilisable depuis un script.</li>
+        <li><code>--dangerously-skip-permissions</code> supprime les demandes de confirmation.
+        Sans elle, l'appel reste bloqué à attendre un « oui » que personne ne tapera. Le nom est
+        volontairement alarmant : <strong>ne mets ce conteneur en contact qu'avec des dossiers que
+        tu acceptes de voir modifiés.</strong></li>
+      </ul>
+
+      <h3>Ce que ça coûte, et ce que ça ne coûte pas</h3>
+
+      <p>Ce montage consomme ton <strong>abonnement</strong>, pas une facturation à l'usage. C'est
+      exactement l'inverse d'un appel d'API classique, où chaque requête est débitée d'un solde de
+      crédits. La distinction devient très concrète le jour où ton solde d'API tombe à zéro et où
+      la moitié de tes automatisations s'arrête — pendant que ce terminal-là, lui, continue de
+      répondre.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2 id="mcp">4. Tes MCP — le piège qui fait perdre une soirée</h2>
+
+    <div class="content-block">
+      <p>Les MCP sont les connecteurs qui donnent à l'agent l'accès à tes outils. Et il y a ici une
+      limite qu'aucune documentation ne met en avant, parce qu'elle ne se voit pas sur un poste de
+      travail.</p>
+
+      <p><strong>Il existe deux façons pour un serveur MCP de communiquer :</strong> en lançant un
+      programme local et en lui parlant par son entrée-sortie (<code>stdio</code>), ou par le
+      réseau (HTTP / SSE).</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Transport</th><th>Sur ton ordinateur</th><th>Dans le conteneur</th></tr></thead>
+          <tbody>
+            <tr><td>stdio</td><td>fonctionne</td><td><strong>ne se connecte pas</strong></td></tr>
+            <tr><td>HTTP / SSE</td><td>fonctionne</td><td>fonctionne</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Un serveur en <code>stdio</code> suppose qu'il peut démarrer un programme sur la même
+      machine que le client. Dans un conteneur qui n'a ni ce programme ni son environnement, la
+      connexion échoue — <strong>et l'échec ressemble à une erreur de configuration.</strong> Tu
+      relis ton fichier de config dix fois, tu changes les chemins, tu recommences. Le fichier est
+      bon ; c'est le transport qui ne passe pas.</p>
+
+      <p>La règle est donc simple, et elle conditionne le choix de tes outils :
+      <em>dans ce montage, ne retiens que les MCP joignables par HTTP ou SSE.</em> Ça écarte
+      certains connecteurs pratiques — mieux vaut le savoir avant de bâtir dessus qu'après.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2 id="telephone">5. L'appeler depuis ton téléphone</h2>
+
+    <div class="content-block">
+      <p>C'est la partie qui donne son intérêt à tout le reste. Deux chemins, et ils ne se valent
+      pas.</p>
+
+      <h3>Le terminal web</h3>
+      <p>Coolify donne un accès console dans le navigateur. Ça marche, et c'est parfait pour
+      dépanner. Mais taper des commandes sur un clavier de téléphone, dans une file d'attente,
+      n'est agréable à personne. À réserver à l'urgence.</p>
+
+      <h3>Un déclencheur qui fait le travail — la bonne réponse</h3>
+      <p>Le vrai usage mobile, ce n'est pas de taper des commandes : c'est de <strong>déclencher
+      une tâche déjà écrite</strong>. Tu montes un webhook dans ton outil d'automatisation, il
+      ouvre une connexion SSH vers le serveur, exécute la commande vue plus haut, et te renvoie la
+      réponse — par message, par email, comme tu veux. Depuis ton téléphone, tu remplis un champ
+      et tu ranges le téléphone.</p>
+
+      <p>Trois choses à savoir avant de brancher ça sur quoi que ce soit de sérieux :</p>
+
+      <ol class="numbered-list">
+        <li><strong>La réponse est du texte libre, pas des données structurées.</strong> Si la
+        suite de ta chaîne attend un format précis, demande-le explicitement dans la consigne
+        <em>et</em> vérifie le résultat derrière. Sinon tu recevras une phrase là où tu attendais
+        un objet.</li>
+        <li><strong>Ce n'est pas instantané.</strong> L'appel traverse le réseau, le conteneur,
+        puis une génération complète. On compte en dizaines de secondes, pas en millisecondes. Sur
+        un webhook qui doit répondre tout de suite à quelqu'un, passe en asynchrone.</li>
+        <li><strong>La consigne doit être sans ambiguïté.</strong> Le modèle interprète : si ton
+        gabarit dit une chose et ta consigne réelle une autre, il suivra la consigne réelle et te
+        le dira. C'est une qualité chez un humain, un piège dans une chaîne automatique.</li>
+      </ol>
+
+      <p>Et surtout : <strong>protège ce déclencheur.</strong> Une URL qui exécute des commandes
+      sur ton serveur ne doit pas être devinable. Mets une authentification dessus, dès le premier
+      jour, pas « plus tard ».</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2 id="casse">Ce qui casse vraiment</h2>
+
+    <div class="content-block">
+      <p>Les quatre pannes que tu auras, dans l'ordre de fréquence. Aucune ne se présente sous son
+      vrai nom — c'est précisément ce qui les rend coûteuses.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Ce que tu vois</th><th>Ce que c'est vraiment</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Un traitement s'arrête au milieu, sans erreur</td>
+              <td>La mémoire vive est saturée, souvent par des sessions abandonnées qui ne se sont
+              jamais fermées</td>
+            </tr>
+            <tr>
+              <td>Un déploiement échoue avec un message obscur</td>
+              <td>Le disque est plein. Le journal du déploiement le dit, la notification non</td>
+            </tr>
+            <tr>
+              <td>Un commit échoue une fois sur vingt</td>
+              <td>Des fichiers internes de Git appartiennent à root — voir l'utilisateur non-root
+              plus haut</td>
+            </tr>
+            <tr>
+              <td>Ton code modifié ne change rien en ligne</td>
+              <td>Le déploiement n'a jamais été déclenché ; pousser sur Git ne suffit pas</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Une cinquième, plus sournoise : <strong>ce qui est mis en cache devant ton site.</strong>
+      Si tu passes par un service comme Cloudflare, il garde les réponses — et les en-têtes —
+      plusieurs heures. Tu corriges quelque chose, tu recharges, rien ne bouge, tu recorriges. Pour
+      vérifier une correction, ajoute toujours un paramètre inutile à l'URL
+      (<code>?x=123</code>) : ça force une vraie réponse au lieu d'une copie.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2>Est-ce que ça vaut le coup ?</h2>
+
+    <div class="content-block">
+      <p>Comptez trois à sept heures pour la mise en place, selon votre aisance avec un serveur.
+      C'est un investissement, pas un après-midi.</p>
+
+      <p>Ce que ça change : le temps mort redevient du temps de travail. Une idée qui arrive dans
+      une file d'attente devient une tâche lancée, pas une note qu'on relira jamais. Et ce que
+      l'agent produit reste sur <em>ta</em> machine, dans <em>tes</em> dépôts.</p>
+
+      <p>Ce que ça ne change pas, et qu'il faut entendre : <strong>ça n'écrit pas ta stratégie à ta
+      place.</strong> Un terminal qui exécute vite amplifie ce que tu lui demandes — y compris les
+      mauvaises décisions. L'outil sert ceux qui savaient déjà quoi faire et manquaient de temps.
+      Si le problème est ailleurs, ce montage ne le réglera pas.</p>
+    </div>
+
+    <a href="/#contact" class="source-cta">Tu veux qu'on le monte ensemble ? → voir mon audit</a>
+
+    <p style="margin-top:48px;font-size:13px;color:var(--text-muted);letter-spacing:.04em;">TERMINAL | TONY PAYET / AUTOMATION BOOST | 2026</p>
+    <a class="nav-back" href="../ressources.html">← Toutes les ressources</a>
+  </div>
+</section>
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+
+  document.querySelectorAll('.copy-btn[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var card = btn.closest('.prompt-card');
+      var code = card ? card.querySelector('code') : null;
+      if (!code) return;
+      var text = code.innerText;
+      var done = function () {
+        var original = btn.dataset.original || btn.textContent;
+        btn.dataset.original = original;
+        btn.textContent = 'Copié ✓';
+        btn.classList.add('copied');
+        setTimeout(function () {
+          btn.textContent = btn.dataset.original;
+          btn.classList.remove('copied');
+        }, 2000);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(function () { fallback(text, done); });
+      } else {
+        fallback(text, done);
+      }
+    });
+  });
+
+  function fallback(text, done) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'absolute';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); done(); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+</script>
+<script src="../assets/js/lead-popup.js?v=20260716b" defer></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="/assets/js/theme.js?v=20260717n" defer></script>
+</body>
+</html>
