@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-0SRZVQ1WGD');
+  </script>
+  <meta charset="UTF-8" />
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1713977213196523');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1713977213196523&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le site qui travaille — publier, capter, relancer sans y penser | Automation Boost</title>
+  <meta name="description" content="Les trois mécanismes qui transforment un site figé en site qui travaille, et les trois pannes silencieuses qui les cassent sans jamais lever d'erreur." />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Sora',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px;flex-wrap:wrap; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:820px; }
+    .content-block h2 { font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:48px 0 16px;scroll-margin-top:110px; }
+    .content-block h3 { font-family:'Sora',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:8px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    /* Le bouton doit rester noir sur or : sans cette requalification,
+       le selecteur de lien du content-block gagne et le libelle devient
+       dore sur fond dore, donc illisible. */
+    .content-block a.source-cta { color:#000; }
+    .content-block a.source-cta:hover { color:#000;text-decoration:none; }
+    .content-block a.nav-back { color:var(--text-muted); }
+    .content-block a.nav-back:hover { color:var(--gold); }
+
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+
+    /* Sommaire */
+    .toc { background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;margin:32px 0; }
+    .toc-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px; }
+    .toc ol { list-style:none;padding:0;margin:0;counter-reset:toc; }
+    .toc li { counter-increment:toc;margin-bottom:10px;padding-left:2.2rem;position:relative;line-height:1.5; }
+    .toc li::before { content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:1px;font-family:'Sora',sans-serif;font-size:.78rem;font-weight:700;color:var(--gold);background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.28);border-radius:4px;padding:2px 6px; }
+    .toc a { color:var(--text);font-weight:600;text-decoration:none;font-size:15px; }
+    .toc a:hover { color:var(--gold); }
+    .toc .toc-sub { display:block;color:var(--text-muted);font-size:13px;font-weight:400;margin-top:2px; }
+
+    /* Blocs prompt copiables */
+    .prompt-card { border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin:20px 0;background:#0a0a0a; }
+    .prompt-head { display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px;background:#111117;border-bottom:1px solid #232330;flex-wrap:wrap; }
+    .prompt-name { font-family:'Sora',sans-serif;font-size:12px;font-weight:700;color:#eab308;letter-spacing:.05em;text-transform:uppercase; }
+    .copy-btn { display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:#000;font-family:'Sora',sans-serif;font-size:12px;font-weight:700;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;transition:all .2s;line-height:1; }
+    .copy-btn:hover { background:var(--gold-dark);transform:translateY(-1px); }
+    .copy-btn.copied { background:#eab308;color:#0a0a0a; }
+    .prompt-card pre { margin:0;padding:18px 20px;overflow-x:auto;background:#0a0a0a; }
+    .prompt-card code { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px;line-height:1.7;color:#a3e635;white-space:pre-wrap;word-break:break-word;display:block; }
+
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto;white-space:pre-wrap; }
+
+    /* Tableaux */
+    .table-wrap { overflow-x:auto;margin:20px 0;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-card); }
+    .table-wrap table { width:100%;border-collapse:collapse;min-width:520px;font-size:15px; }
+    .table-wrap th { text-align:left;font-family:'Sora',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gold);padding:12px 16px;border-bottom:1px solid var(--border);background:var(--bg-card-2);white-space:nowrap; }
+    .table-wrap td { padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-light);line-height:1.6;vertical-align:top; }
+    .table-wrap tr:last-child td { border-bottom:none; }
+    .table-wrap td:first-child { color:var(--text);font-weight:600;white-space:nowrap; }
+    .table-wrap code { font-family:ui-monospace,monospace;font-size:.9em;color:var(--gold); }
+
+    .prompt-intro { color:var(--text-muted);font-size:14px;margin:0 0 8px; }
+    .prompt-intro strong { color:var(--text); }
+
+    .source-cta { display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#000;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;padding:14px 28px;border-radius:var(--radius);text-decoration:none;margin-top:40px;transition:all .2s; }
+    .source-cta:hover { background:var(--gold-dark);transform:translateY(-2px);text-decoration:none; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+
+    .content-block ol.numbered-list { counter-reset:num;padding-left:0; }
+    .content-block ol.numbered-list li { list-style:none;counter-increment:num;padding-left:2.4rem;position:relative;margin-bottom:14px; }
+    .content-block ol.numbered-list li::before { content:counter(num);position:absolute;left:0;top:0;width:1.6rem;height:1.6rem;display:flex;align-items:center;justify-content:center;background:rgba(234,179,8,0.14);border:1px solid rgba(234,179,8,0.3);border-radius:50%;color:var(--gold);font-weight:700;font-family:'Sora',sans-serif;font-size:0.8em; }
+
+    .content-block p, .content-block li { font-size:17px; line-height:1.75; }
+    .page-title, .content-block h2, .content-block h3 { font-family:'Sora',sans-serif; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Devis et propositions commerciales automatiques : le workflow n8n nœud par nœud",
+    "description": "Le workflow n8n qui transforme un formulaire d\u2019audit en proposition commerciale PDF envoyée par email. Huit nœuds décrits un par un, et les trois endroits où ça casse.",
+    "url": "https://automatisationboost.com/ressources/devis-proposition-automatique.html",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://automatisationboost.com/ressources/devis-proposition-automatique.html"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "url": "https://automatisationboost.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://automatisationboost.com/assets/images/logo.svg"
+      }
+    },
+    "isAccessibleForFree": false,
+    "hasPart": {
+      "@type": "WebPageElement",
+      "isAccessibleForFree": false,
+      "cssSelector": ".content-block"
+    }
+  }
+  </script>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="../" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="https://videoboost.automatisationboost.com/vente.html" class="nav-link-slide"><span>ShortForge</span><span>ShortForge</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
+    </div>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="https://videoboost.automatisationboost.com/vente.html" class="mob-link mob-link--gold">ShortForge</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
+  </nav>
+</div>
+
+<section class="res-page">
+  <div class="container"><div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Le site qui travaille
+    </div>
+
+    <div class="page-badge">◈ Système réel · mesuré sur ce site</div>
+    <h1 class="page-title">Un site figé ne coûte rien. <span>Un site qui travaille se construit</span></h1>
+    <div class="page-meta">
+      <span>3 mécanismes</span><span>·</span>
+      <span>Les pièges qui les cassent</span><span>·</span>
+      <span>Août 2026</span>
+    </div>
+
+    <div class="content-block">
+      <p>Tu as commenté <strong>SITE</strong>. Voilà le système, tel qu'il tourne — pas une
+      promesse commerciale. Ce que tu lis est publié par le mécanisme n°1, et si tu laisses ton
+      email sur cette page, c'est le mécanisme n°2 qui te reçoit.</p>
+
+      <p><strong>La différence entre un site figé et un site qui travaille tient en une phrase :</strong>
+      le site figé attend qu'on le mette à jour, le second se met à jour parce qu'autre chose a
+      bougé. Rien de plus. Ce n'est pas une question de technologie, c'est une question de
+      déclencheur.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content-block">
+      <h2>1 — Publier une page cesse d'être un événement</h2>
+      <p>Sur un site classique, publier veut dire ouvrir un back-office, coller, mettre en forme,
+      vérifier, enregistrer. C'est pour ça que personne ne publie : <strong>le coût par page est
+      trop élevé.</strong></p>
+
+      <p>Ici, écrire un fichier <em>est</em> publier. Le site est un dépôt : un fichier ajouté,
+      poussé, et la page existe. C'est ce qui rend tenable d'avoir <strong>plus de deux cents
+      pages de ressources</strong> — pas la discipline, le coût unitaire.</p>
+
+      <p><strong>Le piège qui coûte le plus cher ici, et qu'on ne voit pas :</strong> pousser
+      n'est pas déployer. L'hébergement ne se met pas à jour parce que le dépôt a changé — il
+      faut le lui demander. On croit avoir publié, la page renvoie 404, et on cherche l'erreur
+      dans le fichier. Pire : le CDN met les 404 en cache pendant des heures, donc même après
+      correction la page semble toujours absente. <strong>Deux réflexes suffisent</strong> :
+      déclencher le déploiement explicitement, puis vérifier l'adresse réelle en ajoutant un
+      paramètre inutile (<code>?x=123</code>) pour contourner le cache.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content-block">
+      <h2>2 — La page capte, et la capture va quelque part</h2>
+      <p>Un formulaire qui envoie un email au propriétaire n'est pas un système : c'est une
+      corvée déplacée. Le mécanisme réel tient en trois pièces : la page poste vers un
+      <strong>webhook</strong>, le webhook écrit dans une <strong>table</strong>, la table
+      dédoublonne sur l'email. Personne ne lit une boîte de réception.</p>
+
+      <p><strong>Le défaut qu'on ne détecte jamais tout seul :</strong> le code qui envoie
+      enveloppe souvent l'appel dans un « si ça échoue, tant pis ». Le visiteur voit « c'est
+      envoyé », et si le service derrière est tombé, <strong>l'inscription disparaît sans laisser
+      de trace</strong> — ni erreur, ni alerte, ni ligne dans la table. Vérifié sur ce site :
+      la seule preuve fiable est de compter les lignes réellement écrites, jamais de faire
+      confiance au message de confirmation.</p>
+
+      <p>Deuxième défaut, plus gênant encore : <strong>promettre un email qu'aucun mécanisme
+      n'envoie.</strong> Un écran qui dit « vérifie ta boîte mail » alors que la chaîne s'arrête
+      à l'enregistrement, c'est une promesse rompue au moment exact où la personne vient de faire
+      ce qu'on lui demandait. Soit on envoie, soit on ne le dit pas.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content-block">
+      <h2>3 — La relance part sans que personne y pense</h2>
+      <p>C'est le mécanisme qui transforme le site en travail réel. Un formulaire rempli
+      déclenche la suite : le document est fabriqué, envoyé, et la relance est programmée
+      d'avance. L'intérêt n'est pas la vitesse — c'est que <strong>ça se produit même les jours
+      où on n'y pense pas</strong>, ce qui est précisément quand les affaires se perdent.</p>
+
+      <p>Même logique pour ce qui vient des réseaux : un mot-clé commenté sous une publication
+      déclenche l'envoi de la ressource correspondante. La correspondance entre le mot et la
+      ressource <strong>ne doit jamais être écrite dans le mécanisme lui-même</strong>, sinon
+      chaque nouvelle publication demande une modification technique. Elle vit dans un tableau
+      à part, que n'importe qui peut compléter.</p>
+
+      <p><strong>Et c'est là qu'est la panne la plus fréquente, et la plus invisible :</strong>
+      un mot promis dans une vidéo mais absent du tableau. Le mécanisme ne tombe pas en erreur —
+      il ne trouve rien, donc il ne fait rien. Aucune alerte ne se déclenche, et les gens qui ont
+      commenté n'ont simplement jamais de réponse. <strong>La seule parade est de vérifier dans
+      l'autre sens</strong> : partir des mots promis dans les publications, et contrôler que
+      chacun a bien sa ligne — avant la sortie, pas après.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content-block">
+      <h2>Ce que ça ne fait pas</h2>
+      <p>Ça ne remplace pas ce que tu as à dire. Un mécanisme bien construit sur un contenu qui
+      n'intéresse personne publie du vide plus vite qu'avant — et il n'y a plus personne devant
+      l'écran pour s'en apercevoir.</p>
+
+      <p>Ça ne dispense pas non plus de regarder. Les trois pannes décrites ici ont un point
+      commun : <strong>aucune ne produit d'erreur.</strong> Le déploiement non déclenché, la
+      capture avalée en silence, le mot-clé sans ligne — chacune laisse le système parfaitement
+      calme. La question utile n'est jamais « est-ce que ça a planté ? » mais
+      <em>« est-ce que la chose est réellement arrivée au bout ? »</em>.</p>
+    </div>
+
+    <a href="/#contact" class="source-cta">Tu veux qu'on regarde le tien ? → voir mon audit</a>
+
+    <p style="margin-top:48px;font-size:13px;color:var(--text-muted);letter-spacing:.04em;">SITE | TONY PAYET / AUTOMATION BOOST | 2026</p>
+    <a class="nav-back" href="../ressources.html">← Toutes les ressources</a>
+  </div>
+</section>
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+
+  document.querySelectorAll('.copy-btn[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var card = btn.closest('.prompt-card');
+      var code = card ? card.querySelector('code') : null;
+      if (!code) return;
+      var text = code.innerText;
+      var done = function () {
+        var original = btn.dataset.original || btn.textContent;
+        btn.dataset.original = original;
+        btn.textContent = 'Copié ✓';
+        btn.classList.add('copied');
+        setTimeout(function () {
+          btn.textContent = btn.dataset.original;
+          btn.classList.remove('copied');
+        }, 2000);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(function () { fallback(text, done); });
+      } else {
+        fallback(text, done);
+      }
+    });
+  });
+
+  function fallback(text, done) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'absolute';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); done(); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+</script>
+<script src="../assets/js/lead-popup.js?v=20260716b" defer></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="/assets/js/theme.js?v=20260717n" defer></script>
+</body>
+</html>
