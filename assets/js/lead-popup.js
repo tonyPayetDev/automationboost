@@ -1,7 +1,13 @@
 /* Lead capture gate for resource pages.
    Blocking: no close button and no dismiss until name + email are submitted.
    Posts { name, email, source, page, date } to the n8n webhook, which upserts
-   into the LeadsAutoBoost data table (dedupe on email). */
+   into the LeadsAutoBoost data table (dedupe on email).
+
+   The success message says the resource is unlocked, NOT "check your inbox":
+   workflow Kg00I9SqHQsNsV9x is webhook -> data table, with no send node, so no
+   mail ever leaves. Restore the inbox wording only once something is actually
+   sent — the gate's headline still promises weekly workflows, and that promise
+   is unkept too. */
 (function () {
   var WEBHOOK = 'https://n7n.automatisationboost.com/webhook/Form-lead-autoboost';
   var LEAD_KEY = 'ab_lead_email';
@@ -58,7 +64,7 @@
     '<div id="leadSuccess" class="ab-fade" style="display:none;opacity:0;padding:16px 0;">',
     '<div style="font-size:2rem;margin-bottom:8px;">&#9989;</div>',
     '<p style="font-family:\'Inter\',sans-serif;color:#22c55e;font-weight:600;font-size:.95rem;margin:0 0 16px;">',
-    'C\'est parti ! V&eacute;rifie ta bo&icirc;te mail.</p>',
+    'C\'est bon ! Ta ressource est d&eacute;bloqu&eacute;e.</p>',
     '<button type="button" id="leadClose" style="background:none;border:1px solid #2a2a2a;border-radius:8px;',
     'color:#a1a1aa;font-family:\'Inter\',sans-serif;font-size:.85rem;padding:10px 20px;cursor:pointer;">',
     'Acc&eacute;der &agrave; la ressource</button></div>',
