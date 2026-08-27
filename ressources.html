@@ -36,6 +36,39 @@
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
   <style>
     /* ---- PAGE RESSOURCES ---- */
+
+    /* Recherche par mot-clé — le pont entre une vidéo et sa ressource. */
+    .motcle-bloc {
+      max-width: 620px; margin: 1.6rem auto 0; text-align: left;
+    }
+    .motcle-label {
+      display: block; font-size: .82rem; color: var(--muted, #9a9aa8);
+      margin-bottom: .5rem; text-align: center;
+    }
+    .motcle-champ {
+      display: flex; gap: .5rem; align-items: stretch;
+    }
+    .motcle-champ input {
+      flex: 1; min-width: 0; padding: .8rem 1rem; font-size: 1rem;
+      border-radius: 10px; border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06); color: inherit;
+      font-family: inherit; letter-spacing: .06em; text-transform: uppercase;
+    }
+    .motcle-champ input::placeholder { letter-spacing: 0; text-transform: none; opacity: .55; }
+    .motcle-champ input:focus { outline: 2px solid var(--gold, #d4af37); outline-offset: 1px; }
+    .motcle-champ button {
+      padding: .8rem 1.2rem; border-radius: 10px; border: 0; cursor: pointer;
+      background: var(--gold, #d4af37); color: #101010; font-weight: 700;
+      font-family: inherit; font-size: .95rem; white-space: nowrap;
+    }
+    .motcle-reponse {
+      margin-top: .8rem; padding: .8rem 1rem; border-radius: 10px;
+      font-size: .9rem; line-height: 1.45; display: none;
+    }
+    .motcle-reponse.ok   { display: block; background: rgba(212,175,55,.12); border: 1px solid rgba(212,175,55,.4); }
+    .motcle-reponse.vide { display: block; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.16); }
+    .motcle-reponse b { color: var(--gold, #d4af37); letter-spacing: .06em; }
+    .res-card.cible { outline: 2px solid var(--gold, #d4af37); outline-offset: 3px; }
     .res-hero {
       padding: 140px 0 60px;
       text-align: center;
@@ -362,6 +395,14 @@
     <div class="res-hero-badge">⚡ Sélection gratuite</div>
     <h1>Ressources <span>IA</span> Gratuites</h1>
     <p>Articles et guides sélectionnés sur l'IA, le prompting, l'automatisation et le business. Du concret, du pratique, du gratuit.</p>
+    <div class="motcle-bloc">
+      <label class="motcle-label" for="motcle">Tu as vu un mot-clé dans une vidéo ? Tape-le ici pour retrouver sa ressource.</label>
+      <div class="motcle-champ">
+        <input id="motcle" type="search" autocomplete="off" placeholder="ex. VEILLE, RTK, RELANCE…" aria-describedby="motcle-reponse">
+        <button type="button" id="motcle-go">Trouver</button>
+      </div>
+      <div class="motcle-reponse" id="motcle-reponse" role="status" aria-live="polite"></div>
+    </div>
     <div class="res-stats">
       <div class="res-stat"><span>205</span> ressources</div>
       <div class="res-stat"><span>10</span> vidéos</div>
@@ -2112,6 +2153,88 @@
       document.title = visible.length + ' ressources – AutomationBoost';
     });
   });
+
+  // ---- Recherche par mot-clé ----------------------------------------------
+  // Les cartes sont la seule source de vérité : rien n'est mappé à la main.
+  const champ = document.getElementById('motcle');
+  const rep = document.getElementById('motcle-reponse');
+  const btnGo = document.getElementById('motcle-go');
+
+  const nettoie = (s) => (s || '').toLowerCase().normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+
+  // Index construit une fois, au chargement.
+  const index = [...cards].map(c => {
+    const titre = (c.querySelector('.card-title') || {}).textContent || '';
+    const desc = (c.querySelector('.card-desc') || {}).textContent || '';
+    const href = c.getAttribute('href') || '';
+    // Un mot-clé explicitement revendiqué par la description fait autorité.
+    const m = desc.match(/mot-cl[eé]\s+([A-Z0-9ÉÈÀÇ]{3,})/);
+    // On garde les MOTS, pas la chaîne : chercher « ecom » dans le texte brut
+    // le trouvait à l'intérieur de « recommande » et rendait 5 résultats sans
+    // rapport, alors que ce mot-clé n'a pas encore sa ressource. Un faux
+    // résultat est pire que pas de résultat : il fait croire à la personne
+    // qu'elle cherche mal.
+    const mots = new Set(nettoie(titre + ' ' + desc + ' ' + href).split(' '));
+    return { c, titre, mots, revendique: m ? nettoie(m[1]) : null };
+  });
+
+  function chercher(brut) {
+    const q = nettoie(brut);
+    if (!q) {
+      cards.forEach(c => { c.style.display = 'flex'; c.classList.remove('cible'); });
+      rep.className = 'motcle-reponse'; rep.textContent = '';
+      return;
+    }
+    // Les boutons de catégorie et la recherche ne peuvent pas être actifs
+    // en même temps : sinon on filtre deux fois et le résultat est vide sans
+    // qu'on comprenne pourquoi.
+    filterBtns.forEach(b => b.classList.remove('active'));
+    document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+
+    const exact = index.filter(x => x.revendique === q);
+    // un mot du texte est le mot-clé, ou commence par lui (pluriels, dérivés)
+    const colle = (x) => [...x.mots].some(w => w === q || (q.length >= 4 && w.startsWith(q)));
+    const trouves = exact.length ? exact : index.filter(colle);
+
+    cards.forEach(c => { c.style.display = 'none'; c.classList.remove('cible'); });
+    trouves.forEach(x => { x.c.style.display = 'flex'; });
+
+    const mot = brut.trim().toUpperCase();
+    if (!trouves.length) {
+      rep.className = 'motcle-reponse vide';
+      rep.innerHTML = 'Le mot-clé <b>' + mot + '</b> n\'a pas encore sa ressource en ligne. ' +
+        'Écris-le en commentaire sous la vidéo : elle arrive.';
+      return;
+    }
+    if (exact.length) {
+      const x = exact[0];
+      x.c.classList.add('cible');
+      rep.className = 'motcle-reponse ok';
+      rep.innerHTML = 'Mot-clé <b>' + mot + '</b> — c\'est celle-ci : « ' + x.titre.trim() + ' »';
+      x.c.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+      rep.className = 'motcle-reponse ok';
+      rep.innerHTML = trouves.length + ' ressource' + (trouves.length > 1 ? 's' : '') +
+        ' pour <b>' + mot + '</b>.';
+    }
+  }
+
+  let minuteur;
+  champ.addEventListener('input', () => { clearTimeout(minuteur); minuteur = setTimeout(() => chercher(champ.value), 180); });
+  champ.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); clearTimeout(minuteur); chercher(champ.value); } });
+  btnGo.addEventListener('click', () => chercher(champ.value));
+
+  // Un DM ou une bio peut pointer directement : /ressources.html?mot=VEILLE
+  const depuisUrl = new URLSearchParams(location.search).get('mot');
+  if (depuisUrl) { champ.value = depuisUrl.toUpperCase(); chercher(depuisUrl); }
+
+  // Cliquer une catégorie annule la recherche en cours.
+  filterBtns.forEach(b => b.addEventListener('click', () => {
+    champ.value = ''; rep.className = 'motcle-reponse'; rep.textContent = '';
+    cards.forEach(c => c.classList.remove('cible'));
+  }));
+
 </script>
 <script src="assets/js/nav.js" defer></script>
 <script src="/assets/js/theme.js?v=20260717n" defer></script>
