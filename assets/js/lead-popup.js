@@ -3,11 +3,14 @@
    Posts { name, email, source, page, date } to the n8n webhook, which upserts
    into the LeadsAutoBoost data table (dedupe on email).
 
-   The success message says the resource is unlocked, NOT "check your inbox":
-   workflow Kg00I9SqHQsNsV9x is webhook -> data table, with no send node, so no
-   mail ever leaves. Restore the inbox wording only once something is actually
-   sent — the gate's headline still promises weekly workflows, and that promise
-   is unkept too. */
+   2026-08-29 : l'envoi est branché. Kg00I9SqHQsNsV9x fait désormais
+   webhook -> table de données -> Brevo, et le mail part réellement (vérifié :
+   messageId renvoyé par smtp-relay.mailin.fr). Le message de succès mentionne
+   donc l'email — c'est vrai maintenant.
+
+   ⚠️ Reste faux : le titre du mur promet des « workflows n8n offerts chaque
+   semaine ». Aucun envoi hebdomadaire n'existe. Soit on le construit, soit on
+   change ce titre — mais on ne laisse pas la promesse en l'état. */
 (function () {
   var WEBHOOK = 'https://n7n.automatisationboost.com/webhook/Form-lead-autoboost';
   var LEAD_KEY = 'ab_lead_email';
@@ -65,6 +68,8 @@
     '<div style="font-size:2rem;margin-bottom:8px;">&#9989;</div>',
     '<p style="font-family:\'Inter\',sans-serif;color:#22c55e;font-weight:600;font-size:.95rem;margin:0 0 16px;">',
     'C\'est bon ! Ta ressource est d&eacute;bloqu&eacute;e.</p>',
+    '<p style="font-family:\'Inter\',sans-serif;color:#a1a1aa;font-size:.82rem;margin:0 0 16px;line-height:1.55;">',
+    'Le lien vient aussi de partir par email, pour que tu le retrouves plus tard.</p>',
     '<button type="button" id="leadClose" style="background:none;border:1px solid #2a2a2a;border-radius:8px;',
     'color:#a1a1aa;font-family:\'Inter\',sans-serif;font-size:.85rem;padding:10px 20px;cursor:pointer;">',
     'Acc&eacute;der &agrave; la ressource</button></div>',
