@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-0SRZVQ1WGD');
+  </script>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1713977213196523');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1713977213196523&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le hook stacking : deux hooks empilés dans les 3 premières secondes — le guide + le skill – AutomationBoost</title>
+  <meta name="description" content="Empiler un hook visuel (0-1 s) et un hook verbal (1-3 s) pour rendre le scroll impossible. La grille des 30 secondes, les deux banques de hooks, ce qui casse en fabrication, et le skill Claude Code en entier." />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Sora',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px;flex-wrap:wrap; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:820px; }
+    .content-block h2 { font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:48px 0 16px;scroll-margin-top:110px; }
+    .content-block h3 { font-family:'Sora',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:8px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    /* Le bouton doit rester noir sur or : sans cette requalification,
+       le selecteur de lien du content-block gagne et le libelle devient
+       dore sur fond dore, donc illisible. */
+    .content-block a.source-cta { color:#000; }
+    .content-block a.source-cta:hover { color:#000;text-decoration:none; }
+    .content-block a.nav-back { color:var(--text-muted); }
+    .content-block a.nav-back:hover { color:var(--gold); }
+
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+
+    /* Sommaire */
+    .toc { background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;margin:32px 0; }
+    .toc-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px; }
+    .toc ol { list-style:none;padding:0;margin:0;counter-reset:toc; }
+    .toc li { counter-increment:toc;margin-bottom:10px;padding-left:2.2rem;position:relative;line-height:1.5; }
+    .toc li::before { content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:1px;font-family:'Sora',sans-serif;font-size:.78rem;font-weight:700;color:var(--gold);background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.28);border-radius:4px;padding:2px 6px; }
+    .toc a { color:var(--text);font-weight:600;text-decoration:none;font-size:15px; }
+    .toc a:hover { color:var(--gold); }
+    .toc .toc-sub { display:block;color:var(--text-muted);font-size:13px;font-weight:400;margin-top:2px; }
+
+    /* Blocs prompt copiables */
+    .prompt-card { border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin:20px 0;background:#0a0a0a; }
+    .prompt-head { display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px;background:#111117;border-bottom:1px solid #232330;flex-wrap:wrap; }
+    .prompt-name { font-family:'Sora',sans-serif;font-size:12px;font-weight:700;color:#eab308;letter-spacing:.05em;text-transform:uppercase; }
+    .copy-btn { display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:#000;font-family:'Sora',sans-serif;font-size:12px;font-weight:700;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;transition:all .2s;line-height:1; }
+    .copy-btn:hover { background:var(--gold-dark);transform:translateY(-1px); }
+    .copy-btn.copied { background:#eab308;color:#0a0a0a; }
+    .prompt-card pre { margin:0;padding:18px 20px;overflow-x:auto;background:#0a0a0a; }
+    .prompt-card code { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px;line-height:1.7;color:#a3e635;white-space:pre-wrap;word-break:break-word;display:block; }
+
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto;white-space:pre-wrap; }
+
+    /* Tableaux */
+    .table-wrap { overflow-x:auto;margin:20px 0;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-card); }
+    .table-wrap table { width:100%;border-collapse:collapse;min-width:520px;font-size:15px; }
+    .table-wrap th { text-align:left;font-family:'Sora',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gold);padding:12px 16px;border-bottom:1px solid var(--border);background:var(--bg-card-2);white-space:nowrap; }
+    .table-wrap td { padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-light);line-height:1.6;vertical-align:top; }
+    .table-wrap tr:last-child td { border-bottom:none; }
+    .table-wrap td:first-child { color:var(--text);font-weight:600;white-space:nowrap; }
+    .table-wrap code { font-family:ui-monospace,monospace;font-size:.9em;color:var(--gold); }
+
+    .prompt-intro { color:var(--text-muted);font-size:14px;margin:0 0 8px; }
+    .prompt-intro strong { color:var(--text); }
+
+    .source-cta { display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#000;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;padding:14px 28px;border-radius:var(--radius);text-decoration:none;margin-top:40px;transition:all .2s; }
+    .source-cta:hover { background:var(--gold-dark);transform:translateY(-2px);text-decoration:none; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+
+    .content-block ol.numbered-list { counter-reset:num;padding-left:0; }
+    .content-block ol.numbered-list li { list-style:none;counter-increment:num;padding-left:2.4rem;position:relative;margin-bottom:14px; }
+    .content-block ol.numbered-list li::before { content:counter(num);position:absolute;left:0;top:0;width:1.6rem;height:1.6rem;display:flex;align-items:center;justify-content:center;background:rgba(234,179,8,0.14);border:1px solid rgba(234,179,8,0.3);border-radius:50%;color:var(--gold);font-weight:700;font-family:'Sora',sans-serif;font-size:0.8em; }
+
+    .content-block p, .content-block li { font-size:17px; line-height:1.75; }
+    .page-title, .content-block h2, .content-block h3 { font-family:'Sora',sans-serif; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Le hook stacking : deux hooks empil\u00e9s dans les 3 premi\u00e8res secondes",
+    "description": "Empiler un hook visuel (0-1 s) et un hook verbal (1-3 s) pour rendre le scroll impossible. La grille des 30 secondes, les deux banques de hooks, ce qui casse en fabrication, et le skill Claude Code en entier.",
+    "url": "https://automatisationboost.com/ressources/hook-stacking.html",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://automatisationboost.com/ressources/hook-stacking.html"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "url": "https://automatisationboost.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://automatisationboost.com/assets/images/logo.svg"
+      }
+    },
+    "isAccessibleForFree": false,
+    "hasPart": {
+      "@type": "WebPageElement",
+      "isAccessibleForFree": false,
+      "cssSelector": ".content-block"
+    }
+  }
+  </script>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="../" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="https://videoboost.automatisationboost.com/vente.html" class="nav-link-slide"><span>ShortForge</span><span>ShortForge</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
+    </div>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="https://videoboost.automatisationboost.com/vente.html" class="mob-link mob-link--gold">ShortForge</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
+  </nav>
+</div>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Le hook stacking
+    </div>
+
+    <div class="page-badge">◈ Guide + skill</div>
+    <h1 class="page-title">Deux hooks empilés <span>dans les 3 premières secondes</span></h1>
+    <div class="page-meta">
+      <span>La méthode</span><span>·</span>
+      <span>Le skill en entier</span><span>·</span>
+      <span>Format 9:16, ~25-30 s</span>
+    </div>
+
+    <div class="content-block">
+      <p>Sur un feed, si les deux premières secondes n’accrochent pas, le reste ne sera jamais vu.
+      Pas « moins vu » — jamais vu. C’est la seule bataille qui compte, et la plupart des vidéos
+      la perdent en essayant de gagner la mauvaise : elles soignent la valeur des secondes 8 à 22,
+      qui n’arriveront pas.</p>
+      <p>La réponse tient en un mot : on n’empile pas <strong>un</strong> hook, on en empile
+      <strong>deux</strong>, coup sur coup. C’est ce que fait la vidéo, et c’est ce que fait
+      le skill publié plus bas — celui qui sert réellement à écrire les vidéos d’Automation Boost.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content-block">
+      <h2>Le hook stacking, dans l’ordre</h2>
+      <p><strong>1 · Le hook VISUEL (0-1 s).</strong> Une image ou une action inattendue qui casse
+      le pattern <em>avant même la parole</em>. Exemple : tomber du plafond et atterrir sur sa
+      chaise de bureau. Le visuel arrête le pouce.</p>
+      <p><strong>2 · Le hook VERBAL (1-3 s).</strong> Une phrase qui ouvre une boucle mentale et
+      crée la tension. Exemple : « Et si je te disais que tu es en train de rater la plus belle
+      opportunité de ta vie ?… Tu me croirais ? » Le verbal empêche de repartir.</p>
+      <p>Les deux séparément sont ordinaires. Les deux ensemble font un mur d’attention : l’un
+      immobilise, l’autre retient. Inverser l’ordre ne marche pas — si la parole arrive avant
+      l’image, il n’y a plus personne pour l’entendre.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content-block">
+      <h2>La banque de hooks visuels</h2>
+      <ul>
+        <li>Tomber du plafond / d’en haut du cadre et atterrir sur sa chaise.</li>
+        <li>Décoller de sa chaise — l’inverse, gardé pour le climax de fin.</li>
+        <li>Un objet (téléphone, clavier) qui vole vers la caméra.</li>
+        <li>Un coup de poing qui « brise » l’écran, verre éclaté.</li>
+        <li>Zoom-punch violent sur le visage + flash.</li>
+        <li>Apparaître en gros plan à contre-attente, déjà en train de parler.</li>
+      </ul>
+
+      <h2>La banque de hooks verbaux</h2>
+      <ul>
+        <li>« Et si je te disais que tu es en train de rater la plus belle opportunité de ta vie ? »</li>
+        <li>« Tu fais probablement cette erreur sans t’en rendre compte. »</li>
+        <li>« Personne ne te dit ça sur l’IA. »</li>
+        <li>« Attends. Avant de faire ça, regarde ça. »</li>
+        <li>« Si tu utilises l’IA comme ça, tu perds ton temps. »</li>
+      </ul>
+      <p>Ces deux listes ne sont pas des exemples d’illustration : ce sont les banques utilisées
+      telles quelles à l’écriture. On y pioche une ligne dans chaque, on les empile, et on écrit
+      le reste après.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content-block">
+      <h2>La grille des 30 secondes</h2>
+      <p>Le hook n’est pas un accessoire posé devant la vidéo : il commande toute la structure.
+      Voici la grille complète, celle du skill.</p>
+      <ol class="numbered-list">
+        <li><strong>Hook visuel — 0 à 1 s.</strong> Entrée surprenante (la chute sur la chaise).</li>
+        <li><strong>Hook verbal — 1 à 3 s.</strong> La question ou la promesse qui crée la tension.</li>
+        <li><strong>Explication légère — 3 à 8 s.</strong> On désamorce à peine, et on l’assume :
+        « je viens d’enchaîner deux hooks, un visuel et un verbal — c’est exactement ce qui te
+        fait rester ». Le méta, court, fait partie de la rétention.</li>
+        <li><strong>Valeur — 8 à 22 s.</strong> Le sujet réel, livré avec un pattern interrupt
+        toutes les 2 à 4 secondes.</li>
+        <li><strong>CTA — 22 à 27 s.</strong> « Commente [MOT] et je t’envoie le guide + le skill. »</li>
+        <li><strong>Climax — 27 à 30 s.</strong> Compte à rebours « 3, 2, 1, action maintenant ! »
+        puis le climax visuel : on appuie sur un bouton et on décolle de sa chaise.</li>
+      </ol>
+      <p>La fin en montée compte presque autant que le début. Une vidéo qui s’éteint sur un CTA
+      plat annule le bénéfice du hook : la boucle ouverte à la seconde 2 doit se refermer sur
+      un effet, pas sur un silence.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content-block">
+      <h2>Ce qui casse en fabrication</h2>
+      <p>Trois points font échouer le montage bien plus souvent que l’écriture.</p>
+      <p><strong>Le hook visuel n’existe pas en stock.</strong> Chute, décollage, coup de poing :
+      aucune banque de clips ordinaire ne les contient. Deux issues réelles — générer un clip
+      dédié (Seedance / Higgsfield, donc des crédits), ou <em>simuler en compositing HTML</em> :
+      entrée depuis le haut du cadre avec motion blur pour la chute, envol + flou + flash pour
+      le décollage, calque de verre brisé pour le poing. Quand le budget est serré, la simulation
+      en compositing est le choix par défaut, pas un pis-aller.</p>
+      <p><strong>L’audio natif des clips reste ouvert.</strong> Il doit être coupé, et la voix
+      posée par-dessus. C’est la panne la plus fréquente et la plus discrète : la vidéo semble
+      correcte au montage et sonne fausse à la lecture.</p>
+      <p><strong>La voix est trop lente.</strong> Voix rapide et cash — accélération d’environ
+      1,12 et silences coupés. Un hook empilé sur un débit posé ne tient pas la tension qu’il
+      vient d’ouvrir.</p>
+      <p>Le reste de l’habillage : captions mot-à-mot, musique montante duckée, SFX d’impact
+      calés sur les deux hooks et sur le climax.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content-block">
+      <h2>La checklist avant de tourner</h2>
+      <ul>
+        <li>Un hook <strong>visuel</strong> dans la première seconde — pas juste du texte à l’écran.</li>
+        <li>Un hook <strong>verbal</strong> empilé dans les trois premières secondes, boucle mentale ouverte.</li>
+        <li>Une explication méta, courte et assumée.</li>
+        <li>De la valeur réelle, avec pattern interrupt toutes les 2 à 4 secondes.</li>
+        <li>Un CTA « commente [MOT] → guide + skill ».</li>
+        <li>Un climax final : compte à rebours + effet visuel.</li>
+        <li>Voix rapide, audio des clips coupé, musique duckée.</li>
+      </ul>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content-block">
+      <h2>Le skill, en entier</h2>
+      <p>C’est le second morceau promis dans la vidéo. Ce fichier est le skill réellement utilisé
+      pour écrire les hooks d’Automation Boost — déposez-le dans <code>.claude/skills/hook-puissant-branded/SKILL.md</code>
+      et il se déclenche sur « hook puissant », « accroche », « double hook », « vidéo qui accroche
+      dans les 2 secondes ».</p>
+      <p>Une précision honnête : le bloc « style / fabrication » y renvoie à la chaîne de production
+      maison (avatar, voix clonée, charte néon). Ces lignes-là ne se transposent pas telles quelles.
+      La méthode du hook stacking, la grille des 30 secondes et les deux banques, elles, sont
+      indépendantes de l’outillage — c’est la partie qui voyage.</p>
+      <div class="prompt-card">
+        <div class="prompt-head">
+          <span class="prompt-name">SKILL.md</span>
+          <button class="copy-btn" data-copy type="button">Copier le skill</button>
+        </div>
+        <pre><code>---
+name: hook-puissant-branded
+description: Construire des HOOKS puissants qui accrochent dans les 2 premières secondes pour vidéos sociales 9:16. Technique centrale = le HOOK STACKING : empiler un hook VISUEL (entrée surprenante) + un hook VERBAL (question/promesse qui crée la tension), puis une explication légère, avant de délivrer. Fin en montée : compte à rebours « 3, 2, 1, action » + climax visuel. Déclencheurs : "hook puissant", "accroche", "hook qui accroche", "double hook", "hook visuel", "vidéo qui accroche dans les 2 secondes", "comment faire un bon hook".
+---
+
+# hook-puissant-branded — Le hook qui accroche
+
+**But :** gagner la bataille des **2 premières secondes**. Sur un feed, si les 2
+premières secondes n'accrochent pas, le reste ne sera jamais vu. Ce skill est
+dédié à UNE chose : construire des hooks assez forts pour stopper le scroll.
+
+---
+
+## Principe central : le HOOK STACKING
+On n'empile pas un hook, on en empile **deux**, coup sur coup :
+
+1. **Hook VISUEL (0-1s)** — une image/action inattendue qui casse le pattern
+   AVANT même la parole.
+   - Ex. : « je tombe du plafond et j'atterris sur ma chaise de bureau », une
+     entrée brutale, un objet qui vole, un zoom violent, un geste choc.
+2. **Hook VERBAL (1-3s)** — une phrase qui ouvre une boucle mentale et crée la
+   tension.
+   - Ex. : « Et si je te disais que tu es en train de rater la plus belle
+     opportunité de ta vie ? … Tu me croirais ? »
+
+Le visuel arrête le pouce, le verbal empêche de repartir. Les deux ensemble =
+un mur d'attention.
+
+---
+
+## Banque de hooks VISUELS
+- Tomber du plafond / d'en haut du cadre et atterrir sur sa chaise.
+- Décoller de sa chaise (fin) — l'inverse, pour le climax.
+- Un objet (téléphone, clavier) qui vole vers la caméra.
+- Coup de poing qui « brise » l'écran (verre éclaté).
+- Zoom-punch violent sur le visage + flash.
+- Apparaître en gros plan à contre-attente (déjà en train de parler).
+
+## Banque de hooks VERBAUX
+- « Et si je te disais que tu es en train de rater la plus belle opportunité de ta vie ? »
+- « Tu fais probablement cette erreur sans t'en rendre compte. »
+- « Personne ne te dit ça sur l'IA. »
+- « Attends. Avant de faire ça, regarde ça. »
+- « Si tu utilises l'IA comme ça, tu perds ton temps. »
+
+---
+
+## Structure d'une vidéo "hook puissant"
+| Bloc | Temps | Contenu |
+|------|-------|---------|
+| **Hook visuel** | 0-1s | Entrée surprenante (ex. chute du plafond sur la chaise). |
+| **Hook verbal** | 1-3s | Question/promesse qui crée la tension. |
+| **Explication légère** | 3-8s | On désamorce à peine : « je viens d'enchaîner deux hooks — un visuel, un verbal. C'est exactement ce qui te fait rester. » (méta assumé, léger). |
+| **Valeur** | 8-22s | Le sujet réel, livré avec pattern interrupt toutes les 2-4s. |
+| **CTA** | 22-27s | « Commente [MOT] et je t'envoie le guide + le skill. » |
+| **Climax** | 27-30s | Compte à rebours « 3, 2, 1, action maintenant ! » → climax visuel (ex. j'appuie sur un bouton et je décolle de ma chaise). |
+
+---
+
+## Style / fabrication
+- Format 9:16, ~25-30s. Voix clonée **rapide/cash** (atempo ≈1.12 + silences
+  coupés), audio natif des clips **coupé**. Captions mot-à-mot. Musique montante
+  duckée + SFX d'impact sur les hooks/climax.
+- **Hooks visuels forts (chute, décollage, poing)** : si un clip de la banque
+  avatar les couvre, l'utiliser ; sinon soit générer un clip dédié
+  (Seedance/Higgsfield = crédits), soit **simuler en compositing HTML** (drop-in
+  depuis le haut du cadre + motion blur ; launch-up + flou + flash pour le
+  décollage ; overlay verre brisé pour le poing). Choisir la simulation
+  compositing par défaut si le budget est serré.
+
+## Checklist
+- [ ] Un hook VISUEL dans la 1re seconde (pas juste du texte).
+- [ ] Un hook VERBAL empilé dans les 3 premières secondes (boucle mentale ouverte).
+- [ ] Explication méta légère (assumée, courte).
+- [ ] Valeur réelle avec pattern interrupt 2-4s.
+- [ ] CTA « commente [MOT] → guide + skill ».
+- [ ] Climax final : compte à rebours + effet visuel (décollage / bris d'écran).
+- [ ] Voix rapide, audio clips coupé, musique duckée.</code></pre>
+      </div>
+      <a href="files/hook-puissant-branded-SKILL.md" class="source-cta" download>Télécharger le SKILL.md →</a>
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Toutes les ressources</a>
+  </div>
+</section>
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+
+  document.querySelectorAll('.copy-btn[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var card = btn.closest('.prompt-card');
+      var code = card ? card.querySelector('code') : null;
+      if (!code) return;
+      var text = code.innerText;
+      var done = function () {
+        var original = btn.dataset.original || btn.textContent;
+        btn.dataset.original = original;
+        btn.textContent = 'Copié ✓';
+        btn.classList.add('copied');
+        setTimeout(function () {
+          btn.textContent = btn.dataset.original;
+          btn.classList.remove('copied');
+        }, 2000);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(function () { fallback(text, done); });
+      } else {
+        fallback(text, done);
+      }
+    });
+  });
+
+  function fallback(text, done) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'absolute';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); done(); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+</script>
+<script src="../assets/js/lead-popup.js?v=20260829a" defer></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="/assets/js/theme.js?v=20260717n" defer></script>
+</body>
+</html>
