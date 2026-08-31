@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-0SRZVQ1WGD');
+  </script>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1713977213196523');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1713977213196523&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A/B test WhatsApp — deux messages, un gagnant — le workflow n8n – AutomationBoost</title>
+  <meta name="description" content="Coupe ta liste en deux, envoie deux messages différents en même temps, et écrit dans ta feuille qui a reçu quoi et qui a cliqué. Seize nœuds, le workflow n8n complet à copier et importer. Gratuit." />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Sora',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px;flex-wrap:wrap; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:820px; }
+    .content-block h2 { font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:48px 0 16px;scroll-margin-top:110px; }
+    .content-block h3 { font-family:'Sora',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:8px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    /* Le bouton doit rester noir sur or : sans cette requalification,
+       le selecteur de lien du content-block gagne et le libelle devient
+       dore sur fond dore, donc illisible. */
+    .content-block a.source-cta { color:#000; }
+    .content-block a.source-cta:hover { color:#000;text-decoration:none; }
+    .content-block a.nav-back { color:var(--text-muted); }
+    .content-block a.nav-back:hover { color:var(--gold); }
+
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+
+    /* Sommaire */
+    .toc { background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;margin:32px 0; }
+    .toc-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px; }
+    .toc ol { list-style:none;padding:0;margin:0;counter-reset:toc; }
+    .toc li { counter-increment:toc;margin-bottom:10px;padding-left:2.2rem;position:relative;line-height:1.5; }
+    .toc li::before { content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:1px;font-family:'Sora',sans-serif;font-size:.78rem;font-weight:700;color:var(--gold);background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.28);border-radius:4px;padding:2px 6px; }
+    .toc a { color:var(--text);font-weight:600;text-decoration:none;font-size:15px; }
+    .toc a:hover { color:var(--gold); }
+    .toc .toc-sub { display:block;color:var(--text-muted);font-size:13px;font-weight:400;margin-top:2px; }
+
+    /* Blocs prompt copiables */
+    .prompt-card { border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin:20px 0;background:#0a0a0a; }
+    .prompt-head { display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px;background:#111117;border-bottom:1px solid #232330;flex-wrap:wrap; }
+    .prompt-name { font-family:'Sora',sans-serif;font-size:12px;font-weight:700;color:#eab308;letter-spacing:.05em;text-transform:uppercase; }
+    .copy-btn { display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:#000;font-family:'Sora',sans-serif;font-size:12px;font-weight:700;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;transition:all .2s;line-height:1; }
+    .copy-btn:hover { background:var(--gold-dark);transform:translateY(-1px); }
+    .copy-btn.copied { background:#eab308;color:#0a0a0a; }
+    .prompt-card pre { margin:0;padding:18px 20px;overflow-x:auto;background:#0a0a0a; }
+    .prompt-card code { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px;line-height:1.7;color:#a3e635;white-space:pre-wrap;word-break:break-word;display:block; }
+
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto;white-space:pre-wrap; }
+
+    /* Tableaux */
+    .table-wrap { overflow-x:auto;margin:20px 0;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-card); }
+    .table-wrap table { width:100%;border-collapse:collapse;min-width:520px;font-size:15px; }
+    .table-wrap th { text-align:left;font-family:'Sora',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gold);padding:12px 16px;border-bottom:1px solid var(--border);background:var(--bg-card-2);white-space:nowrap; }
+    .table-wrap td { padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-light);line-height:1.6;vertical-align:top; }
+    .table-wrap tr:last-child td { border-bottom:none; }
+    .table-wrap td:first-child { color:var(--text);font-weight:600;white-space:nowrap; }
+    .table-wrap code { font-family:ui-monospace,monospace;font-size:.9em;color:var(--gold); }
+
+    .prompt-intro { color:var(--text-muted);font-size:14px;margin:0 0 8px; }
+    .prompt-intro strong { color:var(--text); }
+
+    .source-cta { display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#000;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;padding:14px 28px;border-radius:var(--radius);text-decoration:none;margin-top:40px;transition:all .2s; }
+    .source-cta:hover { background:var(--gold-dark);transform:translateY(-2px);text-decoration:none; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+
+    .content-block ol.numbered-list { counter-reset:num;padding-left:0; }
+    .content-block ol.numbered-list li { list-style:none;counter-increment:num;padding-left:2.4rem;position:relative;margin-bottom:14px; }
+    .content-block ol.numbered-list li::before { content:counter(num);position:absolute;left:0;top:0;width:1.6rem;height:1.6rem;display:flex;align-items:center;justify-content:center;background:rgba(234,179,8,0.14);border:1px solid rgba(234,179,8,0.3);border-radius:50%;color:var(--gold);font-weight:700;font-family:'Sora',sans-serif;font-size:0.8em; }
+
+    .content-block p, .content-block li { font-size:17px; line-height:1.75; }
+    .page-title, .content-block h2, .content-block h3 { font-family:'Sora',sans-serif; }
+  </style>  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "A/B test WhatsApp : deux messages, un gagnant",
+  "description": "Coupe ta liste en deux, envoie deux messages différents en même temps, et écrit dans ta feuille qui a reçu quoi et qui a cliqué. Seize nœuds, le workflow n8n complet à copier et importer. Gratuit.",
+  "url": "https://automatisationboost.com/ressources/whatsapp-ab-test-messages.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://automatisationboost.com/ressources/whatsapp-ab-test-messages.html"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "AutomationBoost",
+    "url": "https://automatisationboost.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "AutomationBoost",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://automatisationboost.com/assets/images/logo.svg"
+    }
+  },
+  "isAccessibleForFree": false,
+  "hasPart": {
+    "@type": "WebPageElement",
+    "isAccessibleForFree": false,
+    "cssSelector": ".content-block"
+  }
+}
+  </script>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="../" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="https://videoboost.automatisationboost.com/vente.html" class="nav-link-slide"><span>ShortForge</span><span>ShortForge</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
+    </div>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="https://videoboost.automatisationboost.com/vente.html" class="mob-link mob-link--gold">ShortForge</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
+  </nav>
+</div>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>A/B test WhatsApp</div>
+
+    <div class="page-badge">Workflow n8n · gratuit</div>
+    <h1 class="page-title">A/B test WhatsApp : deux messages, un gagnant</h1>
+    <div class="page-meta">16 nœuds · import en 2 minutes · Google Sheets + Evolution API</div>
+
+    <div class="content-block">
+      <p>Tu envoies le même message WhatsApp à toute ta base, et personne ne répond. Le problème n'est pas le canal : c'est que tu n'as aucun moyen de savoir quelle formulation marche.</p>
+      <p>Ce workflow coupe ta liste en deux, envoie <strong>deux messages différents</strong> en même temps, et écrit dans ta feuille de calcul qui a reçu quoi et qui a cliqué. Seize nœuds. Il tourne sur n8n, y compris l'offre gratuite.</p>
+      <div class="tip-box">
+        <div class="tip-label">Avant tout le reste</div>
+        <p>Envoyer des messages WhatsApp à des gens qui ne te l'ont pas demandé, c'est le meilleur moyen de te faire bannir ton numéro — et selon l'endroit où tu es, ce n'est pas seulement une question de plateforme. Utilise ce workflow sur une base qui a accepté d'être contactée. Le <em>Wait 3s</em> entre deux envois et la limite à 20 destinataires par exécution sont là pour la même raison : ils ralentissent volontairement.</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content-block">
+      <h2>Ce qu'il fait, nœud par nœud</h2>
+      <p>Ce ne sont pas des étapes idéales : c'est le contenu réel du fichier que tu vas copier plus bas.</p>
+      <ol>
+        <li><strong>Démarrer</strong> — un déclencheur manuel. Tu lances toi-même chaque vague, tu ne subis pas une programmation.</li>
+        <li><strong>Lire Google Sheet</strong> — il lit ta feuille de contacts.</li>
+        <li><strong>Filtre Leads avec Tel</strong> — deux conditions cumulées : la colonne <code>Telephone</code> n'est pas vide, <em>et</em> la colonne <code>Message_Envoye</code> ne vaut pas <code>true</code>. C'est ça qui t'empêche de recontacter deux fois la même personne.</li>
+        <li><strong>Limit 20</strong> — vingt destinataires au maximum par exécution.</li>
+        <li><strong>Logique A/B + Format Tel</strong> — un nœud de code qui fait deux choses. Il attribue le groupe <code>A</code> aux dix premiers et <code>B</code> aux dix suivants. Puis il nettoie le numéro : suppression des espaces, retrait du <code>+</code>, conversion du <code>0262</code> en <code>262</code>, et ajout de l'indicatif quand le numéro commence par un simple <code>0</code>.</li>
+        <li><strong>Switch A/B</strong> — deux sorties nommées <em>Groupe A</em> et <em>Groupe B</em>. Rien ne sort si le groupe est absent.</li>
+        <li><strong>WhatsApp Groupe A</strong> et <strong>WhatsApp Groupe B</strong> — deux appels <code>POST</code> vers ton instance Evolution API, avec ta clé en en-tête. Chacun porte sa propre version du message.</li>
+        <li><strong>Wait 3s</strong> — trois secondes entre deux envois, sur chaque branche.</li>
+        <li><strong>Set Statut</strong> — prépare les valeurs à réécrire : <code>Message_Envoye = true</code>, la date du jour, et la variante <code>A</code> ou <code>B</code>.</li>
+        <li><strong>Update Sheet</strong> — réécrit ces trois colonnes sur la bonne ligne, en se calant sur <code>row_number</code>.</li>
+        <li><strong>Webhook Tracking Clic</strong> — une <em>branche séparée</em>, avec son propre webhook. Quand quelqu'un ouvre le lien qu'on lui a envoyé, il passe par là.</li>
+        <li><strong>Marquer Clic dans Sheet</strong> — écrit <code>A_Clique = true</code> et la date du clic sur la ligne correspondante.</li>
+      </ol>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content-block">
+      <h2>L'indicatif : le détail qui casse tout</h2>
+      <p>C'est le piège classique et il vaut le détour, parce qu'il ne produit aucune erreur visible — l'API accepte le numéro, et le message n'arrive nulle part.</p>
+      <p>Une feuille de contacts remplie à la main contient toujours quatre écritures du même numéro : avec des espaces, avec un <code>+</code>, avec un <code>0</code> devant, ou déjà à l'international. Le nœud de code les ramène toutes à la même forme avant l'envoi. L'indicatif utilisé ici est <code>262</code>, celui de La Réunion : si tu es ailleurs, c'est la seule ligne à changer.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content-block">
+      <h2>Les deux versions du message</h2>
+      <p>Ce qui change entre A et B n'est pas cosmétique : c'est l'angle d'entrée. La version A se présente et pose une question sur la situation. La version B entre par le métier et pose une question sur une douleur précise. Les deux finissent sur le même lien, avec un paramètre <code>variant</code> différent — c'est ce paramètre qui permet, plus tard, de savoir laquelle a fait cliquer.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Version A</th><th>Version B</th></tr></thead>
+          <tbody>
+            <tr>
+              <td style="white-space:normal">Se présente, dit à qui il s'adresse, puis demande : « Vous gérez tout ça manuellement en ce moment ? »</td>
+              <td style="white-space:normal">Entre directement par le secteur et le gain de temps, puis demande : « Vous avez déjà eu des no-shows qui auraient pu être évités ? »</td>
+            </tr>
+            <tr>
+              <td style="white-space:normal">Question ouverte, sur l'organisation.</td>
+              <td style="white-space:normal">Question fermée, sur un incident déjà vécu.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Les deux textes complets sont dans le fichier, tu les remplaces par les tiens.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content-block">
+      <h2>Ce que le workflow ne fait pas</h2>
+      <p>Autant le dire tout de suite, parce que c'est ce qu'on croit en le lisant vite.</p>
+      <ul>
+        <li><strong>Il ne désigne pas le gagnant.</strong> Aucun nœud ne compare A et B pour basculer ensuite sur le meilleur. Il collecte la matière — variante envoyée, clic, dates — et c'est <em>toi</em> qui lis la feuille et qui tranches.</li>
+        <li><strong>Il ne compte pas les réponses.</strong> Ce qui est mesuré, c'est le <em>clic</em> sur le lien, via la branche de tracking. Une personne qui te répond sans cliquer n'apparaît nulle part.</li>
+        <li><strong>Il ne s'auto-déclenche pas.</strong> Le déclencheur est manuel, par choix.</li>
+      </ul>
+      <p>Le premier point est le plus important : ce workflow est un <em>instrument de mesure</em>, pas un pilote automatique. C'est aussi ce qui le rend utilisable dès aujourd'hui — un test A/B qui bascule tout seul avant d'avoir assez de données prend de mauvaises décisions plus vite.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content-block">
+      <h2>Comment l'installer</h2>
+      <ol>
+        <li>Copie le bloc ci-dessous avec le bouton.</li>
+        <li>Dans n8n : <em>Workflows</em> → <em>Import from clipboard</em> → colle → <em>Import</em>.</li>
+        <li>Ouvre les nœuds Google Sheets et remplace <code>VOTRE_GOOGLE_SHEET_ID</code> par l'identifiant de ta feuille, puis choisis <strong>tes</strong> accès Google. Le fichier n'en contient aucun — c'est voulu.</li>
+        <li>Dans les deux nœuds WhatsApp, remplace <code>TON-INSTANCE-EVOLUTION-API</code> par l'adresse de ton instance et <code>TA_CLE_EVOLUTION_API</code> par ta clé.</li>
+        <li>Ta feuille doit contenir ces colonnes, écrites exactement comme ça : <code>Telephone</code>, <code>Message_Envoye</code>, <code>Date_Envoi</code>, <code>Variante</code>, <code>A_Clique</code>, <code>Date_Clic</code>.</li>
+        <li>Réécris les deux messages. Ceux du fichier sont des exemples — envoyés tels quels, ils ne parleront pas de ton métier.</li>
+      </ol>
+      <div class="tip-box">
+        <div class="tip-label">Le seul piège</div>
+        <p>Si la colonne <code>Message_Envoye</code> n'existe pas dans ta feuille, le filtre laisse passer <em>tout le monde</em> à chaque exécution — et tu renvoies le même message aux mêmes personnes. Crée la colonne avant le premier envoi, pas après.</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content-block">
+      <h2>Le workflow, en entier</h2>
+      <div class="prompt-card">
+        <div class="prompt-head">
+          <span class="prompt-name">[WHATSAPP] A/B test WhatsApp — deux messages, un gagnant</span>
+          <button class="copy-btn" type="button" data-copy>Copier le workflow</button>
+        </div>
+        <pre><code>{
+  "name": "[WHATSAPP] A/B test WhatsApp — deux messages, un gagnant",
+  "nodes": [
+    {
+      "id": "c1db45d3-9131-49dd-9eb1-135ba56f5f43",
+      "name": "Démarrer",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2032,
+        656
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "15e4d6ff-b1b8-4bf2-984e-bb161f77dba5",
+      "name": "Lire Google Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -1824,
+        656
+      ],
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "VOTRE_GOOGLE_SHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Feuille 1",
+          "mode": "name"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "21b151c8-7f7e-49db-88f8-476e30e43b3b",
+      "name": "Filtre Leads avec Tel",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -1632,
+        656
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "tel_check",
+              "leftValue": "={{ $json.Telephone }}",
+              "operator": {
+                "operation": "notEmpty",
+                "type": "string"
+              }
+            },
+            {
+              "id": "envoye_check",
+              "leftValue": "={{ $json.Message_Envoye }}",
+              "rightValue": "true",
+              "operator": {
+                "operation": "notEquals",
+                "type": "string"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "8922f824-473e-4772-b6cf-d93d1c41aab3",
+      "name": "Limit 20",
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -1424,
+        656
+      ],
+      "parameters": {
+        "maxItems": 20
+      }
+    },
+    {
+      "id": "093002a9-d64a-4ba1-a731-fc053498c588",
+      "name": "Logique A/B + Format Tel",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1232,
+        656
+      ],
+      "parameters": {
+        "jsCode": "const leads = $input.all();\n\nreturn leads.map((item, index) =&gt; {\n  // Groupe A premiers 10, Groupe B suivants 10\n  item.json.ab_group = (index &lt; 10) ? 'A' : 'B';\n  \n  // Nettoyage numéro : supprimer espaces, +, 0 initial, gérer +262 et 0262\n  let tel = item.json.Telephone || '';\n  tel = tel.replace(/\\s+/g, '');\n  \n  // Si commence par +262, enlever le +\n  if (tel.startsWith('+')) tel = tel.substring(1);\n  \n  // Si commence par 0262, remplacer par 262\n  if (tel.startsWith('0262')) tel = '262' + tel.substring(4);\n  \n  // Si commence par 0 seul (numéro local), ajouter 262\n  else if (tel.startsWith('0') &amp;&amp; !tel.startsWith('262')) {\n    tel = '262' + tel.substring(1);\n  }\n  \n  item.json.Tel_Formate = tel;\n  item.json.row_index = index;\n  return item;\n});"
+      }
+    },
+    {
+      "id": "1b647bcc-1503-46f2-b00c-5b584aa0bec6",
+      "name": "Switch A/B",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -1024,
+        656
+      ],
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.ab_group }}",
+                    "rightValue": "A",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Groupe A"
+            },
+            {
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.ab_group }}",
+                    "rightValue": "B",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Groupe B"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "none"
+        }
+      }
+    },
+    {
+      "id": "858d45aa-e431-4eec-81d6-8b7bb6efac8b",
+      "name": "WhatsApp Groupe A",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -784,
+        528
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://TON-INSTANCE-EVOLUTION-API/message/sendText/TON-INSTANCE",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "TA_CLE_EVOLUTION_API"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"number\": \"{{ $json.Tel_Formate }}\",\n  \"text\": \"Bonjour 👋 Je suis Tony, je travaille avec des restaurants à La Réunion pour automatiser les tâches qui font perdre du temps (réservations, relances clients, avis Google…).\\n\\nVous gérez tout ça manuellement en ce moment ?\\n\\nJe vous ai préparé une démo personnalisée : {{ $json.deploymentUrl || 'https://TA-PAGE-DEMO.exemple.com' }}\\n\\nFormulaire de contact : https://TON-N8N/form/ton-formulaire?id={{ $json.row_number }}&amp;variant=A\"\n}",
+        "options": {}
+      }
+    },
+    {
+      "id": "48ee02d1-9281-464e-aa2d-5e0c287da1d9",
+      "name": "WhatsApp Groupe B",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -784,
+        800
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://TON-INSTANCE-EVOLUTION-API/message/sendText/TON-INSTANCE",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "TA_CLE_EVOLUTION_API"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"number\": \"{{ $json.Tel_Formate }}\",\n  \"text\": \"Hello ! 🍴 Spécial restaurant : j'aide les restos réunionnais à gagner 5-10h/semaine sur les réservations, avis Google et suivi clients.\\n\\nVous avez déjà eu des no-shows qui auraient pu être évités ?\\n\\nDémo ici : {{ $json.deploymentUrl || 'https://TA-PAGE-DEMO.exemple.com' }}\\n\\nContactez-moi : https://TON-N8N/form/ton-formulaire?id={{ $json.row_number }}&amp;variant=B\"\n}",
+        "options": {}
+      }
+    },
+    {
+      "id": "8ce201f2-68d8-44d5-86f5-3c515353f873",
+      "name": "Wait 3s A",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -560,
+        528
+      ],
+      "parameters": {
+        "amount": 3
+      }
+    },
+    {
+      "id": "fd805f74-10fa-4b74-86b4-c1910000adad",
+      "name": "Wait 3s B",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -560,
+        800
+      ],
+      "parameters": {
+        "amount": 3
+      }
+    },
+    {
+      "id": "25c3981e-ffc3-4d80-8384-e0bb7f4c6654",
+      "name": "Set Statut A",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -352,
+        528
+      ],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "name": "Message_Envoye",
+              "value": "true",
+              "type": "string"
+            },
+            {
+              "name": "Date_Envoi",
+              "value": "={{ new Date().toISOString().slice(0,10) }}",
+              "type": "string"
+            },
+            {
+              "name": "Variante",
+              "value": "A",
+              "type": "string"
+            },
+            {
+              "name": "Telephone",
+              "value": "={{ $('Logique A/B + Format Tel').item.json.Telephone }}",
+              "type": "string"
+            },
+            {
+              "name": "row_number",
+              "value": "={{ $('Logique A/B + Format Tel').item.json.row_number }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "8ca06f42-6b1d-4617-8714-0abebeb76c3c",
+      "name": "Set Statut B",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -352,
+        800
+      ],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "name": "Message_Envoye",
+              "value": "true",
+              "type": "string"
+            },
+            {
+              "name": "Date_Envoi",
+              "value": "={{ new Date().toISOString().slice(0,10) }}",
+              "type": "string"
+            },
+            {
+              "name": "Variante",
+              "value": "B",
+              "type": "string"
+            },
+            {
+              "name": "Telephone",
+              "value": "={{ $('Logique A/B + Format Tel').item.json.Telephone }}",
+              "type": "string"
+            },
+            {
+              "name": "row_number",
+              "value": "={{ $('Logique A/B + Format Tel').item.json.row_number }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "2c657d78-de87-4bc2-9afa-ea96d1d319f6",
+      "name": "Update Sheet A",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -128,
+        528
+      ],
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "VOTRE_GOOGLE_SHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Feuille 1",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Message_Envoye": "={{ $json.Message_Envoye }}",
+            "Date_Envoi": "={{ $json.Date_Envoi }}",
+            "Variante": "={{ $json.Variante }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "canBeUsedToMatch": true,
+              "required": false,
+              "defaultMatch": true
+            },
+            {
+              "id": "Message_Envoye",
+              "displayName": "Message_Envoye",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "Date_Envoi",
+              "displayName": "Date_Envoi",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "Variante",
+              "displayName": "Variante",
+              "canBeUsedToMatch": false
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "892aaed3-d521-4f07-90f9-b6d934dc0601",
+      "name": "Update Sheet B",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -128,
+        800
+      ],
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "VOTRE_GOOGLE_SHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Feuille 1",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Message_Envoye": "={{ $json.Message_Envoye }}",
+            "Date_Envoi": "={{ $json.Date_Envoi }}",
+            "Variante": "={{ $json.Variante }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "canBeUsedToMatch": true,
+              "required": false,
+              "defaultMatch": true
+            },
+            {
+              "id": "Message_Envoye",
+              "displayName": "Message_Envoye",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "Date_Envoi",
+              "displayName": "Date_Envoi",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "Variante",
+              "displayName": "Variante",
+              "canBeUsedToMatch": false
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "02e92b01-325d-43a7-a3b4-a91c346368cf",
+      "name": "Webhook Tracking Clic",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        288,
+        1056
+      ],
+      "parameters": {
+        "path": "automationboost-click-tracker",
+        "options": {}
+      }
+    },
+    {
+      "id": "410e3e80-73fd-4490-876c-17187bc22d86",
+      "name": "Marquer Clic dans Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        528,
+        1056
+      ],
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "VOTRE_GOOGLE_SHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Feuille 1",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "A_Clique": "true",
+            "Date_Clic": "={{ new Date().toISOString().slice(0,10) }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "canBeUsedToMatch": true,
+              "defaultMatch": true
+            },
+            {
+              "id": "A_Clique",
+              "displayName": "A_Clique",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "Date_Clic",
+              "displayName": "Date_Clic",
+              "canBeUsedToMatch": false
+            }
+          ]
+        },
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Démarrer": {
+      "main": [
+        [
+          {
+            "node": "Lire Google Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lire Google Sheet": {
+      "main": [
+        [
+          {
+            "node": "Filtre Leads avec Tel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtre Leads avec Tel": {
+      "main": [
+        [
+          {
+            "node": "Limit 20",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit 20": {
+      "main": [
+        [
+          {
+            "node": "Logique A/B + Format Tel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Logique A/B + Format Tel": {
+      "main": [
+        [
+          {
+            "node": "Switch A/B",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch A/B": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Groupe A",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Groupe B",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Groupe A": {
+      "main": [
+        [
+          {
+            "node": "Wait 3s A",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Groupe B": {
+      "main": [
+        [
+          {
+            "node": "Wait 3s B",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 3s A": {
+      "main": [
+        [
+          {
+            "node": "Set Statut A",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 3s B": {
+      "main": [
+        [
+          {
+            "node": "Set Statut B",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Statut A": {
+      "main": [
+        [
+          {
+            "node": "Update Sheet A",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Statut B": {
+      "main": [
+        [
+          {
+            "node": "Update Sheet B",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Tracking Clic": {
+      "main": [
+        [
+          {
+            "node": "Marquer Clic dans Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}</code></pre>
+      </div>
+    </div>
+
+    <div class="source-cta">
+      <a href="/#contact" class="cta-link">Tu veux que je te le branche ? → voir mon audit</a>
+    </div>
+
+    <p style="margin-top:48px;font-size:13px;color:var(--text-muted);letter-spacing:.04em;">WHATSAPP | TONY PAYET / AUTOMATION BOOST | 2026</p>
+    <a class="nav-back" href="../ressources.html">← Toutes les ressources</a>
+    </div>
+  </div>
+</section>
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+
+  document.querySelectorAll('.copy-btn[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var card = btn.closest('.prompt-card');
+      var code = card ? card.querySelector('code') : null;
+      if (!code) return;
+      var text = code.innerText;
+      var done = function () {
+        var original = btn.dataset.original || btn.textContent;
+        btn.dataset.original = original;
+        btn.textContent = 'Copié ✓';
+        btn.classList.add('copied');
+        setTimeout(function () {
+          btn.textContent = btn.dataset.original;
+          btn.classList.remove('copied');
+        }, 2000);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(function () { fallback(text, done); });
+      } else {
+        fallback(text, done);
+      }
+    });
+  });
+
+  function fallback(text, done) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'absolute';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); done(); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+</script>
+<script src="../assets/js/lead-popup.js?v=20260829a" defer></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="/assets/js/theme.js?v=20260717n" defer></script>
+</body>
+</html>
