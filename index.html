@@ -447,31 +447,12 @@
   <div class="container">
     <div class="cta-band">
       <h2>Reçois ton audit d'automatisation<br><span class="gold">gratuit</span></h2>
-      <p>Décris ton activité en deux lignes. Je te renvoie sous 24&nbsp;h les 3 tâches que tu peux automatiser en premier, et ce que ça te fait gagner. Sans engagement.</p>
+      <p>Sept questions fermées, deux minutes. Tu reçois tout de suite le point qui te coûte le plus cher, et je te rappelle sous 48&nbsp;h pour te dire ce qui est automatisable — et ce qui ne l'est pas. Sans engagement.</p>
 
-      <form id="auditForm" class="audit-form" novalidate>
-        <div class="audit-row">
-          <label class="sr-only" for="auditName">Prénom</label>
-          <input id="auditName" name="name" type="text" placeholder="Ton prénom" required minlength="2" autocomplete="given-name" />
+      <a href="audit.html" class="btn-primary" style="display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:0 30px;font-size:17px;text-decoration:none">Faire l'audit — 2 minutes →</a>
+      <p class="audit-legal">Sept questions, aucune n'est un piège. Pas de spam&nbsp;: ton email ne sert qu'à t'envoyer le diagnostic.</p>
 
-          <label class="sr-only" for="auditEmail">Email</label>
-          <input id="auditEmail" name="email" type="email" placeholder="ton@email.com" required autocomplete="email" />
-        </div>
 
-        <label class="sr-only" for="auditMessage">Ton activité</label>
-        <textarea id="auditMessage" name="message" rows="3" placeholder="Ton activité et ce qui te prend le plus de temps aujourd'hui…" required minlength="10"></textarea>
-
-        <p id="auditError" class="audit-error" role="alert" hidden></p>
-
-        <button type="submit" id="auditBtn" class="btn-primary">Recevoir mon audit gratuit →</button>
-        <p class="audit-legal">Pas de spam. Ton email sert uniquement à t'envoyer l'audit.</p>
-      </form>
-
-      <div id="auditSuccess" class="audit-success" role="status" hidden>
-        <div class="audit-success-icon">✅</div>
-        <h3>C'est envoyé&nbsp;!</h3>
-        <p>Je reviens vers toi sous 24&nbsp;h avec ton audit. Regarde tes spams si tu ne vois rien passer.</p>
-      </div>
     </div>
   </div>
 </section>
@@ -497,71 +478,7 @@
 <script src="assets/js/main.js?v=20260717n"></script>
 <script src="assets/js/nav.js" defer></script>
 <!-- Motion (style motionsite.ai) : révélations au scroll + parallax, GSAP ScrollTrigger -->
-<script>
-/* Formulaire « audit gratuit » → webhook n8n Form-lead-autoboost
-   (même endpoint que lead-popup.js, distingué par le champ `source`). */
-(function () {
-  var WEBHOOK = 'https://n7n.automatisationboost.com/webhook/Form-lead-autoboost';
-  var form = document.getElementById('auditForm');
-  if (!form) return;
 
-  var btn = document.getElementById('auditBtn');
-  var err = document.getElementById('auditError');
-  var success = document.getElementById('auditSuccess');
-  var label = btn.textContent;
-
-  function fail(msg, field) {
-    err.textContent = msg;
-    err.hidden = false;
-    if (field) field.focus();
-  }
-
-  form.addEventListener('submit', async function (e) {
-    e.preventDefault();
-
-    var nameEl = document.getElementById('auditName');
-    var emailEl = document.getElementById('auditEmail');
-    var msgEl = document.getElementById('auditMessage');
-    var name = nameEl.value.trim();
-    var email = emailEl.value.trim();
-    var message = msgEl.value.trim();
-
-    if (name.length < 2) return fail('Entre ton prénom.', nameEl);
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return fail('Entre une adresse email valide.', emailEl);
-    if (message.length < 10) return fail('Décris ton activité en une phrase au moins.', msgEl);
-
-    err.hidden = true;
-    btn.disabled = true;
-    btn.textContent = 'Envoi…';
-
-    try {
-      var res = await fetch(WEBHOOK, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          message: message,
-          source: 'audit-gratuit-home',
-          page: window.location.pathname,
-          date: new Date().toISOString()
-        })
-      });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-    } catch (_) {
-      /* Un lead perdu doit se voir : on rend la main plutôt que de simuler un succès. */
-      btn.disabled = false;
-      btn.textContent = label;
-      return fail('L\'envoi a échoué. Réessaie, ou écris-moi à tony.payet.professionnel@gmail.com.');
-    }
-
-    form.hidden = true;
-    success.hidden = false;
-    success.setAttribute('tabindex', '-1');
-    success.focus();
-  });
-})();
-</script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script>
