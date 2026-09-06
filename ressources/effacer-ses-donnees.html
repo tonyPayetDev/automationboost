@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-0SRZVQ1WGD');
+  </script>
+  <meta charset="UTF-8" />
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1713977213196523');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1713977213196523&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Effacer ses données personnelles d'Internet avec Claude – AutomationBoost</title>
+  <meta name="description" content="Retirer ton numéro, ton adresse et ton mail des annuaires et des sites qui les exposent : inventaire par Claude, demande article 17 RGPD, liste rouge, déréférencement Google, et l’agent Chrome qui remplit les formulaires. 4 prompts prêts à coller." />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Sora',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Sora',sans-serif;font-size:0.85em; }
+  
+    /* Lisibilité lecture longue : Sora (chargée) au lieu d'Orbitron/Rajdhani (jamais chargées) */
+    .page-title, .content-block h2, .content-block h3,
+    article.article-body h2, article.article-body h3 { font-family:'Sora',sans-serif; }
+    .content-block p, .content-block li,
+    article.article-body p, article.article-body li { font-size:17px; line-height:1.75; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Pourquoi l'IA hallucine — et comment le détecter.",
+    "description": "GPT-5.5, Claude Opus 4.7, Gemini 3.1 Pro : aucun n'est exempt. Mécanisme, types d'hallucinations, taux 2026 vérifiés, signaux d'alerte.",
+    "url": "https://automatisationboost.com/ressources/hallucinations-ia.html",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://automatisationboost.com/ressources/hallucinations-ia.html"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "url": "https://automatisationboost.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://automatisationboost.com/assets/images/logo.svg"
+      }
+    },
+    "isAccessibleForFree": false,
+    "hasPart": {
+      "@type": "WebPageElement",
+      "isAccessibleForFree": false,
+      "cssSelector": ".content-block"
+    }
+  }
+  </script>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="../" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="https://videoboost.automatisationboost.com/vente.html" class="nav-link-slide"><span>ShortForge</span><span>ShortForge</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
+    </div>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="https://videoboost.automatisationboost.com/vente.html" class="mob-link mob-link--gold">ShortForge</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
+  </nav>
+</div>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb"><a href="../index.html">Accueil</a><span>›</span><a href="../ressources.html">Ressources</a><span>›</span>Effacer ses données</div>
+    <span class="page-badge">⚡ Ressource</span>
+    <h1 class="page-title">Effacer ses données personnelles d'Internet <span>avec Claude</span></h1>
+    <div class="page-meta"><span>Vérifié le 6 septembre 2026</span><span>·</span><span>~8 min</span><span>·</span><span>4 prompts à coller</span></div>
+    <div class="content-block">
+      <p>Tu ne vas pas disparaître d'Internet, et ce n'est pas le but. Ce qui compte, c'est de retirer les trois données qui te rendent joignable par n'importe qui en trente secondes : ton numéro, ton adresse, ton mail personnel. Claude ne fait aucune démarche à ta place ; il fait le travail ingrat : trouver où tu apparais, écrire chaque demande dans les termes de la loi, et remplir les formulaires pendant que tu regardes.</p>
+      <div class="tip-box"><div class="tip-label">Si tu ne fais qu'une chose ce soir</div><p>La <strong>liste rouge chez ton opérateur</strong> (étape 3) : dix minutes, gratuit, et sous 48 h ta fiche disparaît de tous les annuaires d'un coup. Rien d'autre n'a ce rapport effort / résultat.</p></div>
+
+      <h2>Étape 1 — L'inventaire : savoir où tu apparais</h2>
+      <p>On ne supprime pas ce qu'on ne connaît pas. Ouvre Claude (avec la recherche web activée) et colle ceci, en remplaçant les crochets :</p>
+      <div class="code-block">Cherche sur Internet tout ce qui me concerne. Je m'appelle [PRÉNOM NOM], j'habite à [VILLE], mon mail est [MAIL], mon numéro est [TÉLÉPHONE].
+Pour chaque page où tu me trouves, donne : l'URL exacte, la donnée personnelle visible, et le lien ou l'adresse pour demander la suppression.
+Regarde surtout les annuaires (y compris inversés), les sites d'avis, les registres d'entreprises et d'associations, les vieux forums et les profils oubliés.
+Ne devine jamais : si tu n'es pas sûr que la page parle de moi, mets-la dans une liste « à vérifier » à part.</div>
+      <p>Claude ne voit que ce qui est indexé publiquement : pas les bases internes des courtiers en données ni ce qui est derrière une inscription. Complète à la main avec ton nom entre guillemets dans Google, puis ton numéro entre guillemets. Le second est souvent le plus parlant.</p>
+
+      <h2>Étape 2 — L'article 17 : la demande écrite</h2>
+      <p>Le droit à l'effacement est dans le RGPD (article 17). Tu n'as pas à te justifier, mais la demande doit être <em>précise</em> : quelles données, sur quelle page. Une demande vague se fait refuser ; une demande précise fait courir un délai d'<strong>un mois</strong> (trois si c'est complexe, et on doit te prévenir). Un site peut refuser pour des motifs limités : liberté d'information, obligation légale de conservation, archives, défense en justice.</p>
+      <div class="code-block">À partir de la liste précédente, rédige pour chaque site une demande de suppression prête à envoyer, avec : mon identité et un moyen de me recontacter, l'URL exacte, la liste précise des données à effacer, le fondement (article 17 du RGPD, droit à l'effacement), le rappel du délai d'un mois, et la mention que je garde une copie.
+Ton neutre et ferme, sans menace. Une demande par site.</div>
+      <p>Envoie de préférence au délégué à la protection des données (DPO) quand le site en publie un, en bas de sa politique de confidentialité. Garde une trace datée de chaque envoi : c'est ce qui rendra une plainte recevable à l'étape 6.</p>
+
+      <h2>Étape 3 — La liste rouge : celle que personne ne connaît</h2>
+      <p>Si ton numéro fixe est dans les Pages Blanches, le 118 712 ou un annuaire inversé, tu peux le retirer de tous ces annuaires d'un coup. <strong>Ça se demande à ton opérateur, pas à l'annuaire</strong> : c'est lui qui transmet tes coordonnées aux éditeurs, donc lui seul coupe à la source. Espace client, rubrique annuaire ou vie privée, gratuit. La fiche disparaît sous 48 h. Le mobile n'est pas publié par défaut, le fixe si. En changeant d'opérateur, il faut la redemander. Pour une fiche isolée qui traîne, le formulaire d'exercice des droits de Solocal (éditeur des Pages Blanches et Pages Jaunes) : <a href="https://www.solocal.com/protection-de-la-vie-privee" target="_blank" rel="noopener">solocal.com/protection-de-la-vie-privee</a>.</p>
+
+      <h2>Étape 4 — Google : déréférencer n'est pas supprimer</h2>
+      <p>Le déréférencement retire le résultat de la recherche Google ; la page, elle, reste en ligne. C'est le complément de l'étape 2, jamais son remplacement. Formulaire officiel : <a href="https://reportcontent.google.com/forms/rtbf" target="_blank" rel="noopener">reportcontent.google.com/forms/rtbf</a>. Il faut lister les URL exactes une par une (Claude te les met en forme depuis l'inventaire), fournir une pièce d'identité et signer. Même délai : un mois. Une adresse ou un numéro passe presque toujours ; un article de presse, beaucoup moins.</p>
+
+      <h2>Étape 5 — L'agent Claude qui remplit les formulaires</h2>
+      <p>Avec le connecteur Chrome, Claude ouvre chaque site et remplit les formulaires à ta place. Dans Claude : <em>Personnaliser → Connecteurs → + → Parcourir les connecteurs → Chrome → Installer</em>. Il faut une offre payante (Pro, Max, Team ou Enterprise). Puis, dans la même conversation :</p>
+      <div class="code-block">Ouvre chaque site de ma liste dans Chrome, trouve le formulaire de suppression ou la page de contact du DPO, et remplis-le avec la demande rédigée pour ce site.
+Arrête-toi avant chaque envoi et montre-moi ce que tu vas soumettre pour que je valide.
+Tiens un tableau : site, date d'envoi, statut, blocage éventuel.</div>
+      <p>Il y a des murs qu'un agent ne franchit pas, et c'est voulu : CAPTCHA, pièce d'identité, confirmation par lien mail. Compte sur Claude pour les quatre cinquièmes du travail, pas la totalité. Garde le mode qui demande ta validation avant d'agir, au moins les premières fois.</p>
+
+      <h2>Étape 6 — Quand on t'ignore : relance, puis CNIL</h2>
+      <p>Un mois sans réponse, ou une réponse insatisfaisante : plainte en ligne sur <a href="https://www.cnil.fr" target="_blank" rel="noopener">cnil.fr</a>, gratuite, avec la copie datée de ta demande. Le droit à l'effacement est le premier motif de plainte à la CNIL. Le prompt bonus :</p>
+      <div class="code-block">Reprends mon tableau de suivi. Pour chaque site dont la demande a plus d'un mois sans réponse : rédige une relance qui rappelle la date initiale et le délai dépassé, et prépare le résumé factuel à coller dans une plainte CNIL (site, date d'envoi, absence de réponse, données concernées). Classe du plus sensible au moins sensible. Revérifie chaque site chaque semaine.</div>
+
+      <h2>Par quoi commencer</h2>
+      <ol>
+        <li><strong>Liste rouge</strong> chez ton opérateur — 10 min, gratuit, effet sous 48 h.</li>
+        <li><strong>Inventaire</strong> avec Claude — 20 min.</li>
+        <li><strong>Article 17</strong> site par site — 1 h, puis un mois d'attente.</li>
+        <li><strong>Google</strong> — 30 min, pièce d'identité.</li>
+        <li><strong>L'agent</strong> — fait gagner des heures sur le 3, offre payante.</li>
+        <li><strong>CNIL</strong> — le recours, 20 min.</li>
+      </ol>
+      <p>Refais l'inventaire tous les six mois : certaines fiches réapparaissent quand un site reconstitue sa base, et une demande qui a abouti une fois aboutit plus vite la seconde.</p>
+      <div class="tip-box"><div class="tip-label">Ce que cette page n'est pas</div><p>Un conseil juridique. Pour une situation sensible (harcèlement, usurpation d'identité, diffamation), passe par un avocat. Sources : CNIL (droit à l'effacement, annuaires, plainte), formulaire de déréférencement Google, documentation Anthropic (connecteur Chrome et offres).</p></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+<script src="../assets/js/lead-popup.js?v=20260829a" defer></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="/assets/js/theme.js?v=20260717n" defer></script>
+</body>
+</html>
