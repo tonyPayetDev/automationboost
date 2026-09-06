@@ -60,6 +60,13 @@
         <span class="mod-progress-chip" id="progress-chip">…</span>
       </div>
 
+      <div class="honest-box" id="preview-box" hidden style="margin-bottom:26px">
+        🔓 <strong>Ce module est ouvert à tout le monde jusqu'au 20 septembre.</strong> Pas de carte, pas d'email.
+        Lis-le, fais le défi en bas de page, et dis-moi ce qui bloque, ce qui manque ou ce qui est trop long :
+        <a href="https://www.instagram.com/automatisationboost/" target="_blank" rel="noopener">en message Instagram</a>.
+        Les cinq modules suivants restent réservés à la formation.
+      </div>
+
       <h1 class="mod-title">⚔️ Ton premier livrable vendable</h1>
       <div class="mod-goal"><span>🎯</span><div><b>À la fin de ce module tu sais :</b> produire un document d'audit IA complet sur une entreprise réelle, en 2 à 3 heures, avec des outils gratuits.</div></div>
       <p class="mod-intro">La plupart des gens qui veulent « gagner de l'argent avec l'IA » commencent par collectionner des outils. C'est l'ordre inverse. Ce qui se vend, ce n'est pas ta maîtrise de Claude : c'est un <strong>document ou un système que le client garde</strong>. Ce module te fait produire ton premier livrable — un audit IA — avant même de parler à quelqu'un.</p>
@@ -208,11 +215,12 @@ FORMAT
   </div>
 </section>
 
-<script src="../assets/js/cours.js?v=20260817"></script>
+<script src="../assets/js/cours.js?v=20260906"></script>
 <script src="../assets/js/defi.js?v=20260817"></script>
 <script>
-AB.requireAccess('../');
+AB.requireAccess('../', true);
 if (!AB.isModuleUnlocked(1)) { window.location.href = 'index.html'; }
+if (AB.isFreePreview(1) && !AB.hasAccess()) { document.getElementById('preview-box').hidden = false; }
 
 (function(){
   var lvl = AB.getCurrentLevel();

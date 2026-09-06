@@ -44,7 +44,19 @@ const AB = {
     localStorage.setItem(this.ACCESS_KEY, JSON.stringify({ granted: true, token, email, grantedAt: Date.now() }));
   },
 
-  requireAccess(redirectBase = '') {
+  // Free preview: module 1 is readable without a purchase until this date
+  // (Tony's decision on 2026-09-06, two weeks). After that, requireAccess is
+  // strict again — nothing else to revert.
+  FREE_PREVIEW: { module: 1, until: '2026-09-20T23:59:59+04:00' },
+
+  isFreePreview(n) {
+    const f = this.FREE_PREVIEW;
+    return !!f && Number(n) === f.module && Date.now() < Date.parse(f.until);
+  },
+
+  // allowPreview: the page is part of the free preview (module 1 + dashboard)
+  requireAccess(redirectBase = '', allowPreview = false) {
+    if (allowPreview && this.isFreePreview(this.FREE_PREVIEW.module)) return;
     if (!this.hasAccess()) {
       window.location.href = redirectBase + '/acces.html';
     }
