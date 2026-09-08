@@ -24,21 +24,32 @@ a{color:#3dc4c2}
 /* Page de redirection : elle affiche le domaine du site, pas celui de l'outil
    qui compte les clics. Un webhook brut dans un email froid ressemble à du
    hameçonnage — les filtres comme les humains le lisent ainsi.
-   Le clic est signalé sans bloquer : la redirection part quoi qu'il arrive. */
+
+   2026-09-08 : le clic ne part plus en `fetch` parallèle. Il passait par
+   `/webhook/r` en mode no-cors, sans qu'on puisse vérifier qu'il arrivait, et
+   un navigateur qui ferme l'onglet avant l'envoi perdait la trace. On passe
+   maintenant PAR le webhook `email-tracking` (workflow n8n qDLhi0A3OADnAU0A,
+   actif et vérifié : 302 + une ligne dans le Sheet « Email tracking resto »),
+   qui journalise puis redirige lui-même. Le clic est donc compté côté serveur,
+   ou il ne l'est pas du tout — jamais « à moitié ». */
 (function () {
   var q = new URLSearchParams(location.search);
   var a = (q.get('a') || '').replace(/[^a-z0-9-]/gi, '');
-  var quoi = q.get('q') === 'audit' ? 'audit' : 'rapport';
-  var dest = quoi === 'audit'
-    ? 'https://automatisationboost.com/audit.html'
-    : 'https://previsualisation.automatisationboost.com/rapport-agence/' + a + '/';
+  var s = (q.get('s') || 'general').replace(/[^a-z0-9-]/gi, '');
+  var quoi = q.get('q') || 'audit';
+  var DEST = {
+    audit: 'https://automatisationboost.com/audit.html',
+    demo: 'https://automatisationboost.com/demo.html',
+    module: 'https://automatisationboost.com/cours/module-1.html',
+    rapport: 'https://previsualisation.automatisationboost.com/rapport-agence/' + a + '/'
+  };
+  var dest = DEST[quoi] || DEST.audit;
   document.getElementById('direct').href = dest;
-  try {
-    fetch('https://n7n.automatisationboost.com/webhook/r?a=' + encodeURIComponent(a)
-      + '&q=' + quoi + '&s=' + encodeURIComponent(q.get('s') || 'voyage') + '&nr=1',
-      { mode: 'no-cors', keepalive: true }).catch(function () {});
-  } catch (e) {}
-  setTimeout(function () { location.replace(dest); }, 350);
+  var suivi = 'https://n7n.automatisationboost.com/webhook/email-tracking'
+    + '?event=click&id=' + encodeURIComponent(a)
+    + '&secteur=' + encodeURIComponent(s)
+    + '&redirect=' + encodeURIComponent(dest);
+  setTimeout(function () { location.replace(suivi); }, 250);
 })();
 </script>
 </body>
