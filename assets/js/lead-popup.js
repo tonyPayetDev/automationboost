@@ -27,6 +27,14 @@
   ].join('|'), 'i');
   if (CRAWLERS.test(navigator.userAgent)) return;
 
+  /* Une page peut refuser le mur : il suffit qu'elle porte data-sans-mur sur
+     <html> ou <body>. Utile quand la ressource a DEJA ete gagnee — quelqu'un
+     qui a commente un mot-cle et recu le lien ne doit pas retrouver une porte
+     fermee a l'arrivee. On lui laisse la lecture, et on lui propose de parler
+     en bas de page plutot que de le bloquer en haut. */
+  var r = document.documentElement, c = document.body;
+  if ((r && r.hasAttribute('data-sans-mur')) || (c && c.hasAttribute('data-sans-mur'))) return;
+
   if (localStorage.getItem(LEAD_KEY)) return;
 
   var overlay = document.createElement('div');
