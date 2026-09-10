@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-0SRZVQ1WGD');
+  </script>
+  <meta charset="UTF-8" />
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1713977213196523');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1713977213196523&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monter une vidéo sans logiciel de montage — le moteur, les pièges | AutomatisationBoost</title>
+  <meta name="description" content="GPT-5.5, Claude Opus 4.7, Gemini 3.1 Pro : aucun n'est exempt. Mécanisme, types d'hallucinations, taux 2026 vérifiés, signaux d'alerte." />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Sora',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block h3 { font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul, .content-block ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li, .content-block ol li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block em { color:var(--gold);font-style:normal; }
+    .content-block a { color:var(--gold);text-decoration:none; }
+    .content-block a:hover { text-decoration:underline; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    /* Article styles */
+    .reading { max-width:720px; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:24px; }
+    .h2-num { color:var(--gold);font-size:0.85em;margin-right:12px;opacity:0.7; }
+    article.article-body h2 { font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    article.article-body h3 { font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:28px 0 10px; }
+    article.article-body p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    article.article-body ul, article.article-body ol { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    article.article-body li { margin-bottom:6px; }
+    article.article-body strong { color:var(--text); }
+    article.article-body em { color:var(--gold);font-style:normal; }
+    article.article-body a { color:var(--gold);text-decoration:none; }
+    article.article-body a:hover { text-decoration:underline; }
+    article.article-body .container { max-width:720px;margin:0 auto; }
+    .tip-row { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-row strong { color:var(--gold); }
+    .numbered-list { counter-reset:num; }
+    .numbered-list li { list-style:none;counter-increment:num;padding-left:2rem;position:relative; }
+    .numbered-list li::before { content:counter(num);position:absolute;left:0;color:var(--gold);font-weight:700;font-family:'Sora',sans-serif;font-size:0.85em; }
+  
+    /* Lisibilité lecture longue : Sora (chargée) au lieu d'Orbitron/Rajdhani (jamais chargées) */
+    .page-title, .content-block h2, .content-block h3,
+    article.article-body h2, article.article-body h3 { font-family:'Sora',sans-serif; }
+    .content-block p, .content-block li,
+    article.article-body p, article.article-body li { font-size:17px; line-height:1.75; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Monter une vidéo sans logiciel de montage",
+    "description": "GPT-5.5, Claude Opus 4.7, Gemini 3.1 Pro : aucun n'est exempt. Mécanisme, types d'hallucinations, taux 2026 vérifiés, signaux d'alerte.",
+    "url": "https://automatisationboost.com/ressources/hallucinations-ia.html",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://automatisationboost.com/ressources/hallucinations-ia.html"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "url": "https://automatisationboost.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://automatisationboost.com/assets/images/logo.svg"
+      }
+    },
+    "isAccessibleForFree": false,
+    "hasPart": {
+      "@type": "WebPageElement",
+      "isAccessibleForFree": false,
+      "cssSelector": ".content-block"
+    }
+  }
+  </script>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="../" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="https://videoboost.automatisationboost.com/vente.html" class="nav-link-slide"><span>ShortForge</span><span>ShortForge</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
+    </div>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="https://videoboost.automatisationboost.com/vente.html" class="mob-link mob-link--gold">ShortForge</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
+  </nav>
+</div>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Monter une vidéo sans logiciel de montage
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <span class="page-badge">◈ Guide</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#eab308;">Vidéo &amp; montage</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);">Claude Code · ffmpeg</span>
+    </div>
+    <h1 class="page-title">Monter une vidéo sans logiciel de montage</h1>
+    <p class="lede">Le moteur que j'utilise depuis 247 projets vidéo : un fichier de segments, une voix clonée, des plans rendus par un navigateur, et un assemblage segment par segment. Avec les quatre pièges qui m'ont coûté des semaines — et leur correctif.</p>
+
+    <div class="content-block">
+
+<div class="zone zone-intro">
+<h2>Le principe en une phrase</h2>
+<p>Il n'y a pas de projet, pas de timeline, pas de fichier binaire. Il y a <b>du texte</b> : un tableau qui liste les segments, un dossier de voix, un dossier d'images, et un script d'assemblage d'une centaine de lignes. On lance le script, il sort un MP4.</p>
+<p>Ce que ça change : un montage devient une chose qu'on peut <b>lire, corriger, versionner et rejouer</b>. Un rendu raté ne se refait pas — on change trois lignes et on relance.</p>
+</div>
+
+<h2>Les quatre étapes</h2>
+<ol>
+  <li><b>Le texte.</b> Un fichier tabulé, une ligne par segment : <code>nom&nbsp;⇥&nbsp;texte parlé</code>.</li>
+  <li><b>La voix.</b> Chaque ligne part vers une voix clonée et redescend en fichier audio. Un appel par segment.</li>
+  <li><b>Les plans.</b> Des pages HTML rendues en PNG par un navigateur headless. La charte graphique devient du code.</li>
+  <li><b>L'assemblage.</b> Chaque segment est monté <b>séparément</b>, puis tous sont concaténés.</li>
+</ol>
+
+<h2>Pourquoi segment par segment</h2>
+<p>C'est la règle numéro un, et c'est celle qui fait gagner le plus de temps. Un filtre unique qui traite toute la vidéo, <b>quand il échoue, sort un fichier de zéro octet sans dire où</b>. Découpé en segments, si le cinquième casse, on sait que c'est le cinquième : on le refait seul, les autres ne bougent pas.</p>
+
+<h2>Les quatre pièges — et leur correctif</h2>
+<p>Ils ont tous la même signature : <b>la commande se termine sans erreur, et le résultat est faux</b>. C'est ce qui les rend coûteux.</p>
+
+<h3>1. Deux incrustations dans la même passe</h3>
+<p>Empiler deux <code>overlay</code> dans un même graphe de filtres fait <b>tuer le processus par le noyau</b>. Aucun message, aucune image produite.<br>
+<b>Correctif :</b> un seul <code>overlay</code> par passe. On enchaîne les passes sur des fichiers intermédiaires.</p>
+
+<h3>2. Le mélange audio qui divise le volume</h3>
+<p><code>amix</code> divise le niveau par le nombre d'entrées. Une bande son peut descendre de 12&nbsp;dB sans qu'aucun message ne le signale.<br>
+<b>Correctif :</b> <code>amix=inputs=2:normalize=0</code>.</p>
+
+<h3>3. Les dimensions impaires</h3>
+<p>Une largeur ou une hauteur impaire, et <code>libx264</code> en <code>yuv420p</code> refuse — silencieusement dans un script qui ne teste pas le code de retour. À l'inverse, <code>unsharp</code> exige des matrices <b>impaires</b> : les deux règles se contredisent et se confondent facilement.<br>
+<b>Correctif :</b> toujours forcer les deux dimensions à des valeurs paires, et ne jamais utiliser <code>scale=W:-1</code> quand un recadrage suit.</p>
+
+<h3>4. Le rendu qui réussit avec du texte invisible</h3>
+<p>Le plus coûteux des quatre. Le rendu se termine, le fichier s'ouvre, la durée est bonne — et il n'y a <b>rien à l'écran</b>. La cause : les variables <code>FONTCONFIG_PATH</code> et <code>FONTCONFIG_FILE</code> ne sont pas définies, donc le navigateur dessine du vide.<br>
+<b>Correctif :</b> les exporter avant tout rendu — et surtout, <b>extraire des images du fichier final et les regarder</b>. C'est la seule étape qu'il ne faut pas automatiser.</p>
+
+<h2>La contrainte dont personne ne parle : l'avatar</h2>
+<p>Si le montage incruste un avatar qui parle, il faut mesurer <b>où ses lèvres bougent réellement</b>, image par image. Sur un clip de 5&nbsp;secondes, la plage active fait souvent 3,9&nbsp;à&nbsp;4,8&nbsp;s : le reste, c'est une bouche fermée. Rejouer le clip en boucle sous une voix de 30&nbsp;secondes produit exactement le défaut que tout le monde voit sans savoir le nommer — <i>la voix parle, les lèvres ne bougent pas</i>.</p>
+<p><b>Correctif :</b> enregistrer les plages actives dans un fichier, et faire <b>refuser le rendu</b> par le moteur dès qu'un plan en sort. Le contrôle doit comparer la <b>source consommée</b> (durée ÷ ralenti), pas la durée à l'écran — sinon il rejette des plans valides.</p>
+
+<h2>La musique</h2>
+<p>La voix d'abord, la musique dessous à niveau fixe. <b>Ne jamais normaliser la somme à la fin</b> : ça remonte la musique en même temps que la voix, et la bande son reste trop forte quoi qu'on baisse en amont.</p>
+<p>Deux pièges mesurés : dans <code>sidechaincompress</code>, le déclencheur doit venir <b>après</b> la musique (<code>[musique][voix]</code>) ; et un libellé de filtre ne se consomme qu'une fois — la voix qui sert de source <i>et</i> de déclencheur doit passer par <code>asplit</code>.</p>
+<p>Enfin, <code>loudnorm</code> peut plafonner bien en dessous de la cible quelle que soit la compression : il est alors borné par les <b>crêtes</b>, pas par le volume moyen. Correctif : un gain fixe après, et un limiteur derrière.</p>
+
+<h2>Ce que ça ne remplace pas</h2>
+<p>L'exécution : couper, caler, encoder, recommencer. Pas la décision : quel plan garder, où couper pour que la phrase frappe, quand se taire. Ce qu'on gagne, ce n'est pas du talent — c'est du temps.</p>
+
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="/assets/js/theme.js?v=20260717n" defer></script>
+</body>
