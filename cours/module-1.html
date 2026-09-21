@@ -61,7 +61,7 @@
       </div>
 
       <div class="honest-box" id="preview-box" hidden style="margin-bottom:26px">
-        🔓 <strong>Ce module est ouvert à tout le monde jusqu'au 20 septembre.</strong> Pas de carte, pas d'email.
+        🔓 <strong>Ce module est en accès gratuit</strong> (email + téléphone, pas de carte).
         Lis-le, fais le défi en bas de page, et dis-moi ce qui bloque, ce qui manque ou ce qui est trop long :
         <a href="https://www.instagram.com/automatisationboost/" target="_blank" rel="noopener">en message Instagram</a>.
         Les cinq modules suivants restent réservés à la formation.
@@ -218,9 +218,13 @@ FORMAT
 <script src="../assets/js/cours.js?v=20260906"></script>
 <script src="../assets/js/defi.js?v=20260817"></script>
 <script>
-AB.requireAccess('../', true);
+if (!AB.hasAccess() && !AB.hasLeadAccess()) {
+  AB.showLeadGate(1);
+} else {
+  AB.requireAccess('../', true);
+}
 if (!AB.isModuleUnlocked(1)) { window.location.href = 'index.html'; }
-if (AB.isFreePreview(1) && !AB.hasAccess()) { document.getElementById('preview-box').hidden = false; }
+if ((AB.isFreePreview(1) || AB.hasLeadAccess()) && !AB.hasAccess()) { document.getElementById('preview-box').hidden = false; }
 
 (function(){
   var lvl = AB.getCurrentLevel();

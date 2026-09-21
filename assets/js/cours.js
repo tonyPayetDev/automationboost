@@ -44,9 +44,10 @@ const AB = {
     localStorage.setItem(this.ACCESS_KEY, JSON.stringify({ granted: true, token, email, grantedAt: Date.now() }));
   },
 
-  // Free preview: module 1 is readable without a purchase until this date
-  // (Tony's decision on 2026-09-06, two weeks). After that, requireAccess is
-  // strict again — nothing else to revert.
+  // Free preview: module 1 was readable without a purchase for two weeks
+  // (Tony's decision on 2026-09-06). That window is expired — kept here as
+  // history, isFreePreview() now always returns false past the date, nothing
+  // else to revert. Replaced by the standing lead-gate below (LEAD_KEY).
   FREE_PREVIEW: { module: 1, until: '2026-09-20T23:59:59+04:00' },
 
   isFreePreview(n) {
@@ -54,9 +55,36 @@ const AB = {
     return !!f && Number(n) === f.module && Date.now() < Date.parse(f.until);
   },
 
+  // Module 1 en accès libre permanent contre email/téléphone (pas d'achat) —
+  // remplace la fenêtre temporaire ci-dessus, qui ne capturait aucun contact.
+  LEAD_KEY: 'ab_module1_lead',
+  LEAD_WEBHOOK: 'https://n7n.automatisationboost.com/webhook/module1-lead',
+  LEAD_MODULE: 1,
+
+  hasLeadAccess() {
+    try { return !!JSON.parse(localStorage.getItem(this.LEAD_KEY) || 'null'); }
+    catch { return false; }
+  },
+
+  // Envoie le lead au webhook n8n (stocke + prévient Tony), puis débloque
+  // l'accès local seulement si l'envoi a réellement réussi — jamais de faux
+  // succès si le réseau échoue, une reprise avant d'abandonner.
+  async submitLead({ nom, email, telephone }) {
+    const corps = { nom, email, telephone, page: window.location.pathname, date: new Date().toISOString() };
+    const poster = () => fetch(this.LEAD_WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(corps)
+    }).then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
+    await poster().catch(() => poster());
+    localStorage.setItem(this.LEAD_KEY, JSON.stringify({ nom, email, telephone, grantedAt: Date.now() }));
+    return true;
+  },
+
   // allowPreview: the page is part of the free preview (module 1 + dashboard)
   requireAccess(redirectBase = '', allowPreview = false) {
     if (allowPreview && this.isFreePreview(this.FREE_PREVIEW.module)) return;
+    if (allowPreview && this.hasLeadAccess()) return;
     if (!this.hasAccess()) {
       window.location.href = redirectBase + '/acces.html';
     }
@@ -155,6 +183,57 @@ const AB = {
     overlay.querySelector('[data-rester]').onclick = () => overlay.remove();
     document.body.appendChild(overlay);
     this._confetti();
+  },
+
+  // Porte d'accès du module 1 : overlay plein écran (même famille que la
+  // modale de validation ci-dessus), pas une redirection — sinon personne
+  // n'a jamais la chance de saisir son email. Se ferme seule après un envoi
+  // réellement confirmé par le webhook (submitLead), jamais avant.
+  showLeadGate(moduleNum, onUnlock) {
+    const overlay = document.createElement('div');
+    overlay.id = 'lead-gate-overlay';
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.82);z-index:9999;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);padding:20px';
+    overlay.innerHTML = `
+      <div style="background:var(--bg-card);border:1px solid var(--gold-glow2);border-radius:18px;padding:40px 32px;max-width:420px;width:100%;text-align:center;box-shadow:0 24px 70px rgba(0,0,0,0.4)">
+        <div style="font-size:48px;margin-bottom:12px">🔓</div>
+        <div style="font-size:11px;font-weight:800;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px">Module ${moduleNum} — accès gratuit</div>
+        <h2 style="font-family:'Sora',sans-serif;font-size:1.25rem;color:var(--text);margin-bottom:10px">Débloque ce module en 10 secondes</h2>
+        <p style="color:var(--text-muted);font-size:13.5px;margin-bottom:22px;line-height:1.6">Aucune carte. Juste où t'envoyer les modules suivants si tu veux aller plus loin.</p>
+        <form id="lead-gate-form" style="display:flex;flex-direction:column;gap:10px;text-align:left">
+          <input type="text" name="nom" placeholder="Ton prénom" required
+            style="font:inherit;font-size:15px;padding:12px 14px;border-radius:9px;border:1px solid var(--border);background:var(--bg-card-2);color:var(--text)">
+          <input type="email" name="email" placeholder="Ton email" required
+            style="font:inherit;font-size:15px;padding:12px 14px;border-radius:9px;border:1px solid var(--border);background:var(--bg-card-2);color:var(--text)">
+          <input type="tel" name="telephone" placeholder="Ton téléphone" required
+            style="font:inherit;font-size:15px;padding:12px 14px;border-radius:9px;border:1px solid var(--border);background:var(--bg-card-2);color:var(--text)">
+          <button type="submit" style="background:var(--gold);color:var(--on-gold);font-family:'Sora',sans-serif;font-size:13px;font-weight:800;padding:15px;border:none;border-radius:10px;cursor:pointer;margin-top:4px">
+            🔓 Débloquer le module
+          </button>
+          <p id="lead-gate-err" style="display:none;color:#f87171;font-size:12.5px;margin:4px 0 0"></p>
+        </form>
+      </div>`;
+    document.body.appendChild(overlay);
+
+    const form = overlay.querySelector('#lead-gate-form');
+    const err = overlay.querySelector('#lead-gate-err');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button');
+      btn.disabled = true;
+      btn.textContent = 'Envoi…';
+      err.style.display = 'none';
+      const data = new FormData(form);
+      try {
+        await this.submitLead({ nom: data.get('nom'), email: data.get('email'), telephone: data.get('telephone') });
+        overlay.remove();
+        if (typeof onUnlock === 'function') onUnlock();
+      } catch (e2) {
+        btn.disabled = false;
+        btn.textContent = '🔓 Débloquer le module';
+        err.textContent = "L'envoi n'a pas abouti — vérifie ta connexion et réessaie.";
+        err.style.display = 'block';
+      }
+    });
   },
 
   _confetti() {
