@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0SRZVQ1WGD');
+  </script>
+  <meta charset="UTF-8" />
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1713977213196523');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1713977213196523&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <title>Le CLAUDE.md qui fait baisser ta conso de tokens : le prompt de délégation – AutomationBoost</title>
+  <meta name="description" content="La section à coller dans ton CLAUDE.md pour que Claude Code délègue le travail à des sous-agents avec le bon modèle, et les chiffres mesurés sur ma propre conso qui expliquent pourquoi ça coûte moins cher." />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Sora',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:48px;flex-wrap:wrap; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:40px 0; }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block ul li { margin-bottom:6px; }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:20px 24px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px; }
+    .tip-box p { color:var(--text-light);margin:0;font-size:15px; }
+    .code-block { background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;font-family:monospace;font-size:14px;color:#a3e635;margin:16px 0;overflow-x:auto;white-space:pre; }
+    .source-cta { display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#000;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;padding:14px 28px;border-radius:var(--radius);text-decoration:none;margin-top:40px;transition:all .2s; }
+    .source-cta:hover { background:var(--gold-dark);transform:translateY(-2px); }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+    .page-title, .content-block h2, .content-block h3 { font-family:'Sora',sans-serif; }
+    .content-block p, .content-block li { font-size:17px; line-height:1.75; }
+    .flow-step { display:flex;gap:14px;align-items:flex-start;margin-bottom:14px; }
+    .flow-step .num { flex:0 0 26px;height:26px;border-radius:50%;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.3);color:var(--gold);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:2px; }
+    .flow-step p { margin:0; }
+    .usecase { background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 22px;margin:14px 0; }
+    .usecase h3 { font-size:1.05rem;font-weight:700;color:var(--text);margin:0 0 6px; }
+    .usecase p { margin:0;font-size:15px; }
+    .page-title span { white-space:nowrap; }
+    .sf-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.35);border-radius:var(--radius);padding:22px 24px;margin:28px 0; }
+    .sf-box h3 { font-family:'Sora',sans-serif;font-size:1.1rem;margin:0 0 8px; }
+    .sf-box p { margin:0 0 14px;font-size:16px; }
+    .sommaire { background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 22px;margin:8px 0 28px; }
+    .sommaire ol { margin:6px 0 0;padding-left:20px;line-height:1.9;font-size:15.5px; }
+    .sommaire a { color:var(--gold);text-decoration:none; }
+    .content-block h2[id] { scroll-margin-top:110px; }
+    .content-block .spec-tag { display:inline;line-height:2;overflow-wrap:anywhere; }
+    .content-block h3 { font-size:1.02rem;font-weight:700;margin:26px 0 10px;color:var(--text); }
+    .code-block { white-space:pre-wrap; overflow-wrap:anywhere; }
+    .spec-tag { display:inline-block;background:rgba(234,179,8,0.10);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-family:monospace;font-size:13px;padding:2px 8px;border-radius:4px; }
+    .flow-step .num { flex:0 0 auto;min-width:48px;padding:0 6px;border-radius:13px;white-space:nowrap; }
+    .copy-wrap { position:relative; }
+    .copy-btn { position:absolute;top:10px;right:10px;background:var(--gold);color:#000;border:0;border-radius:4px;font-family:'Sora',sans-serif;font-size:12px;font-weight:700;padding:6px 12px;cursor:pointer; }
+    .copy-wrap .code-block { padding-top:44px; }
+    .stat-list { list-style:none;padding-left:0 !important; }
+    .stat-list li { background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;margin-bottom:10px !important; }
+    .stat-list b { color:var(--gold);font-family:'Sora',sans-serif;font-size:1.15rem;margin-right:6px; }
+    .note-small { font-size:14px !important;color:var(--text-muted) !important; }
+  </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"Le CLAUDE.md qui fait baisser ta conso de tokens : le prompt de délégation","description":"La section à coller dans ton CLAUDE.md pour que Claude Code délègue le travail à des sous-agents avec le bon modèle, et les chiffres mesurés sur ma propre conso qui expliquent pourquoi ça coûte moins cher.","url":"https://automatisationboost.com/ressources/claude-md-delegation.html","datePublished":"2026-09-30",
+   "mainEntityOfPage":{"@type":"WebPage","@id":"https://automatisationboost.com/ressources/claude-md-delegation.html"},
+   "author":{"@type":"Organization","name":"AutomationBoost","url":"https://automatisationboost.com"},
+   "publisher":{"@type":"Organization","name":"AutomationBoost","logo":{"@type":"ImageObject","url":"https://automatisationboost.com/assets/images/logo.svg"}},
+   "isAccessibleForFree":true}
+  </script>
+</head>
+<body data-sans-mur>
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="../" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="https://videoboost.automatisationboost.com/vente.html" class="nav-link-slide"><span>ShortForge</span><span>ShortForge</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
+    </div>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="https://videoboost.automatisationboost.com/vente.html" class="mob-link mob-link--gold">ShortForge</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
+  </nav>
+</div>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>CLAUDE.md de délégation
+    </div>
+    <div class="page-badge">◈ Prompt · mot-clé TOKEN</div>
+    <h1 class="page-title">Le CLAUDE.md qui fait baisser ta conso de tokens : <span>le prompt de délégation</span></h1>
+    <div class="page-meta">
+      <span>La section à coller, pourquoi elle marche, mes chiffres réels</span><span>Lecture : 7 min</span>
+    </div>
+
+    <div class="content-block">
+      <p>Dans la vidéo, je te dis : « Tu crées un CLAUDE.md et tu lui demandes de déléguer certaines tâches à des sous-agents. » Voici exactement ce que je mets dans le mien, adapté pour que tu puisses le coller tel quel.</p>
+      <p>Le <strong>CLAUDE.md</strong>, c’est un fichier texte que Claude Code lit tout seul au début de chaque session. Ce que tu écris dedans, il le suit sans que tu aies à le répéter. Un <strong>sous-agent</strong>, c’est un deuxième Claude que le premier lance pour une tâche précise : il travaille dans son coin, puis il rend un rapport court.</p>
+
+      <div class="sommaire">
+        <strong>Au programme</strong>
+        <ol>
+          <li><a href="#probleme">Le problème : chaque tour relit tout</a></li>
+          <li><a href="#prompt">Le prompt à coller dans ton CLAUDE.md</a></li>
+          <li><a href="#utiliser">Comment l’utiliser</a></li>
+          <li><a href="#reflexes">Les 3 réflexes en plus</a></li>
+        </ol>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2 id="probleme">Le problème : chaque tour relit tout</h2>
+      <p>Quand tu parles à Claude Code, il ne se souvient pas de la conversation. À chaque réponse, <strong>tout l’historique lui est renvoyé</strong> : tes messages, ses réponses, et surtout tout ce qu’il a lu (fichiers, résultats de commandes, captures d’écran). Plus la session est longue, plus chaque tour coûte cher.</p>
+      <p>Si le fil principal fait lui-même les recherches, lit vingt fichiers et lance des commandes qui crachent des pages de texte, tout ça reste dans l’historique et se fait relire à chaque tour jusqu’à la fin de la session.</p>
+      <p>J’ai mesuré ma propre conso Claude Code du <strong>16 au 29 septembre 2026</strong> (6 sessions, 4 493 tours). Voici ce qui en sort :</p>
+      <ul class="stat-list">
+        <li><b>96 %</b> des jetons traités sont des jetons « relus » : le contexte renvoyé à chaque tour. Chaque relecture coûte peu, mais il y en a énormément.</li>
+        <li><b>71 %</b> du coût estimé vient d’<strong>une seule session</strong>, restée ouverte 13 jours, avec 13 compactions et un contexte moyen d’environ 406 000 jetons.</li>
+        <li><b>37 %</b> du coût estimé vient des tours où le contexte dépassait 200 000 jetons.</li>
+        <li><b>18 %</b> du coût estimé vient de 56 reprises après plus d’une heure de pause (le contexte entier est réécrit).</li>
+        <li><b>36 %</b> du coût estimé vient des sous-agents… dont <b>74 %</b> tournaient sur Opus, le modèle le plus cher. Déléguer sans choisir le modèle ne fait donc pas économiser grand-chose.</li>
+      </ul>
+      <p class="note-small">Ces chiffres viennent de mes propres fichiers de session, pas d’une étude. Le coût est une <strong>estimation</strong> faite avec des hypothèses de tarif, pas ma facture : les pourcentages sont plus fiables que les valeurs absolues. Le détail est sur <a href="https://previsualisation.automatisationboost.com/conso-claude/" style="color:var(--gold)" target="_blank" rel="noopener">ma page de mesure</a>.</p>
+      <p>La règle de délégation attaque les deux premiers points : le fil principal reste court parce qu’il ne lit que des rapports, et chaque tâche tourne sur le modèle le moins cher capable de la faire.</p>
+      <div class="tip-box">
+        <div class="tip-label">Ton premier pas</div>
+        <p>Dans ta prochaine session, tape <span class="spec-tag">/context</span> au bout d’une heure. Tu verras combien de place prend l’historique. C’est ça que tu paies à chaque tour.</p>
+      </div>
+
+      <h2 id="prompt">Le prompt à coller dans ton CLAUDE.md</h2>
+      <p>C’est la version générique de la règle que j’ai dans mon propre CLAUDE.md. Je nomme les modèles par leur rang (le plus fort, l’intermédiaire, le léger) parce que les noms changent vite. Aujourd’hui chez Claude, ça donne Opus, Sonnet et Haiku.</p>
+      <div class="copy-wrap">
+        <button class="copy-btn" type="button" data-copy="prompt-delegation">Copier</button>
+        <div class="code-block" id="prompt-delegation">## Délégation aux sous-agents
+
+Tu es le chef de projet, pas l'exécutant. Le fil principal sert à décider, pas à faire.
+
+1. Ne fais pas le travail dans le fil principal. Tout ce qui demande de chercher dans le projet, de lire plus de 2 ou 3 fichiers, de lancer une commande qui sort beaucoup de texte ou de vérifier un rendu part dans un sous-agent.
+
+2. Un sous-agent par tâche, avec un modèle choisi explicitement :
+   - modèle le plus fort (ex. Opus) : architecture, choix de conception, bug difficile qui résiste ;
+   - modèle intermédiaire (ex. Sonnet) : modifier du code, écrire et lancer les tests, rédiger la doc ;
+   - modèle léger (ex. Haiku) : chercher, lister, lire et résumer des fichiers ou des logs.
+
+3. Commence par le moins cher. Une tâche simple et bien décrite va au modèle léger, ou à un modèle gratuit ou pas cher si j'en ai branché un. Tu montes d'un cran seulement s'il échoue.
+
+4. Lance en même temps les sous-agents qui ne dépendent pas les uns des autres.
+
+5. Brief complet dès le départ : un sous-agent ne voit pas notre conversation. Donne-lui les chemins des fichiers, ce qui est déjà écarté et ce que « terminé » veut dire. Jamais « d'après ce qu'on a dit, corrige ».
+
+6. Demande un rapport court : ce qui a été fait, les fichiers touchés, ce qui reste, en 10 lignes maximum. Tu lis le rapport, pas les fichiers qu'il a lus.
+
+7. Tu gardes dans le fil principal seulement : une petite modification dans un fichier déjà lu, les décisions, la vérification finale.
+
+8. Si une limite est atteinte ou qu'un sous-agent échoue deux fois, tu ne relances pas en boucle : tu t'arrêtes et tu me dis ce qui bloque.</div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-label">Ton premier pas</div>
+        <p>Copie le bloc et colle-le à la fin de ton CLAUDE.md. Si tu n’en as pas encore, crée-le avec seulement ce bloc : c’est déjà un bon début.</p>
+      </div>
+
+      <h2 id="utiliser">Comment l’utiliser</h2>
+      <h3>Où mettre le fichier</h3>
+      <ul>
+        <li><strong>Pour un projet</strong> : un fichier <span class="spec-tag">CLAUDE.md</span> à la racine du dossier dans lequel tu lances Claude Code.</li>
+        <li><strong>Pour tous tes projets</strong> : <span class="spec-tag">~/.claude/CLAUDE.md</span> dans ton dossier personnel. Il est lu en plus de celui du projet.</li>
+      </ul>
+      <p>Le fichier est lu au démarrage de la session. Si tu le modifies en cours de route, ouvre une nouvelle session pour être sûr qu’il est pris en compte.</p>
+      <h3>À quoi t’attendre</h3>
+      <ul>
+        <li>Tu vas voir Claude lancer des sous-agents au lieu de tout faire lui-même, puis te résumer ce qu’ils ont rendu.</li>
+        <li>Le fil principal grossit beaucoup moins vite : c’est là que se fait l’économie.</li>
+        <li>Pour une toute petite tâche, déléguer coûte <strong>plus</strong> que de la faire directement, parce que chaque sous-agent part de zéro et doit relire son brief. C’est pour ça que la règle 7 existe.</li>
+        <li>Si Claude oublie de préciser le modèle, rappelle-le une fois : « un sous-agent léger pour ça ». Il reprend vite l’habitude.</li>
+      </ul>
+      <div class="tip-box">
+        <div class="tip-label">Ton premier pas</div>
+        <p>Donne-lui une tâche de recherche, par exemple « trouve où est géré l’envoi des emails dans ce projet ». Vérifie qu’il lance un sous-agent léger et que tu reçois un rapport court, pas vingt fichiers ouverts dans le fil.</p>
+      </div>
+
+      <h2 id="reflexes">Les 3 réflexes en plus</h2>
+      <p>La délégation ne suffit pas si la session elle-même dure des jours. Ces trois habitudes viennent des mêmes mesures.</p>
+      <h3>1. Une session par sujet</h3>
+      <p>Ma session la plus chère a duré 13 jours et mélangé plein de sujets. Quand tu changes de sujet, tape <span class="spec-tag">/clear</span> ou ouvre une nouvelle session. Si tu dois garder le fil, <span class="spec-tag">/compact</span> résume l’historique avant de continuer.</p>
+      <h3>2. Pas de grosse session en pause plus d’une heure</h3>
+      <p>Après une heure sans activité, la mémoire rapide expire et la reprise réécrit tout le contexte. Chez moi, ces reprises ont pesé 18 % du coût estimé. Avant une pause, fais un <span class="spec-tag">/compact</span> ou demande une note de reprise courte, puis repars d’une session neuve.</p>
+      <h3>3. Les captures d’écran avec parcimonie</h3>
+      <p>Une image pèse lourd et reste dans l’historique. J’en ai fait lire 351 en deux semaines. Demande d’abord les chiffres (un fichier de mesure, un log), et une seule planche qui regroupe plusieurs captures plutôt que dix images séparées.</p>
+      <div class="tip-box">
+        <div class="tip-label">Ton premier pas</div>
+        <p>Ce soir, avant de fermer ton ordinateur, ne laisse pas ta session ouverte « pour demain ». Demande-lui une note de reprise de 10 lignes, garde-la, et demain matin ouvre une session neuve avec cette note.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2>Tu veux qu’on regarde ton cas ?</h2>
+      <p>Chaque projet consomme différemment. Si tu veux savoir où part ta conso et quelles tâches tu peux sortir de ton fil principal, réponds à l’audit gratuit (deux minutes) : je te dis ce que je ferais à ta place.</p>
+      <a href="/#contact" class="source-cta">◈ Je veux être accompagné — audit gratuit →</a>
+      <p style="margin-top:18px;font-size:15px">Tu veux voir comment j’utilise ces agents pour produire mes vidéos sans y passer mes soirées ? C’est ici : <a href="https://automatisationboost.com/ressources/systeme-video-ia.html" style="color:var(--gold)">mon système vidéo IA</a>.</p>
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const el = document.getElementById(btn.dataset.copy);
+      if (!el) return;
+      try {
+        await navigator.clipboard.writeText(el.innerText);
+        btn.textContent = 'Copié ✓';
+      } catch (e) {
+        const r = document.createRange(); r.selectNodeContents(el);
+        const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        btn.textContent = 'Sélectionné';
+      }
+      setTimeout(() => { btn.textContent = 'Copier'; }, 2000);
+    });
+  });
+</script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="/assets/js/theme.js?v=20260717n" defer></script>
+</body>
+</html>
