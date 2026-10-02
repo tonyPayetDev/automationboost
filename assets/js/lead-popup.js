@@ -50,12 +50,40 @@
       'free': 'free.fr', 'sfr': 'sfr.fr', 'wanadoo': 'wanadoo.fr', 'bbox': 'bbox.fr'
     };
 
+    var typoMap = {
+      'gmial': 'gmail.com', 'gmai': 'gmail.com', 'gmail.con': 'gmail.com', 'gmail.co': 'gmail.com',
+      'gmil': 'gmail.com', 'gmal': 'gmail.com', 'gmail.cm': 'gmail.com', 'gmail.om': 'gmail.com',
+      'gmaill': 'gmail.com', 'gnail': 'gmail.com', 'gmeil': 'gmail.com',
+      'yaho': 'yahoo.com', 'yahooo': 'yahoo.com', 'yahho': 'yahoo.com', 'yahoo.con': 'yahoo.com', 'yahoo.co': 'yahoo.com',
+      'yahool': 'yahoo.com', 'yaho.com': 'yahoo.com',
+      'hotmial': 'hotmail.com', 'hotmai': 'hotmail.com', 'hotmal': 'hotmail.com', 'hotmali': 'hotmail.com',
+      'hotmail.con': 'hotmail.com', 'hotmail.co': 'hotmail.com', 'hotmaill': 'hotmail.com',
+      'outlok': 'outlook.com', 'outloo': 'outlook.com', 'outloook': 'outlook.com', 'outlook.con': 'outlook.com', 'outlook.co': 'outlook.com',
+      'outlok.com': 'outlook.com', 'outlookk': 'outlook.com',
+      'freee': 'free.fr', 'freee.fr': 'free.fr', 'free.con': 'free.fr', 'free.co': 'free.fr',
+      'francesse': 'free.fr', 'franceese': 'free.fr', 'francese': 'free.fr',
+      'sfr.con': 'sfr.fr', 'sfrr': 'sfr.fr', 'sfr.co': 'sfr.fr',
+      'iclod': 'icloud.com', 'icoud': 'icloud.com', 'iclou': 'icloud.com', 'iclud': 'icloud.com',
+      'icloud.con': 'icloud.com', 'icloud.co': 'icloud.com',
+      'live.con': 'live.com', 'live.co': 'live.com', 'livee': 'live.com',
+      'msn.con': 'msn.com', 'msn.co': 'msn.com',
+      'orannge': 'orange.fr', 'orang': 'orange.fr', 'orange.con': 'orange.fr', 'orange.co': 'orange.fr',
+      'lapost': 'laposte.net', 'laposte.con': 'laposte.net', 'laposte.co': 'laposte.net',
+      'wanadoo.con': 'wanadoo.fr', 'wanadoo.co': 'wanadoo.fr',
+      'bbox.con': 'bbox.fr', 'bbox.co': 'bbox.fr',
+      'numericable.con': 'numericable.fr', 'numericable.co': 'numericable.fr'
+    };
+
     /* Point manquant : « tony@gmailcom » → tony@gmail.com. */
     if (domain.indexOf('.') === -1) {
       for (var stem in providers) {
         if (domain === stem || domain === stem + 'com' || domain === stem + 'fr' || domain === stem + 'net') {
           return { hasTypo: true, suggestion: local + '@' + providers[stem], original: email };
         }
+      }
+      /* Faute de frappe ET point manquant : « tony@gmial » → tony@gmail.com. */
+      if (typoMap[domain]) {
+        return { hasTypo: true, suggestion: local + '@' + typoMap[domain], original: email };
       }
       return { hasTypo: false };
     }
@@ -74,29 +102,6 @@
     if (providers[tld] && parts.length === 0 && (sld === 'fr' || sld === 'com' || sld === 'net')) {
       return { hasTypo: true, suggestion: local + '@' + providers[tld], original: email };
     }
-
-    var typoMap = {
-      'gmial': 'gmail.com', 'gmai': 'gmail.com', 'gmail.con': 'gmail.com', 'gmail.co': 'gmail.com',
-      'gmil': 'gmail.com', 'gmal': 'gmail.com', 'gmail.cm': 'gmail.com', 'gmail.om': 'gmail.com',
-      'gmaill': 'gmail.com', 'gnail': 'gmail.com', 'gmeil': 'gmail.com',
-      'yaho': 'yahoo.com', 'yahooo': 'yahoo.com', 'yahho': 'yahoo.com', 'yahoo.con': 'yahoo.com', 'yahoo.co': 'yahoo.com',
-      'yahool': 'yahoo.com', 'yaho.com': 'yahoo.com',
-      'hotmial': 'hotmail.com', 'hotmai': 'hotmail.com', 'hotmal': 'hotmail.com', 'hotmali': 'hotmail.com',
-      'hotmail.con': 'hotmail.com', 'hotmail.co': 'hotmail.com', 'hotmaill': 'hotmail.com',
-      'outlok': 'outlook.com', 'outloo': 'outlook.com', 'outloook': 'outlook.com', 'outlook.con': 'outlook.com', 'outlook.co': 'outlook.com',
-      'outlok.com': 'outlook.com', 'outlookk': 'outlook.com',
-      'freee': 'free.fr', 'freee.fr': 'free.fr', 'free.con': 'free.fr', 'free.co': 'free.fr',
-      'sfr.con': 'sfr.fr', 'sfrr': 'sfr.fr', 'sfr.co': 'sfr.fr',
-      'iclod': 'icloud.com', 'icoud': 'icloud.com', 'iclou': 'icloud.com', 'iclud': 'icloud.com',
-      'icloud.con': 'icloud.com', 'icloud.co': 'icloud.com',
-      'live.con': 'live.com', 'live.co': 'live.com', 'livee': 'live.com',
-      'msn.con': 'msn.com', 'msn.co': 'msn.com',
-      'orannge': 'orange.fr', 'orang': 'orange.fr', 'orange.con': 'orange.fr', 'orange.co': 'orange.fr',
-      'lapost': 'laposte.net', 'laposte.con': 'laposte.net', 'laposte.co': 'laposte.net',
-      'wanadoo.con': 'wanadoo.fr', 'wanadoo.co': 'wanadoo.fr',
-      'bbox.con': 'bbox.fr', 'bbox.co': 'bbox.fr',
-      'numericable.con': 'numericable.fr', 'numericable.co': 'numericable.fr'
-    };
 
     var fullDomain = sld + '.' + tld;
     if (typoMap[fullDomain]) {
