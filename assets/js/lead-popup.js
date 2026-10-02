@@ -297,11 +297,24 @@
        proposition de correction, pas le message générique « adresse invalide ». */
     var typo = window.abDetectEmailTypo(email);
     if (typo.hasTypo) {
-      err.innerHTML = 'Ça ressemble à une faute de frappe — voulais-tu dire <strong>' + typo.suggestion + '</strong> ? ' +
-        '<button type="button" id="typoFix" style="background:#eab308;color:#000;border:none;border-radius:4px;padding:2px 8px;margin-left:8px;font-size:.75rem;font-weight:700;cursor:pointer;">Utiliser cette correction</button>';
+      /* The message is built with DOM nodes, not innerHTML: the suggestion
+         echoes the local part the user typed, which can contain anything. */
+      while (err.firstChild) err.removeChild(err.firstChild);
+      err.appendChild(document.createTextNode('Ça ressemble à une faute de frappe — voulais-tu dire '));
+      var sug = document.createElement('strong');
+      sug.textContent = typo.suggestion;
+      err.appendChild(sug);
+      err.appendChild(document.createTextNode(' ? '));
+      var fix = document.createElement('button');
+      fix.type = 'button';
+      fix.id = 'typoFix';
+      fix.textContent = 'Utiliser cette correction';
+      fix.style.cssText = 'background:#eab308;color:#000;border:none;border-radius:4px;padding:2px 8px;' +
+        'margin-left:8px;font-size:.75rem;font-weight:700;cursor:pointer;';
+      err.appendChild(fix);
       err.style.display = 'block';
       document.getElementById('leadEmail').focus();
-      document.getElementById('typoFix').addEventListener('click', function () {
+      fix.addEventListener('click', function () {
         document.getElementById('leadEmail').value = typo.suggestion;
         err.style.display = 'none';
         document.getElementById('leadEmail').focus();
