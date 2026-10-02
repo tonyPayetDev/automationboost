@@ -15,6 +15,71 @@
   var WEBHOOK = 'https://n7n.automatisationboost.com/webhook/Form-lead-autoboost';
   var LEAD_KEY = 'ab_lead_email';
 
+  /* ============================================================
+     Email typo detection — shared with journal-ia forms.
+     Returns { hasTypo: true, suggestion: 'corrected@domain.com', original: '...' }
+     or { hasTypo: false } if no obvious typo.
+     Never blocks syntactically valid unknown domains.
+     ============================================================ */
+  window.abDetectEmailTypo = function (email) {
+    var at = email.indexOf('@');
+    if (at <= 0 || at === email.length - 1) return { hasTypo: false };
+    var local = email.slice(0, at);
+    var domain = email.slice(at + 1).toLowerCase();
+
+    if (domain.indexOf(' ') >= 0 || domain.indexOf('@') >= 0) {
+      return { hasTypo: true, suggestion: email.replace(/ /g, '').replace(/@+$/g, '').replace(/@@+/g, '@'), original: email };
+    }
+    if (domain.indexOf('.') === -1) return { hasTypo: false };
+
+    var parts = domain.split('.');
+    var tld = parts.pop();
+    var sld = parts.pop() || '';
+    var base = sld;
+
+    var typoMap = {
+      'gmial': 'gmail.com', 'gmai': 'gmail.com', 'gmail.con': 'gmail.com', 'gmail.co': 'gmail.com',
+      'gmil': 'gmail.com', 'gmal': 'gmail.com', 'gmail.cm': 'gmail.com', 'gmail.om': 'gmail.com',
+      'gmaill': 'gmail.com', 'gnail': 'gmail.com', 'gmeil': 'gmail.com',
+      'yaho': 'yahoo.com', 'yahooo': 'yahoo.com', 'yahho': 'yahoo.com', 'yahoo.con': 'yahoo.com', 'yahoo.co': 'yahoo.com',
+      'yahool': 'yahoo.com', 'yaho.com': 'yahoo.com',
+      'hotmial': 'hotmail.com', 'hotmai': 'hotmail.com', 'hotmal': 'hotmail.com', 'hotmali': 'hotmail.com',
+      'hotmail.con': 'hotmail.com', 'hotmail.co': 'hotmail.com', 'hotmaill': 'hotmail.com',
+      'outlok': 'outlook.com', 'outloo': 'outlook.com', 'outloook': 'outlook.com', 'outlook.con': 'outlook.com', 'outlook.co': 'outlook.com',
+      'outlok.com': 'outlook.com', 'outlookk': 'outlook.com',
+      'freee': 'free.fr', 'freee.fr': 'free.fr', 'free.con': 'free.fr', 'free.co': 'free.fr',
+      'sfr.con': 'sfr.fr', 'sfrr': 'sfr.fr', 'sfr.co': 'sfr.fr',
+      'iclod': 'icloud.com', 'icoud': 'icloud.com', 'iclou': 'icloud.com', 'iclud': 'icloud.com',
+      'icloud.con': 'icloud.com', 'icloud.co': 'icloud.com',
+      'live.con': 'live.com', 'live.co': 'live.com', 'livee': 'live.com',
+      'msn.con': 'msn.com', 'msn.co': 'msn.com',
+      'orannge': 'orange.fr', 'orang': 'orange.fr', 'orange.con': 'orange.fr', 'orange.co': 'orange.fr',
+      'lapost': 'laposte.net', 'laposte.con': 'laposte.net', 'laposte.co': 'laposte.net',
+      'wanadoo.con': 'wanadoo.fr', 'wanadoo.co': 'wanadoo.fr',
+      'bbox.con': 'bbox.fr', 'bbox.co': 'bbox.fr',
+      'numericable.con': 'numericable.fr', 'numericable.co': 'numericable.fr'
+    };
+
+    var fullDomain = sld + '.' + tld;
+    if (typoMap[fullDomain]) {
+      return { hasTypo: true, suggestion: local + '@' + typoMap[fullDomain], original: email };
+    }
+    if (typoMap[sld] && tld === 'com') {
+      return { hasTypo: true, suggestion: local + '@' + typoMap[sld], original: email };
+    }
+    if (typoMap[sld] && tld === 'fr') {
+      return { hasTypo: true, suggestion: local + '@' + typoMap[sld], original: email };
+    }
+
+    var knownTlds = ['com','fr','net','org','info','biz','io','co','me','eu','be','ch','ca','uk','de','es','it','nl','pl','cz','sk','hu','ro','bg','hr','si','ee','lv','lt','fi','se','no','dk','pt','gr','cy','mt','lu','ie','at'];
+    if (knownTlds.indexOf(tld) === -1 && tld.length <= 4) {
+      if (tld === 'con') return { hasTypo: true, suggestion: local + '@' + sld + '.com', original: email };
+      if (tld === 'co' && parts.length === 0) return { hasTypo: true, suggestion: local + '@' + sld + '.com', original: email };
+    }
+
+    return { hasTypo: false };
+  };
+
   /* Crawlers render the page without the gate: search engines index the resource,
      and link previews (shares) still show it. Google treats this as cloaking unless
      the paywalled content is declared with isAccessibleForFree structured data. */
@@ -160,26 +225,40 @@
 
   document.getElementById('leadClose').addEventListener('click', close);
 
-  document.getElementById('leadForm').addEventListener('submit', async function (e) {
-    e.preventDefault();
-    var btn = document.getElementById('leadBtn');
-    var err = document.getElementById('leadError');
-    var name = document.getElementById('leadName').value.trim();
-    var email = document.getElementById('leadEmail').value.trim();
+document.getElementById('leadForm').addEventListener('submit', async function (e) {
+     e.preventDefault();
+     var btn = document.getElementById('leadBtn');
+     var err = document.getElementById('leadError');
+     var name = document.getElementById('leadName').value.trim();
+     var email = document.getElementById('leadEmail').value.trim();
 
-    if (name.length < 2) {
-      err.textContent = 'Entre ton prénom pour continuer.';
-      err.style.display = 'block';
-      document.getElementById('leadName').focus();
-      return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      err.textContent = 'Entre une adresse email valide pour continuer.';
-      err.style.display = 'block';
-      document.getElementById('leadEmail').focus();
-      return;
-    }
-    err.style.display = 'none';
+     if (name.length < 2) {
+       err.textContent = 'Entre ton prénom pour continuer.';
+       err.style.display = 'block';
+       document.getElementById('leadName').focus();
+       return;
+     }
+     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+       err.textContent = 'Entre une adresse email valide pour continuer.';
+       err.style.display = 'block';
+       document.getElementById('leadEmail').focus();
+       return;
+     }
+
+     var typo = window.abDetectEmailTypo(email);
+     if (typo.hasTypo) {
+       err.innerHTML = 'Ça ressemble à une faute de frappe — voulais-tu dire <strong>' + typo.suggestion + '</strong> ? ' +
+         '<button type="button" id="typoFix" style="background:#eab308;color:#000;border:none;border-radius:4px;padding:2px 8px;margin-left:8px;font-size:.75rem;font-weight:700;cursor:pointer;">Utiliser cette correction</button>';
+       err.style.display = 'block';
+       document.getElementById('leadEmail').focus();
+       document.getElementById('typoFix').addEventListener('click', function () {
+         document.getElementById('leadEmail').value = typo.suggestion;
+         err.style.display = 'none';
+       });
+       return;
+     }
+
+     err.style.display = 'none';
 
     btn.disabled = true;
     btn.textContent = 'Envoi…';
