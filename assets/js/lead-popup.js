@@ -22,20 +22,58 @@
      Never blocks syntactically valid unknown domains.
      ============================================================ */
   window.abDetectEmailTypo = function (email) {
+    email = String(email == null ? '' : email).trim();
+
+    /* Espaces et doubles @ : la correction est mécanique, il n'y a rien à deviner.
+       On normalise puis on relance la détection sur le résultat (« tony @ gmial.com »
+       devient « tony@gmial.com », puis la faute de domaine est traitée normalement). */
+    var cleaned = email.replace(/\s+/g, '').replace(/@+/g, '@').replace(/^@/, '').replace(/@$/, '');
+    if (cleaned !== email) {
+      var nested = window.abDetectEmailTypo(cleaned);
+      if (nested.hasTypo) return { hasTypo: true, suggestion: nested.suggestion, original: email };
+      if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleaned)) {
+        return { hasTypo: true, suggestion: cleaned, original: email };
+      }
+      return { hasTypo: false };
+    }
+
     var at = email.indexOf('@');
     if (at <= 0 || at === email.length - 1) return { hasTypo: false };
     var local = email.slice(0, at);
     var domain = email.slice(at + 1).toLowerCase();
 
-    if (domain.indexOf(' ') >= 0 || domain.indexOf('@') >= 0) {
-      return { hasTypo: true, suggestion: email.replace(/ /g, '').replace(/@+$/g, '').replace(/@@+/g, '@'), original: email };
+    /* Les vrais fournisseurs, avec la correction attendue. */
+    var providers = {
+      'gmail': 'gmail.com', 'yahoo': 'yahoo.com', 'hotmail': 'hotmail.com',
+      'outlook': 'outlook.com', 'icloud': 'icloud.com', 'live': 'live.com',
+      'msn': 'msn.com', 'orange': 'orange.fr', 'laposte': 'laposte.net',
+      'free': 'free.fr', 'sfr': 'sfr.fr', 'wanadoo': 'wanadoo.fr', 'bbox': 'bbox.fr'
+    };
+
+    /* Point manquant : « tony@gmailcom » → tony@gmail.com. */
+    if (domain.indexOf('.') === -1) {
+      for (var stem in providers) {
+        if (domain === stem || domain === stem + 'com' || domain === stem + 'fr' || domain === stem + 'net') {
+          return { hasTypo: true, suggestion: local + '@' + providers[stem], original: email };
+        }
+      }
+      return { hasTypo: false };
     }
-    if (domain.indexOf('.') === -1) return { hasTypo: false };
+
+    /* Point traînant : « tony@gmail.com. » */
+    if (domain.charAt(domain.length - 1) === '.' &&
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(local + '@' + domain.slice(0, -1))) {
+      return { hasTypo: true, suggestion: local + '@' + domain.slice(0, -1), original: email };
+    }
 
     var parts = domain.split('.');
     var tld = parts.pop();
     var sld = parts.pop() || '';
-    var base = sld;
+
+    /* Fournisseur et extension inversés : « tony@fr.free » → tony@free.fr. */
+    if (providers[tld] && parts.length === 0 && (sld === 'fr' || sld === 'com' || sld === 'net')) {
+      return { hasTypo: true, suggestion: local + '@' + providers[tld], original: email };
+    }
 
     var typoMap = {
       'gmial': 'gmail.com', 'gmai': 'gmail.com', 'gmail.con': 'gmail.com', 'gmail.co': 'gmail.com',
@@ -64,17 +102,28 @@
     if (typoMap[fullDomain]) {
       return { hasTypo: true, suggestion: local + '@' + typoMap[fullDomain], original: email };
     }
-    if (typoMap[sld] && tld === 'com') {
-      return { hasTypo: true, suggestion: local + '@' + typoMap[sld], original: email };
-    }
-    if (typoMap[sld] && tld === 'fr') {
+    if (typoMap[sld] && (tld === 'com' || tld === 'fr')) {
       return { hasTypo: true, suggestion: local + '@' + typoMap[sld], original: email };
     }
 
-    var knownTlds = ['com','fr','net','org','info','biz','io','co','me','eu','be','ch','ca','uk','de','es','it','nl','pl','cz','sk','hu','ro','bg','hr','si','ee','lv','lt','fi','se','no','dk','pt','gr','cy','mt','lu','ie','at'];
-    if (knownTlds.indexOf(tld) === -1 && tld.length <= 4) {
-      if (tld === 'con') return { hasTypo: true, suggestion: local + '@' + sld + '.com', original: email };
-      if (tld === 'co' && parts.length === 0) return { hasTypo: true, suggestion: local + '@' + sld + '.com', original: email };
+    /* Extension fausse : « con » au lieu de « com » (« tony@gmail.con »). */
+    if (tld === 'con') {
+      return { hasTypo: true, suggestion: local + '@' + sld + '.com', original: email };
+    }
+
+    /* Domaine « collé » à un vrai fournisseur : « tony@toigmail.com ».
+       Uniquement sur un domaine à deux labels et si le morceau ajouté fait
+       4 caractères au plus — sinon on laisse passer (règle : jamais bloquer
+       une adresse syntaxiquement correcte qu'on ne reconnaît pas). */
+    if (parts.length === 0) {
+      var lookalikes = ['gmail', 'yahoo', 'hotmail', 'outlook', 'icloud'];
+      for (var k = 0; k < lookalikes.length; k++) {
+        var tok = lookalikes[k];
+        var idx = sld.indexOf(tok);
+        if (idx > 0 && idx + tok.length === sld.length && idx <= 4) {
+          return { hasTypo: true, suggestion: local + '@' + providers[tok], original: email };
+        }
+      }
     }
 
     return { hasTypo: false };
@@ -123,7 +172,7 @@
     '<span style="color:#eab308;">offerts chaque semaine</span></h2>',
     '<p style="font-family:\'Inter\',sans-serif;font-size:.9rem;color:#71717a;line-height:1.6;margin-bottom:24px;">',
     'Entre ton pr&eacute;nom et ton email pour d&eacute;bloquer cette ressource et recevoir les prochaines en avant-premi&egrave;re.</p>',
-    '<form id="leadForm" class="ab-fade">',
+    '<form id="leadForm" class="ab-fade" novalidate>',
     '<input id="leadName" type="text" placeholder="Ton pr&eacute;nom" required minlength="2" autocomplete="given-name" ',
     'style="width:100%;background:#111;border:1px solid #2a2a2a;border-radius:8px;padding:13px 16px;color:#e4e4e7;',
     'font-family:\'Inter\',sans-serif;font-size:.95rem;margin-bottom:10px;outline:none;box-sizing:border-box;" />',
@@ -225,40 +274,44 @@
 
   document.getElementById('leadClose').addEventListener('click', close);
 
-document.getElementById('leadForm').addEventListener('submit', async function (e) {
-     e.preventDefault();
-     var btn = document.getElementById('leadBtn');
-     var err = document.getElementById('leadError');
-     var name = document.getElementById('leadName').value.trim();
-     var email = document.getElementById('leadEmail').value.trim();
+  document.getElementById('leadForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var btn = document.getElementById('leadBtn');
+    var err = document.getElementById('leadError');
+    var name = document.getElementById('leadName').value.trim();
+    var email = document.getElementById('leadEmail').value.trim();
 
-     if (name.length < 2) {
-       err.textContent = 'Entre ton prénom pour continuer.';
-       err.style.display = 'block';
-       document.getElementById('leadName').focus();
-       return;
-     }
-     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-       err.textContent = 'Entre une adresse email valide pour continuer.';
-       err.style.display = 'block';
-       document.getElementById('leadEmail').focus();
-       return;
-     }
+    if (name.length < 2) {
+      err.textContent = 'Entre ton prénom pour continuer.';
+      err.style.display = 'block';
+      document.getElementById('leadName').focus();
+      return;
+    }
 
-     var typo = window.abDetectEmailTypo(email);
-     if (typo.hasTypo) {
-       err.innerHTML = 'Ça ressemble à une faute de frappe — voulais-tu dire <strong>' + typo.suggestion + '</strong> ? ' +
-         '<button type="button" id="typoFix" style="background:#eab308;color:#000;border:none;border-radius:4px;padding:2px 8px;margin-left:8px;font-size:.75rem;font-weight:700;cursor:pointer;">Utiliser cette correction</button>';
-       err.style.display = 'block';
-       document.getElementById('leadEmail').focus();
-       document.getElementById('typoFix').addEventListener('click', function () {
-         document.getElementById('leadEmail').value = typo.suggestion;
-         err.style.display = 'none';
-       });
-       return;
-     }
+    /* La détection passe avant la regex : une faute évidente doit recevoir la
+       proposition de correction, pas le message générique « adresse invalide ». */
+    var typo = window.abDetectEmailTypo(email);
+    if (typo.hasTypo) {
+      err.innerHTML = 'Ça ressemble à une faute de frappe — voulais-tu dire <strong>' + typo.suggestion + '</strong> ? ' +
+        '<button type="button" id="typoFix" style="background:#eab308;color:#000;border:none;border-radius:4px;padding:2px 8px;margin-left:8px;font-size:.75rem;font-weight:700;cursor:pointer;">Utiliser cette correction</button>';
+      err.style.display = 'block';
+      document.getElementById('leadEmail').focus();
+      document.getElementById('typoFix').addEventListener('click', function () {
+        document.getElementById('leadEmail').value = typo.suggestion;
+        err.style.display = 'none';
+        document.getElementById('leadEmail').focus();
+      });
+      return;
+    }
 
-     err.style.display = 'none';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      err.textContent = 'Entre une adresse email valide pour continuer.';
+      err.style.display = 'block';
+      document.getElementById('leadEmail').focus();
+      return;
+    }
+
+    err.style.display = 'none';
 
     btn.disabled = true;
     btn.textContent = 'Envoi…';
