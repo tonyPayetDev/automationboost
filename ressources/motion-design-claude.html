@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0SRZVQ1WGD');
+  </script>
+  <meta charset="UTF-8" />
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1713977213196523');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1713977213196523&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ma méthode motion design avec Claude – AutomationBoost</title>
+  <meta name="description" content="La méthode en 5 temps pour faire des vidéos animées propres avec Claude : les moments écrits avant le code, 4 images test, des notes sur 10, un brouillon, le test sans le son. 12 règles anti-look IA, 5 prompts à copier, un CLAUDE.md prêt à l'emploi et 3 vidéos réelles avant/après." />
+  <link rel="canonical" href="https://automatisationboost.com/ressources/motion-design-claude.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Ma méthode motion design avec Claude" />
+  <meta property="og:description" content="5 temps, 12 règles, 5 prompts à copier, un CLAUDE.md et 3 vidéos réelles avant/après." />
+  <meta property="og:url" content="https://automatisationboost.com/ressources/motion-design-claude.html" />
+  <meta property="og:image" content="https://assets.automatisationboost.com/ressources/motion-methode/c-apres.jpg" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Sora',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:40px;flex-wrap:wrap; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:44px 0; }
+    .content-block { max-width:760px; }
+    .content-block h2 { font-family:'Sora',sans-serif;font-size:1.35rem;font-weight:800;color:var(--text);margin:48px 0 16px;line-height:1.3; }
+    .content-block h2[id] { scroll-margin-top:110px; }
+    .content-block h2 .n { color:var(--gold);margin-right:8px; }
+    .content-block h3 { font-family:'Sora',sans-serif;font-size:1.05rem;font-weight:700;margin:26px 0 10px;color:var(--text); }
+    .content-block p, .content-block li { color:var(--text-light);font-size:17px;line-height:1.75; }
+    .content-block p { margin-bottom:16px; }
+    .content-block ul, .content-block ol { padding-left:20px;margin-bottom:16px; }
+    .content-block li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block a { color:var(--gold); }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:18px 22px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px; }
+    .tip-box p { margin:0;font-size:15.5px; }
+    .sommaire { background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 22px;margin:8px 0 28px; }
+    .sommaire ol { margin:6px 0 0;padding-left:22px;line-height:1.95; }
+    .sommaire li { font-size:15.5px;margin:0; }
+    .sommaire a { color:var(--gold);text-decoration:none; }
+    .sommaire a:hover { text-decoration:underline; }
+
+    /* 5 temps */
+    .step { display:flex;gap:16px;align-items:flex-start;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;margin:14px 0; }
+    .step .num { flex:0 0 36px;height:36px;border-radius:50%;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.35);color:var(--gold);font-family:'Sora',sans-serif;font-weight:800;display:flex;align-items:center;justify-content:center; }
+    .step h3 { margin:4px 0 6px; }
+    .step p { margin:0 0 8px;font-size:16px; }
+    .step p:last-child { margin-bottom:0; }
+    .step .why { font-size:14.5px;color:var(--text-muted); }
+
+    /* 12 règles */
+    .rules { list-style:none;padding:0 !important;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;counter-reset:r; }
+    .rules li { counter-increment:r;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px 14px 52px;position:relative;margin:0;font-size:15.5px;line-height:1.55; }
+    .rules li::before { content:counter(r);position:absolute;left:14px;top:13px;width:26px;height:26px;border-radius:6px;background:rgba(139,92,246,0.14);border:1px solid rgba(139,92,246,0.35);color:var(--violet);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center; }
+    .rules li strong { display:block;margin-bottom:2px; }
+
+    /* prompts */
+    .prompt { border:1px solid var(--border);border-radius:var(--radius);margin:18px 0 26px;overflow:hidden;background:var(--bg-card); }
+    .prompt-head { display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px 12px 18px;border-bottom:1px solid var(--border);flex-wrap:wrap; }
+    .prompt-head .t { font-family:'Sora',sans-serif;font-weight:700;font-size:15px;color:var(--text); }
+    .prompt-head .t small { display:block;font-family:inherit;font-weight:400;font-size:13px;color:var(--text-muted);margin-top:2px; }
+    .copy-btn { flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:#1a1200;border:0;border-radius:8px;padding:9px 16px;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;cursor:pointer;min-height:40px;transition:background .15s, transform .15s; }
+    .copy-btn:hover { transform:translateY(-1px); }
+    .copy-btn:focus-visible { outline:2px solid var(--violet);outline-offset:2px; }
+    .copy-btn.ok { background:var(--violet);color:#fff; }
+    .copy-btn.err { background:#ff6b6b;color:#1a0000; }
+    pre.code { margin:0;background:#0f0f14;color:#EDEDED;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px;line-height:1.6;padding:16px 18px;white-space:pre-wrap;overflow-wrap:anywhere;max-height:440px;overflow-y:auto; }
+    pre.code .ph { color:#eab308; }
+
+    /* exemples */
+    .example { background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px;margin:22px 0 30px; }
+    .example h3 { margin-top:0;font-size:1.15rem; }
+    .ex-grid { display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:22px;align-items:start; }
+    .ex-video video { width:100%;aspect-ratio:9/16;background:#000;border-radius:10px;display:block; }
+    .ex-video .cap { font-size:13px;color:var(--text-muted);margin-top:8px;line-height:1.5; }
+    .ex-body p, .ex-body li { font-size:15.5px; }
+    .lbl { display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:4px;margin:6px 0 6px; }
+    .lbl-ask { background:rgba(139,92,246,0.14);color:var(--violet);border:1px solid rgba(139,92,246,0.3); }
+    .lbl-before { background:rgba(255,107,107,0.12);color:#ff6b6b;border:1px solid rgba(255,107,107,0.35); }
+    .lbl-after { background:rgba(234,179,8,0.12);color:var(--gold);border:1px solid rgba(234,179,8,0.35); }
+    .ba { display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0 4px; }
+    .ba figure { margin:0; }
+    .ba img { width:100%;height:auto;border-radius:8px;display:block;border:1px solid var(--border); }
+    .ba figcaption { font-size:12.5px;color:var(--text-muted);margin-top:6px;line-height:1.45; }
+    .facts { display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0;padding:0;list-style:none; }
+    .facts li { font-size:13px !important;background:var(--bg-card-2);border:1px solid var(--border);border-radius:999px;padding:4px 12px;margin:0;color:var(--text-light); }
+    .ex-link { font-size:14.5px; }
+
+    /* checklist */
+    .check { list-style:none;padding:0 !important; }
+    .check li { margin:0 0 8px; }
+    .check label { display:flex;gap:12px;align-items:flex-start;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:12px 14px;cursor:pointer;font-size:16px;line-height:1.55;color:var(--text-light); }
+    .check input { flex:0 0 auto;width:20px;height:20px;margin-top:3px;accent-color:#eab308; }
+    .check input:checked + span { color:var(--text-muted);text-decoration:line-through; }
+
+    /* 10 minutes */
+    .timeline { border-left:2px solid rgba(234,179,8,0.4);margin:16px 0 0 6px;padding-left:20px; }
+    .tl { position:relative;margin-bottom:18px; }
+    .tl::before { content:"";position:absolute;left:-27px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--gold); }
+    .tl .when { font-family:'Sora',sans-serif;font-weight:800;color:var(--gold);font-size:14px;letter-spacing:.04em; }
+    .tl p { margin:2px 0 0;font-size:16px; }
+
+    .source-cta { display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#1a1200;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;padding:14px 26px;border-radius:var(--radius);text-decoration:none;margin-top:20px;transition:all .2s; }
+    .content-block a.source-cta { color:#1a1200; }
+    .source-cta:hover { background:var(--gold-dark);transform:translateY(-2px); }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+
+    @media (max-width: 720px) {
+      .res-page { padding:100px 0 60px; }
+      .container { padding-left:16px !important;padding-right:16px !important; }
+      .ex-grid { grid-template-columns:1fr; }
+      .ex-video { max-width:300px;margin:0 auto;width:100%; }
+      .example { padding:16px; }
+      .step { padding:16px;gap:12px; }
+      .content-block p, .content-block li { font-size:16.5px; }
+      pre.code { font-size:13px;padding:14px; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Ma méthode motion design avec Claude",
+    "description": "La méthode en 5 temps pour faire des vidéos animées propres avec Claude, 12 règles anti-look IA, 5 prompts à copier, un CLAUDE.md et 3 vidéos réelles avant/après.",
+    "url": "https://automatisationboost.com/ressources/motion-design-claude.html",
+    "datePublished": "2026-10-08",
+    "inLanguage": "fr",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://automatisationboost.com/ressources/motion-design-claude.html"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "url": "https://automatisationboost.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://automatisationboost.com/assets/images/logo.svg"
+      }
+    },
+    "isAccessibleForFree": false,
+    "hasPart": {
+      "@type": "WebPageElement",
+      "isAccessibleForFree": false,
+      "cssSelector": ".content-block"
+    }
+  }
+  </script>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="../" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="https://videoboost.automatisationboost.com/vente.html" class="nav-link-slide"><span>ShortForge</span><span>ShortForge</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
+    </div>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="https://videoboost.automatisationboost.com/vente.html" class="mob-link mob-link--gold">ShortForge</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
+  </nav>
+</div>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Motion design avec Claude
+    </div>
+    <div class="page-badge">◈ Ressource · mot-clé MOTION</div>
+    <h1 class="page-title">Ma méthode motion design <span>avec Claude</span></h1>
+    <div class="page-meta">
+      <span>5 temps · 12 règles · 5 prompts à copier · 1 fichier CLAUDE.md · 3 vidéos réelles avant/après</span>
+    </div>
+
+    <div class="content-block">
+      <p>Mes vidéos animées, je ne les dessine pas : je demande à Claude de les <strong>écrire en code</strong>, puis un navigateur les filme image par image. Et ce qui fait la différence, ce n'est pas le prompt. C'est ce qu'on fait <strong>avant</strong> de lancer le code, et <strong>après</strong> l'avoir vu.</p>
+      <p>Cette page rassemble ma façon de faire, inspirée d'un playbook public sur le motion design avec Claude, que j'ai adapté et appliqué à mes propres vidéos. Tout est à copier. Les trois exemples en bas sont de vraies vidéos, avec ce qui n'allait pas au premier essai.</p>
+
+      <div class="sommaire" role="navigation" aria-label="Sommaire">
+        <strong>Au programme</strong>
+        <ol>
+          <li><a href="#methode">La méthode en 5 temps</a></li>
+          <li><a href="#regles">Les 12 règles anti-look « IA »</a></li>
+          <li><a href="#prompts">5 prompts à copier</a></li>
+          <li><a href="#claude-md">Le fichier CLAUDE.md du studio</a></li>
+          <li><a href="#exemples">3 exemples réels, avant / après</a></li>
+          <li><a href="#checklist">La checklist avant de publier</a></li>
+          <li><a href="#dix-minutes">Tes 10 premières minutes</a></li>
+        </ol>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">L'idée en une phrase</div>
+        <p>Le prompt, c'est environ 10 % du résultat. Les 90 % restants, c'est de vérifier petit avant de produire gros : un plan écrit, quelques images, des notes, un brouillon. Tu ne découvres jamais un problème après une demi-heure de rendu.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- ============ 1. METHODE ============ -->
+      <h2 id="methode"><span class="n">1.</span>La méthode en 5 temps</h2>
+      <p>Chaque temps a un seul but : attraper un défaut au moment où il coûte le moins cher à corriger.</p>
+
+      <div class="step"><div class="num">1</div><div>
+        <h3>Écris les moments de la vidéo, à la seconde, avant le code</h3>
+        <p>Six à huit lignes, pas plus. Chaque ligne dit ce qu'on voit et quand : « 0 à 2,5 s : la phrase d'accroche apparaît », « 2,5 à 6 s : le bouton devient un lecteur vidéo »… Tu relis, tu valides, <strong>ensuite seulement</strong> Claude code.</p>
+        <p class="why">Pourquoi : si une ligne contient trois idées, tu le vois tout de suite. Tu la coupes en deux. Corriger une ligne de texte prend dix secondes ; corriger une animation codée, beaucoup plus.</p>
+      </div></div>
+
+      <div class="step"><div class="num">2</div><div>
+        <h3>Regarde 4 images, pas la vidéo entière</h3>
+        <p>Demande quatre captures : le début, le milieu, le moment fort, la fin. Pas de vidéo encore. Tu vérifies que tout se lit sur un téléphone, que rien ne déborde, que rien ne se chevauche.</p>
+        <p class="why">Pourquoi : chez moi, un rendu image par image prend entre 25 et 32 minutes pour une vidéo d'une minute (mesuré sur les exemples plus bas). Quatre images, c'est une minute. Un mauvais début se voit tout de suite.</p>
+      </div></div>
+
+      <div class="step"><div class="num">3</div><div>
+        <h3>Claude se note sur 10, plan par plan, et corrige ce qui est sous 8</h3>
+        <p>Il capture une image à chaque moment clé, les met côte à côte, puis donne une note à chaque plan : est-ce lisible, est-ce que le rythme tient, est-ce que ça s'enchaîne, est-ce que ça ressemble à ta marque. Il ne corrige <strong>que</strong> ce qui a 7 ou moins. Il ne touche pas à ce qui a 9 ou 10.</p>
+        <p class="why">Pourquoi : sans cette règle, chaque correction en casse une autre. Deux ou trois tours suffisent. C'est là que la vidéo perd son air « fait par une IA ».</p>
+      </div></div>
+
+      <div class="step"><div class="num">4</div><div>
+        <h3>Un brouillon d'abord, la version finale ensuite</h3>
+        <p>Le brouillon est petit et rapide : tu regardes seulement le rythme (est-ce que ça va trop vite, est-ce qu'un passage traîne). La netteté, on s'en fiche à ce stade. Quand le rythme est bon, tu lances la version finale en grand.</p>
+        <p class="why">Pourquoi : le rendu final est la seule étape longue. On ne la lance qu'une fois, quand on sait déjà que c'est bon.</p>
+      </div></div>
+
+      <div class="step"><div class="num">5</div><div>
+        <h3>Le test final : sans le son, en une phrase</h3>
+        <p>Montre la vidéo à quelqu'un, son coupé. Demande-lui de la résumer en une phrase. S'il dit « le bouton est devenu un lecteur vidéo », c'est gagné. S'il hésite, ou s'il dit « ça bouge beaucoup », il y a trop de choses qui bougent en même temps.</p>
+        <p class="why">La correction est presque toujours la même : une seule chose bouge à la fois.</p>
+      </div></div>
+
+      <div class="divider"></div>
+
+      <!-- ============ 2. REGLES ============ -->
+      <h2 id="regles"><span class="n">2.</span>Les 12 règles anti-look « IA »</h2>
+      <p>Ce qui donne l'air « vidéo générée », ce sont presque toujours les mêmes choses. Voici les règles que je donne à Claude, en version courte.</p>
+      <ol class="rules">
+        <li><strong>Une couleur forte, une seule.</strong>Le reste en noir, blanc, gris. Une deuxième couleur discrète au maximum.</li>
+        <li><strong>Tes vrais mots.</strong>Pas de texte de remplissage, pas de slogan générique. Ce que tu dis vraiment.</li>
+        <li><strong>Des chiffres vrais, avec leur source.</strong>Pas de source, pas de chiffre. Sinon Claude en invente.</li>
+        <li><strong>Ton vrai logo.</strong>Donne le fichier. Jamais un logo « redessiné » de mémoire.</li>
+        <li><strong>Nomme un style qui existe.</strong>« Comme une page de lancement Apple » plutôt que « moderne et premium ».</li>
+        <li><strong>Des étapes précises, pas une ambiance.</strong>« Le bouton devient un lecteur », pas « quelque chose de dynamique ».</li>
+        <li><strong>Une seule chose bouge à la fois.</strong>L'œil suit un seul mouvement. Deux, il décroche.</li>
+        <li><strong>Des mouvements qui freinent en douceur.</strong>Presque pas de rebond. Rien qui sautille comme un dessin animé.</li>
+        <li><strong>Zéro gadget.</strong>Pas de particules, pas de reflets chromés, pas de dégradé arc-en-ciel.</li>
+        <li><strong>Un texte qui se lit sur un téléphone.</strong>Si tu dois plisser les yeux sur ton écran d'ordinateur, c'est trop petit.</li>
+        <li><strong>Loin des bords.</strong>En vertical, le haut et le bas sont cachés par l'appli (pseudo, boutons). Prévois-le dès le plan.</li>
+        <li><strong>Claude se relit avant toi.</strong>Il se note et se corrige. Tu ne regardes que la version déjà vérifiée.</li>
+      </ol>
+
+      <div class="divider"></div>
+
+      <!-- ============ 3. PROMPTS ============ -->
+      <h2 id="prompts"><span class="n">3.</span>5 prompts à copier</h2>
+      <p>Remplace ce qui est entre <span style="color:var(--gold);font-weight:700">[crochets]</span>. Utilise-les dans l'ordre : le premier dans ton tout premier message, les suivants au fil de la vidéo.</p>
+
+      <div class="prompt">
+        <div class="prompt-head"><div class="t">Prompt 1 · Le brief de réalisateur<small>Ton premier message. Claude n'écrit aucun code avant ton OK.</small></div><button class="copy-btn" type="button" data-copy="p1">Copier</button></div>
+<pre class="code" id="p1">Tu es mon motion designer et la personne qui s'occupe du rendu.
+Lis d'abord CLAUDE.md et le dossier marque/. N'écris AUCUN code tant que je n'ai pas validé les moments et les 4 images test.
+
+LA VIDÉO
+- Durée : [15] secondes
+- Format : [1080x1920 vertical] à 30 images/s
+- Sujet : [nom du produit ou de l'idée] — [la promesse en une phrase]
+- Pour qui : [ton public]
+- Où elle sera publiée : [Instagram / TikTok / site / LinkedIn]
+- Style de référence : [un style qui existe, ex. « page de lancement Apple »]
+- Fichier de référence : marque/reference.mp4 s'il existe
+
+LES MOMENTS (à adapter)
+0,0 – 2,5 s   Phrase d'accroche : "[ta phrase]"
+2,5 – 6,0 s   [la forme] devient [écran ou sujet 1]
+6,0 – 10,0 s  Elle se transforme en [écran ou sujet 2]
+10,0 – 13,0 s La preuve : [un vrai chiffre, pris dans faits.md]
+13,0 – 15,0 s Fin : logo + [ton adresse web]
+
+LES RÈGLES
+- Une seule chose bouge à la fois.
+- Vrais mots, vrais chiffres (uniquement ceux de faits.md), vrai logo (marque/logo.svg).
+- Mouvements amortis, pas de rebond.
+- Texte loin des bords, lisible sur un téléphone.
+- Respecte les interdits de CLAUDE.md.
+
+CE QUE JE VEUX MAINTENANT
+1. Les moments horodatés (8 lignes maximum)
+2. La liste des éléments à l'écran
+3. Le plan pour le son (silence, bruitages ou musique)
+
+STOP. Attends mon OK avant de coder.</pre>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-head"><div class="t">Prompt 2 · Les 4 images test<small>Après avoir validé les moments et le code.</small></div><button class="copy-btn" type="button" data-copy="p2">Copier</button></div>
+<pre class="code" id="p2">Ne lance pas encore la vidéo.
+Donne-moi 4 images fixes : à [1,2] s (accroche), [5,0] s (milieu), [9,5] s (moment fort) et [14,2] s (fin).
+Mets-les côte à côte sur une seule planche.
+Pour chacune, dis-moi en une ligne : est-ce lisible sur un téléphone, est-ce que quelque chose déborde ou se chevauche, est-ce que le texte reste loin des bords.</pre>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-head"><div class="t">Prompt 3 · La critique notée sur 10<small>Celui qui enlève le look « IA ». 2 à 3 tours maximum.</small></div><button class="copy-btn" type="button" data-copy="p3">Copier</button></div>
+<pre class="code" id="p3">Capture une image à chaque moment de la vidéo, et une autre 0,3 seconde après.
+Mets-les toutes sur une planche.
+Note chaque plan sur 10 selon : lisibilité, rythme, enchaînement avec le plan d'avant, respect de ma charte, fin de la vidéo.
+Donne-moi le tableau des notes.
+Corrige seulement les plans notés 7 ou moins. Ne touche pas aux plans notés 9 ou 10.
+Refais la planche après correction et donne les nouvelles notes.</pre>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-head"><div class="t">Prompt 4 · Brouillon, puis version finale<small>Le rendu image par image, en deux passes.</small></div><button class="copy-btn" type="button" data-copy="p4">Copier</button></div>
+<pre class="code" id="p4">Écris le script de rendu.
+- La vidéo doit dépendre uniquement du temps : une fonction seek(t) dessine l'image à l'instant t. Pas de minuteries, pas d'aléatoire non fixé.
+- Un navigateur sans fenêtre ouvre la page, appelle seek(t), attend que tout soit affiché, fait une capture, puis passe à l'image suivante.
+- Brouillon : petite taille ([540x960]), 30 images/s, rendu rapide. Je regarde seulement le rythme.
+- Version finale : [1080x1920], 30 images/s, bonne qualité, lecture rapide sur le web.
+- S'il y a un fichier audio : son calé sur la durée exacte, volume normalisé à -14 LUFS.
+Explique-moi ce que tu vas installer avant de l'installer.
+Commence par le brouillon et attends mon OK pour la version finale.</pre>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-head"><div class="t">Prompt 5 · Le premier essai express<small>Pour voir le moteur tourner en 15 minutes, avant ton vrai projet.</small></div><button class="copy-btn" type="button" data-copy="p5">Copier</button></div>
+<pre class="code" id="p5">Fais une animation de [15] secondes en [1920x1080], 30 images/s, dans un seul fichier index.html.
+Uniquement HTML, CSS, JavaScript et SVG. Aucun lien externe, aucune bibliothèque.
+Grosse typographie, formes simples, une seule couleur d'accent : [#eab308].
+Pas de dégradé arc-en-ciel, pas de particules.
+Termine sur [ta marque] et [ton adresse web].
+Ajoute les boutons Lecture et Rejouer, et une fonction window.seek(t) qui affiche l'image à l'instant t.
+Ne fais pas encore la vidéo MP4.</pre>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- ============ 4. CLAUDE.md ============ -->
+      <h2 id="claude-md"><span class="n">4.</span>Le fichier CLAUDE.md du studio</h2>
+      <p>Claude Code relit le fichier <strong>CLAUDE.md</strong> à chaque fois qu'il travaille dans ton dossier. C'est ta charte permanente : tu la remplis une fois, et tu n'as plus à répéter tes règles à chaque vidéo. Crée-le à la racine de ton dossier, avant ton premier prompt, et remplace les valeurs entre crochets par les tiennes.</p>
+      <p>À côté, garde un dossier <strong>marque/</strong> (logo.svg, tes couleurs, quelques captures, une vidéo de référence si tu en as une) et un fichier <strong>faits.md</strong> avec tes chiffres et leur source.</p>
+
+      <div class="prompt">
+        <div class="prompt-head"><div class="t">CLAUDE.md · Règles du motion studio<small>À coller dans un fichier CLAUDE.md à la racine de ton dossier.</small></div><button class="copy-btn" type="button" data-copy="p6">Copier</button></div>
+<pre class="code" id="p6"># Règles du motion studio
+
+## Comment une vidéo est construite
+- Chaque vidéo est une page web qui dépend uniquement du temps :
+  window.seek(t) affiche exactement l'image de l'instant t.
+- Interdit pour animer : transitions CSS automatiques, minuteries
+  (setTimeout), l'heure de l'ordinateur, l'aléatoire non fixé,
+  toute valeur qui dépend de l'image précédente.
+- Un seul fichier index.html par vidéo. Polices intégrées ou déclarées.
+- Boutons Lecture / Pause / Rejouer. Flèches = image précédente / suivante.
+
+## Ma charte (remplace par la tienne)
+- Fond : [#0a0a0f]
+- Texte : [#EDEDED]
+- Couleur d'accent, une seule : [#eab308]
+- Deuxième couleur, discrète : [#8b5cf6]
+- Titres : [Sora, gras] · Texte : [même police, normal]
+- Logo : marque/logo.svg (ne jamais le redessiner)
+- Style : bords nets, peu d'ombres, grosse typographie
+- Interdits : dégradé arc-en-ciel, particules, reflets chromés, emoji,
+  faux texte de remplissage, rebond façon dessin animé, retournement 3D gratuit
+
+## Mouvement
+- Mouvements amortis qui freinent en douceur, rebond presque nul.
+- Une seule chose bouge à la fois.
+- Une même forme qui se transforme plutôt que des coupes sèches,
+  sauf si je demande une coupe.
+- Si la vidéo tourne en boucle : la dernière image = la première.
+
+## Vérité
+- Chiffres uniquement depuis faits.md. Pas de source = pas de chiffre.
+- Mots : les miens. Jamais de slogan inventé.
+
+## Process obligatoire
+1. Les moments horodatés (8 lignes maximum). Attendre mon OK.
+2. 4 images test (début, milieu, moment fort, fin). Attendre mon OK.
+3. Code + aperçu dans le navigateur.
+4. Planche : une image par moment, et une 0,3 s après.
+5. Notes sur 10 par plan. Corriger seulement ce qui est à 7 ou moins.
+6. Brouillon petit format, rapide.
+7. Version finale.
+
+## Export
+- Navigateur sans fenêtre. Après chaque seek(t), attendre que
+  l'affichage soit terminé avant la capture.
+- Vertical 1080x1920 à 30 images/s. Texte hors des bords haut et bas.
+- MP4 H.264, lecture rapide sur le web.
+- Son : -14 LUFS, pic sous -1 dB.</pre>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- ============ 5. EXEMPLES ============ -->
+      <h2 id="exemples"><span class="n">5.</span>3 exemples réels, avant / après</h2>
+      <p>Trois vidéos faites avec cette méthode. Pour chacune : ce qui a été demandé, ce qui n'allait pas au premier essai (seulement ce qui est écrit dans les fichiers de travail), et le résultat. Les durées et mesures viennent des journaux de rendu et de contrôle.</p>
+
+      <!-- Exemple A -->
+      <article class="example" id="ex-journal">
+        <h3>A · Le Journal IA du 7 octobre</h3>
+        <div class="ex-grid">
+          <div class="ex-video">
+            <video controls playsinline preload="none" poster="https://assets.automatisationboost.com/ressources/motion-methode/poster-journal.jpg">
+              <source src="https://assets.automatisationboost.com/ressources/motion-methode/journal-ia-0710-720p-m1.mp4" type="video/mp4" />
+            </video>
+            <div class="cap">Version allégée pour le web (720p). <a href="https://previsualisation.automatisationboost.com/journal-ia-2026-10-07-bn/" target="_blank" rel="noopener">Voir la version complète</a></div>
+          </div>
+          <div class="ex-body">
+            <span class="lbl lbl-ask">Ce qui était demandé</span>
+            <p>Les six actus IA du jour en moins d'une minute, avec mon avatar, et pour chaque actu un défilement de la vraie page source (dépôt GitHub ou article).</p>
+            <span class="lbl lbl-before">Au premier rendu</span>
+            <p>Les captures de contrôle du premier rendu montrent que le défilement de l'actu 4 démarrait sur <strong>un bandeau d'abonnement et une publicité</strong>, et celui de l'actu 6 sur un en-tête vide : le titre de l'article n'arrivait qu'après. Les deux pages ont été recapturées pour démarrer directement sur le titre, puis la vidéo a été rendue à nouveau.</p>
+            <div class="ba">
+              <figure><img src="https://assets.automatisationboost.com/ressources/motion-methode/j-avant.jpg" alt="Premier rendu, à 30 secondes : la carte de l'actu 4 montre un bandeau publicitaire au-dessus du titre" loading="lazy" width="540" height="960" /><figcaption>Avant : à 30 s, une pub prend le haut de la carte.</figcaption></figure>
+              <figure><img src="https://assets.automatisationboost.com/ressources/motion-methode/j-apres.jpg" alt="Rendu final, à 30 secondes : la carte de l'actu 4 montre directement le titre de l'article" loading="lazy" width="540" height="960" /><figcaption>Après : même instant, le titre de l'article est visible.</figcaption></figure>
+            </div>
+            <p>Autre chose attrapée avant le rendu : deux chiffres de l'édition écrite ne tenaient pas. Le nombre d'étoiles d'un dépôt a été relevé sur GitHub (environ 92 000, pas 20 500 comme écrit), et un « prix divisé par deux » introuvable dans la source a été retiré de la vidéo.</p>
+            <span class="lbl lbl-after">Le résultat</span>
+            <ul class="facts">
+              <li>57,8 s</li><li>1080×1920, 30 i/s</li><li>20 phrases sur 20 calées sur les lèvres</li><li>Rendu image par image : 25,9 min</li>
+            </ul>
+            <p style="margin-top:12px;font-size:14.5px;color:var(--text-muted)">Défaut encore visible : les petites étiquettes (« ÇA MONTE ») cachent en partie la légende sous certaines cartes.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Exemple B -->
+      <article class="example" id="ex-clip">
+        <h3>B · Le clip « Roule ki ki », animé entièrement en code</h3>
+        <div class="ex-grid">
+          <div class="ex-video">
+            <video controls playsinline preload="none" poster="https://assets.automatisationboost.com/ressources/motion-methode/poster-clip.jpg">
+              <source src="https://assets.automatisationboost.com/ressources/motion-methode/clip-roule-kiki-720p-m1.mp4" type="video/mp4" />
+            </video>
+            <div class="cap">Version allégée pour le web (720p). <a href="clip-motion-code.html">Comment ce clip a été fait</a></div>
+          </div>
+          <div class="ex-body">
+            <span class="lbl lbl-ask">Ce qui était demandé</span>
+            <p>Un clip musical vertical, sans aucun dessin à la main : les paroles calées sur la voix, des planches animées écrites en code, un rendu image par image.</p>
+            <span class="lbl lbl-before">À la première image test</span>
+            <p>La toute première image test (à 2,3 secondes) empilait les mots sur sept lignes, et <strong>la roue passait par-dessus « KI KI LÀ »</strong>. Le défaut a été vu sur cette image fixe, et corrigé deux minutes plus tard : trois lignes, la roue en dessous.</p>
+            <div class="ba">
+              <figure><img src="https://assets.automatisationboost.com/ressources/motion-methode/c-avant.jpg" alt="Image test à 2,3 secondes : texte empilé sur sept lignes, la roue chevauche les derniers mots" loading="lazy" width="540" height="960" /><figcaption>Avant : la roue chevauche le texte.</figcaption></figure>
+              <figure><img src="https://assets.automatisationboost.com/ressources/motion-methode/c-apres.jpg" alt="Même instant après correction : texte sur trois lignes, la roue dessous, rien ne se chevauche" loading="lazy" width="540" height="960" /><figcaption>Après : même instant, plus rien ne se chevauche.</figcaption></figure>
+            </div>
+            <p>C'est exactement le temps 2 de la méthode : 25 images test en cinq lots, puis un essai de 10 secondes en vidéo, <strong>avant</strong> de lancer le rendu complet. Le rendu complet, lui, a pris environ une heure et demie : sans les images test, ce défaut se serait vu après.</p>
+            <span class="lbl lbl-after">Le résultat</span>
+            <ul class="facts">
+              <li>2 min 29,7 s</li><li>1080×1920, 24 i/s</li><li>25 images test avant le rendu</li><li>Rendu complet : environ 1 h 27</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- Exemple C -->
+      <article class="example" id="ex-moi-ia">
+        <h3>C · « Moi contre l'IA » : une vraie prise face caméra, montée au format montée de niveau</h3>
+        <div class="ex-grid">
+          <div class="ex-video">
+            <video controls playsinline preload="none" poster="https://assets.automatisationboost.com/ressources/motion-methode/poster-moi.jpg">
+              <source src="https://assets.automatisationboost.com/ressources/motion-methode/moi-contre-ia-720p-m1.mp4" type="video/mp4" />
+            </video>
+            <div class="cap">Version allégée pour le web (720p). <a href="https://previsualisation.automatisationboost.com/boost-facecam-2026-10-07-120651/" target="_blank" rel="noopener">Voir la version complète</a></div>
+          </div>
+          <div class="ex-body">
+            <span class="lbl lbl-ask">Ce qui était demandé</span>
+            <p>Prendre une prise brute où je parle face caméra, et la monter en vidéo animée : moi en plein écran, en cercle, en écran partagé, et les répliques de l'IA qui apparaissent en bulles pendant mes silences.</p>
+            <span class="lbl lbl-before">Dans la prise brute</span>
+            <p>La prise faisait 2 min 38 s. On y trouvait la première réplique de l'IA lue à voix haute (elle devait être écrite, pas dite), des passages hors sujet, et une blague qui reposait sur <strong>un chiffre inventé</strong> : elle a été coupée, règle n°3. Et la transcription automatique avait entendu « Tu veux <em>payer une application d'étudiant</em> » au lieu de « Tu veux <em>créer une application avec l'IA</em> » : les sous-titres affichent donc mes vrais mots, et la transcription ne sert qu'à les caler dans le temps.</p>
+            <span class="lbl lbl-after">Le résultat</span>
+            <ul class="facts">
+              <li>66,7 s (au lieu de 2 min 38)</li><li>6 bulles de l'IA</li><li>Son à -14 LUFS</li><li>Rendu : 31,8 min</li>
+            </ul>
+            <p style="margin-top:12px;font-size:14.5px;color:var(--text-muted)">Une version où l'IA a son propre visage est en cours de montage.</p>
+          </div>
+        </div>
+      </article>
+
+      <div class="divider"></div>
+
+      <!-- ============ 6. CHECKLIST ============ -->
+      <h2 id="checklist"><span class="n">6.</span>La checklist avant de publier</h2>
+      <p>Coche au fur et à mesure. Si une case reste vide, la vidéo n'est pas prête.</p>
+      <ul class="check">
+        <li><label><input type="checkbox" /><span>J'ai écrit les moments à la seconde, et chaque moment ne dit qu'une seule chose.</span></label></li>
+        <li><label><input type="checkbox" /><span>J'ai regardé les 4 images test avant de lancer la vidéo.</span></label></li>
+        <li><label><input type="checkbox" /><span>Tous les plans ont au moins 8/10 après la critique.</span></label></li>
+        <li><label><input type="checkbox" /><span>Chaque chiffre à l'écran a une source que je peux montrer.</span></label></li>
+        <li><label><input type="checkbox" /><span>Le texte se lit sur mon téléphone, à bout de bras.</span></label></li>
+        <li><label><input type="checkbox" /><span>Rien d'important dans le haut ni dans le bas de l'écran (pseudo, boutons de l'appli).</span></label></li>
+        <li><label><input type="checkbox" /><span>Une seule couleur forte, mon vrai logo, aucun gadget (particules, chrome, arc-en-ciel).</span></label></li>
+        <li><label><input type="checkbox" /><span>Les sous-titres affichent mes vrais mots, sans faute.</span></label></li>
+        <li><label><input type="checkbox" /><span>Le son est au bon niveau, la première seconde s'entend.</span></label></li>
+        <li><label><input type="checkbox" /><span>Quelqu'un l'a regardée sans le son et l'a résumée en une phrase.</span></label></li>
+      </ul>
+
+      <!-- ============ 7. DIX MINUTES ============ -->
+      <h2 id="dix-minutes"><span class="n">7.</span>Tes 10 premières minutes</h2>
+      <p>Pas besoin de tout installer pour commencer. Voici un premier tour, montre en main.</p>
+      <div class="timeline">
+        <div class="tl"><div class="when">MINUTE 0 À 2</div><p>Crée un dossier vide. Colle le <a href="#claude-md">CLAUDE.md</a> dedans et remplace les couleurs par les tiennes.</p></div>
+        <div class="tl"><div class="when">MINUTE 2 À 3</div><p>Ajoute un dossier <strong>marque/</strong> avec ton logo, et un fichier <strong>faits.md</strong> avec deux ou trois vrais chiffres et leur source.</p></div>
+        <div class="tl"><div class="when">MINUTE 3 À 5</div><p>Ouvre Claude Code dans ce dossier. Envoie le <a href="#prompts">prompt 1</a> (le brief). Lis les moments qu'il propose. Coupe en deux ceux qui sont trop chargés. Réponds « OK ».</p></div>
+        <div class="tl"><div class="when">MINUTE 5 À 7</div><p>Laisse-le coder, puis envoie le prompt 2 : regarde les 4 images. Si quelque chose déborde ou se chevauche, dis-le maintenant.</p></div>
+        <div class="tl"><div class="when">MINUTE 7 À 9</div><p>Envoie le prompt 3 : il se note sur 10 et corrige ce qui est à 7 ou moins.</p></div>
+        <div class="tl"><div class="when">MINUTE 9 À 10</div><p>Ouvre l'aperçu dans ton navigateur. Coupe le son. Résume-le en une phrase. Si tu y arrives, lance le brouillon avec le prompt 4.</p></div>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">Si le premier essai est à moitié réussi</div>
+        <p>Ne recommence pas tout. Reviens aux règles 1, 7 et 8 (une couleur, une seule chose qui bouge, des mouvements amortis), refais la planche, et ne corrige que ce qui est sous 8. C'est presque toujours là que ça se joue.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2>Ce qu'il faut retenir</h2>
+      <p>Tu n'as pas besoin d'un logiciel d'animation. Tu as besoin d'un plan écrit avant le code, de quatre images avant la vidéo, d'une critique notée, et d'un test sans le son. Le reste, Claude l'écrit.</p>
+      <p>Pour aller plus loin sur un cas précis, lis <a href="clip-motion-code.html">comment le clip « Roule ki ki » a été animé en code</a>.</p>
+      <a href="/#contact" class="source-cta">Tu veux ce système chez toi ? Parlons-en →</a>
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+
+  /* Copy buttons: Clipboard API, with a textarea fallback for older browsers / non-secure contexts. */
+  (function () {
+    function fallbackCopy(text) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '-1000px';
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      document.body.removeChild(ta);
+      return ok;
+    }
+    function feedback(btn, ok) {
+      btn.classList.remove('ok', 'err');
+      btn.classList.add(ok ? 'ok' : 'err');
+      btn.textContent = ok ? 'Copié ✓' : 'Sélectionne le texte';
+      clearTimeout(btn._t);
+      btn._t = setTimeout(function () { btn.classList.remove('ok', 'err'); btn.textContent = 'Copier'; }, 1800);
+    }
+    document.querySelectorAll('.copy-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var el = document.getElementById(btn.getAttribute('data-copy'));
+        if (!el) return;
+        var text = el.innerText.replace(/ /g, ' ');
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(function () { feedback(btn, true); }, function () { feedback(btn, fallbackCopy(text)); });
+        } else {
+          feedback(btn, fallbackCopy(text));
+        }
+      });
+    });
+  })();
+</script>
+<script src="/assets/js/email-valide.js?v=20261007a" defer></script>
+<script src="../assets/js/lead-popup.js?v=20261007a" defer></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="/assets/js/theme.js?v=20260717n" defer></script>
+</body>
+</html>
