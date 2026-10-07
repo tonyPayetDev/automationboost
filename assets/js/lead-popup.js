@@ -21,7 +21,19 @@
      or { hasTypo: false } if no obvious typo.
      Never blocks syntactically valid unknown domains.
      ============================================================ */
-  window.abDetectEmailTypo = function (email) {
+  /* 2026-10-07 : la vérification complète vit dans /assets/js/email-valide.js
+     (syntaxe stricte, fautes de frappe, adresses jetables ou bidon) et le serveur
+     (n8n) refait tout, DNS compris, avant d'enregistrer. Les pages qui n'ont pas
+     encore la balise la reçoivent ici. abDetectEmailTypo reste pour les pages
+     journal-ia qui l'appellent : elle délègue à abEmail quand il est chargé. */
+  if (!window.abEmail && !document.querySelector('script[src*="email-valide.js"]')) {
+    var ev = document.createElement('script');
+    ev.src = '/assets/js/email-valide.js?v=20261007a';
+    ev.defer = true;
+    document.head.appendChild(ev);
+  }
+
+  var abDetectEmailTypoAncien = function (email) {
     email = String(email == null ? '' : email).trim();
 
     /* Espaces et doubles @ : la correction est mécanique, il n'y a rien à deviner.
@@ -29,7 +41,7 @@
        devient « tony@gmial.com », puis la faute de domaine est traitée normalement). */
     var cleaned = email.replace(/\s+/g, '').replace(/@+/g, '@').replace(/^@/, '').replace(/@$/, '');
     if (cleaned !== email) {
-      var nested = window.abDetectEmailTypo(cleaned);
+      var nested = abDetectEmailTypoAncien(cleaned);
       if (nested.hasTypo) return { hasTypo: true, suggestion: nested.suggestion, original: email };
       if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleaned)) {
         return { hasTypo: true, suggestion: cleaned, original: email };
@@ -133,6 +145,14 @@
 
     return { hasTypo: false };
   };
+  window.abDetectEmailTypo = function (email) {
+    if (window.abEmail) {
+      var v = window.abEmail.verifier(email);
+      return (v.raison === 'faute_de_frappe' && v.suggestion)
+        ? { hasTypo: true, suggestion: v.suggestion, original: email } : { hasTypo: false };
+    }
+    return abDetectEmailTypoAncien(email);
+  };
 
   /* Crawlers render the page without the gate: search engines index the resource,
      and link previews (shares) still show it. Google treats this as cloaking unless
@@ -177,13 +197,15 @@
     '<span style="color:#eab308;">offerts chaque semaine</span></h2>',
     '<p style="font-family:\'Inter\',sans-serif;font-size:.9rem;color:#71717a;line-height:1.6;margin-bottom:24px;">',
     'Entre ton pr&eacute;nom et ton email pour d&eacute;bloquer cette ressource et recevoir les prochaines en avant-premi&egrave;re.</p>',
-    '<form id="leadForm" class="ab-fade" novalidate>',
+    '<form id="leadForm" class="ab-fade" novalidate data-email-serveur="non">',
     '<input id="leadName" type="text" placeholder="Ton pr&eacute;nom" required minlength="2" autocomplete="given-name" ',
     'style="width:100%;background:#111;border:1px solid #2a2a2a;border-radius:8px;padding:13px 16px;color:#e4e4e7;',
     'font-family:\'Inter\',sans-serif;font-size:.95rem;margin-bottom:10px;outline:none;box-sizing:border-box;" />',
     '<input id="leadEmail" type="email" placeholder="ton@email.com" required autocomplete="email" ',
     'style="width:100%;background:#111;border:1px solid #2a2a2a;border-radius:8px;padding:13px 16px;color:#e4e4e7;',
     'font-family:\'Inter\',sans-serif;font-size:.95rem;margin-bottom:10px;outline:none;box-sizing:border-box;" />',
+    '<p id="leadEmail-ab-msg" data-ab-email-msg aria-live="polite" style="display:none;font-family:\'Inter\',sans-serif;',
+    'font-size:.8rem;line-height:1.45;color:#f87171;margin:-4px 0 10px;text-align:left;"></p>',
     '<p id="leadError" role="alert" style="display:none;font-family:\'Inter\',sans-serif;font-size:.8rem;color:#ef4444;',
     'margin:0 0 10px;text-align:left;"></p>',
     '<button type="submit" id="leadBtn" style="width:100%;background:#eab308;color:#000;',
@@ -293,40 +315,27 @@
       return;
     }
 
-    /* La détection passe avant la regex : une faute évidente doit recevoir la
-       proposition de correction, pas le message générique « adresse invalide ». */
-    var typo = window.abDetectEmailTypo(email);
-    if (typo.hasTypo) {
-      /* The message is built with DOM nodes, not innerHTML: the suggestion
-         echoes the local part the user typed, which can contain anything. */
-      while (err.firstChild) err.removeChild(err.firstChild);
-      err.appendChild(document.createTextNode('Ça ressemble à une faute de frappe — voulais-tu dire '));
-      var sug = document.createElement('strong');
-      sug.textContent = typo.suggestion;
-      err.appendChild(sug);
-      err.appendChild(document.createTextNode(' ? '));
-      var fix = document.createElement('button');
-      fix.type = 'button';
-      fix.id = 'typoFix';
-      fix.textContent = 'Utiliser cette correction';
-      fix.style.cssText = 'background:#eab308;color:#000;border:none;border-radius:4px;padding:2px 8px;' +
-        'margin-left:8px;font-size:.75rem;font-weight:700;cursor:pointer;';
-      err.appendChild(fix);
-      err.style.display = 'block';
-      document.getElementById('leadEmail').focus();
-      fix.addEventListener('click', function () {
-        document.getElementById('leadEmail').value = typo.suggestion;
-        err.style.display = 'none';
-        document.getElementById('leadEmail').focus();
-      });
-      return;
-    }
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      err.textContent = 'Entre une adresse email valide pour continuer.';
-      err.style.display = 'block';
-      document.getElementById('leadEmail').focus();
-      return;
+    /* email-valide.js a déjà vérifié l'adresse (écouteur en phase de capture) et
+       l'a remise en minuscules. Sans lui (script bloqué), l'ancienne détection. */
+    var emailInput = document.getElementById('leadEmail');
+    if (window.abEmail) {
+      var v = window.abEmail.verifier(email);
+      if (!v.ok) { window.abEmail.afficher(emailInput, v, false); emailInput.focus(); return; }
+      email = v.email;
+    } else {
+      var typo = abDetectEmailTypoAncien(email);
+      if (typo.hasTypo) {
+        err.textContent = 'Ça ressemble à une faute de frappe — voulais-tu dire ' + typo.suggestion + ' ?';
+        err.style.display = 'block';
+        emailInput.focus();
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        err.textContent = 'Entre une adresse email valide pour continuer.';
+        err.style.display = 'block';
+        emailInput.focus();
+        return;
+      }
     }
 
     err.style.display = 'none';
@@ -335,8 +344,12 @@
     btn.textContent = 'Envoi…';
     btn.style.opacity = '0.7';
 
+    /* Le serveur refait toute la vérification (DNS compris) avant d'enregistrer et
+       répond { ok:false, raison } s'il refuse. Pas de réponse lisible (panne,
+       ancien workflow) = on laisse passer : on ne bloque jamais un vrai visiteur. */
+    var refus = null;
     try {
-      await fetch(WEBHOOK, {
+      var rep = await fetch(WEBHOOK, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -347,7 +360,19 @@
           date: new Date().toISOString()
         })
       });
+      var j = await rep.json();
+      if (j && j.ok === false && j.raison) refus = j;
     } catch (_) {}
+
+    if (refus) {
+      btn.disabled = false;
+      btn.innerHTML = '&#128640; D&eacute;bloquer la ressource';
+      btn.style.opacity = '';
+      if (window.abEmail) window.abEmail.afficher(emailInput, refus, false);
+      else { err.textContent = 'Cette adresse email ne fonctionne pas. Vérifie-la.'; err.style.display = 'block'; }
+      emailInput.focus();
+      return;
+    }
 
     unlocked = true;
     localStorage.setItem(LEAD_KEY, email);
