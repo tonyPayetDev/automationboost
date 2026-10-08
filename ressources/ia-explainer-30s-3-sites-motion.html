@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0SRZVQ1WGD');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Explainer animé de 30 secondes en un prompt – AutomationBoost</title>
+  <meta name="description" content="Un prompt prêt à copier (en anglais et en français) pour demander à Claude un explainer animé de 30 secondes, un exemple rempli, 3 conseils, et 3 sites pour t'inspirer en motion design sans copier." />
+  <link rel="canonical" href="https://automatisationboost.com/ressources/ia-explainer-30s-3-sites-motion.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Ton explainer animé de 30 secondes en un prompt + 3 sites pour t'inspirer" />
+  <meta property="og:description" content="Un prompt à copier pour ton explainer animé de 30 secondes, et 3 sites d'inspiration motion design." />
+  <meta property="og:url" content="https://automatisationboost.com/ressources/ia-explainer-30s-3-sites-motion.html" />
+  <meta property="og:image" content="https://assets.automatisationboost.com/ressources/motion-methode/c-apres.jpg" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .page-title { font-size:clamp(1.8rem,4vw,2.8rem);font-family:'Sora',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .page-title span { color:var(--gold); }
+    .page-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-muted);margin-bottom:40px;flex-wrap:wrap; }
+    .divider { width:60px;height:2px;background:var(--gold);margin:44px 0; }
+    .content-block { max-width:760px; }
+    .content-block h2 { font-family:'Sora',sans-serif;font-size:1.35rem;font-weight:800;color:var(--text);margin:48px 0 16px;line-height:1.3; }
+    .content-block h2[id] { scroll-margin-top:110px; }
+    .content-block h2 .n { color:var(--gold);margin-right:8px; }
+    .content-block h3 { font-family:'Sora',sans-serif;font-size:1.05rem;font-weight:700;margin:26px 0 10px;color:var(--text); }
+    .content-block p, .content-block li { color:var(--text-light);font-size:17px;line-height:1.75; }
+    .content-block p { margin-bottom:16px; }
+    .content-block ul, .content-block ol { padding-left:20px;margin-bottom:16px; }
+    .content-block li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .content-block a { color:var(--gold); }
+    .tip-box { background:var(--bg-card);border:1px solid rgba(234,179,8,0.2);border-left:3px solid var(--gold);border-radius:var(--radius);padding:18px 22px;margin:24px 0; }
+    .tip-box .tip-label { font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px; }
+    .tip-box p { margin:0;font-size:15.5px; }
+    .sommaire { background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 22px;margin:8px 0 28px; }
+    .sommaire ol { margin:6px 0 0;padding-left:22px; }
+    .sommaire li { font-size:15.5px;margin:0; }
+    .sommaire a { color:var(--gold);text-decoration:none;display:inline-block;padding:10px 0;min-height:44px;box-sizing:border-box; }
+    .sommaire a:hover { text-decoration:underline; }
+
+    .site { background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px;margin:18px 0; }
+    .site h3 { margin:0 0 4px;font-size:1.15rem; }
+    .site .who { font-size:13.5px;color:var(--text-muted);margin:0 0 12px; }
+    .site p { font-size:16px; }
+    .lbl { display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:4px;margin:6px 0 6px; }
+    .lbl-look { background:rgba(139,92,246,0.14);color:var(--violet);border:1px solid rgba(139,92,246,0.3); }
+    .lbl-tip { background:rgba(234,179,8,0.12);color:var(--gold);border:1px solid rgba(234,179,8,0.35); }
+    .lbl-ex { background:rgba(255,107,107,0.12);color:#ff6b6b;border:1px solid rgba(255,107,107,0.35); }
+    .btn-site { display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1px solid rgba(234,179,8,0.45);border-radius:8px;font-family:'Sora',sans-serif;font-size:13.5px;font-weight:700;text-decoration:none;margin-top:6px;box-sizing:border-box; }
+    .btn-site:hover { background:rgba(234,179,8,0.1); }
+    .note { font-size:14.5px !important;color:var(--text-muted) !important; }
+
+    .prompt { border:1px solid var(--border);border-radius:var(--radius);margin:18px 0 26px;overflow:hidden;background:var(--bg-card); }
+    .prompt-head { display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px 12px 18px;border-bottom:1px solid var(--border);flex-wrap:wrap; }
+    .prompt-head .t { font-family:'Sora',sans-serif;font-weight:700;font-size:15px;color:var(--text); }
+    .prompt-head .t small { display:block;font-family:inherit;font-weight:400;font-size:13px;color:var(--text-muted);margin-top:2px; }
+    .copy-btn { flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;gap:6px;background:var(--gold);color:#1a1200;border:0;border-radius:8px;padding:9px 18px;font-family:'Sora',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;min-height:44px;min-width:120px;transition:background .15s, transform .15s; }
+    .copy-btn:hover { transform:translateY(-1px); }
+    .copy-btn:focus-visible { outline:2px solid var(--violet);outline-offset:2px; }
+    .copy-btn.ok { background:var(--violet);color:#fff; }
+    .copy-btn.err { background:#ff6b6b;color:#1a0000; }
+    pre.code { margin:0;background:#0f0f14;color:#EDEDED;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:14px;line-height:1.65;padding:16px 18px;white-space:pre-wrap;overflow-wrap:anywhere; }
+    pre.code .ph { color:#eab308; }
+
+    .step { display:flex;gap:16px;align-items:flex-start;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;margin:14px 0; }
+    .step .num { flex:0 0 36px;height:36px;border-radius:50%;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.35);color:var(--gold);font-family:'Sora',sans-serif;font-weight:800;display:flex;align-items:center;justify-content:center; }
+    .step h3 { margin:4px 0 6px; }
+    .step p { margin:0 0 8px;font-size:16px; }
+    .step p:last-child { margin-bottom:0; }
+
+    .source-cta { display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#1a1200;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;padding:14px 26px;min-height:44px;box-sizing:border-box;border-radius:var(--radius);text-decoration:none;margin-top:20px;transition:all .2s; }
+    .content-block a.source-cta { color:#1a1200; }
+    .source-cta:hover { background:var(--gold-dark);transform:translateY(-2px); }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+
+    @media (max-width: 720px) {
+      .res-page { padding:100px 0 60px; }
+      .container { padding-left:16px !important;padding-right:16px !important; }
+      .site { padding:16px; }
+      .step { padding:16px;gap:12px; }
+      .content-block p, .content-block li { font-size:16.5px; }
+      pre.code { font-size:13.5px;padding:14px; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Ton explainer animé de 30 secondes en un prompt + 3 sites pour t'inspirer",
+    "description": "Un prompt à copier pour fabriquer un explainer animé de 30 secondes avec Claude, et 3 sites d'inspiration motion design.",
+    "url": "https://automatisationboost.com/ressources/ia-explainer-30s-3-sites-motion.html",
+    "datePublished": "2026-10-08",
+    "inLanguage": "fr",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://automatisationboost.com/ressources/ia-explainer-30s-3-sites-motion.html" },
+    "author": { "@type": "Organization", "name": "AutomationBoost", "url": "https://automatisationboost.com" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "logo": { "@type": "ImageObject", "url": "https://automatisationboost.com/assets/images/logo.svg" }
+    },
+    "isAccessibleForFree": false,
+    "hasPart": { "@type": "WebPageElement", "isAccessibleForFree": false, "cssSelector": ".content-block" }
+  }
+  </script>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="../" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="https://videoboost.automatisationboost.com/vente.html" class="nav-link-slide"><span>ShortForge</span><span>ShortForge</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
+    </div>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="https://videoboost.automatisationboost.com/vente.html" class="mob-link mob-link--gold">ShortForge</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
+  </nav>
+</div>
+
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../ressources.html">Ressources</a><span>/</span>Explainer animé de 30 secondes
+    </div>
+    <div class="page-badge">◈ Ressource · mot-clé IA</div>
+    <h1 class="page-title">Ton explainer animé de 30 secondes <span>en un prompt</span> + 3 sites pour t'inspirer</h1>
+    <div class="page-meta">
+      <span>1 prompt à copier · en anglais et en français · 1 exemple rempli · 3 conseils · 3 sites d'inspiration</span>
+    </div>
+
+    <div class="content-block">
+      <p>Un explainer animé, c'est une courte vidéo qui explique ton activité avec du texte et du mouvement. Ici, tu demandes à Claude de la fabriquer sous forme d'une page web animée de 30 secondes. Tu copies le prompt, tu remplaces la dernière ligne par ton activité, et tu regardes ce qui sort.</p>
+
+      <div class="sommaire">
+        <strong>Dans cette page</strong>
+        <ol>
+          <li><a href="#prompt">Le prompt à copier</a></li>
+          <li><a href="#exemple">Un exemple rempli</a></li>
+          <li><a href="#conseils">3 conseils pour de meilleurs résultats</a></li>
+          <li><a href="#sites">3 sites pour t'inspirer</a></li>
+        </ol>
+      </div>
+
+      <h2 id="prompt"><span class="n">1.</span>Le prompt à copier</h2>
+      <p>Remplace uniquement la partie en jaune par ton activité : ce que tu vends, à qui, et tes couleurs. Le reste ne change pas.</p>
+
+      <div class="prompt">
+        <div class="prompt-head"><div class="t">Version anglaise<small>La version de référence. Colle-la telle quelle dans Claude.</small></div><button class="copy-btn" type="button" data-copy="p-en">Copier</button></div>
+<pre class="code" id="p-en">Adopt the role of an expert motion designer.
+Build a 30-second animated explainer for my business as a single HTML page.
+5 scenes. The customer's problem, what I do, how it works in 3 steps, one proof point, and my name at the end.
+Bold text, smooth transitions, my brand colours.
+My business: <span class="ph">[DESCRIBE WHAT YOU SELL, WHO IT'S FOR AND YOUR COLOURS]</span></pre>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-head"><div class="t">Version française<small>Le même prompt, si tu préfères écrire en français.</small></div><button class="copy-btn" type="button" data-copy="p-fr">Copier</button></div>
+<pre class="code" id="p-fr">Prends le rôle d'un motion designer expert.
+Construis un explainer animé de 30 secondes pour mon activité, dans une seule page HTML.
+5 scènes. Le problème du client, ce que je fais, comment ça marche en 3 étapes, une preuve, et mon nom à la fin.
+Texte gras, transitions fluides, mes couleurs de marque.
+Mon activité : <span class="ph">[DÉCRIS CE QUE TU VENDS, POUR QUI, ET TES COULEURS]</span></pre>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2 id="exemple"><span class="n">2.</span>Un exemple rempli</h2>
+      <p><strong>Exemple inventé pour illustrer.</strong> « Plomberie Exemple » n'est pas un vrai client : c'est juste pour te montrer le niveau de détail qui marche. Plus tu es précis sur ce que tu fais, les 3 étapes et tes couleurs, moins Claude doit deviner.</p>
+      <div class="prompt">
+        <div class="prompt-head"><div class="t">Exemple : un plombier<small>Entreprise fictive, à adapter à ton métier.</small></div><button class="copy-btn" type="button" data-copy="p-ex">Copier</button></div>
+<pre class="code" id="p-ex">Adopt the role of an expert motion designer.
+Build a 30-second animated explainer for my business as a single HTML page.
+5 scenes. The customer's problem, what I do, how it works in 3 steps, one proof point, and my name at the end.
+Bold text, smooth transitions, my brand colours.
+My business: <span class="ph">Plomberie Exemple, a one-person plumbing company. I fix leaks and water-heater breakdowns for homeowners in my town. How it works: 1) the customer calls or sends a photo, 2) I give a written quote before starting, 3) I fix it and clean up. Proof point: the quote is written and agreed before any work starts. Colours: deep blue (#1E3A8A), warm orange (#F97316) and white.</span></pre>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2 id="conseils"><span class="n">3.</span>3 conseils pour de meilleurs résultats</h2>
+      <div class="step"><div class="num">1</div><div>
+        <h3>Donne une référence de style nommée</h3>
+        <p>« Bold text » reste vague. Ajoute une phrase du genre : « style inspiré d'une vidéo de lancement de produit sobre, fond uni, un seul mot mis en couleur à l'écran ». Un style nommé donne à Claude une direction précise. Les 3 sites plus bas t'aident à en trouver un.</p>
+      </div></div>
+      <div class="step"><div class="num">2</div><div>
+        <h3>Demande 4 images test avant le rendu</h3>
+        <p>Ajoute à la fin du prompt : « Avant de produire la vidéo, montre-moi 4 images fixes (début, deux moments au milieu, fin) et attends mon feu vert. » Tu repères tout de suite un texte qui déborde ou illisible, avant de perdre du temps.</p>
+      </div></div>
+      <div class="step"><div class="num">3</div><div>
+        <h3>Demande à Claude de se noter sur 10</h3>
+        <p>Une fois le premier résultat obtenu : « Note chaque scène sur 10 (lisibilité, rythme, couleurs), puis corrige uniquement les scènes notées 7 ou moins. » Il corrige ce qui est faible sans toucher à ce qui marche déjà.</p>
+      </div></div>
+      <p>Ces trois habitudes viennent de ma méthode complète, expliquée pas à pas dans la ressource <a href="motion-design-claude.html">Ma méthode motion design avec Claude</a>.</p>
+
+      <div class="divider"></div>
+
+      <h2 id="sites"><span class="n">4.</span>3 sites pour t'inspirer</h2>
+      <p>Aucun de ces sites ne fabrique ta vidéo : ils servent à regarder, à repérer ce qui te plaît, puis à le décrire avec tes mots dans ton prompt.</p>
+
+      <div class="site">
+        <h3>What Ships</h3>
+        <p class="who">whatships.com · vidéos de lancement de produits (IA, développement, design)</p>
+        <span class="lbl lbl-look">Quoi y regarder</span>
+        <p>C'est un annuaire de vidéos de lancement publiées par des équipes produit. Regarde surtout comment elles expliquent un produit compliqué en très peu de texte : une seule idée à la fois, des phrases courtes, le nom du produit bien placé. Compare deux ou trois vidéos du même domaine pour voir ce qu'elles ont en commun.</p>
+        <span class="lbl lbl-tip">Pour t'en inspirer sans copier</span>
+        <p>Note une seule chose par vidéo (le rythme, la façon de montrer le produit, la place du texte) et réutilise-la pour <em>ton</em> activité, avec tes mots et tes couleurs. Ne reproduis jamais une vidéo scène par scène.</p>
+        <a class="btn-site" href="https://whatships.com/" target="_blank" rel="noopener">Ouvrir What Ships →</a>
+      </div>
+
+      <div class="site">
+        <h3>Prompt Motion</h3>
+        <p class="who">prompt-motion.com · animations faites avec Claude, avec les prompts derrière</p>
+        <span class="lbl lbl-look">Quoi y regarder</span>
+        <p>C'est une bibliothèque d'animations réalisées avec Claude, présentées avec les prompts et les skills utilisés. Le plus utile : lire comment les prompts sont écrits (ce qu'ils décrivent, ce qu'ils demandent de précis) à côté du résultat à l'écran. Tu vois ce qu'une consigne change.</p>
+        <span class="lbl lbl-tip">Pour t'en inspirer sans copier</span>
+        <p>Lis un prompt pour sa structure, pas pour son contenu : comment il découpe la vidéo, quels détails il fixe. Puis réécris-le pour ton sujet. Copier un prompt à l'identique te donnerait une vidéo qui ressemble à celle de quelqu'un d'autre.</p>
+        <a class="btn-site" href="https://www.prompt-motion.com/" target="_blank" rel="noopener">Ouvrir Prompt Motion →</a>
+      </div>
+
+      <div class="site">
+        <h3>Motionographer</h3>
+        <p class="who">motionographer.com · le média de la communauté du motion design</p>
+        <span class="lbl lbl-look">Quoi y regarder</span>
+        <p>C'est un média qui présente du travail de studios et de motion designers, avec des articles d'analyse. La page d'accueil affiche des rubriques comme « Behind the Scenes » et « Studio Stories », où les créateurs racontent comment une animation a été pensée. Ça te donne le vocabulaire des pros : parle de « rythme », de « transition », de « direction artistique ».</p>
+        <span class="lbl lbl-tip">Pour t'en inspirer sans copier</span>
+        <p>Choisis une animation qui te plaît et réponds à une question : qu'est-ce qui la rend claire ? Garde la réponse (une couleur dominante, un mouvement lent, beaucoup de vide) et décris-la dans ton prompt. Tu empruntes un principe, pas une œuvre.</p>
+        <a class="btn-site" href="https://motionographer.com/" target="_blank" rel="noopener">Ouvrir Motionographer →</a>
+      </div>
+      <p class="note">Les trois sites étaient en ligne le 8 octobre 2026 et leur contenu correspond à cette description. Ils évoluent : ce que tu y verras aura peut-être changé.</p>
+
+      <a href="/#contact" class="source-cta">Tu veux ce système chez toi ? Parlons-en →</a>
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+
+  /* Copy buttons: Clipboard API, with a textarea fallback for older browsers / non-secure contexts. */
+  (function () {
+    function fallbackCopy(text) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '-1000px';
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      document.body.removeChild(ta);
+      return ok;
+    }
+    function feedback(btn, ok) {
+      btn.classList.remove('ok', 'err');
+      btn.classList.add(ok ? 'ok' : 'err');
+      btn.textContent = ok ? 'Copié ✓' : 'Sélectionne le texte';
+      clearTimeout(btn._t);
+      btn._t = setTimeout(function () { btn.classList.remove('ok', 'err'); btn.textContent = 'Copier'; }, 1800);
+    }
+    document.querySelectorAll('.copy-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var el = document.getElementById(btn.getAttribute('data-copy'));
+        if (!el) return;
+        var text = el.innerText.replace(/ /g, ' ');
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(function () { feedback(btn, true); }, function () { feedback(btn, fallbackCopy(text)); });
+        } else {
+          feedback(btn, fallbackCopy(text));
+        }
+      });
+    });
+  })();
+</script>
+<script src="/assets/js/email-valide.js?v=20261007a" defer></script>
+<script src="../assets/js/lead-popup.js?v=20261007a" defer></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="/assets/js/theme.js?v=20260717n" defer></script>
+</body>
+</html>
