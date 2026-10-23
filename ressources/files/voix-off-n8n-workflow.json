@@ -1,0 +1,159 @@
+{
+  "name": "Voix Off Pro — clonage vocal (AutomationBoost)",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Voix Off Pro",
+        "formDescription": "Colle ton texte et l'URL d'un court échantillon de ta voix (mp3/wav hébergé). Tu reçois ta voix off clonée.",
+        "formFields": {
+          "values": [
+            { "fieldName": "text", "fieldLabel": "Ton texte à lire", "fieldType": "textarea", "placeholder": "Écris ici le texte de ta voix off...", "requiredField": true },
+            { "fieldName": "voixUrl", "fieldLabel": "URL de ta voix de référence (mp3/wav, 15-30s)", "fieldType": "text", "placeholder": "https://...", "requiredField": true }
+          ]
+        },
+        "responseMode": "onReceived",
+        "options": { "path": "voix-off", "buttonLabel": "Générer ma voix off", "appendAttribution": false }
+      },
+      "id": "form-trigger",
+      "name": "Formulaire Voix Off",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.wavespeed.ai/api/v3/wavespeed-ai/qwen3-tts/voice-clone",
+        "sendHeaders": true,
+        "specifyHeaders": "keypair",
+        "headerParameters": { "parameters": [ { "name": "Authorization", "value": "Bearer wsk_live_TON_API_KEY_WAVESPEED" } ] },
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={ \"audio\": \"{{ $json.voixUrl }}\", \"language\": \"French\", \"text\": \"{{ $json.text }}\" }",
+        "options": { "timeout": 60000 }
+      },
+      "id": "submit-clone",
+      "name": "Submit Voice Clone",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [220, 0]
+    },
+    {
+      "parameters": { "resume": "timeInterval", "unit": "seconds", "amount": 20 },
+      "id": "wait-poll",
+      "name": "Wait Before Poll",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [440, 0]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.wavespeed.ai/api/v3/predictions/{{ $(\"Submit Voice Clone\").item.json.data.id }}/result",
+        "method": "GET",
+        "sendHeaders": true,
+        "specifyHeaders": "keypair",
+        "headerParameters": { "parameters": [ { "name": "Authorization", "value": "Bearer wsk_live_TON_API_KEY_WAVESPEED" } ] },
+        "options": { "timeout": 30000 }
+      },
+      "id": "poll-result",
+      "name": "Poll WaveSpeed Result",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [660, 0]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "const staticData = $getWorkflowStaticData('global');\nconst key = 'ttsPoll_' + $execution.id;\nstaticData[key] = (staticData[key] || 0) + 1;\nconst attempts = staticData[key];\nconst pollResult = $input.first().json;\nconst outputs = pollResult.data?.outputs || [];\nconst done = outputs.length > 0;\nif (done) { delete staticData[key]; }\nreturn [{ json: { ...pollResult, attempts, done } }];"
+      },
+      "id": "track-attempts",
+      "name": "Track Poll Attempts",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [880, 0]
+    },
+    {
+      "parameters": {
+        "conditions": { "combinator": "and", "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "loose", "version": 2 }, "conditions": [ { "leftValue": "={{ $json.done }}", "rightValue": true, "operator": { "type": "boolean", "operation": "true" } } ] }
+      },
+      "id": "poll-complete",
+      "name": "Poll Complete?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [1100, 0]
+    },
+    {
+      "parameters": {
+        "conditions": { "combinator": "and", "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "loose", "version": 2 }, "conditions": [ { "leftValue": "={{ $json.attempts }}", "rightValue": 6, "operator": { "type": "number", "operation": "gte" } } ] }
+      },
+      "id": "max-attempts",
+      "name": "Max Attempts?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [1100, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "const r = $input.first().json;\nconst audioUrl = r.data?.outputs?.[0] || \"\";\nif (!audioUrl) throw new Error(\"Voice clone non termine (status: \" + (r.data?.status || \"unknown\") + \"). Reessayer avec un texte plus court.\");\nreturn [{ json: { audioUrl } }];"
+      },
+      "id": "extract-url",
+      "name": "Extract Audio URL",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1320, -100]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.audioUrl }}",
+        "method": "GET",
+        "options": { "timeout": 60000, "response": { "response": { "responseFormat": "file", "outputPropertyName": "data" } } }
+      },
+      "id": "download-audio",
+      "name": "Download Cloned Audio",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [1540, -100]
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "sendDocument",
+        "chatId": "TON_CHAT_ID_TELEGRAM",
+        "binaryData": true,
+        "binaryPropertyName": "data",
+        "additionalFields": { "caption": "🎙️ Ta voix off est prête !", "fileName": "voix-off.mp3" }
+      },
+      "id": "deliver-telegram",
+      "name": "Envoyer sur Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1760, -100]
+    },
+    {
+      "parameters": {
+        "content": "## Voix Off Pro — clonage vocal\n\n1. Remplace `wsk_live_TON_API_KEY_WAVESPEED` par ta clé WaveSpeed (2 nœuds HTTP).\n2. Dans le nœud Telegram : mets ton chat ID et sélectionne ta credential Telegram (ou remplace ce nœud par ta livraison : Drive, email...).\n3. Active le workflow, ouvre l'URL du formulaire, colle ton texte + l'URL de ta voix de référence.\n\nModèle : wavespeed-ai/qwen3-tts/voice-clone · Polling 6×20s.",
+        "height": 260,
+        "width": 380
+      },
+      "id": "sticky-notes",
+      "name": "Notice",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [0, 220]
+    }
+  ],
+  "connections": {
+    "Formulaire Voix Off": { "main": [ [ { "node": "Submit Voice Clone", "type": "main", "index": 0 } ] ] },
+    "Submit Voice Clone": { "main": [ [ { "node": "Wait Before Poll", "type": "main", "index": 0 } ] ] },
+    "Wait Before Poll": { "main": [ [ { "node": "Poll WaveSpeed Result", "type": "main", "index": 0 } ] ] },
+    "Poll WaveSpeed Result": { "main": [ [ { "node": "Track Poll Attempts", "type": "main", "index": 0 } ] ] },
+    "Track Poll Attempts": { "main": [ [ { "node": "Poll Complete?", "type": "main", "index": 0 } ] ] },
+    "Poll Complete?": { "main": [ [ { "node": "Extract Audio URL", "type": "main", "index": 0 } ], [ { "node": "Max Attempts?", "type": "main", "index": 0 } ] ] },
+    "Max Attempts?": { "main": [ [], [ { "node": "Wait Before Poll", "type": "main", "index": 0 } ] ] },
+    "Extract Audio URL": { "main": [ [ { "node": "Download Cloned Audio", "type": "main", "index": 0 } ] ] },
+    "Download Cloned Audio": { "main": [ [ { "node": "Envoyer sur Telegram", "type": "main", "index": 0 } ] ] }
+  },
+  "settings": { "executionOrder": "v1" }
+}

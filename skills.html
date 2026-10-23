@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-0SRZVQ1WGD');
+  </script>
+  <meta charset="UTF-8" />
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1713977213196523');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1713977213196523&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skills Claude Code – AutomationBoost</title>
+  <meta name="description" content="Skills Claude Code premium : automatisation vidéo, déploiement, veille IA, n8n, HyperFrames. Des commandes slash prêtes à l'emploi pour décupler votre productivité." />
+  <link rel="stylesheet" href="assets/css/style.css?v=20260717n" />
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+  <!-- Plus Jakarta Sans — inspiré de tony.automatisationboost.com -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── Overrides de police ── */
+    h1, h2, h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* ── Noise texture (comme tony.ab.com) ── */
+    body::before {
+      background-size: 80px 80px;
+    }
+
+    /* ──────────────── HERO ──────────────── */
+    .sk-hero {
+      min-height: 52vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 130px 24px 70px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+    /* Glow orb background */
+    .sk-hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 500px;
+      background: radial-gradient(ellipse at center,
+        rgba(234,179,8,0.12) 0%,
+        rgba(234,179,8,0.04) 45%,
+        transparent 70%);
+      pointer-events: none;
+    }
+    .sk-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(234,179,8,0.1);
+      border: 1px solid rgba(234,179,8,0.3);
+      color: var(--gold);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+    .sk-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      box-shadow: 0 0 6px var(--gold);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+    .sk-hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .sk-hero h1 .highlight {
+      background: linear-gradient(135deg, #eab308 0%, #fde047 50%, #ca8a04 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .sk-hero p {
+      max-width: 560px;
+      margin: 0 auto 48px;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+    .sk-stats {
+      display: flex;
+      gap: 0;
+      justify-content: center;
+      flex-wrap: wrap;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.02);
+      overflow: hidden;
+    }
+    .sk-stat {
+      padding: 18px 36px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .sk-stat:last-child { border-right: none; }
+    .sk-stat-num {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--gold);
+      display: block;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .sk-stat-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ──────────────── SECTION ──────────────── */
+    .sk-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px 20px;
+    }
+    .sk-cat {
+      margin-bottom: 64px;
+    }
+    .sk-cat-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .sk-cat-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(234,179,8,0.3) 0%, transparent 100%);
+    }
+    .sk-cat-tag {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 18px;
+      background: rgba(234,179,8,0.06);
+      border: 1px solid rgba(234,179,8,0.2);
+      border-radius: 100px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      white-space: nowrap;
+    }
+    .sk-cat-icon { font-size: 1rem; }
+    .sk-cat-count {
+      background: rgba(234,179,8,0.15);
+      color: var(--gold);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 1px 7px;
+      border-radius: 20px;
+    }
+
+    /* ──────────────── CARDS ──────────────── */
+    .sk-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .sk-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    .sk-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.16,1,0.3,1),
+                  border-color 0.25s, box-shadow 0.25s;
+    }
+    .sk-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--gold) 50%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .sk-card:hover {
+      border-color: rgba(234,179,8,0.3);
+      transform: translateY(-4px) !important;
+      box-shadow: 0 16px 48px rgba(234,179,8,0.08), 0 4px 16px rgba(0,0,0,0.4);
+    }
+    .sk-card:hover::after { opacity: 1; }
+
+    /* Numéro de fond décoratif */
+    .sk-card-num {
+      position: absolute;
+      top: 16px; right: 20px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: rgba(234,179,8,0.04);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .sk-cmd {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      background: rgba(234,179,8,0.08);
+      border: 1px solid rgba(234,179,8,0.2);
+      padding: 4px 12px;
+      border-radius: 6px;
+      align-self: flex-start;
+    }
+    .sk-card h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.35;
+      margin: 0;
+    }
+    .sk-card p {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text-muted);
+      margin: 0;
+      flex: 1;
+    }
+    .sk-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .sk-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    /* ──────────────── PREMIUM ──────────────── */
+    .sk-cat-tag.premium {
+      background: rgba(139,92,246,0.08);
+      border-color: rgba(139,92,246,0.3);
+    }
+    .sk-cat-tag.premium .sk-cat-count {
+      background: rgba(139,92,246,0.16);
+      color: var(--violet);
+    }
+    .sk-cat-line.premium {
+      background: linear-gradient(90deg, rgba(139,92,246,0.35) 0%, transparent 100%);
+    }
+    .sk-card.premium {
+      border-color: rgba(139,92,246,0.28);
+      background: linear-gradient(150deg, rgba(139,92,246,0.05) 0%, var(--bg-card) 55%);
+    }
+    .sk-card.premium::after {
+      background: linear-gradient(90deg, transparent 0%, var(--violet) 50%, transparent 100%);
+      opacity: 1;
+    }
+    .sk-card.premium:hover {
+      border-color: rgba(139,92,246,0.5);
+      box-shadow: 0 16px 48px rgba(139,92,246,0.12), 0 4px 16px rgba(0,0,0,0.4);
+    }
+    .sk-card.premium .sk-cmd {
+      color: var(--violet);
+      background: rgba(139,92,246,0.09);
+      border-color: rgba(139,92,246,0.28);
+    }
+    .sk-card.premium .sk-card-num { color: rgba(139,92,246,0.06); }
+    .sk-premium-flag {
+      position: absolute;
+      top: 0; right: 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--violet);
+      background: rgba(139,92,246,0.12);
+      border-left: 1px solid rgba(139,92,246,0.28);
+      border-bottom: 1px solid rgba(139,92,246,0.28);
+      border-radius: 0 16px 0 10px;
+      padding: 6px 14px 6px 12px;
+    }
+    .sk-buy-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .sk-price {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .sk-price span {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .sk-btn-premium {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--violet);
+      color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.86rem;
+      padding: 11px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .sk-btn-premium:hover {
+      background: var(--violet-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(139,92,246,0.35);
+    }
+
+    /* ──────────────── CTA ──────────────── */
+    .sk-cta {
+      margin: 20px 24px 80px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      background: linear-gradient(135deg,
+        rgba(234,179,8,0.07) 0%,
+        rgba(234,179,8,0.02) 100%);
+      border: 1px solid rgba(234,179,8,0.18);
+      border-radius: 20px;
+      padding: 64px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .sk-cta::before {
+      content: '';
+      position: absolute;
+      top: -40px; left: 50%;
+      transform: translateX(-50%);
+      width: 400px; height: 200px;
+      background: radial-gradient(ellipse,rgba(234,179,8,0.12) 0%,transparent 70%);
+      pointer-events: none;
+    }
+    .sk-cta h2 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800;
+      margin-bottom: 14px;
+      color: var(--text);
+    }
+    .sk-cta p {
+      max-width: 480px;
+      margin: 0 auto 36px;
+      font-size: 1rem;
+      color: var(--text-muted);
+    }
+
+    /* ──────────────── BTN ──────────────── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: #000;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 14px 32px;
+      border-radius: 10px;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: all 0.2s ease;
+    }
+    .btn-primary:hover {
+      background: #fde047;
+      box-shadow: 0 0 30px rgba(234,179,8,0.4), 0 8px 24px rgba(0,0,0,0.3);
+      transform: translateY(-2px);
+    }
+
+    /* ──────────────── RESPONSIVE ──────────────── */
+    @media (max-width: 900px) {
+      .sk-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+    }
+    @media (max-width: 640px) {
+      .sk-hero { padding: 110px 16px 50px; }
+      .sk-hero h1 { font-size: 2.2rem; }
+      .sk-stats { width: 100%; }
+      .sk-stat { padding: 14px 20px; }
+      .sk-stat-num { font-size: 1.4rem; }
+      .sk-grid { grid-template-columns: 1fr; }
+      .sk-section { padding: 40px 16px 10px; }
+      .sk-cta { padding: 44px 20px; margin: 0 16px 60px; }
+      .sk-cat-tag { font-size: 0.75rem; padding: 7px 14px; }
+    }
+    @media (max-width: 480px) {
+      .sk-stats { border-radius: 10px; }
+      .sk-stat { padding: 12px 16px; flex: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════ NAVBAR ════════════ -->
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="/" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="https://videoboost.automatisationboost.com/vente.html" class="nav-link-slide"><span>ShortForge</span><span>ShortForge</span></a>
+      <a href="formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
+    </div>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Menu mobile -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="ressources.html" class="mob-link">Ressources</a>
+    <a href="blog.html" class="mob-link">Blog IA</a>
+    <a href="skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="https://videoboost.automatisationboost.com/vente.html" class="mob-link mob-link--gold">ShortForge</a>
+    <a href="formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
+  </nav>
+</div>
+
+<!-- ════════════ HERO ════════════ -->
+<section class="sk-hero">
+  <div class="sk-badge">Claude Code Skills</div>
+  <h1>Ce que vous répétez,<br><span class="highlight">une commande le fait.</span></h1>
+  <p>Des skills Claude Code construits sur de vrais cas métier — chaque slash commande déclenche une séquence complète, du brief à la mise en ligne.</p>
+  <div class="sk-stats">
+    <div class="sk-stat">
+      <span class="sk-stat-num" data-count="13">13</span>
+      <span class="sk-stat-label">Skills actifs</span>
+    </div>
+    <div class="sk-stat">
+      <span class="sk-stat-num">100%</span>
+      <span class="sk-stat-label">Automatisé</span>
+    </div>
+    <div class="sk-stat">
+      <span class="sk-stat-num">0</span>
+      <span class="sk-stat-label">Config requise</span>
+    </div>
+    <div class="sk-stat">
+      <span class="sk-stat-num">48h</span>
+      <span class="sk-stat-label">Livraison</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ SKILLS ════════════ -->
+<div class="sk-section">
+
+  <!-- PREMIUM -->
+  <div class="sk-cat">
+    <div class="sk-cat-header">
+      <div class="sk-cat-tag premium">
+        <span class="sk-cat-icon">👑</span>
+        Skills Premium
+        <span class="sk-cat-count">1</span>
+      </div>
+      <div class="sk-cat-line premium"></div>
+    </div>
+    <div class="sk-grid">
+
+      <div class="sk-card premium">
+        <span class="sk-premium-flag">Premium</span>
+        <span class="sk-card-num">00</span>
+        <span class="sk-cmd">/horror-beatsync-video</span>
+        <h3>Vidéo montée sur le drop — trend horror</h3>
+        <p>Monte tes vidéos 9:16 sur le son de la trend, cuts calés à la frame sur les drops réels du fichier (2,34s puis toutes les 8,02s), voix mixée sous la musique en sidechain, captions snappées sur le beat. <strong style="color:var(--violet)">+20 % de viralité</strong> en collant vraiment au son. 3 scripts prêts inclus.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">FFmpeg</span>
+          <span class="sk-tag">Beat-sync</span>
+          <span class="sk-tag">TTS</span>
+          <span class="sk-tag">Captions</span>
+        </div>
+        <div class="sk-buy-row">
+          <div class="sk-price">19,90 €<span>Paiement unique</span></div>
+          <a href="skills/horror-beatsync.html" class="sk-btn-premium">Voir le skill →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- VIDÉO & AVATAR -->
+  <div class="sk-cat">
+    <div class="sk-cat-header">
+      <div class="sk-cat-tag">
+        <span class="sk-cat-icon">🎬</span>
+        Vidéo & Avatar
+        <span class="sk-cat-count">4</span>
+      </div>
+      <div class="sk-cat-line"></div>
+    </div>
+    <div class="sk-grid">
+
+      <div class="sk-card">
+        <span class="sk-card-num">01</span>
+        <span class="sk-cmd">/avatar-reel</span>
+        <h3>Reel TikTok / Instagram complet</h3>
+        <p>Pipeline de bout en bout : motion graphic kinetic type 1080×1920 animé + avatar parlant avec voice cloning. Donnez un sujet — la vidéo sort en quelques minutes.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">HyperFrames</span>
+          <span class="sk-tag">n8n</span>
+          <span class="sk-tag">FFmpeg</span>
+          <span class="sk-tag">Voice Clone</span>
+        </div>
+      </div>
+
+      <div class="sk-card">
+        <span class="sk-card-num">02</span>
+        <span class="sk-cmd">/motion-graphics</span>
+        <h3>Motion graphic court format</h3>
+        <p>Animations courtes jusqu'à 30s : kinetic typography, stats animées, logo sting, social overlay. Rendu MP4 via HyperFrames + GSAP, prêt à publier.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">HyperFrames</span>
+          <span class="sk-tag">GSAP</span>
+          <span class="sk-tag">MP4</span>
+        </div>
+      </div>
+
+      <div class="sk-card">
+        <span class="sk-card-num">03</span>
+        <span class="sk-cmd">/youtube-script-capture</span>
+        <h3>Extracteur YouTube</h3>
+        <p>Extrait le transcript complet et les captures clés d'une vidéo YouTube (Shorts inclus). Génère un markdown structuré avec les points essentiels et les timestamps.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">yt-dlp</span>
+          <span class="sk-tag">FFmpeg</span>
+          <span class="sk-tag">Transcript</span>
+        </div>
+      </div>
+
+      <div class="sk-card">
+        <span class="sk-card-num">04</span>
+        <span class="sk-cmd">SYSTEME</span>
+        <h3>Guide vidéo avatar IA (offert)</h3>
+        <p>Le système exact des vidéos « Lui, c'est mon créateur » : 5 paliers (script, voix, lèvres, avatar, montage), ressources utilisées et tableau seul / skills / accompagné. Commente SYSTEME pour le recevoir.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">Guide PDF</span>
+          <span class="sk-tag">Avatar IA</span>
+          <span class="sk-tag">Gratuit</span>
+        </div>
+        <div class="sk-buy-row">
+          <a href="skills/systeme-avatar.html" class="sk-btn-premium">Voir le guide →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DÉPLOIEMENT -->
+  <div class="sk-cat">
+    <div class="sk-cat-header">
+      <div class="sk-cat-tag">
+        <span class="sk-cat-icon">🚀</span>
+        Déploiement & Automatisation
+        <span class="sk-cat-count">3</span>
+      </div>
+      <div class="sk-cat-line"></div>
+    </div>
+    <div class="sk-grid">
+
+      <div class="sk-card">
+        <span class="sk-card-num">04</span>
+        <span class="sk-cmd">/deploy-site</span>
+        <h3>Déploiement GitHub → Coolify</h3>
+        <p>Pousse un site statique sur GitHub, crée ou met à jour l'app Coolify, attend le statut running et vérifie le HTTP 200. L'URL en ligne en une seule commande.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">GitHub</span>
+          <span class="sk-tag">Coolify</span>
+          <span class="sk-tag">Docker</span>
+        </div>
+      </div>
+
+      <div class="sk-card">
+        <span class="sk-card-num">05</span>
+        <span class="sk-cmd">/playwright-skill</span>
+        <h3>Automatisation navigateur</h3>
+        <p>Tests Playwright complets : screenshots, validation UX, remplissage de formulaires, tests de login, vérification de liens. Détecte automatiquement le serveur dev.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">Playwright</span>
+          <span class="sk-tag">Tests</span>
+          <span class="sk-tag">Screenshots</span>
+        </div>
+      </div>
+
+      <div class="sk-card">
+        <span class="sk-card-num">06</span>
+        <span class="sk-cmd">/scrape-to-ressources</span>
+        <h3>Import de ressources externes</h3>
+        <p>Scrape une bibliothèque d'un site externe, convertit chaque page au format AutomationBoost dark/gold, l'intègre dans ressources.html et déploie automatiquement.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">Scraping</span>
+          <span class="sk-tag">HTML</span>
+          <span class="sk-tag">Auto-deploy</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- VEILLE -->
+  <div class="sk-cat">
+    <div class="sk-cat-header">
+      <div class="sk-cat-tag">
+        <span class="sk-cat-icon">📡</span>
+        Veille & Contenu
+        <span class="sk-cat-count">1</span>
+      </div>
+      <div class="sk-cat-line"></div>
+    </div>
+    <div class="sk-grid">
+
+      <div class="sk-card">
+        <span class="sk-card-num">07</span>
+        <span class="sk-cmd">/veille-ia</span>
+        <h3>Veille IA → Article SEO publié</h3>
+        <p>Lance 3 recherches en parallèle sur l'actualité IA, sélectionne le sujet le plus fort, rédige un article SEO de 1500-2000 mots et le publie directement sur le blog.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">WebSearch</span>
+          <span class="sk-tag">SEO</span>
+          <span class="sk-tag">Blog</span>
+          <span class="sk-tag">Auto-publish</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- N8N -->
+  <div class="sk-cat">
+    <div class="sk-cat-header">
+      <div class="sk-cat-tag">
+        <span class="sk-cat-icon">⚙️</span>
+        Suite n8n Expert
+        <span class="sk-cat-count">5</span>
+      </div>
+      <div class="sk-cat-line"></div>
+    </div>
+    <div class="sk-grid">
+
+      <div class="sk-card">
+        <span class="sk-card-num">08</span>
+        <span class="sk-cmd">/n8n-mcp-tools-expert</span>
+        <h3>Expert outils MCP n8n</h3>
+        <p>Guide pour utiliser les outils n8n via MCP : recherche de nodes, validation de config, accès aux templates, gestion des workflows. Zéro erreur de paramètres.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">n8n</span>
+          <span class="sk-tag">MCP</span>
+          <span class="sk-tag">Workflows</span>
+        </div>
+      </div>
+
+      <div class="sk-card">
+        <span class="sk-card-num">09</span>
+        <span class="sk-cmd">/n8n-node-configuration</span>
+        <h3>Configuration de nodes n8n</h3>
+        <p>Référence précise pour configurer chaque node n8n : paramètres exacts, discriminateurs resource/operation, credentials. Noms de champs exacts, pas d'approximations.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">n8n</span>
+          <span class="sk-tag">Nodes</span>
+          <span class="sk-tag">Config</span>
+        </div>
+      </div>
+
+      <div class="sk-card">
+        <span class="sk-card-num">10</span>
+        <span class="sk-cmd">/n8n-validation-expert</span>
+        <h3>Validation de workflows n8n</h3>
+        <p>Valide un workflow avant déploiement : détecte les erreurs de structure, nodes mal configurés, connections manquantes. Renvoie une liste d'erreurs corrigibles.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">n8n</span>
+          <span class="sk-tag">Validation</span>
+          <span class="sk-tag">Debug</span>
+        </div>
+      </div>
+
+      <div class="sk-card">
+        <span class="sk-card-num">11</span>
+        <span class="sk-cmd">/n8n-workflow-patterns</span>
+        <h3>Patterns de workflows n8n</h3>
+        <p>Bibliothèque de patterns réutilisables : webhooks, boucles, gestion d'erreurs, sous-workflows, traitement en batch. Accélère la conception de workflows complexes.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">n8n</span>
+          <span class="sk-tag">Patterns</span>
+          <span class="sk-tag">Architecture</span>
+        </div>
+      </div>
+
+      <div class="sk-card">
+        <span class="sk-card-num">12</span>
+        <span class="sk-cmd">/n8n-code-javascript</span>
+        <h3>Code JS dans n8n</h3>
+        <p>Rédige et débogue du JavaScript dans les nodes Code n8n : accès aux items, manipulation de données, appels API, gestion des erreurs. Syntaxe n8n-native exacte.</p>
+        <div class="sk-tags">
+          <span class="sk-tag">n8n</span>
+          <span class="sk-tag">JavaScript</span>
+          <span class="sk-tag">Code Node</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ════════════ CTA ════════════ -->
+<div class="sk-cta">
+  <h2>Un skill sur mesure ?</h2>
+  <p>Chaque skill est développé sur un vrai besoin métier. Si vous avez un process répétitif, on peut le transformer en commande slash Claude Code.</p>
+  <a href="/#contact" class="btn-primary">Recevoir mon audit gratuit →</a>
+</div>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer style="text-align:center;padding:36px 20px;border-top:1px solid var(--border);color:var(--text-muted);font-size:0.85rem;position:relative;z-index:1;">
+  <p>© 2026 AutomationBoost ·
+    <a href="/" style="color:var(--gold);text-decoration:none;">Accueil</a> ·
+    <a href="ressources.html" style="color:var(--gold);text-decoration:none;">Ressources</a> ·
+    <a href="blog.html" style="color:var(--gold);text-decoration:none;">Blog</a>
+  </p>
+</footer>
+
+<script src="/automationboost/assets/js/nav.js" defer></script>
+<script>
+  // ── Cards scroll reveal avec stagger ──
+  const cards = document.querySelectorAll('.sk-card');
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        // Stagger par groupe de cards dans la même grille
+        const siblings = Array.from(entry.target.parentElement.children);
+        const idx = siblings.indexOf(entry.target);
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, idx * 80);
+        cardObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  cards.forEach(card => cardObserver.observe(card));
+
+  // ── Stats counter ──
+  const statNums = document.querySelectorAll('[data-count]');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseFloat(el.dataset.count);
+      let current = 0;
+      const step = target / 40;
+      const interval = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = Math.floor(current);
+        if (current >= target) clearInterval(interval);
+      }, 20);
+      counterObserver.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  statNums.forEach(el => counterObserver.observe(el));
+</script>
+<script src="/automationboost/assets/js/theme.js?v=20260717n" defer></script>
+</body>
+</html>

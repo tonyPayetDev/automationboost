@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Audit gratuit — AutomationBoost</title>
+<link rel="canonical" href="https://automatisationboost.com/audit.html">
+<meta name="description" content="Sept questions, deux minutes. Vous recevez un diagnostic écrit, et Tony vous rappelle sous 48 h.">
+
+<style>
+/* Charte tony.automatisationboost.com : nuit #0c0d18, turquoise #3dc4c2,
+   bleu #26729f, jaune #eab308, lavande #d1c5e0. */
+:root{
+  --nuit:#0c0d18; --carte:#141626; --carte2:#1a1d30; --trait:#252943;
+  --encre:#eef0f7; --doux:#9298b3; --faible:#6b7191;
+  --turq:#3dc4c2; --bleu:#26729f; --jaune:#eab308; --lavande:#d1c5e0;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:var(--nuit)}
+body{
+  background:var(--nuit); color:var(--encre);
+  font:400 16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  padding:30px 17px calc(40px + env(safe-area-inset-bottom));
+}
+.wrap{max-width:600px;margin-inline:auto;display:flex;flex-direction:column;gap:0}
+::selection{background:var(--turq);color:#06201f}
+
+header{display:flex;flex-direction:column;gap:11px;padding-bottom:26px}
+.marque{font-size:17px;font-weight:800;letter-spacing:-.01em}
+.marque span{color:var(--jaune)}
+h1{font-size:clamp(28px,7.5vw,40px);line-height:1.06;font-weight:800;letter-spacing:-.03em;
+  text-wrap:balance;margin-top:6px}
+.intro{color:var(--doux);font-size:16px;line-height:1.62;max-width:52ch}
+.intro b{color:var(--encre);font-weight:600}
+
+fieldset{border:0;padding:22px 0;border-top:1px solid var(--trait);
+  display:flex;flex-direction:column;gap:13px}
+legend{padding:0}
+.q{font-size:17.5px;font-weight:650;line-height:1.35;letter-spacing:-.012em;text-wrap:balance}
+.aide{color:var(--faible);font-size:13.5px;margin-top:-6px}
+
+.choix{display:flex;flex-direction:column;gap:9px}
+.choix.grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(146px,1fr))}
+label.opt{
+  display:flex;align-items:center;gap:11px;cursor:pointer;
+  background:var(--carte);border:1px solid var(--trait);border-radius:11px;
+  padding:13px 15px;min-height:52px;font-size:15.3px;line-height:1.4;
+  transition:border-color .16s,background .16s;
+}
+label.opt:hover{border-color:#39406b}
+label.opt input{
+  appearance:none;flex:0 0 auto;width:20px;height:20px;border:1.5px solid #3b4166;
+  background:var(--carte2);cursor:pointer;transition:border-color .16s,background .16s;
+}
+label.opt input[type=radio]{border-radius:50%}
+label.opt input[type=checkbox]{border-radius:5px}
+label.opt input:checked{border-color:var(--turq);background:var(--turq)}
+label.opt input[type=radio]:checked{box-shadow:inset 0 0 0 4px var(--carte2)}
+label.opt input[type=checkbox]:checked{
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%2306201f' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' d='M3.5 8.5l3 3 6-7'/%3E%3C/svg%3E");
+  background-size:15px;background-repeat:no-repeat;background-position:center}
+label.opt:has(input:checked){border-color:var(--turq);background:#101d24}
+label.opt input:focus-visible{outline:2.5px solid var(--jaune);outline-offset:2px}
+
+.champs{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.champ{display:flex;flex-direction:column;gap:6px}
+.champ.large{grid-column:1/-1}
+.champ label{font-size:13px;color:var(--doux);font-weight:500;letter-spacing:.01em}
+input[type=text],input[type=email],input[type=tel],textarea,select{
+  width:100%;font:inherit;font-size:16px;color:var(--encre);
+  background:var(--carte);border:1px solid var(--trait);border-radius:10px;
+  padding:13px 14px;min-height:50px;transition:border-color .16s;
+}
+textarea{min-height:96px;resize:vertical;line-height:1.55}
+input:focus,textarea:focus,select:focus{outline:0;border-color:var(--turq)}
+input::placeholder,textarea::placeholder{color:#5a6084}
+select{appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%239298b3' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round' d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 15px center;background-size:12px;
+  padding-right:40px}
+
+.envoi{padding-top:24px;border-top:1px solid var(--trait);display:flex;flex-direction:column;gap:12px}
+button{
+  font:inherit;font-size:17px;font-weight:700;letter-spacing:-.01em;
+  background:var(--turq);color:#06201f;border:0;border-radius:12px;
+  padding:18px;min-height:60px;cursor:pointer;
+  transition:transform .15s cubic-bezier(.2,.8,.3,1),opacity .16s;
+}
+button:hover{transform:translateY(-1px)}
+button:active{transform:translateY(1px)}
+button:disabled{opacity:.55;cursor:default;transform:none}
+button:focus-visible{outline:2.5px solid var(--jaune);outline-offset:3px}
+.promesse{color:var(--faible);font-size:13.4px;line-height:1.6;text-align:center}
+.erreur{background:#241318;border:1px solid #4a222b;color:#f2606f;border-radius:10px;
+  padding:13px 15px;font-size:14.5px;line-height:1.5}
+.erreur[hidden]{display:none}
+
+.merci{background:#0f1d1d;border:1px solid #1f4a49;border-radius:14px;padding:30px 26px;
+  display:flex;flex-direction:column;gap:13px;text-align:center}
+.merci[hidden]{display:none}
+.merci h2{font-size:24px;font-weight:800;letter-spacing:-.025em;line-height:1.15}
+.merci p{color:var(--doux);font-size:15.3px;line-height:1.62}
+.merci a.tel{display:block;background:var(--turq);color:#06201f;font-weight:700;font-size:18px;
+  text-decoration:none;padding:16px;border-radius:11px;margin-top:6px}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <a class="marque" href="index.html" style="text-decoration:none;color:inherit">Automation<span>Boost</span></a>
+  <h1>Ce qui vous fait perdre du temps, en deux minutes</h1>
+  <p class="intro">Sept questions, aucune n'est un piège. Vous recevez tout de suite
+  <b>le point qui vous coûte le plus cher</b>, et je vous rappelle sous 48 h pour vous dire
+  ce qui est automatisable — et ce qui ne l'est pas.</p>
+</header>
+
+<form id="audit" novalidate>
+
+  <fieldset>
+    <legend class="q">Votre activité, c'est plutôt&nbsp;?</legend>
+    <div class="champ">
+      <select name="secteur" id="secteur" required>
+        <option value="">Choisissez…</option>
+        <option value="restaurant">Restaurant, snack, boulangerie</option>
+        <option value="commerce">Commerce, boutique</option>
+        <option value="beaute">Institut, coiffeur, esthétique</option>
+        <option value="sante">Santé, bien-être, thérapie</option>
+        <option value="hebergement">Hôtel, gîte, location</option>
+        <option value="services">Artisan, services aux entreprises</option>
+        <option value="autre">Autre</option>
+      </select>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend class="q">Chaque semaine, votre temps part surtout dans quoi&nbsp;?</legend>
+    <p class="aide">Plusieurs réponses possibles.</p>
+    <div class="choix grille">
+      <label class="opt"><input type="checkbox" name="taches" value="messages">Répondre aux messages</label>
+      <label class="opt"><input type="checkbox" name="taches" value="reseaux">Publier sur les réseaux</label>
+      <label class="opt"><input type="checkbox" name="taches" value="devis">Faire les devis</label>
+      <label class="opt"><input type="checkbox" name="taches" value="relances">Relancer les clients</label>
+      <label class="opt"><input type="checkbox" name="taches" value="rdv">Prendre les rendez-vous</label>
+      <label class="opt"><input type="checkbox" name="taches" value="site">Mettre le site à jour</label>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend class="q">Combien d'heures par semaine, à peu près&nbsp;?</legend>
+    <div class="choix grille">
+      <label class="opt"><input type="radio" name="heures" value="moins2">Moins de 2 h</label>
+      <label class="opt"><input type="radio" name="heures" value="2a5">2 à 5 h</label>
+      <label class="opt"><input type="radio" name="heures" value="5a10">5 à 10 h</label>
+      <label class="opt"><input type="radio" name="heures" value="plus10">Plus de 10 h</label>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend class="q">Comment vos clients vous contactent-ils&nbsp;?</legend>
+    <p class="aide">Plusieurs réponses possibles.</p>
+    <div class="choix grille">
+      <label class="opt"><input type="checkbox" name="canal" value="instagram">Instagram</label>
+      <label class="opt"><input type="checkbox" name="canal" value="whatsapp">WhatsApp</label>
+      <label class="opt"><input type="checkbox" name="canal" value="telephone">Téléphone</label>
+      <label class="opt"><input type="checkbox" name="canal" value="facebook">Facebook</label>
+      <label class="opt"><input type="checkbox" name="canal" value="formulaire">Le site</label>
+      <label class="opt"><input type="checkbox" name="canal" value="surplace">Sur place</label>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend class="q">En général, vous leur répondez au bout de combien de temps&nbsp;?</legend>
+    <p class="aide">Répondez franchement — c'est la question la plus utile des sept.</p>
+    <div class="choix">
+      <label class="opt"><input type="radio" name="delai" value="moins1h">Moins d'une heure</label>
+      <label class="opt"><input type="radio" name="delai" value="heures">Dans la journée</label>
+      <label class="opt"><input type="radio" name="delai" value="lendemain">Le lendemain</label>
+      <label class="opt"><input type="radio" name="delai" value="plustard">Au bout de plusieurs jours</label>
+      <label class="opt"><input type="radio" name="delai" value="pastoujours">Honnêtement, pas toujours</label>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend class="q">Qu'est-ce que vous avez déjà&nbsp;?</legend>
+    <div class="choix grille">
+      <label class="opt"><input type="checkbox" name="outils" value="site">Un site internet</label>
+      <label class="opt"><input type="checkbox" name="outils" value="instagram">Une page Instagram</label>
+      <label class="opt"><input type="checkbox" name="outils" value="facebook">Une page Facebook</label>
+      <label class="opt"><input type="checkbox" name="outils" value="google">Une fiche Google</label>
+      <label class="opt"><input type="checkbox" name="outils" value="caisse">Un logiciel de caisse</label>
+      <label class="opt"><input type="checkbox" name="outils" value="rien">Rien de tout ça</label>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend class="q">Si une seule chose devait changer cette année&nbsp;?</legend>
+    <div class="choix">
+      <label class="opt"><input type="radio" name="objectif" value="plusclients">Trouver plus de clients</label>
+      <label class="opt"><input type="radio" name="objectif" value="gagnertemps">Récupérer du temps</label>
+      <label class="opt"><input type="radio" name="objectif" value="image">Avoir une image plus pro</label>
+      <label class="opt"><input type="radio" name="objectif" value="fideliser">Faire revenir ceux qui sont venus</label>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend class="q">Pour vous répondre</legend>
+    <div class="champs">
+      <div class="champ">
+        <label for="nom">Votre prénom</label>
+        <input type="text" id="nom" name="nom" autocomplete="given-name" required>
+      </div>
+      <div class="champ">
+        <label for="entreprise">Votre établissement</label>
+        <input type="text" id="entreprise" name="entreprise" autocomplete="organization">
+      </div>
+      <div class="champ large">
+        <label for="email">Votre email</label>
+        <input type="email" id="email" name="email" autocomplete="email" inputmode="email" required>
+      </div>
+      <div class="champ">
+        <label for="telephone">Votre téléphone</label>
+        <input type="tel" id="telephone" name="telephone" autocomplete="tel" inputmode="tel"
+               placeholder="0692…">
+      </div>
+      <div class="champ">
+        <label for="commune">Votre commune</label>
+        <input type="text" id="commune" name="commune" autocomplete="address-level2">
+      </div>
+      <div class="champ large">
+        <label for="message">Autre chose que je devrais savoir&nbsp;? (facultatif)</label>
+        <textarea id="message" name="message"
+          placeholder="Un exemple concret vaut mieux qu'une phrase générale."></textarea>
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="envoi">
+    <div class="erreur" id="erreur" hidden role="alert"></div>
+    <button type="submit" id="btn">Recevoir mon diagnostic</button>
+    <p class="promesse">Gratuit et sans engagement. Vos réponses ne servent qu'à ça —
+    aucune revente, aucune liste de diffusion.</p>
+  </div>
+
+</form>
+
+<div class="merci" id="merci" hidden>
+  <h2>C'est envoyé.</h2>
+  <p id="merciTexte">Vous recevez le diagnostic par email dans la minute. Je vous rappelle
+  sous 48 h ouvrées pour vous dire ce qui est automatisable chez vous, et ce qui ne l'est pas.</p>
+  <p>Si c'est urgent, appelez-moi&nbsp;:</p>
+  <a class="tel" href="tel:+262692417749">06 92 41 77 49</a>
+</div>
+
+</div>
+
+<script>
+/* Le formulaire poste vers n8n, qui analyse, enregistre, prévient Tony et
+   accuse réception au prospect. On ne bloque JAMAIS l'utilisateur sur une
+   erreur réseau : ses réponses sont déjà parties dans 99 % des cas, et lui
+   afficher un échec le ferait renvoyer deux fois. */
+(function () {
+  var WEBHOOK = 'https://n7n.automatisationboost.com/webhook/audit-auto';
+  var form = document.getElementById('audit');
+  var btn = document.getElementById('btn');
+  var err = document.getElementById('erreur');
+  var merci = document.getElementById('merci');
+
+  function rate(msg, id) {
+    err.textContent = msg;
+    err.hidden = false;
+    var el = document.getElementById(id);
+    if (el) { el.focus(); el.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+  }
+  function coches(nom) {
+    return Array.prototype.map.call(
+      form.querySelectorAll('input[name="' + nom + '"]:checked'), function (i) { return i.value; });
+  }
+  function choisi(nom) {
+    var el = form.querySelector('input[name="' + nom + '"]:checked');
+    return el ? el.value : '';
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    err.hidden = true;
+
+    var secteur = document.getElementById('secteur').value;
+    var nom = document.getElementById('nom').value.trim();
+    var email = document.getElementById('email').value.trim();
+
+    if (!secteur) return rate('Dites-moi d’abord dans quoi vous travaillez.', 'secteur');
+    if (!choisi('heures')) return rate('Il manque le nombre d’heures par semaine.', 'audit');
+    if (!choisi('delai')) return rate('Il manque votre délai de réponse habituel.', 'audit');
+    if (nom.length < 2) return rate('Il me faut votre prénom pour vous répondre.', 'nom');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return rate('Cette adresse email ne semble pas valide.', 'email');
+
+    btn.disabled = true;
+    btn.textContent = 'Envoi…';
+
+    var corps = {
+      nom: nom,
+      entreprise: document.getElementById('entreprise').value.trim(),
+      email: email,
+      telephone: document.getElementById('telephone').value.trim(),
+      commune: document.getElementById('commune').value.trim(),
+      secteur: secteur,
+      taches: coches('taches'),
+      canal: coches('canal'),
+      outils: coches('outils'),
+      heures: choisi('heures'),
+      delai: choisi('delai'),
+      objectif: choisi('objectif'),
+      message: document.getElementById('message').value.trim(),
+      source: 'audit-questionnaire',
+      page: window.location.pathname,
+      date: new Date().toISOString()
+    };
+
+    fetch(WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(corps)
+    }).catch(function () { /* voir le commentaire en tête */ })
+      .then(function () {
+        form.hidden = true;
+        merci.hidden = false;
+        merci.scrollIntoView({ block: 'start', behavior: 'smooth' });
+      });
+  });
+})();
+</script>
+</body>
+</html>

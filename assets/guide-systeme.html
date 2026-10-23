@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>SYSTEME — Le système vidéo avatar IA (guide AutomationBoost)</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm; }
+  * { box-sizing: border-box; }
+  body { font-family: Georgia, 'Times New Roman', serif; color: #1a1a1a; line-height: 1.65; max-width: 700px; margin: 0 auto; padding: 24px; }
+  h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 6px; }
+  h1 .hl { color: #7c3aed; }
+  h2 { font-size: 1.25rem; margin: 34px 0 10px; border-bottom: 2px solid #eab308; padding-bottom: 6px; }
+  h3 { font-size: 1.05rem; margin: 20px 0 6px; }
+  p, li { font-size: 0.95rem; }
+  .chapeau { font-size: 1.05rem; color: #444; border-left: 3px solid #eab308; padding-left: 14px; margin: 18px 0 26px; }
+  .palier { background: #f8f7ff; border: 1px solid #ddd6fe; border-radius: 10px; padding: 14px 16px; margin: 12px 0; }
+  .palier h3 { margin: 0 0 4px; color: #6d28d9; }
+  .palier p { margin: 4px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.88rem; }
+  th, td { border: 1px solid #ddd; padding: 9px 10px; text-align: left; vertical-align: top; }
+  th { background: #1a1a1a; color: #fff; }
+  tr td:first-child { font-weight: bold; }
+  .cta-box { background: #1a1a1a; color: #fff; border-radius: 12px; padding: 22px; margin: 26px 0; text-align: center; }
+  .cta-box a { color: #eab308; font-weight: bold; }
+  .cta-box .btn { display: inline-block; background: #eab308; color: #1a1200; font-weight: bold; padding: 12px 26px; border-radius: 8px; text-decoration: none; margin-top: 10px; }
+  ul { padding-left: 20px; }
+  .foot { margin-top: 30px; font-size: 0.8rem; color: #888; border-top: 1px solid #ddd; padding-top: 10px; }
+  code { background: #f1f1f1; padding: 1px 5px; border-radius: 4px; font-size: 0.85em; }
+</style>
+</head>
+<body>
+
+<h1>Le <span class="hl">SYSTÈME</span> vidéo avatar IA</h1>
+<p><strong>Le guide offert par AutomationBoost</strong> — le système exact derrière les vidéos
+« Lui, c'est mon créateur » : un avatar IA à lunettes qui répond, des vidéos produites
+à un coût quasiment nul, sans retourner à chaque fois.</p>
+<p class="chapeau">Tu as commenté <strong>SYSTEME</strong> : voici la démarche complète, palier par
+palier, avec les ressources utilisées. Et à la fin, le tableau qui t'aide à choisir :
+le faire seul, le faire avec les skills, ou te faire accompagner.</p>
+
+<h2>Les 5 paliers du système</h2>
+
+<div class="palier">
+  <h3>Palier 1 — Le script dialogue</h3>
+  <p>Écris un <strong>vrai dialogue</strong>, pas un monologue : TOI (crochet, punchlines,
+  menaces de débrancher) ↔ AVATAR (présentation, preuve, CTA). Un point = une prise.
+  Phrases courtes (≤ 14 mots), ton parlé, zéro jargon.</p>
+  <p><em>Preuve :</em> le script « barrière qualité/volume » fait 240 mots pour 120 s —
+  chaque réplique tient dans une respiration.</p>
+</div>
+
+<div class="palier">
+  <h3>Palier 2 — La voix clonée</h3>
+  <p>Clone ta voix <strong>une fois</strong> (échantillon + consentement), puis génère
+  chaque prise par TTS. Même traitement à chaque fois : suppression des silences,
+  présence +3 dB à 3 kHz, compression douce, normalisation à −16 LUFS.</p>
+  <p><em>Règle :</em> un mot en capitales est épelé par le TTS — écris les mots-clés
+  en minuscules à l'oral.</p>
+</div>
+
+<div class="palier">
+  <h3>Palier 3 — Les lèvres synchronisées</h3>
+  <p>Chaque prise doit tenir <strong>entièrement</strong> dans une plage de lèvres active
+  de la banque avatar (cartes <code>lips-map</code>). Si ça déborde : on déplace le point
+  d'entrée ou on coupe la phrase en deux — jamais l'inverse. C'est le contrôle qui fait
+  la différence entre « doublé » et « réel ».</p>
+</div>
+
+<div class="palier">
+  <h3>Palier 4 — L'avatar qui répond</h3>
+  <p>Clips frontaux (lunettes, décor bureau), cadre néon, pastille « IA · L'AVATAR »,
+  sous-titres Anton mots-clés jaunes. Alternance stricte : <strong>Q → R → Q → R</strong>.
+  Toi en fond uni (#07070B), jamais ton salon flouté.</p>
+</div>
+
+<div class="palier">
+  <h3>Palier 5 — Le montage qui boucle</h3>
+  <p>Cartes cinétiques (SCRIPT → VOIX → SYNCHRO → AVATAR → VIDÉO), cut final qui
+  <strong>reboucle</strong> sur le début (retention), CTA « Commente SYSTEME »,
+  musique duckée sous la voix (sidechain), loudness −14 LUFS pour les réseaux.</p>
+</div>
+
+<h2>Les ressources utilisées pour ces vidéos</h2>
+<ul>
+  <li><strong>Banque avatar</strong> — clips 4K frontaux + cartes de lèvres actives
+  (<code>lips-map</code>). Sans elle, pas de synchronisation crédible.</li>
+  <li><strong>Voix clonée</strong> — modèle de voix + TTS (même voix du hook au CTA).</li>
+  <li><strong>FFmpeg</strong> — assemblage, recadrage 9:16, ducking audio, incrustations
+  (une passe par overlay, jamais d'empilement).</li>
+  <li><strong>Chrome headless</strong> — sous-titres et pastilles rendus en PNG
+  (pas de drawtext : qualité typo garantie).</li>
+  <li><strong>Skills premium VideoBoost</strong> — tout le pipeline ci-dessus, packagé :
+  <code>/boost-niveau</code> (montée de niveau), <code>/interview-avatar</code> (dialogue),
+  <code>/reel-nexeus</code> (format showreel). Voir
+  <a href="https://videoboost.automatisationboost.com/vente.html">videoboost.automatisationboost.com</a>.</li>
+</ul>
+
+<h2>La démarche, en checklist</h2>
+<ul>
+  <li>☐ Écris le dialogue (TOI ↔ AVATAR, ≤ 14 mots par prise)</li>
+  <li>☐ Filme tes répliques TOI (une caméra suffit, laisse des blancs pour l'avatar)</li>
+  <li>☐ Découpe ta prise aux silences (≥ 1 s = coupe sûre, jamais un mot coupé)</li>
+  <li>☐ Génère les prises avatar en voix clonée (même traitement audio)</li>
+  <li>☐ Cale chaque prise dans une plage de lèvres active</li>
+  <li>☐ Monte en alternance, fond uni, cadres néon, sous-titres</li>
+  <li>☐ Carte cinétique + cut qui boucle + CTA mot-clé</li>
+  <li>☐ Musique duckée, loudness −14 LUFS, export 1080×1920 30 i/s</li>
+</ul>
+
+<h2>Seul, avec les skills, ou accompagné ?</h2>
+<table>
+  <tr><th></th><th>Seul, sans skills</th><th>Seul, avec les skills premium</th><th>Accompagné par Tony</th></tr>
+  <tr><td>Temps par vidéo</td><td>2–4 jours (tout à la main)</td><td>1–2 heures (pipeline guidé)</td><td>0 (tu filmes, on s'occupe du reste)</td></tr>
+  <tr><td>Synchro lèvres</td><td>À l'œil, souvent ratée</td><td>Validée automatiquement (plages mesurées)</td><td>Garantie + contrôle humain</td></tr>
+  <tr><td>Voix clonée</td><td>À configurer soi-même</td><td>Recette incluse (traitement exact)</td><td>Voix réglée pour toi</td></tr>
+  <tr><td>Montage / motion</td><td>Logiciel + courbe d'apprentissage</td><td>Layouts verrouillés, QA mesurée</td><td>Direction artistique incluse</td></tr>
+  <tr><td>Distribution</td><td>Manuelle</td><td>CTA + auto-DM documentés</td><td>Programmation multi-réseaux</td></tr>
+  <tr><td>Coût</td><td>0 € (que ton temps)</td><td>Skills premium (paiement unique)</td><td>Sur devis (audit gratuit d'abord)</td></tr>
+  <tr><td>Idéal si…</td><td>tu veux tout comprendre</td><td>tu veux produire vite et bien</td><td>tu veux déléguer et scaler</td></tr>
+</table>
+
+<div class="cta-box">
+  <h3 style="margin-top:0">Tu veux être accompagné pour créer ce système ?</h3>
+  <p>C'est ici : on audite ton contenu, on règle ta voix et ton avatar,
+  et tu repars avec ta première vidéo publiée.</p>
+  <a class="btn" href="https://tony.automatisationboost.com/#audit">Demander mon audit gratuit →</a>
+  <p style="margin-top:14px">Tu préfères le faire toi-même ?
+  <a href="https://videoboost.automatisationboost.com/vente.html">Installe les skills premium VideoBoost →</a></p>
+</div>
+
+<p class="foot">© 2026 AutomationBoost — Guide SYSTEME offert. Tu l'as reçu parce que tu as
+commenté SYSTEME. Pour te désinscrire de tout suivi, ne commente plus rien. (On rigole. Presque.)</p>
+
+</body>
+</html>

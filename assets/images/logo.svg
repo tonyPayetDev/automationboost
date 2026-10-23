@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" fill="none">
+  <rect width="38" height="38" x="0" y="6" rx="8" fill="#eab308"/>
+  <text x="19" y="30" dominant-baseline="middle" text-anchor="middle" font-size="22" font-family="Arial" fill="#000">⚡</text>
+  <text x="50" y="28" dominant-baseline="middle" font-size="16" font-family="Arial, sans-serif" font-weight="700" fill="#e4e4e7">Automation<tspan fill="#eab308">Boost</tspan></text>
+</svg>

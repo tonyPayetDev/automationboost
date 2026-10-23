@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#050505"/>
+
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(234,179,8,0.05)" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="glow" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="rgba(234,179,8,0.12)"/>
+      <stop offset="100%" stop-color="rgba(234,179,8,0)"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <ellipse cx="600" cy="260" rx="600" ry="300" fill="url(#glow)"/>
+
+  <!-- Logo icon -->
+  <rect x="480" y="60" width="80" height="80" rx="16" fill="#eab308"/>
+  <text x="520" y="112" dominant-baseline="middle" text-anchor="middle" font-size="44" font-family="Arial" fill="#000">⚡</text>
+
+  <!-- Brand name -->
+  <text x="600" y="200" text-anchor="middle" font-size="52" font-family="Arial, sans-serif" font-weight="900" fill="#e4e4e7" letter-spacing="-2">Automation<tspan fill="#eab308">Boost</tspan></text>
+
+  <!-- Tagline -->
+  <text x="600" y="280" text-anchor="middle" font-size="28" font-family="Arial, sans-serif" font-weight="400" fill="#71717a">Publiez Partout.</text>
+  <text x="600" y="325" text-anchor="middle" font-size="28" font-family="Arial, sans-serif" font-weight="700" fill="#eab308">En Automatique.</text>
+
+  <!-- Divider -->
+  <line x1="400" y1="375" x2="800" y2="375" stroke="rgba(234,179,8,0.2)" stroke-width="1"/>
+
+  <!-- Stats -->
+  <text x="320" y="430" text-anchor="middle" font-size="38" font-family="Arial, sans-serif" font-weight="900" fill="#eab308">10h/sem</text>
+  <text x="320" y="460" text-anchor="middle" font-size="16" font-family="Arial, sans-serif" fill="#71717a">économisées</text>
+
+  <text x="600" y="430" text-anchor="middle" font-size="38" font-family="Arial, sans-serif" font-weight="900" fill="#eab308">3x</text>
+  <text x="600" y="460" text-anchor="middle" font-size="16" font-family="Arial, sans-serif" fill="#71717a">plus d'engagement</text>
+
+  <text x="880" y="430" text-anchor="middle" font-size="38" font-family="Arial, sans-serif" font-weight="900" fill="#eab308">2400+</text>
+  <text x="880" y="460" text-anchor="middle" font-size="16" font-family="Arial, sans-serif" fill="#71717a">créateurs actifs</text>
+
+  <!-- Platforms -->
+  <rect x="280" y="510" width="120" height="40" rx="8" fill="rgba(234,179,8,0.08)" stroke="rgba(234,179,8,0.2)" stroke-width="1"/>
+  <text x="340" y="535" text-anchor="middle" font-size="16" font-family="Arial" fill="#a1a1aa">📷 Instagram</text>
+
+  <rect x="420" y="510" width="120" height="40" rx="8" fill="rgba(234,179,8,0.08)" stroke="rgba(234,179,8,0.2)" stroke-width="1"/>
+  <text x="480" y="535" text-anchor="middle" font-size="16" font-family="Arial" fill="#a1a1aa">💼 LinkedIn</text>
+
+  <rect x="560" y="510" width="120" height="40" rx="8" fill="rgba(234,179,8,0.08)" stroke="rgba(234,179,8,0.2)" stroke-width="1"/>
+  <text x="620" y="535" text-anchor="middle" font-size="16" font-family="Arial" fill="#a1a1aa">👥 Facebook</text>
+
+  <rect x="700" y="510" width="120" height="40" rx="8" fill="rgba(234,179,8,0.08)" stroke="rgba(234,179,8,0.2)" stroke-width="1"/>
+  <text x="760" y="535" text-anchor="middle" font-size="16" font-family="Arial" fill="#a1a1aa">🎵 TikTok</text>
+
+  <rect x="840" y="510" width="120" height="40" rx="8" fill="rgba(234,179,8,0.08)" stroke="rgba(234,179,8,0.2)" stroke-width="1"/>
+  <text x="900" y="535" text-anchor="middle" font-size="16" font-family="Arial" fill="#a1a1aa">🐦 X/Twitter</text>
+
+  <!-- Border -->
+  <rect x="1" y="1" width="1198" height="628" rx="0" fill="none" stroke="rgba(234,179,8,0.15)" stroke-width="2"/>
+</svg>

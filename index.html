@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-0SRZVQ1WGD');
+  </script>
+  <meta charset="UTF-8" />
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1713977213196523');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1713977213196523&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutomationBoost – Automatise tes réseaux sociaux avec l'IA</title>
+  <meta name="description" content="Génère, planifie et publie tes posts sur Instagram, LinkedIn, Facebook et TikTok automatiquement grâce à l'IA. Parlons de ton projet." />
+  <meta name="keywords" content="automatisation réseaux sociaux, posts automatiques, IA social media, planification posts, instagram automation, linkedin automation" />
+  <meta property="og:title" content="AutomationBoost – Publie partout, automatiquement" />
+  <meta property="og:description" content="L'IA qui génère, planifie et publie tes posts sur Instagram, LinkedIn, Facebook et plus — en quelques secondes." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://automatisationboost.com/" />
+  <meta property="og:image" content="https://automatisationboost.com/assets/images/og-image.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://automatisationboost.com/" />
+  <link rel="stylesheet" href="assets/css/style.css?v=20260717n" />
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    /* --- Simple homepage helpers (theme-aware via tokens) --- */
+    .simple-hero { position: relative; text-align: center; padding: 150px 0 90px; }
+    .simple-hero .hero-title { font-family: 'Sora', sans-serif; font-weight: 900; font-size: clamp(2.4rem, 6vw, 4.2rem); line-height: 1.08; letter-spacing: -0.03em; margin: 22px auto 22px; max-width: 15ch; }
+    .simple-hero .hero-title .hl { color: var(--gold); }
+    .simple-hero .hero-subtitle { max-width: 620px; margin: 0 auto 36px; font-size: 1.15rem; }
+    .simple-hero .hero-cta-group { justify-content: center; }
+    .simple-hero .hero-stats { justify-content: center; margin-top: 56px; }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 48px; }
+    @media (max-width: 820px) { .grid-3 { grid-template-columns: 1fr; gap: 16px; } }
+
+    .card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 30px 28px;
+      box-shadow: var(--shadow-soft); text-align: left;
+    }
+    .card .ic {
+      width: 48px; height: 48px; border-radius: 12px; display: inline-flex;
+      align-items: center; justify-content: center; margin-bottom: 18px;
+      background: var(--gold-glow); color: var(--gold);
+    }
+    .card.violet .ic { background: rgba(139,92,246,0.14); color: var(--violet); }
+    .card.orange .ic { background: rgba(217,119,87,0.14); color: var(--orange); }
+    .card .ic svg { width: 24px; height: 24px; }
+    .card h3 { font-family: 'Sora', sans-serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .card p { font-size: 1rem; color: var(--text-light); line-height: 1.6; margin: 0; }
+
+    .video-frame {
+      max-width: 880px; margin: 44px auto 0; position: relative;
+      border-radius: var(--radius-lg); overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 30px 70px rgba(16,24,40,0.22), 0 0 0 1px rgba(234,179,8,0.06);
+      background: #0d0d13;
+    }
+    .video-frame video { display: block; width: 100%; height: auto; aspect-ratio: 16/9; }
+
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 48px; }
+    @media (max-width: 820px) { .steps { grid-template-columns: 1fr; } }
+    .step { text-align: left; }
+    .step .num {
+      font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.85rem;
+      width: 40px; height: 40px; border-radius: 50%; display: inline-flex;
+      align-items: center; justify-content: center; margin-bottom: 16px;
+      border: 1.5px solid var(--gold); color: var(--gold);
+    }
+    .step h3 { font-family: 'Sora', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; color: var(--text); }
+    .step p { color: var(--text-light); line-height: 1.6; margin: 0; }
+
+    .cta-band {
+      background: var(--bg-card-2); border: 1px solid var(--border);
+      border-radius: 24px; padding: 56px 40px; text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-band::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(closest-side, var(--gold-glow), transparent 70%) 20% 0% / 50% 100% no-repeat,
+        radial-gradient(closest-side, rgba(139,92,246,0.12), transparent 70%) 85% 100% / 45% 100% no-repeat;
+    }
+    .cta-band > * { position: relative; z-index: 1; }
+    .cta-band h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; margin-bottom: 14px; }
+    .cta-band p { max-width: 540px; margin: 0 auto 28px; color: var(--text-light); }
+
+    /* ---- Formulaire audit gratuit ---- */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+    }
+    .audit-form { max-width: 540px; margin: 0 auto; text-align: left; }
+    .audit-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 560px) { .audit-row { grid-template-columns: 1fr; } }
+    .audit-form input,
+    .audit-form textarea {
+      width: 100%; background: var(--bg-card); color: var(--text);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 13px 16px; font-family: 'Inter', sans-serif; font-size: 0.95rem;
+      outline: none; transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .audit-form textarea { margin-top: 12px; resize: vertical; min-height: 92px; }
+    .audit-form input::placeholder,
+    .audit-form textarea::placeholder { color: var(--text-muted); }
+    .audit-form input:focus-visible,
+    .audit-form textarea:focus-visible {
+      border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-glow);
+    }
+    /* Ne signaler l'erreur qu'une fois le champ quitté, jamais pendant la frappe. */
+    .audit-form input:not(:placeholder-shown):invalid,
+    .audit-form textarea:not(:placeholder-shown):invalid { border-color: var(--red); }
+    .audit-form .btn-primary { width: 100%; justify-content: center; margin-top: 16px; }
+    .audit-form .btn-primary[disabled] { opacity: 0.65; cursor: not-allowed; }
+    .audit-error { color: var(--red); font-size: 0.85rem; margin: 10px 0 0; }
+    .audit-legal { font-size: 0.8rem; color: var(--text-muted); text-align: center; margin: 12px auto 0; }
+    .audit-success { max-width: 540px; margin: 0 auto; padding: 20px 0; }
+    .audit-success-icon { font-size: 2rem; margin-bottom: 8px; }
+    .audit-success h3 { font-family: 'Sora', sans-serif; font-size: 1.25rem; font-weight: 800; margin-bottom: 8px; color: var(--text); }
+    .audit-success p { margin: 0 auto; }
+
+    /* Le CTA du menu burger est traité comme un bouton, pas comme un lien de nav. */
+    .mob-link--cta {
+      background: var(--gold); color: var(--on-gold) !important;
+      font-weight: 700; text-align: center; border-radius: var(--radius);
+      margin-top: 8px;
+    }
+    .mob-link--cta:hover, .mob-link--cta:active { background: var(--gold-dark); }
+
+    /* ---- Offre ShortForge ---- */
+    .offer-card {
+      display: grid; grid-template-columns: 1.35fr 1fr; gap: 0;
+      max-width: 940px; margin: 48px auto 0;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-soft);
+      text-align: left;
+    }
+    @media (max-width: 860px) { .offer-card { grid-template-columns: 1fr; } }
+    .offer-main { padding: 38px 36px; }
+    @media (max-width: 560px) { .offer-main { padding: 28px 22px; } }
+    .offer-badge {
+      display: inline-block; font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      background: var(--gold-glow); color: var(--gold);
+      border: 1px solid rgba(234,179,8,0.28); border-radius: 999px;
+      padding: 5px 12px; margin-bottom: 18px;
+    }
+    .offer-main h3 {
+      font-family: 'Sora', sans-serif; font-size: 1.9rem; font-weight: 800;
+      letter-spacing: -0.02em; margin: 0 0 10px; color: var(--text);
+    }
+    .offer-lead { color: var(--text-light); line-height: 1.7; margin: 0 0 24px; }
+    .offer-list { list-style: none; padding: 0; margin: 0; }
+    .offer-list li {
+      position: relative; padding-left: 28px; margin-bottom: 14px;
+      color: var(--text-light); font-size: 0.95rem; line-height: 1.6;
+    }
+    .offer-list li:last-child { margin-bottom: 0; }
+    .offer-list li::before {
+      content: '✓'; position: absolute; left: 0; top: 0;
+      color: var(--gold); font-weight: 700;
+    }
+    .offer-list b { color: var(--text); font-weight: 700; }
+    .offer-side {
+      background: var(--bg-card-2); border-left: 1px solid var(--border);
+      padding: 38px 32px; display: flex; flex-direction: column; justify-content: center;
+      text-align: center;
+    }
+    @media (max-width: 860px) { .offer-side { border-left: 0; border-top: 1px solid var(--border); } }
+    .offer-price {
+      font-family: 'Sora', sans-serif; font-size: 3rem; font-weight: 900;
+      color: var(--gold); line-height: 1; margin: 0 0 6px;
+    }
+    .offer-price s { font-size: 1.4rem; font-weight: 400; color: var(--text-muted); margin-right: 10px; }
+    .offer-price-label { font-size: 0.85rem; color: var(--text-muted); margin: 0 0 4px; }
+    .offer-price-sub { font-size: 0.8rem; color: var(--text-muted); margin: 0 0 22px; }
+    .offer-side .btn-primary { width: 100%; justify-content: center; }
+    .offer-guarantee {
+      display: inline-flex; align-items: center; gap: 7px; justify-content: center;
+      font-size: 0.82rem; color: var(--text-muted); margin: 16px 0 0;
+    }
+    .offer-guarantee svg { width: 15px; height: 15px; color: var(--green); flex: 0 0 auto; }
+
+    .lp-footer { border-top: 1px solid var(--border); padding: 40px 0; margin-top: 20px; }
+    .lp-footer .container { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; justify-content: space-between; }
+    .lp-footer a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+    .lp-footer a:hover { color: var(--gold); }
+    .lp-footer .muted { color: var(--text-muted); font-size: 0.85rem; }
+
+    /* ---- Glow feature cards (néon jaune/violet) ---- */
+    .gf-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 12px; margin: 48px auto 0; width: 100%; max-width: 936px;
+    }
+    @media (max-width: 820px) { .gf-grid { grid-template-columns: 1fr; gap: 40px; } }
+    .gf-card {
+      position: relative; display: flex; flex-direction: column;
+      align-items: flex-start; width: 100%; max-width: 300px; margin: 0 auto;
+    }
+    /* Blurred gradient halo behind the card */
+    .gf-glow {
+      position: absolute; inset: 0; width: 100%; height: 300px;
+      opacity: 0.6; border-radius: 40px; pointer-events: none; filter: blur(45px);
+      background: var(--gf-grad);
+    }
+    /* Foreground card with gradient border (background-clip technique) */
+    .gf-fg {
+      position: relative; align-self: stretch; height: 300px;
+      border-radius: 40px; z-index: 10; overflow: hidden;
+      border: 8px solid transparent;
+      background:
+        linear-gradient(#131319, #131319) padding-box,
+        var(--gf-grad) border-box;
+    }
+    @media (max-width: 480px) { .gf-fg, .gf-glow { height: 260px; } }
+    .gf-inner {
+      width: 100%; height: 100%; padding: 28px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .gf-ic { color: rgba(255,255,255,0.9); }
+    .gf-ic svg { width: 32px; height: 32px; }
+    .gf-card h3 {
+      color: #fff; font-family: 'Sora', sans-serif; font-weight: 500;
+      font-size: 1.25rem; margin: 0 0 12px; letter-spacing: -0.02em;
+    }
+    .gf-card p { color: #9ca3af; font-size: 14px; line-height: 1.6; margin: 0; font-weight: 400; }
+  </style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="#" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="https://videoboost.automatisationboost.com/vente.html" class="nav-link-slide"><span>ShortForge</span><span>ShortForge</span></a>
+      <a href="formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
+    </div>
+    <a href="#contact" class="nav-cta">Audit gratuit</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="ressources.html" class="mob-link">Ressources</a>
+    <a href="blog.html" class="mob-link">Blog IA</a>
+    <a href="skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="https://videoboost.automatisationboost.com/vente.html" class="mob-link mob-link--gold">ShortForge</a>
+    <a href="formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="#contact" class="mob-link mob-link--cta">Recevoir mon audit gratuit</a>
+  </nav>
+</div>
+
+<!-- ============ HERO ============ -->
+<section id="hero" class="simple-hero">
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="hero-badge">Automatisation par l'IA ⚡</div>
+    <h1 class="hero-title">Publie partout,<br><span class="hl">en automatique.</span></h1>
+    <p class="hero-subtitle">
+      Génère, planifie et publie des posts percutants sur Instagram, LinkedIn, Facebook et TikTok — en quelques secondes grâce à l'IA.
+    </p>
+    <div class="hero-cta-group">
+      <a href="#contact" class="btn-primary">Recevoir mon audit gratuit →</a>
+      <a href="ressources.html" class="btn-secondary">Voir les ressources</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number" data-count="10" data-suffix="h/sem">0</span>
+        <span class="stat-label">de temps gagné</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" data-count="4" data-suffix="+">0</span>
+        <span class="stat-label">réseaux couverts</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" data-count="100" data-suffix="%">0</span>
+        <span class="stat-label">automatisé</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIDÉO (VSL) ============ -->
+<section id="video">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-label">En vidéo</span>
+      <h2 class="section-title">Regarde AutomationBoost<br><span class="gold">en action</span></h2>
+    </div>
+    <div class="video-frame">
+      <video controls preload="metadata" playsinline>
+        <source src="https://assets.automatisationboost.com/video/vsl/2026-06-17%2020-49-10.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas les vidéos HTML5.
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CE QUE ÇA CHANGE ============ -->
+<section id="benefits">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-label">Ce que ça change</span>
+      <h2 class="section-title">Moins de corvée,<br><span class="gold">plus d'impact</span></h2>
+    </div>
+    <div class="gf-grid">
+      <div class="gf-card" style="--gf-grad: linear-gradient(137deg, #eab308 0%, #fde68a 45%, #d97757 100%);">
+        <div class="gf-glow"></div>
+        <div class="gf-fg">
+          <div class="gf-inner">
+            <div class="gf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+            <div>
+              <h3>Tu gagnes des heures</h3>
+              <p>Fini les publications à la main : l'IA rédige, planifie et publie pour toi, chaque semaine.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="gf-card" style="--gf-grad: linear-gradient(137deg, #8b5cf6 0%, #c4b5fd 45%, #eab308 100%);">
+        <div class="gf-glow"></div>
+        <div class="gf-fg">
+          <div class="gf-inner">
+            <div class="gf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H5.2L4 17.2V4z"/><path d="M8 9h8M8 12h5"/></svg></div>
+            <div>
+              <h3>Tu publies partout</h3>
+              <p>Un seul contenu, adapté et diffusé sur Instagram, LinkedIn, Facebook et TikTok automatiquement.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="gf-card" style="--gf-grad: linear-gradient(137deg, #fbbf24 0%, #d97757 45%, #8b5cf6 100%);">
+        <div class="gf-glow"></div>
+        <div class="gf-fg">
+          <div class="gf-inner">
+            <div class="gf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+            <div>
+              <h3>Tu restes régulier</h3>
+              <p>Ton audience voit du contenu de qualité en continu, sans que tu aies à y penser.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMMENT ÇA MARCHE ============ -->
+<section id="how">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-label">Comment ça marche</span>
+      <h2 class="section-title">3 étapes.<br><span class="gold">Zéro prise de tête.</span></h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="num">01</span>
+        <h3>On parle de ton activité</h3>
+        <p>On définit tes objectifs, ton ton, et les réseaux à couvrir.</p>
+      </div>
+      <div class="step">
+        <span class="num">02</span>
+        <h3>On installe l'automatisation</h3>
+        <p>L'IA génère tes posts, les adapte à chaque réseau et les planifie.</p>
+      </div>
+      <div class="step">
+        <span class="num">03</span>
+        <h3>Ça publie tout seul</h3>
+        <p>Tu suis les résultats, tu ajustes quand tu veux. Le reste tourne.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OFFRE / SHORTFORGE ============ -->
+<section id="offre">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-label">L'outil</span>
+      <h2 class="section-title">Tu sais qu'il faut poster tous les jours.<br><span class="gold">Tu ne le fais pas.</span></h2>
+    </div>
+
+    <div class="offer-card">
+      <div class="offer-main">
+        <span class="offer-badge">Skill Claude Code</span>
+        <h3>ShortForge</h3>
+        <p class="offer-lead">
+          Tu colles un brief texte, il te rend une vidéo verticale complète — voix clonée, avatar animé, captions synchronisées — en 1080×1920. Chaque vidéo tombe entre 25 et 35&nbsp;secondes, prête à poster sur TikTok, Reels et Shorts.
+        </p>
+        <ul class="offer-list">
+          <li><b>10 formats × 10 directions artistiques.</b> Tuto, avant/après, top 3, étude de cas… en néon, éditorial, swiss, VHS. Même identité visuelle sur les cent prochaines vidéos.</li>
+          <li><b>Un seul tournage, à vie.</b> 30&nbsp;secondes de ta voix, 45&nbsp;secondes face caméra — et tu ne refilmes plus jamais.</li>
+          <li><b>≈ 0,50 € d'API par vidéo.</b> Contre 80 à 150&nbsp;€ chez un monteur freelance : rentabilisé en 2 vidéos.</li>
+          <li><b>Outils de configuration et documentation complète.</b> Un <code>config.json</code> pour tes couleurs, ta voix et ton CTA — tu ne touches jamais au code.</li>
+        </ul>
+      </div>
+
+      <aside class="offer-side">
+        <p class="offer-price"><s>97 €</s>67 €</p>
+        <p class="offer-price-label">tarif fondateur · 20 places, puis 97 €</p>
+        <p class="offer-price-sub">Paiement unique · mises à jour incluses</p>
+        <a href="https://videoboost.automatisationboost.com/vente.html" class="btn-primary">Obtenir ShortForge →</a>
+        <p class="offer-guarantee">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.7-7 9-4-1.3-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+          Garantie 14 jours — remboursé
+        </p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT / AUDIT GRATUIT ============ -->
+<section id="contact">
+  <div class="container">
+    <div class="cta-band">
+      <h2>Reçois ton audit d'automatisation<br><span class="gold">gratuit</span></h2>
+      <p>Sept questions fermées, deux minutes. Tu reçois tout de suite le point qui te coûte le plus cher, et je te rappelle sous 48&nbsp;h pour te dire ce qui est automatisable — et ce qui ne l'est pas. Sans engagement.</p>
+
+      <a href="audit.html" class="btn-primary" style="display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:0 30px;font-size:17px;text-decoration:none">Faire l'audit — 2 minutes →</a>
+      <p class="audit-legal">Sept questions, aucune n'est un piège. Pas de spam&nbsp;: ton email ne sert qu'à t'envoyer le diagnostic.</p>
+
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="lp-footer">
+  <div class="container">
+    <a href="#" class="logo" style="display:inline-flex;">
+      <div class="logo-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <nav class="lp-footer-links" style="display:flex;gap:20px;flex-wrap:wrap;">
+      <a href="ressources.html">Ressources</a>
+      <a href="blog.html">Blog IA</a>
+      <a href="skills.html">Skills</a>
+      <a href="https://videoboost.automatisationboost.com/vente.html">ShortForge</a>
+      <a href="#contact">Audit gratuit</a>
+    </nav>
+    <span class="muted">© 2026 AutomationBoost · Tony Payet</span>
+  </div>
+</footer>
+
+<script src="assets/js/main.js?v=20260717n"></script>
+<script src="assets/js/nav.js" defer></script>
+<!-- Motion (style motionsite.ai) : révélations au scroll + parallax, GSAP ScrollTrigger -->
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+  if (!window.gsap || !window.ScrollTrigger) return;
+  // Accessibilité : pas d'animation si l'utilisateur la refuse (contenu déjà visible)
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  // 1) Entrée du hero en cascade (au chargement)
+  //    Le CTA est l'objectif de la page : il est visible à ~0,55 s au lieu de 1,65 s.
+  //    Les stats, secondaires, finissent de s'installer après.
+  gsap.timeline({ defaults: { ease: 'power2.out', duration: 0.45 } })
+    .from('#hero .hero-badge',     { y: 14, opacity: 0 })
+    .from('#hero .hero-title',     { y: 22, opacity: 0 }, '-=0.32')
+    .from('#hero .hero-subtitle',  { y: 16, opacity: 0 }, '-=0.34')
+    .from('#hero .hero-cta-group', { y: 14, opacity: 0 }, '-=0.36')
+    .from('#hero .stat-item',      { y: 12, opacity: 0, stagger: 0.07 }, '-=0.3');
+
+  // 2) Révélation des titres de section au scroll
+  gsap.utils.toArray('#video .text-center, #benefits .text-center, #how .text-center, #offre .text-center').forEach(function (el) {
+    gsap.from(el, { y: 26, opacity: 0, duration: 0.7, ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
+  });
+
+  // 2b) Cadre vidéo : fondu + léger zoom
+  gsap.from('.video-frame', { y: 40, opacity: 0, scale: 0.985, duration: 0.85, ease: 'power3.out',
+    scrollTrigger: { trigger: '.video-frame', start: 'top 85%', once: true } });
+
+  // 3) Cartes bénéfices : apparition décalée
+  gsap.from('#benefits .gf-card', { y: 36, opacity: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out',
+    scrollTrigger: { trigger: '#benefits .gf-grid', start: 'top 82%', once: true } });
+
+  // 4) Étapes : apparition décalée
+  gsap.from('#how .step', { y: 30, opacity: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out',
+    scrollTrigger: { trigger: '#how .steps', start: 'top 82%', once: true } });
+
+  // 4b) Carte offre : fondu simple (pas de scale, le prix doit rester net)
+  gsap.from('.offer-card', { y: 28, opacity: 0, duration: 0.6, ease: 'power3.out',
+    scrollTrigger: { trigger: '.offer-card', start: 'top 85%', once: true } });
+
+  // 5) Bande contact : fondu simple.
+  //    Pas de scale ici : la bande contient un formulaire, et animer l'échelle
+  //    d'un conteneur de champs rend le texte flou pendant la transition.
+  gsap.from('.cta-band', { y: 24, opacity: 0, duration: 0.5, ease: 'power2.out',
+    scrollTrigger: { trigger: '.cta-band', start: 'top 88%', once: true } });
+
+  // 6) Parallax doux sur le halo du hero
+  gsap.to('#hero .hero-glow', { yPercent: 20, ease: 'none',
+    scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
+})();
+</script>
+<script src="/automationboost/assets/js/theme.js?v=20260717n" defer></script>
+</body>
+</html>

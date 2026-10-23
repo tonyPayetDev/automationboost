@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0SRZVQ1WGD');
+  </script>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1713977213196523');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1713977213196523&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ton parcours – Formation AutomationBoost</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260817" />
+  <link rel="stylesheet" href="../assets/css/cours.css?v=20260817" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="/" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="mon-rendu.html" class="nav-link-slide"><span>Mon rendu</span><span>Mon rendu</span></a>
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+    </div>
+    <span class="nav-cta" id="level-display" style="cursor:default">…</span>
+  </div>
+</nav>
+
+<section class="dashboard">
+  <div class="container">
+    <h1 class="dash-title">Ton parcours</h1>
+    <p class="dash-sub">Chaque module se termine par un <strong>défi</strong> : tu produis un livrable réel, le navigateur le note sur 100 selon un barème affiché, et le module suivant se débloque à partir de 70. Tes livrables sont enregistrés dans ce navigateur — tu peux les exporter à tout moment pour les faire relire.</p>
+
+    <div class="stats-row">
+      <div class="stat-box"><div class="stat-val" id="stat-done">0</div><div class="stat-label">Défis validés</div></div>
+      <div class="stat-box"><div class="stat-val" id="stat-xp">0</div><div class="stat-label">XP (somme des scores)</div></div>
+      <div class="stat-box"><div class="stat-val" id="stat-level" style="font-size:1.15rem">🌱</div><div class="stat-label">Niveau</div></div>
+      <div class="stat-box"><div class="stat-val" id="stat-next">6</div><div class="stat-label">Défis restants</div></div>
+    </div>
+
+    <div id="progress-bar"></div>
+
+    <div class="modules-list" id="modules-list"></div>
+
+    <div class="badges-section">
+      <div class="badges-title">Tes badges</div>
+      <div class="badges-grid" id="badges-grid"></div>
+    </div>
+
+    <div class="badges-section">
+      <div class="badges-title">Validation par Tony</div>
+      <div class="mod-card" style="cursor:pointer" onclick="window.location.href='mon-rendu.html'">
+        <div class="mod-ic unlocked">📤</div>
+        <div class="mod-body">
+          <div class="mod-card-title">Générer mon rendu complet</div>
+          <div class="mod-desc">Rassemble tous tes livrables et tes scores en un seul texte, à copier ou à envoyer. C'est ce document que Tony relit pour valider ton parcours pour de vrai — l'auto-scoring vérifie la forme, lui vérifie le fond.</div>
+        </div>
+        <span class="mod-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../assets/js/cours.js?v=20260921"></script>
+<script>
+AB.requireAccess('', true);
+
+const MODULES = [
+  { n:1, title:'Ton premier livrable vendable', desc:"Produire un audit IA complet sur une entreprise réelle", icon:'⚔️' },
+  { n:2, title:'Ton offre chiffrée',            desc:'Périmètre fermé, prix, délai — et le devis qui va avec', icon:'💼' },
+  { n:3, title:'Tes 10 premiers prospects',      desc:'Liste nominative, message qui obtient une réponse, relances', icon:'🤝' },
+  { n:4, title:'Le livrable automatisé',         desc:'Un workflow n8n qui tourne, chiffré par la valeur créée', icon:'🤖' },
+  { n:5, title:'Produire du contenu à la chaîne',desc:'Script calibré au mot près, coût réel, cadence tenable', icon:'🎬' },
+  { n:6, title:'Ton système, chiffré par toi',   desc:'Calculateur, plan 30 jours, et ce qui pourrait le faire échouer', icon:'👑' },
+];
+
+function render() {
+  const lvl = AB.getCurrentLevel();
+  const done = AB.getCompletedCount();
+
+  document.getElementById('stat-done').textContent = done + '/6';
+  document.getElementById('stat-xp').textContent = lvl.xp;
+  document.getElementById('stat-level').textContent = lvl.badge + ' ' + lvl.title;
+  document.getElementById('stat-next').textContent = AB.TOTAL_MODULES - done;
+  document.getElementById('level-display').textContent = lvl.badge + ' ' + lvl.xp + ' XP';
+  AB.renderProgressBar(document.getElementById('progress-bar'));
+
+  const list = document.getElementById('modules-list');
+  list.innerHTML = '';
+  MODULES.forEach(m => {
+    const isDone = AB.isModuleDone(m.n);
+    const isLocked = !AB.isModuleUnlocked(m.n);
+    const score = AB.getModuleScore(m.n);
+
+    const card = document.createElement(isLocked ? 'div' : 'a');
+    card.className = 'mod-card' + (isLocked ? ' locked' : '') + (isDone ? ' done' : '');
+    if (!isLocked) card.href = 'module-' + m.n + '.html';
+
+    card.innerHTML =
+      '<div class="mod-ic ' + (isDone ? 'done' : isLocked ? '' : 'unlocked') + '">' + (isLocked ? '🔒' : m.icon) + '</div>' +
+      '<div class="mod-body">' +
+        '<div class="mod-card-title">Module ' + m.n + ' — ' + m.title + '</div>' +
+        '<div class="mod-desc">' + m.desc + '</div>' +
+        '<div class="mod-meta">' +
+          '<span class="chip ' + (isDone ? 'chip-done' : isLocked ? 'chip-locked' : 'chip-current') + '">' +
+            (isDone ? '✓ Défi validé' : isLocked ? '🔒 Verrouillé' : '→ À faire') +
+          '</span>' +
+          '<span class="mod-xp">' + (isDone ? score + '/100' : 'seuil 70/100') + '</span>' +
+        '</div>' +
+      '</div>' +
+      (isLocked ? '' : '<span class="mod-arrow">→</span>');
+
+    list.appendChild(card);
+  });
+
+  const bg = document.getElementById('badges-grid');
+  bg.innerHTML = '';
+  AB.BADGES.forEach(b => {
+    const earned = AB.isModuleDone(b.module);
+    const el = document.createElement('div');
+    el.className = 'badge-item' + (earned ? ' earned' : '');
+    el.innerHTML = '<div class="badge-ic">' + (earned ? b.icon : '🔒') + '</div><div class="badge-name">' + b.name + '</div>';
+    bg.appendChild(el);
+  });
+}
+
+render();
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+</script>
+<script src="/automationboost/assets/js/theme.js?v=20260817" defer></script>
+</body>
+</html>

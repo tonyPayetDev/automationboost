@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SRZVQ1WGD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-0SRZVQ1WGD');
+  </script>
+  <meta charset="UTF-8" />
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1713977213196523');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1713977213196523&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Résumer l&#x27;activité hebdomadaire sur Slack avec l&#x27;IA – AutomationBoost</title>
+  <meta name="description" content="Résume automatiquement l&#x27;activité de vos canaux Slack chaque semaine pour rester informé sans lire chaque message. Fonctionne avec Slack et Google Gemini." />
+  <meta property="og:title" content="Résumer l&#x27;activité hebdomadaire sur Slack avec l&#x27;IA – AutomationBoost" />
+  <meta property="og:description" content="Résume automatiquement l&#x27;activité de vos canaux Slack chaque semaine pour rester informé sans lire chaque message. Fonctionne avec Slack et Google Gemini." />
+  <meta property="og:type" content="article" />
+  <link rel="canonical" href="https://automatisationboost.com/ressources/workflow-resume-slack-ia" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260717n" />
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .res-page { padding: 120px 0 80px; }
+    .breadcrumb { font-size:13px;color:var(--text-muted);margin-bottom:32px; }
+    .breadcrumb a { color:var(--gold);text-decoration:none; }
+    .page-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px; }
+    .cat-badge { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;margin-left:8px; }
+    .page-title { font-size:clamp(1.6rem,3.5vw,2.5rem);font-family:'Sora',sans-serif;font-weight:900;margin-bottom:16px;line-height:1.2; }
+    .lede { font-size:1.1rem;color:var(--text-light);line-height:1.8;margin-bottom:32px;max-width:720px; }
+    .tools-list { display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px; }
+    .tool-tag { display:inline-block;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:var(--text-light);font-size:12px;padding:4px 12px;border-radius:20px; }
+    .workflow-box { background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.2);border-radius:12px;padding:32px;margin-bottom:40px;max-width:720px; }
+    .workflow-box h2 { font-family:'Sora',sans-serif;font-size:1rem;font-weight:700;color:var(--gold);margin-bottom:16px; }
+    .trigger-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.3);color:var(--gold);font-size:12px;font-weight:600;padding:6px 14px;border-radius:6px;margin-bottom:16px; }
+    .download-btn { display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#eab308,#ca8a04);color:#000;font-weight:700;font-size:15px;padding:14px 28px;border-radius:8px;text-decoration:none;transition:transform .2s,box-shadow .2s;font-family:'Sora',sans-serif;letter-spacing:.03em; }
+    .download-btn:hover { transform:translateY(-2px);box-shadow:0 8px 24px rgba(234,179,8,0.3); }
+    .content-block { max-width:720px; }
+    .content-block h2 { font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:40px 0 16px; }
+    .content-block p { color:var(--text-light);line-height:1.8;margin-bottom:16px; }
+    .content-block ul { color:var(--text-light);line-height:1.9;padding-left:20px;margin-bottom:16px; }
+    .content-block li { margin-bottom:6px; }
+    .content-block strong { color:var(--text); }
+    .cta-block { margin-top:60px;padding:32px;background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.2);border-radius:12px;text-align:center;max-width:720px; }
+    .cta-block h3 { font-family:'Sora',sans-serif;font-size:1rem;font-weight:700;color:var(--gold);margin-bottom:8px; }
+    .cta-block p { color:var(--text-light);margin-bottom:20px;font-size:14px; }
+    .cta-btn { display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#eab308,#ca8a04);color:#000;font-weight:700;font-size:14px;padding:12px 24px;border-radius:8px;text-decoration:none;font-family:'Sora',sans-serif; }
+    .nav-back { display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;text-decoration:none;margin-top:60px;transition:color .2s; }
+    .nav-back:hover { color:var(--gold); }
+  
+    /* Lisibilité lecture longue : Sora (chargée) au lieu d'Orbitron/Rajdhani (jamais chargées) */
+    .page-title, .content-block h2, .content-block h3,
+    article.article-body h2, article.article-body h3 { font-family:'Sora',sans-serif; }
+    .content-block p, .content-block li,
+    article.article-body p, article.article-body li { font-size:17px; line-height:1.75; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Résumer l&#x27;activité hebdomadaire sur Slack avec l&#x27;IA",
+    "description": "Résume automatiquement l&#x27;activité de vos canaux Slack chaque semaine pour rester informé sans lire chaque message. Fonctionne avec Slack et Google Gemini.",
+    "url": "https://automatisationboost.com/ressources/workflow-resume-slack-ia.html",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://automatisationboost.com/ressources/workflow-resume-slack-ia.html"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "url": "https://automatisationboost.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AutomationBoost",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://automatisationboost.com/assets/images/logo.svg"
+      }
+    },
+    "isAccessibleForFree": false,
+    "hasPart": {
+      "@type": "WebPageElement",
+      "isAccessibleForFree": false,
+      "cssSelector": ".content-block"
+    }
+  }
+  </script>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-pill">
+    <a href="../" class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <span class="logo-text">Automation<span>Boost</span></span>
+    </a>
+    <div class="nav-desktop">
+      <a href="../ressources.html" class="nav-link-slide"><span>Ressources</span><span>Ressources</span></a>
+      <a href="../blog.html" class="nav-link-slide"><span>Blog IA</span><span>Blog IA</span></a>
+      <a href="../skills.html" class="nav-link-slide"><span>Skills</span><span>Skills</span></a>
+      <a href="https://videoboost.automatisationboost.com/vente.html" class="nav-link-slide"><span>ShortForge</span><span>ShortForge</span></a>
+      <a href="../formation.html" class="nav-formation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Formation
+      </a>
+    </div>
+    <a href="/#contact" class="nav-cta">Audit gratuit →</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner">
+    <a href="../ressources.html" class="mob-link">Ressources</a>
+    <a href="../blog.html" class="mob-link">Blog IA</a>
+    <a href="../skills.html" class="mob-link mob-link--gold">Skills Claude</a>
+    <a href="https://videoboost.automatisationboost.com/vente.html" class="mob-link mob-link--gold">ShortForge</a>
+    <a href="../formation.html" class="mob-link mob-link--gold">Formation</a>
+    <a href="/#contact" class="mob-link">Audit gratuit</a>
+  </nav>
+</div>
+<section class="res-page">
+  <div class="container">
+    <div class="breadcrumb"><a href="../ressources.html">Ressources</a><span style="margin:0 8px">/</span>Résumer l&#x27;activité hebdomadaire sur Slack avec l&#x27;I...</div>
+    <div>
+      <span class="page-badge">⚙ Workflow n8n</span>
+      <span class="cat-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#8b5cf6;">Productivité</span>
+    </div>
+    <h1 class="page-title">Résumer l&#x27;activité hebdomadaire sur Slack avec l&#x27;IA</h1>
+    <p class="lede">Résume automatiquement l&#x27;activité de vos canaux Slack chaque semaine pour rester informé sans lire chaque message. Fonctionne avec Slack et Google Gemini.</p>
+
+    <div class="tools-list">
+      <span class="tool-tag">n8n</span><span class="tool-tag">Slack</span><span class="tool-tag">Google Gemini</span>
+    </div>
+
+    <div class="workflow-box">
+      <h2>Télécharger le workflow n8n</h2>
+      <div class="trigger-badge">⚡ Déclencheur : Planification hebdomadaire</div>
+      <p style="color:var(--text-light);font-size:14px;line-height:1.7;margin-bottom:24px;">
+        Importez ce workflow JSON directement dans votre instance n8n. Configurez vos identifiants
+        (clés API, connexions) et activez-le en un clic.
+      </p>
+      <a href="https://inno-mation.com/workflows/resumer-l-activite-hebdomadaire-sur-slack-avec-l-ia.json" download="resumer-l-activite-hebdomadaire-sur-slack-avec-l-ia.json" class="download-btn">
+        ⬇ Télécharger le workflow JSON
+      </a>
+    </div>
+
+    <div class="content-block">
+      <h2>Comment utiliser ce workflow</h2>
+      <p>
+        Ce workflow n8n est prêt à l'emploi. Voici les étapes pour le déployer rapidement :
+      </p>
+      <ul>
+        <li>Ouvrez votre instance n8n et cliquez sur <strong>Workflows → Import from File</strong></li>
+        <li>Sélectionnez le fichier JSON téléchargé — le workflow apparaît automatiquement</li>
+        <li>Configurez vos <strong>identifiants</strong> pour chaque service utilisé (n8n, Slack, Google Gemini)</li>
+        <li>Testez le workflow avec le bouton <strong>Execute Workflow</strong></li>
+        <li>Activez-le pour qu'il tourne en automatique</li>
+      </ul>
+
+      <h2>À quoi ça sert concrètement ?</h2>
+      <p>Résume automatiquement l&#x27;activité de vos canaux Slack chaque semaine pour rester informé sans lire chaque message. Fonctionne avec Slack et Google Gemini.</p>
+      <p>
+        Ce workflow est idéal si vous cherchez à <strong>gagner du temps</strong> sur des tâches
+        répétitives et à laisser l'IA travailler à votre place. Il s'intègre dans votre stack
+        existant sans code.
+      </p>
+
+      <h2>Personnalisation</h2>
+      <p>
+        Chaque workflow est un point de départ que vous pouvez adapter :
+        changer les modèles d'IA, ajouter des étapes, connecter vos propres outils.
+        Si vous avez besoin d'aide pour une personnalisation complexe, nos services
+        d'automatisation peuvent vous accompagner.
+      </p>
+    </div>
+
+    <div class="cta-block">
+      <h3>Besoin d'aide pour déployer ce workflow ?</h3>
+      <p>Formation complète n8n + IA à 29,90€ — maîtrisez l'automatisation de A à Z</p>
+      <a href="../formation.html" class="cta-btn">Voir la formation →</a>
+    </div>
+
+    <a href="../ressources.html" class="nav-back">← Retour aux ressources</a>
+  </div>
+</section>
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 20); });
+</script>
+<script src="/automationboost/assets/js/email-valide.js?v=20261007a" defer></script>
+<script src="../assets/js/lead-popup.js?v=20261007a" defer></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="/automationboost/assets/js/theme.js?v=20260717n" defer></script>
+</body>
+</html>

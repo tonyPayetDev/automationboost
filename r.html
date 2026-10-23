@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Redirection — AutomationBoost</title>
+<style>
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0d0d13;
+  color:#eceef5;font:400 16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  padding:24px;text-align:center}
+.b{max-width:34ch;display:flex;flex-direction:column;gap:14px}
+.m{font-size:17px;font-weight:600}
+.s{color:#9599ad;font-size:14.5px}
+a{color:#3dc4c2}
+</style>
+</head>
+<body>
+<div class="b">
+  <div class="m">Un instant…</div>
+  <p class="s">Si rien ne se passe, <a id="direct" href="https://automatisationboost.com/">continuez ici</a>.</p>
+</div>
+<script>
+/* Page de redirection : elle affiche le domaine du site, pas celui de l'outil
+   qui compte les clics. Un webhook brut dans un email froid ressemble à du
+   hameçonnage — les filtres comme les humains le lisent ainsi.
+
+   2026-09-08 : le clic ne part plus en `fetch` parallèle. Il passait par
+   `/webhook/r` en mode no-cors, sans qu'on puisse vérifier qu'il arrivait, et
+   un navigateur qui ferme l'onglet avant l'envoi perdait la trace. On passe
+   maintenant PAR le webhook `email-tracking` (workflow n8n qDLhi0A3OADnAU0A,
+   actif et vérifié : 302 + une ligne dans le Sheet « Email tracking resto »),
+   qui journalise puis redirige lui-même. Le clic est donc compté côté serveur,
+   ou il ne l'est pas du tout — jamais « à moitié ». */
+(function () {
+  var q = new URLSearchParams(location.search);
+  var a = (q.get('a') || '').replace(/[^a-z0-9-]/gi, '');
+  var s = (q.get('s') || 'general').replace(/[^a-z0-9-]/gi, '');
+  var quoi = q.get('q') || 'audit';
+  var DEST = {
+    audit: 'https://automatisationboost.com/audit.html',
+    demo: 'https://automatisationboost.com/demo.html',
+    module: 'https://automatisationboost.com/cours/module-1.html',
+    rapport: 'https://previsualisation.automatisationboost.com/rapport-agence/' + a + '/'
+  };
+  var dest = DEST[quoi] || DEST.audit;
+  document.getElementById('direct').href = dest;
+  var suivi = 'https://n7n.automatisationboost.com/webhook/email-tracking'
+    + '?event=click&id=' + encodeURIComponent(a)
+    + '&secteur=' + encodeURIComponent(s)
+    + '&redirect=' + encodeURIComponent(dest);
+  setTimeout(function () { location.replace(suivi); }, 250);
+})();
+</script>
+</body>
+</html>

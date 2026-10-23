@@ -1,0 +1,73 @@
+{
+  "name": "Voix Off locale — Voicebox (AutomationBoost)",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Voix Off locale (Voicebox)",
+        "formDescription": "Colle ton texte et l'ID du profil de voix Voicebox. La voix est générée en local, sur ta machine, gratuitement.",
+        "formFields": {
+          "values": [
+            { "fieldName": "text", "fieldLabel": "Ton texte à lire", "fieldType": "textarea", "placeholder": "Écris ici le texte de ta voix off...", "requiredField": true },
+            { "fieldName": "profile_id", "fieldLabel": "ID du profil de voix (voir voicebox.list_profiles)", "fieldType": "text", "placeholder": "abc123", "requiredField": true },
+            { "fieldName": "language", "fieldLabel": "Langue (code : fr, en, es...)", "fieldType": "text", "placeholder": "fr", "requiredField": false }
+          ]
+        },
+        "responseMode": "onReceived",
+        "options": { "path": "voix-off-locale", "buttonLabel": "Générer ma voix off", "appendAttribution": false }
+      },
+      "id": "form-trigger",
+      "name": "Formulaire Voicebox",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:17493/generate",
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={ \"text\": \"{{ $json.text }}\", \"profile_id\": \"{{ $json.profile_id }}\", \"language\": \"{{ $json.language || 'fr' }}\" }",
+        "options": { "timeout": 120000, "response": { "response": { "responseFormat": "file", "outputPropertyName": "data" } } }
+      },
+      "id": "generate-local",
+      "name": "Générer (Voicebox local)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [240, 0]
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "sendDocument",
+        "chatId": "TON_CHAT_ID_TELEGRAM",
+        "binaryData": true,
+        "binaryPropertyName": "data",
+        "additionalFields": { "caption": "🎙️ Ta voix off (Voicebox local) est prête !", "fileName": "voix-off.wav" }
+      },
+      "id": "deliver-telegram",
+      "name": "Envoyer sur Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [480, 0]
+    },
+    {
+      "parameters": {
+        "content": "## Voix Off locale — Voicebox\n\n**Prérequis :** Voicebox installé et lancé sur LA MÊME machine que n8n (l'API écoute sur 127.0.0.1:17493).\n\n1. Récupère l'`profile_id` de ta voix via l'outil `voicebox.list_profiles` (ou l'app).\n2. Nœud Telegram : mets ton chat ID + ta credential (ou remplace-le par une autre livraison : « Write Binary File » vers un dossier, Drive, email...).\n3. Active le workflow, ouvre l'URL du formulaire, colle ton texte + l'ID de profil.\n\nEndpoint local : POST http://127.0.0.1:17493/generate · aucune clé API. Si ton n8n est distant, fais tourner Voicebox sur la même machine ou expose le port via un tunnel.",
+        "height": 300,
+        "width": 420
+      },
+      "id": "sticky-notes",
+      "name": "Notice",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [0, 200]
+    }
+  ],
+  "connections": {
+    "Formulaire Voicebox": { "main": [ [ { "node": "Générer (Voicebox local)", "type": "main", "index": 0 } ] ] },
+    "Générer (Voicebox local)": { "main": [ [ { "node": "Envoyer sur Telegram", "type": "main", "index": 0 } ] ] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
