@@ -214,7 +214,7 @@
   if (root.abEmail) return;
 
   var SCRIPT = document.currentScript;
-  var BASE = (SCRIPT && SCRIPT.src) ? SCRIPT.src.replace(/[^\/]*$/, '') : '/assets/js/';
+  var BASE = (SCRIPT && SCRIPT.src) ? SCRIPT.src.replace(/[^\/]*$/, '') : '/automationboost/assets/js/';
   var ENDPOINT = 'https://n7n.automatisationboost.com/webhook/email-valide';
 
   /* Small built-in list so the most common throwaway domains are caught even

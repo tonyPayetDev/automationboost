@@ -28,7 +28,7 @@
      journal-ia qui l'appellent : elle délègue à abEmail quand il est chargé. */
   if (!window.abEmail && !document.querySelector('script[src*="email-valide.js"]')) {
     var ev = document.createElement('script');
-    ev.src = '/assets/js/email-valide.js?v=20261007a';
+    ev.src = '/automationboost/assets/js/email-valide.js?v=20261007a';
     ev.defer = true;
     document.head.appendChild(ev);
   }
